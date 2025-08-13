@@ -175,11 +175,6 @@
     <string name="unit_fahrenheit_short">°</string>
     <string name="unit_kelvin">K</string>
     <string name="unit_kelvin_short">ك</string>
-    <string name="unit_km">كم</string>
-    <string name="unit_m">م</string>
-    <string name="unit_mi">ميل</string>
-    <string name="unit_nmi">ميل بحري</string>
-    <string name="unit_ft">قدم</string>
     <string name="settings_main_cards_title">البطاقات</string>
     <string name="widget_custom_subtitle_keyword_d_description">التاريخ</string>
     <string name="widget_custom_subtitle_keyword_ct_description">درجة الحرارة الحالية (°C°/F)</string>
@@ -241,12 +236,10 @@
     <string name="widget_custom_subtitle_keyword_ws_description">أسبوع (قصير)</string>
     <string name="widget_style_symmetry">تناظري</string>
     <string name="widget_style_oreo">أوريو</string>
-    <string name="unit_km_voice">كيلومترات</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">عاصفة رعدية طفيفة أو معتدلة</string>
     <string name="unit_in_voice">بوصات</string>
     <string name="air_quality_level_1">ممتازة</string>
     <string name="air_quality_level_4">غير صحي</string>
-    <string name="unit_m_voice">امتار</string>
     <string name="unit_inph">بوصة / ساعة</string>
     <string name="settings_icon_packs_weather_icon_dark">أيقونة داكنة</string>
     <string name="unit_lpsqmph_voice">لتر لكل متر مربع في الساعة</string>
@@ -299,7 +292,6 @@
     <string name="widget_clock_font_sans_serif">Sans Serif</string>
     <string name="unit_mph_voice">ميل في الساعة</string>
     <string name="unit_cmph">سم / ساعة</string>
-    <string name="unit_h">ساعة</string>
     <string name="common_weather_text_clear_sky">سماء صافية</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">عاصفة رعدية مع برد خفيف</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">عاصفة رعدية مع برد كثيف</string>
@@ -326,8 +318,6 @@
     <string name="widget_custom_subtitle_keyword_lon_description">الطول</string>
     <string name="widget_custom_subtitle_keyword_xsr_description">شروق الشمس اليوم، غدا، …، بعد 4 أيام</string>
     <string name="settings_icon_packs_weather_icon_light">أيقونة فاتحة</string>
-    <string name="unit_ft_voice">أقدام</string>
-    <string name="unit_nmi_voice">الأميال البحرية</string>
     <string name="notification_style_native">الاصليه</string>
     <string name="notification_style_cities">المدن</string>
     <string name="about_matrix">غرفة ماتريكس</string>
@@ -419,9 +409,7 @@
     <string name="unit_ftps_voice">قدم في الثانية</string>
     <string name="unit_mmph_voice">ملليمتر في الساعة</string>
     <string name="unit_cmph_voice">سنتيمتر في الساعة</string>
-    <string name="unit_mi_voice">اميال</string>
     <string name="unit_mugpcum_voice">ميكروغرام لكل متر مكعب</string>
-    <string name="unit_h_voice">ساعات</string>
     <string name="unit_ppcm">\\م³</string>
     <string name="unit_ppcm_voice">لكل متر مكعب</string>
     <string name="notification_channel_alerts">تنبيهات</string>

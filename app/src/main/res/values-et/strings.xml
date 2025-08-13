@@ -245,10 +245,7 @@
     <string name="settings_modules_monochrome_icons_title">Monokroomsed ikoonid</string>
     <string name="about_privacy_policy">Privaatsuspoliitika</string>
     <string name="settings_disabled">Väljas</string>
-    <string name="unit_ft">mi</string>
     <string name="unit_mgpcum_voice">Milligramm kuupmeetri kohta</string>
-    <string name="unit_h">h</string>
-    <string name="unit_h_voice">tunnid</string>
     <string name="notification_channel_alerts">Hoiatused</string>
     <string name="about_contribution_designer">Logo disainer</string>
     <string name="common_weather_text_drizzle_light">Kerge tibutamine</string>
@@ -379,7 +376,6 @@
     <string name="settings_units_distance">Vahemaaühik</string>
     <string name="settings_modules_live_wallpaper_title">Elus taustapilt</string>
     <string name="settings_modules_live_wallpaper_summary">Sea ilmaanimatsioon taustapildina</string>
-    <string name="unit_ft_voice">Jalad</string>
     <string name="notification_channel_widget">Vidin</string>
     <string name="notification_channel_background_services">Tagatausta teenused</string>
     <string name="unit_ppcm_voice">Kuupmeetri kohta</string>
@@ -557,11 +553,6 @@
     <string name="settings_invalid_syntax">Vigane süntaks</string>
     <string name="unit_mps">m/s</string>
     <string name="unit_lpsqmph_voice">Liitrit ruutmeetrile tunnis</string>
-    <string name="unit_m">m</string>
-    <string name="unit_mi">mi</string>
-    <string name="unit_mi_voice">Miilid</string>
-    <string name="unit_km_voice">Kilomeetrid</string>
-    <string name="unit_m_voice">Meetrid</string>
     <string name="settings_color_light">Hele</string>
     <string name="unit_mm">mm</string>
     <string name="unit_in">toll</string>
@@ -569,9 +560,6 @@
     <string name="unit_cmph">cm/h</string>
     <string name="settings_items_drag_to_sort">Vajuta, et lohistada nimekirja objekte sorteerimiseks</string>
     <string name="unit_kelvin_short">K</string>
-    <string name="unit_km">km</string>
-    <string name="unit_nmi_voice">Meremiilid</string>
-    <string name="unit_nmi">mpk</string>
     <string name="unit_kph">km/h</string>
     <string name="unit_ftps_voice">Jalga sekundis</string>
     <string name="unit_mm_voice">Millimeetrid</string>

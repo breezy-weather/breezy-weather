@@ -225,13 +225,7 @@
     <string name="unit_cm">см</string>
     <string name="unit_in">дюйм</string>
     <string name="unit_lpsqm">л/м²</string>
-    <string name="unit_km">км</string>
-    <string name="unit_m">метры</string>
-    <string name="unit_mi">мили</string>
-    <string name="unit_nmi">мор. мили</string>
-    <string name="unit_ft">футы</string>
     <string name="unit_mugpcum">мкг/м³</string>
-    <string name="unit_h">ч</string>
     <string name="unit_ppcm">/м³</string>
     <string name="locations">Местоположения</string>
     <string name="air_quality_level_5">Очень вредно</string>
@@ -345,7 +339,6 @@
     <string name="unit_ftps_voice">Футов в секунду</string>
     <string name="unit_in_voice">Дюймов</string>
     <string name="unit_celsius_short">°</string>
-    <string name="unit_ft_voice">Футы</string>
     <string name="unit_mgpcum_voice">Миллиграммы на кубический метр</string>
     <string name="notification_channel_background_services">Фоновые сервисы</string>
     <string name="location_results_by">Результаты местоположения по %s</string>
@@ -367,7 +360,6 @@
     <string name="unit_inph">инчей/ч</string>
     <string name="unit_lpsqmph">Л/м²/ч</string>
     <string name="unit_fahrenheit">°F</string>
-    <string name="unit_km_voice">Километры</string>
     <string name="unit_mugpcum_voice">Микрограммы на кубический метр</string>
     <string name="unit_mgpcum">мг/м³</string>
     <string name="common_weather_text_overcast">Пасмурно</string>
@@ -376,8 +368,6 @@
     <string name="alerts_to_follow">Надвигающиеся предупреждения – нажмите здесь для просмотра.</string>
     <string name="wind_direction_variable">Значение</string>
     <string name="settings_icon_packs_weather_adaptive_icon">Иконка погоды</string>
-    <string name="unit_m_voice">Метры</string>
-    <string name="unit_mi_voice">Мили</string>
     <string name="notification_channel_alerts">Оповещения</string>
     <string name="settings_icon_packs_title">Наборы иконок</string>
     <string name="settings_notifications">Уведомления</string>
@@ -417,7 +407,6 @@
     <string name="settings_debug_dump_crash_logs_title">Поделиться журналами ошибок</string>
     <string name="unit_lpsqm_voice">Литров на квадратный метр</string>
     <string name="unit_fahrenheit_short">°</string>
-    <string name="unit_h_voice">часы</string>
     <string name="unit_ppcm_voice">На кубический метр</string>
     <string name="notification_channel_widget">Виджет</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Гроза с сильным градом</string>
@@ -436,7 +425,6 @@
     <string name="settings_modules_notification_feels_like_switch">Использовать темперутуру “по ощущениям”</string>
     <string name="unit_lpsqmph_voice">Литров на квадратный метр в час</string>
     <string name="unit_kelvin_short">K</string>
-    <string name="unit_nmi_voice">Морские мили</string>
     <string name="about_matrix">Комната Matrix</string>
     <string name="about_source_code">Исходный код</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Гроза со слабым градом</string>

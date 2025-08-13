@@ -275,9 +275,7 @@
     <string name="unit_celsius">°C</string>
     <string name="notification_channel_app_updates">Posodobitve aplikacije</string>
     <string name="location_delete_location_dialog_message">Izbrisali boste “%s” iz svojega seznama shrani lokacij.</string>
-    <string name="unit_h_voice">ure</string>
     <string name="location_message_location_access_off">Lokacijske storitve so izključene</string>
-    <string name="unit_km">km</string>
     <string name="notification_style_cities">Mesta</string>
     <string name="notification_channel_alerts">Alarmi</string>
     <string name="unit_ppcm_voice">Na kubik</string>
@@ -293,7 +291,6 @@
     <string name="unit_mugpcum">μg/m³</string>
     <string name="unit_mgpcum">mg/m³</string>
     <string name="unit_mugpcum_voice">Mikrogrami na kubični meter</string>
-    <string name="unit_h">h</string>
     <string name="unit_mgpcum_voice">Miligrami na kubični meter</string>
     <string name="about_no_new_updates">Posodobitve niso na voljo</string>
     <string name="about_check_for_app_updates">Preveri za posodobitve</string>
@@ -328,7 +325,6 @@
     <string name="pollen_ulmus">Brest</string>
     <string name="weather_source_continent_south_america">Južna Amerika</string>
     <string name="location_delete_location_dialog_message_no_name">To lokacijo boste izbrisali iz seznama shranjenih lokacij.</string>
-    <string name="unit_km_voice">Kilometer</string>
     <string name="common_weather_text_tornado">Tornado</string>
     <string name="unit_kelvin_short">K</string>
     <string name="common_weather_text_rain_snow_mixed_showers_heavy">Močan dež z snegom</string>

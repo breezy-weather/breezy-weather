@@ -229,7 +229,6 @@
     <string name="settings_modules">위젯 및 라이브 배경화면</string>
     <string name="settings_modules_notification_persistent_switch">지속</string>
     <string name="settings_debug_dump_crash_logs_title">충돌 로그 공유</string>
-    <string name="unit_ft_voice">피트</string>
     <string name="notification_channel_widget">위젯</string>
     <string name="wind_direction_NE_short">북동</string>
     <string name="wind_direction_SE_short">남동</string>
@@ -257,7 +256,6 @@
     <string name="settings_main_cards_other_element_animations_switch">기타 항목 애니메이션</string>
     <string name="settings_notifications_summary">날씨 경보, 강수, 예보</string>
     <string name="settings_notifications_forecast_today_title">오늘 예보 알림</string>
-    <string name="unit_h_voice">시간</string>
     <string name="unit_ppcm">/m³</string>
     <string name="settings_item_delete">이 항목 삭제</string>
     <string name="action_location_list">위치 목록</string>
@@ -288,10 +286,6 @@
     <string name="uv_index_11">위험</string>
     <string name="unit_mph">mph</string>
     <string name="unit_mph_voice">시속 마일</string>
-    <string name="unit_mi_voice">마일</string>
-    <string name="unit_nmi">nmi</string>
-    <string name="unit_nmi_voice">해리</string>
-    <string name="unit_ft">ft</string>
     <string name="setting_weather_source_accu_days">일수</string>
     <string name="weather_source_accu_preference_days_1">1일</string>
     <string name="weather_source_accu_preference_days_5">5일</string>
@@ -334,15 +328,9 @@
     <string name="unit_mmph">mm/h</string>
     <string name="unit_celsius">°C</string>
     <string name="unit_kelvin_short">K</string>
-    <string name="unit_km">km</string>
-    <string name="unit_km_voice">킬로미터</string>
-    <string name="unit_m">m</string>
     <string name="unit_fahrenheit">°F</string>
     <string name="unit_fahrenheit_short">°</string>
     <string name="unit_kelvin">K</string>
-    <string name="unit_mi">mi</string>
-    <string name="unit_m_voice">미터</string>
-    <string name="unit_h">h</string>
     <string name="notification_channel_alerts">경보</string>
     <string name="notification_style_cities">도시</string>
     <string name="about_matrix">Matrix 서버</string>

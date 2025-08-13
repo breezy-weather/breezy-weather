@@ -263,14 +263,8 @@
     <string name="unit_cm_voice">Centimetry</string>
     <string name="unit_in_voice">Palce</string>
     <string name="unit_lpsqm_voice">Litry na metr čtvereční</string>
-    <string name="unit_km_voice">Kilometry</string>
-    <string name="unit_m_voice">Metry</string>
-    <string name="unit_mi_voice">Míle</string>
-    <string name="unit_nmi_voice">Námořní míle</string>
-    <string name="unit_ft_voice">Stopy</string>
     <string name="unit_mugpcum_voice">Mikrogramy na metr krychlový</string>
     <string name="unit_mgpcum_voice">Milligramy na metr krychlový</string>
-    <string name="unit_h_voice">hodin</string>
     <string name="unit_ppcm_voice">Na metr krychlový</string>
     <string name="settings_notifications">Oznámení</string>
     <string name="location_message_reverse_geocoding_failed">Zdroji počasí se nepodařilo najít odpovídající místo</string>
@@ -291,8 +285,6 @@
     <string name="settings_modules_notification_feels_like_switch">Použít pocitovou teplotu</string>
     <string name="settings_main_background_animation_title">Animace na pozadí</string>
     <string name="settings_debug_dump_crash_logs_summary">Uložit protokoly o chybách do souboru pro sdílení s vývojáři</string>
-    <string name="unit_m">m</string>
-    <string name="unit_nmi">nmi</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Bouřka s drobným krupobitím</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Bouřka se silným krupobitím</string>
     <string name="settings_units_summary">Teplota, srážky, vzdálenost, rychlost, tlak</string>
@@ -327,7 +319,6 @@
     <string name="settings_notifications_forecast_tomorrow_title">Oznámení pro předpověď na další den</string>
     <string name="settings_debug_dump_crash_logs_title">Sdílet protokoly o pádech</string>
     <string name="unit_kelvin">K</string>
-    <string name="unit_km">km</string>
     <string name="notification_update_error">%d aktualizace se nezdařila/y</string>
     <string name="about_matrix">Matrix místnost</string>
     <string name="common_weather_text_overcast">Zataženo</string>
@@ -351,7 +342,6 @@
     <string name="unit_inph_voice">Palce za hodinu</string>
     <string name="unit_lpsqmph">L/m²/h</string>
     <string name="unit_celsius_short">°</string>
-    <string name="unit_h">h</string>
     <string name="notification_channel_alerts">Výstrahy</string>
     <string name="common_weather_text_clear_sky">Jasno</string>
     <string name="air_quality_o3_full">Přízemní (troposférický) ozon (%s)</string>
@@ -379,7 +369,6 @@
     <string name="unit_mugpcum">μg/m³</string>
     <string name="notification_channel_widget">Widget</string>
     <string name="unit_ppcm">/m³</string>
-    <string name="unit_mi">mi</string>
     <string name="about_source_code">Zdrojový kód</string>
     <string name="air_quality_level_6_description">Jakékoli vystavení ovzduší, byť jen na několik minut, může mít pro každého vážné zdravotní následky. Vyhněte se venkovním aktivitám.</string>
     <string name="action_location_list">Seznam poloh</string>
@@ -407,7 +396,6 @@
     <string name="unit_mmph">mm/h</string>
     <string name="unit_fahrenheit">°F</string>
     <string name="unit_kelvin_short">K</string>
-    <string name="unit_ft">ft</string>
     <string name="unit_mgpcum">mg/m³</string>
     <string name="weather_source_accu_preference_days_1">1 den</string>
     <string name="weather_source_accu_preference_days_5">5 dní</string>

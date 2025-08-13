@@ -420,22 +420,10 @@
     <string name="unit_fahrenheit_short">°</string>
     <string name="unit_kelvin">K</string>
     <string name="unit_kelvin_short">K</string>
-    <string name="unit_km">km</string>
-    <string name="unit_km_voice">Kilometroj</string>
-    <string name="unit_m">m</string>
-    <string name="unit_m_voice">Metroj</string>
-    <string name="unit_mi">mi</string>
-    <string name="unit_mi_voice">Mejloj</string>
-    <string name="unit_nmi">nmi</string>
-    <string name="unit_nmi_voice">Marmejloj</string>
-    <string name="unit_ft">ft</string>
-    <string name="unit_ft_voice">Futoj</string>
     <string name="unit_mugpcum">μg/m³</string>
     <string name="unit_mugpcum_voice">Mikrogramoj por kuba metro</string>
     <string name="unit_mgpcum">mg/m³</string>
     <string name="unit_mgpcum_voice">Miligramoj por kuba metro</string>
-    <string name="unit_h">h</string>
-    <string name="unit_h_voice">horoj</string>
     <string name="unit_ppcm">/m³</string>
     <string name="unit_ppcm_voice">Por kuba metro</string>
     <!-- Notifications -->

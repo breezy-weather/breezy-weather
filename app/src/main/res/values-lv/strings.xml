@@ -389,7 +389,6 @@
     <string name="unit_inph_voice">Collas stundā</string>
     <string name="unit_lpsqmph">L/m²/h</string>
     <string name="unit_lpsqmph_voice">Litri uz kvadrātmetru stundā</string>
-    <string name="unit_ft_voice">Pēda</string>
     <string name="unit_mugpcum">μg/m³</string>
     <string name="unit_mugpcum_voice">Mikrogrami uz kubikmetru</string>
     <string name="notification_style_cities">Pilsētas</string>
@@ -416,10 +415,8 @@
     <string name="unit_cmph_voice">Centimetri stundā</string>
     <string name="unit_kelvin">K</string>
     <string name="unit_kelvin_short">K</string>
-    <string name="unit_km">km</string>
     <string name="unit_mgpcum">mg/m³</string>
     <string name="unit_mgpcum_voice">Miligrami uz kubikmetru</string>
-    <string name="unit_h">h</string>
     <string name="notification_refreshed_at">Atsvaidzināti</string>
     <string name="notification_channel_alerts">Brīdinājumi</string>
     <string name="notification_channel_forecast">Prognoze</string>
@@ -467,15 +464,11 @@
     <string name="unit_celsius_short">°</string>
     <string name="unit_fahrenheit">°F</string>
     <string name="unit_fahrenheit_short">°</string>
-    <string name="unit_km_voice">Kilometri</string>
-    <string name="unit_ft">ft</string>
-    <string name="unit_nmi_voice">Jūras jūdzes</string>
     <string name="common_weather_text_rain_light">Neliels lietus</string>
     <string name="common_weather_text_rain_heavy">Spēcīgs lietus</string>
     <string name="common_weather_text_snow_moderate">Mērens sniegs</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">Sarmas miglas nogulsnēšana</string>
     <string name="notification_running_in_background">Darbojas fonā, lai turpinātu atjaunināšanu</string>
-    <string name="unit_h_voice">stundas</string>
     <string name="notification_update_error">%d atjauninājums(i) neizdevās</string>
     <string name="notification_updating_weather_data">Atjaunina laikapstākļu datus (%1$d/%2$d)</string>
     <string name="notification_style_native">Parasts</string>
@@ -507,11 +500,6 @@
     <string name="unit_mm">mm</string>
     <string name="unit_mm_voice">Milimetri</string>
     <string name="unit_inph">colla/h</string>
-    <string name="unit_m">m</string>
-    <string name="unit_m_voice">Metri</string>
-    <string name="unit_mi">mi</string>
-    <string name="unit_mi_voice">Jūdzes</string>
-    <string name="unit_nmi">nmi</string>
     <string name="unit_ppcm">/m³</string>
     <string name="unit_ppcm_voice">Par kubikmetru</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Pērkona negaiss neliels vai mērens</string>

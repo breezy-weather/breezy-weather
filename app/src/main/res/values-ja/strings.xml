@@ -307,7 +307,6 @@
     <string name="air_quality_so2_full">二酸化硫黄（%s）</string>
     <string name="action_undo">元に戻す</string>
     <string name="notification_channel_widget">ウィジェット</string>
-    <string name="unit_h">h</string>
     <string name="settings_unavailable_no_background_updates">利用できません。最初にバックグラウンド更新を有効にしてください</string>
     <string name="unit_kph">km/h</string>
     <string name="unit_mps_voice">メートル毎秒</string>
@@ -325,10 +324,6 @@
     <string name="unit_inph">inch/h</string>
     <string name="unit_mmph">mm/h</string>
     <string name="unit_cmph_voice">センチメートル毎時</string>
-    <string name="unit_nmi">nmi</string>
-    <string name="unit_nmi_voice">カイリ</string>
-    <string name="unit_ft">ft</string>
-    <string name="unit_h_voice">時間</string>
     <string name="unit_ppcm">/m³</string>
     <string name="notification_channel_alerts">警報</string>
     <string name="notification_channel_crash_logs">クラッシュログ</string>
@@ -371,7 +366,6 @@
     <string name="settings_debug_dump_crash_logs_title">クラッシュログを共有</string>
     <string name="settings_item_delete">この項目を削除</string>
     <string name="unit_kelvin">K</string>
-    <string name="unit_mi">mi</string>
     <string name="weather_source_accu_preference_hours_72">72時間</string>
     <string name="weather_source_accu_preference_hours_120">120時間</string>
     <string name="weather_source_accu_preference_hours_240">240時間</string>
@@ -443,8 +437,6 @@
     <string name="settings_debug_dump_crash_logs_summary">エラーログをファイルに保存して開発者と共有</string>
     <string name="settings_items_drag_to_sort">並べ替えるリスト項目をタップしてドラッグしてください</string>
     <string name="unit_mph_voice">マイル毎時</string>
-    <string name="unit_km">km</string>
-    <string name="unit_km_voice">キロメートル</string>
     <string name="action_help_me_choose">ヘルプ</string>
     <string name="weather_api_unauthorized_content">一部の情報源には、あなた自身のAPIキーを設定する必要があります。既に設定している場合は、キーを再確認してください。</string>
     <string name="weather_api_key_required_missing_content">この情報源を利用するには、APIキーを設定する必要があります。</string>
@@ -462,8 +454,6 @@
     <string name="dialog_permissions_location_background_content">Androidで認識されている直近の位置情報に応じて、天気データをバックグラウンドで更新することを許可する場合は、権限を「常に許可」に設定してください。許可しない場合は、天気データはアプリがフォアグラウンドで実行している際に取得される座標（これは古くなる可能性があります）に基づき更新されます。</string>
     <string name="message_tap_again_to_exit">再度タップすると終了します</string>
     <string name="widget_style_oreo">オレオ</string>
-    <string name="unit_m_voice">メートル</string>
-    <string name="unit_ft_voice">フィート</string>
     <string name="ephemeris_sunrise_at">日の出 %s</string>
     <string name="unit_cmph">cm/h</string>
     <string name="setting_weather_source_accu_hours">時間</string>
@@ -527,8 +517,6 @@
     <string name="unit_fahrenheit">°F</string>
     <string name="unit_fahrenheit_short">°</string>
     <string name="unit_kelvin_short">K</string>
-    <string name="unit_m">m</string>
-    <string name="unit_mi_voice">マイル</string>
     <string name="unit_mugpcum">μg/m³</string>
     <string name="unit_mugpcum_voice">マイクログラム毎立方メートル</string>
     <string name="unit_mgpcum">mg/m³</string>

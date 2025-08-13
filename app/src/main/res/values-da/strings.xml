@@ -209,11 +209,7 @@
     <string name="settings_automatic">Automatisk</string>
     <string name="unit_mm">mm</string>
     <string name="unit_fahrenheit_short">°</string>
-    <string name="unit_km_voice">Kilometer</string>
-    <string name="unit_m">m</string>
     <string name="unit_kelvin_short">K</string>
-    <string name="unit_km">km</string>
-    <string name="unit_mi_voice">Mil</string>
     <string name="unit_ppcm">/m³</string>
     <string name="widget_custom_subtitle_keyword_at_description">Aktuelle føles som temperatur (°C/°F)</string>
     <string name="widget_custom_subtitle_explanation">Du kan indtaste hvad som helst, men bemærk venligst længden på teksten. Hvis du vil citere vejrdata, så brug venligst $ til, at henvise til det tilsvarende nøgleord.
@@ -266,7 +262,6 @@
     <string name="unit_mmph_voice">Millimeter i timen</string>
     <string name="unit_lpsqmph">L/m²/t</string>
     <string name="unit_celsius">°C</string>
-    <string name="unit_ft_voice">Fod</string>
     <string name="notification_refreshed_at">Genopfrisket kl.</string>
     <string name="common_weather_text_cloudy">Skyet</string>
     <string name="common_weather_text_snow_light">Let sne</string>
@@ -275,13 +270,10 @@
     <string name="settings_icon_packs_weather_adaptive_icon">Vejrikon</string>
     <string name="settings_appearance_dark_mode_locations_title">Dag- / Nattilstand for placeringer</string>
     <string name="settings_icon_packs_check_details">Kontrollér detaljer</string>
-    <string name="unit_mi">mi</string>
     <string name="unit_cmph_voice">Centimeter i timen</string>
     <string name="unit_inph">in/h</string>
     <string name="unit_fahrenheit">°F</string>
     <string name="unit_kelvin">K</string>
-    <string name="unit_nmi">nmi</string>
-    <string name="unit_h">t</string>
     <string name="notification_channel_crash_logs">Nedbrudslogge</string>
     <string name="notification_precipitation_stopping">Nedbør ophører snart</string>
     <string name="notification_precipitation_continuing_desc">Forventes at forsætte mindst indtil kl. %s</string>
@@ -352,7 +344,6 @@
     <string name="unit_mm_voice">Millimeter</string>
     <string name="unit_cm_voice">Centimeter</string>
     <string name="unit_in_voice">tommer</string>
-    <string name="unit_m_voice">Meter</string>
     <string name="notification_channel_background_services">Baggrundstjenester</string>
     <string name="notification_precipitation_starting_desc">Forventes at begynde kl. %s</string>
     <string name="unit_mgpcum_voice">Milligram per kubikmeter</string>
@@ -377,7 +368,6 @@
     <string name="unit_cm">cm</string>
     <string name="unit_cmph">cm/t</string>
     <string name="unit_mugpcum_voice">Mikrogram per kubikmeter</string>
-    <string name="unit_h_voice">timer</string>
     <string name="notification_update_error">%d opdatering(er) fejlede</string>
     <string name="about_translators">Oversættere</string>
     <string name="common_weather_text_rain_snow_mixed_light">Let slud</string>
@@ -471,8 +461,6 @@
     <string name="settings_background_updates_refresh_title">Genopfriskningsrate</string>
     <string name="settings_background_updates_refresh_never">Aldrig</string>
     <string name="widget_style_temperature">Temperatur</string>
-    <string name="unit_nmi_voice">Sømil</string>
-    <string name="unit_ft">ft</string>
     <string name="metno_weather_text_andthunder">%s og torden</string>
     <string name="action_search">Søg</string>
     <string name="message_network_unavailable">Netværk utilgængeligt</string>

@@ -264,14 +264,8 @@
     <string name="unit_cmph_voice">Centímetros por hora</string>
     <string name="unit_inph_voice">Polegadas por hora</string>
     <string name="unit_lpsqmph_voice">Litros por metro quadrado por hora</string>
-    <string name="unit_km_voice">Quilômetros</string>
-    <string name="unit_m_voice">Metros</string>
-    <string name="unit_mi_voice">Milhas</string>
-    <string name="unit_nmi_voice">Milhas marítimas</string>
-    <string name="unit_ft_voice">Pés</string>
     <string name="unit_mugpcum_voice">Microgramas por metro cúbico</string>
     <string name="unit_mgpcum_voice">Miligramas por metro cúbico</string>
-    <string name="unit_h_voice">horas</string>
     <string name="unit_ppcm_voice">Por metro cúbico</string>
     <string name="uv_index_6_7">Alto</string>
     <string name="uv_index_8_10">Muito alto</string>
@@ -407,11 +401,9 @@
     <string name="settings_notifications_forecast_time_tomorrow_title">Horário da notificação para a previsão do dia seguinte</string>
     <string name="action_close">Fechar</string>
     <string name="notification_channel_widget">Widget</string>
-    <string name="unit_h">h</string>
     <string name="unit_ppcm">/m³</string>
     <string name="null_data_text">N/A</string>
     <string name="unit_fahrenheit">°F</string>
-    <string name="unit_ft">ft</string>
     <string name="wind_direction_S_short">S</string>
     <string name="widget_clock_font_sans_serif">Sans Serif</string>
     <string name="unit_mps">m/s</string>
@@ -438,10 +430,6 @@
     <string name="unit_fahrenheit_short">°F</string>
     <string name="unit_kelvin">K</string>
     <string name="unit_kelvin_short">K</string>
-    <string name="unit_km">km</string>
-    <string name="unit_m">m</string>
-    <string name="unit_mi">mi</string>
-    <string name="unit_nmi">nmi</string>
     <string name="unit_mugpcum">μg/m³</string>
     <string name="air_quality_pm25">PM2.5</string>
     <string name="air_quality_pm10">PM10</string>

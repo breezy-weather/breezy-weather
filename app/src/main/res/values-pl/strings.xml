@@ -226,8 +226,6 @@
     <string name="unit_celsius">°C</string>
     <string name="unit_celsius_short">°</string>
     <string name="unit_fahrenheit">°F</string>
-    <string name="unit_km">km</string>
-    <string name="unit_km_voice">Kilometry</string>
     <string name="settings_main_section_animations">Animacje</string>
     <string name="settings_main_daily_trends_title">Trendy dzienne</string>
     <string name="settings_main_section_displayed_data">Wyświetlane dane</string>
@@ -238,7 +236,6 @@
     <string name="settings_background_updates">Aktualizacje w tle</string>
     <string name="settings_modules_notification_style_title">Styl</string>
     <string name="unit_in_voice">Cale</string>
-    <string name="unit_h_voice">godziny</string>
     <string name="settings_modules_notification_persistent_switch">Trwałe</string>
     <string name="action_share">Udostępnij</string>
     <string name="locations">Lokalizacje</string>
@@ -250,8 +247,6 @@
     <string name="common_weather_text_overcast">Zachmurzenie całkowite</string>
     <string name="unit_ftps">ft/s</string>
     <string name="unit_cm_voice">Centymetry</string>
-    <string name="unit_ft">ft</string>
-    <string name="unit_mi">mi</string>
     <string name="unit_kelvin">K</string>
     <string name="unit_in">cal</string>
     <string name="wind_direction_variable">Zmienny</string>
@@ -277,8 +272,6 @@
     <string name="common_weather_text_clear_sky">Bezchmurnie</string>
     <string name="unit_mm_voice">Minilitry</string>
     <string name="about_contributors">Współtwórcy</string>
-    <string name="unit_mi_voice">Mile</string>
-    <string name="unit_nmi_voice">Mile morskie</string>
     <string name="weather_source_accu_preference_days_5">5 dni</string>
     <string name="weather_source_accu_preference_days_10">10 dni</string>
     <string name="weather_source_accu_preference_days_15">15 dni</string>
@@ -290,7 +283,6 @@
     <string name="weather_source_accu_preference_hours_72">72 godziny</string>
     <string name="weather_source_accu_preference_hours_120">120 godzin</string>
     <string name="weather_source_accu_preference_hours_240">240 godzin</string>
-    <string name="unit_m">m</string>
     <string name="notification_channel_background_services">Usługi w tle</string>
     <string name="notification_style_cities">Miasta</string>
     <string name="about_source_code">Kod źródłowy</string>
@@ -310,7 +302,6 @@
     <string name="settings_background_updates_refresh_never">Nigdy</string>
     <string name="settings_background_updates_refresh_title">Częstotliwość odświeżania</string>
     <string name="settings_notifications">Powiadomienia</string>
-    <string name="unit_nmi">nmi</string>
     <string name="air_quality_level_3">Niedobre</string>
     <string name="air_quality_pm25">PM2,5</string>
     <string name="air_quality_pm10_voice">PM dziesięć</string>
@@ -334,8 +325,6 @@
     <string name="air_quality_level_4">Szkodliwe</string>
     <string name="unit_mph">mph</string>
     <string name="unit_inph">cal/h</string>
-    <string name="unit_m_voice">Metry</string>
-    <string name="unit_ft_voice">Stopa</string>
     <string name="unit_mugpcum">μg/m³</string>
     <string name="unit_mgpcum">mg/m³</string>
     <string name="settings_main_section_options">Opcje</string>
@@ -350,7 +339,6 @@
     <string name="settings_icon_packs_weather_icon_grey">Szara ikona</string>
     <string name="settings_icon_packs_weather_icon_dark">Ciemna ikona</string>
     <string name="settings_location">Lokalizacja</string>
-    <string name="unit_h">h</string>
     <string name="air_quality_pm25_voice">PM dwa i pół</string>
     <string name="air_quality_no2_full">Dwutlenek azotu (%s)</string>
     <string name="air_quality_so2_full">Dwutlenek siarki (%s)</string>

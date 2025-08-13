@@ -286,17 +286,6 @@
     <string name="unit_mmph">mm/h</string>
     <string name="unit_mmph_voice">Milimetro orduko</string>
     <string name="unit_lpsqmph">L/m²/h</string>
-    <string name="unit_km_voice">Kilometroak</string>
-    <string name="unit_m">m</string>
-    <string name="unit_m_voice">Metroak</string>
-    <string name="unit_mi">mi</string>
-    <string name="unit_mi_voice">Milia</string>
-    <string name="unit_nmi">nmi</string>
-    <string name="unit_nmi_voice">Milia nautikoak</string>
-    <string name="unit_ft">ft</string>
-    <string name="unit_ft_voice">Oin</string>
-    <string name="unit_h">h</string>
-    <string name="unit_h_voice">orduak</string>
     <string name="unit_ppcm">/m³</string>
     <string name="unit_ppcm_voice">Metro kubikoko</string>
     <string name="notification_channel_alerts">Alertak</string>
@@ -389,7 +378,6 @@
     <string name="unit_celsius">°C</string>
     <string name="unit_fahrenheit_short">°</string>
     <string name="unit_kelvin_short">K</string>
-    <string name="unit_km">km</string>
     <string name="unit_inph_voice">Hazbete orduko</string>
     <string name="unit_celsius_short">°</string>
     <string name="unit_kelvin">K</string>

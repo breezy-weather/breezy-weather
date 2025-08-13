@@ -410,7 +410,6 @@
     <string name="about_contribution_WangDaYeeeeee">Orijinal Geometric Weather uygulamasının geliştiricisi</string>
     <string name="unit_in_voice">İnç</string>
     <string name="unit_lpsqm">L/m²</string>
-    <string name="unit_h">sa</string>
     <string name="about_contributors">Katkıda bulunanlar</string>
     <string name="setting_weather_source_accu_days">Günler</string>
     <string name="settings_modules_notification_feels_like_switch">Hissedilen sıcaklığı kullan</string>
@@ -419,7 +418,6 @@
     <string name="settings_modules_notification_widget_title">Bildirim widget’ı</string>
     <string name="settings_location_summary">Konum servisi ayarları</string>
     <string name="settings_location_service">Konum servisi</string>
-    <string name="unit_ft_voice">Feet</string>
     <string name="unit_mugpcum">μg/m³</string>
     <string name="settings_background_updates_worker_info_summary">Son çalıştırma zamanı: %s</string>
     <string name="settings_location">Konum</string>
@@ -449,9 +447,7 @@
     <string name="unit_ftps">ft/sn</string>
     <string name="unit_mgpcum">mg/m³</string>
     <string name="unit_mgpcum_voice">Metreküp başına miligram</string>
-    <string name="unit_m">m</string>
     <string name="unit_mm">mm</string>
-    <string name="unit_h_voice">saat</string>
     <string name="weather_message_unsupported_feature">Kaynak istenilen özelliklerin birini desteklemiyor</string>
     <string name="widget_custom_subtitle_keyword_hd_description">Saatlik açıklama</string>
     <string name="widget_week_style_3_days">3 günlük</string>
@@ -474,14 +470,7 @@
     <string name="settings_modules_section_widgets_in_use">Kullanılan widget’lar</string>
     <string name="unit_mmph">mm/sa</string>
     <string name="unit_fahrenheit_short">F</string>
-    <string name="unit_km">km</string>
-    <string name="unit_m_voice">Metre</string>
-    <string name="unit_mi_voice">Mil</string>
-    <string name="unit_mi">mi</string>
-    <string name="unit_nmi">nmi</string>
-    <string name="unit_nmi_voice">Deniz mili</string>
     <string name="unit_mugpcum_voice">Metreküp başına mikrogram</string>
-    <string name="unit_ft">ft</string>
     <string name="settings_debug_summary">Çökme günlükleri</string>
     <string name="settings_debug_dump_crash_logs_title">Çökme günlüklerini paylaş</string>
     <string name="settings_item_delete">Bu öğeyi sil</string>
@@ -508,7 +497,6 @@
     <string name="settings_notifications_precipitations_title">Yağış bildirimleri</string>
     <string name="settings_notifications_forecast_time_tomorrow_title">Sonraki gün tahmin bildirimi zamanı</string>
     <string name="unit_kph_voice">Saatte kilometre</string>
-    <string name="unit_km_voice">Kilometre</string>
     <string name="notification_update_error">%d güncelleme başarısız oldu</string>
     <string name="notification_updating_weather_data">Hava durumu verisi güncelleniyor (%1$d/%2$d)</string>
     <string name="weather_api_unauthorized_content">Bazı hava durumu kaynakları için kendi API anahtarınızı girmeniz gerekir. Eğer önceden girdiyseniz, API anahtarınızı tekrar kontrol edin.</string>

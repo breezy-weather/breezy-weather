@@ -541,32 +541,6 @@
         <item>k</item>
     </string-array>
 
-    <!-- distance unit. -->
-    <string-array name="distance_units">
-        <item>@string/settings_follow_system</item>
-        <item>@string/unit_km</item>
-        <item>@string/unit_m</item>
-        <item>@string/unit_mi</item>
-        <item>@string/unit_nmi</item>
-        <item>@string/unit_ft</item>
-    </string-array>
-    <string-array name="distance_unit_voices">
-        <item>@string/settings_follow_system</item>
-        <item>@string/unit_km_voice</item>
-        <item>@string/unit_m_voice</item>
-        <item>@string/unit_mi_voice</item>
-        <item>@string/unit_nmi_voice</item>
-        <item>@string/unit_ft_voice</item>
-    </string-array>
-    <string-array name="distance_unit_values">
-        <item>auto</item>
-        <item>km</item>
-        <item>m</item>
-        <item>mi</item>
-        <item>nmi</item>
-        <item>ft</item>
-    </string-array>
-
     <!-- air quality unit. -->
     <string-array name="air_quality_units">
         <item>@string/unit_mugpcum</item>
@@ -587,17 +561,6 @@
     </string-array>
     <string-array name="air_quality_co_unit_values">
         <item>mgpcum</item>
-    </string-array>
-
-    <!-- duration unit. -->
-    <string-array name="duration_units">
-        <item>@string/unit_h</item> <!-- hour -->
-    </string-array>
-    <string-array name="duration_unit_voices">
-        <item>@string/unit_h_voice</item>
-    </string-array>
-    <string-array name="duration_unit_values">
-        <item>h</item>
     </string-array>
 
     <!-- pollen unit. -->

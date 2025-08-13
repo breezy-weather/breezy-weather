@@ -259,7 +259,6 @@
     <string name="air_quality_so2_full">Rikkidioksidi (%s)</string>
     <string name="settings_background_updates_refresh_skip_when_battery_low">Jätä huomiotta, kun akku on vähissä</string>
     <string name="settings_background_updates_battery_optimization">Poista akun käytön optimointi käytöstä</string>
-    <string name="unit_m_voice">Metriä</string>
     <string name="setting_weather_source_accu_days">Päivät</string>
     <string name="weather_source_accu_preference_days_5">5 päivää</string>
     <string name="unit_mph">mph</string>
@@ -276,7 +275,6 @@
     <string name="settings_location_access_switch_summaryOff">Salli, jos haluat voida lisätä nykyisen olinpaikkasi sijainniksi.</string>
     <string name="uv_index_8_10">Hyvin voimakas</string>
     <string name="action_share">Jaa</string>
-    <string name="unit_m">m</string>
     <string name="settings_modules_section_widgets_in_use">Käytössä olevat widgetit</string>
     <string name="about_contribution_designer">Logon suunnittelija</string>
     <string name="settings_main">Päänäkymä</string>
@@ -293,7 +291,6 @@
     <string name="settings_color_grey">Harmaa</string>
     <string name="weather_message_invalid_location">Virheellinen sijainti, poista se ja kokeile lisätä uudelleen</string>
     <string name="uv_index_11">Äärimmäisen voimakas</string>
-    <string name="unit_h_voice">tuntia</string>
     <string name="unit_mm">mm</string>
     <string name="unit_ftps">ft/s</string>
     <string name="settings_main_background_animation_enabled">Käytössä</string>
@@ -303,7 +300,6 @@
     <string name="unit_kn_voice">Solmua</string>
     <string name="settings_modules_notification_feels_like_switch">Käytä tuntuu kuin -lämpötilaa</string>
     <string name="settings_notifications_forecast_time_today_title">Ilmoitusaika päivän ennusteelle</string>
-    <string name="unit_km_voice">Kilometriä</string>
     <string name="air_quality_no2_full">Typpidioksidi (%s)</string>
     <string name="pollen_level_4">Runsaasti</string>
     <string name="settings_background_updates_dont_kill_my_app_summary">Joillakin valmistajilla on sovelluksille lisärajoituksia, jotka tappavat taustapalvelut. Don’t kill my app! -sivustolla on tietoa siitä, miten asia korjataan.</string>
@@ -340,7 +336,6 @@
     <string name="weather_source_accu_preference_hours_120">120 tuntia</string>
     <string name="settings_appearance_summary">Kieli, tumma tila, kuvakepaketti, yksiköt</string>
     <string name="settings_modules_section_notification_widget">Ilmoitusalueen widget</string>
-    <string name="unit_km">km</string>
     <string name="settings_background_updates_battery_optimization_disabled">Akun käytön optimointi on jo poissa käytöstä.</string>
     <string name="pollen_alnus">Leppä</string>
     <string name="temperature_degree_day_cooling">Jäähdytystarveluku</string>
@@ -362,7 +357,6 @@
     <string name="action_save">Tallenna</string>
     <string name="weather_api_limit_reached_content">Voit kiertää rajoituksen lisäämällä oman API-avaimesi.</string>
     <string name="unit_mps_voice">Metriä sekunnissa</string>
-    <string name="unit_ft_voice">Jalkaa</string>
     <string name="settings_location_access_background_summaryOn">Sallittu. Sovellus voi päivittää nykyisen sijaintisi säätiedot taustalla.</string>
     <string name="settings_units_summary">Lämpötila, sademäärä, etäisyys, nopeus, paine</string>
     <string name="unit_kn">kn</string>
@@ -380,7 +374,6 @@
     <string name="settings_location_access_permission_already_granted">Lupa myönnetty jo</string>
     <string name="notification_update_error">%d päivitys(tä) epäonnistui</string>
     <string name="settings_location_access_switch_title">Sijainnin käyttöoikeus</string>
-    <string name="unit_h">t</string>
     <string name="notification_channel_widget">Widgetti</string>
     <string name="weather_source_accu_preference_hours_12">12 tuntia</string>
     <string name="weather_source_accu_preference_hours_1">1 tunti</string>
@@ -401,11 +394,9 @@
     <string name="unit_celsius_short">°</string>
     <string name="common_weather_text_rain_showers_light">Kevyitä sadekuuroja</string>
     <string name="pollen_artemisia">Pujo</string>
-    <string name="unit_nmi_voice">Merimailia</string>
     <string name="location_message_reverse_geocoding_failed">Säälähde ei onnistunut löytämään vastaavaa sijaintia</string>
     <string name="metno_weather_text_andthunder">%s ja ukkosta</string>
     <string name="location_message_permission_missing">Sijainnin käyttöoikeus puuttuu</string>
-    <string name="unit_mi_voice">Mailia</string>
     <string name="unit_lpsqmph_voice">Litraa neliömetriä kohden tunnissa</string>
     <string name="common_weather_text_rain_heavy">Rankkasadetta</string>
     <string name="unit_kelvin_short">K</string>
@@ -437,8 +428,6 @@
     <string name="settings_background_updates_worker_info_summary">Viimeisin ajo: %s</string>
     <string name="unit_cmph">cm/h</string>
     <string name="unit_mmph">mm/h</string>
-    <string name="unit_mi">mi</string>
-    <string name="unit_ft">ft</string>
     <string name="unit_cmph_voice">Senttimetriä tunnissa</string>
     <string name="message_server_timeout">Pyyntö aikakatkaistiin</string>
     <string name="common_weather_text_snow_showers">Lumikuuroja</string>
@@ -476,7 +465,6 @@
     <string name="message_network_unavailable">Verkkoyhteyttä ei ole saatavilla</string>
     <string name="message_parsing_error_title">Säätietojen käsittely epäonnistui</string>
     <string name="widget_style_mini">Mini</string>
-    <string name="unit_nmi">M</string>
     <string name="settings_background_updates_worker_info_title">Prosessitiedot</string>
     <string name="unit_ppcm">/m³</string>
     <string name="unit_mugpcum">μg/m³</string>

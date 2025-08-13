@@ -53,18 +53,6 @@ interface WeatherUnit {
     val perMeasureUnit: MeasureUnit?
 
     /**
-     * A formula to convert a value in the reference unit to the unit
-     * /!\ When converting make sure to use Double in your formula
-     */
-    val convertFromReference: (Double) -> Double
-
-    /**
-     * A formula to convert a value in the unit to the reference unit
-     * /!\ When converting make sure to use Double in your formula
-     */
-    val convertToReference: (Double) -> Double
-
-    /**
      * How many decimals should be used when displaying a number in this unit
      * Must be positive
      */

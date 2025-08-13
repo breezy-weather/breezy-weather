@@ -12,7 +12,6 @@
     <string name="action_add_new_location">Lägg till ny plats</string>
     <string name="action_add_current_location">Lägg till nuvarande plats</string>
     <string name="locations">Platser</string>
-    <string name="unit_nmi_voice">Sjömil</string>
     <string name="widget_clock_font_sans_serif_black">Sans Serif Black</string>
     <string name="pollen_tree">Träd</string>
     <string name="wind_direction_S_short">S</string>
@@ -29,7 +28,6 @@
     <string name="widget_custom_subtitle_keyword_d_description">Datum</string>
     <string name="temperature">Temperatur</string>
     <string name="precipitation_ice">Is</string>
-    <string name="unit_m_voice">Meter</string>
     <string name="setting_weather_source_accu_days">Dagar</string>
     <string name="metno_weather_text_andthunder">%s och åska</string>
     <string name="action_about">Om</string>
@@ -58,7 +56,6 @@
     <string name="daily_forecast">Daglig prognos</string>
     <string name="action_share">Dela</string>
     <string name="weather_kind_hail">Hagel</string>
-    <string name="unit_m">m</string>
     <string name="location_message_added">Plats tillagd</string>
     <string name="about_translators">Översättare</string>
     <string name="unit_ppcm">/m³</string>
@@ -91,7 +88,6 @@
     <string name="precipitation_probability">Sannolikhet för nederbörd</string>
     <string name="widget_subtitle_data_aqi">Luftkvalitet</string>
     <string name="uv_index_11">Extremt</string>
-    <string name="unit_h_voice">timmar</string>
     <string name="unit_mm">mm</string>
     <string name="unit_ftps">ft/s</string>
     <string name="hourly_forecast">Timprognos</string>
@@ -101,7 +97,6 @@
     <string name="action_more">Se mer</string>
     <string name="air_quality_index">Luftkvalitetsindex</string>
     <string name="unit_kn_voice">Knop</string>
-    <string name="unit_km_voice">Kilometer</string>
     <string name="air_quality_no2_full">Kvävedioxid (%s)</string>
     <string name="widget_custom_subtitle_keyword_lat_description">Latitud</string>
     <string name="pollen">Pollen</string>
@@ -163,7 +158,6 @@
     <string name="unit_in_voice">Tum</string>
     <string name="location_message_search_failed">Platssökning misslyckades</string>
     <string name="weather_source_accu_preference_hours_120">120 timmar</string>
-    <string name="unit_km">km</string>
     <string name="precipitation_rain">Regn</string>
     <string name="pollen_alnus">Al</string>
     <string name="location_message_deleted">Plats borttagen</string>
@@ -194,7 +188,6 @@
     <string name="action_save">Spara</string>
     <string name="unit_mps_voice">Meter per sekund</string>
     <string name="widget_custom_subtitle_keyword_cuv_description">Nuvarande UV</string>
-    <string name="unit_ft_voice">Fot</string>
     <string name="widget_custom_subtitle_keyword_cv_description">Nuvarande sikt</string>
     <string name="alerts">Varningar</string>
     <string name="unit_celsius">°C</string>
@@ -337,7 +330,6 @@
     <string name="common_weather_text_rain_showers_light">Lätta regnskurar</string>
     <string name="widget_custom_subtitle_keyword_xmp_description">Månfas för i dag, i morgon, …, 4 dagar senare</string>
     <string name="widget_label_show_widget_card">Bakgrundsfärg</string>
-    <string name="unit_nmi">sjömil</string>
     <string name="widget_label_hide_subtitle">Dölj undertext</string>
     <string name="settings_modules_week_icon_mode_title">Ikon att visa i veckovyer</string>
     <string name="settings_modules_notification_widget_title">Aviseringswidget</string>
@@ -348,7 +340,6 @@
     <string name="settings_enabled">Aktiverad</string>
     <string name="settings_background_updates_battery_optimization">Inaktivera batterioptimering</string>
     <string name="widget_label_show_widget_card_alpha">Ogenomskinlighet</string>
-    <string name="unit_mi_voice">Engelsk mil</string>
     <string name="widget_custom_subtitle_explanation">Du kan skriva in vad som helst men var uppmärksam på textlängden. Om du vill citera väderdata använd $ som referens till motsvarade nyckelord.
 \n
 \nExempelvis, ”Nuvarande väder är: $cw$” kommer att visas som ”Nuvarande väder är: Klart väder”.</string>
@@ -440,7 +431,6 @@
     <string name="action_learn_more">Läs mer</string>
     <string name="dialog_permissions_location_title">Behörighet till platsinformation</string>
     <string name="settings_modules_notification_persistent_switch">Pågående</string>
-    <string name="unit_ft">fot</string>
     <string name="settings_main_background_animation_title">Bakgrundsanimation</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Lätt eller medelkraftig åskstorm</string>
     <string name="settings_location_access_precise_title">Enhetens gps-användning</string>
@@ -485,7 +475,6 @@
     <string name="notification_update_error">%d uppdatering(ar) misslyckades</string>
     <string name="settings_location_access_switch_title">Platsåtkomst</string>
     <string name="weather_api_unauthorized_title">API-åtkomst ej auktoriserad</string>
-    <string name="unit_h">h</string>
     <string name="notification_channel_widget">Widget</string>
     <string name="settings_location_access_precise_summaryOn">Aktiverad. Enhetens nätoperatör kommer att användas i första hand och för det mesta, men gps kan också användas som reserv.</string>
     <string name="common_weather_text_rain_showers_moderate">Måttliga regnskurar</string>
@@ -523,7 +512,6 @@
     <string name="widget_label_align_end">Justera till höger</string>
     <string name="widget_custom_subtitle_keyword_enter_description">Ny rad</string>
     <string name="settings_color_app">Följ appen</string>
-    <string name="unit_mi">mi</string>
     <string name="settings_modules_live_wallpaper_error">Det gick inte att starta bakgrundsväljaren. Du kan fortfarande aktivera %s-bakgrundsbild genom att välja “Live Wallpaper” i bakgrundsväljaren på startskärmen.</string>
     <string name="settings_unavailable_no_background_updates">Ej tillgängliga, aktivera bakgrundsuppdateringar först</string>
     <string name="notification_precipitation_starting">Nederbörd snart</string>

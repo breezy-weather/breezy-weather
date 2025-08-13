@@ -406,8 +406,6 @@
     <string name="unit_mmph_voice">Міліметрів за годину</string>
     <string name="unit_cmph">см/год</string>
     <string name="unit_inph">дюймів/год</string>
-    <string name="unit_mi">миль</string>
-    <string name="unit_mi_voice">Миль</string>
     <string name="notification_channel_forecast">Прогноз</string>
     <string name="notification_update_error">Не вдалося виконати %d оновлення(ень)</string>
     <string name="notification_style_cities">Міста</string>
@@ -440,7 +438,6 @@
     <string name="unit_lpsqmph">л/м²/год</string>
     <string name="unit_kelvin">К</string>
     <string name="unit_kelvin_short">К</string>
-    <string name="unit_ft_voice">Футів</string>
     <string name="unit_ppcm">/м³</string>
     <string name="unit_ppcm_voice">На кубічний метр</string>
     <string name="notification_running_in_background">Запущено у фоні для постійного оновлення</string>
@@ -468,17 +465,9 @@
     <string name="unit_lpsqm">л/м²</string>
     <string name="unit_celsius">°C</string>
     <string name="unit_fahrenheit_short">°</string>
-    <string name="unit_km">км</string>
-    <string name="unit_km_voice">Кілометрів</string>
-    <string name="unit_m">м</string>
-    <string name="unit_m_voice">Метрів</string>
-    <string name="unit_nmi">мор. миль</string>
-    <string name="unit_ft">фт</string>
     <string name="unit_mugpcum">мкг/м³</string>
     <string name="unit_mugpcum_voice">Мікрограмів на кубічний метр</string>
     <string name="unit_mgpcum">мг/м³</string>
-    <string name="unit_h">год</string>
-    <string name="unit_h_voice">годин</string>
     <string name="notification_refreshed_at">Оновлено о</string>
     <string name="notification_channel_alerts">Попередження</string>
     <string name="notification_channel_widget">Віджет</string>
@@ -505,7 +494,6 @@
     <string name="unit_celsius_short">°</string>
     <string name="unit_fahrenheit">°F</string>
     <string name="common_weather_text_rain_snow_mixed_showers_heavy">Сильна злива зі снігом</string>
-    <string name="unit_nmi_voice">Морських миль</string>
     <string name="unit_mgpcum_voice">Міліграмів на кубічний метр</string>
     <string name="common_weather_text_drizzle">Мряка</string>
     <string name="common_weather_text_drizzle_light">Невелика мряка</string>

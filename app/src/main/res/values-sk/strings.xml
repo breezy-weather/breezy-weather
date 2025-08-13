@@ -314,14 +314,12 @@
     <string name="pollen_tilia">Lipa</string>
     <string name="pollen_urticaceae">Žihľava</string>
     <string name="alert_source">Zdroj: %s</string>
-    <string name="unit_m_voice">Metre</string>
     <string name="settings_notifications_precipitations_title">Notifikácie o zrážkach</string>
     <string name="settings_notifications_section_forecast">Predpoveď</string>
     <string name="settings_notifications_forecast_tomorrow_title">Notifikácia s predpoveďou na nasledujúci deň</string>
     <string name="settings_follow_system">Systémový</string>
     <string name="unit_lpsqmph_voice">Litre na meter štvorcový za hodinu</string>
     <string name="unit_kelvin">K</string>
-    <string name="unit_nmi">nmi</string>
     <string name="notification_precipitation_continuing">Zrážky</string>
     <string name="unit_kelvin_short">K</string>
     <string name="notification_precipitation_starting">Zrážky očakávané</string>
@@ -341,8 +339,6 @@
     <string name="notification_style_cities">Mestá</string>
     <string name="unit_kph">km/h</string>
     <string name="unit_fahrenheit_short">°</string>
-    <string name="unit_nmi_voice">Námorné míle</string>
-    <string name="unit_ft">ft</string>
     <string name="about_open_link_message">Otvoriť %s?</string>
     <string name="settings_notifications_forecast_time_tomorrow_title">Čas notifikácie s predpoveďou na ďalší deň</string>
     <string name="unit_fahrenheit">°F</string>
@@ -354,7 +350,6 @@
     <string name="settings_invalid_syntax">Neplatná syntax</string>
     <string name="unit_inph_voice">Palce za hodinu</string>
     <string name="unit_celsius">°C</string>
-    <string name="unit_ft_voice">Stopy</string>
     <string name="settings_changes_apply_after_restart">Zmeny budú aplikované po reštarte aplikácie</string>
     <string name="settings_modules_broadcast_send_data_summary_empty">Žiadne kompatibilné balíčky neboli nájdené</string>
     <string name="settings_automatic">Automaticky</string>
@@ -364,10 +359,6 @@
     <string name="settings_none">Žiadne</string>
     <string name="settings_debug_dump_crash_logs_summary">Záznamy o chybách budú uložené do súboru na zdieľanie s vývojarmi</string>
     <string name="settings_notifications_forecast_time_today_title">Čas notifikácie s predpoveďou dňa</string>
-    <string name="unit_km_voice">Kilometre</string>
-    <string name="unit_m">m</string>
-    <string name="unit_mi">mi</string>
-    <string name="unit_mi_voice">Míle</string>
     <string name="unit_kn_voice">Uzly</string>
     <string name="unit_lpsqmph">L/m²/h</string>
     <string name="settings_modules_live_wallpaper_summary">Nastaviť animáciu počasia ako pozadie</string>
@@ -386,12 +377,10 @@
     <string name="unit_mm_voice">Milimetre</string>
     <string name="unit_in_voice">Palce</string>
     <string name="unit_lpsqm">L/m²</string>
-    <string name="unit_km">km</string>
     <string name="settings_item_delete">Vymazať túto položku</string>
     <string name="settings_main_section_options">Možnosti</string>
     <string name="settings_debug_dump_crash_logs_saved">Záznamy o chybách boli uložené</string>
     <string name="settings_notifications">Notifikácie</string>
-    <string name="unit_h_voice">hodín</string>
     <string name="action_continue">Pokračovať</string>
     <string name="action_close">Zatvoriť</string>
     <string name="message_network_unavailable">Sieť nie je k dispozícii</string>
@@ -406,7 +395,6 @@
     <string name="message_server_unavailable_title">Server je nedostupný</string>
     <string name="message_parsing_error_title">Nepodarilo sa spracovať dáta o počasí</string>
     <string name="settings_source_api_key">API kľúč</string>
-    <string name="unit_h">h</string>
     <string name="notification_precipitation_stopping_desc">Predpokladaný koniec o %s</string>
     <string name="unit_mgpcum_voice">Miligramy na meter kubický</string>
     <string name="notification_updating_weather_data">Aktualizácia údajov o počasí (%1$d/%2$d)</string>

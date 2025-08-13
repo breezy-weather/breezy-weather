@@ -228,14 +228,8 @@
     <string name="unit_cmph_voice">Centímetros por hora</string>
     <string name="unit_inph_voice">Pulgadas por hora</string>
     <string name="unit_lpsqmph_voice">Litros por metro cuadrado por hora</string>
-    <string name="unit_km_voice">Kilómetros</string>
-    <string name="unit_m_voice">Metros</string>
-    <string name="unit_mi_voice">Millas</string>
-    <string name="unit_nmi_voice">Millas náuticas</string>
-    <string name="unit_ft_voice">Pies</string>
     <string name="unit_mugpcum_voice">Microgramos por metro cúbico</string>
     <string name="unit_mgpcum_voice">Miligramos por metro cúbico</string>
-    <string name="unit_h_voice">horas</string>
     <string name="unit_ppcm_voice">Por metro cúbico</string>
     <string name="air_quality_level_1">Excelente</string>
     <string name="uv_index_8_10">Muy alto</string>
@@ -449,7 +443,6 @@
     <string name="settings_debug">Depurar</string>
     <string name="unit_celsius_short">°</string>
     <string name="common_weather_text_rain_showers_light">Ligeros chubascos</string>
-    <string name="unit_nmi">nmi</string>
     <string name="common_weather_text_drizzle_moderate">Llovizna moderada</string>
     <string name="common_weather_text_rain_snow_mixed_heavy">Fuertes lluvias y nieve</string>
     <string name="settings_items_drag_to_sort">Toque para arrastrar los elementos de la lista para ordenarlos</string>
@@ -461,7 +454,6 @@
     <string name="about_contact">Contacto</string>
     <string name="unit_kelvin">K</string>
     <string name="common_weather_text_drizzle">Llovizna</string>
-    <string name="unit_m">m</string>
     <string name="unit_ppcm">/m³</string>
     <string name="unit_fahrenheit_short">°</string>
     <string name="about_contribution_designer">Diseñador de logotipos</string>
@@ -490,11 +482,8 @@
     <string name="common_weather_text_snow_showers_heavy">Fuertes nevadas</string>
     <string name="unit_cmph">cm/h</string>
     <string name="unit_mmph">mm/h</string>
-    <string name="unit_mi">mi</string>
-    <string name="unit_ft">pie</string>
     <string name="unit_mgpcum">mg/m³</string>
     <string name="about_matrix">Sala en Matrix</string>
-    <string name="unit_km">km</string>
     <string name="notification_channel_background_services">Servicios en segundo plano</string>
     <string name="unit_bft_voice">en la escala de Beaufort</string>
     <string name="unit_mps">m/s</string>
@@ -512,7 +501,6 @@
     <string name="unit_lpsqm">l/m²</string>
     <string name="common_weather_text_rain_showers">Chubascos</string>
     <string name="notification_update_error">%d actualización(es) fallida(s)</string>
-    <string name="unit_h">h</string>
     <string name="notification_channel_widget">Widget</string>
     <string name="common_weather_text_drizzle_light">Llovizna ligera</string>
     <string name="about_dependencies">Dependencias</string>

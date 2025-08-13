@@ -10,6 +10,12 @@
 
     <!-- Length units -->
 
+    <!-- Micrometer -->
+    <string name="length_microm_display_name_short">μm</string>
+    <string name="length_microm_display_name_long">@string/length_microm_display_name_short</string>
+    <string name="length_microm_nominative_short">%s μm</string>
+    <string name="length_microm_nominative_long">@string/length_microm_nominative_short</string>
+
     <!-- Millimeter -->
     <string name="length_mm_display_name_short">mm</string>
     <string name="length_mm_display_name_long">@string/length_mm_display_name_short</string>

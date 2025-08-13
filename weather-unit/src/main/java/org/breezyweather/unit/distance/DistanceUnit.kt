@@ -31,8 +31,8 @@ enum class DistanceUnit(
     override val nominative: UnitNominative,
     override val measureUnit: MeasureUnit?,
     override val perMeasureUnit: MeasureUnit?,
-    override val convertFromReference: (Double) -> Double,
-    override val convertToReference: (Double) -> Double,
+    val convertFromReference: (Double) -> Double,
+    val convertToReference: (Double) -> Double,
     override val decimals: UnitDecimals,
     val chartStep: (Double) -> Double,
 ) : WeatherUnit {

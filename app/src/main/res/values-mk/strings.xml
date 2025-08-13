@@ -227,14 +227,6 @@
     <string name="unit_ftps_voice">Стапала во секунда</string>
     <string name="unit_lpsqm">L/m²</string>
     <string name="unit_inph_voice">Инчи на час</string>
-    <string name="unit_km_voice">Километри</string>
-    <string name="unit_m">м</string>
-    <string name="unit_m_voice">Метри</string>
-    <string name="unit_mi">ми</string>
-    <string name="unit_mi_voice">Милји</string>
-    <string name="unit_nmi_voice">Наутички милји</string>
-    <string name="unit_ft">ft</string>
-    <string name="unit_ft_voice">Нозете</string>
     <string name="unit_mugpcum">μg/m³</string>
     <string name="notification_channel_background_services">Услуги во позадина</string>
     <string name="notification_running_in_background">Работи во заднина за да продолжи да се ажурира</string>
@@ -248,7 +240,6 @@
     <string name="weather_source_accu_preference_days_5">5 дена</string>
     <string name="weather_source_accu_preference_hours_24">24 часа</string>
     <string name="widget_week_style_3_days">3 дена</string>
-    <string name="unit_nmi">наут. милји</string>
     <string name="location_search_no_results_advice">Осигурајте се дека барањето за пребарување е напишано правилно и не е премногу специфично. Можете исто така да се обидете да користите друг извор за пребарување локација, што може да даде различни резултати.</string>
     <string name="location_service_native">Мајчин API</string>
     <string name="action_location_list">Список на локации</string>
@@ -325,8 +316,6 @@
     <string name="unit_kph_voice">Километри на час</string>
     <string name="unit_mm">мм</string>
     <string name="unit_mmph">mm/h</string>
-    <string name="unit_h">ч</string>
-    <string name="unit_h_voice">часови</string>
     <string name="notification_updating_weather_data">Се ажурираат временските податоци (%1$d/%2$d)</string>
     <string name="notification_update_error">%d ажурирања не успеаја</string>
     <string name="notification_style_cities">Градови</string>
@@ -431,7 +420,6 @@
     <string name="unit_fahrenheit_short">°</string>
     <string name="unit_kelvin">К</string>
     <string name="unit_kelvin_short">К</string>
-    <string name="unit_km">км</string>
     <string name="unit_mugpcum_voice">Микрограми на кубен метар</string>
     <string name="unit_mgpcum">mg/m³</string>
     <string name="unit_mgpcum_voice">Милиграми на кубен метар</string>

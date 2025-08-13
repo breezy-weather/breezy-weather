@@ -267,26 +267,22 @@
     <string name="pollen_artemisia">Artemisia</string>
     <string name="widget_style_mini">Kecil</string>
     <string name="widget_style_vertical">Vertikal</string>
-    <string name="unit_nmi">nmi</string>
     <string name="common_weather_text_drizzle_moderate">Gerimis sedang</string>
     <string name="settings_background_updates_worker_info_title">Info proses</string>
     <string name="settings_modules_notification_widget_title">Gawit notifikasi</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">Menyetorkan kabut rime</string>
     <string name="locations">Lokasi</string>
-    <string name="unit_nmi_voice">Mil laut</string>
     <string name="settings_modules_notification_style_title">Gaya</string>
     <string name="settings_background_updates_refresh_title">Kecepatan penyegaran</string>
     <string name="widget_clock_font_sans_serif_black">Sans Serif Hitam</string>
     <string name="air_quality_so2_full">Sulfur dioksida (%s)</string>
     <string name="common_weather_text_snow">Salju</string>
     <string name="common_weather_text_cloudy">Berawan</string>
-    <string name="unit_m_voice">Meter</string>
     <string name="setting_weather_source_accu_days">Hari</string>
     <string name="weather_source_accu_preference_days_5">5 hari</string>
     <string name="unit_mph">mph</string>
     <string name="notification_style_cities">Kota</string>
     <string name="unit_cm">cm</string>
-    <string name="unit_mi_voice">Mil</string>
     <string name="settings_section_general">Umum</string>
     <string name="common_weather_text_rain_heavy">Hujan lebat</string>
     <string name="unit_kelvin_short">K</string>
@@ -302,7 +298,6 @@
     <string name="common_weather_text_drizzle">Gerimis</string>
     <string name="action_share">Bagikan</string>
     <string name="weather_kind_hail">Hujan es</string>
-    <string name="unit_m">m</string>
     <string name="unit_ppcm">/m³</string>
     <string name="unit_fahrenheit_short">°</string>
     <string name="about_contribution_designer">Perancang logo</string>
@@ -330,7 +325,6 @@
     <string name="common_weather_text_snow_grains">Butir salju</string>
     <string name="widget_subtitle_data_aqi">Kualitas udara</string>
     <string name="settings_location">Lokasi</string>
-    <string name="unit_h_voice">jam</string>
     <string name="unit_mm">mm</string>
     <string name="unit_ftps">ft/d</string>
     <string name="common_weather_text_drizzle_freezing">Gerimis beku</string>
@@ -339,7 +333,6 @@
     <string name="action_more">Lihat lebih banyak</string>
     <string name="settings_main_cards_title">Kartu</string>
     <string name="unit_kn_voice">Knot</string>
-    <string name="unit_km_voice">Kilometer</string>
     <string name="common_weather_text_rain_freezing">Hujan beku</string>
     <string name="air_quality_no2_full">Nitrogen dioksida (%s)</string>
     <string name="pollen_level_4">Tinggi</string>
@@ -373,12 +366,10 @@
     <string name="settings_main_daily_trends_title">Tren harian</string>
     <string name="unit_cmph">cm/j</string>
     <string name="unit_mmph">mm/j</string>
-    <string name="unit_mi">mil</string>
     <string name="settings_background_updates_section_troubleshoot">Pemecahan masalah</string>
     <string name="widget_clock_font_sans_serif">Sans Serif</string>
     <string name="settings_modules_notification_persistent_switch">Permanen</string>
     <string name="action_undo">Urungkan</string>
-    <string name="unit_ft">ft</string>
     <string name="settings_main_background_animation_title">Animasi latar belakang</string>
     <string name="pollen_level_1">Sangat rendah</string>
     <string name="air_quality_level_6">Berbahaya</string>
@@ -390,7 +381,6 @@
     <string name="location_message_search_failed">Pencarian lokasi gagal</string>
     <string name="weather_source_accu_preference_hours_120">120 jam</string>
     <string name="settings_modules_section_notification_widget">Gawit notifikasi</string>
-    <string name="unit_km">km</string>
     <string name="message_network_unavailable">Jaringan tidak tersedia</string>
     <string name="pollen_alnus">Mahau</string>
     <string name="weather_kind_wind">Berangin</string>
@@ -414,7 +404,6 @@
     <string name="action_save">Simpan</string>
     <string name="null_data_text">N/A</string>
     <string name="unit_mps_voice">Meter per detik</string>
-    <string name="unit_ft_voice">Kaki</string>
     <string name="unit_celsius">°C</string>
     <string name="widget_style_tile">Ubin</string>
     <string name="unit_kn">kn</string>
@@ -434,7 +423,6 @@
     <string name="common_weather_text_rain_showers">Gerimis</string>
     <string name="pollen_level_0">Tidak ada</string>
     <string name="settings_location_access_switch_title">Akses lokasi</string>
-    <string name="unit_h">j</string>
     <string name="notification_channel_widget">Gawit</string>
     <string name="common_weather_text_drizzle_light">Gerimis ringan</string>
     <string name="weather_source_accu_preference_hours_12">12 jam</string>

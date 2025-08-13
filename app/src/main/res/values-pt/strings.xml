@@ -154,7 +154,6 @@
     <string name="settings_main_background_animation_enabled">Ativado</string>
     <string name="unit_mps_voice">Metros por segundo</string>
     <string name="unit_kn_voice">Nós</string>
-    <string name="unit_h">h</string>
     <string name="notification_channel_alerts">Alertas</string>
     <string name="notification_channel_widget">Widget</string>
     <string name="settings_location">Localização</string>
@@ -273,16 +272,13 @@
     <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>
     <string name="widget_week_style_3_days">3 dias</string>
     <string name="widget_clock_font_sans_serif">Sans Serif</string>
-    <string name="unit_h_voice">horas</string>
     <string name="common_weather_text_snow_grains">Grãos de neve</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Tempestade leve ou moderada</string>
     <string name="settings_none">Nenhum</string>
     <string name="widget_custom_subtitle_keyword_dd_description">Descrição diária</string>
-    <string name="unit_mi_voice">Milhas</string>
     <string name="wind_direction_SE_short">SE</string>
     <string name="unit_kelvin_short">K</string>
     <string name="temperature_wind_chill">Frio do vento</string>
-    <string name="unit_m_voice">Metros</string>
     <string name="temperature">Temperatura</string>
     <string name="temperature_apparent">Aparente</string>
     <string name="wind_direction_E_short">L</string>
@@ -326,7 +322,6 @@
     <string name="about_source_code">Código fonte</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Tempestade com granizo leve</string>
     <string name="widget_custom_subtitle_keyword_al_description">Alertas</string>
-    <string name="unit_nmi">nmi</string>
     <string name="widget_subtitle_data_custom">Personalizado</string>
     <string name="action_delete">Apagar</string>
     <string name="widget_style_tile">Bloco</string>
@@ -353,13 +348,8 @@
     <string name="unit_celsius_short">°</string>
     <string name="unit_fahrenheit">°F</string>
     <string name="unit_fahrenheit_short">°</string>
-    <string name="unit_m">m</string>
-    <string name="unit_mi">mi</string>
-    <string name="unit_nmi_voice">Milhas náuticas</string>
-    <string name="unit_ft">ft</string>
     <string name="unit_lpsqm">L/m²</string>
     <string name="unit_inph">Polegadas/h</string>
-    <string name="unit_ft_voice">Pés</string>
     <string name="unit_mugpcum_voice">Microgramas por metro cúbico</string>
     <string name="settings_icon_packs_weather_icon_light">Ícone claro</string>
     <string name="settings_icon_packs_weather_icon_dark">Ícone escuro</string>
@@ -383,8 +373,6 @@
     <string name="settings_color_day_always">Sempre dia</string>
     <string name="settings_color_night_always">Sempre noite</string>
     <string name="unit_cmph_voice">Centímetros por hora</string>
-    <string name="unit_km">km</string>
-    <string name="unit_km_voice">Quilômetros</string>
     <string name="about_contribution_WangDaYeeeeee">Programador do projeto original Geometric Weather</string>
     <string name="common_weather_text_clear_sky">Céu limpo</string>
     <string name="common_weather_text_mostly_clear">Principalmente limpo</string>

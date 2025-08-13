@@ -355,10 +355,6 @@
     <string name="unit_cm_voice">סנטימטרים</string>
     <string name="unit_in">אינץ\'</string>
     <string name="unit_kelvin_short">K</string>
-    <string name="unit_km">ק”מ</string>
-    <string name="unit_m">מ</string>
-    <string name="unit_km_voice">קילומטרים</string>
-    <string name="unit_m_voice">מטרים</string>
     <string name="unit_cmph_voice">סנטימטרים לשעה</string>
     <string name="unit_lpsqm_voice">ליטרלים למטר רבוע</string>
     <string name="unit_mmph_voice">מילימטרים לשעה</string>
@@ -463,12 +459,8 @@
     <string name="unit_ftps_voice">רגל לשנייה</string>
     <string name="unit_inph_voice">אינצ\'ים לשעה</string>
     <string name="unit_lpsqmph_voice">ליטרים למטר מרובע לשעה</string>
-    <string name="unit_mi_voice">מיילים</string>
-    <string name="unit_nmi_voice">מיילים ימיים</string>
-    <string name="unit_ft_voice">רגל</string>
     <string name="unit_mgpcum_voice">מיליגרמים עבור מטר מעוקב</string>
     <string name="unit_mugpcum_voice">מיקרוגרמים עבור מטר מעוקב</string>
-    <string name="unit_h_voice">שעות</string>
     <string name="unit_ppcm_voice">עבור מטר מעוקב</string>
     <string name="notification_refreshed_at">רוענן ב</string>
     <string name="notification_channel_alerts">התראות</string>

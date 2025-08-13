@@ -165,10 +165,8 @@
     <string name="notification_style_native">Innebygd</string>
     <string name="about_contribution_designer">Logodesigner</string>
     <string name="weather_kind_thunder">Torden</string>
-    <string name="unit_h">h</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Tordenvær med kraftig hagl</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Tordenvær med lett hagl</string>
-    <string name="unit_h_voice">timer</string>
     <string name="notification_precipitation_stopping_desc">Forventet å stoppe %s</string>
     <string name="notification_precipitation_stopping">Nedbør stopper snart</string>
     <string name="notification_precipitation_continuing_desc">Forventet å fortsette til minst %s</string>
@@ -184,7 +182,6 @@
     <string name="common_weather_text_snow_grains">Snøkorn</string>
     <string name="unit_mph">mph</string>
     <string name="unit_in">in</string>
-    <string name="unit_m">m</string>
     <string name="settings_background_updates_worker_info_summary">Sist kjørt: %s</string>
     <string name="unit_cm">cm</string>
     <string name="unit_mm">mm</string>
@@ -193,8 +190,6 @@
     <string name="settings_items_drag_to_sort">Trykk for å flytte objektet</string>
     <string name="settings_changes_apply_after_restart">Endringer vil skje etter omstart</string>
     <string name="settings_background_updates_refresh_never">Aldri</string>
-    <string name="unit_ft">ft</string>
-    <string name="unit_mi_voice">Engelsk mil</string>
     <string name="settings_location_access_permission_already_granted">Tillatelse er allerede gitt</string>
     <string name="settings_none">Ingen</string>
     <string name="settings_color_app">Følg appen</string>
@@ -205,8 +200,6 @@
     <string name="settings_disabled">Deaktivert</string>
     <string name="settings_item_delete">Slett objektet</string>
     <string name="settings_debug_dump_crash_logs_tap_to_open">Trykk for å åpne</string>
-    <string name="unit_m_voice">Meter</string>
-    <string name="unit_km">km</string>
     <string name="unit_kelvin">K</string>
     <string name="unit_fahrenheit">°F</string>
     <string name="unit_fahrenheit_short">°</string>
@@ -215,8 +208,6 @@
     <string name="unit_inph">in/h</string>
     <string name="unit_cmph">cm/h</string>
     <string name="settings_enabled">Aktivert</string>
-    <string name="unit_nmi_voice">Nautiske mil</string>
-    <string name="unit_nmi">NM</string>
     <string name="settings_background_updates_dont_kill_my_app_summary">Noen produsenter har ekstra apprestriksjoner som avslutter bakgrunnstjenester. Du kan finne mer informasjon om dette på nettsiden «Don’t kill my app!».</string>
     <string name="settings_background_updates_dont_kill_my_app_title">Produsentspesifikke instruksjoner</string>
     <string name="settings_background_updates_battery_optimization_disabled">Batterioptimalisering er allerede deaktivert.</string>
@@ -234,9 +225,6 @@
     <string name="unit_mps_voice">Meter per sekund</string>
     <string name="settings_debug_dump_crash_logs_saved">Krasjlogger lagret</string>
     <string name="unit_kph_voice">Kilometer i timen</string>
-    <string name="unit_ft_voice">Fot</string>
-    <string name="unit_mi">mi</string>
-    <string name="unit_km_voice">Kilometer</string>
     <string name="unit_kelvin_short">K</string>
     <string name="unit_lpsqmph">L/m²/h</string>
     <string name="unit_inph_voice">Tommer i timen</string>

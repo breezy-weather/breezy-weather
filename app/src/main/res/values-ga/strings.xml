@@ -443,16 +443,6 @@
     <string name="unit_fahrenheit_short">°</string>
     <string name="unit_kelvin">K</string>
     <string name="unit_kelvin_short">K</string>
-    <string name="unit_km">km</string>
-    <string name="unit_km_voice">Ciliméadair</string>
-    <string name="unit_m">m</string>
-    <string name="unit_m_voice">Méadair</string>
-    <string name="unit_mi">mi</string>
-    <string name="unit_mi_voice">Míle</string>
-    <string name="unit_nmi">nmi</string>
-    <string name="unit_nmi_voice">Muirmhílte</string>
-    <string name="unit_ft">ft</string>
-    <string name="unit_ft_voice">Cosa</string>
     <string name="unit_mugpcum">μg/m³</string>
     <string name="unit_mugpcum_voice">Micrograms in aghaidh an mhéadair chiúbaigh</string>
     <string name="unit_mgpcum">mg/m³</string>
@@ -623,8 +613,6 @@
     <string name="unit_mph_voice">Míle san uair</string>
     <string name="unit_ftps">ft/s</string>
     <string name="unit_mgpcum_voice">Milleagram in aghaidh an mhéadair chiúbaigh</string>
-    <string name="unit_h">h</string>
-    <string name="unit_h_voice">uair an chloig</string>
     <string name="unit_ppcm">/m³</string>
     <string name="notification_channel_crash_logs">Logaí tuairteála</string>
     <string name="about_translators">Aistritheoirí</string>

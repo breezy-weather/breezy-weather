@@ -148,7 +148,6 @@
     <string name="settings_debug_dump_crash_logs_summary">Чува евиденције грешака у фајл за дељење са програмерима</string>
     <string name="unit_kn">kn</string>
     <string name="unit_mps">m/s</string>
-    <string name="unit_m_voice">Метри</string>
     <string name="action_set">Постави</string>
     <string name="action_continue">Настави</string>
     <string name="action_share">Дели</string>
@@ -181,7 +180,6 @@
     <string name="common_weather_text_drizzle_moderate">Умерена росуља</string>
     <string name="settings_background_updates_worker_info_summary">Последње покретање: %s</string>
     <string name="settings_notifications_alerts_title">Обавештења о упозорењима о лошем времену</string>
-    <string name="unit_km_voice">Километри</string>
     <string name="widget_custom_subtitle_keyword_atd_description">Тренутна „Осећа се као“ температура (°)</string>
     <string name="widget_custom_subtitle_keyword_ch_description">Тренутна влажност</string>
     <string name="widget_custom_subtitle_keyword_al_description">Упозорења</string>
@@ -257,10 +255,6 @@
     <string name="dialog_permissions_notification_title">Будите информисани</string>
     <string name="about_contribution_WangDaYeeeeee">Програмер оригиналног пројекта Geometric Weather</string>
     <string name="common_weather_text_rain_showers_light">Слаби пљускови</string>
-    <string name="unit_km">km</string>
-    <string name="unit_nmi">nmi</string>
-    <string name="unit_nmi_voice">Наутичке миље</string>
-    <string name="unit_ft">ft</string>
     <string name="metno_weather_text_andthunder">%s и грмљавина</string>
     <string name="pollen_alnus">Јова</string>
     <string name="pollen_betula">Бреза</string>
@@ -325,7 +319,6 @@
     <string name="unit_kelvin_short">K</string>
     <string name="unit_mugpcum_voice">Микрограми по кубном метру</string>
     <string name="unit_mgpcum_voice">Милиграми по кубном метру</string>
-    <string name="unit_h_voice">сати</string>
     <string name="unit_ppcm">/m³</string>
     <string name="unit_ppcm_voice">По кубном метру</string>
     <string name="about_contribution_designer">Дизајнер логотипа</string>
@@ -351,7 +344,6 @@
     <string name="unit_cmph">cm/h</string>
     <string name="notification_style_cities">Градови</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Олуја са грмљавином - слаба или умерена</string>
-    <string name="unit_h">h</string>
     <string name="weather_kind_hail">Град</string>
     <string name="air_quality_pm25_voice">PM два тачка пет</string>
     <string name="cloud_cover">Облачност</string>
@@ -371,9 +363,7 @@
     <string name="widget_subtitle_data_aqi">Квалитет ваздуха</string>
     <string name="widget_subtitle_data_feels_like">Осећа се као температура</string>
     <string name="settings_automatic">Аутоматски</string>
-    <string name="unit_mi_voice">Миље</string>
     <string name="widget_custom_subtitle_keyword_hd_description">Опис по сатима</string>
-    <string name="unit_ft_voice">Стопе</string>
     <string name="action_edit">Измени</string>
     <string name="action_preview">Преглед</string>
     <string name="settings_weather_sources">Извори времена</string>
@@ -382,12 +372,10 @@
     <string name="settings_main_background_animation_enabled">Омогућено</string>
     <string name="settings_main_gravity_sensor_switch">Гравитациони сензор</string>
     <string name="settings_notifications">Обавештења</string>
-    <string name="unit_mi">mi</string>
     <string name="unit_ftps">ft/s</string>
     <string name="about_source_code">Изворни кôд</string>
     <string name="unit_fahrenheit_short">°</string>
     <string name="unit_kelvin">K</string>
-    <string name="unit_m">m</string>
     <string name="about_contributors">Сарадници</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">Таложење магле</string>
     <string name="unit_mmph">mm/h</string>

@@ -228,14 +228,8 @@
     <string name="unit_cm_voice">Centímetre</string>
     <string name="unit_in_voice">Polzades</string>
     <string name="unit_lpsqm_voice">Litres per metre quadrat</string>
-    <string name="unit_km_voice">Kilòmetres</string>
-    <string name="unit_m_voice">Metres</string>
-    <string name="unit_mi_voice">Milles</string>
-    <string name="unit_nmi_voice">Milles nàutiques</string>
-    <string name="unit_ft_voice">Peus</string>
     <string name="unit_mugpcum_voice">Micrograms per metre cúbic</string>
     <string name="unit_mgpcum_voice">Mil·ligrams per metre cúbic</string>
-    <string name="unit_h_voice">hores</string>
     <string name="unit_ppcm_voice">Per metre cúbic</string>
     <string name="temperature_degree_day_heating">Dia de graus de calefacció</string>
     <string name="temperature_degree_day_cooling">Gelant temperatura diària</string>
@@ -277,7 +271,6 @@
     <string name="widget_style_mini">Mini</string>
     <string name="widget_style_vertical">Vertical</string>
     <string name="action_add_new_location">Afegir una ubicació nova</string>
-    <string name="unit_nmi">nmi</string>
     <string name="common_weather_text_drizzle_moderate">Plugim moderat</string>
     <string name="settings_modules_week_icon_mode_title">Icona per mostrar a les vistes setmanals</string>
     <string name="settings_background_updates_worker_info_title">Informació del procés</string>
@@ -318,7 +311,6 @@
     <string name="unit_kelvin">K</string>
     <string name="common_weather_text_drizzle">Plugim</string>
     <string name="action_share">Compartir</string>
-    <string name="unit_m">m</string>
     <string name="dialog_permissions_notification_content">Toqueu aquí per a activar les notificacions sobre les alertes meteorològiques, o decidiu més tard a configuració.</string>
     <string name="unit_ppcm">/m³</string>
     <string name="unit_fahrenheit_short">°</string>
@@ -421,13 +413,11 @@
     <string name="unit_cmph">cm/h</string>
     <string name="unit_mmph">mm/h</string>
     <string name="location_swipe_to_delete">Podeu lliscar cap a l’esquerra per suprimir aquest element</string>
-    <string name="unit_mi">mi</string>
     <string name="settings_background_updates_section_troubleshoot">Resolució de problemes</string>
     <string name="dialog_permissions_location_title">Accedir a la informació de la ubicació</string>
     <string name="widget_clock_font_sans_serif">Sans Serif</string>
     <string name="settings_modules_notification_persistent_switch">Persistent</string>
     <string name="action_undo">Desfer</string>
-    <string name="unit_ft">ft</string>
     <string name="settings_main_background_animation_title">Animació en segon pla</string>
     <string name="pollen_level_1">Molt baix</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Tempesta elèctrica lleu o moderada</string>
@@ -443,7 +433,6 @@
     <string name="weather_source_accu_preference_hours_120">120 hores</string>
     <string name="settings_appearance_summary">Idioma, mode fosc, paquet d’icones, unitats</string>
     <string name="settings_modules_section_notification_widget">Giny de notificacions</string>
-    <string name="unit_km">km</string>
     <string name="settings_background_updates_battery_optimization_disabled">L’optimització de la bateria ja està desactivada.</string>
     <string name="message_network_unavailable">Xarxa no disponible</string>
     <string name="pollen_alnus">Vern</string>
@@ -505,7 +494,6 @@
     <string name="notification_update_error">%d actualització(ns) fallida(es)</string>
     <string name="settings_location_access_switch_title">Accés a la ubicació</string>
     <string name="weather_api_unauthorized_title">Accés a l’API no autoritzat</string>
-    <string name="unit_h">h</string>
     <string name="notification_channel_widget">Giny</string>
     <string name="common_weather_text_drizzle_light">Plugim dèbil</string>
     <string name="weather_source_accu_preference_hours_12">12 hores</string>

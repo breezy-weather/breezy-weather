@@ -211,12 +211,6 @@
     <string name="unit_mm">χιλ</string>
     <string name="unit_in">ίντσ</string>
     <string name="unit_lpsqm">Λ/μ²</string>
-    <string name="unit_km">χλμ</string>
-    <string name="unit_m">μ</string>
-    <string name="unit_mi">μίλ</string>
-    <string name="unit_nmi">nmi</string>
-    <string name="unit_ft">πόδ</string>
-    <string name="unit_h">ώ</string>
     <string name="alerts_to_follow">Προσεχείς προειδοποιήσεις, πάτα εδώ για να τις δεις.</string>
     <string name="air_quality_no2_voice">Διοξείδιο του αζώτου</string>
     <string name="wind_direction_S_short">Ν</string>
@@ -443,7 +437,6 @@
     <string name="settings_debug_dump_crash_logs_summary">Αποθηκεύει αρχεία καταγραφής σφαλμάτων σε ένα αρχείο για κοινή χρήση με τους προγραμματιστές</string>
     <string name="settings_color_day_night">Μέρα / Νύχτα</string>
     <string name="unit_fahrenheit">°F</string>
-    <string name="unit_ft_voice">Πόδια</string>
     <string name="settings_modules_notification_persistent_switch">Μόνιμη</string>
     <string name="settings_unavailable_no_background_updates">Μη διαθέσιμο, ενεργοποίησ πρώτα τις ενημερώσεις στο παρασκήνιο</string>
     <string name="unit_bft_nominative">%s Μπφ</string>
@@ -464,9 +457,6 @@
     <string name="unit_celsius">°C</string>
     <string name="unit_celsius_short">°</string>
     <string name="unit_fahrenheit_short">°</string>
-    <string name="unit_km_voice">Χιλιόμετρα</string>
-    <string name="unit_m_voice">Μέτρα</string>
-    <string name="unit_nmi_voice">Ναυτικά μίλια</string>
     <string name="notification_channel_background_services">Υπηρεσίες παρασκηνίου</string>
     <string name="notification_channel_crash_logs">Καταγραφές σφαλμάτων</string>
     <string name="notification_update_error">%d ενημερώσεις απέτυχαν</string>
@@ -505,12 +495,10 @@
     <string name="settings_notifications">Ειδοποιήσεις</string>
     <string name="about_contact">Επικοινωνία</string>
     <string name="common_weather_text_rain_showers_light">Ασθενής μπόρα</string>
-    <string name="unit_h_voice">ώρες</string>
     <string name="common_weather_text_snow_showers_light">Ασθενείς μπόρες χιονιού</string>
     <string name="settings_main_threshold_lines_on_charts">Γραμμές κατωφλίου στα γραφήματα</string>
     <string name="settings_modules_notification_widget_title">Γραφικό στοιχείο ειδοποίησης</string>
     <string name="unit_mugpcum_voice">Μικρογραμμάρια ανά κυβικό μέτρο</string>
-    <string name="unit_mi_voice">Μίλια</string>
     <string name="unit_kelvin">Κ</string>
     <string name="unit_mmph">mm/h</string>
     <string name="about_source_code">Πηγαίος κώδικας</string>

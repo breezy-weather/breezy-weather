@@ -242,7 +242,6 @@
     <string name="unit_lpsqmph">L/m²/h</string>
     <string name="settings_modules_week_icon_mode_title">Pictogramă de afișat în vizualizarea săptămânală</string>
     <string name="settings_icon_packs_weather_adaptive_icon">Pictogramă vreme</string>
-    <string name="unit_km">km</string>
     <string name="unit_kelvin_short">K</string>
     <string name="unit_ppcm">/m³</string>
     <string name="common_weather_text_snow_grains">Ninsoare Fină</string>
@@ -269,14 +268,8 @@
     <string name="unit_cmph">cm/h</string>
     <string name="unit_inph">inch/h</string>
     <string name="unit_lpsqmph_voice">litri pe metru pătrat pe oră</string>
-    <string name="unit_mi">mi</string>
-    <string name="unit_mi_voice">Mile</string>
-    <string name="unit_nmi">nmi</string>
-    <string name="unit_ft">ft</string>
     <string name="unit_mugpcum_voice">Micrograme pe metru cub</string>
     <string name="unit_mgpcum">mg/m³</string>
-    <string name="unit_h">h</string>
-    <string name="unit_h_voice">ore</string>
     <string name="unit_ppcm_voice">Pe metru cub</string>
     <string name="about_matrix">Server Matrix</string>
     <string name="about_source_code">Codul sursă</string>
@@ -288,16 +281,13 @@
     <string name="unit_lpsqm">L/m²</string>
     <string name="unit_celsius">°C</string>
     <string name="unit_mgpcum_voice">Miligrame pe metru cub</string>
-    <string name="unit_km_voice">kilometri</string>
     <string name="unit_cmph_voice">centimetri pe oră</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Furtună cu Grindină Ușoară</string>
-    <string name="unit_nmi_voice">mile nautice</string>
     <string name="unit_in">inch</string>
     <string name="unit_mps">m/s</string>
     <string name="widget_style_mini">Mini</string>
     <string name="widget_material_you_current">Material You – Actual</string>
     <string name="unit_mph">mile/h</string>
-    <string name="unit_m">m</string>
     <string name="common_weather_text_clear_sky">Senin</string>
     <string name="precipitation_none">Fără precipitații</string>
     <string name="precipitation_between_time">Precipitații de la %1$s până la %2$s</string>
@@ -314,7 +304,6 @@
     <string name="air_quality_level_5_description">Efectele asupra sănătății vor fi resimțite imediat de grupurile sensibile și ar trebui să fie evitate activitățile în aer liber. Persoanele sănătoase pot experimenta dificultăți de respirație și iritații ale gâtului; ia în considerare să rămâi în casă și să reprogramezi activitățile în aer liber.</string>
     <string name="air_quality_level_6_description">Orice expunere la aer, chiar și pentru câteva minute, poate duce la efecte grave asupra sănătății tuturor. Evită activitățile în aer liber.</string>
     <string name="air_quality_level_6">Periculoasă</string>
-    <string name="unit_ft_voice">Picioare</string>
     <string name="notification_channel_alerts">Alerte</string>
     <string name="about_contributors">Contribuitori</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Furtună cu Grindină Intensă</string>
@@ -340,7 +329,6 @@
     <string name="unit_mmph_voice">milimetri pe oră</string>
     <string name="unit_fahrenheit_short">°</string>
     <string name="unit_kelvin">K</string>
-    <string name="unit_m_voice">metri</string>
     <string name="notification_channel_background_services">Servicii de fundal</string>
     <string name="alerts_to_follow">Există alerte viitoare, apasă aici pentru a le vedea.</string>
     <string name="wind_direction_SE_short">SE</string>

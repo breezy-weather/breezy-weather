@@ -253,8 +253,6 @@
     <string name="unit_fahrenheit">° f</string>
     <string name="unit_fahrenheit_short">°</string>
     <string name="unit_kelvin">கே</string>
-    <string name="unit_mi_voice">மைல்கள்</string>
-    <string name="unit_nmi">என்.எம்.ஐ.</string>
     <string name="notification_precipitation_starting_desc">%s இல் தொடங்கும் என்று எதிர்பார்க்கப்படுகிறது</string>
     <string name="common_weather_text_cloudy">மேகமூட்டமான</string>
     <string name="common_weather_text_rain_snow_mixed_showers_light">லேசான மழை மற்றும் பனி கலந்த மழை</string>
@@ -274,10 +272,6 @@
     <string name="unit_in_voice">அங்குலங்கள்</string>
     <string name="unit_lpsqm_voice">சதுர மீட்டருக்கு லிட்டர்</string>
     <string name="unit_inph_voice">ஒரு மணி நேரத்திற்கு அங்குலங்கள்</string>
-    <string name="unit_m_voice">மீட்டர்</string>
-    <string name="unit_mi">மி</string>
-    <string name="unit_nmi_voice">கடல் மைல்கள்</string>
-    <string name="unit_h_voice">மணிகள்</string>
     <string name="about_app">பயன்பாடு பற்றி</string>
     <string name="about_check_for_app_updates">பயன்பாட்டு புதுப்பிப்புகளைச் சரிபார்க்கவும்</string>
     <string name="common_weather_text_rain_showers_moderate">மிதமான மழை பொழிவுகள்</string>
@@ -463,10 +457,7 @@
     <string name="settings_color_night_always">எப்போதும் இரவு</string>
     <string name="settings_color_light">ஒளி</string>
     <string name="unit_lpsqmph">L/m²/h</string>
-    <string name="unit_m">மீ</string>
     <string name="unit_kelvin_short">கே</string>
-    <string name="unit_km">கி.மீ.</string>
-    <string name="unit_km_voice">கிலோமீட்டர்</string>
     <string name="notification_channel_alerts">விழிப்பூட்டல்கள்</string>
     <string name="notification_channel_forecast">முன்னறிவிப்பு</string>
     <string name="notification_updating_weather_data">வானிலை தரவைப் புதுப்பித்தல் (%1$d/%2$d)</string>
@@ -514,8 +505,6 @@
     <string name="settings_modules_notification_style_title">சூல் தண்டு</string>
     <string name="settings_modules_broadcast_send_data_summary_empty">இணக்கமான தொகுப்புகள் எதுவும் கிடைக்கவில்லை</string>
     <string name="unit_celsius_short">°</string>
-    <string name="unit_ft">அடி</string>
-    <string name="unit_ft_voice">அடி</string>
     <string name="notification_refreshed_at">புத்துணர்ச்சி பொழுது</string>
     <string name="unit_ppcm_voice">ஒரு கன மீட்டருக்கு</string>
     <string name="notification_channel_widget">விட்செட்</string>
@@ -637,7 +626,6 @@
     <string name="settings_items_drag_to_sort">பட்டியல் உருப்படிகளை வரிசைப்படுத்த தட்டவும்</string>
     <string name="unit_lpsqmph_voice">ஒரு மணி நேரத்திற்கு சதுர மீட்டருக்கு லிட்டர்</string>
     <string name="unit_mgpcum_voice">ஒரு கன மீட்டருக்கு மில்லிகிராம்</string>
-    <string name="unit_h">ம</string>
     <string name="unit_ppcm">/m³</string>
     <string name="common_weather_text_rain_snow_mixed_light">லேசான மழை மற்றும் பனி கலக்கப்படுகிறது</string>
     <string name="metno_weather_text_andthunder">%s மற்றும் இடி</string>

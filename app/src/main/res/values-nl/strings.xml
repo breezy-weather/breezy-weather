@@ -98,7 +98,6 @@
     <string name="about_privacy_policy">Privacybeleid</string>
     <string name="unit_lpsqmph">L/m²/u</string>
     <string name="unit_lpsqmph_voice">Liter per vierkante meter per uur</string>
-    <string name="unit_nmi">nmi</string>
     <string name="common_weather_text_fog">Mist</string>
     <string name="location_service_native">Native API</string>
     <string name="precipitation_thunderstorm">Onweersbui</string>
@@ -138,7 +137,6 @@
     <string name="common_weather_text_rain_freezing">IJzel</string>
     <string name="common_weather_text_rain_freezing_light">Lichte ijzel</string>
     <string name="common_weather_text_drizzle_freezing">IJzelende motregen</string>
-    <string name="unit_mi">mi</string>
     <string name="common_weather_text_rain">Regen</string>
     <string name="unit_mps_voice">Meters per seconde</string>
     <string name="settings_location_access_background_title">Locatietoegang op de achtergrond</string>
@@ -209,9 +207,6 @@
     <string name="weather_source_accu_preference_hours_240">240 uur</string>
     <string name="widget_subtitle_data_wind">Wind</string>
     <string name="unit_celsius">°C</string>
-    <string name="unit_nmi_voice">Zeemijl</string>
-    <string name="unit_ft">ft</string>
-    <string name="unit_ft_voice">Voet</string>
     <string name="notification_update_error">%d update(s) mislukt</string>
     <string name="about_contact">Contact</string>
     <string name="about_matrix">Matrixkamer</string>
@@ -396,17 +391,10 @@
     <string name="unit_fahrenheit">°F</string>
     <string name="unit_kelvin">K</string>
     <string name="unit_kelvin_short">K</string>
-    <string name="unit_km">km</string>
-    <string name="unit_km_voice">Kilometer</string>
-    <string name="unit_m">m</string>
     <string name="unit_fahrenheit_short">°</string>
-    <string name="unit_m_voice">Meter</string>
-    <string name="unit_mi_voice">Mijl</string>
     <string name="unit_ppcm">/m³</string>
     <string name="unit_mgpcum">mg/m³</string>
     <string name="unit_mgpcum_voice">Milligram per kubieke meter</string>
-    <string name="unit_h">h</string>
-    <string name="unit_h_voice">uur</string>
     <string name="unit_ppcm_voice">Per kubieke meter</string>
     <string name="notification_updating_weather_data">Weergegevens bijwerken (%1$d/%2$d)</string>
     <string name="notification_style_cities">Steden</string>
