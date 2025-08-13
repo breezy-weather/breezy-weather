@@ -27,6 +27,10 @@ import org.breezyweather.common.extensions.currentLocale
 import org.junit.jupiter.api.Test
 import java.util.Locale
 
+/**
+ * TODO: Move to unit lib and test against Number.format() instead
+ * TODO: Add sign testing
+ */
 class UnitUtilsTest {
     @Test
     fun formatFloat() = runTest {
