@@ -45,8 +45,9 @@
 - [LVGMC] Fix current observations (@chunshek)
 - [NCDR] Added as alert source for Taiwan (@chunshek)
 - [NCEI] Added support for normals (@chunshek)
-- [NWS] Alerts - Updated terminology for Extreme Heat (@chunshek)
+- [Nominatim] Added as another location search
 - [NSLC] Added as address lookup source for Taiwan (@chunshek)
+- [NWS] Alerts - Updated terminology for Extreme Heat (@chunshek)
 - [Open-Meteo] Restrict pollen to Europe as it’s only available there (@chunshek)
 - [Pirate Weather] Add support for daily/hourly summaries
 - [Veðurstofa Íslands] Added as forecast, current, alert and address lookup source for Iceland (@chunshek)

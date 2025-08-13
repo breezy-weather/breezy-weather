@@ -26,6 +26,16 @@ import retrofit2.http.Query
  * Nominatim API
  */
 interface NominatimApi {
+
+    @GET("search")
+    fun searchLocations(
+        @Header("User-Agent") userAgent: String,
+        @Query("q") q: String,
+        @Query("limit") limit: Int = 10,
+        @Query("format") format: String = "jsonv2",
+        @Query("addressdetails") addressDetails: Boolean = true,
+    ): Observable<List<NominatimLocationResult>>
+
     @GET("reverse")
     fun getReverseLocation(
         @Header("User-Agent") userAgent: String,

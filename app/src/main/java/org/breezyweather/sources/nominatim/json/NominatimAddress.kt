@@ -19,6 +19,9 @@ package org.breezyweather.sources.nominatim.json
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
+/**
+ * Maybe try to extract things like ISO3166-2-lvl4, ISO3166-2-lvl6, etc
+ */
 @Serializable
 data class NominatimAddress(
     val village: String?, // District

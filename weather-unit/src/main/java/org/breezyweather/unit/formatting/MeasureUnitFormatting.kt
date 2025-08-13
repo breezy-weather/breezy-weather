@@ -36,7 +36,7 @@ import java.util.Locale
  * @param numberFormatterWidth
  */
 @RequiresApi(api = Build.VERSION_CODES.R)
-public fun MeasureUnit.formatWithNumberFormatter(
+fun MeasureUnit.formatWithNumberFormatter(
     locale: Locale,
     value: Number,
     perUnit: MeasureUnit? = null,
@@ -63,7 +63,7 @@ public fun MeasureUnit.formatWithNumberFormatter(
  * @param perUnit an optional per unit. /!\ Only supported on Android SDK >= 26
  */
 @RequiresApi(api = Build.VERSION_CODES.N)
-public fun MeasureUnit.formatWithMeasureFormat(
+fun MeasureUnit.formatWithMeasureFormat(
     locale: Locale,
     value: Number,
     perUnit: MeasureUnit? = null,

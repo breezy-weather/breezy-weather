@@ -481,19 +481,73 @@ class MainActivityViewModel @Inject constructor(
     fun addLocation(
         location: Location,
         index: Int? = null,
+        context: Context? = null, // Needed if adding timezone
+        addTimeZoneIfMissing: Boolean = false,
     ): Boolean {
         // do not add an existing location.
         if (validLocationList.value.firstOrNull { it.formattedId == location.formattedId } != null) {
             return false
         }
 
+        _locationListLoading.value = true
+
+        val locationToAdd = if (addTimeZoneIfMissing && context != null && location.isTimeZoneInvalid) {
+            location.copy(
+                timeZone = runBlocking {
+                    refreshHelper.getTimeZoneForLocation(context, location)
+                }
+            )
+        } else {
+            location
+        }
+
         val valid = validLocationList.value.toMutableList()
-        valid.add(index ?: valid.size, location)
+        valid.add(index ?: valid.size, locationToAdd)
 
         updateInnerData(valid)
         writeLocationList(locationList = valid)
 
+        _locationListLoading.value = false
+
         return true
+    }
+
+    /**
+     * Does nothing when the location is invalid
+     */
+    fun askToAddLocation(
+        context: Context,
+        latitude: Double,
+        longitude: Double,
+    ) {
+        val location = Location(latitude = latitude, longitude = longitude)
+        if (validLocationList.value.firstOrNull { it.isCloseTo(location) } != null) {
+            SnackbarHelper.showSnackbar(context.getString(R.string.location_message_already_exists))
+        } else {
+            viewModelScope.launchIO {
+                _locationListLoading.value = true
+                try {
+                    val locationWithInfo = refreshHelper.requestReverseGeocoding(
+                        sourceManager.getReverseGeocodingSource(BuildConfig.DEFAULT_GEOCODING_SOURCE)!!,
+                        location,
+                        context
+                    )
+                    if (locationWithInfo.hasValidCountryCode) {
+                        openChooseWeatherSourcesDialog(
+                            locationWithInfo
+                                .copy(
+                                    // Allows the user to select a one-time address lookup source
+                                    needsGeocodeRefresh = true
+                                )
+                                .applyDefaultPreset(sourceManager)
+                        )
+                    }
+                } catch (_: Exception) {
+                    // Do nothing
+                }
+                _locationListLoading.value = false
+            }
+        }
     }
 
     fun swapLocations(from: Int, to: Int) {
@@ -655,44 +709,6 @@ class MainActivityViewModel @Inject constructor(
                         refreshHelper.refreshShortcuts(context, it)
                     }
                 }
-            }
-        }
-    }
-
-    /**
-     * Does nothing when the location is invalid
-     */
-    fun askToAddLocation(
-        context: Context,
-        latitude: Double,
-        longitude: Double,
-    ) {
-        val location = Location(latitude = latitude, longitude = longitude)
-        if (validLocationList.value.firstOrNull { it.isCloseTo(location) } != null) {
-            SnackbarHelper.showSnackbar(context.getString(R.string.location_message_already_exists))
-        } else {
-            viewModelScope.launchIO {
-                _locationListLoading.value = true
-                try {
-                    val locationWithInfo = refreshHelper.requestReverseGeocoding(
-                        sourceManager.getReverseGeocodingSource(BuildConfig.DEFAULT_GEOCODING_SOURCE)!!,
-                        location,
-                        context
-                    )
-                    if (locationWithInfo.hasValidCountryCode) {
-                        openChooseWeatherSourcesDialog(
-                            locationWithInfo
-                                .copy(
-                                    // Allows the user to select a one-time address lookup source
-                                    needsGeocodeRefresh = true
-                                )
-                                .applyDefaultPreset(sourceManager)
-                        )
-                    }
-                } catch (_: Exception) {
-                    // Do nothing
-                }
-                _locationListLoading.value = false
             }
         }
     }

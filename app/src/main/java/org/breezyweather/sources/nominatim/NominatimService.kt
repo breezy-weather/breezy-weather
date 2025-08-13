@@ -24,6 +24,7 @@ import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.BuildConfig
 import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.source.HttpSource
+import org.breezyweather.common.source.LocationSearchSource
 import org.breezyweather.common.source.ReverseGeocodingSource
 import retrofit2.Retrofit
 import javax.inject.Inject
@@ -37,17 +38,17 @@ import javax.inject.Named
  */
 class NominatimService @Inject constructor(
     @Named("JsonClient") client: Retrofit.Builder,
-) : HttpSource(), ReverseGeocodingSource {
+) : HttpSource(), LocationSearchSource, ReverseGeocodingSource {
 
     override val id = "nominatim"
     override val name = "Nominatim"
-    private val attribution =
+    override val locationSearchAttribution =
         "Nominatim • Data © OpenStreetMap contributors, ODbL 1.0. https://osm.org/copyright"
     override val privacyPolicyUrl = "https://osmfoundation.org/wiki/Privacy_Policy"
     override val continent = SourceContinent.WORLDWIDE
 
     override val supportedFeatures = mapOf(
-        SourceFeature.REVERSE_GEOCODING to attribution
+        SourceFeature.REVERSE_GEOCODING to locationSearchAttribution
     )
     override val attributionLinks = mapOf(
         name to NOMINATIM_BASE_URL,
@@ -59,6 +60,36 @@ class NominatimService @Inject constructor(
             .baseUrl(NOMINATIM_BASE_URL)
             .build()
             .create(NominatimApi::class.java)
+    }
+
+    override fun requestLocationSearch(
+        context: Context,
+        query: String,
+    ): Observable<List<LocationAddressInfo>> {
+        return mApi.searchLocations(
+            userAgent = USER_AGENT,
+            q = query,
+            limit = 20
+        ).map { results ->
+            results.mapNotNull {
+                if (it.address?.countryCode == null || it.address.countryCode.isEmpty()) {
+                    null
+                } else {
+                    LocationAddressInfo(
+                        latitude = it.lat.toDoubleOrNull(),
+                        longitude = it.lon.toDoubleOrNull(),
+                        district = it.address.village,
+                        city = it.address.town ?: it.name,
+                        cityCode = it.placeId?.toString(),
+                        admin3 = it.address.municipality,
+                        admin2 = it.address.county,
+                        admin1 = it.address.state,
+                        country = it.address.country,
+                        countryCode = it.address.countryCode
+                    )
+                }
+            }
+        }
     }
 
     override fun requestNearestLocation(
@@ -77,6 +108,8 @@ class NominatimService @Inject constructor(
 
             listOf(
                 LocationAddressInfo(
+                    latitude = it.lat.toDoubleOrNull(),
+                    longitude = it.lon.toDoubleOrNull(),
                     district = it.address.village,
                     city = it.address.town ?: it.name,
                     cityCode = it.placeId?.toString(),

@@ -77,6 +77,8 @@ class SearchViewModel @Inject constructor(
                                     locAddrInfo,
                                     overwriteCoordinates = true
                                 )
+                            }.filter { loc ->
+                                loc.hasValidCountryCode
                             },
                         LoadableLocationStatus.SUCCESS
                     )

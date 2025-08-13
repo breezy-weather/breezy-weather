@@ -332,7 +332,7 @@ class RefreshHelper @Inject constructor(
         }
 
         // STEP 3 - Add timezone if missing
-        val locationWithTimeZone = if (locationGeocoded.timeZone.id == "GMT") {
+        val locationWithTimeZone = if (locationGeocoded.isTimeZoneInvalid) {
             locationGeocoded.copy(
                 timeZone = getTimeZoneForLocation(context, locationGeocoded)
             )

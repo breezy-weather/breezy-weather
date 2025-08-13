@@ -82,6 +82,9 @@ data class Location(
         // Sorry people living exactly at 0,0
         get() = latitude != 0.0 || longitude != 0.0
 
+    val isTimeZoneInvalid: Boolean
+        get() = timeZone.id == "GMT"
+
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(cityId)
         parcel.writeDouble(latitude)

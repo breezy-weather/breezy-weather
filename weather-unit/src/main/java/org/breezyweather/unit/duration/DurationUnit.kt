@@ -30,7 +30,7 @@ import kotlin.time.DurationUnit
  */
 
 @RequiresApi(api = Build.VERSION_CODES.N)
-public fun DurationUnit.toMeasureUnit(): MeasureUnit = when (this) {
+fun DurationUnit.toMeasureUnit(): MeasureUnit = when (this) {
     DurationUnit.NANOSECONDS -> MeasureUnit.NANOSECOND
     DurationUnit.MICROSECONDS -> MeasureUnit.MICROSECOND
     DurationUnit.MILLISECONDS -> MeasureUnit.MILLISECOND
@@ -40,7 +40,7 @@ public fun DurationUnit.toMeasureUnit(): MeasureUnit = when (this) {
     DurationUnit.DAYS -> MeasureUnit.DAY
 }
 
-public fun DurationUnit.getPrecision(width: UnitWidth): Int = when (width) {
+fun DurationUnit.getPrecision(width: UnitWidth): Int = when (width) {
     UnitWidth.SHORT -> 1
     UnitWidth.NARROW -> 0
     UnitWidth.LONG -> 2

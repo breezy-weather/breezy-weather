@@ -217,12 +217,12 @@ class MetIeService @Inject constructor(
         if (warnings == null) return null
         if (warnings.isEmpty()) return emptyList()
 
-        val region = if (MetIeService.regionsMapping.containsKey(location.admin2)) {
+        val region = if (regionsMapping.containsKey(location.admin2)) {
             location.admin2
         } else {
             location.parameters.getOrElse("metie") { null }?.getOrElse("region") { null }
         }
-        val eiRegion = region?.let { MetIeService.regionsMapping.getOrElse(region) { null } }
+        val eiRegion = region?.let { regionsMapping.getOrElse(region) { null } }
 
         return warnings
             .filter {

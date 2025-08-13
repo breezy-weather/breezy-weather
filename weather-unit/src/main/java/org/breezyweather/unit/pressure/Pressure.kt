@@ -38,75 +38,75 @@ import kotlin.math.roundToLong
  * or the properties [inPascals], [inHectopascals], [inMillibars], [inAtmospheres], and so on.
  */
 @JvmInline
-public value class Pressure internal constructor(
+value class Pressure internal constructor(
     private val rawValue: Long,
 ) : Comparable<Pressure>, WeatherValue<PressureUnit> {
     val value: Long get() = rawValue
     private val storageUnit get() = PressureUnit.PASCAL
 
-    public companion object {
+    companion object {
         /** Returns a [Pressure] equal to this [Int] number of pascals. */
-        public inline val Int.pascals: Pressure get() = toPressure(PressureUnit.PASCAL)
+        inline val Int.pascals: Pressure get() = toPressure(PressureUnit.PASCAL)
 
         /** Returns a [Pressure] equal to this [Long] number of pascals. */
-        public inline val Long.pascals: Pressure get() = toPressure(PressureUnit.PASCAL)
+        inline val Long.pascals: Pressure get() = toPressure(PressureUnit.PASCAL)
 
         /** Returns a [Pressure] equal to this [Double] number of pascals. */
-        public inline val Double.pascals: Pressure get() = toPressure(PressureUnit.PASCAL)
+        inline val Double.pascals: Pressure get() = toPressure(PressureUnit.PASCAL)
 
         /** Returns a [Pressure] equal to this [Int] number of kilopascals. */
-        public inline val Int.kilopascals: Pressure get() = toPressure(PressureUnit.KILOPASCAL)
+        inline val Int.kilopascals: Pressure get() = toPressure(PressureUnit.KILOPASCAL)
 
         /** Returns a [Pressure] equal to this [Long] number of kilopascals. */
-        public inline val Long.kilopascals: Pressure get() = toPressure(PressureUnit.KILOPASCAL)
+        inline val Long.kilopascals: Pressure get() = toPressure(PressureUnit.KILOPASCAL)
 
         /** Returns a [Pressure] equal to this [Double] number of kilopascals. */
-        public inline val Double.kilopascals: Pressure get() = toPressure(PressureUnit.KILOPASCAL)
+        inline val Double.kilopascals: Pressure get() = toPressure(PressureUnit.KILOPASCAL)
 
         /** Returns a [Pressure] equal to this [Int] number of hectopascals. */
-        public inline val Int.hectopascals: Pressure get() = toPressure(PressureUnit.HECTOPASCAL)
+        inline val Int.hectopascals: Pressure get() = toPressure(PressureUnit.HECTOPASCAL)
 
         /** Returns a [Pressure] equal to this [Long] number of hectopascals. */
-        public inline val Long.hectopascals: Pressure get() = toPressure(PressureUnit.HECTOPASCAL)
+        inline val Long.hectopascals: Pressure get() = toPressure(PressureUnit.HECTOPASCAL)
 
         /** Returns a [Pressure] equal to this [Double] number of hectopascals. */
-        public inline val Double.hectopascals: Pressure get() = toPressure(PressureUnit.HECTOPASCAL)
+        inline val Double.hectopascals: Pressure get() = toPressure(PressureUnit.HECTOPASCAL)
 
         /** Returns a [Pressure] equal to this [Int] number of millibars. */
-        public inline val Int.millibars: Pressure get() = toPressure(PressureUnit.MILLIBAR)
+        inline val Int.millibars: Pressure get() = toPressure(PressureUnit.MILLIBAR)
 
         /** Returns a [Pressure] equal to this [Long] number of millibars. */
-        public inline val Long.millibars: Pressure get() = toPressure(PressureUnit.MILLIBAR)
+        inline val Long.millibars: Pressure get() = toPressure(PressureUnit.MILLIBAR)
 
         /** Returns a [Pressure] equal to this [Double] number of millibars. */
-        public inline val Double.millibars: Pressure get() = toPressure(PressureUnit.MILLIBAR)
+        inline val Double.millibars: Pressure get() = toPressure(PressureUnit.MILLIBAR)
 
         /** Returns a [Pressure] equal to this [Int] number of atmospheres. */
-        public inline val Int.atmospheres: Pressure get() = toPressure(PressureUnit.ATMOSPHERE)
+        inline val Int.atmospheres: Pressure get() = toPressure(PressureUnit.ATMOSPHERE)
 
         /** Returns a [Pressure] equal to this [Long] number of atmospheres. */
-        public inline val Long.atmospheres: Pressure get() = toPressure(PressureUnit.ATMOSPHERE)
+        inline val Long.atmospheres: Pressure get() = toPressure(PressureUnit.ATMOSPHERE)
 
         /** Returns a [Pressure] equal to this [Double] number of atmospheres. */
-        public inline val Double.atmospheres: Pressure get() = toPressure(PressureUnit.ATMOSPHERE)
+        inline val Double.atmospheres: Pressure get() = toPressure(PressureUnit.ATMOSPHERE)
 
         /** Returns a [Pressure] equal to this [Int] number of millimeters of mercury. */
-        public inline val Int.millimetersOfMercury: Pressure get() = toPressure(PressureUnit.MILLIMETER_OF_MERCURY)
+        inline val Int.millimetersOfMercury: Pressure get() = toPressure(PressureUnit.MILLIMETER_OF_MERCURY)
 
         /** Returns a [Pressure] equal to this [Long] number of millimeters of mercury. */
-        public inline val Long.millimetersOfMercury: Pressure get() = toPressure(PressureUnit.MILLIMETER_OF_MERCURY)
+        inline val Long.millimetersOfMercury: Pressure get() = toPressure(PressureUnit.MILLIMETER_OF_MERCURY)
 
         /** Returns a [Pressure] equal to this [Double] number of millimeters of mercury. */
-        public inline val Double.millimetersOfMercury: Pressure get() = toPressure(PressureUnit.MILLIMETER_OF_MERCURY)
+        inline val Double.millimetersOfMercury: Pressure get() = toPressure(PressureUnit.MILLIMETER_OF_MERCURY)
 
         /** Returns a [Pressure] equal to this [Int] number of inches of mercury. */
-        public inline val Int.inchesOfMercury: Pressure get() = toPressure(PressureUnit.INCH_OF_MERCURY)
+        inline val Int.inchesOfMercury: Pressure get() = toPressure(PressureUnit.INCH_OF_MERCURY)
 
         /** Returns a [Pressure] equal to this [Long] number of inches of mercury. */
-        public inline val Long.inchesOfMercury: Pressure get() = toPressure(PressureUnit.INCH_OF_MERCURY)
+        inline val Long.inchesOfMercury: Pressure get() = toPressure(PressureUnit.INCH_OF_MERCURY)
 
         /** Returns a [Pressure] equal to this [Double] number of inches of mercury. */
-        public inline val Double.inchesOfMercury: Pressure get() = toPressure(PressureUnit.INCH_OF_MERCURY)
+        inline val Double.inchesOfMercury: Pressure get() = toPressure(PressureUnit.INCH_OF_MERCURY)
 
         /**
          * Parses a string that represents a pressure and returns the parsed [Pressure] value.
@@ -118,7 +118,7 @@ public value class Pressure internal constructor(
          *
          * @throws IllegalArgumentException if the string doesn't represent a pressure in any of the supported formats.
          */
-        public fun parse(value: String): Pressure = try {
+        fun parse(value: String): Pressure = try {
             parsePressure(value)
         } catch (e: IllegalArgumentException) {
             throw IllegalArgumentException("Invalid pressure string format: '$value'.", e)
@@ -133,7 +133,7 @@ public value class Pressure internal constructor(
          * - The format of string returned by the default [Pressure.toString] and `toString` in a specific unit,
          *   e.g. `1013.25hpa` or `29.95inhg`.
          */
-        public fun parseOrNull(value: String): Pressure? = try {
+        fun parseOrNull(value: String): Pressure? = try {
             parsePressure(value)
         } catch (e: IllegalArgumentException) {
             null
@@ -151,36 +151,36 @@ public value class Pressure internal constructor(
      *
      * The operation may involve rounding when the result cannot be represented exactly with a [Double] number.
      */
-    public override fun toDouble(unit: PressureUnit): Double {
+    override fun toDouble(unit: PressureUnit): Double {
         return convertPressureUnit(value.toDouble(), storageUnit, unit)
     }
 
     /** The value of this pressure expressed as a [Double] number of pascals. */
-    public val inPascals: Double
+    val inPascals: Double
         get() = toDouble(PressureUnit.PASCAL)
 
     /** The value of this pressure expressed as a [Double] number of hectopascals. */
-    public val inHectopascals: Double
+    val inHectopascals: Double
         get() = toDouble(PressureUnit.HECTOPASCAL)
 
     /** The value of this pressure expressed as a [Double] number of kilopascals. */
-    public val inKilopascals: Double
+    val inKilopascals: Double
         get() = toDouble(PressureUnit.KILOPASCAL)
 
     /** The value of this pressure expressed as a [Double] number of millibars. */
-    public val inMillibars: Double
+    val inMillibars: Double
         get() = toDouble(PressureUnit.MILLIBAR)
 
     /** The value of this pressure expressed as a [Double] number of atmospheres. */
-    public val inAtmospheres: Double
+    val inAtmospheres: Double
         get() = toDouble(PressureUnit.ATMOSPHERE)
 
     /** The value of this pressure expressed as a [Double] number of millimeters of mercury. */
-    public val inMillimetersOfMercury: Double
+    val inMillimetersOfMercury: Double
         get() = toDouble(PressureUnit.MILLIMETER_OF_MERCURY)
 
     /** The value of this pressure expressed as a [Double] number of inches of mercury. */
-    public val inInchesOfMercury: Double
+    val inInchesOfMercury: Double
         get() = toDouble(PressureUnit.INCH_OF_MERCURY)
 
     /**
@@ -202,7 +202,7 @@ public value class Pressure internal constructor(
      *
      * @throws IllegalArgumentException if [decimals] is less than zero.
      */
-    public fun toString(unit: PressureUnit, decimals: Int = unit.decimals.short): String {
+    fun toString(unit: PressureUnit, decimals: Int = unit.decimals.short): String {
         require(decimals >= 0) { "decimals must be not negative, but was $decimals" }
         return formatToExactDecimals(toDouble(unit), decimals.coerceAtMost(unit.decimals.long)) + unit.id
     }
@@ -210,7 +210,7 @@ public value class Pressure internal constructor(
     /**
      * Return null if the value is not between 800 hPa and 1200 hPa, otherwise this value
      */
-    public fun toValidOrNull(): Pressure? {
+    fun toValidOrNull(): Pressure? {
         return if (rawValue in 80000..120000) this else null
     }
 
@@ -254,12 +254,12 @@ public value class Pressure internal constructor(
 // extension functions
 
 /** Returns a [Pressure] equal to this [Int] number of the specified [unit]. */
-public fun Int.toPressure(unit: PressureUnit): Pressure {
+fun Int.toPressure(unit: PressureUnit): Pressure {
     return toLong().toPressure(unit)
 }
 
 /** Returns a [Pressure] equal to this [Long] number of the specified [unit]. */
-public fun Long.toPressure(unit: PressureUnit): Pressure {
+fun Long.toPressure(unit: PressureUnit): Pressure {
     return pressureOf(convertPressureUnit(this.toDouble(), unit, PressureUnit.PASCAL).toLong())
 }
 
@@ -270,7 +270,7 @@ public fun Long.toPressure(unit: PressureUnit): Pressure {
  *
  * @throws IllegalArgumentException if this `Double` value is `NaN`.
  */
-public fun Double.toPressure(unit: PressureUnit): Pressure {
+fun Double.toPressure(unit: PressureUnit): Pressure {
     val valueInPa = convertPressureUnit(this, unit, PressureUnit.PASCAL)
     require(!valueInPa.isNaN()) { "Pressure value cannot be NaN." }
     return pressureOf(valueInPa.roundToLong())

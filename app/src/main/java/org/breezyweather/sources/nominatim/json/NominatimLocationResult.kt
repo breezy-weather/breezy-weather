@@ -23,5 +23,7 @@ import kotlinx.serialization.Serializable
 data class NominatimLocationResult(
     @SerialName("place_id") val placeId: Int?,
     val name: String,
+    val lat: String,
+    val lon: String,
     val address: NominatimAddress? = null,
 )
