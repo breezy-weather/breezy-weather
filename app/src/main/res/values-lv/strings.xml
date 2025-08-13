@@ -825,5 +825,5 @@
     <string name="content_provider_permission_description">iegūt laikapstākļu informāciju no Breezy Weather, tajā skaitā Tavu atrašanās vietu koordinātas, piemēram, pašreizējo atrašanās vietu, ja tā ir pievienota</string>
     <string name="broadcast_source_breezy_weather_update_notifier">%s atrašanās vietas atjauninājumu paziņotājs</string>
     <string name="action_add_as_location">Pievienot kā atrašanās vietu</string>
-    <string name="settings_regional_preference">Apgabala priekšroka</string>
+    <string name="settings_regional_preference">Apgabala iestatījums</string>
 </resources>
