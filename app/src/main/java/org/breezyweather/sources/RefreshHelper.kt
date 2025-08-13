@@ -238,7 +238,7 @@ class RefreshHelper @Inject constructor(
                     if (
                         SphericalUtil.computeDistanceBetween(
                             LatLng(it.latitude, it.longitude),
-                            LatLng(location.latitude, location.longitude)
+                            LatLng(locationWithUpdatedCoordinates.latitude, locationWithUpdatedCoordinates.longitude)
                         ) > REVERSE_GEOCODING_DISTANCE_LIMIT
                     ) {
                         LogHelper.log(
