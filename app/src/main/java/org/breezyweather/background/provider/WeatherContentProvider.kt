@@ -57,6 +57,7 @@ import org.breezyweather.common.basic.models.options.unit.PollenUnit
 import org.breezyweather.common.basic.models.options.unit.SpeedUnit
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.common.basic.models.options.unit.getCloudCoverDescription
+import org.breezyweather.common.extensions.gzipCompress
 import org.breezyweather.common.extensions.roundDecimals
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.PollenIndexSource
@@ -264,7 +265,7 @@ class WeatherContentProvider : ContentProvider() {
                         location.latitude,
                         location.longitude,
                         location.isCurrentPosition,
-                        location.timeZone,
+                        location.timeZone.id,
                         location.customName,
                         location.country,
                         location.countryCode,
@@ -354,7 +355,7 @@ class WeatherContentProvider : ContentProvider() {
                     location.latitude,
                     location.longitude,
                     location.isCurrentPosition,
-                    location.timeZone,
+                    location.timeZone.id,
                     location.customName,
                     location.country,
                     location.countryCode,
@@ -378,7 +379,7 @@ class WeatherContentProvider : ContentProvider() {
                             distanceUnitQuery,
                             pressureUnitQuery
                         )
-                    )
+                    ).gzipCompress()
                 )
             )
         }
