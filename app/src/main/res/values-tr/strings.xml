@@ -342,13 +342,11 @@
     <string name="common_weather_text_drizzle_heavy">Şiddetli çiseleme</string>
     <string name="widget_clock_day_details">Saat + Günlük (Detaylar)</string>
     <string name="settings_weather_sources_per_location_summary">Bu konum için kullanılan hava durumu kaynaklarını yapılandırın</string>
-    <string name="unit_cm">cm</string>
     <string name="notification_style_cities">Şehirler</string>
     <string name="common_weather_text_snow_showers_heavy">Şiddetli kar yağışı</string>
     <string name="common_weather_text_snow_grains">Kar taneleri</string>
     <string name="settings_location_access_switch_title">Konum erişimi</string>
     <string name="unit_bft_voice">Beaufort ölçeğinde</string>
-    <string name="unit_mm_voice">Milimetre</string>
     <string name="about_source_code">Kaynak kodu</string>
     <string name="common_weather_text_rain_showers_heavy">Şiddetli sağanak yağış</string>
     <string name="common_weather_text_rain_showers_moderate">Orta şiddetli sağanak yağış</string>
@@ -384,10 +382,6 @@
     <string name="settings_modules_broadcast_send_data_title">%s’e hava durumu bilgisini gönder</string>
     <string name="about_privacy_policy">Gizlilik sözleşmesi</string>
     <string name="settings_color_day_night">Gündüz / Gece</string>
-    <string name="unit_cmph_voice">Saat başına santimetre</string>
-    <string name="unit_inph">inç/sa</string>
-    <string name="unit_inph_voice">Saat başına inç</string>
-    <string name="unit_lpsqmph_voice">Saat başına metrekare başına litre</string>
     <string name="unit_celsius">°C</string>
     <string name="unit_celsius_short">°</string>
     <string name="notification_channel_background_services">Arkaplan servisleri</string>
@@ -408,8 +402,6 @@
     <string name="settings_modules_monochrome_icons_title">Tek renk simgeler</string>
     <string name="settings_notifications_forecast_today_title">Günlük tahmin bildirimi</string>
     <string name="about_contribution_WangDaYeeeeee">Orijinal Geometric Weather uygulamasının geliştiricisi</string>
-    <string name="unit_in_voice">İnç</string>
-    <string name="unit_lpsqm">L/m²</string>
     <string name="about_contributors">Katkıda bulunanlar</string>
     <string name="setting_weather_source_accu_days">Günler</string>
     <string name="settings_modules_notification_feels_like_switch">Hissedilen sıcaklığı kullan</string>
@@ -422,7 +414,6 @@
     <string name="settings_background_updates_worker_info_summary">Son çalıştırma zamanı: %s</string>
     <string name="settings_location">Konum</string>
     <string name="unit_ppcm">/m³</string>
-    <string name="unit_lpsqm_voice">Metrekare başına litre</string>
     <string name="common_weather_text_rain_snow_mixed_light">Karla karışık hafif yağmur</string>
     <string name="metno_weather_text_andthunder">%s ve fırtına</string>
     <string name="common_weather_text_rain_snow_mixed_heavy">Karla karışık şiddetli yağış</string>
@@ -442,12 +433,10 @@
     <string name="settings_debug">Hata ayıklama</string>
     <string name="settings_items_drag_to_sort">Sürükleyip sıralamak için liste öğelerine dokunun</string>
     <string name="settings_none">Hiçbiri</string>
-    <string name="unit_cm_voice">Santimetre</string>
     <string name="widget_clock_font_sans_serif">Sans Serif</string>
     <string name="unit_ftps">ft/sn</string>
     <string name="unit_mgpcum">mg/m³</string>
     <string name="unit_mgpcum_voice">Metreküp başına miligram</string>
-    <string name="unit_mm">mm</string>
     <string name="weather_message_unsupported_feature">Kaynak istenilen özelliklerin birini desteklemiyor</string>
     <string name="widget_custom_subtitle_keyword_hd_description">Saatlik açıklama</string>
     <string name="widget_week_style_3_days">3 günlük</string>
@@ -468,7 +457,6 @@
     <string name="widget_custom_subtitle_keyword_xdw_description">Bugünün, yarının, …, 4 gün sonrasının gündüz hava durumu</string>
     <string name="widget_custom_subtitle_keyword_xnw_description">Bugünün, yarının, …, 4 gün sonrasının gece hava durumu</string>
     <string name="settings_modules_section_widgets_in_use">Kullanılan widget’lar</string>
-    <string name="unit_mmph">mm/sa</string>
     <string name="unit_fahrenheit_short">F</string>
     <string name="unit_mugpcum_voice">Metreküp başına mikrogram</string>
     <string name="settings_debug_summary">Çökme günlükleri</string>
@@ -480,7 +468,6 @@
     <string name="unit_mps_voice">Saniyede metre</string>
     <string name="unit_kn_voice">Saatte deniz mili</string>
     <string name="unit_mph">m/sa</string>
-    <string name="unit_in">inç</string>
     <string name="unit_ftps_voice">Saniye başına feet</string>
     <string name="settings_location_access_switch_summaryOff">Anlık konumunuzu konum olarak eklemek istiyorsanız lütfen kabul edin.</string>
     <string name="settings_source_default_value">Varsayılan (değiştirilmemiş)</string>
@@ -507,12 +494,9 @@
     <string name="widget_custom_subtitle_keyword_xdwd_description">Bugünün, yarının, …, 4 gün sonrasının gündüz rüzgarı</string>
     <string name="widget_custom_subtitle_keyword_xdtd_description">Bugünün, yarının, …, 4 gün sonrasının gündüz hava sıcaklığı (°)</string>
     <string name="widget_custom_subtitle_keyword_xnwd_description">Bugünün, yarının, …, 4 gün sonrasının gece rüzgarı</string>
-    <string name="unit_lpsqmph">L/m²/sa</string>
     <string name="settings_color_day_always">Sürekli gündüz</string>
     <string name="settings_color_night_always">Sürekli gece</string>
     <string name="unit_kph">km/s</string>
-    <string name="unit_mmph_voice">Saat başına milimetre</string>
-    <string name="unit_cmph">cm/sa</string>
     <string name="settings_location_access_background_title">Arka planda konum erişimi</string>
     <string name="settings_location_access_precise_title">GPS sensörü kullanımı</string>
     <string name="settings_color_app">Sistemi takip et</string>

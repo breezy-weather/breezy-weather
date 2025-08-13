@@ -192,7 +192,6 @@
     <string name="settings_main_cards_other_element_animations_switch">Остале анимације елемената</string>
     <string name="notification_channel_alerts">Упозорења</string>
     <string name="unit_mps_voice">Метри у секунди</string>
-    <string name="unit_in_voice">Инчи</string>
     <string name="unit_celsius_short">°</string>
     <string name="settings_section_general">Опште</string>
     <string name="weather_source_accu_preference_hours_120">120 сати</string>
@@ -304,7 +303,6 @@
     <string name="settings_modules_live_wallpaper_title">Жива позадина</string>
     <string name="settings_color_day_night">Дан / Ноћ</string>
     <string name="settings_modules_notification_feels_like_switch">Користи температуру „Осећа се као“</string>
-    <string name="unit_lpsqmph">L/m²/h</string>
     <string name="widget_label_clock_font">Фонт сата</string>
     <string name="widget_subtitle_data_custom">Прилагођено</string>
     <string name="widget_custom_subtitle_keyword_ut_description">Време ажурирања</string>
@@ -314,8 +312,6 @@
     <string name="settings_color_day_always">Увек дан</string>
     <string name="settings_color_night_always">Увек ноћ</string>
     <string name="unit_bft_voice">по Бофоровој скали</string>
-    <string name="unit_cm_voice">Центиметри</string>
-    <string name="unit_inph">inch/h</string>
     <string name="unit_kelvin_short">K</string>
     <string name="unit_mugpcum_voice">Микрограми по кубном метру</string>
     <string name="unit_mgpcum_voice">Милиграми по кубном метру</string>
@@ -340,8 +336,6 @@
     <string name="widget_live_wallpaper_day_night_type">Време (сати)</string>
     <string name="settings_items_drag_to_sort">Додирните да бисте превукли ставке са листе за сортирање</string>
     <string name="unit_kph">km/h</string>
-    <string name="unit_mmph_voice">Милиметри по сату</string>
-    <string name="unit_cmph">cm/h</string>
     <string name="notification_style_cities">Градови</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Олуја са грмљавином - слаба или умерена</string>
     <string name="weather_kind_hail">Град</string>
@@ -378,10 +372,6 @@
     <string name="unit_kelvin">K</string>
     <string name="about_contributors">Сарадници</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">Таложење магле</string>
-    <string name="unit_mmph">mm/h</string>
-    <string name="unit_cmph_voice">Центиметри по сату</string>
-    <string name="unit_inph_voice">Инчи по сату</string>
-    <string name="unit_lpsqmph_voice">Литри по квадратном метру по сату</string>
     <string name="unit_celsius">°C</string>
     <string name="unit_fahrenheit">°F</string>
     <string name="action_refresh">Освежи</string>
@@ -457,13 +447,10 @@
     <string name="settings_modules_configure_widget_summary">Конфигуришите овај виџет</string>
     <string name="unit_kn_voice">Чворови</string>
     <string name="unit_kph_voice">Километри на сат</string>
-    <string name="unit_mm">mm</string>
     <string name="common_weather_text_drizzle_freezing_heavy">Јака ледена росуља</string>
-    <string name="unit_mm_voice">Милиметри</string>
     <string name="notification_running_in_background">Ради у позадини, да би се редовно ажурирало</string>
     <string name="common_weather_text_mostly_clear">Углавном ведро</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Олуја са грмљавином са слабим градом</string>
-    <string name="unit_cm">cm</string>
     <string name="notification_updating_weather_data">Ажурирање података о времену (%1$d/%2$d)</string>
     <string name="common_weather_text_rain_snow_mixed_showers">Помешани пљускови са кишом и снегом</string>
     <string name="air_quality_level_4_description">Осетљиве групе особа могу одмах осетити последице по здравље. Здраве особе могу имати отежано дисање и иритацију грла при продуженом излагању. Ограничите активности на отвореном простору.</string>
@@ -490,10 +477,7 @@
     <string name="settings_weather_sources_per_location_summary">Прилагодите изворе података о времену коришћене за ову локацију</string>
     <string name="settings_main_background_animation_disabled">Онемогућено</string>
     <string name="settings_notifications_forecast_today_title">Обавештење за дневну прогнозу</string>
-    <string name="unit_in">inch</string>
     <string name="settings_modules">Виџети и жива позадина</string>
-    <string name="unit_lpsqm">L/m²</string>
-    <string name="unit_lpsqm_voice">Литри по квадратном метру</string>
     <string name="uv_alert_level">Алармантно</string>
     <string name="weather_api_key_required_missing_title">Недостаје потребан API кључ</string>
     <string name="weather_api_unauthorized_content">На неким изворима података о времену, потребно је да обезбедите свој API кључ. Ако сте га већ обезбедили, поново проверите API кључ који сте обезбедили.</string>

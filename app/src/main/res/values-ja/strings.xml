@@ -314,16 +314,6 @@
     <string name="unit_kn_voice">ノット</string>
     <string name="unit_mph">mph</string>
     <string name="unit_ftps_voice">フィート毎秒</string>
-    <string name="unit_mm">mm</string>
-    <string name="unit_mm_voice">ミリメートル</string>
-    <string name="unit_cm">cm</string>
-    <string name="unit_cm_voice">センチメートル</string>
-    <string name="unit_lpsqm">L/m²</string>
-    <string name="unit_lpsqm_voice">リットル毎平方メートル</string>
-    <string name="unit_in_voice">インチ</string>
-    <string name="unit_inph">inch/h</string>
-    <string name="unit_mmph">mm/h</string>
-    <string name="unit_cmph_voice">センチメートル毎時</string>
     <string name="unit_ppcm">/m³</string>
     <string name="notification_channel_alerts">警報</string>
     <string name="notification_channel_crash_logs">クラッシュログ</string>
@@ -406,7 +396,6 @@
     <string name="openmeteo_weather_text_depositing_rime_fog">霧氷</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">激しいあられを伴う雷雨</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">わずかなあられを伴う雷雨</string>
-    <string name="unit_lpsqmph">L/m²/h</string>
     <string name="null_data_text">データなし</string>
     <string name="settings_color_app">アプリの設定に従う</string>
     <string name="weather_api_key_required_missing_title">必要なAPIキーがありません</string>
@@ -418,7 +407,6 @@
     <string name="settings_icon_packs_weather_icon_grey">灰色のアイコン</string>
     <string name="settings_modules_live_wallpaper_error">壁紙セレクターを起動できませんでした。ホーム画面の壁紙ピッカーで「ライブ壁紙」を選択すると、%s の壁紙を有効にすることができます。</string>
     <string name="weather_message_unsupported_feature">情報源は要求された機能の一部に対応していません</string>
-    <string name="unit_mmph_voice">ミリメートル毎時</string>
     <string name="settings_location_access_background_summaryOn">有効です。バックグラウンドで現在地の気象データを更新できます。</string>
     <string name="settings_icon_packs_weather_adaptive_icon">天気アイコン</string>
     <string name="temperature_normal_short">標準温度</string>
@@ -446,7 +434,6 @@
     <string name="action_share">共有</string>
     <string name="settings_modules_notification_persistent_switch">永続的</string>
     <string name="unit_ftps">ft/s</string>
-    <string name="unit_inph_voice">インチ毎時</string>
     <string name="weather_message_invalid_location">場所が不正です。削除して改めて追加してください</string>
     <string name="locations">場所</string>
     <string name="dialog_permissions_location_title">位置情報へのアクセス</string>
@@ -455,7 +442,6 @@
     <string name="message_tap_again_to_exit">再度タップすると終了します</string>
     <string name="widget_style_oreo">オレオ</string>
     <string name="ephemeris_sunrise_at">日の出 %s</string>
-    <string name="unit_cmph">cm/h</string>
     <string name="setting_weather_source_accu_hours">時間</string>
     <string name="weather_source_accu_preference_hours_12">12時間</string>
     <string name="weather_source_accu_preference_hours_24">24時間</string>
@@ -510,8 +496,6 @@
     <string name="unit_bft_nominative">風力%s</string>
     <string name="unit_bft_voice">風力階級</string>
     <string name="unit_mps">m/s</string>
-    <string name="unit_in">inch</string>
-    <string name="unit_lpsqmph_voice">リットル毎平方メートル毎時</string>
     <string name="unit_celsius">°C</string>
     <string name="unit_celsius_short">°</string>
     <string name="unit_fahrenheit">°F</string>

@@ -166,9 +166,6 @@
     <string name="unit_kn">عق</string>
     <string name="unit_mph">ميل\\س</string>
     <string name="unit_ftps">قدم\\س</string>
-    <string name="unit_mm">ملم</string>
-    <string name="unit_in">إنش</string>
-    <string name="unit_lpsqm">لتر/م²</string>
     <string name="unit_celsius">°م</string>
     <string name="unit_celsius_short">°</string>
     <string name="unit_fahrenheit">°ف</string>
@@ -221,7 +218,6 @@
     <string name="unit_mugpcum">مكغ\\م³</string>
     <string name="settings_modules_week_icon_mode_title">أيقونات لعرضها في طريقة العرض الأسبوعية</string>
     <string name="unit_kph_voice">كيلومتر في الساعة</string>
-    <string name="unit_inph_voice">بوصة في الساعة</string>
     <string name="common_weather_text_overcast">غائم</string>
     <string name="settings_background_updates_summary">معدل التحديث، استكشاف الأخطاء وإصلاحها</string>
     <string name="settings_main_hourly_trends_title">الاتجاهات بالساعة</string>
@@ -237,12 +233,9 @@
     <string name="widget_style_symmetry">تناظري</string>
     <string name="widget_style_oreo">أوريو</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">عاصفة رعدية طفيفة أو معتدلة</string>
-    <string name="unit_in_voice">بوصات</string>
     <string name="air_quality_level_1">ممتازة</string>
     <string name="air_quality_level_4">غير صحي</string>
-    <string name="unit_inph">بوصة / ساعة</string>
     <string name="settings_icon_packs_weather_icon_dark">أيقونة داكنة</string>
-    <string name="unit_lpsqmph_voice">لتر لكل متر مربع في الساعة</string>
     <string name="uv_index_11">الأقصى</string>
     <string name="unit_mgpcum_voice">ملليغرام لكل متر مكعب</string>
     <string name="precipitation_between_time">هطول الأمطار من %1$s إلى %2$s</string>
@@ -251,18 +244,14 @@
     <string name="widget_style_pixel">بكسل</string>
     <string name="ephemeris_moonrise_at">طلوع القمر عند %s</string>
     <string name="wind_direction_NW_short">ش غ</string>
-    <string name="unit_cm_voice">السنتيمترات</string>
     <string name="location_swipe_to_delete">يمكنك التمرير إلى اليسار لحذف هذا العنصر</string>
     <string name="wind_direction_variable">متغير</string>
     <string name="air_quality_level_2">متوسطة</string>
     <string name="widget_week_style_3_days">3 أيام</string>
-    <string name="unit_lpsqmph">لتر / م² / ساعة</string>
-    <string name="unit_cm">سم</string>
     <string name="unit_mgpcum">مغ\\م³</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">درجة الحرارة الحالية (°)</string>
     <string name="uv_index_8_10">مرتفع جدا</string>
     <string name="location_results_by">نتائج البحث بواسطة %s</string>
-    <string name="unit_mmph">مم / ساعة</string>
     <string name="wind_direction_SE_short">ج ش</string>
     <string name="air_quality_co_voice">أحادي أكسيد الكربون</string>
     <string name="air_quality_level_3_description">وصل الهواء إلى مستوى عال من التلوث وهو غير صحي للأشخاص الحساسين. قلل من الوقت الذي تقضيه في الخارج إذا كنت تشعر بأعراض مثل صعوبة التنفس أو تهيج الحلق.</string>
@@ -291,7 +280,6 @@
     <string name="widget_custom_subtitle_keyword_ut_description">وقت التحديث</string>
     <string name="widget_clock_font_sans_serif">Sans Serif</string>
     <string name="unit_mph_voice">ميل في الساعة</string>
-    <string name="unit_cmph">سم / ساعة</string>
     <string name="common_weather_text_clear_sky">سماء صافية</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">عاصفة رعدية مع برد خفيف</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">عاصفة رعدية مع برد كثيف</string>
@@ -324,7 +312,6 @@
     <string name="about_source_code">الشفرة المصدرية</string>
     <string name="about_contributors">المساهمون</string>
     <string name="settings_weather_sources">مصادر بيانات الطقس</string>
-    <string name="unit_mm_voice">ميليمتر</string>
     <string name="air_quality_index">مؤشر جودة الهواء</string>
     <string name="air_quality_level_6">خطير</string>
     <string name="air_quality_level_6_description">أي تعرض للهواء، حتى لبضع دقائق، يمكن أن يسبب لأي شخص آثار صحية خطيرة. تجنب الأنشطة الخارجية.</string>
@@ -356,7 +343,6 @@
     <string name="settings_location_access_precise_title">بيانات استخدام نظام تحديد المواقع العالمي (GPS)</string>
     <string name="settings_weather_sources_summary">مصدر الطقس الافتراضي للمواقع الجديدة ومفاتيح API المخصصة وإعدادات المصدر الأخرى</string>
     <string name="settings_modules_live_wallpaper_summary">تعيين حركة الطقس كخلفية</string>
-    <string name="unit_lpsqm_voice">لتر لكل متر مربع</string>
     <string name="wind_direction_W_short">غ</string>
     <string name="uv_index_0_2">منخفض</string>
     <string name="wind_direction_SW_short">ج غ</string>
@@ -407,8 +393,6 @@
     <string name="unit_mps_voice">متر في الثانية</string>
     <string name="unit_kn_voice">عقدة</string>
     <string name="unit_ftps_voice">قدم في الثانية</string>
-    <string name="unit_mmph_voice">ملليمتر في الساعة</string>
-    <string name="unit_cmph_voice">سنتيمتر في الساعة</string>
     <string name="unit_mugpcum_voice">ميكروغرام لكل متر مكعب</string>
     <string name="unit_ppcm">\\م³</string>
     <string name="unit_ppcm_voice">لكل متر مكعب</string>

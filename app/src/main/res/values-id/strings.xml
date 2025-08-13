@@ -282,14 +282,11 @@
     <string name="weather_source_accu_preference_days_5">5 hari</string>
     <string name="unit_mph">mph</string>
     <string name="notification_style_cities">Kota</string>
-    <string name="unit_cm">cm</string>
     <string name="settings_section_general">Umum</string>
     <string name="common_weather_text_rain_heavy">Hujan lebat</string>
     <string name="unit_kelvin_short">K</string>
     <string name="settings_color_day_always">Selalu pagi</string>
     <string name="settings_color_night_always">Selalu malam</string>
-    <string name="unit_cm_voice">Sentimeter</string>
-    <string name="unit_inph">inci/j</string>
     <string name="unit_mph_voice">Mil per jam</string>
     <string name="settings_icon_packs_title">Paket ikon</string>
     <string name="about_contact">Kontak</string>
@@ -314,7 +311,6 @@
     <string name="pollen_level_2">Rendah</string>
     <string name="common_weather_text_rain">Hujan</string>
     <string name="widget_subtitle_data_custom">Kustom</string>
-    <string name="unit_in">inci</string>
     <string name="widget_style_oreo">Oreo</string>
     <string name="settings_color_day_night">Pagi / Malam</string>
     <string name="weather_source_accu_preference_hours_72">72 jam</string>
@@ -325,7 +321,6 @@
     <string name="common_weather_text_snow_grains">Butir salju</string>
     <string name="widget_subtitle_data_aqi">Kualitas udara</string>
     <string name="settings_location">Lokasi</string>
-    <string name="unit_mm">mm</string>
     <string name="unit_ftps">ft/d</string>
     <string name="common_weather_text_drizzle_freezing">Gerimis beku</string>
     <string name="air_quality_level_6_description">Paparan dalam bentuk apa pun terhadap udara, bahkan hanya selama beberapa menit, dapat menimbulkan dampak kesehatan yang serius pada semua orang. Hindari aktivitas di luar ruangan.</string>
@@ -344,7 +339,6 @@
     <string name="pollen_betula">Burja</string>
     <string name="widget_subtitle_data_feels_like">Suhu yang dirasakan</string>
     <string name="unit_fahrenheit">°F</string>
-    <string name="unit_inph_voice">Inci per jam</string>
     <string name="settings_notifications">Notifikasi</string>
     <string name="widget_style_rectangle">Persegi panjang</string>
     <string name="settings_color_dark">Gelap</string>
@@ -354,18 +348,14 @@
     <string name="weather_kind_haze">Berkabut asap</string>
     <string name="settings_main_section_animations">Animasi</string>
     <string name="air_quality_pm25">PM2.5</string>
-    <string name="unit_mmph_voice">Milimeter per jam</string>
     <string name="weather_kind_thunderstorm">Hujan badai</string>
     <string name="common_weather_text_rain_light">Hujan ringan</string>
     <string name="unit_mugpcum">μg/m³</string>
     <string name="pollen_olea">Pohon zaitun</string>
     <string name="action_location_list">Daftar lokasi</string>
     <string name="common_weather_text_fog">Berkabut</string>
-    <string name="unit_lpsqmph">L/m²/j</string>
     <string name="common_weather_text_clear_sky">Langit cerah</string>
     <string name="settings_main_daily_trends_title">Tren harian</string>
-    <string name="unit_cmph">cm/j</string>
-    <string name="unit_mmph">mm/j</string>
     <string name="settings_background_updates_section_troubleshoot">Pemecahan masalah</string>
     <string name="widget_clock_font_sans_serif">Sans Serif</string>
     <string name="settings_modules_notification_persistent_switch">Permanen</string>
@@ -377,7 +367,6 @@
     <string name="settings_main_section_displayed_data">Data yang ditampilkan</string>
     <string name="setting_weather_source_accu_hours">Jam</string>
     <string name="about_matrix">Ruang Matrix</string>
-    <string name="unit_in_voice">Inci</string>
     <string name="location_message_search_failed">Pencarian lokasi gagal</string>
     <string name="weather_source_accu_preference_hours_120">120 jam</string>
     <string name="settings_modules_section_notification_widget">Gawit notifikasi</string>
@@ -391,7 +380,6 @@
     <string name="notification_channel_background_services">Layanan latar belakang</string>
     <string name="settings_debug_summary">Catatan kemogokan</string>
     <string name="about_privacy_policy">Kebijakan privasi</string>
-    <string name="unit_cmph_voice">Sentimeter per jam</string>
     <string name="notification_style_native">Asli</string>
     <string name="settings_none">Tidak ada</string>
     <string name="common_weather_text_partly_cloudy">Sebagian berawan</string>
@@ -418,7 +406,6 @@
     <string name="widget_style_nano">Nano</string>
     <string name="air_quality_co_full">Karbon monoksida (%s)</string>
     <string name="weather_source_accu_preference_hours_240">240 jam</string>
-    <string name="unit_lpsqm">L/m²</string>
     <string name="air_quality_pm10">PM10</string>
     <string name="common_weather_text_rain_showers">Gerimis</string>
     <string name="pollen_level_0">Tidak ada</string>
@@ -434,7 +421,6 @@
     <string name="about_dependencies">Ketergantungan</string>
     <string name="notification_channel_crash_logs">Catatan kemogokan</string>
     <string name="about_source_code">Kode sumber</string>
-    <string name="unit_mm_voice">Milimeter</string>
     <string name="common_weather_text_snow_moderate">Salju sedang</string>
     <string name="widget_clock_font_sans_serif_light">Sans Serif Tipis</string>
     <string name="notification_channel_alerts">Peringatan</string>
@@ -453,7 +439,6 @@
     <string name="location_message_permission_missing">Belum ada izin akses lokasi</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Badai petir disertai sedikit hujan es</string>
     <string name="settings_notifications_forecast_today_title">Notifikasi prakiraan cuaca hari ini</string>
-    <string name="unit_lpsqmph_voice">Liter per meter persegi per jam</string>
     <string name="weather_api_key_required_missing_title">Kunci API yang dibutuhkan belum ada</string>
     <string name="action_help_me_choose">Bantu saya memilih</string>
     <string name="settings_location_access_switch_summaryOff">Mohon izinkan jika Anda ingin dapat menambahkan lokasi Anda saat ini saat ini sebagai lokasi.</string>
@@ -519,7 +504,6 @@
     <string name="notification_update_error">%d pembaruan gagal</string>
     <string name="settings_location_access_precise_summaryOn">Diaktifkan. Penyedia jaringan akan digunakan sepanjang waktu dan sebagai prioritas, tetapi GPS dapat digunakan sebagai cadangan.</string>
     <string name="common_weather_text_rain_showers_moderate">Hujan sedang</string>
-    <string name="unit_lpsqm_voice">Liter per meter persegi</string>
     <string name="location_search_no_results">%1$s tidak dapat mencari %2$s</string>
     <string name="settings_location_access_switch_summaryOn">Diizinkan. Anda dapat menambahkan lokasi saat ini sebagai lokasi.</string>
     <string name="settings_modules">Gawit dan &amp; latar belakang bergerak</string>

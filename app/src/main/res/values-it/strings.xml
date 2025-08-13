@@ -253,14 +253,6 @@
     <string name="unit_kn_voice">Nodi</string>
     <string name="unit_mph_voice">Miglia all’ora</string>
     <string name="unit_ftps_voice">Piedi al secondo</string>
-    <string name="unit_mm_voice">Millimetri</string>
-    <string name="unit_cm_voice">Centimetri</string>
-    <string name="unit_in_voice">Pollici</string>
-    <string name="unit_lpsqm_voice">Litri per metro quadrato</string>
-    <string name="unit_mmph_voice">Millimetri all’ora</string>
-    <string name="unit_cmph_voice">Centimetri all’ora</string>
-    <string name="unit_inph_voice">Pollici all’ora</string>
-    <string name="unit_lpsqmph_voice">Litri per metro quadrato all’ora</string>
     <string name="unit_mugpcum_voice">Microgrammi per metro cubo</string>
     <string name="unit_mgpcum_voice">Milligrammi per metro cubo</string>
     <string name="unit_ppcm_voice">Per metro cubo</string>
@@ -379,7 +371,6 @@
     <string name="settings_debug_summary">Crash logs</string>
     <string name="settings_debug_dump_crash_logs_title">Condividi crash logs</string>
     <string name="settings_debug_dump_crash_logs_summary">Salva i log degli errori in un file per la condivisione con gli sviluppatori</string>
-    <string name="unit_mm">mm</string>
     <string name="notification_channel_background_services">Servizi in background</string>
     <string name="about_matrix">Stanza Matrix</string>
     <string name="common_weather_text_overcast">Coperto</string>
@@ -388,13 +379,6 @@
     <string name="unit_kn">kn</string>
     <string name="unit_mph">mph</string>
     <string name="unit_ftps">ft/s</string>
-    <string name="unit_cm">cm</string>
-    <string name="unit_in">pollice</string>
-    <string name="unit_lpsqm">L/m²</string>
-    <string name="unit_mmph">mm/h</string>
-    <string name="unit_cmph">cm/h</string>
-    <string name="unit_inph">pollici/h</string>
-    <string name="unit_lpsqmph">L/m²/h</string>
     <string name="unit_celsius">°C</string>
     <string name="unit_celsius_short">°</string>
     <string name="unit_fahrenheit">°F</string>

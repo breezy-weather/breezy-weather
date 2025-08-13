@@ -35,17 +35,13 @@
     <string name="unit_mph">mph</string>
     <string name="notification_style_cities">Städer</string>
     <string name="location_message_permission_missing">Behörighet till platsåtkomst saknas</string>
-    <string name="unit_cm">cm</string>
     <string name="location_message_failed_to_locate">Misslyckades med att hitta nuvarande plats</string>
     <string name="settings_section_general">Allmänt</string>
     <string name="precipitation_nowcasting">Korttidsprognos för nederbörd</string>
-    <string name="unit_lpsqmph_voice">Liter per kvadratmeter per timme</string>
     <string name="daily_tomorrow_short">I morgon</string>
     <string name="air_quality">Luftkvalitet</string>
     <string name="unit_kelvin_short">K</string>
-    <string name="unit_cm_voice">Centimeter</string>
     <string name="settings_background_updates_refresh_never">Aldrig</string>
-    <string name="unit_inph">inch/h</string>
     <string name="action_help_me_choose">Hjälp mig välja</string>
     <string name="uv_alert_level">Varning</string>
     <string name="wind_direction_W_short">V</string>
@@ -75,7 +71,6 @@
     <string name="common_weather_text_rain">Regn</string>
     <string name="precipitation_none">Ingen nederbörd</string>
     <string name="settings_units_temperature">Temperaturenhet</string>
-    <string name="unit_in">tum</string>
     <string name="widget_style_oreo">Oreo</string>
     <string name="notification_updating_weather_data">Uppdaterar väderdata (%1$d/%2$d)</string>
     <string name="widget_custom_subtitle_keyword_l_description">Plats</string>
@@ -88,7 +83,6 @@
     <string name="precipitation_probability">Sannolikhet för nederbörd</string>
     <string name="widget_subtitle_data_aqi">Luftkvalitet</string>
     <string name="uv_index_11">Extremt</string>
-    <string name="unit_mm">mm</string>
     <string name="unit_ftps">ft/s</string>
     <string name="hourly_forecast">Timprognos</string>
     <string name="widget_custom_subtitle_keyword_ut_description">Uppdateringstid</string>
@@ -120,7 +114,6 @@
     <string name="uv_index_3_5">Måttligt</string>
     <string name="action_refresh">Uppdatera</string>
     <string name="unit_fahrenheit">°F</string>
-    <string name="unit_inph_voice">Tum per timme</string>
     <string name="notification_channel_forecast">Prognos</string>
     <string name="temperature_feels_like">Känns som</string>
     <string name="temperature_feels_like_with_unit">Känns som %s</string>
@@ -132,7 +125,6 @@
     <string name="ephemeris">Solen &amp; månen</string>
     <string name="weather_kind_thunder">Åska</string>
     <string name="air_quality_pm25">PM2,5</string>
-    <string name="unit_mmph_voice">Millimeter per timme</string>
     <string name="unit_mugpcum">μg/m³</string>
     <string name="pollen_olea">Olivträd</string>
     <string name="action_location_list">Platslista</string>
@@ -141,9 +133,6 @@
     <string name="pressure">Lufttryck</string>
     <string name="common_weather_text_fog">Dimma</string>
     <string name="temperature_normal_short">Normal</string>
-    <string name="unit_lpsqmph">L/m²/h</string>
-    <string name="unit_cmph">cm/h</string>
-    <string name="unit_mmph">mm/h</string>
     <string name="settings_background_updates_section_troubleshoot">Problemlösning</string>
     <string name="settings_units">Enheter</string>
     <string name="widget_clock_font_sans_serif">Sans Serif</string>
@@ -155,7 +144,6 @@
     <string name="precipitation_duration">Nederbördens varaktighet</string>
     <string name="setting_weather_source_accu_hours">Timmar</string>
     <string name="about_matrix">Matrixrum</string>
-    <string name="unit_in_voice">Tum</string>
     <string name="location_message_search_failed">Platssökning misslyckades</string>
     <string name="weather_source_accu_preference_hours_120">120 timmar</string>
     <string name="precipitation_rain">Regn</string>
@@ -171,7 +159,6 @@
     <string name="uv_index_0_2">Lågt</string>
     <string name="air_quality_pm25_voice">PM två komma fem</string>
     <string name="settings_units_speed">Hastighetsenhet</string>
-    <string name="unit_cmph_voice">Centimeter per timme</string>
     <string name="cloud_cover">Molntäcke</string>
     <string name="unit_mgpcum_voice">Milligram per kubikmeter</string>
     <string name="widget_custom_subtitle_keyword_ct_description">Nuvarande temperatur (°C/°F)</string>
@@ -205,7 +192,6 @@
     <string name="widget_style_nano">Nano</string>
     <string name="air_quality_co_full">Kolmonoxid (%s)</string>
     <string name="weather_source_accu_preference_hours_240">240 timmar</string>
-    <string name="unit_lpsqm">L/m²</string>
     <string name="settings_units_pressure">Tryckenhet</string>
     <string name="air_quality_pm10">PM10</string>
     <string name="action_done">Klar</string>
@@ -224,7 +210,6 @@
     <string name="weather_source_accu_preference_hours_24">24 timmar</string>
     <string name="action_continue">Fortsätt</string>
     <string name="action_close">Stäng</string>
-    <string name="unit_lpsqm_voice">Liter per kvadratmeter</string>
     <string name="notification_channel_crash_logs">Krashloggar</string>
     <string name="location_search_no_results">%1$s kan inte hitta %2$s</string>
     <string name="wind_direction_N_short">N</string>
@@ -233,7 +218,6 @@
     <string name="about_source_code">Källkod</string>
     <string name="location_current">Nuvarande plats</string>
     <string name="temperature_average_short">Medel</string>
-    <string name="unit_mm_voice">Millimeter</string>
     <string name="widget_live_wallpaper_weather_kind">Väder</string>
     <string name="precipitation_between_time">Nederbörd från %1$s till %2$s</string>
     <string name="wind">Vind</string>

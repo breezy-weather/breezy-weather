@@ -144,7 +144,6 @@
     <string name="settings_debug">Depuração</string>
     <string name="settings_main_daily_trends_title">Tendências diárias</string>
     <string name="settings_main_cards_fade_in_switch">Blocos aparecem gradualmente</string>
-    <string name="unit_mmph">mm/h</string>
     <string name="location_message_reverse_geocoding_failed">A fonte do tempo não conseguiu encontrar uma localização correspondente</string>
     <string name="widget_custom_subtitle_keyword_xmr_description">Nascer da lua de hoje, amanhã, …, 4 dias depois</string>
     <string name="settings_location_access_switch_summaryOff">Permita se quiser adicionar a sua localização atual como um local.</string>
@@ -171,8 +170,6 @@
     <string name="unit_celsius">°C</string>
     <string name="unit_ftps">ft/s</string>
     <string name="unit_ftps_voice">Pés por segundo</string>
-    <string name="unit_inph_voice">Polegadas por hora</string>
-    <string name="unit_lpsqmph">L/m²/h</string>
     <string name="unit_kelvin">K</string>
     <string name="unit_mugpcum">μg/m³</string>
     <string name="unit_ppcm">/m³</string>
@@ -213,8 +210,6 @@
     <string name="settings_background_updates_refresh_skip_when_battery_low">Ignorar quando a pilha estiver baixa</string>
     <string name="settings_main_section_displayed_data">Dados exibidos</string>
     <string name="unit_mph">mph</string>
-    <string name="unit_mmph_voice">Milímetros por hora</string>
-    <string name="unit_cmph">cm/h</string>
     <string name="settings_main_cards_title">Blocos</string>
     <string name="settings_modules_live_wallpaper_summary">Define uma animação climática como papel de parede</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Tempestade com granizo pesado</string>
@@ -253,7 +248,6 @@
     <string name="settings_modules_monochrome_icons_title">Ícones monocromáticos</string>
     <string name="settings_modules_section_widgets_in_use">Widgets em uso</string>
     <string name="settings_items_drag_to_sort">Toque para arrastar os itens da lista para classificar</string>
-    <string name="unit_lpsqmph_voice">Litros por metro quadrado por hora</string>
     <string name="unit_mgpcum_voice">Miligramas por metro cúbico</string>
     <string name="notification_update_error">%d falha na(s) atualização(ões)</string>
     <string name="locations">Localizações</string>
@@ -316,7 +310,6 @@
     <string name="widget_custom_subtitle_keyword_xdwd_description">Vento do dia de hoje, amanhã, …, 4 dias depois</string>
     <string name="widget_custom_subtitle_keyword_xnwd_description">Vento da noite de hoje, amanhã, …, 4 dias depois</string>
     <string name="widget_custom_subtitle_keyword_xsr_description">Nascer do sol de hoje, amanhã, …, 4 dias depois</string>
-    <string name="unit_mm_voice">Milímetros</string>
     <string name="notification_style_cities">Cidades</string>
     <string name="about_matrix">Servidor Matrix</string>
     <string name="about_source_code">Código fonte</string>
@@ -340,16 +333,10 @@
     <string name="settings_notifications_forecast_time_today_title">Horário de notificação para a previsão do dia</string>
     <string name="settings_modules">Widgets &amp; Papel de parede animado</string>
     <string name="settings_modules_summary">Widgets, widget de notificação, fundo, partilha de dados com outras aplicações</string>
-    <string name="unit_mm">mm</string>
-    <string name="unit_cm">cm</string>
-    <string name="unit_cm_voice">Centímetros</string>
-    <string name="unit_in">polegada</string>
     <string name="unit_mph_voice">Milhas por hora</string>
     <string name="unit_celsius_short">°</string>
     <string name="unit_fahrenheit">°F</string>
     <string name="unit_fahrenheit_short">°</string>
-    <string name="unit_lpsqm">L/m²</string>
-    <string name="unit_inph">Polegadas/h</string>
     <string name="unit_mugpcum_voice">Microgramas por metro cúbico</string>
     <string name="settings_icon_packs_weather_icon_light">Ícone claro</string>
     <string name="settings_icon_packs_weather_icon_dark">Ícone escuro</string>
@@ -372,7 +359,6 @@
     <string name="settings_item_delete">Remover este item</string>
     <string name="settings_color_day_always">Sempre dia</string>
     <string name="settings_color_night_always">Sempre noite</string>
-    <string name="unit_cmph_voice">Centímetros por hora</string>
     <string name="about_contribution_WangDaYeeeeee">Programador do projeto original Geometric Weather</string>
     <string name="common_weather_text_clear_sky">Céu limpo</string>
     <string name="common_weather_text_mostly_clear">Principalmente limpo</string>
@@ -426,8 +412,6 @@
     <string name="widget_style_oreo">Oreo</string>
     <string name="settings_background_updates_battery_optimization_disabled">A otimização da pilha já está desativada.</string>
     <string name="settings_location_access_permission_already_granted">Permissão já concedida</string>
-    <string name="unit_in_voice">Polegadas</string>
-    <string name="unit_lpsqm_voice">Litros por metro quadrado</string>
     <string name="unit_kn">kn</string>
     <string name="settings_modules_live_wallpaper_title">Papel de parede animado</string>
     <string name="settings_modules_live_wallpaper_error">Não foi possível iniciar o seletor de papéis de parede. Ainda pode ativar o papel de parede %s escolhendo “Live Wallpaper” no seletor de papéis de parede do ecrã inicial.</string>

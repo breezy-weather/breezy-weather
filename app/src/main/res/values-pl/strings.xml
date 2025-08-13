@@ -221,8 +221,6 @@
     <string name="settings_source_default_value">Domyślne (bez zmian)</string>
     <string name="settings_main">Główny ekran</string>
     <string name="settings_modules_monochrome_icons_title">Ikony monochromatyczne</string>
-    <string name="unit_cmph">cm/h</string>
-    <string name="unit_lpsqmph">L/m²/h</string>
     <string name="unit_celsius">°C</string>
     <string name="unit_celsius_short">°</string>
     <string name="unit_fahrenheit">°F</string>
@@ -235,20 +233,16 @@
     <string name="widget_style_nano">Nano</string>
     <string name="settings_background_updates">Aktualizacje w tle</string>
     <string name="settings_modules_notification_style_title">Styl</string>
-    <string name="unit_in_voice">Cale</string>
     <string name="settings_modules_notification_persistent_switch">Trwałe</string>
     <string name="action_share">Udostępnij</string>
     <string name="locations">Lokalizacje</string>
     <string name="widget_style_mini">Mały</string>
     <string name="widget_style_oreo">Oreo</string>
-    <string name="unit_lpsqm">L/m²</string>
     <string name="unit_fahrenheit_short">°</string>
     <string name="unit_kelvin_short">K</string>
     <string name="common_weather_text_overcast">Zachmurzenie całkowite</string>
     <string name="unit_ftps">ft/s</string>
-    <string name="unit_cm_voice">Centymetry</string>
     <string name="unit_kelvin">K</string>
-    <string name="unit_in">cal</string>
     <string name="wind_direction_variable">Zmienny</string>
     <string name="wind_direction_NW_short">NW</string>
     <string name="uv_index_0_2">Niski</string>
@@ -266,11 +260,8 @@
     <string name="widget_custom_subtitle_keyword_als_description">Alerty (krótkie)</string>
     <string name="widget_clock_font_analog">Analogowy</string>
     <string name="unit_kn">kn</string>
-    <string name="unit_mm">mm</string>
-    <string name="unit_cm">cm</string>
     <string name="unit_ppcm">/m³</string>
     <string name="common_weather_text_clear_sky">Bezchmurnie</string>
-    <string name="unit_mm_voice">Minilitry</string>
     <string name="about_contributors">Współtwórcy</string>
     <string name="weather_source_accu_preference_days_5">5 dni</string>
     <string name="weather_source_accu_preference_days_10">10 dni</string>
@@ -297,7 +288,6 @@
     <string name="settings_icon_packs_check_details">Sprawdź szczegóły</string>
     <string name="unit_kph">km/h</string>
     <string name="unit_mps">m/s</string>
-    <string name="unit_mmph">mm/h</string>
     <string name="about_matrix">Pokój Matrix</string>
     <string name="settings_background_updates_refresh_never">Nigdy</string>
     <string name="settings_background_updates_refresh_title">Częstotliwość odświeżania</string>
@@ -324,7 +314,6 @@
     <string name="uv_index_11">Ekstremalnie wysoki</string>
     <string name="air_quality_level_4">Szkodliwe</string>
     <string name="unit_mph">mph</string>
-    <string name="unit_inph">cal/h</string>
     <string name="unit_mugpcum">μg/m³</string>
     <string name="unit_mgpcum">mg/m³</string>
     <string name="settings_main_section_options">Opcje</string>
@@ -415,7 +404,6 @@
     <string name="temperature_degree_day_cooling">Stopień chłodzenia</string>
     <string name="settings_location_access_precise_title">Użycie GPS urządzenia</string>
     <string name="settings_modules_live_wallpaper_error">Nie można uruchomić selektora tapet. Nadal możesz włączyć tapetę %s, wybierając „Animowane tapety” w selektorze tapet na ekranie głównym.</string>
-    <string name="unit_inph_voice">Cali na godzinę</string>
     <string name="settings_item_delete">Usuń ten element</string>
     <string name="settings_location_access_precise_summaryOff">Włącz opcję „Używaj dokładnej lokalizacji”, jeśli masz problem z uzyskaniem lokalizacji.</string>
     <string name="widget_clock_font_sans_serif_black">Sans Serif Black</string>
@@ -436,7 +424,6 @@
     <string name="settings_modules_section_notification_widget">Widżet w powiadomieniu</string>
     <string name="settings_modules_notification_widget_title">Widżet w powiadomieniu</string>
     <string name="settings_debug_dump_crash_logs_summary">Zapisuje dzienniki błędów do pliku w celu udostępnienia ich programistom</string>
-    <string name="unit_mmph_voice">Milimetrów na godzinę</string>
     <string name="unit_mugpcum_voice">Mikrogramów na metr sześcienny</string>
     <string name="settings_modules_notification_feels_like_switch">Użyj temperatury odczuwalnej</string>
     <string name="settings_location_access_background_summaryOff">Włącz opcję „Zawsze zezwalaj”, aby odświeżać bieżącą lokalizację w tle.</string>
@@ -462,8 +449,6 @@
     <string name="about_contribution_WangDaYeeeeee">Twórca oryginalnego projektu Geometric Weather</string>
     <string name="settings_icon_packs_weather_icon_light">Jasna ikona</string>
     <string name="settings_items_drag_to_sort">Dotknij i przeciągnij, aby posortować elementy listy</string>
-    <string name="unit_lpsqm_voice">Litrów na metr kwadratowy</string>
-    <string name="unit_cmph_voice">Centymetrów na godzinę</string>
     <string name="settings_debug">Debugowanie</string>
     <string name="unit_kph_voice">Kilometrów na godzinę</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Lekka lub umiarkowana burza z gradem</string>
@@ -473,7 +458,6 @@
     <string name="alerts_to_follow">Dotknij tutaj, aby zobaczyć nadchodzące alerty.</string>
     <string name="air_quality_o3_full">Ozon na poziomie gruntu (%s)</string>
     <string name="settings_modules_section_widgets_in_use">Widżety w użyciu</string>
-    <string name="unit_lpsqmph_voice">Litrów na metr kwadratowy na godzinę</string>
     <string name="unit_ppcm_voice">Na metr sześcienny</string>
     <string name="action_save">Zapisz</string>
     <string name="settings_weather_sources_per_location_summary">Dostosuj źródła danych pogodowych używanych dla tej lokalizacji</string>

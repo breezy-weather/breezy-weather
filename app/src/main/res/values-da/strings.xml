@@ -171,10 +171,8 @@
     <string name="weather_source_accu_preference_days_10">10 dage</string>
     <string name="weather_api_unauthorized_content">Hos nogle vejrdatakilder, er du nødt til at angiver din egen API-nøgle. Hvis du allerede har angivet en, så dobbelttjek venligst den API-nøgle, du har angivet.</string>
     <string name="widget_label_text_size">Tekststørrelse</string>
-    <string name="unit_lpsqm_voice">Liter per kvadratmeter</string>
     <string name="settings_debug_summary">Nedbrudslogge</string>
     <string name="common_weather_text_snow">Nogen sne</string>
-    <string name="unit_mmph">mm/t</string>
     <string name="unit_mgpcum">mg/m³</string>
     <string name="dialog_time_picker_select_time">Vælg tidspunkt</string>
     <string name="dialog_time_picker_toggle_text_input_voice">Skift til tekstindtastning</string>
@@ -207,7 +205,6 @@
     <string name="settings_debug">Fejlfinding</string>
     <string name="settings_unavailable_no_background_updates">Utilgængeligt, aktivér først baggrundsopdateringer</string>
     <string name="settings_automatic">Automatisk</string>
-    <string name="unit_mm">mm</string>
     <string name="unit_fahrenheit_short">°</string>
     <string name="unit_kelvin_short">K</string>
     <string name="unit_ppcm">/m³</string>
@@ -235,7 +232,6 @@
     <string name="settings_modules_broadcast_send_data_title">Send %s data</string>
     <string name="settings_none">Ingen</string>
     <string name="settings_color_day_always">Altid dag</string>
-    <string name="unit_lpsqmph_voice">Liter per kvadratmeter i timen</string>
     <string name="about_contact">Kontakt</string>
     <string name="about_source_code">Kildekode</string>
     <string name="about_dependencies">Afhængigheder</string>
@@ -259,8 +255,6 @@
     <string name="settings_color_app">Følg app</string>
     <string name="settings_color_dark">Mørk</string>
     <string name="settings_color_light">Lys</string>
-    <string name="unit_mmph_voice">Millimeter i timen</string>
-    <string name="unit_lpsqmph">L/m²/t</string>
     <string name="unit_celsius">°C</string>
     <string name="notification_refreshed_at">Genopfrisket kl.</string>
     <string name="common_weather_text_cloudy">Skyet</string>
@@ -270,8 +264,6 @@
     <string name="settings_icon_packs_weather_adaptive_icon">Vejrikon</string>
     <string name="settings_appearance_dark_mode_locations_title">Dag- / Nattilstand for placeringer</string>
     <string name="settings_icon_packs_check_details">Kontrollér detaljer</string>
-    <string name="unit_cmph_voice">Centimeter i timen</string>
-    <string name="unit_inph">in/h</string>
     <string name="unit_fahrenheit">°F</string>
     <string name="unit_kelvin">K</string>
     <string name="notification_channel_crash_logs">Nedbrudslogge</string>
@@ -323,7 +315,6 @@
     <string name="settings_location_service">Placeringstjeneste</string>
     <string name="settings_item_delete">Slet dette element</string>
     <string name="unit_mps">m/s</string>
-    <string name="unit_inph_voice">Tommer i timen</string>
     <string name="unit_ppcm_voice">Per kubikmeter</string>
     <string name="about_app">Om app</string>
     <string name="notification_style_native">Indbygget</string>
@@ -333,7 +324,6 @@
     <string name="settings_per_location_summary">Yderligere tilpasning for denne placering</string>
     <string name="settings_per_location_theme">Tema</string>
     <string name="settings_appearance_icon_pack_title">Ikonpakke</string>
-    <string name="unit_lpsqm">L/m²</string>
     <string name="notification_precipitation_starting">Nedbør snart</string>
     <string name="about_matrix">Matrix-rum</string>
     <string name="common_weather_text_rain_showers_light">Let byge</string>
@@ -341,9 +331,6 @@
     <string name="settings_appearance_calendar_title">Alternativ kalender</string>
     <string name="unit_mps_voice">Meter i sekundet</string>
     <string name="unit_bft_voice">på Beaufortskalaen</string>
-    <string name="unit_mm_voice">Millimeter</string>
-    <string name="unit_cm_voice">Centimeter</string>
-    <string name="unit_in_voice">tommer</string>
     <string name="notification_channel_background_services">Baggrundstjenester</string>
     <string name="notification_precipitation_starting_desc">Forventes at begynde kl. %s</string>
     <string name="unit_mgpcum_voice">Milligram per kubikmeter</string>
@@ -365,8 +352,6 @@
     <string name="widget_label_subtitle_data">Undertiteldata</string>
     <string name="settings_weather_source_open_meteo_weather_models_best_match_description">Kombinerer de bedste vejrmodeller til denne placering</string>
     <string name="settings_enabled">Aktiveret</string>
-    <string name="unit_cm">cm</string>
-    <string name="unit_cmph">cm/t</string>
     <string name="unit_mugpcum_voice">Mikrogram per kubikmeter</string>
     <string name="notification_update_error">%d opdatering(er) fejlede</string>
     <string name="about_translators">Oversættere</string>
@@ -464,7 +449,6 @@
     <string name="metno_weather_text_andthunder">%s og torden</string>
     <string name="action_search">Søg</string>
     <string name="message_network_unavailable">Netværk utilgængeligt</string>
-    <string name="unit_in">tomme</string>
     <string name="location_search_placeholder">Eftersøg en placering…</string>
     <string name="settings_weather_sources_summary">Standardvejrkilde for nye placeringer, brugerdefinerede API-nøgler, andre kildeindstillinger</string>
     <string name="widget_custom_subtitle_keyword_xdt_description">Dagstemperaturen for i dag, i morgen, …, 4 dage senere (°C/°F)</string>

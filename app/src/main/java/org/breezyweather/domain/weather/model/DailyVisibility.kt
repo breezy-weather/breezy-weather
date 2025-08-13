@@ -19,10 +19,10 @@ package org.breezyweather.domain.weather.model
 import android.content.Context
 import breezyweather.domain.weather.model.DailyVisibility
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.options.unit.getVisibilityDescription
 import org.breezyweather.common.extensions.formatMeasure
 import org.breezyweather.common.extensions.formatValue
 import org.breezyweather.unit.formatting.UnitWidth
+import org.breezyweather.unit.getVisibilityDescription
 
 fun DailyVisibility.getRangeSummary(context: Context): String? {
     return if (min == null || max == null) {

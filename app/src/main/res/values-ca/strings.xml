@@ -224,10 +224,6 @@
     <string name="unit_kn_voice">Nusos</string>
     <string name="unit_mph_voice">Milles per hora</string>
     <string name="unit_ftps_voice">Peus per segon</string>
-    <string name="unit_mm_voice">Mil·límetre</string>
-    <string name="unit_cm_voice">Centímetre</string>
-    <string name="unit_in_voice">Polzades</string>
-    <string name="unit_lpsqm_voice">Litres per metre quadrat</string>
     <string name="unit_mugpcum_voice">Micrograms per metre cúbic</string>
     <string name="unit_mgpcum_voice">Mil·ligrams per metre cúbic</string>
     <string name="unit_ppcm_voice">Per metre cúbic</string>
@@ -294,15 +290,12 @@
     <string name="weather_source_accu_preference_days_5">5 dies</string>
     <string name="unit_mph">mph</string>
     <string name="location_message_permission_missing">Falta el permís d’accés a la ubicació</string>
-    <string name="unit_cm">cm</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Tempesta elèctrica amb lleugera calamarsa</string>
     <string name="settings_section_general">General</string>
     <string name="settings_notifications_forecast_today_title">Notificació per al pronòstic del dia</string>
-    <string name="unit_lpsqmph_voice">Litres per metre quadrat per hora</string>
     <string name="common_weather_text_rain_heavy">Pluja intensa</string>
     <string name="unit_kelvin_short">K</string>
     <string name="weather_api_key_required_missing_title">Falta la clau API requerida</string>
-    <string name="unit_inph">polzada/h</string>
     <string name="action_help_me_choose">Ajuda’m a triar</string>
     <string name="settings_icon_packs_title">Paquets d’icones</string>
     <string name="settings_icon_packs_check_details">Comprovar detalls</string>
@@ -334,7 +327,6 @@
     <string name="settings_background_updates_battery_optimization_summary">Això és el primer que cal provar quan no rebeu notificacions o els widgets no s’actualitzen.</string>
     <string name="pollen_level_2">Baix</string>
     <string name="air_quality_level_5">Molt insalubre</string>
-    <string name="unit_in">polzada</string>
     <string name="widget_style_oreo">Oreo</string>
     <string name="settings_color_day_night">Dia / Nit</string>
     <string name="settings_modules_live_wallpaper_summary">Establir una animació meteorològica com a fons de pantalla</string>
@@ -349,7 +341,6 @@
     <string name="settings_location">Ubicació</string>
     <string name="settings_notifications_alerts_title">Notificacions d’alertes meteorològiques severes</string>
     <string name="settings_weather_sources_summary">Font meteorològica per defecte per a ubicacions noves, claus API personalitzades, i altres opcions de la font</string>
-    <string name="unit_mm">mm</string>
     <string name="unit_ftps">ft/s</string>
     <string name="air_quality_so2_voice">Diòxid de sofre</string>
     <string name="common_weather_text_drizzle_freezing">Plugim gelada</string>
@@ -381,7 +372,6 @@
     <string name="settings_background_updates">Actualitzacions en segon pla</string>
     <string name="pollen_betula">Bedoll</string>
     <string name="unit_fahrenheit">°F</string>
-    <string name="unit_inph_voice">Polzades per hora</string>
     <string name="settings_icon_packs_weather_icon_light">Icona clara</string>
     <string name="air_quality_o3_voice">Ozó</string>
     <string name="settings_notifications">Notificacions</string>
@@ -394,7 +384,6 @@
     <string name="about_contributors">Col·laboradors</string>
     <string name="settings_main_section_animations">Animacions</string>
     <string name="air_quality_pm25">PM2.5</string>
-    <string name="unit_mmph_voice">Mil·límetres per hora</string>
     <string name="settings_modules_summary">Establir fons de pantalla, configurar ginys utilitzats, giny de notificació</string>
     <string name="common_weather_text_rain_light">Pluja dèbil</string>
     <string name="action_show_errors">Toca per veure’n els detalls</string>
@@ -404,14 +393,11 @@
     <string name="settings_weather_sources_per_location_summary">Personalitza les fonts de dades meteorològiques utilitzades per a aquesta ubicació</string>
     <string name="action_back">Enrere</string>
     <string name="settings_modules_broadcast_send_data_title">Enviar dades meteorològiques a %s</string>
-    <string name="unit_lpsqmph">L/m²/h</string>
     <string name="common_weather_text_clear_sky">Cel clar</string>
     <string name="settings_appearance_dark_mode_locations_title">Mode dia / nit per a ubicacions</string>
     <string name="settings_main_daily_trends_title">Tendències diàries</string>
     <string name="common_weather_text_snow_showers_heavy">Ruixats de neu intensos</string>
     <string name="settings_background_updates_worker_info_summary">Última execució: %s</string>
-    <string name="unit_cmph">cm/h</string>
-    <string name="unit_mmph">mm/h</string>
     <string name="location_swipe_to_delete">Podeu lliscar cap a l’esquerra per suprimir aquest element</string>
     <string name="settings_background_updates_section_troubleshoot">Resolució de problemes</string>
     <string name="dialog_permissions_location_title">Accedir a la informació de la ubicació</string>
@@ -448,7 +434,6 @@
     <string name="weather_message_unsupported_feature">La font no admet una de les funcions sol·licitades</string>
     <string name="about_privacy_policy">Política de privacitat</string>
     <string name="settings_debug_dump_crash_logs_title">Compartir registres d’errors</string>
-    <string name="unit_cmph_voice">Centímetres per hora</string>
     <string name="settings_modules_live_wallpaper_error">No s’ha pogut llançar el selector de fons de pantalla. Encara pots habilitar el fons de pantalla %s triant «Fons de pantalla animat» al teu selector de fons de pantalla d’inici.</string>
     <string name="unit_bft_voice">a l’escala Beaufort</string>
     <string name="message_server_timeout">S’ha excedit el temps d’espera de la sol·licitud</string>
@@ -484,7 +469,6 @@
     <string name="air_quality_co_full">Monòxid de carboni (%s)</string>
     <string name="weather_source_accu_preference_hours_240">240 hores</string>
     <string name="common_weather_text_rain_snow_mixed_showers_heavy">Ruixats mixtes de pluja intensa i neu</string>
-    <string name="unit_lpsqm">L/m²</string>
     <string name="air_quality_pm10">PM10</string>
     <string name="common_weather_text_rain_showers">Ruixats</string>
     <string name="weather_api_key_required_missing_content">Per utilitzar aquesta font, heu de proporcionar una clau API.</string>

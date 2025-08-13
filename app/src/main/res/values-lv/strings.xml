@@ -386,9 +386,6 @@
     <string name="settings_debug_dump_crash_logs_title">Kopīgot avāriju žurnālus</string>
     <string name="settings_debug_dump_crash_logs_summary">Saglabā kļūdu žurnālus failā, lai tos kopīgotu ar izstrādātājiem</string>
     <string name="unit_celsius">°C</string>
-    <string name="unit_inph_voice">Collas stundā</string>
-    <string name="unit_lpsqmph">L/m²/h</string>
-    <string name="unit_lpsqmph_voice">Litri uz kvadrātmetru stundā</string>
     <string name="unit_mugpcum">μg/m³</string>
     <string name="unit_mugpcum_voice">Mikrogrami uz kubikmetru</string>
     <string name="notification_style_cities">Pilsētas</string>
@@ -403,16 +400,6 @@
     <string name="common_weather_text_rain_showers">Lietusgāzes</string>
     <string name="common_weather_text_drizzle_freezing_light">Neliela sasalstoša smidzināšana</string>
     <string name="settings_disabled">Atspējots</string>
-    <string name="unit_cm">cm</string>
-    <string name="unit_cm_voice">Centimetri</string>
-    <string name="unit_in">colla</string>
-    <string name="unit_in_voice">collas</string>
-    <string name="unit_lpsqm">L/m²</string>
-    <string name="unit_lpsqm_voice">Litri uz kvadrātmetru</string>
-    <string name="unit_mmph">mm/h</string>
-    <string name="unit_mmph_voice">Milimetri stundā</string>
-    <string name="unit_cmph">cm/h</string>
-    <string name="unit_cmph_voice">Centimetri stundā</string>
     <string name="unit_kelvin">K</string>
     <string name="unit_kelvin_short">K</string>
     <string name="unit_mgpcum">mg/m³</string>
@@ -497,9 +484,6 @@
     <string name="unit_mph_voice">Jūdzes stundā</string>
     <string name="unit_ftps">ft/s</string>
     <string name="unit_ftps_voice">Pēdas sekundē</string>
-    <string name="unit_mm">mm</string>
-    <string name="unit_mm_voice">Milimetri</string>
-    <string name="unit_inph">colla/h</string>
     <string name="unit_ppcm">/m³</string>
     <string name="unit_ppcm_voice">Par kubikmetru</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Pērkona negaiss neliels vai mērens</string>

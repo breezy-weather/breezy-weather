@@ -236,10 +236,6 @@
     <string name="settings_item_delete">Ștergeți acest articol</string>
     <string name="unit_ftps">ft/s</string>
     <string name="unit_ftps_voice">picioare pe secundă</string>
-    <string name="unit_mm">mm</string>
-    <string name="unit_mm_voice">milimetri</string>
-    <string name="unit_inph_voice">Inci pe oră</string>
-    <string name="unit_lpsqmph">L/m²/h</string>
     <string name="settings_modules_week_icon_mode_title">Pictogramă de afișat în vizualizarea săptămânală</string>
     <string name="settings_icon_packs_weather_adaptive_icon">Pictogramă vreme</string>
     <string name="unit_kelvin_short">K</string>
@@ -261,13 +257,6 @@
     <string name="settings_icon_packs_check_details">Verifică detaliile</string>
     <string name="unit_kn">knot</string>
     <string name="unit_kn_voice">knots</string>
-    <string name="unit_cm_voice">centimetri</string>
-    <string name="unit_cm">cm</string>
-    <string name="unit_lpsqm_voice">litri pe metru pătrat</string>
-    <string name="unit_mmph">mm/h</string>
-    <string name="unit_cmph">cm/h</string>
-    <string name="unit_inph">inch/h</string>
-    <string name="unit_lpsqmph_voice">litri pe metru pătrat pe oră</string>
     <string name="unit_mugpcum_voice">Micrograme pe metru cub</string>
     <string name="unit_mgpcum">mg/m³</string>
     <string name="unit_ppcm_voice">Pe metru cub</string>
@@ -278,12 +267,9 @@
     <string name="common_weather_text_overcast">Înnorat</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">Brumă</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Furtună Uşoară spre Moderată</string>
-    <string name="unit_lpsqm">L/m²</string>
     <string name="unit_celsius">°C</string>
     <string name="unit_mgpcum_voice">Miligrame pe metru cub</string>
-    <string name="unit_cmph_voice">centimetri pe oră</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Furtună cu Grindină Ușoară</string>
-    <string name="unit_in">inch</string>
     <string name="unit_mps">m/s</string>
     <string name="widget_style_mini">Mini</string>
     <string name="widget_material_you_current">Material You – Actual</string>
@@ -307,7 +293,6 @@
     <string name="notification_channel_alerts">Alerte</string>
     <string name="about_contributors">Contribuitori</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Furtună cu Grindină Intensă</string>
-    <string name="unit_in_voice">inci</string>
     <string name="unit_celsius_short">°</string>
     <string name="settings_weather_source_portal">Portal</string>
     <string name="weather_source_accu_preference_days_5">5 zile</string>
@@ -326,7 +311,6 @@
     <string name="settings_modules_section_notification_widget">Widget de notificare</string>
     <string name="settings_debug_summary">Jurnale de incidente</string>
     <string name="settings_debug_dump_crash_logs_title">Distribuie jurnalele de incidente</string>
-    <string name="unit_mmph_voice">milimetri pe oră</string>
     <string name="unit_fahrenheit_short">°</string>
     <string name="unit_kelvin">K</string>
     <string name="notification_channel_background_services">Servicii de fundal</string>

@@ -38,6 +38,10 @@ data class Minutely(
     val endingDate: Date
         get() = Date(date.time + minuteInterval.minutes.inWholeMilliseconds)
 
+    fun toValidOrNull(): Minutely? {
+        return if (precipitationIntensity?.toValidHourlyOrNull() != null) this else null
+    }
+
     companion object {
 
         private fun precipitationIntensityToDBZ(intensity: Double?): Int? {

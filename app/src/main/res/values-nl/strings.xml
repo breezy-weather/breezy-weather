@@ -96,8 +96,6 @@
     <string name="settings_units_distance">Afstandseenheid</string>
     <string name="settings_modules_live_wallpaper_error">Kan achtergrondkiezer niet starten. Je kunt de %s achtergrond nog steeds inschakelen door “Live Wallpaper” te kiezen in de achtergrondkiezer op je startscherm.</string>
     <string name="about_privacy_policy">Privacybeleid</string>
-    <string name="unit_lpsqmph">L/m²/u</string>
-    <string name="unit_lpsqmph_voice">Liter per vierkante meter per uur</string>
     <string name="common_weather_text_fog">Mist</string>
     <string name="location_service_native">Native API</string>
     <string name="precipitation_thunderstorm">Onweersbui</string>
@@ -251,8 +249,6 @@
     <string name="widget_clock_font_analog">Analoog</string>
     <string name="settings_automatic">Automatisch</string>
     <string name="unit_ftps_voice">Voet per seconde</string>
-    <string name="unit_lpsqm_voice">Liter per vierkante meter</string>
-    <string name="unit_cmph">cm/u</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">Huidige temperatuur (°)</string>
     <string name="widget_custom_subtitle_keyword_hd_description">Beschrijving per uur</string>
     <string name="widget_custom_subtitle_keyword_xdw_description">Dagweer van vandaag, morgen, …, 4 dagen later</string>
@@ -267,8 +263,6 @@
     <string name="settings_modules">Externe modules</string>
     <string name="settings_modules_summary">Widgets, meldingenwidget, achtergrond, gegevens delen met andere apps</string>
     <string name="settings_modules_notification_feels_like_switch">Gevoelstemperatuur gebruiken</string>
-    <string name="unit_cmph_voice">Centimeter per uur</string>
-    <string name="unit_inph">inch/u</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Lichte tot matige onweersbui</string>
     <string name="metno_weather_text_andthunder">%s en onweer</string>
     <string name="pollen_ambrosia">Ragkruid</string>
@@ -323,8 +317,6 @@
     <string name="settings_modules_monochrome_icons_title">Monochrome pictogrammen</string>
     <string name="settings_modules_notification_persistent_switch">Aanhoudend</string>
     <string name="settings_modules_notification_style_title">Stijl</string>
-    <string name="unit_mmph">mm/u</string>
-    <string name="unit_mmph_voice">Millimeter per uur</string>
     <string name="null_data_text">N.V.T.</string>
     <string name="settings_debug_dump_crash_logs_summary">Slaat foutenlogboeken op in een bestand om te delen met de ontwikkelaars</string>
     <string name="air_quality_level_3_description">De lucht is ernstig vervuild en daarom ongezond voor personen die daar overgevoelig voor zijn. Breng minder tijd door in de buitenlucht als je last hebt van symptomen als moeite met ademhalen of keelirritatie.</string>
@@ -380,13 +372,6 @@
     <string name="unit_mph">mpu</string>
     <string name="unit_mph_voice">Mijl per uur</string>
     <string name="unit_ftps">ft/s</string>
-    <string name="unit_cm">cm</string>
-    <string name="unit_cm_voice">Centimeter</string>
-    <string name="unit_in">inch</string>
-    <string name="unit_in_voice">Inch</string>
-    <string name="unit_mm">mm</string>
-    <string name="unit_mm_voice">Millimeter</string>
-    <string name="unit_lpsqm">L/m²</string>
     <string name="unit_celsius_short">°</string>
     <string name="unit_fahrenheit">°F</string>
     <string name="unit_kelvin">K</string>
@@ -499,7 +484,6 @@
     <string name="settings_location">Locatie</string>
     <string name="settings_location_summary">Instellingen voor locatieservices</string>
     <string name="about_contribution_designer">Logo-ontwerper</string>
-    <string name="unit_inph_voice">Inch per uur</string>
     <string name="common_weather_text_cloudy">Bewolkt</string>
     <string name="common_weather_text_rain_light">Lichte regen</string>
     <string name="common_weather_text_rain_snow_mixed">Natte sneeuw</string>

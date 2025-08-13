@@ -208,9 +208,6 @@
     <string name="unit_kn">Κβ</string>
     <string name="unit_mph">μ/ώ</string>
     <string name="unit_ftps">π/δ</string>
-    <string name="unit_mm">χιλ</string>
-    <string name="unit_in">ίντσ</string>
-    <string name="unit_lpsqm">Λ/μ²</string>
     <string name="alerts_to_follow">Προσεχείς προειδοποιήσεις, πάτα εδώ για να τις δεις.</string>
     <string name="air_quality_no2_voice">Διοξείδιο του αζώτου</string>
     <string name="wind_direction_S_short">Ν</string>
@@ -444,16 +441,6 @@
     <string name="unit_kph_voice">Χιλιόμετρα την ώρα</string>
     <string name="unit_kn_voice">Κόμβοι</string>
     <string name="unit_ftps_voice">Πόδια ανά δευτερόλεπτο</string>
-    <string name="unit_mm_voice">Χιλιοστά</string>
-    <string name="unit_cm">εκ</string>
-    <string name="unit_cm_voice">Εκατοστά</string>
-    <string name="unit_in_voice">Ίντσες</string>
-    <string name="unit_lpsqm_voice">Λίτρα ανά τετραγωνικό μέτρο</string>
-    <string name="unit_mmph_voice">Χιλιοστά την ώρα</string>
-    <string name="unit_cmph">cm/h</string>
-    <string name="unit_cmph_voice">Εκατοστά την ώρα</string>
-    <string name="unit_inph">ίντσ/ώ</string>
-    <string name="unit_lpsqmph_voice">Λίτρα ανά τετραγωνικό μέτρο την ώρα</string>
     <string name="unit_celsius">°C</string>
     <string name="unit_celsius_short">°</string>
     <string name="unit_fahrenheit_short">°</string>
@@ -500,7 +487,6 @@
     <string name="settings_modules_notification_widget_title">Γραφικό στοιχείο ειδοποίησης</string>
     <string name="unit_mugpcum_voice">Μικρογραμμάρια ανά κυβικό μέτρο</string>
     <string name="unit_kelvin">Κ</string>
-    <string name="unit_mmph">mm/h</string>
     <string name="about_source_code">Πηγαίος κώδικας</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Καταιγίδα με ελαφριά χαλαζόπτωση</string>
     <string name="settings_modules_section_widgets_in_use">Γραφικά στοιχεία σε χρήση</string>
@@ -517,8 +503,6 @@
     <string name="settings_notifications_precipitations_title">Ειδοποιήσεις για βροχοπτώσεις</string>
     <string name="settings_notifications_forecast_today_title">Ειδοποίηση για την πρόγνωση της ημέρας</string>
     <string name="unit_mph_voice">Μίλια ανά ώρα</string>
-    <string name="unit_inph_voice">ίντσες ανά ώρα</string>
-    <string name="unit_lpsqmph">Λ/μ²/ώ</string>
     <string name="settings_debug_dump_crash_logs_saved">Τα αρχεία καταγραφής σφαλμάτων αποθηκεύτηκαν</string>
     <string name="settings_debug_dump_crash_logs_tap_to_open">Πάτα για άνοιγμα</string>
     <string name="settings_items_drag_to_sort">Πάτα για να σύρεις τα στοιχεία της λίστας για ταξινόμηση</string>

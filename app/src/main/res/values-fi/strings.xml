@@ -262,12 +262,10 @@
     <string name="setting_weather_source_accu_days">Päivät</string>
     <string name="weather_source_accu_preference_days_5">5 päivää</string>
     <string name="unit_mph">mph</string>
-    <string name="unit_cm">cm</string>
     <string name="settings_section_general">Yleiset</string>
     <string name="settings_notifications_forecast_today_title">Ilmoitus päivän ennusteesta</string>
     <string name="precipitation_nowcasting">Sademäärä minuutti minuutilta</string>
     <string name="weather_api_key_required_missing_title">Vaadittu API-avain puuttuu</string>
-    <string name="unit_cm_voice">Senttimetriä</string>
     <string name="settings_background_updates_refresh_never">Ei koskaan</string>
     <string name="unit_mph_voice">Mailia tunnissa</string>
     <string name="settings_icon_packs_title">Kuvakepaketit</string>
@@ -282,7 +280,6 @@
     <string name="weather_source_accu_preference_days_10">10 päivää</string>
     <string name="settings_background_updates_battery_optimization_summary">Tämä on ensimmäinen asia, jota kannattaa kokeilla, kun et saa ilmoituksia tai widgetit eivät päivity.</string>
     <string name="pollen_level_2">Vähän</string>
-    <string name="unit_in">tuuma</string>
     <string name="settings_modules_live_wallpaper_summary">Aseta sääanimaatio taustakuvaksi</string>
     <string name="weather_source_accu_preference_hours_72">72 tuntia</string>
     <string name="weather_api_limit_reached_title">API-pyyntöjen enimmäismäärä saavutettu</string>
@@ -291,7 +288,6 @@
     <string name="settings_color_grey">Harmaa</string>
     <string name="weather_message_invalid_location">Virheellinen sijainti, poista se ja kokeile lisätä uudelleen</string>
     <string name="uv_index_11">Äärimmäisen voimakas</string>
-    <string name="unit_mm">mm</string>
     <string name="unit_ftps">ft/s</string>
     <string name="settings_main_background_animation_enabled">Käytössä</string>
     <string name="settings_background_updates_dont_kill_my_app_title">Laitevalmistajakohtaiset ohjeet</string>
@@ -315,7 +311,6 @@
     <string name="about_contributors">Kontribuutorit</string>
     <string name="settings_main_section_animations">Animaatiot</string>
     <string name="air_quality_pm25">PM2.5</string>
-    <string name="unit_mmph_voice">Millimetriä tunnissa</string>
     <string name="settings_modules_summary">Aseta taustakuva, muokkaa widgettejä, ilmoitusalueen widget</string>
     <string name="action_show_errors">Katso lisätietoja</string>
     <string name="pollen_olea">Oliivi</string>
@@ -330,7 +325,6 @@
     <string name="settings_main_section_displayed_data">Näytettävät tiedot</string>
     <string name="setting_weather_source_accu_hours">Tunnit</string>
     <string name="about_matrix">Matrix huone</string>
-    <string name="unit_in_voice">Tuumaa</string>
     <string name="temperature_degree_day_heating">Lämmitystarveluku</string>
     <string name="location_message_search_failed">Sijainnin haku epäonnistui</string>
     <string name="weather_source_accu_preference_hours_120">120 tuntia</string>
@@ -387,7 +381,6 @@
     <string name="settings_location_access_switch_summaryOn">Sallittu. Voit lisätä nykyisen olinpaikkasi sijainniksi.</string>
     <string name="settings_modules">Widgetit &amp; Live taustakuva</string>
     <string name="about_source_code">Lähdekoodi</string>
-    <string name="unit_mm_voice">Millimetriä</string>
     <string name="settings_location_access_background_title">Sijainnin käyttöoikeus taustalla</string>
     <string name="settings_notifications_forecast_time_tomorrow_title">Ilmoitusaika seuraavan päivän ennusteelle</string>
     <string name="about_contribution_WangDaYeeeeee">Alkuperäisen Geometric Weather -projektin kehittäjä</string>
@@ -397,10 +390,8 @@
     <string name="location_message_reverse_geocoding_failed">Säälähde ei onnistunut löytämään vastaavaa sijaintia</string>
     <string name="metno_weather_text_andthunder">%s ja ukkosta</string>
     <string name="location_message_permission_missing">Sijainnin käyttöoikeus puuttuu</string>
-    <string name="unit_lpsqmph_voice">Litraa neliömetriä kohden tunnissa</string>
     <string name="common_weather_text_rain_heavy">Rankkasadetta</string>
     <string name="unit_kelvin_short">K</string>
-    <string name="unit_inph">in/h</string>
     <string name="action_help_me_choose">Auta valitsemaan</string>
     <string name="about_contact">Yhteydenotto</string>
     <string name="unit_kelvin">K</string>
@@ -420,21 +411,14 @@
     <string name="message_source_not_installed_error_title">Lähde ei enää käytettävissä</string>
     <string name="location_message_permission_background_missing">Sijainnin käyttöoikeus taustalla puuttuu</string>
     <string name="unit_fahrenheit">°F</string>
-    <string name="unit_inph_voice">Tuumaa tunnissa</string>
     <string name="settings_main_section_options">Valinnat</string>
     <string name="action_location_list">Sijaintiluettelo</string>
-    <string name="unit_lpsqmph">L/m²/h</string>
     <string name="common_weather_text_clear_sky">Selkeää</string>
     <string name="settings_background_updates_worker_info_summary">Viimeisin ajo: %s</string>
-    <string name="unit_cmph">cm/h</string>
-    <string name="unit_mmph">mm/h</string>
-    <string name="unit_cmph_voice">Senttimetriä tunnissa</string>
     <string name="message_server_timeout">Pyyntö aikakatkaistiin</string>
     <string name="common_weather_text_snow_showers">Lumikuuroja</string>
     <string name="unit_celsius">°C</string>
     <string name="settings_debug">Vianjäljitys</string>
-    <string name="unit_lpsqm">L/m²</string>
-    <string name="unit_lpsqm_voice">Litraa neliömetriä kohden</string>
     <string name="location_search_no_results">%1$s ei löydä %2$s</string>
     <string name="settings_main_threshold_lines_on_charts">Kynnysarvoviivat sääkartoissa</string>
     <string name="common_weather_text_rain_freezing_light">Kevyttä jäätävää sadetta</string>

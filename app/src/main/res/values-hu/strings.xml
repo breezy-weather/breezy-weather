@@ -380,7 +380,6 @@
     <string name="settings_debug">Hibakeresés</string>
     <string name="settings_debug_dump_crash_logs_title">Hibanapló megosztása</string>
     <string name="unit_bft_voice">a Beaufort-skálán</string>
-    <string name="unit_lpsqm_voice">Liter per négyzetméter</string>
     <string name="unit_celsius">°C</string>
     <string name="unit_kelvin_short">K</string>
     <string name="notification_channel_alerts">Riasztások</string>
@@ -438,7 +437,6 @@
     <string name="common_weather_text_rain_freezing_light">Enyhe ónos eső</string>
     <string name="common_weather_text_rain_snow_mixed_heavy">Intenzív havas eső</string>
     <string name="common_weather_text_rain_showers_heavy">Heves zápor</string>
-    <string name="unit_mmph">mm/h</string>
     <string name="about_contributors">Közreműködők</string>
     <string name="settings_main_summary">Blokkok sorrendje, megjelenített elemek, animációk</string>
     <string name="settings_main_hourly_trends_title">Óránkénti trendek</string>
@@ -462,12 +460,8 @@
     <string name="common_weather_text_drizzle_freezing_light">Fagyos, enyhe szemerkélő eső</string>
     <string name="common_weather_text_drizzle_freezing">Fagyos szemerkélő eső</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Enyhe vagy mérsékelt zivatar</string>
-    <string name="unit_mmph_voice">Milliméter per óra</string>
-    <string name="unit_cmph">cm/h</string>
-    <string name="unit_cmph_voice">Centiméter per óra</string>
     <string name="settings_automatic">Automatikus</string>
     <string name="unit_ftps_voice">Láb per másodperc</string>
-    <string name="unit_mm">mm</string>
     <string name="settings_main_section_options">Beállítások</string>
     <string name="settings_main_cards_other_element_animations_switch">Egyéb elemek animálása</string>
     <string name="settings_notifications">Értesítések</string>
@@ -478,11 +472,6 @@
     <string name="unit_kn_voice">Csomó</string>
     <string name="unit_mph_voice">Mérföld per óra</string>
     <string name="unit_ftps">ft/s</string>
-    <string name="unit_in_voice">Hüvelyk</string>
-    <string name="unit_mm_voice">Milliméter</string>
-    <string name="unit_cm">cm</string>
-    <string name="unit_lpsqm">l/m²</string>
-    <string name="unit_lpsqmph_voice">Liter per köbméter per óra</string>
     <string name="unit_mugpcum_voice">Mikrogramm per köbméter</string>
     <string name="unit_ppcm">/m³</string>
     <string name="about_source_code">Forráskód</string>
@@ -490,15 +479,10 @@
     <string name="alerts_to_follow">A közelgő riasztások megtekintéséhez koppintson ide.</string>
     <string name="settings_color_light">Világos</string>
     <string name="unit_mph">mph</string>
-    <string name="unit_cm_voice">Centiméter</string>
-    <string name="unit_in">hüvelyk</string>
-    <string name="unit_inph">hüvelyk/h</string>
     <string name="unit_fahrenheit_short">°</string>
     <string name="unit_kelvin">K</string>
     <string name="settings_modules_live_wallpaper_error">Nem sikerült elindítani a háttérképválasztót. Továbbra is engedélyezheti a %s háttérképet az „Élő háttérkép” lehetőség kiválasztásával a kezdőképernyő háttérképválasztójában.</string>
     <string name="settings_debug_summary">Hibanapló</string>
-    <string name="unit_inph_voice">Hüvelyk per óra</string>
-    <string name="unit_lpsqmph">L/m²/h</string>
     <string name="notification_style_native">Natív</string>
     <string name="null_data_text">N/A</string>
     <string name="settings_main_daily_trends_title">Napi trendek</string>

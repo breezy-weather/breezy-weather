@@ -259,10 +259,6 @@
     <string name="unit_kn_voice">Uzly</string>
     <string name="unit_mph_voice">Míle za hodinu</string>
     <string name="unit_ftps_voice">Stopy za sekundu</string>
-    <string name="unit_mm_voice">Millimetry</string>
-    <string name="unit_cm_voice">Centimetry</string>
-    <string name="unit_in_voice">Palce</string>
-    <string name="unit_lpsqm_voice">Litry na metr čtvereční</string>
     <string name="unit_mugpcum_voice">Mikrogramy na metr krychlový</string>
     <string name="unit_mgpcum_voice">Milligramy na metr krychlový</string>
     <string name="unit_ppcm_voice">Na metr krychlový</string>
@@ -299,8 +295,6 @@
     <string name="settings_modules_notification_widget_title">Widget oznámení</string>
     <string name="settings_modules_notification_style_title">Styl</string>
     <string name="unit_ftps">ft/s</string>
-    <string name="unit_cmph">cm/h</string>
-    <string name="unit_inph">palec/h</string>
     <string name="common_weather_text_mostly_clear">Skoro jasno</string>
     <string name="weather_api_unauthorized_content">U některých zdrojů dat o počasí je třeba zadat vlastní klíč API. Pokud jste ho již poskytli, překontrolujte zadaný klíč API.</string>
     <string name="weather_api_key_required_missing_content">Chcete-li tento zdroj použít, musíte zadat klíč API.</string>
@@ -339,8 +333,6 @@
     <string name="location_message_permission_missing">Chybí oprávnění k přístupu k poloze</string>
     <string name="widget_style_nano">Nano</string>
     <string name="widget_style_pixel">Pixel</string>
-    <string name="unit_inph_voice">Palce za hodinu</string>
-    <string name="unit_lpsqmph">L/m²/h</string>
     <string name="unit_celsius_short">°</string>
     <string name="notification_channel_alerts">Výstrahy</string>
     <string name="common_weather_text_clear_sky">Jasno</string>
@@ -355,14 +347,12 @@
     <string name="settings_main_background_animation_enabled">Povoleno</string>
     <string name="settings_main_section_animations">Animace</string>
     <string name="settings_modules_live_wallpaper_error">Nelze spustit nástroj pro výběr tapet. Tapetu %s můžete stále povolit výběrem možnosti „Živé tapety“ ve výběru tapet na domovské obrazovce.</string>
-    <string name="unit_lpsqmph_voice">Litry na metr čtvereční za hodinu</string>
     <string name="unit_celsius">°C</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Bouřka slabá nebo středně silná</string>
     <string name="air_quality_level_6">Nebezpečná</string>
     <string name="unit_fahrenheit_short">°</string>
     <string name="about_contribution_WangDaYeeeeee">Vývojář původního projektu Geometric Weather</string>
     <string name="air_quality_level_2">Dostatečná</string>
-    <string name="unit_mm">mm</string>
     <string name="unit_mph">mph</string>
     <string name="unit_kn">kn</string>
     <string name="action_add_new_location">Přidat novou polohu</string>
@@ -391,9 +381,6 @@
     <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>
     <string name="widget_clock_font_sans_serif_black">Sans Serif Black</string>
     <string name="widget_clock_font_analog">Analogový</string>
-    <string name="unit_lpsqm">L/m²</string>
-    <string name="unit_in">palec</string>
-    <string name="unit_mmph">mm/h</string>
     <string name="unit_fahrenheit">°F</string>
     <string name="unit_kelvin_short">K</string>
     <string name="unit_mgpcum">mg/m³</string>
@@ -423,8 +410,6 @@
     <string name="settings_modules_monochrome_icons_title">Monochromatické ikony</string>
     <string name="settings_modules_section_notification_widget">Widget oznámení</string>
     <string name="unit_kph">km/h</string>
-    <string name="unit_mmph_voice">Milimetry za hodinu</string>
-    <string name="unit_cmph_voice">Centimetry za hodinu</string>
     <string name="notification_channel_background_services">Služby na pozadí</string>
     <string name="air_quality_level_1_description">Kvalita ovzduší je vhodná pro většinu jedinců; užívejte si své normální venkovní aktivity.</string>
     <string name="weather_api_limit_reached_content">Pro obejití limitu zadejte svůj vlastní klíč API.</string>
@@ -449,7 +434,6 @@
     <string name="settings_main_background_animation_disabled">Zakázáno</string>
     <string name="settings_notifications_summary">Upozornění na výstrahy, srážky nebo předpověď počasí pro první lokalitu</string>
     <string name="settings_notifications_alerts_title">Upozornění na důležité meteorologické výstrahy</string>
-    <string name="unit_cm">cm</string>
     <string name="message_network_unavailable">Síť není k dispozici</string>
     <string name="settings_background_updates_dont_kill_my_app_summary">Někteří výrobci mají další omezení aplikací, která ruší služby na pozadí. Na webu Don’t kill my app! najdete informace o tom, jak to napravit.</string>
     <string name="widget_style_mini">Mini</string>

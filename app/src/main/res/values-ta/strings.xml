@@ -200,11 +200,6 @@
     <string name="unit_bft_voice">பியூஃபோர்ட் அளவில்</string>
     <string name="unit_mph">எம்.பி.எச்</string>
     <string name="unit_mph_voice">ஒரு மணி நேரத்திற்கு மைல்கள்</string>
-    <string name="unit_cm_voice">சென்டிமீட்டர்</string>
-    <string name="unit_in">அங்குலம்</string>
-    <string name="unit_lpsqm">L/m²</string>
-    <string name="unit_mmph">மிமீ/ம</string>
-    <string name="unit_mmph_voice">ஒரு மணி நேரத்திற்கு மில்லிமீட்டர்</string>
     <string name="notification_channel_crash_logs">செயலிழப்பு பதிவுகள்</string>
     <string name="notification_channel_app_updates">பயன்பாட்டு புதுப்பிப்புகள்</string>
     <string name="notification_app_update_available">புதிய பதிப்பு கிடைக்கிறது!</string>
@@ -222,7 +217,6 @@
     <string name="common_weather_text_sand_storm">மணல் புயல்</string>
     <string name="null_data_text">இதற்கில்லை</string>
     <string name="settings_icon_packs_get_more">மேலும் பெறுங்கள்</string>
-    <string name="unit_cm">முதல்வர்</string>
     <string name="location_message_location_access_off">இருப்பிட அணுகல் முடக்கப்பட்டுள்ளது</string>
     <string name="action_help_me_choose">தேர்வு செய்ய எனக்கு உதவுங்கள்</string>
     <string name="action_show_errors">விவரங்களைக் காண தட்டவும்</string>
@@ -247,7 +241,6 @@
     <string name="settings_color_grey">சாம்பல்நிறம்</string>
     <string name="settings_follow_system">அமைப்பைப் பின்தொடரவும்</string>
     <string name="settings_color_day_night">பகல் / இரவு</string>
-    <string name="unit_inph">அங்குலம்/ம</string>
     <string name="settings_invalid_syntax">தவறான தொடரியல்</string>
     <string name="unit_celsius">. C.</string>
     <string name="unit_fahrenheit">° f</string>
@@ -269,9 +262,6 @@
     <string name="settings_modules_week_icon_mode_title">வாராந்திர காட்சிகளில் காண்பிக்க படவுரு</string>
     <string name="settings_modules_notification_persistent_switch">விடாமுயற்சி</string>
     <string name="settings_modules_notification_temp_icon_switch">நிலை பட்டி ஐகானாக வெப்பநிலை</string>
-    <string name="unit_in_voice">அங்குலங்கள்</string>
-    <string name="unit_lpsqm_voice">சதுர மீட்டருக்கு லிட்டர்</string>
-    <string name="unit_inph_voice">ஒரு மணி நேரத்திற்கு அங்குலங்கள்</string>
     <string name="about_app">பயன்பாடு பற்றி</string>
     <string name="about_check_for_app_updates">பயன்பாட்டு புதுப்பிப்புகளைச் சரிபார்க்கவும்</string>
     <string name="common_weather_text_rain_showers_moderate">மிதமான மழை பொழிவுகள்</string>
@@ -335,12 +325,9 @@
     <string name="settings_modules_notification_widget_title">அறிவிப்பு விட்செட்</string>
     <string name="settings_debug_summary">செயலிழப்பு பதிவுகள்</string>
     <string name="settings_debug_dump_crash_logs_title">செயலிழப்பு பதிவுகளைப் பகிரவும்</string>
-    <string name="unit_mm_voice">மில்லிமீட்டர்</string>
-    <string name="unit_cmph">CM/h</string>
     <string name="settings_unavailable_no_animations">கிடைக்கவில்லை, முதலில் ஆண்ட்ராய்டு அமைப்புகளில் அனிமேசன்களை இயக்கவும்</string>
     <string name="settings_none">எதுவுமில்லை</string>
     <string name="unit_ftps">ft/s</string>
-    <string name="unit_cmph_voice">ஒரு மணி நேரத்திற்கு சென்டிமீட்டர்</string>
     <string name="about_contact">தொடர்பு</string>
     <string name="common_weather_text_fog">மூடுபனி</string>
     <string name="common_weather_text_rain">மழை</string>
@@ -456,7 +443,6 @@
     <string name="settings_color_day_always">எப்போதும் நாள்</string>
     <string name="settings_color_night_always">எப்போதும் இரவு</string>
     <string name="settings_color_light">ஒளி</string>
-    <string name="unit_lpsqmph">L/m²/h</string>
     <string name="unit_kelvin_short">கே</string>
     <string name="notification_channel_alerts">விழிப்பூட்டல்கள்</string>
     <string name="notification_channel_forecast">முன்னறிவிப்பு</string>
@@ -481,7 +467,6 @@
     <string name="common_weather_text_rain_snow_mixed_showers_heavy">பலத்த மழை மற்றும் பனி கலப்பு மழை</string>
     <string name="common_weather_text_snow_light">ஒளி பனி</string>
     <string name="unit_ftps_voice">ஒரு நொடிக்கு அடி</string>
-    <string name="unit_mm">மிமீ</string>
     <string name="common_weather_text_snow_moderate">மிதமான பனி</string>
     <string name="common_weather_text_snow_heavy">கனமான பனி</string>
     <string name="common_weather_text_snow_showers">பனிப்பொழிவு</string>
@@ -624,7 +609,6 @@
     <string name="settings_debug_dump_crash_logs_saved">செயலிழப்பு பதிவுகள் சேமிக்கப்பட்டன</string>
     <string name="settings_debug_dump_crash_logs_tap_to_open">திறக்க தட்டவும்</string>
     <string name="settings_items_drag_to_sort">பட்டியல் உருப்படிகளை வரிசைப்படுத்த தட்டவும்</string>
-    <string name="unit_lpsqmph_voice">ஒரு மணி நேரத்திற்கு சதுர மீட்டருக்கு லிட்டர்</string>
     <string name="unit_mgpcum_voice">ஒரு கன மீட்டருக்கு மில்லிகிராம்</string>
     <string name="unit_ppcm">/m³</string>
     <string name="common_weather_text_rain_snow_mixed_light">லேசான மழை மற்றும் பனி கலக்கப்படுகிறது</string>

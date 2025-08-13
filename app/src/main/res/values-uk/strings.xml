@@ -400,12 +400,6 @@
     <string name="unit_mph_voice">Миль за годину</string>
     <string name="unit_ftps">фт/с</string>
     <string name="unit_ftps_voice">Футів за секунду</string>
-    <string name="unit_cm">см</string>
-    <string name="unit_lpsqm_voice">Літрів на квадратний метр</string>
-    <string name="unit_mmph">мм/год</string>
-    <string name="unit_mmph_voice">Міліметрів за годину</string>
-    <string name="unit_cmph">см/год</string>
-    <string name="unit_inph">дюймів/год</string>
     <string name="notification_channel_forecast">Прогноз</string>
     <string name="notification_update_error">Не вдалося виконати %d оновлення(ень)</string>
     <string name="notification_style_cities">Міста</string>
@@ -433,9 +427,6 @@
     <string name="settings_debug_summary">Журнал збоїв</string>
     <string name="settings_item_delete">Видалити цей елемент</string>
     <string name="settings_color_light">Світла</string>
-    <string name="unit_cmph_voice">Сантиметрів за годину</string>
-    <string name="unit_inph_voice">Дюймів за годину</string>
-    <string name="unit_lpsqmph">л/м²/год</string>
     <string name="unit_kelvin">К</string>
     <string name="unit_kelvin_short">К</string>
     <string name="unit_ppcm">/м³</string>
@@ -457,12 +448,6 @@
     <string name="unit_kn">вуз</string>
     <string name="unit_kn_voice">Вузлів</string>
     <string name="unit_mph">миль/год</string>
-    <string name="unit_mm">мм</string>
-    <string name="unit_mm_voice">Міліметрів</string>
-    <string name="unit_cm_voice">Сантиметрів</string>
-    <string name="unit_in">дюймів</string>
-    <string name="unit_in_voice">Дюймів</string>
-    <string name="unit_lpsqm">л/м²</string>
     <string name="unit_celsius">°C</string>
     <string name="unit_fahrenheit_short">°</string>
     <string name="unit_mugpcum">мкг/м³</string>
@@ -490,7 +475,6 @@
     <string name="common_weather_text_drizzle_heavy">Сильна мряка</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Гроза з невеликим градом</string>
     <string name="common_weather_text_clear_sky">Ясне небо</string>
-    <string name="unit_lpsqmph_voice">Літрів на квадратний метр за годину</string>
     <string name="unit_celsius_short">°</string>
     <string name="unit_fahrenheit">°F</string>
     <string name="common_weather_text_rain_snow_mixed_showers_heavy">Сильна злива зі снігом</string>

@@ -220,14 +220,6 @@
     <string name="unit_kn_voice">Nudos</string>
     <string name="unit_mph_voice">Millas por hora</string>
     <string name="unit_ftps_voice">Pies por segundo</string>
-    <string name="unit_mm_voice">Milímetros</string>
-    <string name="unit_cm_voice">Centímetros</string>
-    <string name="unit_in_voice">Pulgadas</string>
-    <string name="unit_lpsqm_voice">Litros por metro cuadrado</string>
-    <string name="unit_mmph_voice">Milímetros por hora</string>
-    <string name="unit_cmph_voice">Centímetros por hora</string>
-    <string name="unit_inph_voice">Pulgadas por hora</string>
-    <string name="unit_lpsqmph_voice">Litros por metro cuadrado por hora</string>
     <string name="unit_mugpcum_voice">Microgramos por metro cúbico</string>
     <string name="unit_mgpcum_voice">Miligramos por metro cúbico</string>
     <string name="unit_ppcm_voice">Por metro cúbico</string>
@@ -447,10 +439,8 @@
     <string name="common_weather_text_rain_snow_mixed_heavy">Fuertes lluvias y nieve</string>
     <string name="settings_items_drag_to_sort">Toque para arrastrar los elementos de la lista para ordenarlos</string>
     <string name="unit_mph">mph</string>
-    <string name="unit_cm">cm</string>
     <string name="common_weather_text_rain_heavy">Fuertes lluvias</string>
     <string name="unit_kelvin_short">K</string>
-    <string name="unit_inph">pulgada/h</string>
     <string name="about_contact">Contacto</string>
     <string name="unit_kelvin">K</string>
     <string name="common_weather_text_drizzle">Llovizna</string>
@@ -462,9 +452,7 @@
     <string name="common_weather_text_snow_light">Nieve suave</string>
     <string name="common_weather_text_rain_showers_heavy">Fuertes chubascos</string>
     <string name="common_weather_text_rain_snow_mixed">Mezcla de lluvia y nieve</string>
-    <string name="unit_in">pulgada</string>
     <string name="common_weather_text_snow_grains">Cinarra</string>
-    <string name="unit_mm">mm</string>
     <string name="unit_ftps">pies/s</string>
     <string name="settings_modules_notification_feels_like_switch">Utilizar la sensación térmica</string>
     <string name="common_weather_text_rain_freezing">Lluvia gélida</string>
@@ -477,11 +465,8 @@
     <string name="common_weather_text_rain_light">Lluvia fina</string>
     <string name="unit_mugpcum">μg/m³</string>
     <string name="settings_modules_broadcast_send_data_title">Enviar los datos meteorológicos a %s</string>
-    <string name="unit_lpsqmph">l/m²/h</string>
     <string name="common_weather_text_clear_sky">Cielo despejado</string>
     <string name="common_weather_text_snow_showers_heavy">Fuertes nevadas</string>
-    <string name="unit_cmph">cm/h</string>
-    <string name="unit_mmph">mm/h</string>
     <string name="unit_mgpcum">mg/m³</string>
     <string name="about_matrix">Sala en Matrix</string>
     <string name="notification_channel_background_services">Servicios en segundo plano</string>
@@ -498,7 +483,6 @@
     <string name="unit_kph">km/h</string>
     <string name="common_weather_text_rain_moderate">Lluvias moderadas</string>
     <string name="common_weather_text_rain_snow_mixed_showers_heavy">Fuertes lluvias de aguanieve</string>
-    <string name="unit_lpsqm">l/m²</string>
     <string name="common_weather_text_rain_showers">Chubascos</string>
     <string name="notification_update_error">%d actualización(es) fallida(s)</string>
     <string name="notification_channel_widget">Widget</string>

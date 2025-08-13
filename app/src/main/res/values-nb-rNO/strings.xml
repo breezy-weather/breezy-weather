@@ -181,10 +181,7 @@
     <string name="openmeteo_weather_text_depositing_rime_fog">Rimtåke</string>
     <string name="common_weather_text_snow_grains">Snøkorn</string>
     <string name="unit_mph">mph</string>
-    <string name="unit_in">in</string>
     <string name="settings_background_updates_worker_info_summary">Sist kjørt: %s</string>
-    <string name="unit_cm">cm</string>
-    <string name="unit_mm">mm</string>
     <string name="unit_mps">m/s</string>
     <string name="settings_invalid_syntax">Ugyldig syntaks</string>
     <string name="settings_items_drag_to_sort">Trykk for å flytte objektet</string>
@@ -204,9 +201,6 @@
     <string name="unit_fahrenheit">°F</string>
     <string name="unit_fahrenheit_short">°</string>
     <string name="unit_celsius_short">°</string>
-    <string name="unit_lpsqmph_voice">Liter per kvadratmeter i timen</string>
-    <string name="unit_inph">in/h</string>
-    <string name="unit_cmph">cm/h</string>
     <string name="settings_enabled">Aktivert</string>
     <string name="settings_background_updates_dont_kill_my_app_summary">Noen produsenter har ekstra apprestriksjoner som avslutter bakgrunnstjenester. Du kan finne mer informasjon om dette på nettsiden «Don’t kill my app!».</string>
     <string name="settings_background_updates_dont_kill_my_app_title">Produsentspesifikke instruksjoner</string>
@@ -226,14 +220,6 @@
     <string name="settings_debug_dump_crash_logs_saved">Krasjlogger lagret</string>
     <string name="unit_kph_voice">Kilometer i timen</string>
     <string name="unit_kelvin_short">K</string>
-    <string name="unit_lpsqmph">L/m²/h</string>
-    <string name="unit_inph_voice">Tommer i timen</string>
-    <string name="unit_cmph_voice">Centimeter i timen</string>
-    <string name="unit_mmph">mm/h</string>
-    <string name="unit_lpsqm">L/m²</string>
-    <string name="unit_in_voice">Tommer</string>
-    <string name="unit_cm_voice">Centimeter</string>
-    <string name="unit_mm_voice">Millimeter</string>
     <string name="unit_ftps">ft/s</string>
     <string name="unit_mph_voice">Engelske mil i timen</string>
     <string name="unit_kn_voice">Knop</string>
@@ -272,7 +258,6 @@
     <string name="settings_weather_source_open_meteo_weather_models_best_match_description">Kombinerer de beste værvarslingsmodellene for denne lokasjonen</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless">Sømløs</string>
     <string name="common_weather_text_drizzle">Yr</string>
-    <string name="unit_lpsqm_voice">Liter per kvadratmeter</string>
     <string name="settings_weather_sources_summary">Standard værkilde for nye lokasjoner, egne API-nøkler, andre kildeinnstillinger</string>
     <string name="settings_notifications">Varsler</string>
     <string name="settings_main_gravity_sensor_switch">Tyngdekraft sensor</string>
@@ -285,7 +270,6 @@
     <string name="settings_modules_notification_feels_like_switch">Bruk følt temperatur</string>
     <string name="settings_modules_notification_style_title">Stil</string>
     <string name="settings_appearance">Utseende</string>
-    <string name="unit_mmph_voice">Millimeter i timen</string>
     <string name="common_weather_text_drizzle_freezing_heavy">Kraftig underkjølt yr</string>
     <string name="locations">Lokasjoner</string>
     <string name="widget_custom_subtitle_keyword_al_description">Farevarsler</string>

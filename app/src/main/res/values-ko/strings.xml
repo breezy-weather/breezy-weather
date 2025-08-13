@@ -267,8 +267,6 @@
     <string name="unit_kn_voice">노트</string>
     <string name="unit_ftps">ft/s</string>
     <string name="unit_ftps_voice">초속 피트</string>
-    <string name="unit_mm">mm</string>
-    <string name="unit_mm_voice">밀리미터</string>
     <string name="unit_celsius_short">°</string>
     <string name="uv_index_0_2">낮음</string>
     <string name="uv_alert_level">경보</string>
@@ -319,13 +317,6 @@
     <string name="widget_week_style_5_days">5일</string>
     <string name="widget_week_style_3_days">3일</string>
     <string name="unit_kph">km/h</string>
-    <string name="unit_cm">cm</string>
-    <string name="unit_cm_voice">센티미터</string>
-    <string name="unit_in">inch</string>
-    <string name="unit_in_voice">인치</string>
-    <string name="unit_lpsqm">L/m²</string>
-    <string name="unit_lpsqm_voice">리터 퍼 제곱미터</string>
-    <string name="unit_mmph">mm/h</string>
     <string name="unit_celsius">°C</string>
     <string name="unit_kelvin_short">K</string>
     <string name="unit_fahrenheit">°F</string>

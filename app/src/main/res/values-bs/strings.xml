@@ -250,13 +250,6 @@
     <string name="unit_mph_voice">Milja na sat</string>
     <string name="unit_ftps">ft/s</string>
     <string name="unit_ftps_voice">Stopa u sekundi</string>
-    <string name="unit_mm">mm</string>
-    <string name="unit_lpsqm_voice">Litara po metru kvadratnom</string>
-    <string name="unit_mmph">mm/h</string>
-    <string name="unit_inph">inč/h</string>
-    <string name="unit_mmph_voice">Milimetara po satu</string>
-    <string name="unit_cmph">cm/h</string>
-    <string name="unit_cmph_voice">Centimetara po satu</string>
     <string name="notification_channel_crash_logs">Zapisnici o padu</string>
     <string name="notification_channel_background_services">Pozadinske usluge</string>
     <string name="notification_style_native">Izvorni</string>
@@ -295,12 +288,7 @@
     <string name="unit_mps">m/s</string>
     <string name="unit_kn_voice">Čvorova</string>
     <string name="unit_mph">mph</string>
-    <string name="unit_cm">cm</string>
-    <string name="unit_lpsqm">L/m²</string>
-    <string name="unit_inph_voice">Inča na sat</string>
     <string name="unit_celsius">°C</string>
-    <string name="unit_lpsqmph">L/m²/h</string>
-    <string name="unit_lpsqmph_voice">Litara na kvadratni metar po satu</string>
     <string name="unit_fahrenheit">°F</string>
     <string name="unit_celsius_short">°</string>
     <string name="unit_fahrenheit_short">°</string>
@@ -470,7 +458,6 @@
     <string name="settings_modules_notification_widget_title">Widget obavještenja</string>
     <string name="settings_modules_notification_style_title">Stil</string>
     <string name="settings_modules_notification_temp_icon_switch">Temperatura kao ikona statusne trake</string>
-    <string name="unit_cm_voice">Centimetara</string>
     <string name="settings_modules_notification_feels_like_switch">Koristi temperaturu “Osjećaj kao”</string>
     <string name="settings_debug">Otklanjanje pogrešaka</string>
     <string name="settings_debug_dump_crash_logs_saved">Zapisnici o padu spremljeni</string>
@@ -484,9 +471,6 @@
     <string name="settings_color_day_always">Uvijek dan</string>
     <string name="settings_color_night_always">Uvijek noć</string>
     <string name="settings_color_light">Svijetla</string>
-    <string name="unit_mm_voice">Milimetara</string>
-    <string name="unit_in">inč</string>
-    <string name="unit_in_voice">Inča</string>
     <string name="unit_mugpcum">μg/m³</string>
     <string name="unit_mugpcum_voice">Mikrograma po kubnom metru</string>
     <string name="unit_mgpcum">mg/m³</string>

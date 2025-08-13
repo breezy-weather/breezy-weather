@@ -61,8 +61,6 @@ import kotlinx.collections.immutable.toImmutableMap
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.appearance.DetailScreen
 import org.breezyweather.common.basic.models.options.basic.UnitUtils
-import org.breezyweather.common.basic.models.options.unit.getVisibilityDescription
-import org.breezyweather.common.basic.models.options.unit.visibilityScaleThresholds
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.formatMeasure
 import org.breezyweather.common.extensions.formatValue
@@ -82,6 +80,8 @@ import org.breezyweather.unit.distance.Distance
 import org.breezyweather.unit.distance.Distance.Companion.meters
 import org.breezyweather.unit.distance.toDistance
 import org.breezyweather.unit.formatting.UnitWidth
+import org.breezyweather.unit.getVisibilityDescription
+import org.breezyweather.unit.visibilityScaleThresholds
 import java.util.Date
 import kotlin.math.max
 

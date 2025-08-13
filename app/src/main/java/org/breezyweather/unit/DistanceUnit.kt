@@ -1,4 +1,4 @@
-/**
+/*
  * This file is part of Breezy Weather.
  *
  * Breezy Weather is free software: you can redistribute it and/or modify it
@@ -14,7 +14,7 @@
  * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package org.breezyweather.common.basic.models.options.unit
+package org.breezyweather.unit
 
 import android.content.Context
 import org.breezyweather.R
@@ -41,7 +41,7 @@ val visibilityScaleThresholds = listOf(
 
 /**
  * @param context
- * @param visibility in meters (default [DistanceUnit] unit)
+ * @param visibility
  */
 fun getVisibilityDescription(context: Context, visibility: Distance?): String? {
     if (visibility == null) return null

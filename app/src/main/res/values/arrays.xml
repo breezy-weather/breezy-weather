@@ -475,52 +475,6 @@
         <item>ftps</item>
     </string-array>
 
-    <!-- precipitation unit. -->
-    <string-array name="precipitation_units">
-        <item>@string/settings_follow_system</item>
-        <item>@string/unit_mm</item>
-        <item>@string/unit_cm</item>
-        <item>@string/unit_in</item>
-        <item>@string/unit_lpsqm</item>
-    </string-array>
-    <string-array name="precipitation_unit_voices">
-        <item>@string/settings_follow_system</item>
-        <item>@string/unit_mm_voice</item>
-        <item>@string/unit_cm_voice</item>
-        <item>@string/unit_in_voice</item>
-        <item>@string/unit_lpsqm_voice</item>
-    </string-array>
-    <string-array name="precipitation_unit_values">
-        <item>auto</item>
-        <item>mm</item>
-        <item>cm</item>
-        <item>in</item>
-        <item>lpsqm</item>
-    </string-array>
-
-    <!-- precipitation intensity unit. -->
-    <string-array name="precipitation_intensity_units">
-        <item>@string/settings_follow_system</item>
-        <item>@string/unit_mmph</item>
-        <item>@string/unit_cmph</item>
-        <item>@string/unit_inph</item>
-        <item>@string/unit_lpsqmph</item>
-    </string-array>
-    <string-array name="precipitation_intensity_unit_voices">
-        <item>@string/settings_follow_system</item>
-        <item>@string/unit_mmph_voice</item>
-        <item>@string/unit_cmph_voice</item>
-        <item>@string/unit_inph_voice</item>
-        <item>@string/unit_lpsqmph_voice</item>
-    </string-array>
-    <string-array name="precipitation_intensity_unit_values">
-        <item>auto</item>
-        <item>mmph</item>
-        <item>cmph</item>
-        <item>inph</item>
-        <item>lpsqmph</item>
-    </string-array>
-
     <!-- temperature unit. -->
     <string-array name="temperature_units">
         <item>@string/settings_follow_system</item>

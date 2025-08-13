@@ -57,7 +57,6 @@ import org.breezyweather.common.basic.models.options.unit.PollenUnit
 import org.breezyweather.common.basic.models.options.unit.SpeedUnit
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.common.basic.models.options.unit.getCloudCoverDescription
-import org.breezyweather.common.basic.models.options.unit.getVisibilityDescription
 import org.breezyweather.common.extensions.roundDecimals
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.PollenIndexSource
@@ -103,6 +102,7 @@ import org.breezyweather.sources.SourceManager
 import org.breezyweather.sources.getFeatureSource
 import org.breezyweather.unit.distance.Distance
 import org.breezyweather.unit.distance.DistanceUnit
+import org.breezyweather.unit.getVisibilityDescription
 import org.breezyweather.unit.precipitation.Precipitation
 import org.breezyweather.unit.precipitation.PrecipitationUnit
 import org.breezyweather.unit.pressure.Pressure

@@ -170,13 +170,6 @@
     <string name="precipitation_between_time">Niederschlag von %1$s bis %2$s</string>
     <string name="unit_mps">m/s</string>
     <string name="unit_kn">kn</string>
-    <string name="unit_mm">mm</string>
-    <string name="unit_lpsqm">l/m²</string>
-    <string name="unit_lpsqm_voice">Liter pro Quadratmeter</string>
-    <string name="unit_mmph">mm/h</string>
-    <string name="unit_cmph">cm/h</string>
-    <string name="unit_cmph_voice">Zentimeter pro Stunde</string>
-    <string name="unit_lpsqmph">l/m²/h</string>
     <string name="unit_ppcm_voice">Pro Kubikmeter</string>
     <string name="notification_channel_alerts">Warnungen</string>
     <string name="common_weather_text_clear_sky">Klarer Himmel</string>
@@ -218,7 +211,6 @@
     <string name="weather_api_limit_reached_title">Limit für API-Anfragen erreicht</string>
     <string name="unit_kph_voice">Kilometer pro Stunde</string>
     <string name="unit_ftps">ft/s</string>
-    <string name="unit_mmph_voice">Millimeter pro Stunde</string>
     <string name="unit_kn_voice">Knoten</string>
     <string name="about_contribution_WangDaYeeeeee">Entwickler des ursprünglichen Projekts Geometric Weather</string>
     <string name="air_quality_level_2">Mäßig</string>
@@ -241,7 +233,6 @@
     <string name="widget_clock_font_sans_serif_black">Sans Serif Black</string>
     <string name="message_tap_again_to_exit">Zum Beenden erneut antippen</string>
     <string name="ephemeris_sunrise_at">Sonnenaufgang um %s</string>
-    <string name="unit_cm">cm</string>
     <string name="ephemeris_moonrise_at">Mondaufgang um %s</string>
     <string name="unit_kph">km/h</string>
     <string name="widget_subtitle_data_feels_like">Gefühlte Temperatur</string>
@@ -255,7 +246,6 @@
     <string name="widget_label_align_end">Rechtsbündig</string>
     <string name="widget_custom_subtitle_keyword_ch_description">Aktuelle Luftfeuchtigkeit</string>
     <string name="unit_mps_voice">Meter pro Sekunde</string>
-    <string name="unit_in">Zoll</string>
     <string name="widget_custom_subtitle_keyword_xntd_description">Temperatur nachts heute, morgen, …, in 4 Tagen (°)</string>
     <string name="unit_ftps_voice">Fuß pro Sekunde</string>
     <string name="wind_direction_variable">Wechselnd</string>
@@ -300,14 +290,10 @@
     <string name="widget_clock_font_analog">Analog</string>
     <string name="settings_color_day_always">Immer Tag</string>
     <string name="settings_color_night_always">Immer Nacht</string>
-    <string name="unit_mm_voice">Millimeter</string>
-    <string name="unit_cm_voice">Zentimeter</string>
-    <string name="unit_in_voice">Zoll</string>
     <string name="unit_celsius">°C</string>
     <string name="unit_celsius_short">°</string>
     <string name="unit_fahrenheit">°F</string>
     <string name="unit_fahrenheit_short">°</string>
-    <string name="unit_lpsqmph_voice">Liter pro Quadratmeter und Stunde</string>
     <string name="unit_kelvin">K</string>
     <string name="unit_kelvin_short">K</string>
     <string name="unit_mgpcum_voice">Milligramm pro Kubikmeter</string>
@@ -317,7 +303,6 @@
     <string name="about_source_code">Quellcode</string>
     <string name="about_contributors">Mitwirkende</string>
     <string name="notification_style_cities">Orte</string>
-    <string name="unit_inph_voice">Zoll pro Stunde</string>
     <string name="message_network_unavailable">Netzwerk nicht verfügbar</string>
     <string name="settings_background_updates_dont_kill_my_app_title">Herstellerspezifische Anweisungen</string>
     <string name="settings_section_general">Allgemein</string>
@@ -387,7 +372,6 @@
     <string name="notification_channel_widget">Widget</string>
     <string name="settings_modules_notification_persistent_switch">Permanent</string>
     <string name="settings_modules_notification_style_title">Stil</string>
-    <string name="unit_inph">Zoll/h</string>
     <string name="settings_background_updates_dont_kill_my_app_summary">Einige Hersteller nutzen zusätzliche App-Einschränkungen, die Hintergrunddienste abschalten. Auf der Website „Don’t kill my app!“ findest du Informationen zur Deaktivierung dieser Einschränkungen.</string>
     <string name="widget_multi_city">Mehrere Orte</string>
     <string name="settings_modules_week_icon_mode_title">Symbol für die Anzeige in Wochenansichten</string>

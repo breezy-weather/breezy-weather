@@ -307,8 +307,6 @@
     <string name="settings_invalid_syntax">תחביר לא תקני</string>
     <string name="unit_bft_voice">על סולם ביופורט</string>
     <string name="unit_kph_voice">קילומטרים לשניה</string>
-    <string name="unit_mm_voice">מילימטרים</string>
-    <string name="unit_in_voice">אינצ\'ים</string>
     <string name="unit_celsius">C°</string>
     <string name="unit_celsius_short">°</string>
     <string name="unit_fahrenheit">F°</string>
@@ -351,13 +349,7 @@
     <string name="settings_color_dark">אפל</string>
     <string name="unit_kph">קמ”ש</string>
     <string name="unit_mph_voice">מיילים לשעה</string>
-    <string name="unit_cm">ס”מ</string>
-    <string name="unit_cm_voice">סנטימטרים</string>
-    <string name="unit_in">אינץ\'</string>
     <string name="unit_kelvin_short">K</string>
-    <string name="unit_cmph_voice">סנטימטרים לשעה</string>
-    <string name="unit_lpsqm_voice">ליטרלים למטר רבוע</string>
-    <string name="unit_mmph_voice">מילימטרים לשעה</string>
     <string name="widget_live_wallpaper_weather_kind">מזג אוויר</string>
     <string name="widget_live_wallpaper_day_night_type">זמן</string>
     <string name="widget_style_mini">מיני</string>
@@ -457,8 +449,6 @@
     <string name="settings_color_app">עקוב אחרי העדפות/הגדרות האפליקציה</string>
     <string name="unit_kn_voice">קשרים</string>
     <string name="unit_ftps_voice">רגל לשנייה</string>
-    <string name="unit_inph_voice">אינצ\'ים לשעה</string>
-    <string name="unit_lpsqmph_voice">ליטרים למטר מרובע לשעה</string>
     <string name="unit_mgpcum_voice">מיליגרמים עבור מטר מעוקב</string>
     <string name="unit_mugpcum_voice">מיקרוגרמים עבור מטר מעוקב</string>
     <string name="unit_ppcm_voice">עבור מטר מעוקב</string>
@@ -578,9 +568,6 @@
     <string name="settings_modules_notification_feels_like_switch">השתמש בטמפרטורה ”המרגישה כמו‌”</string>
     <string name="settings_modules_broadcast_send_data_summary_empty">לא נמצאו חבילות תואמות</string>
     <string name="settings_debug">ניפוי שגיאות</string>
-    <string name="unit_mm">מ\"מ</string>
-    <string name="unit_cmph">ס\"מ/שעה</string>
-    <string name="unit_inph">אינץ\'/שעה</string>
     <string name="notification_precipitation_starting_desc">צפוי להתחיל ב%s</string>
     <string name="notification_style_native">מקומי</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">ערפל כפור</string>
