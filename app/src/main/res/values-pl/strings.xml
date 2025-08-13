@@ -835,4 +835,5 @@
     <string name="content_provider_permission_label">Odczytaj dane z Breezy Weather</string>
     <string name="content_provider_permission_description">pobierz informacje pogodowe z Breezy Weather, w tym współrzędne Twoich lokalizacji – na przykład bieżącej, jeśli została dodana</string>
     <string name="action_add_as_location">Dodaj jako lokalizację</string>
+    <string name="settings_regional_preference">Ustawienia regionalne</string>
 </resources>
