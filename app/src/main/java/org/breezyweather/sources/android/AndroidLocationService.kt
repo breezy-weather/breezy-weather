@@ -75,7 +75,7 @@ class AndroidLocationService @Inject constructor() : LocationSource {
                 clearLocationUpdates(locationListener)
                 val result = trySend(LocationPositionWrapper(longitude = it.longitude, latitude = it.latitude))
                 if (!result.isSuccess) {
-                    throw LocationException()
+                    close(LocationException())
                 }
             }
 
