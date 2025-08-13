@@ -413,4 +413,10 @@ class WeatherRepository(
             }
         }
     }
+
+    suspend fun deleteAllWeathers() {
+        handler.await {
+            weathersQueries.deleteAllWeathers()
+        }
+    }
 }

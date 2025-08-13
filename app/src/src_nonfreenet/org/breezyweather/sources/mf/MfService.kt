@@ -73,6 +73,7 @@ import org.breezyweather.sources.mf.json.MfRainResult
 import org.breezyweather.sources.mf.json.MfWarningDictionaryResult
 import org.breezyweather.sources.mf.json.MfWarningsOverseasResult
 import org.breezyweather.sources.mf.json.MfWarningsResult
+import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
 import retrofit2.Retrofit
 import java.nio.charset.StandardCharsets
@@ -495,9 +496,9 @@ class MfService @Inject constructor(
             snow1h ?: snow3h ?: snow6h ?: snow12h ?: snow24h
         }
         return Precipitation(
-            total = rainCumul + snowCumul,
-            rain = rainCumul,
-            snow = snowCumul
+            total = (rainCumul + snowCumul)?.millimeters,
+            rain = rainCumul?.millimeters,
+            snow = snowCumul?.millimeters
         )
     }
 
@@ -583,7 +584,7 @@ class MfService @Inject constructor(
                             .toDouble().roundToInt()
                     },
                     precipitationIntensity = if (rainForecast.rainIntensity != null) {
-                        getPrecipitationIntensity(rainForecast.rainIntensity)
+                        getPrecipitationIntensity(rainForecast.rainIntensity).millimeters
                     } else {
                         null
                     }

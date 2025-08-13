@@ -62,6 +62,7 @@ import org.breezyweather.sources.bmkg.json.BmkgLocationResult
 import org.breezyweather.sources.bmkg.json.BmkgPm25Result
 import org.breezyweather.sources.bmkg.json.BmkgWarningResult
 import org.breezyweather.unit.distance.Distance.Companion.meters
+import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import retrofit2.Retrofit
 import java.text.SimpleDateFormat
 import java.util.Locale
@@ -300,7 +301,7 @@ class BmkgService @Inject constructor(
                                     temperature = it.t
                                 ),
                                 precipitation = Precipitation(
-                                    total = it.tp
+                                    total = it.tp?.millimeters
                                 ),
                                 wind = Wind(
                                     degree = it.wdDeg,

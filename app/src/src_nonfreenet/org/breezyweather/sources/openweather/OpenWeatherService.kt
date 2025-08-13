@@ -52,6 +52,7 @@ import org.breezyweather.sources.openweather.json.OpenWeatherAirPollutionResult
 import org.breezyweather.sources.openweather.json.OpenWeatherForecast
 import org.breezyweather.sources.openweather.json.OpenWeatherForecastResult
 import org.breezyweather.unit.distance.Distance.Companion.meters
+import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
 import retrofit2.Retrofit
 import java.util.Date
@@ -226,9 +227,9 @@ class OpenWeatherService @Inject constructor(
                     feelsLike = result.main?.feelsLike
                 ),
                 precipitation = Precipitation(
-                    total = getTotalPrecipitation(result.rain?.cumul3h, result.snow?.cumul3h),
-                    rain = result.rain?.cumul3h,
-                    snow = result.snow?.cumul3h
+                    total = getTotalPrecipitation(result.rain?.cumul3h, result.snow?.cumul3h)?.millimeters,
+                    rain = result.rain?.cumul3h?.millimeters,
+                    snow = result.snow?.cumul3h?.millimeters
                 ),
                 precipitationProbability = PrecipitationProbability(total = result.pop?.times(100.0)),
                 wind = Wind(

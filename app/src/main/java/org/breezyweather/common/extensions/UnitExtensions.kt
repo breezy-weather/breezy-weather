@@ -21,6 +21,8 @@ import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.unit.distance.Distance
 import org.breezyweather.unit.duration.format
 import org.breezyweather.unit.formatting.UnitWidth
+import org.breezyweather.unit.precipitation.Precipitation
+import org.breezyweather.unit.precipitation.PrecipitationUnit
 import org.breezyweather.unit.pressure.Pressure
 import kotlin.time.Duration
 import kotlin.time.DurationUnit
@@ -62,6 +64,65 @@ fun Distance.formatValue(
     return formatValue(
         unit = settings.getDistanceUnit(context),
         width = width,
+        locale = context.currentLocale,
+        useNumberFormatter = settings.useNumberFormatter,
+        useMeasureFormat = settings.useMeasureFormat
+    )
+}
+
+/**
+ * Convenient format function with parameters filled for our app
+ */
+fun Precipitation.formatMeasure(
+    context: Context,
+    unit: PrecipitationUnit = SettingsManager.getInstance(context).getPrecipitationUnit(context),
+    valueWidth: UnitWidth = UnitWidth.SHORT,
+    unitWidth: UnitWidth = UnitWidth.SHORT,
+): String {
+    val settings = SettingsManager.getInstance(context)
+    return format(
+        context = context,
+        unit = unit,
+        valueWidth = valueWidth,
+        unitWidth = unitWidth,
+        locale = context.currentLocale,
+        useNumberFormatter = settings.useNumberFormatter,
+        useMeasureFormat = settings.useMeasureFormat
+    )
+}
+
+/**
+ * Convenient format function with parameters filled for our app
+ */
+fun Precipitation.formatValue(
+    context: Context,
+    unit: PrecipitationUnit = SettingsManager.getInstance(context).getPrecipitationUnit(context),
+    width: UnitWidth = UnitWidth.SHORT,
+): String {
+    val settings = SettingsManager.getInstance(context)
+    return formatValue(
+        unit = unit,
+        width = width,
+        locale = context.currentLocale,
+        useNumberFormatter = settings.useNumberFormatter,
+        useMeasureFormat = settings.useMeasureFormat
+    )
+}
+
+/**
+ * Convenient format function with parameters filled for our app
+ */
+fun Precipitation.formatMeasureIntensity(
+    context: Context,
+    valueWidth: UnitWidth = UnitWidth.SHORT,
+    unitWidth: UnitWidth = UnitWidth.SHORT,
+): String {
+    val settings = SettingsManager.getInstance(context)
+    return formatIntensity(
+        context = context,
+        unit = settings.getPrecipitationUnit(context),
+        valueWidth = valueWidth,
+        unitWidth = unitWidth,
         locale = context.currentLocale,
         useNumberFormatter = settings.useNumberFormatter,
         useMeasureFormat = settings.useMeasureFormat

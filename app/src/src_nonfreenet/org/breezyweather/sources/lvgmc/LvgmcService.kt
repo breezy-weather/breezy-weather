@@ -53,6 +53,7 @@ import org.breezyweather.sources.lvgmc.json.LvgmcCurrentLocation
 import org.breezyweather.sources.lvgmc.json.LvgmcCurrentResult
 import org.breezyweather.sources.lvgmc.json.LvgmcForecastResult
 import org.breezyweather.unit.distance.Distance.Companion.meters
+import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
 import retrofit2.Retrofit
 import java.text.SimpleDateFormat
@@ -271,7 +272,7 @@ class LvgmcService @Inject constructor(
                             temperature = it.temperature?.toDoubleOrNull()
                         ),
                         precipitation = Precipitation(
-                            total = it.precipitation12h?.toDoubleOrNull()
+                            total = it.precipitation12h?.toDoubleOrNull()?.millimeters
                         ),
                         wind = Wind(
                             degree = it.windDirection?.toDoubleOrNull(),
@@ -290,7 +291,7 @@ class LvgmcService @Inject constructor(
                             temperature = it.temperature?.toDoubleOrNull()
                         ),
                         precipitation = Precipitation(
-                            total = it.precipitation12h?.toDoubleOrNull()
+                            total = it.precipitation12h?.toDoubleOrNull()?.millimeters
                         ),
                         wind = Wind(
                             degree = it.windDirection?.toDoubleOrNull(),
@@ -347,8 +348,8 @@ class LvgmcService @Inject constructor(
                         feelsLike = it.apparentTemperature?.toDoubleOrNull()
                     ),
                     precipitation = Precipitation(
-                        total = it.precipitation1h?.toDoubleOrNull(),
-                        snow = it.snow?.toDoubleOrNull()
+                        total = it.precipitation1h?.toDoubleOrNull()?.millimeters,
+                        snow = it.snow?.toDoubleOrNull()?.millimeters
                     ),
                     precipitationProbability = PrecipitationProbability(
                         total = it.precipitationProbability?.toDoubleOrNull(),

@@ -33,6 +33,7 @@ import kotlinx.coroutines.rx3.rxObservable
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.unit.distance.Distance.Companion.meters
+import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
 import java.util.Calendar
 import java.util.Date
@@ -170,7 +171,7 @@ class DebugService @Inject constructor() : WeatherSource {
     private fun generateMinutelyList(times: Int, interval: Int = 15): List<Minutely> {
         val currentDate = Date()
         return buildList {
-            add(Minutely(currentDate, interval, Random.nextDouble().times(20)))
+            add(Minutely(currentDate, interval, Random.nextDouble().times(20).millimeters))
             if (times > 1) {
                 for (i in 1..<times) {
                     val date = Date(currentDate.time + (i * interval).minutes.inWholeMilliseconds)
@@ -184,7 +185,7 @@ class DebugService @Inject constructor() : WeatherSource {
                                 } else {
                                     if (it > 10) null else it
                                 }
-                            }
+                            }?.millimeters
                         )
                     )
                 }

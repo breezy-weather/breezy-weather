@@ -74,8 +74,7 @@ class DailyTrendAdapter(
                 DailyTrendDisplay.TAG_PRECIPITATION -> DailyPrecipitationAdapter(
                     activity,
                     location,
-                    provider,
-                    SettingsManager.getInstance(activity).getPrecipitationUnit(activity)
+                    provider
                 )
                 DailyTrendDisplay.TAG_SUNSHINE -> DailySunshineAdapter(
                     activity,

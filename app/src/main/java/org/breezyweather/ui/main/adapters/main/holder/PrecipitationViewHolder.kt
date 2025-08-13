@@ -27,11 +27,13 @@ import org.breezyweather.common.basic.BreezyActivity
 import org.breezyweather.common.basic.models.options.appearance.DetailScreen
 import org.breezyweather.common.basic.models.options.basic.UnitUtils
 import org.breezyweather.common.extensions.areBlocksSquished
+import org.breezyweather.common.extensions.formatMeasure
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.ui.theme.resource.ResourceHelper
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
+import org.breezyweather.unit.formatting.UnitWidth
 import java.util.Calendar
 import java.util.Date
 
@@ -68,11 +70,13 @@ class PrecipitationViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
             val isDay = currentHour in 5..16
 
             var isSnow = false
-            precipitationAmountView.text = if ((precipitation?.rain ?: 0.0) > 0 && (precipitation?.snow ?: 0.0) > 0) {
+            precipitationAmountView.text = if ((precipitation?.rain?.value ?: 0) > 0 &&
+                (precipitation?.snow?.value ?: 0) > 0
+            ) {
                 context.getString(
                     if (isDay) R.string.precipitation_total_day else R.string.precipitation_total_night
                 )
-            } else if ((precipitation?.snow ?: 0.0) > 0) {
+            } else if ((precipitation?.snow?.value ?: 0) > 0) {
                 context.getString(
                     if ((precipitation?.snow ?: 0.0) == (precipitation?.total ?: 0.0)) {
                         isSnow = true
@@ -81,7 +85,7 @@ class PrecipitationViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
                         if (isDay) R.string.precipitation_total_day else R.string.precipitation_total_night
                     }
                 )
-            } else if ((precipitation?.rain ?: 0.0) > 0) {
+            } else if ((precipitation?.rain?.value ?: 0) > 0) {
                 context.getString(
                     if ((precipitation?.rain ?: 0.0) == (precipitation?.total ?: 0.0)) {
                         if (isDay) R.string.precipitation_rain_total_day else R.string.precipitation_rain_total_night
@@ -102,14 +106,12 @@ class PrecipitationViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
                 } else {
                     SettingsManager.getInstance(context).getPrecipitationUnit(context)
                 }
-                precipitationValueView.text = UnitUtils.formatUnitsHalfSize(
-                    precipitationUnit.formatMeasure(context, total)
-                )
+                precipitationValueView.text = UnitUtils.formatUnitsHalfSize(total.formatMeasure(context))
 
                 talkBackBuilder.append(context.getString(R.string.colon_separator))
                 talkBackBuilder.append(precipitationAmountView.text)
                 talkBackBuilder.append(context.getString(R.string.colon_separator))
-                talkBackBuilder.append(precipitationUnit.formatContentDescription(context, total))
+                talkBackBuilder.append(total.formatMeasure(context, unitWidth = UnitWidth.LONG))
             } ?: run {
                 precipitationValueView.text = "-"
             }
@@ -117,9 +119,9 @@ class PrecipitationViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
             precipitationIconView.setImageDrawable(
                 ResourceHelper.getWeatherIcon(
                     provider,
-                    if ((precipitation?.rain ?: 0.0) > 0 && (precipitation?.snow ?: 0.0) > 0) {
+                    if ((precipitation?.rain?.value ?: 0) > 0 && (precipitation?.snow?.value ?: 0) > 0) {
                         WeatherCode.SLEET
-                    } else if ((precipitation?.snow ?: 0.0) > 0) {
+                    } else if ((precipitation?.snow?.value ?: 0) > 0) {
                         WeatherCode.SNOW
                     } else {
                         WeatherCode.RAIN

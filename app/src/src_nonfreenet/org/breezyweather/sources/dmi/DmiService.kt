@@ -49,6 +49,7 @@ import org.breezyweather.sources.dmi.json.DmiTimeserie
 import org.breezyweather.sources.dmi.json.DmiWarning
 import org.breezyweather.sources.dmi.json.DmiWarningResult
 import org.breezyweather.unit.distance.Distance.Companion.meters
+import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
 import retrofit2.Retrofit
 import java.util.Objects
@@ -202,7 +203,7 @@ class DmiService @Inject constructor(
                     temperature = result.temp
                 ),
                 precipitation = if (result.precip != null) {
-                    Precipitation(total = result.precip)
+                    Precipitation(total = result.precip.millimeters)
                 } else {
                     null
                 },

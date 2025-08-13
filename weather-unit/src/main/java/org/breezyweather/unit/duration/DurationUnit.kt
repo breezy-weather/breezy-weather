@@ -20,7 +20,7 @@ import android.icu.util.MeasureUnit
 import android.os.Build
 import androidx.annotation.RequiresApi
 import org.breezyweather.unit.R
-import org.breezyweather.unit.formatting.UnitNominative
+import org.breezyweather.unit.formatting.UnitTranslation
 import org.breezyweather.unit.formatting.UnitWidth
 import kotlin.time.DurationUnit
 
@@ -46,32 +46,32 @@ fun DurationUnit.getPrecision(width: UnitWidth): Int = when (width) {
     UnitWidth.LONG -> 2
 }
 
-internal fun DurationUnit.getNominative(): UnitNominative = when (this) {
-    DurationUnit.NANOSECONDS -> UnitNominative(
+internal fun DurationUnit.getNominative(): UnitTranslation = when (this) {
+    DurationUnit.NANOSECONDS -> UnitTranslation(
         short = R.string.duration_ns_nominative_short,
         long = R.string.duration_ns_nominative_long
     )
-    DurationUnit.MICROSECONDS -> UnitNominative(
+    DurationUnit.MICROSECONDS -> UnitTranslation(
         short = R.string.duration_micros_nominative_short,
         long = R.string.duration_micros_nominative_long
     )
-    DurationUnit.MILLISECONDS -> UnitNominative(
+    DurationUnit.MILLISECONDS -> UnitTranslation(
         short = R.string.duration_ms_nominative_short,
         long = R.string.duration_ms_nominative_long
     )
-    DurationUnit.SECONDS -> UnitNominative(
+    DurationUnit.SECONDS -> UnitTranslation(
         short = R.string.duration_sec_nominative_short,
         long = R.string.duration_sec_nominative_long
     )
-    DurationUnit.MINUTES -> UnitNominative(
+    DurationUnit.MINUTES -> UnitTranslation(
         short = R.string.duration_min_nominative_short,
         long = R.string.duration_min_nominative_long
     )
-    DurationUnit.HOURS -> UnitNominative(
+    DurationUnit.HOURS -> UnitTranslation(
         short = R.string.duration_hr_nominative_short,
         long = R.string.duration_hr_nominative_long
     )
-    DurationUnit.DAYS -> UnitNominative(
+    DurationUnit.DAYS -> UnitTranslation(
         short = R.string.duration_day_nominative_short,
         long = R.string.duration_day_nominative_long
     )

@@ -220,7 +220,7 @@ enum class PrecipitationIntensityUnit(
 
         fun validateMinutely(minutely: Minutely): Minutely {
             return minutely.copy(
-                precipitationIntensity = validateValue(minutely.precipitationIntensity)
+                precipitationIntensity = minutely.precipitationIntensity?.toValidHourlyOrNull()
             )
         }
 

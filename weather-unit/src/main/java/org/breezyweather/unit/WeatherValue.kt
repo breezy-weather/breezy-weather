@@ -129,7 +129,7 @@ interface WeatherValue<T : WeatherUnit> {
         useNumberFormatter: Boolean = true,
         useMeasureFormat: Boolean = true,
     ): String {
-        return context.getString(
+        val formattingWithoutPer = context.getString(
             when (unitWidth) {
                 UnitWidth.SHORT -> unit.nominative.short
                 UnitWidth.LONG -> unit.nominative.long
@@ -143,5 +143,16 @@ interface WeatherValue<T : WeatherUnit> {
                 useMeasureFormat = useMeasureFormat
             )
         )
+
+        return unit.per?.let {
+            context.getString(
+                when (unitWidth) {
+                    UnitWidth.SHORT -> it.short
+                    UnitWidth.LONG -> it.long
+                    UnitWidth.NARROW -> it.narrow
+                },
+                formattingWithoutPer
+            )
+        } ?: formattingWithoutPer
     }
 }

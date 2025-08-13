@@ -65,6 +65,7 @@ import org.breezyweather.sources.nws.json.NwsValueIntContainer
 import org.breezyweather.sources.nws.json.NwsValueWeatherContainer
 import org.breezyweather.sources.nws.json.NwsValueWeatherValue
 import org.breezyweather.unit.distance.Distance.Companion.meters
+import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
 import org.breezyweather.unit.pressure.Pressure.Companion.inchesOfMercury
 import org.breezyweather.unit.pressure.Pressure.Companion.pascals
@@ -440,9 +441,9 @@ class NwsService @Inject constructor(
                     feelsLike = apparentTemperatureForecastList.getOrElse(it) { null }
                 ),
                 precipitation = Precipitation(
-                    total = quantitativePrecipitationForecastList.getOrElse(it) { null },
-                    snow = snowfallAmountForecastList.getOrElse(it) { null },
-                    ice = iceAccumulationForecastList.getOrElse(it) { null }
+                    total = quantitativePrecipitationForecastList.getOrElse(it) { null }?.millimeters,
+                    snow = snowfallAmountForecastList.getOrElse(it) { null }?.millimeters,
+                    ice = iceAccumulationForecastList.getOrElse(it) { null }?.millimeters
                 ),
                 precipitationProbability = PrecipitationProbability(
                     total = probabilityOfPrecipitationForecastList.getOrElse(it) { null }?.toDouble(),

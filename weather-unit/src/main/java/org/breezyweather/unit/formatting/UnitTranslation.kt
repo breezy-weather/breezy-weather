@@ -18,7 +18,7 @@ package org.breezyweather.unit.formatting
 
 import androidx.annotation.StringRes
 
-data class UnitNominative(
+data class UnitTranslation(
     @param:StringRes val short: Int,
     @param:StringRes val narrow: Int = short,
     @param:StringRes val long: Int = short,

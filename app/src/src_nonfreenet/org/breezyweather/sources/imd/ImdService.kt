@@ -38,6 +38,7 @@ import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_HIGHEST
 import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
 import org.breezyweather.sources.imd.json.ImdWeatherResult
+import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import retrofit2.Retrofit
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -268,7 +269,7 @@ class ImdService @Inject constructor(
                         temperature = tempMap[it]
                     ),
                     precipitation = Precipitation(
-                        total = apcpMap[it]
+                        total = apcpMap[it]?.millimeters
                     ),
                     wind = Wind(
                         degree = wdirMap[it],

@@ -49,6 +49,7 @@ import org.breezyweather.sources.metoffice.json.MetOfficeDaily
 import org.breezyweather.sources.metoffice.json.MetOfficeForecast
 import org.breezyweather.sources.metoffice.json.MetOfficeHourly
 import org.breezyweather.unit.distance.Distance.Companion.meters
+import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.pressure.Pressure.Companion.pascals
 import retrofit2.Retrofit
 import javax.inject.Inject
@@ -177,8 +178,8 @@ class MetOfficeService @Inject constructor(
                     feelsLike = result.feelsLikeTemperature
                 ),
                 precipitation = Precipitation(
-                    total = result.totalPrecipAmount,
-                    snow = result.totalSnowAmount
+                    total = result.totalPrecipAmount?.millimeters,
+                    snow = result.totalSnowAmount?.millimeters
                 ),
                 precipitationProbability = PrecipitationProbability(
                     total = result.probOfPrecipitation?.toDouble()

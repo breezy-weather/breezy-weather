@@ -48,6 +48,7 @@ import org.breezyweather.sources.metie.json.MetIeHourly
 import org.breezyweather.sources.metie.json.MetIeLocationResult
 import org.breezyweather.sources.metie.json.MetIeWarning
 import org.breezyweather.sources.metie.json.MetIeWarningResult
+import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
 import retrofit2.Retrofit
 import java.text.SimpleDateFormat
@@ -201,7 +202,7 @@ class MetIeService @Inject constructor(
                     temperature = result.temperature?.toDouble()
                 ),
                 precipitation = Precipitation(
-                    total = result.rainfall?.toDoubleOrNull()
+                    total = result.rainfall?.toDoubleOrNull()?.millimeters
                 ),
                 wind = Wind(
                     degree = result.windDirection?.toDoubleOrNull(),

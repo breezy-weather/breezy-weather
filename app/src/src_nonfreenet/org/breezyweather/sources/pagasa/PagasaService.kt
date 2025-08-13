@@ -47,6 +47,7 @@ import org.breezyweather.sources.getWindDegree
 import org.breezyweather.sources.pagasa.json.PagasaCurrentResult
 import org.breezyweather.sources.pagasa.json.PagasaHourlyResult
 import org.breezyweather.sources.pagasa.json.PagasaLocationResult
+import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
 import retrofit2.Retrofit
 import java.text.SimpleDateFormat
@@ -254,7 +255,7 @@ class PagasaService @Inject constructor(
                                 temperature = it.temperature?.attributes?.value?.toDoubleOrNull()
                             ),
                             precipitation = Precipitation(
-                                total = it.precipitation?.attributes?.value?.toDoubleOrNull()
+                                total = it.precipitation?.attributes?.value?.toDoubleOrNull()?.millimeters
                             ),
                             wind = Wind(
                                 degree = it.windDirection?.attributes?.deg?.toDoubleOrNull(),

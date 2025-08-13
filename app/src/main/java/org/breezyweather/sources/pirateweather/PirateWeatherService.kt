@@ -60,6 +60,8 @@ import org.breezyweather.sources.pirateweather.json.PirateWeatherDaily
 import org.breezyweather.sources.pirateweather.json.PirateWeatherHourly
 import org.breezyweather.sources.pirateweather.json.PirateWeatherMinutely
 import org.breezyweather.unit.distance.Distance.Companion.kilometers
+import org.breezyweather.unit.precipitation.Precipitation.Companion.centimeters
+import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
 import retrofit2.Retrofit
 import java.util.Objects
@@ -227,10 +229,10 @@ class PirateWeatherService @Inject constructor(
                 ),
                 // see https://docs.pirateweather.net/en/latest/API/#precipaccumulation
                 precipitation = Precipitation(
-                    total = result.precipAccumulation?.times(10),
-                    rain = result.liquidAccumulation?.times(10),
-                    snow = result.snowAccumulation?.times(10),
-                    ice = result.iceAccumulation?.times(10)
+                    total = result.precipAccumulation?.centimeters,
+                    rain = result.liquidAccumulation?.centimeters,
+                    snow = result.snowAccumulation?.centimeters,
+                    ice = result.iceAccumulation?.centimeters
                 ),
                 precipitationProbability = PrecipitationProbability(
                     total = result.precipProbability?.times(100)
@@ -268,7 +270,7 @@ class PirateWeatherService @Inject constructor(
                     } else {
                         ((minutelyForecast.time - minutelyResult[i - 1].time) / 60).toDouble().roundToInt()
                     },
-                    precipitationIntensity = minutelyForecast.precipIntensity
+                    precipitationIntensity = minutelyForecast.precipIntensity?.millimeters
                 )
             )
         }

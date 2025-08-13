@@ -1234,7 +1234,10 @@ class RefreshHelper @Inject constructor(
             SourceFeature.MINUTELY -> {
                 return isUpdateStillValid(
                     location.weather!!.base.minutelyUpdateTime,
-                    if (location.weather!!.minutelyForecast.none { (it.precipitationIntensity ?: 0.0) > 0 }) {
+                    if (location.weather!!.minutelyForecast.none {
+                            (it.precipitationIntensity?.inMicrometers ?: 0.0) > 0
+                        }
+                    ) {
                         if (isRestricted) WAIT_MINUTELY_RESTRICTED else WAIT_MINUTELY
                     } else {
                         if (isRestricted) WAIT_MINUTELY_RESTRICTED_ONGOING else WAIT_MINUTELY_ONGOING

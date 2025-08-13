@@ -48,6 +48,7 @@ import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_HIGHEST
 import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
 import org.breezyweather.sources.bmd.json.BmdData
 import org.breezyweather.sources.bmd.json.BmdForecastResult
+import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import retrofit2.Retrofit
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -212,7 +213,7 @@ class BmdService @Inject constructor(
                         gusts = wgMap.getOrElse(key) { null }
                     ),
                     precipitation = Precipitation(
-                        total = rfDayMap.getOrElse(key) { null }
+                        total = rfDayMap.getOrElse(key) { null }?.millimeters
                     )
                 ),
                 night = HalfDayWrapper(
@@ -234,7 +235,7 @@ class BmdService @Inject constructor(
                         gusts = wgMap.getOrElse(key) { null }
                     ),
                     precipitation = Precipitation(
-                        total = rfNightMap.getOrElse(key) { null }
+                        total = rfNightMap.getOrElse(key) { null }?.millimeters
                     )
                 ),
                 relativeHumidity = rhMap.getOrElse(key) { null }?.let {
@@ -310,7 +311,7 @@ class BmdService @Inject constructor(
                         temperature = tMap.getOrElse(key) { null }
                     ),
                     precipitation = Precipitation(
-                        total = rfMap.getOrElse(key) { null }
+                        total = rfMap.getOrElse(key) { null }?.millimeters
                     ),
                     wind = Wind(
                         degree = wdMap.getOrElse(key) { null },

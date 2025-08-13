@@ -44,8 +44,6 @@ import breezyweather.domain.weather.wrappers.WeatherWrapper
 import org.breezyweather.common.basic.models.options.basic.UnitUtils
 import org.breezyweather.common.basic.models.options.unit.CLOUD_COVER_BKN
 import org.breezyweather.common.basic.models.options.unit.CLOUD_COVER_FEW
-import org.breezyweather.common.basic.models.options.unit.PrecipitationIntensityUnit
-import org.breezyweather.common.basic.models.options.unit.PrecipitationUnit
 import org.breezyweather.common.basic.models.options.unit.SpeedUnit
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.common.extensions.ensurePositive
@@ -57,6 +55,8 @@ import org.breezyweather.unit.distance.Distance
 import org.breezyweather.unit.distance.Distance.Companion.meters
 import org.breezyweather.unit.duration.toValidDailyOrNull
 import org.breezyweather.unit.duration.toValidHalfDayOrNull
+import org.breezyweather.unit.precipitation.Precipitation.Companion.micrometers
+import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.pressure.Pressure
 import org.breezyweather.unit.pressure.Pressure.Companion.pascals
 import org.shredzone.commons.suncalc.MoonIllumination
@@ -212,11 +212,11 @@ internal fun computeMissingHourlyData(
         val feelsLike = TemperatureUnit.validateValue(hourly.temperature?.feelsLike)
         val wind = SpeedUnit.validateWind(hourly.wind)
         val precipitation = hourly.precipitation?.copy(
-            total = PrecipitationIntensityUnit.validateValue(hourly.precipitation!!.total),
-            thunderstorm = PrecipitationIntensityUnit.validateValue(hourly.precipitation!!.thunderstorm),
-            rain = PrecipitationIntensityUnit.validateValue(hourly.precipitation!!.rain),
-            snow = PrecipitationIntensityUnit.validateValue(hourly.precipitation!!.snow),
-            ice = PrecipitationIntensityUnit.validateValue(hourly.precipitation!!.ice)
+            total = hourly.precipitation!!.total?.toValidHourlyOrNull(),
+            thunderstorm = hourly.precipitation!!.thunderstorm?.toValidHourlyOrNull(),
+            rain = hourly.precipitation!!.rain?.toValidHourlyOrNull(),
+            snow = hourly.precipitation!!.snow?.toValidHourlyOrNull(),
+            ice = hourly.precipitation!!.ice?.toValidHourlyOrNull()
         )
         val precipitationProbability = hourly.precipitationProbability?.copy(
             total = UnitUtils.validatePercent(hourly.precipitationProbability!!.total),
@@ -855,11 +855,11 @@ private fun completeHalfDayFromHourlyList(
     }
 
     val initialPrecipitation = newHalfDay.precipitation?.copy(
-        total = PrecipitationUnit.validateValue(newHalfDay.precipitation!!.total),
-        thunderstorm = PrecipitationUnit.validateValue(newHalfDay.precipitation!!.thunderstorm),
-        rain = PrecipitationUnit.validateValue(newHalfDay.precipitation!!.rain),
-        snow = PrecipitationUnit.validateValue(newHalfDay.precipitation!!.snow),
-        ice = PrecipitationUnit.validateValue(newHalfDay.precipitation!!.ice)
+        total = newHalfDay.precipitation!!.total?.toValidHalfDayOrNull(),
+        thunderstorm = newHalfDay.precipitation!!.thunderstorm?.toValidHalfDayOrNull(),
+        rain = newHalfDay.precipitation!!.rain?.toValidHalfDayOrNull(),
+        snow = newHalfDay.precipitation!!.snow?.toValidHalfDayOrNull(),
+        ice = newHalfDay.precipitation!!.ice?.toValidHalfDayOrNull()
     )
     val totalPrecipitation = if (initialPrecipitation?.total == null) {
         getHalfDayPrecipitationFromHourlyList(halfDayHourlyList)
@@ -956,7 +956,7 @@ private fun getHalfDayWeatherCodeFromHourlyList(
     avgCloudCover: Int?,
     avgVisibility: Distance?,
 ): WeatherCode? {
-    val minPrecipIntensity = 1.0 // in mm
+    val minPrecipIntensity = 1.0.millimeters // in mm
     val minPrecipProbability = 30.0 // in %
     val maxVisibilityHaze = 5000.meters
     val maxVisibilityFog = 1000.meters
@@ -964,24 +964,24 @@ private fun getHalfDayWeatherCodeFromHourlyList(
 
     // If total precipitation is greater than 1 mm
     // and max probability is greater than 30 % (assume 100 % if not reported)
-    if ((totPrecipitation?.total ?: 0.0) > minPrecipIntensity &&
+    if ((totPrecipitation?.total ?: 0.0.millimeters) > minPrecipIntensity &&
         (maxPrecipitationProbability?.total ?: 100.0) > minPrecipProbability
     ) {
         val isRain =
             maxPrecipitationProbability?.rain?.let { it > minPrecipProbability }
-                ?: totPrecipitation!!.rain?.let { it > 0 }
+                ?: totPrecipitation!!.rain?.let { it.value > 0 }
                 ?: false
         val isSnow =
             maxPrecipitationProbability?.snow?.let { it > minPrecipProbability }
-                ?: totPrecipitation!!.snow?.let { it > 0 }
+                ?: totPrecipitation!!.snow?.let { it.value > 0 }
                 ?: false
         val isIce =
             maxPrecipitationProbability?.ice?.let { it > minPrecipProbability }
-                ?: totPrecipitation!!.ice?.let { it > 0 }
+                ?: totPrecipitation!!.ice?.let { it.value > 0 }
                 ?: false
         val isThunder =
             maxPrecipitationProbability?.thunderstorm?.let { it > minPrecipProbability }
-                ?: totPrecipitation!!.thunderstorm?.let { it > 0 }
+                ?: totPrecipitation!!.thunderstorm?.let { it.value > 0 }
                 ?: false
 
         if (isRain || isSnow || isIce || isThunder) {
@@ -1152,27 +1152,27 @@ private fun getHalfDayPrecipitationFromHourlyList(
 
     return Precipitation(
         total = if (halfDayHourlyListPrecipitationTotal.isNotEmpty()) {
-            halfDayHourlyListPrecipitationTotal.sum()
+            halfDayHourlyListPrecipitationTotal.sumOf { it.value }.micrometers
         } else {
             null
         },
         thunderstorm = if (halfDayHourlyListPrecipitationThunderstorm.isNotEmpty()) {
-            halfDayHourlyListPrecipitationThunderstorm.sum()
+            halfDayHourlyListPrecipitationThunderstorm.sumOf { it.value }.micrometers
         } else {
             null
         },
         rain = if (halfDayHourlyListPrecipitationRain.isNotEmpty()) {
-            halfDayHourlyListPrecipitationRain.sum()
+            halfDayHourlyListPrecipitationRain.sumOf { it.value }.micrometers
         } else {
             null
         },
         snow = if (halfDayHourlyListPrecipitationSnow.isNotEmpty()) {
-            halfDayHourlyListPrecipitationSnow.sum()
+            halfDayHourlyListPrecipitationSnow.sumOf { it.value }.micrometers
         } else {
             null
         },
         ice = if (halfDayHourlyListPrecipitationIce.isNotEmpty()) {
-            halfDayHourlyListPrecipitationIce.sum()
+            halfDayHourlyListPrecipitationIce.sumOf { it.value }.micrometers
         } else {
             null
         }

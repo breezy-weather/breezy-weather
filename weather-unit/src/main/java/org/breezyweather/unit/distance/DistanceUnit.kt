@@ -21,14 +21,14 @@ import android.os.Build
 import org.breezyweather.unit.R
 import org.breezyweather.unit.WeatherUnit
 import org.breezyweather.unit.formatting.UnitDecimals
-import org.breezyweather.unit.formatting.UnitDisplayName
-import org.breezyweather.unit.formatting.UnitNominative
+import org.breezyweather.unit.formatting.UnitTranslation
 import java.util.Locale
 
 enum class DistanceUnit(
     override val id: String,
-    override val displayName: UnitDisplayName,
-    override val nominative: UnitNominative,
+    override val displayName: UnitTranslation,
+    override val nominative: UnitTranslation,
+    override val per: UnitTranslation? = null,
     override val measureUnit: MeasureUnit?,
     override val perMeasureUnit: MeasureUnit?,
     val convertFromReference: (Double) -> Double,
@@ -39,11 +39,11 @@ enum class DistanceUnit(
 
     METER(
         id = "m",
-        displayName = UnitDisplayName(
+        displayName = UnitTranslation(
             short = R.string.length_m_display_name_short,
             long = R.string.length_m_display_name_long
         ),
-        nominative = UnitNominative(
+        nominative = UnitTranslation(
             short = R.string.length_m_nominative_short,
             long = R.string.length_m_nominative_long
         ),
@@ -56,11 +56,11 @@ enum class DistanceUnit(
     ),
     KILOMETER(
         id = "km",
-        displayName = UnitDisplayName(
+        displayName = UnitTranslation(
             short = R.string.length_km_display_name_short,
             long = R.string.length_km_display_name_long
         ),
-        nominative = UnitNominative(
+        nominative = UnitTranslation(
             short = R.string.length_km_nominative_short,
             long = R.string.length_km_nominative_long
         ),
@@ -73,16 +73,16 @@ enum class DistanceUnit(
     ),
     MILE(
         id = "mi",
-        displayName = UnitDisplayName(
+        displayName = UnitTranslation(
             short = R.string.length_mi_display_name_short,
             long = R.string.length_mi_display_name_long
         ),
-        nominative = UnitNominative(
+        nominative = UnitTranslation(
             short = R.string.length_mi_nominative_short,
             long = R.string.length_mi_nominative_long
         ),
         measureUnit = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) MeasureUnit.MILE else null,
-        null,
+        perMeasureUnit = null,
         convertFromReference = { valueInDefaultUnit -> valueInDefaultUnit.div(1609.344) },
         convertToReference = { valueInDefaultUnit -> valueInDefaultUnit.times(1609.344) },
         decimals = UnitDecimals(narrow = 0, short = 1, long = 2),
@@ -98,11 +98,11 @@ enum class DistanceUnit(
     ),
     NAUTICAL_MILE(
         id = "nmi",
-        displayName = UnitDisplayName(
+        displayName = UnitTranslation(
             short = R.string.length_nmi_display_name_short,
             long = R.string.length_nmi_display_name_long
         ),
-        nominative = UnitNominative(
+        nominative = UnitTranslation(
             short = R.string.length_nmi_nominative_short,
             long = R.string.length_nmi_nominative_long
         ),
@@ -123,11 +123,11 @@ enum class DistanceUnit(
     ),
     FOOT(
         id = "ft",
-        displayName = UnitDisplayName(
+        displayName = UnitTranslation(
             short = R.string.length_ft_display_name_short,
             long = R.string.length_ft_display_name_long
         ),
-        nominative = UnitNominative(
+        nominative = UnitTranslation(
             short = R.string.length_ft_nominative_short,
             long = R.string.length_ft_nominative_long
         ),

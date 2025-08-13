@@ -58,6 +58,7 @@ import org.breezyweather.sources.namem.json.NamemDailyResult
 import org.breezyweather.sources.namem.json.NamemHourlyResult
 import org.breezyweather.sources.namem.json.NamemNormalsResult
 import org.breezyweather.sources.namem.json.NamemStation
+import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
 import retrofit2.Retrofit
 import java.util.Date
@@ -386,7 +387,7 @@ class NamemService @Inject constructor(
                             temperature = it.tem?.toDoubleOrNull()
                         ),
                         precipitation = Precipitation(
-                            total = it.pre?.toDoubleOrNull()
+                            total = it.pre?.toDoubleOrNull()?.millimeters
                         ),
                         precipitationProbability = PrecipitationProbability(
                             total = it.preProb?.toDoubleOrNull()

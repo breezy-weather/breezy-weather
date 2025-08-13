@@ -34,7 +34,6 @@ import breezyweather.domain.weather.model.Minutely
 import breezyweather.domain.weather.model.MoonPhase
 import breezyweather.domain.weather.model.Normals
 import breezyweather.domain.weather.model.Pollen
-import breezyweather.domain.weather.model.Precipitation
 import breezyweather.domain.weather.model.PrecipitationDuration
 import breezyweather.domain.weather.model.PrecipitationProbability
 import breezyweather.domain.weather.model.Temperature
@@ -45,6 +44,7 @@ import breezyweather.domain.weather.reference.AlertSeverity
 import breezyweather.domain.weather.reference.Month
 import breezyweather.domain.weather.reference.WeatherCode
 import org.breezyweather.unit.distance.Distance
+import org.breezyweather.unit.precipitation.Precipitation
 import org.breezyweather.unit.pressure.Pressure
 import java.util.Date
 import kotlin.time.Duration
@@ -145,11 +145,11 @@ object WeatherMapper {
         daytimeApparentTemperature: Double?,
         daytimeWindChillTemperature: Double?,
         daytimeHumidex: Double?,
-        daytimeTotalPrecipitation: Double?,
-        daytimeThunderstormPrecipitation: Double?,
-        daytimeRainPrecipitation: Double?,
-        daytimeSnowPrecipitation: Double?,
-        daytimeIcePrecipitation: Double?,
+        daytimeTotalPrecipitation: Precipitation?,
+        daytimeThunderstormPrecipitation: Precipitation?,
+        daytimeRainPrecipitation: Precipitation?,
+        daytimeSnowPrecipitation: Precipitation?,
+        daytimeIcePrecipitation: Precipitation?,
         daytimeTotalPrecipitationProbability: Double?,
         daytimeThunderstormPrecipitationProbability: Double?,
         daytimeRainPrecipitationProbability: Double?,
@@ -171,11 +171,11 @@ object WeatherMapper {
         nighttimeApparentTemperature: Double?,
         nighttimeWindChillTemperature: Double?,
         nighttimeHumidex: Double?,
-        nighttimeTotalPrecipitation: Double?,
-        nighttimeThunderstormPrecipitation: Double?,
-        nighttimeRainPrecipitation: Double?,
-        nighttimeSnowPrecipitation: Double?,
-        nighttimeIcePrecipitation: Double?,
+        nighttimeTotalPrecipitation: Precipitation?,
+        nighttimeThunderstormPrecipitation: Precipitation?,
+        nighttimeRainPrecipitation: Precipitation?,
+        nighttimeSnowPrecipitation: Precipitation?,
+        nighttimeIcePrecipitation: Precipitation?,
         nighttimeTotalPrecipitationProbability: Double?,
         nighttimeThunderstormPrecipitationProbability: Double?,
         nighttimeRainPrecipitationProbability: Double?,
@@ -255,7 +255,7 @@ object WeatherMapper {
                 daytimeWindChillTemperature,
                 daytimeHumidex
             ),
-            Precipitation(
+            breezyweather.domain.weather.model.Precipitation(
                 daytimeTotalPrecipitation,
                 daytimeThunderstormPrecipitation,
                 daytimeRainPrecipitation,
@@ -293,7 +293,7 @@ object WeatherMapper {
                 nighttimeWindChillTemperature,
                 nighttimeHumidex
             ),
-            Precipitation(
+            breezyweather.domain.weather.model.Precipitation(
                 nighttimeTotalPrecipitation,
                 nighttimeThunderstormPrecipitation,
                 nighttimeRainPrecipitation,
@@ -395,11 +395,11 @@ object WeatherMapper {
         apparentTemperature: Double?,
         windChillTemperature: Double?,
         humidex: Double?,
-        totalPrecipitation: Double?,
-        thunderstormPrecipitation: Double?,
-        rainPrecipitation: Double?,
-        snowPrecipitation: Double?,
-        icePrecipitation: Double?,
+        totalPrecipitation: Precipitation?,
+        thunderstormPrecipitation: Precipitation?,
+        rainPrecipitation: Precipitation?,
+        snowPrecipitation: Precipitation?,
+        icePrecipitation: Precipitation?,
         totalPrecipitationProbability: Double?,
         thunderstormPrecipitationProbability: Double?,
         rainPrecipitationProbability: Double?,
@@ -432,7 +432,7 @@ object WeatherMapper {
             computedWindChill = windChillTemperature,
             computedHumidex = humidex
         ),
-        Precipitation(
+        breezyweather.domain.weather.model.Precipitation(
             totalPrecipitation,
             thunderstormPrecipitation,
             rainPrecipitation,
@@ -492,7 +492,7 @@ object WeatherMapper {
     fun mapMinutely(
         date: Long,
         minuteInterval: Long,
-        intensity: Double?,
+        intensity: Precipitation?,
     ): Minutely = Minutely(
         Date(date),
         minuteInterval.toInt(),

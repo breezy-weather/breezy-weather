@@ -23,20 +23,28 @@ import breezyweather.domain.weather.model.Precipitation
 import org.breezyweather.R
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
+import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 
 fun Minutely.getLevel(context: Context): String {
     return context.getString(
         if (precipitationIntensity == null) {
             R.string.precipitation_none
         } else {
-            when (precipitationIntensity!!) {
-                0.0 -> R.string.precipitation_none
-                in 0.0..Precipitation.PRECIPITATION_HOURLY_LIGHT -> R.string.precipitation_intensity_light
-                in Precipitation.PRECIPITATION_HOURLY_LIGHT..Precipitation.PRECIPITATION_HOURLY_MEDIUM,
-                -> R.string.precipitation_intensity_medium
-                in Precipitation.PRECIPITATION_HOURLY_MEDIUM..Double.MAX_VALUE,
-                -> R.string.precipitation_intensity_heavy
-                else -> R.string.precipitation_none
+            with(precipitationIntensity!!) {
+                when {
+                    this == 0.0.millimeters -> R.string.precipitation_none
+                    this in 0.0.millimeters..Precipitation.PRECIPITATION_HOURLY_LIGHT.millimeters -> {
+                        R.string.precipitation_intensity_light
+                    }
+                    this in Precipitation.PRECIPITATION_HOURLY_LIGHT.millimeters
+                        .rangeTo(Precipitation.PRECIPITATION_HOURLY_MEDIUM.millimeters) -> {
+                        R.string.precipitation_intensity_medium
+                    }
+                    this >= Precipitation.PRECIPITATION_HOURLY_MEDIUM.millimeters -> {
+                        R.string.precipitation_intensity_heavy
+                    }
+                    else -> R.string.precipitation_none
+                }
             }
         }
     )
@@ -47,7 +55,7 @@ fun List<Minutely>.getContentDescription(context: Context, location: Location): 
 
     var startingIndex: Int? = null
     forEachIndexed { index, minutely ->
-        if (minutely.precipitationIntensity != null && minutely.precipitationIntensity!! > 0) {
+        if (minutely.precipitationIntensity != null && minutely.precipitationIntensity!!.inMicrometers > 0) {
             if (startingIndex == null) {
                 startingIndex = index
             }
@@ -57,7 +65,7 @@ fun List<Minutely>.getContentDescription(context: Context, location: Location): 
                     contentDescription.append(context.getString(org.breezyweather.unit.R.string.locale_separator))
                 }
 
-                val slice = subList(startingIndex!!, index)
+                val slice = subList(startingIndex, index)
                 contentDescription.append(
                     context.getString(
                         R.string.precipitation_between_time,
@@ -73,7 +81,7 @@ fun List<Minutely>.getContentDescription(context: Context, location: Location): 
     }
 
     if (startingIndex != null) {
-        val slice = subList(startingIndex!!, size)
+        val slice = subList(startingIndex, size)
         if (contentDescription.toString().isNotEmpty()) {
             contentDescription.append(context.getString(org.breezyweather.unit.R.string.locale_separator))
         }

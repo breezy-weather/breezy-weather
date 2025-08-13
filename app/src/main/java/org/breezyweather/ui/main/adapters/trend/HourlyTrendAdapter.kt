@@ -78,8 +78,7 @@ class HourlyTrendAdapter(
                 HourlyTrendDisplay.TAG_PRECIPITATION -> HourlyPrecipitationAdapter(
                     activity,
                     location,
-                    provider,
-                    SettingsManager.getInstance(activity).getPrecipitationUnit(activity)
+                    provider
                 )
                 HourlyTrendDisplay.TAG_FEELS_LIKE -> HourlyFeelsLikeAdapter(
                     activity,

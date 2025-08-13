@@ -21,14 +21,14 @@ import android.os.Build
 import org.breezyweather.unit.R
 import org.breezyweather.unit.WeatherUnit
 import org.breezyweather.unit.formatting.UnitDecimals
-import org.breezyweather.unit.formatting.UnitDisplayName
-import org.breezyweather.unit.formatting.UnitNominative
+import org.breezyweather.unit.formatting.UnitTranslation
 import java.util.Locale
 
 enum class PressureUnit(
     override val id: String,
-    override val displayName: UnitDisplayName,
-    override val nominative: UnitNominative,
+    override val displayName: UnitTranslation,
+    override val nominative: UnitTranslation,
+    override val per: UnitTranslation? = null,
     override val measureUnit: MeasureUnit?,
     override val perMeasureUnit: MeasureUnit?,
     val convertFromReference: (Double) -> Double,
@@ -39,11 +39,11 @@ enum class PressureUnit(
 
     PASCAL(
         "pa",
-        displayName = UnitDisplayName(
+        displayName = UnitTranslation(
             short = R.string.pressure_pa_display_name_short,
             long = R.string.pressure_pa_display_name_long
         ),
-        nominative = UnitNominative(
+        nominative = UnitTranslation(
             short = R.string.pressure_pa_nominative_short,
             long = R.string.pressure_pa_nominative_long
         ),
@@ -56,11 +56,11 @@ enum class PressureUnit(
     ),
     HECTOPASCAL(
         "hpa",
-        displayName = UnitDisplayName(
+        displayName = UnitTranslation(
             short = R.string.pressure_hpa_display_name_short,
             long = R.string.pressure_hpa_display_name_long
         ),
-        nominative = UnitNominative(
+        nominative = UnitTranslation(
             short = R.string.pressure_hpa_nominative_short,
             long = R.string.pressure_hpa_nominative_long
         ),
@@ -73,11 +73,11 @@ enum class PressureUnit(
     ),
     KILOPASCAL(
         "kpa",
-        displayName = UnitDisplayName(
+        displayName = UnitTranslation(
             short = R.string.pressure_kpa_display_name_short,
             long = R.string.pressure_kpa_display_name_long
         ),
-        nominative = UnitNominative(
+        nominative = UnitTranslation(
             short = R.string.pressure_kpa_nominative_short,
             long = R.string.pressure_kpa_nominative_long
         ),
@@ -90,11 +90,11 @@ enum class PressureUnit(
     ),
     MILLIBAR(
         "mb",
-        displayName = UnitDisplayName(
+        displayName = UnitTranslation(
             short = R.string.pressure_mbar_display_name_short,
             long = R.string.pressure_mbar_display_name_long
         ),
-        nominative = UnitNominative(
+        nominative = UnitTranslation(
             short = R.string.pressure_mbar_nominative_short,
             long = R.string.pressure_mbar_nominative_long
         ),
@@ -107,11 +107,11 @@ enum class PressureUnit(
     ),
     ATMOSPHERE(
         "atm",
-        displayName = UnitDisplayName(
+        displayName = UnitTranslation(
             short = R.string.pressure_atm_display_name_short,
             long = R.string.pressure_atm_display_name_long
         ),
-        nominative = UnitNominative(
+        nominative = UnitTranslation(
             short = R.string.pressure_atm_nominative_short,
             long = R.string.pressure_atm_nominative_long
         ),
@@ -124,11 +124,11 @@ enum class PressureUnit(
     ),
     MILLIMETER_OF_MERCURY(
         "mmhg",
-        displayName = UnitDisplayName(
+        displayName = UnitTranslation(
             short = R.string.pressure_mmhg_display_name_short,
             long = R.string.pressure_mmhg_display_name_long
         ),
-        nominative = UnitNominative(
+        nominative = UnitTranslation(
             short = R.string.pressure_mmhg_nominative_short,
             long = R.string.pressure_mmhg_nominative_long
         ),
@@ -141,11 +141,11 @@ enum class PressureUnit(
     ),
     INCH_OF_MERCURY(
         "inhg",
-        displayName = UnitDisplayName(
+        displayName = UnitTranslation(
             short = R.string.pressure_inhg_display_name_short,
             long = R.string.pressure_inhg_display_name_long
         ),
-        nominative = UnitNominative(
+        nominative = UnitTranslation(
             short = R.string.pressure_inhg_nominative_short,
             long = R.string.pressure_inhg_nominative_long
         ),

@@ -1,6 +1,7 @@
 import breezyweather.domain.weather.reference.WeatherCode;
 import kotlin.time.Duration;
 import org.breezyweather.unit.distance.Distance;
+import org.breezyweather.unit.precipitation.Precipitation;
 import org.breezyweather.unit.pressure.Pressure;
 
 CREATE TABLE dailys(
@@ -20,11 +21,11 @@ CREATE TABLE dailys(
     daytime_wind_chill_temperature REAL,
     daytime_humidex REAL,
 
-    daytime_total_precipitation REAL,
-    daytime_thunderstorm_precipitation REAL,
-    daytime_rain_precipitation REAL,
-    daytime_snow_precipitation REAL,
-    daytime_ice_precipitation REAL,
+    daytime_total_precipitation INTEGER AS Precipitation,
+    daytime_thunderstorm_precipitation INTEGER AS Precipitation,
+    daytime_rain_precipitation INTEGER AS Precipitation,
+    daytime_snow_precipitation INTEGER AS Precipitation,
+    daytime_ice_precipitation INTEGER AS Precipitation,
 
     daytime_total_precipitation_probability REAL,
     daytime_thunderstorm_precipitation_probability REAL,
@@ -53,11 +54,11 @@ CREATE TABLE dailys(
     nighttime_wind_chill_temperature REAL,
     nighttime_humidex REAL,
 
-    nighttime_total_precipitation REAL,
-    nighttime_thunderstorm_precipitation REAL,
-    nighttime_rain_precipitation REAL,
-    nighttime_snow_precipitation REAL,
-    nighttime_ice_precipitation REAL,
+    nighttime_total_precipitation INTEGER AS Precipitation,
+    nighttime_thunderstorm_precipitation INTEGER AS Precipitation,
+    nighttime_rain_precipitation INTEGER AS Precipitation,
+    nighttime_snow_precipitation INTEGER AS Precipitation,
+    nighttime_ice_precipitation INTEGER AS Precipitation,
 
     nighttime_total_precipitation_probability REAL,
     nighttime_thunderstorm_precipitation_probability REAL,

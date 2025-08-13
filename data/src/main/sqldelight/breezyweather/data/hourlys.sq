@@ -1,6 +1,7 @@
 import breezyweather.domain.weather.reference.WeatherCode;
 import kotlin.Boolean;
 import org.breezyweather.unit.distance.Distance;
+import org.breezyweather.unit.precipitation.Precipitation;
 import org.breezyweather.unit.pressure.Pressure;
 
 CREATE TABLE hourlys(
@@ -19,11 +20,11 @@ CREATE TABLE hourlys(
     wind_chill_temperature REAL,
     humidex REAL,
 
-    total_precipitation REAL,
-    thunderstorm_precipitation REAL,
-    rain_precipitation REAL,
-    snow_precipitation REAL,
-    ice_precipitation REAL,
+    total_precipitation INTEGER AS Precipitation,
+    thunderstorm_precipitation INTEGER AS Precipitation,
+    rain_precipitation INTEGER AS Precipitation,
+    snow_precipitation INTEGER AS Precipitation,
+    ice_precipitation INTEGER AS Precipitation,
 
     total_precipitation_probability REAL,
     thunderstorm_precipitation_probability REAL,

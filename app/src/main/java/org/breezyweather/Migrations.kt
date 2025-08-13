@@ -20,6 +20,7 @@ import android.Manifest
 import android.content.Context
 import android.os.Build
 import breezyweather.data.location.LocationRepository
+import breezyweather.data.weather.WeatherRepository
 import breezyweather.domain.source.SourceFeature
 import kotlinx.coroutines.runBlocking
 import org.breezyweather.background.forecast.TodayForecastNotificationJob
@@ -41,7 +42,12 @@ object Migrations {
      *
      * @return true if a migration is performed, false otherwise.
      */
-    fun upgrade(context: Context, sourceManager: SourceManager, locationRepository: LocationRepository): Boolean {
+    fun upgrade(
+        context: Context,
+        sourceManager: SourceManager,
+        locationRepository: LocationRepository,
+        weatherRepository: WeatherRepository,
+    ): Boolean {
         val lastVersionCode = SettingsManager.getInstance(context).lastVersionCode
         val oldVersion = lastVersionCode
         if (oldVersion < BuildConfig.VERSION_CODE) {
@@ -263,8 +269,12 @@ object Migrations {
                 }
 
                 if (oldVersion < 60005) {
-                    // V6.0.5 restricts Open-Meteo pollen to Europe, and Accu to US/Europe
                     runBlocking {
+                        // V6.0.5 makes so many database migrations that the data from previous versions is unusable
+                        // so let’s force a refresh
+                        weatherRepository.deleteAllWeathers()
+
+                        // V6.0.5 restricts Open-Meteo pollen to Europe, and Accu to US/Europe
                         locationRepository.getAllLocations(withParameters = false)
                             .forEach {
                                 if (it.pollenSource in arrayOf("openmeteo", "accu")) {

@@ -20,15 +20,13 @@ import java.io.Serializable
 
 /**
  * Precipitation.
- *
- * default unit : [PrecipitationUnit.MM]
  */
 data class Precipitation(
-    val total: Double? = null,
-    val thunderstorm: Double? = null,
-    val rain: Double? = null,
-    val snow: Double? = null,
-    val ice: Double? = null,
+    val total: org.breezyweather.unit.precipitation.Precipitation? = null,
+    val thunderstorm: org.breezyweather.unit.precipitation.Precipitation? = null,
+    val rain: org.breezyweather.unit.precipitation.Precipitation? = null,
+    val snow: org.breezyweather.unit.precipitation.Precipitation? = null,
+    val ice: org.breezyweather.unit.precipitation.Precipitation? = null,
 ) : Serializable {
 
     companion object {
@@ -46,7 +44,4 @@ data class Precipitation(
         const val PRECIPITATION_HOURLY_HEAVY = 15.0
         const val PRECIPITATION_HOURLY_RAINSTORM = 20.0
     }
-
-    val isValid: Boolean
-        get() = total != null && total > 0
 }

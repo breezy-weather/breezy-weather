@@ -41,6 +41,7 @@ import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_HIGHEST
 import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
 import org.breezyweather.sources.smhi.json.SmhiTimeSeries
 import org.breezyweather.unit.distance.Distance.Companion.kilometers
+import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
 import retrofit2.Retrofit
 import javax.inject.Inject
@@ -147,7 +148,7 @@ class SmhiService @Inject constructor(
                     temperature = result.parameters.firstOrNull { it.name == "t" }?.values?.getOrNull(0)
                 ),
                 precipitation = Precipitation(
-                    total = result.parameters.firstOrNull { it.name == "pmean" }?.values?.getOrNull(0)
+                    total = result.parameters.firstOrNull { it.name == "pmean" }?.values?.getOrNull(0)?.millimeters
                 ),
                 precipitationProbability = PrecipitationProbability(
                     thunderstorm = result.parameters.firstOrNull { it.name == "tstm" }?.values?.getOrNull(0)

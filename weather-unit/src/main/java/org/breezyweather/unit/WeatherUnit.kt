@@ -20,9 +20,9 @@ import android.content.Context
 import android.icu.text.MeasureFormat
 import android.icu.util.MeasureUnit
 import android.os.Build
+import android.util.Log
 import org.breezyweather.unit.formatting.UnitDecimals
-import org.breezyweather.unit.formatting.UnitDisplayName
-import org.breezyweather.unit.formatting.UnitNominative
+import org.breezyweather.unit.formatting.UnitTranslation
 import org.breezyweather.unit.formatting.UnitWidth
 import java.util.Locale
 
@@ -35,12 +35,17 @@ interface WeatherUnit {
     /**
      * Name of the unit when used standalone (without value)
      */
-    val displayName: UnitDisplayName
+    val displayName: UnitTranslation
 
     /**
      * String formatters for quantity of the unit
      */
-    val nominative: UnitNominative
+    val nominative: UnitTranslation
+
+    /**
+     * Optional string formatter for “per”. For example /m³
+     */
+    val per: UnitTranslation?
 
     /**
      * [MeasureUnit] used with ICU formatting for compatible Android devices
@@ -74,13 +79,27 @@ interface WeatherUnit {
                 .getUnitDisplayName(measureUnit)
         }
 
-        return context.getString(
+        val formattingWithoutPer = context.getString(
             when (unitWidth) {
                 UnitWidth.SHORT -> displayName.short
                 UnitWidth.LONG -> displayName.long
                 UnitWidth.NARROW -> displayName.narrow
             }
         )
+        Log.d("BRZ", "formattingWithoutPer: $formattingWithoutPer")
+
+        return per?.let {
+            context.getString(
+                when (unitWidth) {
+                    UnitWidth.SHORT -> it.short
+                    UnitWidth.LONG -> it.long
+                    UnitWidth.NARROW -> it.narrow
+                }.also { t ->
+                    Log.d("BRZ", "perFormatting: ${context.getString(t)}")
+                },
+                formattingWithoutPer
+            )
+        } ?: formattingWithoutPer
     }
 
     /**

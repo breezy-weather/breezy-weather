@@ -40,6 +40,7 @@ import org.breezyweather.sources.veduris.json.VedurIsLatestObservation
 import org.breezyweather.sources.veduris.json.VedurIsResult
 import org.breezyweather.sources.veduris.json.VedurIsStationForecast
 import org.breezyweather.sources.veduris.json.VedurIsStationResult
+import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
 import org.json.JSONObject
 import retrofit2.Retrofit
@@ -192,7 +193,7 @@ class VedurIsService @Inject constructor(
                         temperature = it.temperature
                     ),
                     precipitation = Precipitation(
-                        total = it.precipitation
+                        total = it.precipitation?.millimeters
                     ),
                     precipitationProbability = null,
                     wind = Wind(
@@ -216,7 +217,7 @@ class VedurIsService @Inject constructor(
                             temperature = it.temperature
                         ),
                         precipitation = Precipitation(
-                            total = it.precipitation
+                            total = it.precipitation?.millimeters
                         ),
                         precipitationProbability = null,
                         wind = Wind(

@@ -57,6 +57,7 @@ import kotlinx.collections.immutable.toImmutableMap
 import kotlinx.coroutines.launch
 import org.breezyweather.R
 import org.breezyweather.common.basic.BreezyActivity
+import org.breezyweather.common.extensions.formatMeasureIntensity
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.getThemeColor
 import org.breezyweather.common.extensions.is12Hour
@@ -72,6 +73,8 @@ import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
 import org.breezyweather.ui.theme.weatherView.WeatherView
 import org.breezyweather.ui.theme.weatherView.WeatherViewController
+import org.breezyweather.unit.precipitation.Precipitation.Companion.micrometers
+import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import java.util.Date
 import kotlin.math.abs
 import kotlin.math.max
@@ -103,13 +106,13 @@ class PrecipitationNowcastViewHolder(parent: ViewGroup) : AbstractMainCardViewHo
         val maxX = minutelyList.last().endingDate.time
 
         val minutely = location.weather!!.minutelyForecastBy5Minutes
-            .associate { it.date.time to (it.precipitationIntensity ?: 0.0) }
+            .associate { it.date.time to (it.precipitationIntensity ?: 0.micrometers) }
             .toImmutableMap()
         val timeWithTicks = persistentListOf(minX.toDouble(), (minX + (maxX - minX) / 2).toDouble(), maxX.toDouble())
 
         val maxY = max(
-            Precipitation.PRECIPITATION_HOURLY_HEAVY,
-            minutely.values.max()
+            Precipitation.PRECIPITATION_HOURLY_HEAVY.millimeters.inMicrometers,
+            minutely.values.max().inMicrometers
         )
         val trendHorizontalLines: ImmutableMap<Double, String> = buildMap {
             /**
@@ -136,7 +139,7 @@ class PrecipitationNowcastViewHolder(parent: ViewGroup) : AbstractMainCardViewHo
             )
         }.toImmutableMap()
         val hasOnlyThresholdsValues = !minutely.values.any {
-            it !in arrayOf(
+            it.inMillimeters !in arrayOf(
                 null,
                 0.0,
                 Precipitation.PRECIPITATION_HOURLY_LIGHT,
@@ -267,7 +270,7 @@ class PrecipitationNowcastViewHolder(parent: ViewGroup) : AbstractMainCardViewHo
                 columnSeries {
                     series(
                         x = minutely.keys,
-                        y = minutely.values
+                        y = minutely.values.map { it.value }
                     )
                 }
             }
@@ -276,7 +279,7 @@ class PrecipitationNowcastViewHolder(parent: ViewGroup) : AbstractMainCardViewHo
 }
 
 private class MarkerLabelFormatterMinutelyDecorator(
-    private val mappedValues: Map<Long, Double>,
+    private val mappedValues: Map<Long, org.breezyweather.unit.precipitation.Precipitation>,
     private val location: Location,
     private val aContext: Context,
     private val hasOnlyThresholdValues: Boolean,
@@ -287,27 +290,24 @@ private class MarkerLabelFormatterMinutelyDecorator(
         targets: List<CartesianMarker.Target>,
     ): CharSequence {
         val model = targets.first()
-        val precipitationIntensityUnit = SettingsManager.getInstance(aContext).getPrecipitationIntensityUnit(aContext)
         val startTime = model.x.toLong().toDate()
             .getFormattedTime(location, aContext, aContext.is12Hour)
         val endTime = (model.x.toLong() + 5.minutes.inWholeMilliseconds).toDate()
             .getFormattedTime(location, aContext, aContext.is12Hour)
         val quantityFormatted = if (hasOnlyThresholdValues) {
-            when (mappedValues.getOrElse(model.x.toLong()) { null } ?: 0.0) {
+            when (mappedValues.getOrElse(model.x.toLong()) { null }?.inMillimeters ?: 0.0) {
                 0.0 -> aContext.getString(R.string.precipitation_none)
                 Precipitation.PRECIPITATION_HOURLY_LIGHT -> aContext.getString(R.string.precipitation_intensity_light)
                 Precipitation.PRECIPITATION_HOURLY_MEDIUM -> aContext.getString(R.string.precipitation_intensity_medium)
                 Precipitation.PRECIPITATION_HOURLY_HEAVY -> aContext.getString(R.string.precipitation_intensity_heavy)
-                else -> precipitationIntensityUnit.formatMeasure(
-                    aContext,
-                    mappedValues.getOrElse(model.x.toLong()) { null } ?: 0.0
-                )
+                else -> (mappedValues.getOrElse(model.x.toLong()) { null }?.value ?: 0)
+                    .micrometers
+                    .formatMeasureIntensity(aContext)
             }
         } else {
-            precipitationIntensityUnit.formatMeasure(
-                aContext,
-                mappedValues.getOrElse(model.x.toLong()) { null } ?: 0.0
-            )
+            (mappedValues.getOrElse(model.x.toLong()) { null }?.value ?: 0)
+                .micrometers
+                .formatMeasureIntensity(aContext)
         }
 
         return SpannableStringBuilder().append(

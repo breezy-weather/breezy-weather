@@ -40,7 +40,6 @@ import breezyweather.domain.weather.model.Hourly
 import breezyweather.domain.weather.model.Minutely
 import breezyweather.domain.weather.model.Normals
 import breezyweather.domain.weather.model.Pollen
-import breezyweather.domain.weather.model.Precipitation
 import breezyweather.domain.weather.model.PrecipitationDuration
 import breezyweather.domain.weather.model.PrecipitationProbability
 import breezyweather.domain.weather.model.Temperature
@@ -55,8 +54,6 @@ import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.json.Json
 import org.breezyweather.BuildConfig
 import org.breezyweather.common.basic.models.options.unit.PollenUnit
-import org.breezyweather.common.basic.models.options.unit.PrecipitationIntensityUnit
-import org.breezyweather.common.basic.models.options.unit.PrecipitationUnit
 import org.breezyweather.common.basic.models.options.unit.SpeedUnit
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.common.basic.models.options.unit.getCloudCoverDescription
@@ -106,6 +103,8 @@ import org.breezyweather.sources.SourceManager
 import org.breezyweather.sources.getFeatureSource
 import org.breezyweather.unit.distance.Distance
 import org.breezyweather.unit.distance.DistanceUnit
+import org.breezyweather.unit.precipitation.Precipitation
+import org.breezyweather.unit.precipitation.PrecipitationUnit
 import org.breezyweather.unit.pressure.Pressure
 import org.breezyweather.unit.pressure.PressureUnit
 import kotlin.math.roundToInt
@@ -402,8 +401,6 @@ class WeatherContentProvider : ContentProvider() {
             ?: settings.getPrecipitationUnit(context!!)
         val snowfallUnit = precipitationUnitQuery?.let { PrecipitationUnit.getUnit(it) }
             ?: settings.getPrecipitationUnit(context!!)
-        val precipitationIntensityUnit = precipitationUnitQuery?.let { PrecipitationIntensityUnit.getUnit("${it}ph") }
-            ?: settings.getPrecipitationIntensityUnit(context!!)
         val speedUnit = speedUnitQuery?.let { SpeedUnit.getUnit(it) }
             ?: settings.getSpeedUnit(context!!)
         val distanceUnit = distanceUnitQuery?.let { DistanceUnit.getUnit(it) }
@@ -448,7 +445,7 @@ class WeatherContentProvider : ContentProvider() {
                 ),
                 minutely = getMinutely(
                     weather.minutelyForecast,
-                    precipitationIntensityUnit
+                    precipitationUnit
                 ),
                 alerts = getAlerts(
                     weather.alertList
@@ -620,15 +617,15 @@ class WeatherContentProvider : ContentProvider() {
 
     private fun getMinutely(
         minutely: List<Minutely>?,
-        precipitationIntensityUnit: PrecipitationIntensityUnit,
+        precipitationUnit: PrecipitationUnit,
     ): List<BreezyMinutely>? {
         return minutely?.map { minute ->
             BreezyMinutely(
                 date = minute.date.time,
                 minuteInterval = minute.minuteInterval,
-                precipitationIntensity = getPrecipitationIntensityUnit(
+                precipitationIntensity = getPrecipitationUnit(
                     minute.precipitationIntensity,
-                    precipitationIntensityUnit
+                    precipitationUnit
                 )
             )
         }
@@ -749,7 +746,7 @@ class WeatherContentProvider : ContentProvider() {
     }
 
     private fun getPrecipitation(
-        precipitation: Precipitation?,
+        precipitation: breezyweather.domain.weather.model.Precipitation?,
         precipitationUnit: PrecipitationUnit,
         snowfallUnit: PrecipitationUnit,
     ): BreezyPrecipitation? {
@@ -765,25 +762,13 @@ class WeatherContentProvider : ContentProvider() {
     }
 
     private fun getPrecipitationUnit(
-        precipitation: Double?,
+        precipitation: Precipitation?,
         precipitationUnit: PrecipitationUnit,
     ): BreezyUnit? {
         return precipitation?.let {
             BreezyUnit(
-                value = precipitationUnit.convertUnit(it).roundDecimals(precipitationUnit.precision),
+                value = it.toDouble(precipitationUnit).roundDecimals(precipitationUnit.decimals.long),
                 unit = precipitationUnit.id
-            )
-        }
-    }
-
-    private fun getPrecipitationIntensityUnit(
-        precipitationIntensity: Double?,
-        precipitationIntensityUnit: PrecipitationIntensityUnit,
-    ): BreezyUnit? {
-        return precipitationIntensity?.let {
-            BreezyUnit(
-                value = precipitationIntensityUnit.convertUnit(it).roundDecimals(precipitationIntensityUnit.precision),
-                unit = precipitationIntensityUnit.id
             )
         }
     }

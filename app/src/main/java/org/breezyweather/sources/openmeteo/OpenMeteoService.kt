@@ -91,6 +91,8 @@ import org.breezyweather.ui.common.composables.AlertDialogNoPadding
 import org.breezyweather.ui.settings.preference.composables.PreferenceView
 import org.breezyweather.ui.settings.preference.composables.SwitchPreferenceView
 import org.breezyweather.unit.distance.Distance.Companion.meters
+import org.breezyweather.unit.precipitation.Precipitation.Companion.centimeters
+import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
 import retrofit2.HttpException
 import retrofit2.Retrofit
@@ -479,9 +481,9 @@ class OpenMeteoService @Inject constructor(
                         feelsLike = hourlyResult.apparentTemperature?.getOrNull(i)
                     ),
                     precipitation = Precipitation(
-                        total = hourlyResult.precipitation?.getOrNull(i),
-                        rain = hourlyResult.rain?.getOrNull(i) + hourlyResult.showers?.getOrNull(i),
-                        snow = hourlyResult.snowfall?.getOrNull(i)?.times(10) // convert cm -> mm
+                        total = hourlyResult.precipitation?.getOrNull(i)?.millimeters,
+                        rain = (hourlyResult.rain?.getOrNull(i) + hourlyResult.showers?.getOrNull(i))?.millimeters,
+                        snow = hourlyResult.snowfall?.getOrNull(i)?.centimeters
                     ),
                     precipitationProbability = PrecipitationProbability(
                         total = hourlyResult.precipitationProbability?.getOrNull(i)?.toDouble()
@@ -564,7 +566,7 @@ class OpenMeteoService @Inject constructor(
                     date = time.seconds.inWholeMilliseconds.toDate(),
                     minuteInterval = 15,
                     // mm/15 min -> mm/h
-                    precipitationIntensity = precipitationMinutely?.getOrNull(i)?.times(4)
+                    precipitationIntensity = precipitationMinutely?.getOrNull(i)?.times(4)?.millimeters
                     /*if (precipitationProbabilityMinutely?.getOrNull(i) != null &&
                         precipitationProbabilityMinutely[i]!! > 30
                     ) {

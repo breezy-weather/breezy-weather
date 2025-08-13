@@ -60,6 +60,7 @@ import org.breezyweather.sources.china.json.ChinaForecastResult
 import org.breezyweather.sources.china.json.ChinaLocationResult
 import org.breezyweather.sources.china.json.ChinaMinutelyResult
 import org.breezyweather.unit.distance.Distance.Companion.kilometers
+import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
 import retrofit2.Retrofit
 import java.util.Calendar
@@ -431,6 +432,7 @@ class ChinaService @Inject constructor(
                     date = calendar.time,
                     minuteInterval = 1,
                     precipitationIntensity = precipitation.times(60) // mm/min -> mm/h
+                        .millimeters
                 )
             )
         }

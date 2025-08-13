@@ -26,7 +26,8 @@ import breezyweather.domain.weather.model.Precipitation
 import org.breezyweather.R
 import org.breezyweather.common.basic.BreezyActivity
 import org.breezyweather.common.basic.models.options.appearance.DetailScreen
-import org.breezyweather.common.basic.models.options.unit.PrecipitationUnit
+import org.breezyweather.common.extensions.formatMeasure
+import org.breezyweather.common.extensions.formatValue
 import org.breezyweather.common.extensions.getThemeColor
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.domain.weather.model.getHourlyPrecipitationColor
@@ -36,6 +37,8 @@ import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.resource.ResourceHelper
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
 import org.breezyweather.ui.theme.weatherView.WeatherViewController
+import org.breezyweather.unit.formatting.UnitWidth
+import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 
 /**
  * Hourly precipitation adapter.
@@ -44,10 +47,8 @@ class HourlyPrecipitationAdapter(
     activity: BreezyActivity,
     location: Location,
     provider: ResourceProvider,
-    unit: PrecipitationUnit,
 ) : AbsHourlyTrendAdapter(activity, location) {
     private val mResourceProvider: ResourceProvider = provider
-    private val mPrecipitationUnit: PrecipitationUnit = unit
     private var mHighestPrecipitation: Float? = null
 
     inner class ViewHolder(itemView: View) : AbsHourlyTrendAdapter.ViewHolder(itemView) {
@@ -71,9 +72,9 @@ class HourlyPrecipitationAdapter(
             )
 
             val precipitation = hourly.precipitation?.total
-            if (precipitation != null && precipitation > 0.0) {
+            if (precipitation != null && precipitation.value > 0) {
                 talkBackBuilder.append(activity.getString(org.breezyweather.unit.R.string.locale_separator))
-                    .append(mPrecipitationUnit.formatContentDescription(activity, precipitation))
+                    .append(precipitation.formatMeasure(activity, unitWidth = UnitWidth.LONG))
             } else {
                 talkBackBuilder.append(activity.getString(org.breezyweather.unit.R.string.locale_separator))
                     .append(activity.getString(R.string.precipitation_none))
@@ -82,8 +83,8 @@ class HourlyPrecipitationAdapter(
                 null, null,
                 null, null,
                 null, null,
-                precipitation?.toFloat() ?: 0f,
-                precipitation?.let { mPrecipitationUnit.formatValue(activity, it) },
+                precipitation?.value?.toFloat() ?: 0f,
+                precipitation?.formatValue(activity),
                 mHighestPrecipitation,
                 0f
             )
@@ -125,7 +126,7 @@ class HourlyPrecipitationAdapter(
             .mapNotNull { it.precipitation?.total }
             .maxOrNull()
             ?.let {
-                mHighestPrecipitation = it.toFloat()
+                mHighestPrecipitation = it.value.toFloat()
             }
     }
 
@@ -158,7 +159,7 @@ class HourlyPrecipitationAdapter(
                 TrendRecyclerView.KeyLine(
                     Precipitation.PRECIPITATION_HOURLY_LIGHT.toFloat(),
                     activity.getString(R.string.precipitation_intensity_light),
-                    unit.formatValue(activity, Precipitation.PRECIPITATION_HOURLY_LIGHT),
+                    Precipitation.PRECIPITATION_HALF_DAY_LIGHT.millimeters.formatValue(activity),
                     TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
                 )
             )
@@ -166,7 +167,7 @@ class HourlyPrecipitationAdapter(
                 TrendRecyclerView.KeyLine(
                     Precipitation.PRECIPITATION_HOURLY_HEAVY.toFloat(),
                     activity.getString(R.string.precipitation_intensity_heavy),
-                    unit.formatValue(activity, Precipitation.PRECIPITATION_HOURLY_HEAVY),
+                    Precipitation.PRECIPITATION_HALF_DAY_HEAVY.millimeters.formatValue(activity),
                     TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
                 )
             )

@@ -51,7 +51,6 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.BuildConfig
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.options.unit.PrecipitationUnit
 import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.codeWithCountry
@@ -91,6 +90,10 @@ import org.breezyweather.unit.distance.Distance.Companion.feet
 import org.breezyweather.unit.distance.Distance.Companion.kilometers
 import org.breezyweather.unit.distance.Distance.Companion.meters
 import org.breezyweather.unit.distance.Distance.Companion.miles
+import org.breezyweather.unit.precipitation.Precipitation.Companion.centimeters
+import org.breezyweather.unit.precipitation.Precipitation.Companion.inches
+import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
+import org.breezyweather.unit.precipitation.PrecipitationUnit
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
 import retrofit2.Retrofit
 import java.util.Calendar
@@ -447,10 +450,10 @@ class AccuService @Inject constructor(
                         feelsLike = getTemperatureInCelsius(forecasts.RealFeelTemperature?.Maximum)
                     ),
                     precipitation = Precipitation(
-                        total = getQuantityInMillimeters(forecasts.Day?.TotalLiquid),
-                        rain = getQuantityInMillimeters(forecasts.Day?.Rain),
-                        snow = getQuantityInMillimeters(forecasts.Day?.Snow),
-                        ice = getQuantityInMillimeters(forecasts.Day?.Ice)
+                        total = getQuantity(forecasts.Day?.TotalLiquid),
+                        rain = getQuantity(forecasts.Day?.Rain),
+                        snow = getQuantity(forecasts.Day?.Snow),
+                        ice = getQuantity(forecasts.Day?.Ice)
                     ),
                     precipitationProbability = PrecipitationProbability(
                         total = forecasts.Day?.PrecipitationProbability?.toDouble(),
@@ -480,10 +483,10 @@ class AccuService @Inject constructor(
                         feelsLike = getTemperatureInCelsius(forecasts.RealFeelTemperature?.Minimum)
                     ),
                     precipitation = Precipitation(
-                        total = getQuantityInMillimeters(forecasts.Night?.TotalLiquid),
-                        rain = getQuantityInMillimeters(forecasts.Night?.Rain),
-                        snow = getQuantityInMillimeters(forecasts.Night?.Snow),
-                        ice = getQuantityInMillimeters(forecasts.Night?.Ice)
+                        total = getQuantity(forecasts.Night?.TotalLiquid),
+                        rain = getQuantity(forecasts.Night?.Rain),
+                        snow = getQuantity(forecasts.Night?.Snow),
+                        ice = getQuantity(forecasts.Night?.Ice)
                     ),
                     precipitationProbability = PrecipitationProbability(
                         total = forecasts.Night?.PrecipitationProbability?.toDouble(),
@@ -570,10 +573,10 @@ class AccuService @Inject constructor(
                     feelsLike = getTemperatureInCelsius(result.RealFeelTemperature)
                 ),
                 precipitation = Precipitation(
-                    total = getQuantityInMillimeters(result.TotalLiquid),
-                    rain = getQuantityInMillimeters(result.Rain),
-                    snow = getQuantityInMillimeters(result.Snow),
-                    ice = getQuantityInMillimeters(result.Ice)
+                    total = getQuantity(result.TotalLiquid),
+                    rain = getQuantity(result.Rain),
+                    snow = getQuantity(result.Snow),
+                    ice = getQuantity(result.Ice)
                 ),
                 precipitationProbability = PrecipitationProbability(
                     total = result.PrecipitationProbability?.toDouble(),
@@ -691,7 +694,7 @@ class AccuService @Inject constructor(
                             1.minutes.inWholeMilliseconds
                         ).toDouble().roundToInt()
                 },
-                precipitationIntensity = Minutely.dbzToPrecipitationIntensity(interval.Dbz)
+                precipitationIntensity = Minutely.dbzToPrecipitationIntensity(interval.Dbz)?.millimeters
             )
         }
     }
@@ -778,11 +781,11 @@ class AccuService @Inject constructor(
         }
     }
 
-    private fun getQuantityInMillimeters(value: AccuValue?): Double? {
+    private fun getQuantity(value: AccuValue?): org.breezyweather.unit.precipitation.Precipitation? {
         return when (value?.UnitType) {
-            1 -> value.Value?.times(25.4) // in
-            4 -> value.Value?.times(10) // cm
-            else -> value?.Value // mm
+            1 -> value.Value?.inches
+            4 -> value.Value?.centimeters
+            else -> value?.Value?.millimeters
         }
     }
 

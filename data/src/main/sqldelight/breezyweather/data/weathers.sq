@@ -109,3 +109,6 @@ WHERE location_formatted_id = :locationFormattedId;
 deleteWeatherForLocationId:
 DELETE FROM weathers
 WHERE location_formatted_id = :locationFormattedId;
+
+deleteAllWeathers:
+DELETE FROM weathers;

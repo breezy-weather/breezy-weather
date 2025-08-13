@@ -62,6 +62,7 @@ import org.breezyweather.sources.aemet.json.AemetNormalsResult
 import org.breezyweather.sources.aemet.json.AemetStationsResult
 import org.breezyweather.sources.getWindDegree
 import org.breezyweather.unit.distance.Distance.Companion.meters
+import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
 import retrofit2.Retrofit
 import java.text.SimpleDateFormat
@@ -511,8 +512,8 @@ class AemetService @Inject constructor(
                         feelsLike = atMap.getOrElse(key) { null }
                     ),
                     precipitation = Precipitation(
-                        total = prMap.getOrElse(key) { null },
-                        snow = snMap.getOrElse(key) { null }
+                        total = prMap.getOrElse(key) { null }?.millimeters,
+                        snow = snMap.getOrElse(key) { null }?.millimeters
                     ),
                     precipitationProbability = PrecipitationProbability(
                         total = ppMap.getOrElse(key) { null },

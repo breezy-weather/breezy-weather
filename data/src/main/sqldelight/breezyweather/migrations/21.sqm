@@ -1,0 +1,95 @@
+ALTER TABLE dailys
+DROP COLUMN daytime_total_precipitation;
+
+ALTER TABLE dailys
+ADD COLUMN daytime_total_precipitation INTEGER;
+
+ALTER TABLE dailys
+DROP COLUMN daytime_thunderstorm_precipitation;
+
+ALTER TABLE dailys
+ADD COLUMN daytime_thunderstorm_precipitation INTEGER;
+
+ALTER TABLE dailys
+DROP COLUMN daytime_rain_precipitation;
+
+ALTER TABLE dailys
+ADD COLUMN daytime_rain_precipitation INTEGER;
+
+ALTER TABLE dailys
+DROP COLUMN daytime_snow_precipitation;
+
+ALTER TABLE dailys
+ADD COLUMN daytime_snow_precipitation INTEGER;
+
+ALTER TABLE dailys
+DROP COLUMN daytime_ice_precipitation;
+
+ALTER TABLE dailys
+ADD COLUMN daytime_ice_precipitation INTEGER;
+
+ALTER TABLE dailys
+DROP COLUMN nighttime_total_precipitation;
+
+ALTER TABLE dailys
+ADD COLUMN nighttime_total_precipitation INTEGER;
+
+ALTER TABLE dailys
+DROP COLUMN nighttime_thunderstorm_precipitation;
+
+ALTER TABLE dailys
+ADD COLUMN nighttime_thunderstorm_precipitation INTEGER;
+
+ALTER TABLE dailys
+DROP COLUMN nighttime_rain_precipitation;
+
+ALTER TABLE dailys
+ADD COLUMN nighttime_rain_precipitation INTEGER;
+
+ALTER TABLE dailys
+DROP COLUMN nighttime_snow_precipitation;
+
+ALTER TABLE dailys
+ADD COLUMN nighttime_snow_precipitation INTEGER;
+
+ALTER TABLE dailys
+DROP COLUMN nighttime_ice_precipitation;
+
+ALTER TABLE dailys
+ADD COLUMN nighttime_ice_precipitation INTEGER;
+
+ALTER TABLE hourlys
+DROP COLUMN total_precipitation;
+
+ALTER TABLE hourlys
+ADD COLUMN total_precipitation INTEGER;
+
+ALTER TABLE hourlys
+DROP COLUMN thunderstorm_precipitation;
+
+ALTER TABLE hourlys
+ADD COLUMN thunderstorm_precipitation INTEGER;
+
+ALTER TABLE hourlys
+DROP COLUMN rain_precipitation;
+
+ALTER TABLE hourlys
+ADD COLUMN rain_precipitation INTEGER;
+
+ALTER TABLE hourlys
+DROP COLUMN snow_precipitation;
+
+ALTER TABLE hourlys
+ADD COLUMN snow_precipitation INTEGER;
+
+ALTER TABLE hourlys
+DROP COLUMN ice_precipitation;
+
+ALTER TABLE hourlys
+ADD COLUMN ice_precipitation INTEGER;
+
+ALTER TABLE minutelys
+DROP COLUMN precipitation_intensity;
+
+ALTER TABLE minutelys
+ADD COLUMN precipitation_intensity INTEGER;

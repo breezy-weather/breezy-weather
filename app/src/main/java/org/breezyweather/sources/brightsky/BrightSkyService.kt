@@ -59,6 +59,7 @@ import org.breezyweather.sources.brightsky.json.BrightSkyCurrentWeatherResult
 import org.breezyweather.sources.brightsky.json.BrightSkyWeather
 import org.breezyweather.sources.brightsky.json.BrightSkyWeatherResult
 import org.breezyweather.unit.distance.Distance.Companion.meters
+import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
 import retrofit2.Retrofit
 import java.util.Calendar
@@ -262,7 +263,7 @@ class BrightSkyService @Inject constructor(
                     temperature = result.temperature
                 ),
                 precipitation = Precipitation(
-                    total = result.precipitation
+                    total = result.precipitation?.millimeters
                 ),
                 precipitationProbability = PrecipitationProbability(
                     total = result.precipitationProbability?.toDouble()

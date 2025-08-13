@@ -25,7 +25,6 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringArrayResource
 import androidx.compose.ui.res.stringResource
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.options.unit.PrecipitationUnit
 import org.breezyweather.common.basic.models.options.unit.SpeedUnit
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.common.extensions.currentLocale
@@ -40,6 +39,7 @@ import org.breezyweather.ui.settings.preference.listPreferenceItem
 import org.breezyweather.ui.settings.preference.smallSeparatorItem
 import org.breezyweather.unit.distance.DistanceUnit
 import org.breezyweather.unit.formatting.UnitWidth
+import org.breezyweather.unit.precipitation.PrecipitationUnit
 import org.breezyweather.unit.pressure.PressureUnit
 
 @Composable
@@ -101,24 +101,18 @@ fun UnitSettingsScreen(
             }
             smallSeparatorItem()
             listPreferenceItem(R.string.settings_units_precipitation) { id ->
-                val valueArray = stringArrayResource(R.array.precipitation_unit_values)
-                val nameArray = stringArrayResource(R.array.precipitation_units).mapIndexed { index, value ->
-                    if (index == 0) {
-                        val defaultUnit = PrecipitationUnit.getDefaultUnit(context)
-                        val snowfallUnit = PrecipitationUnit.getDefaultSnowfallUnit(context)
-                        stringResource(
-                            R.string.parenthesis,
-                            stringResource(R.string.settings_regional_preference),
-                            if (defaultUnit != snowfallUnit) {
-                                defaultUnit.getName(context) + "/" + snowfallUnit.getName(context)
-                            } else {
-                                defaultUnit.getName(context)
-                            }
-                        )
-                    } else {
-                        value
-                    }
-                }.toTypedArray()
+                val allowedPrecipitationUnits = PrecipitationUnit.entries
+                val valueArray = arrayOf("auto") + allowedPrecipitationUnits.map { it.id }
+                val nameArray = arrayOf(
+                    stringResource(
+                        R.string.parenthesis,
+                        stringResource(R.string.settings_regional_preference),
+                        PrecipitationUnit.getDefaultUnit(context.currentLocale)
+                            .getDisplayName(context, context.currentLocale, UnitWidth.LONG)
+                    )
+                ) + allowedPrecipitationUnits.map {
+                    it.getDisplayName(context, context.currentLocale, UnitWidth.LONG)
+                }
                 ListPreferenceViewWithCard(
                     title = stringResource(id),
                     summary = { _, value -> nameArray[valueArray.indexOfFirst { it == value }] },
@@ -127,7 +121,7 @@ fun UnitSettingsScreen(
                     nameArray = nameArray,
                     onValueChanged = { precipitationUnitId ->
                         SettingsManager.getInstance(context).precipitationUnit = if (precipitationUnitId != "auto") {
-                            PrecipitationUnit.entries.firstOrNull { it.id == precipitationUnitId }
+                            PrecipitationUnit.getUnit(precipitationUnitId)
                         } else {
                             null
                         }

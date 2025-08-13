@@ -1,10 +1,12 @@
+import org.breezyweather.unit.precipitation.Precipitation;
+
 CREATE TABLE minutelys(
     _id INTEGER NOT NULL PRIMARY KEY,
     location_formatted_id TEXT NOT NULL,
 
     date INTEGER NOT NULL,
     minute_interval INTEGER NOT NULL,
-    precipitation_intensity REAL,
+    precipitation_intensity INTEGER AS Precipitation,
 
     FOREIGN KEY(location_formatted_id) REFERENCES locations (formatted_id)
     ON DELETE CASCADE
