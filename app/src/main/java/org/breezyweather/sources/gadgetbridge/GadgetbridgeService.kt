@@ -29,6 +29,7 @@ import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.common.source.BroadcastSource
 import org.breezyweather.common.utils.helpers.LogHelper
 import org.breezyweather.domain.location.model.getPlace
+import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.domain.weather.index.PollutantIndex
 import org.breezyweather.domain.weather.model.getIndex
 import org.breezyweather.sources.gadgetbridge.json.GadgetbridgeAirQuality
@@ -60,14 +61,16 @@ class GadgetbridgeService @Inject constructor() : BroadcastSource {
                 "WeatherJson",
                 Json.encodeToString(getWeatherData(context, allLocations[0]))
             )
-            putString(
-                "WeatherSecondaryJson",
-                Json.encodeToString(
-                    allLocations.drop(1).mapNotNull {
-                        if (it.weather?.current != null) getWeatherData(context, it) else null
-                    }
+            if (SettingsManager.getInstance(context).sendSecondaryLocationData) {
+                putString(
+                    "WeatherSecondaryJson",
+                    Json.encodeToString(
+                        allLocations.drop(1).mapNotNull {
+                            if (it.weather?.current != null) getWeatherData(context, it) else null
+                        }
+                    )
                 )
-            )
+            }
         }
     }
 

@@ -411,6 +411,20 @@ fun ModulesSettingsScreen(
                         smallSeparatorItem()
                     }
                 }
+            smallSeparatorItem()
+            switchPreferenceItem(R.string.settings_modules_broadcast_send_secondary_location_data) { id ->
+                SwitchPreferenceView(
+                    titleId = id,
+                    summaryOnId = R.string.settings_enabled,
+                    summaryOffId = R.string.settings_disabled,
+                    checked = SettingsManager.getInstance(context).sendSecondaryLocationData,
+                    isFirst = true,
+                    isLast = true,
+                    onValueChanged = {
+                        SettingsManager.getInstance(context).sendSecondaryLocationData = it
+                    }
+                )
+            }
             sectionFooterItem(R.string.settings_modules_broadcast_title)
 
             bottomInsetItem()

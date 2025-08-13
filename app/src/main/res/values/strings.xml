@@ -839,6 +839,7 @@
     <!-- %s is for example Gadgetbridge, as in "Send data of type Gadgetbridge" -->
     <string name="settings_modules_broadcast_send_data_title">Send %s data</string>
     <string name="settings_modules_broadcast_send_data_summary_empty">No compatible packages found</string>
+    <string name="settings_modules_broadcast_send_secondary_location_data">Send secondary location data</string>
     <string name="about_privacy_policy">Privacy policy</string>
     <string name="settings_debug">Debug</string>
     <!-- %s is the string with the key action_grant_permission -->

@@ -476,6 +476,14 @@ class SettingsManager private constructor(
         }
         get() = config.getBoolean("notification_widget_feelslike", false)
 
+    // data sharing
+    var sendSecondaryLocationData: Boolean
+        set(value) {
+            config.edit().putBoolean("send_secondary_location_data", value).apply()
+            notifySettingsChanged()
+        }
+        get() = config.getBoolean("send_secondary_location_data", true)
+
     var useNumberFormatter: Boolean
         set(value) {
             config.edit().putBoolean("use_number_formatter", value).apply()
