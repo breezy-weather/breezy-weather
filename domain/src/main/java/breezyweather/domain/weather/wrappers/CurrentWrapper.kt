@@ -20,6 +20,7 @@ import breezyweather.domain.weather.model.Current
 import breezyweather.domain.weather.model.UV
 import breezyweather.domain.weather.model.Wind
 import breezyweather.domain.weather.reference.WeatherCode
+import org.breezyweather.unit.distance.Distance
 import org.breezyweather.unit.pressure.Pressure
 
 /**
@@ -39,8 +40,8 @@ data class CurrentWrapper(
      */
     val pressure: Pressure? = null,
     val cloudCover: Int? = null,
-    val visibility: Double? = null,
-    val ceiling: Double? = null,
+    val visibility: Distance? = null,
+    val ceiling: Distance? = null,
     val dailyForecast: String? = null,
     // Is actually a description of the nowcast
     val hourlyForecast: String? = null,

@@ -90,6 +90,7 @@ import org.breezyweather.sources.openmeteo.json.OpenMeteoWeatherResult
 import org.breezyweather.ui.common.composables.AlertDialogNoPadding
 import org.breezyweather.ui.settings.preference.composables.PreferenceView
 import org.breezyweather.ui.settings.preference.composables.SwitchPreferenceView
+import org.breezyweather.unit.distance.Distance.Companion.meters
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
 import retrofit2.HttpException
 import retrofit2.Retrofit
@@ -393,7 +394,7 @@ class OpenMeteoService @Inject constructor(
             dewPoint = current.dewPoint,
             pressure = current.pressureMsl?.hectopascals,
             cloudCover = current.cloudCover,
-            visibility = current.visibility
+            visibility = current.visibility?.meters
         )
     }
 
@@ -449,9 +450,9 @@ class OpenMeteoService @Inject constructor(
                     min = dailyResult.cloudCoverMin?.getOrNull(i)
                 ),
                 visibility = DailyVisibility(
-                    average = dailyResult.visibilityMean?.getOrNull(i),
-                    max = dailyResult.visibilityMax?.getOrNull(i),
-                    min = dailyResult.visibilityMin?.getOrNull(i)
+                    average = dailyResult.visibilityMean?.getOrNull(i)?.meters,
+                    max = dailyResult.visibilityMax?.getOrNull(i)?.meters,
+                    min = dailyResult.visibilityMin?.getOrNull(i)?.meters
                 )
             )
             dailyList.add(daily)
@@ -495,7 +496,7 @@ class OpenMeteoService @Inject constructor(
                     dewPoint = hourlyResult.dewPoint?.getOrNull(i),
                     pressure = hourlyResult.pressureMsl?.getOrNull(i)?.hectopascals,
                     cloudCover = hourlyResult.cloudCover?.getOrNull(i),
-                    visibility = hourlyResult.visibility?.getOrNull(i)?.toDouble()
+                    visibility = hourlyResult.visibility?.getOrNull(i)?.meters
                 )
             )
         }

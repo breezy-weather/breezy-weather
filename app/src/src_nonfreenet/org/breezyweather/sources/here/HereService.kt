@@ -51,6 +51,7 @@ import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.domain.settings.SourceConfigStore
 import org.breezyweather.sources.here.json.HereGeocodingData
 import org.breezyweather.sources.here.json.HereWeatherData
+import org.breezyweather.unit.distance.Distance.Companion.kilometers
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
 import retrofit2.Retrofit
 import javax.inject.Inject
@@ -180,7 +181,7 @@ class HereService @Inject constructor(
             relativeHumidity = result.humidity?.toDouble(),
             dewPoint = result.dewPoint,
             pressure = result.barometerPressure?.hectopascals,
-            visibility = result.visibility?.times(1000)
+            visibility = result.visibility?.kilometers
         )
     }
 
@@ -257,7 +258,7 @@ class HereService @Inject constructor(
                 relativeHumidity = result.humidity?.toDouble(),
                 dewPoint = result.dewPoint,
                 pressure = result.barometerPressure?.hectopascals,
-                visibility = result.visibility?.times(1000)
+                visibility = result.visibility?.kilometers
             )
         }
     }

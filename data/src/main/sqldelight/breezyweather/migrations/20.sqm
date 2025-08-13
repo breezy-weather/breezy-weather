@@ -1,0 +1,35 @@
+ALTER TABLE weathers
+DROP COLUMN visibility;
+
+ALTER TABLE weathers
+ADD COLUMN visibility INTEGER;
+
+ALTER TABLE weathers
+DROP COLUMN ceiling;
+
+ALTER TABLE weathers
+ADD COLUMN ceiling INTEGER;
+
+ALTER TABLE dailys
+DROP COLUMN visibility_average;
+
+ALTER TABLE dailys
+ADD COLUMN visibility_average INTEGER;
+
+ALTER TABLE dailys
+DROP COLUMN visibility_min;
+
+ALTER TABLE dailys
+ADD COLUMN visibility_min INTEGER;
+
+ALTER TABLE dailys
+DROP COLUMN visibility_max;
+
+ALTER TABLE dailys
+ADD COLUMN visibility_max INTEGER;
+
+ALTER TABLE hourlys
+DROP COLUMN visibility;
+
+ALTER TABLE hourlys
+ADD COLUMN visibility INTEGER;

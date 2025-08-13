@@ -65,6 +65,9 @@
 - Address lookup process refactoring to prepare for future ability to add a location manually by coordinates
 - Pressure unit conversion/formatting refactoring
 
+**Known issues**
+- Visibility: units are no longer be translated on Android < 7
+
 
 # Version 6.0.4-alpha (2025-07-23)
 

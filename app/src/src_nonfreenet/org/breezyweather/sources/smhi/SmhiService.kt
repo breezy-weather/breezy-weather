@@ -40,6 +40,7 @@ import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_HIGHEST
 import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
 import org.breezyweather.sources.smhi.json.SmhiTimeSeries
+import org.breezyweather.unit.distance.Distance.Companion.kilometers
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
 import retrofit2.Retrofit
 import javax.inject.Inject
@@ -158,7 +159,7 @@ class SmhiService @Inject constructor(
                 ),
                 relativeHumidity = result.parameters.firstOrNull { it.name == "r" }?.values?.getOrNull(0),
                 pressure = result.parameters.firstOrNull { it.name == "msl" }?.values?.getOrNull(0)?.hectopascals,
-                visibility = result.parameters.firstOrNull { it.name == "vis" }?.values?.getOrNull(0)?.times(1000)
+                visibility = result.parameters.firstOrNull { it.name == "vis" }?.values?.getOrNull(0)?.kilometers
             )
         }
     }

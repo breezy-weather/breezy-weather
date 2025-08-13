@@ -23,6 +23,7 @@ import breezyweather.domain.weather.model.PrecipitationProbability
 import breezyweather.domain.weather.model.UV
 import breezyweather.domain.weather.model.Wind
 import breezyweather.domain.weather.reference.WeatherCode
+import org.breezyweather.unit.distance.Distance
 import org.breezyweather.unit.pressure.Pressure
 import java.util.Date
 import kotlin.time.Duration
@@ -48,7 +49,7 @@ data class HourlyWrapper(
      */
     val pressure: Pressure? = null,
     val cloudCover: Int? = null,
-    val visibility: Double? = null,
+    val visibility: Distance? = null,
     /**
      * Duration of sunshine, NOT duration of daylight
      */

@@ -86,6 +86,11 @@ import org.breezyweather.sources.accu.preferences.AccuDaysPreference
 import org.breezyweather.sources.accu.preferences.AccuHoursPreference
 import org.breezyweather.sources.accu.preferences.AccuPortalPreference
 import org.breezyweather.sources.openmeteo.OpenMeteoService.Companion.COPERNICUS_POLLEN_BBOX
+import org.breezyweather.unit.distance.Distance
+import org.breezyweather.unit.distance.Distance.Companion.feet
+import org.breezyweather.unit.distance.Distance.Companion.kilometers
+import org.breezyweather.unit.distance.Distance.Companion.meters
+import org.breezyweather.unit.distance.Distance.Companion.miles
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
 import retrofit2.Retrofit
 import java.util.Calendar
@@ -419,8 +424,8 @@ class AccuService @Inject constructor(
             dewPoint = currentResult.DewPoint?.Metric?.Value,
             pressure = currentResult.Pressure?.Metric?.Value?.hectopascals,
             cloudCover = currentResult.CloudCover,
-            visibility = currentResult.Visibility?.Metric?.Value?.times(1000),
-            ceiling = currentResult.Ceiling?.Metric?.Value,
+            visibility = currentResult.Visibility?.Metric?.Value?.kilometers,
+            ceiling = currentResult.Ceiling?.Metric?.Value?.meters,
             dailyForecast = dailyResult?.Headline?.Text,
             hourlyForecast = minuteResult?.Summary?.LongPhrase
         )
@@ -586,7 +591,7 @@ class AccuService @Inject constructor(
                 relativeHumidity = result.RelativeHumidity?.toDouble(),
                 dewPoint = getTemperatureInCelsius(result.DewPoint),
                 cloudCover = result.CloudCover,
-                visibility = getDistanceInMeters(result.Visibility)
+                visibility = getDistance(result.Visibility)
             )
         }
     }
@@ -764,12 +769,12 @@ class AccuService @Inject constructor(
         }
     }
 
-    private fun getDistanceInMeters(value: AccuValue?): Double? {
+    private fun getDistance(value: AccuValue?): Distance? {
         return when (value?.UnitType) {
-            2 -> value.Value?.times(1609.344) // mi
-            0 -> value.Value?.div(3.28084) // ft
-            6 -> value.Value?.times(1000) // km
-            else -> value?.Value // m
+            2 -> value.Value?.miles
+            0 -> value.Value?.feet
+            6 -> value.Value?.kilometers
+            else -> value?.Value?.meters
         }
     }
 

@@ -59,6 +59,7 @@ import org.breezyweather.sources.pirateweather.json.PirateWeatherCurrently
 import org.breezyweather.sources.pirateweather.json.PirateWeatherDaily
 import org.breezyweather.sources.pirateweather.json.PirateWeatherHourly
 import org.breezyweather.sources.pirateweather.json.PirateWeatherMinutely
+import org.breezyweather.unit.distance.Distance.Companion.kilometers
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
 import retrofit2.Retrofit
 import java.util.Objects
@@ -169,7 +170,7 @@ class PirateWeatherService @Inject constructor(
             dewPoint = result.dewPoint,
             pressure = result.pressure?.hectopascals,
             cloudCover = result.cloudCover?.times(100)?.roundToInt(),
-            visibility = result.visibility?.times(1000),
+            visibility = result.visibility?.kilometers,
             dailyForecast = dailySummary,
             hourlyForecast = hourlySummary
         )
@@ -204,7 +205,7 @@ class PirateWeatherService @Inject constructor(
                 dewPoint = DailyDewPoint(average = result.dewPoint),
                 pressure = DailyPressure(average = result.pressure?.hectopascals),
                 cloudCover = DailyCloudCover(average = result.cloudCover?.times(100)?.roundToInt()),
-                visibility = DailyVisibility(average = result.visibility?.times(1000))
+                visibility = DailyVisibility(average = result.visibility?.kilometers)
             )
         }
     }
@@ -246,7 +247,7 @@ class PirateWeatherService @Inject constructor(
                 dewPoint = result.dewPoint,
                 pressure = result.pressure?.hectopascals,
                 cloudCover = result.cloudCover?.times(100)?.roundToInt(),
-                visibility = result.visibility?.times(1000)
+                visibility = result.visibility?.kilometers
             )
         }
     }

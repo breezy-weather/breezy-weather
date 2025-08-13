@@ -16,9 +16,11 @@
 
 package breezyweather.domain.weather.model
 
+import org.breezyweather.unit.distance.Distance
+
 data class DailyVisibility(
-    override val average: Double? = null,
-    override val max: Double? = null,
-    override val min: Double? = null,
+    override val average: Distance? = null,
+    override val max: Distance? = null,
+    override val min: Distance? = null,
     override val summary: String? = null,
-) : DailyAvgMinMax<Double>
+) : DailyAvgMinMax<Distance>

@@ -61,7 +61,11 @@ import kotlinx.collections.immutable.toImmutableMap
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.appearance.DetailScreen
 import org.breezyweather.common.basic.models.options.basic.UnitUtils
-import org.breezyweather.common.basic.models.options.unit.DistanceUnit
+import org.breezyweather.common.basic.models.options.unit.getVisibilityDescription
+import org.breezyweather.common.basic.models.options.unit.visibilityScaleThresholds
+import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.extensions.formatMeasure
+import org.breezyweather.common.extensions.formatValue
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.extensions.roundUpToNearestMultiplier
@@ -74,6 +78,10 @@ import org.breezyweather.domain.weather.model.getRangeSummary
 import org.breezyweather.ui.common.charts.BreezyLineChart
 import org.breezyweather.ui.common.widgets.Material3ExpressiveCardListItem
 import org.breezyweather.ui.settings.preference.bottomInsetItem
+import org.breezyweather.unit.distance.Distance
+import org.breezyweather.unit.distance.Distance.Companion.meters
+import org.breezyweather.unit.distance.toDistance
+import org.breezyweather.unit.formatting.UnitWidth
 import java.util.Date
 import kotlin.math.max
 
@@ -82,7 +90,7 @@ fun DetailsVisibility(
     location: Location,
     hourlyList: ImmutableList<Hourly>,
     daily: Daily,
-    defaultValue: Pair<Date, Double>?,
+    defaultValue: Pair<Date, Distance>?,
     modifier: Modifier = Modifier,
 ) {
     val mappedValues = remember(hourlyList) {
@@ -91,7 +99,7 @@ fun DetailsVisibility(
             .associate { it.date.time to it.visibility!! }
             .toImmutableMap()
     }
-    var activeItem: Pair<Date, Double>? by remember { mutableStateOf(null) }
+    var activeItem: Pair<Date, Distance>? by remember { mutableStateOf(null) }
     val markerVisibilityListener = remember {
         object : CartesianMarkerVisibilityListener {
             override fun onShown(marker: CartesianMarker, targets: List<CartesianMarker.Target>) {
@@ -161,8 +169,8 @@ fun DetailsVisibility(
 fun VisibilityHeader(
     location: Location,
     daily: Daily,
-    activeItem: Pair<Date, Double>?,
-    defaultValue: Pair<Date, Double>?,
+    activeItem: Pair<Date, Distance>?,
+    defaultValue: Pair<Date, Distance>?,
 ) {
     val context = LocalContext.current
 
@@ -194,10 +202,9 @@ fun VisibilityHeader(
 @Composable
 private fun VisibilityItem(
     header: @Composable () -> Unit,
-    visibility: Double?,
+    visibility: Distance?,
 ) {
     val context = LocalContext.current
-    val distanceUnit = SettingsManager.getInstance(context).getDistanceUnit(context)
 
     Column(
         modifier = Modifier
@@ -207,7 +214,7 @@ private fun VisibilityItem(
         TextFixedHeight(
             text = visibility?.let { vis ->
                 UnitUtils.formatUnitsDifferentFontSize(
-                    formattedMeasure = distanceUnit.formatMeasure(context, vis),
+                    formattedMeasure = vis.formatMeasure(context),
                     fontSize = MaterialTheme.typography.headlineSmall.fontSize
                 )
             } ?: buildAnnotatedString {},
@@ -215,12 +222,12 @@ private fun VisibilityItem(
             modifier = Modifier
                 .clearAndSetSemantics {
                     visibility?.let {
-                        contentDescription = distanceUnit.formatContentDescription(context, it)
+                        contentDescription = it.formatMeasure(context, unitWidth = UnitWidth.LONG)
                     }
                 }
         )
         TextFixedHeight(
-            text = DistanceUnit.getVisibilityDescription(context, visibility) ?: "",
+            text = getVisibilityDescription(context, visibility) ?: "",
             style = MaterialTheme.typography.labelMedium
         )
     }
@@ -232,7 +239,6 @@ private fun VisibilitySummary(
     daily: Daily,
 ) {
     val context = LocalContext.current
-    val distanceUnit = SettingsManager.getInstance(context).getDistanceUnit(context)
 
     Column(
         modifier = Modifier
@@ -244,7 +250,7 @@ private fun VisibilitySummary(
         )
         TextFixedHeight(
             text = buildAnnotatedString {
-                daily.visibility?.getRangeSummary(context, distanceUnit)?.let {
+                daily.visibility?.getRangeSummary(context)?.let {
                     append(
                         UnitUtils.formatUnitsDifferentFontSize(
                             formattedMeasure = it,
@@ -256,7 +262,7 @@ private fun VisibilitySummary(
             style = MaterialTheme.typography.displaySmall,
             modifier = Modifier
                 .clearAndSetSemantics {
-                    daily.visibility?.getRangeContentDescriptionSummary(context, distanceUnit)?.let {
+                    daily.visibility?.getRangeContentDescriptionSummary(context)?.let {
                         contentDescription = it
                     }
                 }
@@ -271,7 +277,7 @@ private fun VisibilitySummary(
 @Composable
 private fun VisibilityChart(
     location: Location,
-    mappedValues: ImmutableMap<Long, Double>,
+    mappedValues: ImmutableMap<Long, Distance>,
     daily: Daily,
     markerVisibilityListener: CartesianMarkerVisibilityListener,
 ) {
@@ -282,10 +288,8 @@ private fun VisibilityChart(
         max(
             // This value makes it, once rounded, a minimum of 75000 ft
             22850.0, // TODO: Make this a const
-            mappedValues.values.max()
-        ).let {
-            distanceUnit.getConvertedUnit(it)
-        }
+            mappedValues.values.maxOf { it.inMeters }
+        ).meters.toDouble(distanceUnit)
     }
     val step = remember(mappedValues) {
         distanceUnit.chartStep(maxY)
@@ -301,7 +305,7 @@ private fun VisibilityChart(
             lineSeries {
                 series(
                     x = mappedValues.keys,
-                    y = mappedValues.values.map { distanceUnit.getConvertedUnit(it) }
+                    y = mappedValues.values.map { it.toDouble(distanceUnit) }
                 )
             }
         }
@@ -312,24 +316,22 @@ private fun VisibilityChart(
         modelProducer,
         daily.date,
         maxYRounded,
-        { _, value, _ -> distanceUnit.formatMeasure(context, value, isValueInDefaultUnit = false) },
+        { _, value, _ -> value.toDistance(distanceUnit).formatMeasure(context) },
         persistentListOf(
             persistentMapOf(
-                distanceUnit.getConvertedUnit(20000.0).toFloat() to Color(119, 141, 120),
-                distanceUnit.getConvertedUnit(15000.0).toFloat() to Color(91, 167, 99),
-                distanceUnit.getConvertedUnit(9000.0).toFloat() to Color(90, 169, 90),
-                distanceUnit.getConvertedUnit(8000.0).toFloat() to Color(98, 122, 160),
-                distanceUnit.getConvertedUnit(6000.0).toFloat() to Color(98, 122, 160),
-                distanceUnit.getConvertedUnit(5000.0).toFloat() to Color(167, 91, 91),
-                distanceUnit.getConvertedUnit(2200.0).toFloat() to Color(167, 91, 91),
-                distanceUnit.getConvertedUnit(1600.0).toFloat() to Color(162, 97, 160),
-                distanceUnit.getConvertedUnit(0.0).toFloat() to Color(166, 93, 165)
+                20000.0.meters.toDouble(distanceUnit).toFloat() to Color(119, 141, 120),
+                15000.0.meters.toDouble(distanceUnit).toFloat() to Color(91, 167, 99),
+                9000.0.meters.toDouble(distanceUnit).toFloat() to Color(90, 169, 90),
+                8000.0.meters.toDouble(distanceUnit).toFloat() to Color(98, 122, 160),
+                6000.0.meters.toDouble(distanceUnit).toFloat() to Color(98, 122, 160),
+                5000.0.meters.toDouble(distanceUnit).toFloat() to Color(167, 91, 91),
+                2200.0.meters.toDouble(distanceUnit).toFloat() to Color(167, 91, 91),
+                1600.0.meters.toDouble(distanceUnit).toFloat() to Color(162, 97, 160),
+                0.0.meters.toDouble(distanceUnit).toFloat() to Color(166, 93, 165)
             )
         ),
         topAxisValueFormatter = { _, value, _ ->
-            mappedValues.getOrElse(value.toLong()) { null }?.let {
-                SettingsManager.getInstance(context).getDistanceUnit(context).formatValue(context, it)
-            } ?: "-"
+            mappedValues.getOrElse(value.toLong()) { null }?.formatValue(context) ?: "-"
         },
         endAxisItemPlacer = remember {
             VerticalAxis.ItemPlacer.step({ step })
@@ -368,27 +370,27 @@ fun VisibilityScale(
                     modifier = Modifier.weight(1.5f)
                 )
                 Text(
-                    distanceUnit.getName(context),
+                    distanceUnit.getDisplayName(context, context.currentLocale),
                     fontWeight = FontWeight.Bold,
                     textAlign = TextAlign.End,
                     modifier = Modifier.weight(1f)
                 )
             }
-            DistanceUnit.visibilityScaleThresholds.forEachIndexed { index, startingValue ->
+            visibilityScaleThresholds.forEachIndexed { index, startingValue ->
                 val startingValueFormatted = UnitUtils.formatDouble(
                     context,
-                    distanceUnit.getConvertedUnit(startingValue),
-                    distanceUnit.precision
+                    startingValue.toDouble(distanceUnit),
+                    distanceUnit.decimals.short
                 )
-                val endingValueFormatted = DistanceUnit.visibilityScaleThresholds.getOrElse(index + 1) { null }
+                val endingValueFormatted = visibilityScaleThresholds.getOrElse(index + 1) { null }
                     ?.let {
                         " – ${
                             UnitUtils.formatDouble(
                                 context,
-                                distanceUnit.getConvertedUnit(it).minus(
-                                    if (distanceUnit.precision == 0) 1.0 else 0.1
+                                it.toDouble(distanceUnit).minus(
+                                    if (distanceUnit.decimals.short == 0) 1.0 else 0.1
                                 ),
-                                distanceUnit.precision
+                                distanceUnit.decimals.short
                             )
                         }"
                     }
@@ -401,7 +403,10 @@ fun VisibilityScale(
                         .padding(top = dimensionResource(R.dimen.small_margin))
                 ) {
                     Text(
-                        text = DistanceUnit.getVisibilityDescription(context, startingValue + 0.1)!!,
+                        text = getVisibilityDescription(
+                            context,
+                            startingValue.toDouble(distanceUnit).plus(0.1).toDistance(distanceUnit)
+                        )!!,
                         modifier = Modifier.weight(1.5f)
                     )
                     Text(

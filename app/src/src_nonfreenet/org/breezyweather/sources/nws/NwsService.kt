@@ -64,6 +64,7 @@ import org.breezyweather.sources.nws.json.NwsValueDoubleContainer
 import org.breezyweather.sources.nws.json.NwsValueIntContainer
 import org.breezyweather.sources.nws.json.NwsValueWeatherContainer
 import org.breezyweather.sources.nws.json.NwsValueWeatherValue
+import org.breezyweather.unit.distance.Distance.Companion.meters
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
 import org.breezyweather.unit.pressure.Pressure.Companion.inchesOfMercury
 import org.breezyweather.unit.pressure.Pressure.Companion.pascals
@@ -289,7 +290,7 @@ class NwsService @Inject constructor(
                         latitude = currentResult.geometry?.coordinates?.getOrNull(1)
                     )?.hectopascals
                 },
-                visibility = it.visibility?.value
+                visibility = it.visibility?.value?.meters
             )
         }
     }
@@ -456,7 +457,7 @@ class NwsService @Inject constructor(
                 dewPoint = dewpointForecastList.getOrElse(it) { null },
                 pressure = pressureForecastList.getOrElse(it) { null }?.inchesOfMercury,
                 cloudCover = skyCoverForecastList.getOrElse(it) { null },
-                visibility = visibilityForecastList.getOrElse(it) { null }
+                visibility = visibilityForecastList.getOrElse(it) { null }?.meters
             )
         }
     }

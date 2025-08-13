@@ -34,7 +34,7 @@ enum class PressureUnit(
     override val convertFromReference: (Double) -> Double,
     override val convertToReference: (Double) -> Double,
     override val decimals: UnitDecimals,
-    override val chartStep: Double,
+    val chartStep: Double,
 ) : WeatherUnit {
 
     PASCAL(
@@ -47,8 +47,8 @@ enum class PressureUnit(
             short = R.string.pressure_pa_nominative_short,
             long = R.string.pressure_pa_nominative_long
         ),
-        null,
-        null,
+        measureUnit = null,
+        perMeasureUnit = null,
         convertFromReference = { valueInDefaultUnit -> valueInDefaultUnit },
         convertToReference = { valueInDefaultUnit -> valueInDefaultUnit },
         decimals = UnitDecimals(0),
@@ -64,8 +64,8 @@ enum class PressureUnit(
             short = R.string.pressure_hpa_nominative_short,
             long = R.string.pressure_hpa_nominative_long
         ),
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) MeasureUnit.HECTOPASCAL else null,
-        null,
+        measureUnit = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) MeasureUnit.HECTOPASCAL else null,
+        perMeasureUnit = null,
         convertFromReference = { valueInDefaultUnit -> valueInDefaultUnit.div(100.0) },
         convertToReference = { valueInDefaultUnit -> valueInDefaultUnit.times(100.0) },
         decimals = UnitDecimals(narrow = 0, short = 1, long = 2),
@@ -81,8 +81,8 @@ enum class PressureUnit(
             short = R.string.pressure_kpa_nominative_short,
             long = R.string.pressure_kpa_nominative_long
         ),
-        null,
-        null,
+        measureUnit = null,
+        perMeasureUnit = null,
         convertFromReference = { valueInDefaultUnit -> valueInDefaultUnit.div(1000.0) },
         convertToReference = { valueInDefaultUnit -> valueInDefaultUnit.times(1000.0) },
         decimals = UnitDecimals(narrow = 1, short = 2, long = 3),
@@ -98,8 +98,8 @@ enum class PressureUnit(
             short = R.string.pressure_mbar_nominative_short,
             long = R.string.pressure_mbar_nominative_long
         ),
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) MeasureUnit.MILLIBAR else null,
-        null,
+        measureUnit = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) MeasureUnit.MILLIBAR else null,
+        perMeasureUnit = null,
         convertFromReference = { valueInDefaultUnit -> valueInDefaultUnit.div(100.0) },
         convertToReference = { valueInDefaultUnit -> valueInDefaultUnit.times(100.0) },
         decimals = UnitDecimals(narrow = 0, short = 1, long = 2),
@@ -115,8 +115,8 @@ enum class PressureUnit(
             short = R.string.pressure_atm_nominative_short,
             long = R.string.pressure_atm_nominative_long
         ),
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) MeasureUnit.ATMOSPHERE else null,
-        null,
+        measureUnit = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) MeasureUnit.ATMOSPHERE else null,
+        perMeasureUnit = null,
         convertFromReference = { valueInDefaultUnit -> valueInDefaultUnit.div(101325.0) },
         convertToReference = { valueInDefaultUnit -> valueInDefaultUnit.times(101325.0) },
         decimals = UnitDecimals(narrow = 1, short = 2, long = 3),
@@ -132,8 +132,8 @@ enum class PressureUnit(
             short = R.string.pressure_mmhg_nominative_short,
             long = R.string.pressure_mmhg_nominative_long
         ),
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) MeasureUnit.MILLIMETER_OF_MERCURY else null,
-        null,
+        measureUnit = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) MeasureUnit.MILLIMETER_OF_MERCURY else null,
+        perMeasureUnit = null,
         convertFromReference = { valueInDefaultUnit -> valueInDefaultUnit.times(760.0 / 101325.0) },
         convertToReference = { valueInDefaultUnit -> valueInDefaultUnit.times(101325.0 / 760.0) },
         decimals = UnitDecimals(narrow = 0, short = 1, long = 2),
@@ -149,8 +149,8 @@ enum class PressureUnit(
             short = R.string.pressure_inhg_nominative_short,
             long = R.string.pressure_inhg_nominative_long
         ),
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) MeasureUnit.INCH_HG else null,
-        null,
+        measureUnit = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) MeasureUnit.INCH_HG else null,
+        perMeasureUnit = null,
         convertFromReference = { valueInDefaultUnit -> valueInDefaultUnit.times(760.0 / 101325.0).div(25.4) },
         convertToReference = { valueInDefaultUnit -> valueInDefaultUnit.times(25.4).times(101325.0 / 760.0) },
         decimals = UnitDecimals(narrow = 1, short = 2, long = 3),

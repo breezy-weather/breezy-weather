@@ -44,6 +44,7 @@ import breezyweather.domain.weather.model.Wind
 import breezyweather.domain.weather.reference.AlertSeverity
 import breezyweather.domain.weather.reference.Month
 import breezyweather.domain.weather.reference.WeatherCode
+import org.breezyweather.unit.distance.Distance
 import org.breezyweather.unit.pressure.Pressure
 import java.util.Date
 import kotlin.time.Duration
@@ -81,9 +82,9 @@ object WeatherMapper {
         relativeHumidity: Double?,
         dewPoint: Double?,
         pressure: Pressure?,
-        visibility: Double?,
+        visibility: Distance?,
         cloudCover: Long?,
-        ceiling: Double?,
+        ceiling: Distance?,
         dailyForecast: String?,
         hourlyForecast: String?,
     ): Weather = Weather(
@@ -238,9 +239,9 @@ object WeatherMapper {
         cloudCoverAverage: Long?,
         cloudCoverMin: Long?,
         cloudCoverMax: Long?,
-        visibilityAverage: Double?,
-        visibilityMin: Double?,
-        visibilityMax: Double?,
+        visibilityAverage: Distance?,
+        visibilityMin: Distance?,
+        visibilityMax: Distance?,
     ): Daily = Daily(
         Date(date),
         HalfDay(
@@ -418,7 +419,7 @@ object WeatherMapper {
         dewPoint: Double?,
         pressure: Pressure?,
         cloudCover: Long?,
-        visibility: Double?,
+        visibility: Distance?,
     ): Hourly = Hourly(
         Date(date),
         daylight,

@@ -273,7 +273,6 @@ abstract class AbstractRemoteViewsPresenter {
             if (subtitleP.isNullOrEmpty()) return ""
             val temperatureUnit = SettingsManager.getInstance(context).getTemperatureUnit(context)
             // val precipitationUnit = getInstance(context).getPrecipitationUnit(context)
-            val distanceUnit = SettingsManager.getInstance(context).getDistanceUnit(context)
             val speedUnit = SettingsManager.getInstance(context).getSpeedUnit(context)
             var subtitle = subtitleP
                 .replace(
@@ -330,9 +329,8 @@ abstract class AbstractRemoteViewsPresenter {
                         ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "\$cv$",
-                    weather.current?.visibility?.let {
-                        distanceUnit.formatMeasure(context, it)
-                    } ?: context.getString(R.string.null_data_text)
+                    weather.current?.visibility?.formatMeasure(context)
+                        ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "\$cdp$",
                     weather.current?.dewPoint?.let {

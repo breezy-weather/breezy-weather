@@ -48,6 +48,7 @@ import org.breezyweather.domain.settings.SourceConfigStore
 import org.breezyweather.sources.metoffice.json.MetOfficeDaily
 import org.breezyweather.sources.metoffice.json.MetOfficeForecast
 import org.breezyweather.sources.metoffice.json.MetOfficeHourly
+import org.breezyweather.unit.distance.Distance.Companion.meters
 import org.breezyweather.unit.pressure.Pressure.Companion.pascals
 import retrofit2.Retrofit
 import javax.inject.Inject
@@ -193,7 +194,7 @@ class MetOfficeService @Inject constructor(
                 relativeHumidity = result.screenRelativeHumidity,
                 dewPoint = result.screenDewPointTemperature,
                 pressure = result.mslp?.toDouble()?.pascals,
-                visibility = result.visibility?.toDouble()
+                visibility = result.visibility?.toDouble()?.meters
             )
         }
     }

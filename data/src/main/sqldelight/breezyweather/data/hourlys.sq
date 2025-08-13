@@ -1,5 +1,6 @@
 import breezyweather.domain.weather.reference.WeatherCode;
 import kotlin.Boolean;
+import org.breezyweather.unit.distance.Distance;
 import org.breezyweather.unit.pressure.Pressure;
 
 CREATE TABLE hourlys(
@@ -49,7 +50,7 @@ CREATE TABLE hourlys(
     dew_point REAL,
     pressure INTEGER AS Pressure,
     cloud_cover INTEGER,
-    visibility REAL,
+    visibility INTEGER AS Distance,
 
     UNIQUE(location_formatted_id, date) ON CONFLICT REPLACE,
     FOREIGN KEY(location_formatted_id) REFERENCES locations (formatted_id)

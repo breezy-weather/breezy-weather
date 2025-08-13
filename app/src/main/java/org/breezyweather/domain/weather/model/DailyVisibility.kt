@@ -19,32 +19,35 @@ package org.breezyweather.domain.weather.model
 import android.content.Context
 import breezyweather.domain.weather.model.DailyVisibility
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.options.unit.DistanceUnit
+import org.breezyweather.common.basic.models.options.unit.getVisibilityDescription
+import org.breezyweather.common.extensions.formatMeasure
+import org.breezyweather.common.extensions.formatValue
+import org.breezyweather.unit.formatting.UnitWidth
 
-fun DailyVisibility.getRangeSummary(context: Context, distanceUnit: DistanceUnit): String? {
+fun DailyVisibility.getRangeSummary(context: Context): String? {
     return if (min == null || max == null) {
         null
     } else if (min == max) {
-        distanceUnit.formatMeasure(context, max!!)
+        max!!.formatMeasure(context)
     } else {
         context.getString(
             R.string.visibility_from_to_number,
-            distanceUnit.formatValue(context, min!!),
-            distanceUnit.formatMeasure(context, max!!)
+            min!!.formatValue(context),
+            max!!.formatMeasure(context)
         )
     }
 }
 
-fun DailyVisibility.getRangeContentDescriptionSummary(context: Context, distanceUnit: DistanceUnit): String? {
+fun DailyVisibility.getRangeContentDescriptionSummary(context: Context): String? {
     return if (min == null || max == null) {
         null
     } else if (min == max) {
-        distanceUnit.formatContentDescription(context, max!!)
+        max!!.formatMeasure(context, unitWidth = UnitWidth.LONG)
     } else {
         context.getString(
             R.string.visibility_from_to_number,
-            distanceUnit.formatValue(context, min!!),
-            distanceUnit.formatContentDescription(context, max!!)
+            min!!.formatValue(context),
+            max!!.formatMeasure(context, unitWidth = UnitWidth.LONG)
         )
     }
 }
@@ -53,8 +56,8 @@ fun DailyVisibility.getRangeDescriptionSummary(context: Context): String? {
     return if (min == null || max == null) {
         null
     } else {
-        val minDescription = DistanceUnit.getVisibilityDescription(context, min)
-        val maxDescription = DistanceUnit.getVisibilityDescription(context, max)
+        val minDescription = getVisibilityDescription(context, min)
+        val maxDescription = getVisibilityDescription(context, max)
 
         if (minDescription == maxDescription) {
             maxDescription

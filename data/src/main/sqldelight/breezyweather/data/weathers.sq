@@ -1,4 +1,5 @@
 import breezyweather.domain.weather.reference.WeatherCode;
+import org.breezyweather.unit.distance.Distance;
 import org.breezyweather.unit.pressure.Pressure;
 
 CREATE TABLE weathers(
@@ -43,9 +44,9 @@ CREATE TABLE weathers(
     relative_humidity REAL,
     dew_point REAL,
     pressure INTEGER AS Pressure,
-    visibility REAL,
+    visibility INTEGER AS Distance,
     cloud_cover INTEGER,
-    ceiling REAL,
+    ceiling INTEGER AS Distance,
     daily_forecast TEXT,
     hourly_forecast TEXT,
 

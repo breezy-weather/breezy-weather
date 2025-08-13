@@ -25,7 +25,6 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringArrayResource
 import androidx.compose.ui.res.stringResource
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.options.unit.DistanceUnit
 import org.breezyweather.common.basic.models.options.unit.PrecipitationUnit
 import org.breezyweather.common.basic.models.options.unit.SpeedUnit
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
@@ -39,6 +38,7 @@ import org.breezyweather.ui.settings.preference.composables.ListPreferenceViewWi
 import org.breezyweather.ui.settings.preference.composables.PreferenceScreen
 import org.breezyweather.ui.settings.preference.listPreferenceItem
 import org.breezyweather.ui.settings.preference.smallSeparatorItem
+import org.breezyweather.unit.distance.DistanceUnit
 import org.breezyweather.unit.formatting.UnitWidth
 import org.breezyweather.unit.pressure.PressureUnit
 
@@ -173,18 +173,18 @@ fun UnitSettingsScreen(
             }
             smallSeparatorItem()
             listPreferenceItem(R.string.settings_units_distance) { id ->
-                val valueArray = stringArrayResource(R.array.distance_unit_values)
-                val nameArray = stringArrayResource(R.array.distance_units).mapIndexed { index, value ->
-                    if (index == 0) {
-                        stringResource(
-                            R.string.parenthesis,
-                            stringResource(R.string.settings_regional_preference),
-                            DistanceUnit.getDefaultUnit(context).getName(context)
-                        )
-                    } else {
-                        value
-                    }
-                }.toTypedArray()
+                val allowedDistanceUnits = DistanceUnit.entries
+                val valueArray = arrayOf("auto") + allowedDistanceUnits.map { it.id }
+                val nameArray = arrayOf(
+                    stringResource(
+                        R.string.parenthesis,
+                        stringResource(R.string.settings_regional_preference),
+                        DistanceUnit.getDefaultUnit(context.currentLocale)
+                            .getDisplayName(context, context.currentLocale, UnitWidth.LONG)
+                    )
+                ) + allowedDistanceUnits.map {
+                    it.getDisplayName(context, context.currentLocale, UnitWidth.LONG)
+                }
                 ListPreferenceViewWithCard(
                     title = stringResource(id),
                     summary = { _, value -> nameArray[valueArray.indexOfFirst { it == value }] },
@@ -193,7 +193,7 @@ fun UnitSettingsScreen(
                     nameArray = nameArray,
                     onValueChanged = { distanceUnitId ->
                         SettingsManager.getInstance(context).distanceUnit = if (distanceUnitId != "auto") {
-                            DistanceUnit.entries.firstOrNull { it.id == distanceUnitId }
+                            DistanceUnit.getUnit(distanceUnitId)
                         } else {
                             null
                         }
@@ -207,8 +207,7 @@ fun UnitSettingsScreen(
             smallSeparatorItem()
             listPreferenceItem(R.string.settings_units_pressure) { id ->
                 val allowedPressureUnits = PressureUnit.entries.filter { it != PressureUnit.PASCAL }
-                val valueArray = arrayOf("auto") +
-                    allowedPressureUnits.map { it.id }
+                val valueArray = arrayOf("auto") + allowedPressureUnits.map { it.id }
                 val nameArray = arrayOf(
                     stringResource(
                         R.string.parenthesis,

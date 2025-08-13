@@ -61,6 +61,7 @@ import org.breezyweather.sources.aemet.json.AemetHourlyResult
 import org.breezyweather.sources.aemet.json.AemetNormalsResult
 import org.breezyweather.sources.aemet.json.AemetStationsResult
 import org.breezyweather.sources.getWindDegree
+import org.breezyweather.unit.distance.Distance.Companion.meters
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
 import retrofit2.Retrofit
 import java.text.SimpleDateFormat
@@ -273,7 +274,7 @@ class AemetService @Inject constructor(
                 relativeHumidity = it.hr,
                 dewPoint = it.tpr,
                 pressure = it.pres?.hectopascals,
-                visibility = it.vis
+                visibility = it.vis?.meters
             )
         }
     }

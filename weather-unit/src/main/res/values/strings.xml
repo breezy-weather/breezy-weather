@@ -8,6 +8,62 @@
     <!-- Value separator -->
     <string name="locale_separator">,\u0020</string>
 
+    <!-- Length units -->
+
+    <!-- Millimeter -->
+    <string name="length_mm_display_name_short">mm</string>
+    <string name="length_mm_display_name_long">@string/length_mm_display_name_short</string>
+    <string name="length_mm_nominative_short">%s mm</string>
+    <string name="length_mm_nominative_long">@string/length_mm_nominative_short</string>
+
+    <!-- Centimeter -->
+    <string name="length_cm_display_name_short">cm</string>
+    <string name="length_cm_display_name_long">@string/length_cm_display_name_short</string>
+    <string name="length_cm_nominative_short">%s cm</string>
+    <string name="length_cm_nominative_long">@string/length_cm_nominative_short</string>
+
+    <!-- Meter -->
+    <string name="length_m_display_name_short">m</string>
+    <string name="length_m_display_name_long">@string/length_m_display_name_short</string>
+    <string name="length_m_nominative_short">%s m</string>
+    <string name="length_m_nominative_long">@string/length_m_nominative_short</string>
+    <string name="length_m2_per_short">%s/m²</string>
+    <string name="length_m2_per_long">@string/length_m_nominative_short</string>
+    <string name="length_m3_per_short">%s/m³</string>
+    <string name="length_m3_per_long">@string/length_m_nominative_short</string>
+
+    <!-- Kilometer -->
+    <string name="length_km_display_name_short">km</string>
+    <string name="length_km_display_name_long">@string/length_km_display_name_short</string>
+    <string name="length_km_nominative_short">%s km</string>
+    <string name="length_km_nominative_long">@string/length_km_nominative_short</string>
+
+    <!-- Inch -->
+    <string name="length_in_display_name_short">in</string>
+    <string name="length_in_display_name_long">@string/length_in_display_name_short</string>
+    <string name="length_in_nominative_short">%s in</string>
+    <string name="length_in_nominative_long">@string/length_in_nominative_short</string>
+
+    <!-- Foot -->
+    <string name="length_ft_display_name_short">ft</string>
+    <string name="length_ft_display_name_long">@string/length_ft_display_name_short</string>
+    <string name="length_ft_nominative_short">%s ft</string>
+    <string name="length_ft_nominative_long">@string/length_ft_nominative_short</string>
+
+    <!-- Mile -->
+    <string name="length_mi_display_name_short">mi</string>
+    <string name="length_mi_display_name_long">@string/length_mi_display_name_short</string>
+    <string name="length_mi_nominative_short">%s mi</string>
+    <string name="length_mi_nominative_long">@string/length_mi_nominative_short</string>
+
+    <!-- Nautical mile -->
+    <string name="length_nmi_display_name_short">nmi</string>
+    <string name="length_nmi_display_name_long">@string/length_nmi_display_name_short</string>
+    <string name="length_nmi_nominative_short">%s nmi</string>
+    <string name="length_nmi_nominative_long">@string/length_nmi_nominative_short</string>
+
+
+
     <!-- Pressure units -->
 
     <!-- Pascal -->

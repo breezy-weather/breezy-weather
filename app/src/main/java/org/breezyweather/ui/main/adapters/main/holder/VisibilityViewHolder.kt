@@ -24,10 +24,12 @@ import org.breezyweather.R
 import org.breezyweather.common.basic.BreezyActivity
 import org.breezyweather.common.basic.models.options.appearance.DetailScreen
 import org.breezyweather.common.basic.models.options.basic.UnitUtils
-import org.breezyweather.common.basic.models.options.unit.DistanceUnit
+import org.breezyweather.common.basic.models.options.unit.getVisibilityDescription
+import org.breezyweather.common.extensions.formatMeasure
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
+import org.breezyweather.unit.formatting.UnitWidth
 
 class VisibilityViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
     LayoutInflater.from(parent.context).inflate(R.layout.container_main_visibility, parent, false)
@@ -47,14 +49,13 @@ class VisibilityViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
         val talkBackBuilder = StringBuilder(context.getString(R.string.visibility))
 
         location.weather!!.current?.visibility?.let { visibility ->
-            val distanceUnit = SettingsManager.getInstance(context).getDistanceUnit(context)
             visibilityValueView.text = UnitUtils.formatUnitsHalfSize(
-                distanceUnit.formatMeasure(context, visibility)
+                visibility.formatMeasure(context)
             )
-            visibilityDescriptionView.text = DistanceUnit.getVisibilityDescription(context, visibility)
+            visibilityDescriptionView.text = getVisibilityDescription(context, visibility)
 
             talkBackBuilder.append(context.getString(R.string.colon_separator))
-            talkBackBuilder.append(distanceUnit.formatContentDescription(context, visibility))
+            talkBackBuilder.append(visibility.formatMeasure(context, unitWidth = UnitWidth.LONG))
             talkBackBuilder.append(context.getString(org.breezyweather.unit.R.string.locale_separator))
             talkBackBuilder.append(visibilityValueView.text)
         }

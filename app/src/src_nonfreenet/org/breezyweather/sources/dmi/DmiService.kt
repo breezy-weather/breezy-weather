@@ -48,6 +48,7 @@ import org.breezyweather.sources.dmi.json.DmiResult
 import org.breezyweather.sources.dmi.json.DmiTimeserie
 import org.breezyweather.sources.dmi.json.DmiWarning
 import org.breezyweather.sources.dmi.json.DmiWarningResult
+import org.breezyweather.unit.distance.Distance.Companion.meters
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
 import retrofit2.Retrofit
 import java.util.Objects
@@ -212,7 +213,7 @@ class DmiService @Inject constructor(
                 ),
                 relativeHumidity = result.humidity,
                 pressure = result.pressure?.hectopascals,
-                visibility = result.visibility
+                visibility = result.visibility?.meters
             )
         }
     }

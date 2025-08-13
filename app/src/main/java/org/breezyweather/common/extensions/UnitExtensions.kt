@@ -18,11 +18,55 @@ package org.breezyweather.common.extensions
 
 import android.content.Context
 import org.breezyweather.domain.settings.SettingsManager
+import org.breezyweather.unit.distance.Distance
 import org.breezyweather.unit.duration.format
 import org.breezyweather.unit.formatting.UnitWidth
 import org.breezyweather.unit.pressure.Pressure
 import kotlin.time.Duration
 import kotlin.time.DurationUnit
+
+/**
+ * TODO: Lot of duplicates code in this page
+ *  Technically, we can do a <T : WeatherValue> extension, but we need to handle how we are getting the user-preferred
+ *  unit
+ */
+
+/**
+ * Convenient format function with parameters filled for our app
+ */
+fun Distance.formatMeasure(
+    context: Context,
+    valueWidth: UnitWidth = UnitWidth.SHORT,
+    unitWidth: UnitWidth = UnitWidth.SHORT,
+): String {
+    val settings = SettingsManager.getInstance(context)
+    return format(
+        context = context,
+        unit = settings.getDistanceUnit(context),
+        valueWidth = valueWidth,
+        unitWidth = unitWidth,
+        locale = context.currentLocale,
+        useNumberFormatter = settings.useNumberFormatter,
+        useMeasureFormat = settings.useMeasureFormat
+    )
+}
+
+/**
+ * Convenient format function with parameters filled for our app
+ */
+fun Distance.formatValue(
+    context: Context,
+    width: UnitWidth = UnitWidth.SHORT,
+): String {
+    val settings = SettingsManager.getInstance(context)
+    return formatValue(
+        unit = settings.getDistanceUnit(context),
+        width = width,
+        locale = context.currentLocale,
+        useNumberFormatter = settings.useNumberFormatter,
+        useMeasureFormat = settings.useMeasureFormat
+    )
+}
 
 /**
  * Convenient format function with parameters filled for our app

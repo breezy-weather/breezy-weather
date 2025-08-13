@@ -25,8 +25,8 @@ import breezyweather.domain.location.model.Location
 import org.breezyweather.R
 import org.breezyweather.common.basic.BreezyActivity
 import org.breezyweather.common.basic.models.options.appearance.DetailScreen
-import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.formatMeasure
+import org.breezyweather.common.extensions.formatValue
 import org.breezyweather.common.extensions.getThemeColor
 import org.breezyweather.ui.common.widgets.trend.TrendRecyclerView
 import org.breezyweather.ui.common.widgets.trend.chart.PolylineAndHistogramView
@@ -46,10 +46,8 @@ class HourlyPressureAdapter(
     activity: BreezyActivity,
     location: Location,
     provider: ResourceProvider,
-    unit: PressureUnit,
 ) : AbsHourlyTrendAdapter(activity, location) {
     private val mResourceProvider: ResourceProvider = provider
-    private val mPressureUnit: PressureUnit = unit
     private val mPressures: Array<Float?>
     private var mHighestPressure: Float? = null
     private var mLowestPressure: Float? = null
@@ -79,7 +77,7 @@ class HourlyPressureAdapter(
             mPolylineAndHistogramView.setData(
                 buildPressureArrayForItem(mPressures, position),
                 null,
-                hourly.pressure?.formatValue(mPressureUnit, UnitWidth.NARROW, activity.currentLocale),
+                hourly.pressure?.formatValue(activity, UnitWidth.NARROW),
                 null,
                 mHighestPressure,
                 mLowestPressure,
@@ -197,7 +195,7 @@ class HourlyPressureAdapter(
         keyLineList.add(
             TrendRecyclerView.KeyLine(
                 PressureUnit.NORMAL.toFloat(),
-                PressureUnit.NORMAL.pascals.formatValue(mPressureUnit, UnitWidth.NARROW, activity.currentLocale),
+                PressureUnit.NORMAL.pascals.formatValue(activity, UnitWidth.NARROW),
                 activity.getString(R.string.temperature_normal_short),
                 TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
             )

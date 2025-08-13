@@ -51,6 +51,7 @@ import org.breezyweather.sources.openweather.json.OpenWeatherAirPollution
 import org.breezyweather.sources.openweather.json.OpenWeatherAirPollutionResult
 import org.breezyweather.sources.openweather.json.OpenWeatherForecast
 import org.breezyweather.sources.openweather.json.OpenWeatherForecastResult
+import org.breezyweather.unit.distance.Distance.Companion.meters
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
 import retrofit2.Retrofit
 import java.util.Date
@@ -185,7 +186,7 @@ class OpenWeatherService @Inject constructor(
             relativeHumidity = currentResult.main?.humidity?.toDouble(),
             pressure = currentResult.main?.pressure?.hectopascals,
             cloudCover = currentResult.clouds?.all,
-            visibility = currentResult.visibility?.toDouble()
+            visibility = currentResult.visibility?.toDouble()?.meters
         )
     }
 
@@ -238,7 +239,7 @@ class OpenWeatherService @Inject constructor(
                 relativeHumidity = result.main?.humidity?.toDouble(),
                 pressure = result.main?.pressure?.hectopascals,
                 cloudCover = result.clouds?.all,
-                visibility = result.visibility?.toDouble()
+                visibility = result.visibility?.toDouble()?.meters
             )
         }
     }

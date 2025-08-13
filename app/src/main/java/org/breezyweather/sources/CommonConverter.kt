@@ -44,7 +44,6 @@ import breezyweather.domain.weather.wrappers.WeatherWrapper
 import org.breezyweather.common.basic.models.options.basic.UnitUtils
 import org.breezyweather.common.basic.models.options.unit.CLOUD_COVER_BKN
 import org.breezyweather.common.basic.models.options.unit.CLOUD_COVER_FEW
-import org.breezyweather.common.basic.models.options.unit.DistanceUnit
 import org.breezyweather.common.basic.models.options.unit.PrecipitationIntensityUnit
 import org.breezyweather.common.basic.models.options.unit.PrecipitationUnit
 import org.breezyweather.common.basic.models.options.unit.SpeedUnit
@@ -54,6 +53,8 @@ import org.breezyweather.common.extensions.getIsoFormattedDate
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.domain.weather.index.PollutantIndex
 import org.breezyweather.ui.theme.weatherView.WeatherViewController
+import org.breezyweather.unit.distance.Distance
+import org.breezyweather.unit.distance.Distance.Companion.meters
 import org.breezyweather.unit.duration.toValidDailyOrNull
 import org.breezyweather.unit.duration.toValidHalfDayOrNull
 import org.breezyweather.unit.pressure.Pressure
@@ -70,7 +71,6 @@ import kotlin.math.ln
 import kotlin.math.log10
 import kotlin.math.pow
 import kotlin.math.roundToInt
-import kotlin.math.roundToLong
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.hours
@@ -226,7 +226,7 @@ internal fun computeMissingHourlyData(
             ice = UnitUtils.validatePercent(hourly.precipitationProbability!!.ice)
         )
         val cloudCover = UnitUtils.validatePercent(hourly.cloudCover)
-        val visibility = DistanceUnit.validateValue(hourly.visibility)
+        val visibility = hourly.visibility?.toValidOrNull()
         val weatherCode = hourly.weatherCode ?: getHalfDayWeatherCodeFromHourlyList(
             listOf(hourly.toHourly()),
             precipitation,
@@ -954,12 +954,12 @@ private fun getHalfDayWeatherCodeFromHourlyList(
     maxPrecipitationProbability: PrecipitationProbability?,
     maxWind: Wind?,
     avgCloudCover: Int?,
-    avgVisibility: Double?,
+    avgVisibility: Distance?,
 ): WeatherCode? {
     val minPrecipIntensity = 1.0 // in mm
     val minPrecipProbability = 30.0 // in %
-    val maxVisibilityHaze = 5000 // in m
-    val maxVisibilityFog = 1000 // in m
+    val maxVisibilityHaze = 5000.meters
+    val maxVisibilityFog = 1000.meters
     val maxWindSpeedWindy = 10.0 // in m/s
 
     // If total precipitation is greater than 1 mm
@@ -1232,9 +1232,9 @@ private fun getHalfDayCloudCoverFromHourlyList(
 
 private fun getHalfDayAvgVisibilityFromHourlyList(
     halfDayHourlyList: List<Hourly>,
-): Double? {
+): Distance? {
     // average() would return NaN when called for an empty list
-    return halfDayHourlyList.mapNotNull { it.visibility }.takeIf { it.isNotEmpty() }?.average()
+    return halfDayHourlyList.mapNotNull { it.visibility?.inMeters }.takeIf { it.isNotEmpty() }?.average()?.meters
 }
 
 /**
@@ -1366,7 +1366,7 @@ fun getDailyPressure(
 
     return DailyPressure(
         average = initialDailyPressure?.average?.toValidOrNull()
-            ?: values.map { it.value }.average().roundToLong().pascals,
+            ?: values.map { it.value }.average().pascals,
         min = initialDailyPressure?.min?.toValidOrNull()
             ?: values.minOfOrNull { it.value }?.pascals,
         max = initialDailyPressure?.max?.toValidOrNull()
@@ -1392,17 +1392,17 @@ fun getDailyCloudCover(
 
 fun getDailyVisibility(
     initialDailyVisibility: DailyVisibility?,
-    values: List<Double>?,
+    values: List<Distance>?,
 ): DailyVisibility? {
     if (values.isNullOrEmpty()) return initialDailyVisibility
 
     return DailyVisibility(
-        average = DistanceUnit.validateValue(initialDailyVisibility?.average)
-            ?: values.average(),
-        min = DistanceUnit.validateValue(initialDailyVisibility?.min)
-            ?: values.min(),
-        max = DistanceUnit.validateValue(initialDailyVisibility?.max)
-            ?: values.max()
+        average = initialDailyVisibility?.average?.toValidOrNull()
+            ?: values.map { it.value }.average().meters,
+        min = initialDailyVisibility?.min?.toValidOrNull()
+            ?: values.minOfOrNull { it.value }?.meters,
+        max = initialDailyVisibility?.max?.toValidOrNull()
+            ?: values.maxOfOrNull { it.value }?.meters
     )
 }
 
@@ -1612,8 +1612,8 @@ internal fun completeCurrentFromHourlyData(
         dewPoint = newDewPoint,
         pressure = newCurrent.pressure?.toValidOrNull() ?: hourly.pressure,
         cloudCover = UnitUtils.validatePercent(newCurrent.cloudCover) ?: hourly.cloudCover,
-        visibility = DistanceUnit.validateValue(newCurrent.visibility) ?: hourly.visibility,
-        ceiling = newCurrent.ceiling?.ensurePositive()
+        visibility = newCurrent.visibility?.toValidOrNull() ?: hourly.visibility,
+        ceiling = newCurrent.ceiling?.toValidOrNull()
     )
 }
 

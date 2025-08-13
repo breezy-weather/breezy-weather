@@ -187,7 +187,7 @@ value class Pressure internal constructor(
      * Returns a string representation of this pressure value
      */
     override fun toString(): String {
-        return toString(PressureUnit.PASCAL)
+        return toString(storageUnit)
     }
 
     /**

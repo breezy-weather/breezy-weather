@@ -87,11 +87,9 @@ enum class DetailScreen(
                                 (it.cloudCover ?: 0) > 0
                             } == true
                         TAG_VISIBILITY -> location.weather?.dailyForecast?.any {
-                            (it.visibility?.min ?: 0.0) > 0.0 || (it.visibility?.max ?: 0.0) > 0.0
+                            it.visibility?.min != null || it.visibility?.max != null
                         } == true ||
-                            location.weather?.hourlyForecast?.any {
-                                (it.visibility ?: 0.0) > 0.0
-                            } == true
+                            location.weather?.hourlyForecast?.any { it.visibility != null } == true
                         TAG_SUN_MOON -> true // Should always be computed, no need to check
                     }
                 }.toImmutableList()

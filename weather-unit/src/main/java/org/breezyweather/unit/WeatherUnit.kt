@@ -70,11 +70,6 @@ interface WeatherUnit {
      */
     val decimals: UnitDecimals
 
-    /**
-     * When displaying values of this unit in a chart, how much should each step on the Y-axis be separated of
-     */
-    val chartStep: Double
-
     fun getDisplayName(
         context: Context,
         locale: Locale = Locale.getDefault(),
@@ -86,7 +81,7 @@ interface WeatherUnit {
             measureUnit != null &&
             perMeasureUnit == null
         ) {
-            MeasureFormat
+            return MeasureFormat
                 .getInstance(locale, unitWidth.measureFormatWidth)
                 .getUnitDisplayName(measureUnit)
         }

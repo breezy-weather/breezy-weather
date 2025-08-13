@@ -1,5 +1,6 @@
 import breezyweather.domain.weather.reference.WeatherCode;
 import kotlin.time.Duration;
+import org.breezyweather.unit.distance.Distance;
 import org.breezyweather.unit.pressure.Pressure;
 
 CREATE TABLE dailys(
@@ -149,9 +150,9 @@ CREATE TABLE dailys(
     cloud_cover_max INTEGER,
 
     -- visibility
-    visibility_average REAL,
-    visibility_min REAL,
-    visibility_max REAL,
+    visibility_average INTEGER AS Distance,
+    visibility_min INTEGER AS Distance,
+    visibility_max INTEGER AS Distance,
 
     UNIQUE(location_formatted_id, date) ON CONFLICT REPLACE,
     FOREIGN KEY(location_formatted_id) REFERENCES locations (formatted_id)

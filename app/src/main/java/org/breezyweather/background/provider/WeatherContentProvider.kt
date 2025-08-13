@@ -54,13 +54,13 @@ import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.json.Json
 import org.breezyweather.BuildConfig
-import org.breezyweather.common.basic.models.options.unit.DistanceUnit
 import org.breezyweather.common.basic.models.options.unit.PollenUnit
 import org.breezyweather.common.basic.models.options.unit.PrecipitationIntensityUnit
 import org.breezyweather.common.basic.models.options.unit.PrecipitationUnit
 import org.breezyweather.common.basic.models.options.unit.SpeedUnit
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.common.basic.models.options.unit.getCloudCoverDescription
+import org.breezyweather.common.basic.models.options.unit.getVisibilityDescription
 import org.breezyweather.common.extensions.roundDecimals
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.PollenIndexSource
@@ -104,6 +104,8 @@ import org.breezyweather.domain.weather.model.validPollens
 import org.breezyweather.domain.weather.model.validPollutants
 import org.breezyweather.sources.SourceManager
 import org.breezyweather.sources.getFeatureSource
+import org.breezyweather.unit.distance.Distance
+import org.breezyweather.unit.distance.DistanceUnit
 import org.breezyweather.unit.pressure.Pressure
 import org.breezyweather.unit.pressure.PressureUnit
 import kotlin.math.roundToInt
@@ -857,14 +859,14 @@ class WeatherContentProvider : ContentProvider() {
     }
 
     private fun getDistanceUnit(
-        distance: Double?,
+        distance: Distance?,
         distanceUnit: DistanceUnit,
     ): BreezyUnit? {
         return distance?.let {
             BreezyUnit(
-                value = distanceUnit.convertUnit(it).roundDecimals(distanceUnit.precision),
+                value = it.toDouble(distanceUnit).roundDecimals(distanceUnit.decimals.long),
                 unit = distanceUnit.id,
-                description = DistanceUnit.getVisibilityDescription(context!!, it)
+                description = getVisibilityDescription(context!!, it)
             )
         }
     }

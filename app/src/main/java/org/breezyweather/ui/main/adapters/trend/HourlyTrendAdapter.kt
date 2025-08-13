@@ -96,15 +96,13 @@ class HourlyTrendAdapter(
                 HourlyTrendDisplay.TAG_PRESSURE -> HourlyPressureAdapter(
                     activity,
                     location,
-                    provider,
-                    SettingsManager.getInstance(activity).getPressureUnit(activity)
+                    provider
                 )
                 HourlyTrendDisplay.TAG_CLOUD_COVER -> HourlyCloudCoverAdapter(activity, location)
                 HourlyTrendDisplay.TAG_VISIBILITY -> HourlyVisibilityAdapter(
                     activity,
                     location,
-                    provider,
-                    SettingsManager.getInstance(activity).getDistanceUnit(activity)
+                    provider
                 )
             }
         }.filter {

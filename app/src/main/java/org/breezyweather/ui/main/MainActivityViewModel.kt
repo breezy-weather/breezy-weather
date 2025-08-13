@@ -307,7 +307,7 @@ class MainActivityViewModel @Inject constructor(
 
     private fun currentLocationIsValid() =
         currentLocation.value?.location?.weather?.isValid(
-            SettingsManager.getInstance(getApplication()).updateInterval.interval
+            SettingsManager.getInstance(getApplication()).updateInterval.validity
         ) ?: false
 
     // update.

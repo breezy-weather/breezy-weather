@@ -28,6 +28,7 @@ import breezyweather.data.AndroidDatabaseHandler
 import breezyweather.data.Dailys
 import breezyweather.data.Database
 import breezyweather.data.DatabaseHandler
+import breezyweather.data.DistanceColumnAdapter
 import breezyweather.data.DurationColumnAdapter
 import breezyweather.data.Hourlys
 import breezyweather.data.Locations
@@ -89,7 +90,9 @@ class DbModule {
             ),
             weathersAdapter = Weathers.Adapter(
                 weather_codeAdapter = WeatherCodeColumnAdapter,
-                pressureAdapter = PressureColumnAdapter
+                pressureAdapter = PressureColumnAdapter,
+                visibilityAdapter = DistanceColumnAdapter,
+                ceilingAdapter = DistanceColumnAdapter
             ),
             dailysAdapter = Dailys.Adapter(
                 daytime_weather_codeAdapter = WeatherCodeColumnAdapter,
@@ -107,11 +110,15 @@ class DbModule {
                 sunshine_durationAdapter = DurationColumnAdapter,
                 pressure_averageAdapter = PressureColumnAdapter,
                 pressure_maxAdapter = PressureColumnAdapter,
-                pressure_minAdapter = PressureColumnAdapter
+                pressure_minAdapter = PressureColumnAdapter,
+                visibility_averageAdapter = DistanceColumnAdapter,
+                visibility_maxAdapter = DistanceColumnAdapter,
+                visibility_minAdapter = DistanceColumnAdapter
             ),
             hourlysAdapter = Hourlys.Adapter(
                 weather_codeAdapter = WeatherCodeColumnAdapter,
-                pressureAdapter = PressureColumnAdapter
+                pressureAdapter = PressureColumnAdapter,
+                visibilityAdapter = DistanceColumnAdapter
             ),
             alertsAdapter = Alerts.Adapter(
                 severityAdapter = AlertSeverityColumnAdapter
