@@ -777,8 +777,6 @@
     <string name="settings_modules_live_wallpaper_error">Ne povis lanĉi tapeton elektilo. Vi povas ankoraŭ ebligi %s tapeton elektante “Live Wallpaper” en via hejma ekrana tapetelekto.</string>
     <string name="settings_modules_notification_permission_summary">Devata montri la sciigan fenestraĵo. %s</string>
     <string name="settings_debug_notification_permission">Bezonata por sciigi pri kraŝaj protokoloj kaj nesukcesaj veteraj ĝisdatigoj. %s</string>
-    <string name="unit_mum">μm</string>
-    <string name="unit_mum_voice">Mikrometroj</string>
     <string name="common_weather_text_tornado">Tornado</string>
     <string name="common_weather_text_blowing_snow">Blovanta neĝo</string>
     <string name="common_weather_text_drifting_snow">Drivanta neĝo</string>

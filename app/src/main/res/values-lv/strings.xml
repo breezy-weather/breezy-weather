@@ -780,8 +780,6 @@
     <string name="settings_appearance_dark_mode_locations_day_night">Ņemt vērā dienu/nakti</string>
     <string name="settings_appearance_dark_mode_locations_dark">Vienmēr tumšs, kad lietotnē ir tumšais izskats</string>
     <string name="unit_bft_display_name">Boforts</string>
-    <string name="unit_mum">µm</string>
-    <string name="unit_mum_voice">Mikrometri</string>
     <string name="message_incompatible_times_content">Maini savu prognožu vai gaisa kvalitātes avotu, lai laiks sakristu!</string>
     <string name="humidity_from_to_number">%1$s līdz %2$s</string>
     <string name="dew_point_from_to_number">%1$s līdz %2$s</string>

@@ -733,8 +733,6 @@
     <string name="settings_appearance_section_regional">Språk och region</string>
     <string name="settings_appearance_section_theme">Tema</string>
     <string name="unit_bft_nominative">%s Bft</string>
-    <string name="unit_mum">µm</string>
-    <string name="unit_mum_voice">Mikrometer</string>
     <string name="about_update_check_eol">Denna Android-version stöds inte längre</string>
     <string name="chart_maximum_value">Maxvärde</string>
     <string name="settings_appearance_dark_mode_locations_day_night">Följ dag/natt</string>

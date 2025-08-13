@@ -716,12 +716,10 @@
     <string name="wind_gusts_short">Séideadh</string>
     <string name="air_quality_level_1_harmless_exposure">&gt; 1 bhliain</string>
     <string name="visibility_very_poor">An-lag</string>
-    <string name="unit_mum_voice">Micriméadair</string>
     <string name="visibility_about_description">Insíonn infheictheacht duit cé chomh fada uait is féidir leat rudaí cosúil le foirgnimh agus cnoic a fheiceáil go soiléir. Is féidir le deascadh, ceo, deannach, deatach nó ceo mór tionchar a imirt ar infheictheacht.</string>
     <string name="visibility_from_to_number">%1$s go %2$s</string>
     <string name="visibility_from_to_description">%1$s go %2$s</string>
     <string name="visibility_moderate">Measartha</string>
-    <string name="unit_mum">µm</string>
     <string name="data_sources">Foinsí sonraí</string>
     <string name="air_quality_level_3_harmless_exposure">&lt; 1 lá</string>
     <string name="air_quality_level_6_harmless_exposure">&lt; 1 nóiméad</string>

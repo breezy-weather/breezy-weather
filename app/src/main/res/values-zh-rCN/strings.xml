@@ -802,8 +802,6 @@
     <string name="visibility_perfectly_clear">非常清楚</string>
     <string name="cloud_cover_about">关于云量</string>
     <string name="label_description">描述</string>
-    <string name="unit_mum">微米</string>
-    <string name="unit_mum_voice">微米</string>
     <string name="air_quality_co_sources">通常源自碳基燃料的不完全燃烧，比如发生在汽车引擎和电厂中的那些。</string>
     <string name="air_quality_pm_sources">主要来源是燃烧过程（电厂、室内加热、汽车排放、野火）、机械过程（施工、矿灰、农业）和生物微粒（花粉、模具、细菌、病毒）。</string>
     <string name="air_quality_o3_sources">臭氧是在大气中的氧气、氮氧化物、一氧化碳和有机化合物间的化学反应中创造的，存在于日光中。</string>

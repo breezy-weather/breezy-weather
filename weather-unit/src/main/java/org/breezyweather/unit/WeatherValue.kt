@@ -19,11 +19,8 @@ package org.breezyweather.unit
 import android.content.Context
 import android.icu.number.NumberFormatter
 import android.icu.text.MeasureFormat
-import android.os.Build
 import org.breezyweather.unit.formatting.UnitWidth
 import org.breezyweather.unit.formatting.format
-import org.breezyweather.unit.formatting.formatWithMeasureFormat
-import org.breezyweather.unit.formatting.formatWithNumberFormatter
 import java.util.Locale
 
 interface WeatherValue<T : WeatherUnit> {
@@ -72,36 +69,9 @@ interface WeatherValue<T : WeatherUnit> {
         useNumberFormatter: Boolean = true,
         useMeasureFormat: Boolean = true,
     ): String {
-        if (unit.measureUnit != null &&
-            (unit.perMeasureUnit == null || Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) &&
-            (useNumberFormatter || useMeasureFormat)
-        ) {
-            val convertedValue = toDouble(unit)
-            // LogHelper.log(msg = "Formatting with ICU ${enum.id}: ${enum.measureUnit} per ${enum.perMeasureUnit}")
-
-            return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R && useNumberFormatter) {
-                unit.measureUnit!!.formatWithNumberFormatter(
-                    locale = locale,
-                    value = convertedValue,
-                    perUnit = unit.perMeasureUnit,
-                    precision = unit.getPrecision(valueWidth),
-                    numberFormatterWidth = unitWidth.numberFormatterWidth!!
-                )
-            } else {
-                unit.measureUnit!!.formatWithMeasureFormat(
-                    locale = locale,
-                    value = convertedValue,
-                    perUnit = unit.perMeasureUnit,
-                    precision = unit.getPrecision(valueWidth),
-                    measureFormatWidth = unitWidth.measureFormatWidth!!
-                )
-            }
-        }
-
-        // LogHelper.log(msg = "Not formatting with ICU ${enum.id} in ${context.currentLocale}")
-        return formatWithAndroidTranslations(
+        return unit.format(
             context = context,
-            unit = unit,
+            value = toDouble(unit),
             valueWidth = valueWidth,
             unitWidth = unitWidth,
             locale = locale,
@@ -123,36 +93,21 @@ interface WeatherValue<T : WeatherUnit> {
     fun formatWithAndroidTranslations(
         context: Context,
         unit: T,
+        value: Number,
         valueWidth: UnitWidth = UnitWidth.SHORT,
         unitWidth: UnitWidth = UnitWidth.SHORT,
         locale: Locale = Locale.getDefault(),
         useNumberFormatter: Boolean = true,
         useMeasureFormat: Boolean = true,
     ): String {
-        val formattingWithoutPer = context.getString(
-            when (unitWidth) {
-                UnitWidth.SHORT -> unit.nominative.short
-                UnitWidth.LONG -> unit.nominative.long
-                UnitWidth.NARROW -> unit.nominative.narrow
-            },
-            formatValue(
-                unit = unit,
-                width = valueWidth,
-                locale = locale,
-                useNumberFormatter = useNumberFormatter,
-                useMeasureFormat = useMeasureFormat
-            )
+        return unit.formatWithAndroidTranslations(
+            context = context,
+            value = value,
+            valueWidth = valueWidth,
+            unitWidth = unitWidth,
+            locale = locale,
+            useNumberFormatter = useNumberFormatter,
+            useMeasureFormat = useMeasureFormat
         )
-
-        return unit.per?.let {
-            context.getString(
-                when (unitWidth) {
-                    UnitWidth.SHORT -> it.short
-                    UnitWidth.LONG -> it.long
-                    UnitWidth.NARROW -> it.narrow
-                },
-                formattingWithoutPer
-            )
-        } ?: formattingWithoutPer
     }
 }

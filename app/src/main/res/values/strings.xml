@@ -901,8 +901,6 @@
     <string name="unit_mgpcum_voice">Milligrams per cubic meter</string>
     <string name="unit_ppcm">/m³</string>
     <string name="unit_ppcm_voice">Per cubic meter</string>
-    <string name="unit_mum">µm</string>
-    <string name="unit_mum_voice">Micrometers</string>
     <!-- Notifications -->
     <string name="notification_refreshed_at">Refreshed at</string>
     <string name="notification_channel_alerts">Alerts</string>

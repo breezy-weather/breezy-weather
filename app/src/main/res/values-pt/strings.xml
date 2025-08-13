@@ -809,8 +809,6 @@
     <string name="settings_appearance_section_theme">Tema</string>
     <string name="unit_bft_display_name">Beaufort</string>
     <string name="unit_bft_nominative">força %s</string>
-    <string name="unit_mum">µm</string>
-    <string name="unit_mum_voice">Micrômetros</string>
     <string name="about_update_check_eol">Esta versão do Android não é mais compatível</string>
     <string name="precipitation_total_day">Precipitação de dia</string>
     <string name="precipitation_total_night">Precipitação noturna</string>

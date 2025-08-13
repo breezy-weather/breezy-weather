@@ -783,8 +783,6 @@
     <string name="unit_mgpcum_voice">Milligrammes par mètre cube</string>
     <string name="unit_ppcm">/m³</string>
     <string name="unit_ppcm_voice">Par mètre cube</string>
-    <string name="unit_mum">µm</string>
-    <string name="unit_mum_voice">Micromètres</string>
     <string name="notification_channel_alerts">Vigilances</string>
     <string name="about_matrix">Salon Matrix</string>
     <!-- Content provider -->

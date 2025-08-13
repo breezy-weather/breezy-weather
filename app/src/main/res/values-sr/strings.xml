@@ -738,8 +738,6 @@
     <string name="label_description">Опис</string>
     <string name="label_expanded">Проширено</string>
     <string name="label_collapsed">Склопљено</string>
-    <string name="unit_mum">µm</string>
-    <string name="unit_mum_voice">Микрометри</string>
     <string name="ephemeris_about_dawn">Зора је када се прва видљива светлост дана појави пре изласка сунца.</string>
     <string name="ephemeris_about_dusk">Сумрак је најмрачнија фаза сумрака пре него што нестане последња видљива светлост.</string>
     <string name="wind_origin">Од %s</string>

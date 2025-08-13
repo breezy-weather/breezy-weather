@@ -719,8 +719,6 @@
     <string name="visibility_clear">ชัดเจน</string>
     <string name="visibility_perfectly_clear">ชัดเจนมาก</string>
     <string name="cloud_cover_about">เกี่ยวกับส่วนเมฆบัง</string>
-    <string name="unit_mum">มค.ม.</string>
-    <string name="unit_mum_voice">ไมโครเมตร</string>
     <string name="data_modified">ข้อมูลนี้ได้รับการแก้ไขจากต้นฉบับโดย %s เพื่อการคำนวณหรือการประมาณข้อมูลที่ขาดหายไปเป็นหลัก</string>
     <string name="data_sources">แหล่งที่มาของข้อมูล</string>
     <string name="label_description">รายละเอียด</string>

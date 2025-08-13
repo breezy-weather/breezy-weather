@@ -671,8 +671,6 @@
     <string name="visibility_very_poor">Foarte scăzută</string>
     <string name="data_modified">Acest material a fost modificat din original de %s în principal pentru a calcula sau extrapola datele lipsă.</string>
     <string name="data_sources">Surse de date</string>
-    <string name="unit_mum_voice">Micrometri</string>
-    <string name="unit_mum">µm</string>
     <string name="label_description">Descriere</string>
     <string name="cloud_cover_about_description">Acoperirea de nori se referă la procentul de cer acoperit de nori în medie. Acoperirea de nori este corelată cu durata de strălucire a soarelui.</string>
     <string name="cloud_cover_about">Despre acoperirea de nori</string>

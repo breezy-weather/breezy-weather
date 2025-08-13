@@ -792,12 +792,10 @@
     <string name="conditions">天氣概況</string>
     <string name="air_quality_co_sources">通常於碳燃料的不完全燃燒過程中產生，如汽車引擎和發電廠等。</string>
     <string name="ephemeris_about">關於日月出沒時間</string>
-    <string name="unit_mum_voice">微米</string>
     <string name="uv_index_time_to_burn_explanations">確實曬傷時間將取決於海拔、有否水面或雪地等反射面、膚色、及有否使用防曬。</string>
     <string name="air_quality_level_1_harmless_exposure">&gt; 1 年</string>
     <string name="air_quality_o3_sources">臭氧是大氣中的氧氣、氮氧化物、一氧化碳和有機或合物經過太陽照射後所引起的化學反應而產生的。</string>
     <string name="chart_maximum_value">最大值</string>
-    <string name="unit_mum">µm</string>
     <string name="label_description">描述</string>
     <string name="uv_index_about_description">紫外線指數是指太陽紫外線輻射的強度。指數越高，意味著紫外線越快並越容易導致曬傷、皮膚癌及眼睛傷害。</string>
     <string name="air_quality_level_4_harmless_exposure">&lt; 1 小時</string>

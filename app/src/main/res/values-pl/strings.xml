@@ -743,8 +743,6 @@
     <string name="label_description">Opis</string>
     <string name="label_expanded">Rozszerzony</string>
     <string name="label_collapsed">Zwinięty</string>
-    <string name="unit_mum">µm</string>
-    <string name="unit_mum_voice">Mikrometry</string>
     <string name="air_quality_short">Jakość powietrza</string>
     <string name="ephemeris_sun">Słońce</string>
     <string name="ephemeris_moon">Księżyc</string>

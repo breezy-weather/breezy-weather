@@ -21,6 +21,8 @@ import android.icu.number.NumberFormatter
 import android.icu.number.Precision
 import android.icu.text.NumberFormat
 import android.os.Build
+import java.text.DecimalFormat
+import java.text.DecimalFormatSymbols
 import java.util.Locale
 
 /**
@@ -48,10 +50,8 @@ fun Number.format(
             .format(this)
             .toString()
     } else {
-        if (decimals == 0) {
-            String.format(locale, if (showSign) "%+d" else "%d", this)
-        } else {
-            String.format(locale, if (showSign) "%+." + decimals + "f" else "%." + decimals + "f", this)
-        }
+        return DecimalFormat(if (showSign) "+0" else "0", DecimalFormatSymbols.getInstance(locale))
+            .apply { setMaximumFractionDigits(decimals) }
+            .format(this)
     }
 }

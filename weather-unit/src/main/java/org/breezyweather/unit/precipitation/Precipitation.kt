@@ -315,6 +315,7 @@ value class Precipitation internal constructor(
         useNumberFormatter: Boolean = true,
         useMeasureFormat: Boolean = true,
     ): String {
+        val convertedValue = toDouble(unit)
         return context.getString(
             when (unitWidth) {
                 UnitWidth.SHORT -> R.string.duration_hr_per_short
@@ -324,6 +325,7 @@ value class Precipitation internal constructor(
             formatWithAndroidTranslations(
                 context = context,
                 unit = unit,
+                value = convertedValue,
                 valueWidth = valueWidth,
                 unitWidth = unitWidth,
                 locale = locale,

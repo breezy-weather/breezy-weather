@@ -798,8 +798,6 @@
     <string name="visibility_clear">清晰</string>
     <string name="visibility_perfectly_clear">非常清晰</string>
     <string name="label_description">描述</string>
-    <string name="unit_mum">µm</string>
-    <string name="unit_mum_voice">微米</string>
     <string name="chart_not_enough_hourly_data">逐時資料不足以顯示當日圖表。</string>
     <string name="uv_index_about_description">紫外線指數是指太陽紫外線輻射的強度。指數越高，意味著紫外線越快並越容易導致曬傷、皮膚癌及眼睛傷害。</string>
     <string name="air_quality_level_5_harmless_exposure">&lt; 數分鐘</string>

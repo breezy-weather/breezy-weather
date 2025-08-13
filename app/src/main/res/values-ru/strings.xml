@@ -739,8 +739,6 @@
     <string name="label_description">Описание</string>
     <string name="label_expanded">Расширенный</string>
     <string name="label_collapsed">Свёрнутый</string>
-    <string name="unit_mum">мкм</string>
-    <string name="unit_mum_voice">Микрометры</string>
     <string name="ephemeris_about_dawn">Рассвет — это когда перед восходом солнца появляется первый видимый свет дня.</string>
     <string name="ephemeris_about_dusk">Сумерки — это самая тёмная стадия между светом и ночью, перед тем как исчезает последний видимый свет.</string>
     <string name="wind_origin">От %s</string>

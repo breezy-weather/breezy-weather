@@ -759,8 +759,6 @@
     <string name="settings_debug_notification_permission">Необходимо е за уведомления за логове на сривовете и неуспешни актуализации на времето. %s</string>
     <string name="unit_bft_display_name">Бофорт</string>
     <string name="unit_bft_nominative">%s Бфт</string>
-    <string name="unit_mum">µm</string>
-    <string name="unit_mum_voice">Микрометри</string>
     <string name="about_update_check_eol">Тази версия на Android вече не се поддържа</string>
     <string name="common_weather_text_drifting_snow">Наноси сняг</string>
     <string name="common_weather_text_glaze">Заледяване</string>

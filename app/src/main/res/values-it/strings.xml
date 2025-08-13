@@ -706,8 +706,6 @@
     <string name="content_provider_permission_description">ottenere informazioni meteo da Breezy Weather, comprese le coordinate delle tue posizioni, come la tua posizione attuale se l’hai aggiunta</string>
     <string name="common_weather_text_mostly_cloudy">Per lo più nuvoloso</string>
     <string name="content_provider_permission_label">Leggere dati Breezy Weather</string>
-    <string name="unit_mum_voice">Micrometri</string>
-    <string name="unit_mum">µm</string>
     <string name="unit_bft_display_name">Beaufort</string>
     <string name="broadcast_source_breezy_weather_update_notifier">Notifica di aggiornamento posizione %s</string>
     <string name="action_add_as_location">Aggiungi come posizione</string>

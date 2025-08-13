@@ -714,8 +714,6 @@
     <string name="visibility_good">Dobrá</string>
     <string name="visibility_clear">Jasná</string>
     <string name="visibility_perfectly_clear">Dokonale jasná</string>
-    <string name="unit_mum">µm</string>
-    <string name="unit_mum_voice">Mikrometry</string>
     <string name="air_quality_level_3_harmless_exposure">&lt; 1 den</string>
     <string name="air_quality_pm_sources">Hlavními zdroji jsou spalovací procesy (např. elektrárny, vytápění vnitřních prostor, výfukové plyny automobilů, požáry v přírodě), mechanické procesy (např. stavebnictví, minerální prach, zemědělství) a biologické částice (např. pyl, plísně, bakterie, viry).</string>
     <string name="ephemeris_about_rise">Čas východu je okamžik, kdy se slunce nebo měsíc zcela objeví nad obzorem.</string>

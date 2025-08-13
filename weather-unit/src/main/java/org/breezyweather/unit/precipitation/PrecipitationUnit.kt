@@ -51,7 +51,7 @@ enum class PrecipitationUnit(
         perMeasureUnit = null,
         convertFromReference = { valueInDefaultUnit -> valueInDefaultUnit },
         convertToReference = { valueInDefaultUnit -> valueInDefaultUnit },
-        decimals = UnitDecimals(0),
+        decimals = UnitDecimals(short = 0, long = 1), // Used only by PM2.5 formatting
         chartStep = 5000.0
     ),
     MILLIMETER(

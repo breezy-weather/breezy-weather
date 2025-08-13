@@ -741,8 +741,6 @@
     <string name="settings_appearance_section_theme">پوسته</string>
     <string name="unit_bft_display_name">بوفور</string>
     <string name="unit_bft_nominative">%s بوفور</string>
-    <string name="unit_mum">میکرومتر</string>
-    <string name="unit_mum_voice">میکرومترها</string>
     <string name="pressure_about_description1">فشار جوی فشاری است که جو زمین به سمت پایین اعمال می‌کند. این برنامه از فشار میانگین سطح دریا استفاده می‌کند تا مقایسه فشار در مکان‌های با ارتفاعات مختلف آسان‌تر شود.</string>
     <string name="ephemeris_sun">خورشید</string>
     <string name="ephemeris_moon">ماه</string>

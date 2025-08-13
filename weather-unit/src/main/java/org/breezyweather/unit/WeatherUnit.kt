@@ -24,6 +24,9 @@ import android.util.Log
 import org.breezyweather.unit.formatting.UnitDecimals
 import org.breezyweather.unit.formatting.UnitTranslation
 import org.breezyweather.unit.formatting.UnitWidth
+import org.breezyweather.unit.formatting.format
+import org.breezyweather.unit.formatting.formatWithMeasureFormat
+import org.breezyweather.unit.formatting.formatWithNumberFormatter
 import java.util.Locale
 
 interface WeatherUnit {
@@ -128,5 +131,86 @@ interface WeatherUnit {
         UnitWidth.SHORT -> decimals.short
         UnitWidth.NARROW -> decimals.narrow
         UnitWidth.LONG -> decimals.long
+    }
+
+    fun format(
+        context: Context,
+        value: Number,
+        valueWidth: UnitWidth = UnitWidth.SHORT,
+        unitWidth: UnitWidth = UnitWidth.SHORT,
+        locale: Locale = Locale.getDefault(),
+        useNumberFormatter: Boolean = true,
+        useMeasureFormat: Boolean = true,
+    ): String {
+        if (measureUnit != null &&
+            (perMeasureUnit == null || Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) &&
+            (useNumberFormatter || useMeasureFormat)
+        ) {
+            // LogHelper.log(msg = "Formatting with ICU ${enum.id}: ${enum.measureUnit} per ${enum.perMeasureUnit}")
+
+            return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R && useNumberFormatter) {
+                measureUnit!!.formatWithNumberFormatter(
+                    locale = locale,
+                    value = value,
+                    perUnit = perMeasureUnit,
+                    precision = getPrecision(valueWidth),
+                    numberFormatterWidth = unitWidth.numberFormatterWidth!!
+                )
+            } else {
+                measureUnit!!.formatWithMeasureFormat(
+                    locale = locale,
+                    value = value,
+                    perUnit = perMeasureUnit,
+                    precision = getPrecision(valueWidth),
+                    measureFormatWidth = unitWidth.measureFormatWidth!!
+                )
+            }
+        }
+
+        // LogHelper.log(msg = "Not formatting with ICU ${enum.id} in ${context.currentLocale}")
+        return formatWithAndroidTranslations(
+            context = context,
+            value = value,
+            valueWidth = valueWidth,
+            unitWidth = unitWidth,
+            locale = locale,
+            useNumberFormatter = useNumberFormatter,
+            useMeasureFormat = useMeasureFormat
+        )
+    }
+
+    fun formatWithAndroidTranslations(
+        context: Context,
+        value: Number,
+        valueWidth: UnitWidth = UnitWidth.SHORT,
+        unitWidth: UnitWidth = UnitWidth.SHORT,
+        locale: Locale = Locale.getDefault(),
+        useNumberFormatter: Boolean = true,
+        useMeasureFormat: Boolean = true,
+    ): String {
+        val formattingWithoutPer = context.getString(
+            when (unitWidth) {
+                UnitWidth.SHORT -> nominative.short
+                UnitWidth.LONG -> nominative.long
+                UnitWidth.NARROW -> nominative.narrow
+            },
+            value.format(
+                decimals = getPrecision(valueWidth),
+                locale = locale,
+                useNumberFormatter = useNumberFormatter,
+                useMeasureFormat = useMeasureFormat
+            )
+        )
+
+        return per?.let {
+            context.getString(
+                when (unitWidth) {
+                    UnitWidth.SHORT -> it.short
+                    UnitWidth.LONG -> it.long
+                    UnitWidth.NARROW -> it.narrow
+                },
+                formattingWithoutPer
+            )
+        } ?: formattingWithoutPer
     }
 }

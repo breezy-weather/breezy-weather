@@ -726,8 +726,6 @@
     <string name="cloud_cover_about">雲量について</string>
     <string name="visibility_very_poor">非常に悪い</string>
     <string name="label_description">説明</string>
-    <string name="unit_mum_voice">マイクロメートル</string>
-    <string name="unit_mum">µm</string>
     <string name="air_quality_level_2_harmless_exposure">1年未満</string>
     <string name="data_sources">データ提供元</string>
     <string name="air_quality_level_1_harmless_exposure">1年以上</string>

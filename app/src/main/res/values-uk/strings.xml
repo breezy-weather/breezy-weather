@@ -719,14 +719,12 @@
     <string name="air_quality_index_short">ІЯП</string>
     <string name="air_quality_index_harmless_exposure">Нешкідливий вплив</string>
     <string name="air_quality_no2_sources">Основними джерелами є процеси спалювання палива, такі як ті, що використовуються в промисловості та транспорті.</string>
-    <string name="unit_mum">µm</string>
     <string name="cloud_cover_about_description">Хмарність – це середній відсоток неба, закритого хмарами. Хмарність корелює з тривалістю сонячного сяйва.</string>
     <string name="uv_index_time_to_burn_explanations">Точний час для опіків залежить від висоти, наявності відбивної поверхні, такої як вода чи сніг, типу шкіри та використання сонцезахисного крему.</string>
     <string name="air_quality_index_about">Про індекс якості повітря</string>
     <string name="air_quality_index_scale">Шкала індексу якості повітря</string>
     <string name="air_quality_level_1_harmless_exposure">&gt; 1 рік</string>
     <string name="pressure_about_description2">Значні, швидкі зміни тиску використовуються для прогнозування змін погоди. Наприклад, падіння тиску може означати, що скоро піде дощ або сніг, а підвищення тиску може означати покращення погоди. Аномальний атмосферний тиск може спричинити головний біль, біль у суглобах, втому та інші наслідки.</string>
-    <string name="unit_mum_voice">Мікрометри</string>
     <string name="data_sources">Джерела даних</string>
     <string name="visibility_very_poor">Дуже погано</string>
     <string name="data_modified">Цей матеріал було змінено порівняно з оригіналом користувачем %s, головним чином для обчислення або екстраполяції відсутніх даних.</string>

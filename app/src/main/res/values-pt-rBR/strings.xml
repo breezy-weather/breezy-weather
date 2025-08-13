@@ -795,8 +795,6 @@
     <string name="label_description">Descrição</string>
     <string name="label_expanded">Expandido</string>
     <string name="label_collapsed">Comprimido</string>
-    <string name="unit_mum">µm</string>
-    <string name="unit_mum_voice">Micrômetros</string>
     <string name="ephemeris_about_dawn">O amanhecer é quando a primeira luz visível do dia aparece antes do nascer do sol.</string>
     <string name="ephemeris_about_dusk">O anoitecer é o estágio mais escuro antes que toda luz visível desapareça.</string>
     <string name="ephemeris_dawn_at">Amanhecer às %s</string>
