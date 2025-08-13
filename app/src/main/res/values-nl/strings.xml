@@ -437,9 +437,9 @@
     <string name="widget_custom_subtitle_keyword_cps_description">Huidige druk</string>
     <string name="widget_custom_subtitle_keyword_xntd_description">Nachttemperatuur van vandaag, morgen, …, 4 dagen later (°)</string>
     <string name="widget_custom_subtitle_keyword_xdp_description">Neerslag overdag van vandaag, morgen, …, 4 dagen later (%)</string>
-    <string name="widget_custom_subtitle_keyword_xnp_description">Neerslag \'s nachts van vandaag, morgen, …, 4 dagen later (%)</string>
+    <string name="widget_custom_subtitle_keyword_xnp_description">Neerslag ’s nachts van vandaag, morgen, …, 4 dagen later (%)</string>
     <string name="widget_custom_subtitle_keyword_xdwd_description">Wind overdag van vandaag, morgen, …, 4 dagen later</string>
-    <string name="widget_custom_subtitle_keyword_xnwd_description">Wind \'s nachts van vandaag, morgen, …, 4 dagen later</string>
+    <string name="widget_custom_subtitle_keyword_xnwd_description">Wind ’s nachts van vandaag, morgen, …, 4 dagen later</string>
     <string name="widget_live_wallpaper_day_night_type">Tijd</string>
     <string name="widget_live_wallpaper_weather_kind">Weer</string>
     <string name="common_weather_text_drizzle_moderate">Matige motregen</string>
@@ -698,7 +698,7 @@
     <string name="uv_index_time_to_burn_explanations">De exacte tijd om te verbranden hangt af van de hoogte, de aanwezigheid van reflecterende oppervlakte zoals water of sneeuw, huidtype en het gebruik van zonnebrandcrème.</string>
     <string name="air_quality_index_short">LKI</string>
     <string name="air_quality_index_about">Over de luchtkwaliteitsindex</string>
-    <string name="air_quality_index_about_description_1">De Luchtkwaliteitsindex (LKI) is een schaal die wordt gebruikt om inzicht te krijgen in de mate van luchtverontreiniging in een bepaald gebied en de potentiële gezondheidsrisico\'s die daarmee gepaard gaan.</string>
+    <string name="air_quality_index_about_description_1">De Luchtkwaliteitsindex (LKI) is een schaal die wordt gebruikt om inzicht te krijgen in de mate van luchtverontreiniging in een bepaald gebied en de potentiële gezondheidsrisico’s die daarmee gepaard gaan.</string>
     <string name="air_quality_short">Luchtkwaliteit</string>
     <string name="ephemeris_sun">Zon</string>
     <string name="ephemeris_moon">Maan</string>
@@ -726,11 +726,11 @@
     <string name="temperature_normals_deviation_explanation_maximum">Afwijking van de gemiddelde maximumtemperatuur in %s voor deze locatie</string>
     <string name="temperature_normals_deviation_explanation_minimum">Afwijking van de gemiddelde minimumtemperatuur in %s voor deze locatie</string>
     <string name="precipitation_total_day">Neerslag overdag</string>
-    <string name="precipitation_total_night">Neerslag \'s nachts</string>
+    <string name="precipitation_total_night">Neerslag ’s nachts</string>
     <string name="precipitation_rain_total_day">Regen overdag</string>
-    <string name="precipitation_rain_total_night">Regen \'s nachts</string>
+    <string name="precipitation_rain_total_night">Regen ’s nachts</string>
     <string name="precipitation_snow_total_day">Sneeuw overdag</string>
-    <string name="precipitation_snow_total_night">Sneeuw \'s nachts</string>
+    <string name="precipitation_snow_total_night">Sneeuw ’s nachts</string>
     <string name="wind_speed_about">Over windsnelheid en -vlagen</string>
     <string name="wind_speed_about_description">De windsnelheid wordt gemeten door de windsnelheden over een bepaalde periode te middelen. Windvlagen zijn plotselinge windstoten die doorgaans minder dan 20 seconden aanhouden.</string>
     <string name="wind_gusts_short">Vlagen</string>
@@ -772,7 +772,7 @@
     <string name="ephemeris_dusk_at">Schemering om %s</string>
     <string name="daytime_short">Dag</string>
     <string name="nighttime_short">Nacht</string>
-    <string name="nighttime_details">Begint \'s avonds en duurt de volgende dag tot zonsopgang</string>
+    <string name="nighttime_details">Begint ’s avonds en duurt de volgende dag tot zonsopgang</string>
     <string name="humidity_about">Over relatieve vochtigheid</string>
     <string name="humidity_about_description">Relatieve vochtigheid, beter bekend als vochtigheid, is het percentage waterdamp dat in de lucht aanwezig is vergeleken met de maximale hoeveelheid die de lucht bij een bepaalde temperatuur kan vasthouden.</string>
     <string name="humidity_from_to_number">%1$s tot %2$s</string>

@@ -322,6 +322,7 @@ val appTranslators = arrayOf(
     TranslatorItem(arrayOf("nl"), "Roan-V", github = "Roan-V"),
     TranslatorItem(arrayOf("nl"), "kyrawertho", github = "kyrawertho"),
     TranslatorItem(arrayOf("nl"), "Brecht", github = "brecht6"),
+    TranslatorItem(arrayOf("nl"), "Stephan Paternotte", github = "Stephan-P"),
     TranslatorItem(arrayOf("oc"), "Quentin PAGÈS", weblate = "Quenti"),
     TranslatorItem(arrayOf("pl"), "Kamil", mail = "invisiblehype@gmail.com"),
     TranslatorItem(arrayOf("pl"), "nid", github = "nidmb"),
