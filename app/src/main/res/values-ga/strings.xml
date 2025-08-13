@@ -383,7 +383,7 @@
     <string name="settings_notifications_forecast_time_today_title">Am fógartha do réamhaisnéis an lae</string>
     <string name="settings_notifications_forecast_tomorrow_title">Fógra maidir le réamhaisnéis an chéad lae eile</string>
     <string name="settings_notifications_forecast_time_tomorrow_title">Am fógartha do réamhaisnéis an chéad lae eile</string>
-    <string name="settings_modules_summary">Socraigh cúlbhrat, cumraigh giuirléidí a úsáidtear, giuirléid fógra</string>
+    <string name="settings_modules_summary">Giuirléidí, giuirléid fógraí, páipéar balla, comhroinnt sonraí le haipeanna eile</string>
     <string name="settings_modules_live_wallpaper_title">Cúlbhrat beo</string>
     <string name="settings_modules_live_wallpaper_summary">Socraigh beochan aimsire mar chúlbhrat</string>
     <string name="settings_modules_live_wallpaper_error">Níorbh fhéidir roghnóir páipéar balla a sheoladh. Is féidir leat %s ballapháipéir a chumasú fós trí “Cúlbhrat Beo” a roghnú i do roghnóir páipéar balla scáileáin baile.</string>
@@ -810,4 +810,18 @@
     <string name="settings_appearance_dark_mode_locations_dark">Dorcha i gcónaí nuair a bhíonn an aip i mód dorcha</string>
     <string name="weather_source_recommended">Molta</string>
     <string name="action_change">Athraigh</string>
+    <string name="humidity_from_to_number">%1$s go %2$s</string>
+    <string name="dew_point_from_to_number">%1$s go %2$s</string>
+    <string name="visibility_scale">Scála infheictheachta</string>
+    <string name="cloud_cover_from_to_number">%1$s go %2$s</string>
+    <string name="cloud_cover_from_to_description">%1$s go %2$s</string>
+    <string name="cloud_cover_scale">Scála clúdach scamall</string>
+    <string name="broadcast_source_breezy_weather_update_notifier">Fógra Nuashonraithe Suímh %s</string>
+    <string name="action_add_as_location">Cuir leis mar shuíomh</string>
+    <string name="message_incompatible_times_title">Amanna réamhaisnéise neamh-chomhoiriúnacha</string>
+    <string name="message_incompatible_times_content">Athraigh do réamhaisnéis nó foinse cáilíochta aeir ionas go mbeidh na hamanna ag teacht leis.</string>
+    <string name="settings_regional_preference">Rogha réigiúnach</string>
+    <string name="content_provider_permission_label">Léigh sonraí Aimsire Breezy</string>
+    <string name="content_provider_permission_description">faigh faisnéis aimsire ó Breezy Weather, lena n-áirítear comhordanáidí do shuíomhanna, amhail do shuíomh reatha má chuir tú leis é</string>
+    <string name="common_weather_text_mostly_cloudy">Scamallach den chuid is mó</string>
 </resources>
