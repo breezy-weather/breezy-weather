@@ -31,4 +31,7 @@ data class NominatimAddress(
     val state: String?, // Admin 1
     val country: String?,
     @SerialName("country_code") val countryCode: String?,
+    @SerialName("ISO3166-2-lvl3") val isoLvl3: String?,
+    @SerialName("ISO3166-2-lvl4") val isoLvl4: String?,
+    @SerialName("ISO3166-2-lvl6") val isoLvl6: String?,
 )

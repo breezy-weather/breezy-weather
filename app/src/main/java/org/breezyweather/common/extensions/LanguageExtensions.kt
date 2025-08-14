@@ -33,7 +33,7 @@ val Context.currentLocale: Locale
             }
     }
 
-// TODO: Review this use vs toString()
+// TODO: Review this use vs toLanguageTag()
 val Locale.code: String
     get() {
         val language = language
@@ -45,7 +45,7 @@ val Locale.code: String
         }
     }
 
-// TODO: Review this use vs toString().replace("_", "-")
+// TODO: Review this use vs toLanguageTag()
 val Locale.codeWithCountry: String
     get() {
         val language = language

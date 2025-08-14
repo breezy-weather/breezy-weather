@@ -23,9 +23,11 @@ import breezyweather.domain.source.SourceFeature
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.BuildConfig
 import org.breezyweather.common.exceptions.InvalidLocationException
+import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationSearchSource
 import org.breezyweather.common.source.ReverseGeocodingSource
+import org.breezyweather.sources.nominatim.json.NominatimLocationResult
 import retrofit2.Retrofit
 import javax.inject.Inject
 import javax.inject.Named
@@ -67,27 +69,13 @@ class NominatimService @Inject constructor(
         query: String,
     ): Observable<List<LocationAddressInfo>> {
         return mApi.searchLocations(
+            acceptLanguage = context.currentLocale.toLanguageTag(),
             userAgent = USER_AGENT,
             q = query,
             limit = 20
         ).map { results ->
             results.mapNotNull {
-                if (it.address?.countryCode == null || it.address.countryCode.isEmpty()) {
-                    null
-                } else {
-                    LocationAddressInfo(
-                        latitude = it.lat.toDoubleOrNull(),
-                        longitude = it.lon.toDoubleOrNull(),
-                        district = it.address.village,
-                        city = it.address.town ?: it.name,
-                        cityCode = it.placeId?.toString(),
-                        admin3 = it.address.municipality,
-                        admin2 = it.address.county,
-                        admin1 = it.address.state,
-                        country = it.address.country,
-                        countryCode = it.address.countryCode
-                    )
-                }
+                convertLocation(it)
             }
         }
     }
@@ -98,33 +86,91 @@ class NominatimService @Inject constructor(
         longitude: Double,
     ): Observable<List<LocationAddressInfo>> {
         return mApi.getReverseLocation(
+            acceptLanguage = context.currentLocale.toLanguageTag(),
             userAgent = USER_AGENT,
             lat = latitude,
             lon = longitude
         ).map {
-            if (it.address?.countryCode == null) {
+            if (it.address?.countryCode == null || it.address.countryCode.isEmpty()) {
                 throw InvalidLocationException()
             }
 
-            listOf(
-                LocationAddressInfo(
-                    latitude = it.lat.toDoubleOrNull(),
-                    longitude = it.lon.toDoubleOrNull(),
-                    district = it.address.village,
-                    city = it.address.town ?: it.name,
-                    cityCode = it.placeId?.toString(),
-                    admin3 = it.address.municipality,
-                    admin2 = it.address.county,
-                    admin1 = it.address.state,
-                    country = it.address.country,
-                    countryCode = it.address.countryCode
-                )
+            listOf(convertLocation(it)!!)
+        }
+    }
+
+    private fun convertLocation(locationResult: NominatimLocationResult): LocationAddressInfo? {
+        return if (locationResult.address?.countryCode == null || locationResult.address.countryCode.isEmpty()) {
+            null
+        } else {
+            LocationAddressInfo(
+                latitude = locationResult.lat.toDoubleOrNull(),
+                longitude = locationResult.lon.toDoubleOrNull(),
+                district = locationResult.address.village,
+                city = locationResult.address.town ?: locationResult.name,
+                cityCode = locationResult.placeId?.toString(),
+                admin3 = locationResult.address.municipality,
+                admin2 = locationResult.address.county,
+                admin1 = locationResult.address.state,
+                country = locationResult.address.country,
+                countryCode = locationResult.address.countryCode.let {
+                    with(it) {
+                        when {
+                            equals("CN", ignoreCase = true) -> {
+                                with(locationResult.address.isoLvl3) {
+                                    when {
+                                        equals("CN-MO", ignoreCase = true) -> "MO"
+                                        equals("CN-HK", ignoreCase = true) -> "HK"
+                                        else -> "CN"
+                                    }
+                                }
+                            }
+                            equals("FI", ignoreCase = true) -> {
+                                with(locationResult.address.isoLvl3) {
+                                    when {
+                                        equals("FI-01", ignoreCase = true) -> "AX"
+                                        else -> "FI"
+                                    }
+                                }
+                            }
+                            equals("FR", ignoreCase = true) -> {
+                                with(locationResult.address.isoLvl3) {
+                                    when {
+                                        equals("FR-971", ignoreCase = true) -> "GP"
+                                        equals("FR-972", ignoreCase = true) -> "MQ"
+                                        equals("FR-973", ignoreCase = true) -> "GF"
+                                        equals("FR-974", ignoreCase = true) -> "RE"
+                                        equals("FR-975", ignoreCase = true) -> "PM"
+                                        equals("FR-976", ignoreCase = true) -> "YT"
+                                        equals("FR-977", ignoreCase = true) -> "BL"
+                                        equals("FR-978", ignoreCase = true) -> "MF"
+                                        equals("FR-986", ignoreCase = true) -> "WF"
+                                        equals("FR-987", ignoreCase = true) -> "PF"
+                                        equals("FR-988", ignoreCase = true) -> "NC"
+                                        equals("FR-TF", ignoreCase = true) -> "TF"
+                                        else -> "FR"
+                                    }
+                                }
+                            }
+                            else -> it
+                        }
+                    }
+                }
             )
         }
     }
 
-    // TODO
-    override val knownAmbiguousCountryCodes: Array<String>? = null
+    /**
+     * TODO: In progress
+     */
+    override val knownAmbiguousCountryCodes = arrayOf(
+        "AU", // Territories: CX, CC, HM (uninhabited), NF
+        "GB", // Territories: AI, BM, IO, KY, FK, GI, GG, IM, JE, MS, PN, SH, GS (uninhabited), TC, VG
+        "NL", // Territories: AW, BQ, CW, SX
+        "NO", // Territories: BV, SJ
+        "NZ", // Territories: TK. Associated states: CK, NU
+        "US" // Territories: AS, GU, MP, PR, UM (uninhabited), VI
+    )
 
     companion object {
         private const val NOMINATIM_BASE_URL = "https://nominatim.openstreetmap.org/"

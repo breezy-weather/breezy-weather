@@ -34,21 +34,20 @@ interface AddressSource : Source {
          * For technical reasons, we need to better identify each territory
          * Crimea is not included to let each location search/address lookup source resolves it the way they want
          *  and we will resolve the timezone as Europe/Simferopol whether identified as UA or RU
+         * Also ignores Antarctica claims, because even if a source actually supports that claim, no one lives there
          */
         val ambiguousCountryCodes = arrayOf(
-            "AR", // Claims: AQ
-            "AU", // Territories: CX, CC, HM (uninhabited), NF. Claims: AQ
-            "CL", // Claims: AQ
+            "AU", // Territories: CX, CC, HM (uninhabited), NF
             "CN", // Territories: HK, MO. Claims: TW
             "DK", // Territories: FO, GL
             "FI", // Territories: AX
-            "FR", // Territories: GF, PF, TF (uninhabited), GP, MQ, YT, NC, RE, BL, MF, PM, WF. Claims: AQ
-            "GB", // Territories: AI, BM, IO, KY, FK, GI, GG, IM, JE, MS, PN, SH, GS (uninhabited), TC, VG. Claims: AQ
+            "FR", // Territories: GF, PF, TF (uninhabited), GP, MQ, YT, NC, RE, BL, MF, PM, WF
+            "GB", // Territories: AI, BM, IO, KY, FK, GI, GG, IM, JE, MS, PN, SH, GS (uninhabited), TC, VG
             "IL", // Claims: PS
             "MA", // Claims: EH
             "NL", // Territories: AW, BQ, CW, SX
-            "NO", // Territories: BV, SJ. Claims: AQ
-            "NZ", // Territories: TK. Associated states: CK, NU. Claims: AQ
+            "NO", // Territories: BV, SJ
+            "NZ", // Territories: TK. Associated states: CK, NU
             "RS", // Claims: XK
             "US" // Territories: AS, GU, MP, PR, UM (uninhabited), VI
         )
