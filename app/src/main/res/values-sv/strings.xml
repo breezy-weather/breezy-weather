@@ -791,4 +791,5 @@
     <string name="content_provider_permission_description">få väderinformation från Breezy Weather, inklusive koordinaterna för dina platser, till exempel din nuvarande plats om du har lagt till den</string>
     <string name="action_add_as_location">Lägg till som plats</string>
     <string name="broadcast_source_breezy_weather_update_notifier">%s-avisering om uppdaterade platser</string>
+    <string name="settings_regional_preference">Regionsförval</string>
 </resources>
