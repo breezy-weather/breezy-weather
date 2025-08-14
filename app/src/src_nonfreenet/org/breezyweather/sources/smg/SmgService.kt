@@ -52,6 +52,8 @@ import org.breezyweather.sources.smg.json.SmgCurrentResult
 import org.breezyweather.sources.smg.json.SmgForecastResult
 import org.breezyweather.sources.smg.json.SmgUvResult
 import org.breezyweather.sources.smg.json.SmgWarningResult
+import org.breezyweather.unit.pollutant.PollutantConcentration.Companion.microgramsPerCubicMeter
+import org.breezyweather.unit.pollutant.PollutantConcentration.Companion.milligramsPerCubicMeter
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
 import retrofit2.Retrofit
 import java.text.SimpleDateFormat
@@ -694,12 +696,12 @@ class SmgService @Inject constructor(
         // "tghopolu" refers to Taipa Grande (SMG's office location).
         // TODO: Once we have more intel on the coordinates of the stations, we can locate the nearest one.
         return AirQuality(
-            pM25 = airQualityResult.tghopolu?.HE_PM2_5?.toDoubleOrNull(),
-            pM10 = airQualityResult.tghopolu?.HE_PM10?.toDoubleOrNull(),
-            sO2 = airQualityResult.tghopolu?.HE_SO2?.toDoubleOrNull(),
-            nO2 = airQualityResult.tghopolu?.HE_NO2?.toDoubleOrNull(),
-            o3 = airQualityResult.tghopolu?.HE_O3?.toDoubleOrNull(),
-            cO = airQualityResult.tghopolu?.HE_CO?.toDoubleOrNull()
+            pM25 = airQualityResult.tghopolu?.HE_PM2_5?.toDoubleOrNull()?.microgramsPerCubicMeter,
+            pM10 = airQualityResult.tghopolu?.HE_PM10?.toDoubleOrNull()?.microgramsPerCubicMeter,
+            sO2 = airQualityResult.tghopolu?.HE_SO2?.toDoubleOrNull()?.microgramsPerCubicMeter,
+            nO2 = airQualityResult.tghopolu?.HE_NO2?.toDoubleOrNull()?.microgramsPerCubicMeter,
+            o3 = airQualityResult.tghopolu?.HE_O3?.toDoubleOrNull()?.microgramsPerCubicMeter,
+            cO = airQualityResult.tghopolu?.HE_CO?.toDoubleOrNull()?.milligramsPerCubicMeter
         )
     }
 

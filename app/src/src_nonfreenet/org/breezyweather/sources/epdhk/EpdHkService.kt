@@ -34,6 +34,7 @@ import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_HIGHEST
 import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
 import org.breezyweather.sources.epdhk.xml.EpdHkConcentrationsResult
+import org.breezyweather.unit.pollutant.PollutantConcentration.Companion.microgramsPerCubicMeter
 import retrofit2.Retrofit
 import java.text.SimpleDateFormat
 import java.util.Locale
@@ -126,14 +127,14 @@ class EpdHkService @Inject constructor(
         var airQuality = AirQuality()
         concentrationsResult?.pollutantConcentration?.filter {
             it.stationName.value == nearestStation
-        }?.sortedByDescending { formatter.parse(it.dateTime.value) }?.firstOrNull()?.let {
+        }?.maxByOrNull { formatter.parse(it.dateTime.value) }?.let {
             airQuality = AirQuality(
-                pM25 = it.pM25?.value?.toDoubleOrNull(),
-                pM10 = it.pM10?.value?.toDoubleOrNull(),
-                sO2 = it.sO2?.value?.toDoubleOrNull(),
-                nO2 = it.nO2?.value?.toDoubleOrNull(),
-                o3 = it.o3?.value?.toDoubleOrNull(),
-                cO = it.cO?.value?.toDoubleOrNull()?.div(1000.0) // convert µg/m³ to mg/m³
+                pM25 = it.pM25?.value?.toDoubleOrNull()?.microgramsPerCubicMeter,
+                pM10 = it.pM10?.value?.toDoubleOrNull()?.microgramsPerCubicMeter,
+                sO2 = it.sO2?.value?.toDoubleOrNull()?.microgramsPerCubicMeter,
+                nO2 = it.nO2?.value?.toDoubleOrNull()?.microgramsPerCubicMeter,
+                o3 = it.o3?.value?.toDoubleOrNull()?.microgramsPerCubicMeter,
+                cO = it.cO?.value?.toDoubleOrNull()?.microgramsPerCubicMeter
             )
         }
         return WeatherWrapper(

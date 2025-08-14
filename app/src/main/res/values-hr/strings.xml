@@ -394,7 +394,6 @@
     <string name="openmeteo_weather_text_depositing_rime_fog">Pothlađene kapljice</string>
     <string name="common_weather_text_rain_snow_mixed_heavy">Jaka susnježica</string>
     <string name="common_weather_text_snow">Snijeg</string>
-    <string name="unit_mugpcum_voice">Mikrograma po kubnom metru</string>
     <string name="settings_enabled">Omogućeno</string>
     <string name="common_weather_text_cloudy">Oblačno</string>
     <string name="settings_items_drag_to_sort">Dodirnite za sortiranje stavki povlačenjem</string>
@@ -448,7 +447,6 @@
     <string name="about_contributors">Doprinositelji</string>
     <string name="weather_kind_thunderstorm">Grmljavina</string>
     <string name="common_weather_text_rain_light">Blaga kiša</string>
-    <string name="unit_mugpcum">μg/m³</string>
     <string name="common_weather_text_fog">Magla</string>
     <string name="ephemeris_moon_phase_waxing_gibbous">Rastuća četvrt</string>
     <string name="ephemeris_moon_phase_waning_gibbous">Opadajuća četvrt</string>
@@ -456,12 +454,10 @@
     <string name="common_weather_text_clear_sky">Vedro</string>
     <string name="common_weather_text_snow_showers_heavy">Jaki snježni pljuskovi</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Blaga ili umjerena grmljavina</string>
-    <string name="unit_mgpcum">mg/m³</string>
     <string name="about_matrix">Matrix soba</string>
     <string name="weather_kind_wind">Vjetar</string>
     <string name="notification_channel_background_services">Pozadinske usluge</string>
     <string name="notification_style_native">Izvorni</string>
-    <string name="unit_mgpcum_voice">Miligrama po kubnom metru</string>
     <string name="unit_bft_voice">na Beaufort ljestvici</string>
     <string name="settings_none">Ništa</string>
     <string name="common_weather_text_partly_cloudy">Djelomično oblačno</string>

@@ -220,8 +220,6 @@
     <string name="unit_kn_voice">Nudos</string>
     <string name="unit_mph_voice">Millas por hora</string>
     <string name="unit_ftps_voice">Pies por segundo</string>
-    <string name="unit_mugpcum_voice">Microgramos por metro cúbico</string>
-    <string name="unit_mgpcum_voice">Miligramos por metro cúbico</string>
     <string name="unit_ppcm_voice">Por metro cúbico</string>
     <string name="air_quality_level_1">Excelente</string>
     <string name="uv_index_8_10">Muy alto</string>
@@ -463,11 +461,9 @@
     <string name="common_weather_text_overcast">Nublado</string>
     <string name="about_contributors">Colaboradores</string>
     <string name="common_weather_text_rain_light">Lluvia fina</string>
-    <string name="unit_mugpcum">μg/m³</string>
     <string name="settings_modules_broadcast_send_data_title">Enviar los datos meteorológicos a %s</string>
     <string name="common_weather_text_clear_sky">Cielo despejado</string>
     <string name="common_weather_text_snow_showers_heavy">Fuertes nevadas</string>
-    <string name="unit_mgpcum">mg/m³</string>
     <string name="about_matrix">Sala en Matrix</string>
     <string name="notification_channel_background_services">Servicios en segundo plano</string>
     <string name="unit_bft_voice">en la escala de Beaufort</string>

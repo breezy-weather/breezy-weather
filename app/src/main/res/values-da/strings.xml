@@ -173,7 +173,6 @@
     <string name="widget_label_text_size">Tekststørrelse</string>
     <string name="settings_debug_summary">Nedbrudslogge</string>
     <string name="common_weather_text_snow">Nogen sne</string>
-    <string name="unit_mgpcum">mg/m³</string>
     <string name="dialog_time_picker_select_time">Vælg tidspunkt</string>
     <string name="dialog_time_picker_toggle_text_input_voice">Skift til tekstindtastning</string>
     <string name="dialog_time_picker_toggle_touch_input_voice">Skift til berøringsindtastning</string>
@@ -240,7 +239,6 @@
     <string name="common_weather_text_rain_snow_mixed_showers_heavy">Kraftig byge med slud</string>
     <string name="common_weather_text_drizzle">Støvregn</string>
     <string name="common_weather_text_drizzle_freezing_light">Let isglat</string>
-    <string name="unit_mugpcum">μg/m³</string>
     <string name="common_weather_text_drizzle_freezing_heavy">Kraftigt isglat</string>
     <string name="settings_background_updates_refresh_skip_when_battery_low">Ignorér når batteriet er lavt</string>
     <string name="settings_background_updates_section_troubleshoot">Fejlfinding</string>
@@ -333,7 +331,6 @@
     <string name="unit_bft_voice">på Beaufortskalaen</string>
     <string name="notification_channel_background_services">Baggrundstjenester</string>
     <string name="notification_precipitation_starting_desc">Forventes at begynde kl. %s</string>
-    <string name="unit_mgpcum_voice">Milligram per kubikmeter</string>
     <string name="precipitation_intensity_medium">Middel</string>
     <string name="pollen_populus">Poppel</string>
     <string name="pollen_rumex">Syre</string>
@@ -352,7 +349,6 @@
     <string name="widget_label_subtitle_data">Undertiteldata</string>
     <string name="settings_weather_source_open_meteo_weather_models_best_match_description">Kombinerer de bedste vejrmodeller til denne placering</string>
     <string name="settings_enabled">Aktiveret</string>
-    <string name="unit_mugpcum_voice">Mikrogram per kubikmeter</string>
     <string name="notification_update_error">%d opdatering(er) fejlede</string>
     <string name="about_translators">Oversættere</string>
     <string name="common_weather_text_rain_snow_mixed_light">Let slud</string>

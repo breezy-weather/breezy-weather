@@ -1,6 +1,7 @@
 import breezyweather.domain.weather.reference.WeatherCode;
 import kotlin.time.Duration;
 import org.breezyweather.unit.distance.Distance;
+import org.breezyweather.unit.pollutant.PollutantConcentration;
 import org.breezyweather.unit.precipitation.Precipitation;
 import org.breezyweather.unit.pressure.Pressure;
 
@@ -95,12 +96,12 @@ CREATE TABLE dailys(
     moon_phase_angle INTEGER,
 
     -- aqi.
-    pm25 REAL,
-    pm10 REAL,
-    so2 REAL,
-    no2 REAL,
-    o3 REAL,
-    co REAL,
+    pm25 INTEGER AS PollutantConcentration,
+    pm10 INTEGER AS PollutantConcentration,
+    so2 INTEGER AS PollutantConcentration,
+    no2 INTEGER AS PollutantConcentration,
+    o3 INTEGER AS PollutantConcentration,
+    co INTEGER AS PollutantConcentration,
 
     -- pollen
     alder INTEGER,

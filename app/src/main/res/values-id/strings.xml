@@ -350,7 +350,6 @@
     <string name="air_quality_pm25">PM2.5</string>
     <string name="weather_kind_thunderstorm">Hujan badai</string>
     <string name="common_weather_text_rain_light">Hujan ringan</string>
-    <string name="unit_mugpcum">μg/m³</string>
     <string name="pollen_olea">Pohon zaitun</string>
     <string name="action_location_list">Daftar lokasi</string>
     <string name="common_weather_text_fog">Berkabut</string>
@@ -363,7 +362,6 @@
     <string name="settings_main_background_animation_title">Animasi latar belakang</string>
     <string name="pollen_level_1">Sangat rendah</string>
     <string name="air_quality_level_6">Berbahaya</string>
-    <string name="unit_mgpcum">mg/m³</string>
     <string name="settings_main_section_displayed_data">Data yang ditampilkan</string>
     <string name="setting_weather_source_accu_hours">Jam</string>
     <string name="about_matrix">Ruang Matrix</string>
@@ -430,7 +428,6 @@
     <string name="action_add_new_location">Tambahkan lokasi baru</string>
     <string name="settings_modules_week_icon_mode_title">Ikon untuk ditampilkan dalam tampilan mingguan</string>
     <string name="common_weather_text_rain_snow_mixed_heavy">Hujan lebat bercampur salju</string>
-    <string name="unit_mugpcum_voice">Mikrogram per meter kubik</string>
     <string name="settings_background_updates_refresh_skip_when_battery_low">Abaikan ketika baterai lemah</string>
     <string name="location_message_reverse_geocoding_failed">Sumber cuaca gagal mencari lokasi yang cocok</string>
     <string name="common_weather_text_drizzle_freezing_light">Gerimis beku ringan</string>
@@ -487,7 +484,6 @@
     <string name="weather_message_unsupported_feature">Sumber tidak mendukung salah satu fitur yang diminta</string>
     <string name="settings_debug_dump_crash_logs_title">Bagikan catatan kemogokan</string>
     <string name="settings_modules_live_wallpaper_error">Tidak dapat meluncurkan pemilih latar belakang. Anda masih dapat mengaktifkan latar belakang %s dengan memilih “Latar Belakang Bergerak” dalam pemilih latar belakang layar beranda Anda.</string>
-    <string name="unit_mgpcum_voice">Miligram per meter kubik</string>
     <string name="unit_bft_voice">pada skala Beaufort</string>
     <string name="message_server_timeout">Waktu permintaan habis</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Tambahkan lokasi secara manual dan hapus “%s”</string>

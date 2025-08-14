@@ -288,10 +288,6 @@
     <string name="common_weather_text_rain_freezing">Ledeni dež</string>
     <string name="common_weather_text_frost">Zrmzal</string>
     <string name="common_weather_text_dust">Prah</string>
-    <string name="unit_mugpcum">μg/m³</string>
-    <string name="unit_mgpcum">mg/m³</string>
-    <string name="unit_mugpcum_voice">Mikrogrami na kubični meter</string>
-    <string name="unit_mgpcum_voice">Miligrami na kubični meter</string>
     <string name="about_no_new_updates">Posodobitve niso na voljo</string>
     <string name="about_check_for_app_updates">Preveri za posodobitve</string>
     <string name="common_weather_text_clear_sky">Jasno nebo</string>

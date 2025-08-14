@@ -83,6 +83,8 @@ import kotlinx.collections.immutable.toImmutableMap
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.appearance.DetailScreen
 import org.breezyweather.common.basic.models.options.basic.UnitUtils
+import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.extensions.formatMeasure
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.extensions.roundUpToNearestMultiplier
@@ -97,6 +99,7 @@ import org.breezyweather.ui.common.charts.BreezyLineChart
 import org.breezyweather.ui.common.charts.SpecificVerticalAxisItemPlacer
 import org.breezyweather.ui.common.widgets.Material3ExpressiveCardListItem
 import org.breezyweather.ui.settings.preference.bottomInsetItem
+import org.breezyweather.unit.formatting.UnitWidth
 import java.util.Date
 import kotlin.math.max
 import kotlin.math.roundToInt
@@ -178,7 +181,8 @@ fun DetailsAirQuality(
                                     PollutantIndex.getUnit(pollutantIndex).formatMeasure(context, it),
                                     context.getString(pollutantIndex.voicedName) +
                                         context.getString(R.string.colon_separator) +
-                                        PollutantIndex.getUnit(pollutantIndex).formatContentDescription(context, it)
+                                        PollutantIndex.getUnit(pollutantIndex)
+                                            .formatMeasure(context, it, unitWidth = UnitWidth.LONG)
                                 )
                             )
                         }
@@ -197,7 +201,8 @@ fun DetailsAirQuality(
                                         PollutantIndex.getUnit(pollutantIndex).formatMeasure(context, it),
                                         context.getString(pollutantIndex.voicedName) +
                                             context.getString(R.string.colon_separator) +
-                                            PollutantIndex.getUnit(pollutantIndex).formatContentDescription(context, it)
+                                            PollutantIndex.getUnit(pollutantIndex)
+                                                .formatMeasure(context, it, unitWidth = UnitWidth.LONG)
                                     )
                                 )
                             }
@@ -736,8 +741,9 @@ fun AirQualityScale(
                     modifier = Modifier.weight(1.5f)
                 )
                 Text(
-                    selectedPollutant?.let { PollutantIndex.getUnit(it).getName(context) }
-                        ?: stringResource(R.string.air_quality_index_short),
+                    selectedPollutant?.let {
+                        PollutantIndex.getUnit(it).getDisplayName(context, context.currentLocale)
+                    } ?: stringResource(R.string.air_quality_index_short),
                     fontWeight = FontWeight.Bold,
                     textAlign = TextAlign.End,
                     modifier = Modifier.weight(1.5f)

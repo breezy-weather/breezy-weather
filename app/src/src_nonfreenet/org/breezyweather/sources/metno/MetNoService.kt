@@ -53,6 +53,7 @@ import org.breezyweather.sources.metno.json.MetNoAlertResult
 import org.breezyweather.sources.metno.json.MetNoForecastResult
 import org.breezyweather.sources.metno.json.MetNoForecastTimeseries
 import org.breezyweather.sources.metno.json.MetNoNowcastResult
+import org.breezyweather.unit.pollutant.PollutantConcentration.Companion.microgramsPerCubicMeter
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
 import retrofit2.Retrofit
@@ -248,11 +249,11 @@ class MetNoService @Inject constructor(
                     val airQualityHourly: MutableMap<Date, AirQuality> = mutableMapOf()
                     airQualityResult.data?.time?.forEach {
                         airQualityHourly[it.from] = AirQuality(
-                            pM25 = it.variables?.pm25Concentration?.value,
-                            pM10 = it.variables?.pm10Concentration?.value,
-                            sO2 = it.variables?.so2Concentration?.value,
-                            nO2 = it.variables?.no2Concentration?.value,
-                            o3 = it.variables?.o3Concentration?.value
+                            pM25 = it.variables?.pm25Concentration?.value?.microgramsPerCubicMeter,
+                            pM10 = it.variables?.pm10Concentration?.value?.microgramsPerCubicMeter,
+                            sO2 = it.variables?.so2Concentration?.value?.microgramsPerCubicMeter,
+                            nO2 = it.variables?.no2Concentration?.value?.microgramsPerCubicMeter,
+                            o3 = it.variables?.o3Concentration?.value?.microgramsPerCubicMeter
                         )
                     }
                     AirQualityWrapper(hourlyForecast = airQualityHourly)

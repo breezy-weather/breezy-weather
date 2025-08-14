@@ -367,7 +367,6 @@
     <string name="unit_mps_voice">Méter per másodperc</string>
     <string name="settings_main">Főképernyő</string>
     <string name="about_privacy_policy">Adatvédelmi irányelvek</string>
-    <string name="unit_mgpcum_voice">Milligramm per köbméter</string>
     <string name="settings_modules_notification_feels_like_switch">Hőérzet használata</string>
     <string name="weather_kind_wind">Szél</string>
     <string name="settings_main_threshold_lines_on_charts">Küszöbértékvonalak a diagramon</string>
@@ -399,7 +398,6 @@
     <string name="common_weather_text_mostly_clear">Nagyrészt tiszta</string>
     <string name="common_weather_text_drizzle_freezing_heavy">Fagyos, heves szemerkélő eső</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">Rétegköd lerakódás</string>
-    <string name="unit_mgpcum">mg/m³</string>
     <string name="settings_main_cards_title">Blokkok</string>
     <string name="settings_main_cards_fade_in_switch">Blokkok beúsztatása</string>
     <string name="settings_notifications_forecast_tomorrow_title">Értesítés a másnapi előrejelzésről</string>
@@ -447,7 +445,6 @@
     <string name="settings_debug_dump_crash_logs_summary">A hibanaplót fájlba menti, hogy megoszthassa a fejlesztőkkel</string>
     <string name="unit_celsius_short">°</string>
     <string name="unit_fahrenheit">°F</string>
-    <string name="unit_mugpcum">μg/m³</string>
     <string name="unit_ppcm_voice">Per köbméter</string>
     <string name="common_weather_text_rain">Eső</string>
     <string name="common_weather_text_rain_light">Enyhe eső</string>
@@ -472,7 +469,6 @@
     <string name="unit_kn_voice">Csomó</string>
     <string name="unit_mph_voice">Mérföld per óra</string>
     <string name="unit_ftps">ft/s</string>
-    <string name="unit_mugpcum_voice">Mikrogramm per köbméter</string>
     <string name="unit_ppcm">/m³</string>
     <string name="about_source_code">Forráskód</string>
     <string name="about_matrix">Matrix szoba</string>

@@ -58,6 +58,8 @@ import org.breezyweather.sources.namem.json.NamemDailyResult
 import org.breezyweather.sources.namem.json.NamemHourlyResult
 import org.breezyweather.sources.namem.json.NamemNormalsResult
 import org.breezyweather.sources.namem.json.NamemStation
+import org.breezyweather.unit.pollutant.PollutantConcentration.Companion.microgramsPerCubicMeter
+import org.breezyweather.unit.pollutant.PollutantConcentration.Companion.milligramsPerCubicMeter
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
 import retrofit2.Retrofit
@@ -285,12 +287,12 @@ class NamemService @Inject constructor(
             }
         }
         return AirQuality(
-            pM25 = pM25,
-            pM10 = pM10,
-            sO2 = sO2,
-            nO2 = nO2,
-            o3 = o3,
-            cO = cO
+            pM25 = pM25?.microgramsPerCubicMeter,
+            pM10 = pM10?.microgramsPerCubicMeter,
+            sO2 = sO2?.microgramsPerCubicMeter,
+            nO2 = nO2?.microgramsPerCubicMeter,
+            o3 = o3?.microgramsPerCubicMeter,
+            cO = cO?.milligramsPerCubicMeter
         )
     }
 
@@ -468,10 +470,10 @@ class NamemService @Inject constructor(
     }
 
     // Convert Mongolian AQI to pollutant concentration
-// SO2, NO2, PM10, PM2.5, O3 in µg/m³
-// CO in mg/m³
-//
-// Breakpoint source: http://agaar.mn/article-view/692
+    // SO2, NO2, PM10, PM2.5, O3 in µg/m³
+    // CO in mg/m³
+    //
+    // Breakpoint source: http://agaar.mn/article-view/692
     private fun convertAqi(
         pollutant: PollutantIndex,
         aqi: Double?,

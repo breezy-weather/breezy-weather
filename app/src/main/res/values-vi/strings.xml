@@ -340,7 +340,6 @@
     <string name="unit_kn_voice">Hải lý</string>
     <string name="unit_mph_voice">Dặm trên giờ</string>
     <string name="unit_ftps_voice">Bước chân trên giây</string>
-    <string name="unit_mugpcum_voice">Microgram trên mét khối</string>
     <string name="notification_refreshed_at">Được làm mới vào lúc</string>
     <string name="notification_channel_alerts">Cảnh báo</string>
     <string name="notification_running_in_background">Đang chạy dưới nền để tiếp tục cập nhật</string>
@@ -367,7 +366,6 @@
     <string name="settings_modules_live_wallpaper_summary">Đặt hoạt ảnh thời tiết làm hình nền</string>
     <string name="settings_color_dark">Tối</string>
     <string name="unit_kph_voice">Kilômét trên giờ</string>
-    <string name="unit_mgpcum_voice">Miligam trên mét khối</string>
     <string name="common_weather_text_clear_sky">Trời trong</string>
     <string name="unit_ppcm_voice">Trên mét khối</string>
     <string name="notification_channel_background_services">Dịch vụ chạy dưới nền</string>
@@ -422,9 +420,7 @@
     <string name="unit_kn">kn</string>
     <string name="unit_mph">mph</string>
     <string name="unit_fahrenheit">°F</string>
-    <string name="unit_mgpcum">mg/m³</string>
     <string name="unit_ppcm">/m³</string>
-    <string name="unit_mugpcum">μg/m³</string>
     <string name="null_data_text">N/A</string>
     <string name="unit_kelvin_short">K</string>
     <string name="unit_kelvin">K</string>

@@ -10,8 +10,6 @@
 
     <string name="unit_mps_voice">Meters per second</string>
     <string name="unit_kph_voice">Kilometers per hour</string>
-    <string name="unit_mugpcum_voice">Micrograms per cubic meter</string>
-    <string name="unit_mgpcum_voice">Milligrams per cubic meter</string>
     <string name="unit_ppcm_voice">Per cubic meter</string>
 
     <string name="humidity_about_description">Relative humidity, more commonly known just as humidity, is the percentage of water vapor present in the air compared to the maximum amount that the air can hold at a given temperature.</string>

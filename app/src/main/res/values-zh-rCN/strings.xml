@@ -301,10 +301,6 @@
     <string name="unit_mph_voice">英里每小时</string>
     <string name="unit_ftps">英尺/秒</string>
     <string name="unit_ftps_voice">英尺每秒</string>
-    <string name="unit_mugpcum">微克/米³</string>
-    <string name="unit_mugpcum_voice">微克每立方米</string>
-    <string name="unit_mgpcum">毫克/米³</string>
-    <string name="unit_mgpcum_voice">毫克每立方米</string>
     <string name="unit_ppcm">/米³</string>
     <string name="unit_ppcm_voice">每立方米</string>
     <string name="uv_alert_level">预警水平</string>

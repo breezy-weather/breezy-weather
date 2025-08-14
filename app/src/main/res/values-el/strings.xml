@@ -393,9 +393,6 @@
     <string name="settings_debug">Εντοπισμός σφαλμάτων</string>
     <string name="unit_mps_voice">Μέτρα ανά δευτερόλεπτο</string>
     <string name="common_weather_text_rain_freezing_heavy">Σφοδρή παγωμένη βροχή</string>
-    <string name="unit_mugpcum">μg/m³</string>
-    <string name="unit_mgpcum">mg/m³</string>
-    <string name="unit_mgpcum_voice">χιλιοστόγραμμα ανά κυβικό μέτρο</string>
     <string name="unit_ppcm">/μ³</string>
     <string name="unit_ppcm_voice">Ανά κυβικό μέτρο</string>
     <string name="notification_channel_alerts">Ειδοποιήσεις</string>
@@ -485,7 +482,6 @@
     <string name="common_weather_text_snow_showers_light">Ασθενείς μπόρες χιονιού</string>
     <string name="settings_main_threshold_lines_on_charts">Γραμμές κατωφλίου στα γραφήματα</string>
     <string name="settings_modules_notification_widget_title">Γραφικό στοιχείο ειδοποίησης</string>
-    <string name="unit_mugpcum_voice">Μικρογραμμάρια ανά κυβικό μέτρο</string>
     <string name="unit_kelvin">Κ</string>
     <string name="about_source_code">Πηγαίος κώδικας</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Καταιγίδα με ελαφριά χαλαζόπτωση</string>

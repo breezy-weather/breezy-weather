@@ -76,6 +76,20 @@
     <string name="volume_l_nominative_short">%s l</string>
     <string name="volume_l_nominative_long">@string/volume_l_nominative_short</string>
 
+    <!-- Weight units -->
+
+    <!-- Microgram -->
+    <string name="weight_microg_display_name_short">μg</string>
+    <string name="weight_microg_display_name_long">@string/weight_microg_display_name_short</string>
+    <string name="weight_microg_nominative_short">%s μg</string>
+    <string name="weight_microg_nominative_long">@string/weight_microg_nominative_short</string>
+
+    <!-- Milligram -->
+    <string name="weight_mg_display_name_short">mg</string>
+    <string name="weight_mg_display_name_long">@string/weight_mg_display_name_short</string>
+    <string name="weight_mg_nominative_short">%s mg</string>
+    <string name="weight_mg_nominative_long">@string/weight_mg_nominative_short</string>
+
     <!-- Pressure units -->
 
     <!-- Pascal -->

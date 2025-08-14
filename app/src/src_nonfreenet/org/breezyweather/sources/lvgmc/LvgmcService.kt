@@ -53,6 +53,8 @@ import org.breezyweather.sources.lvgmc.json.LvgmcCurrentLocation
 import org.breezyweather.sources.lvgmc.json.LvgmcCurrentResult
 import org.breezyweather.sources.lvgmc.json.LvgmcForecastResult
 import org.breezyweather.unit.distance.Distance.Companion.meters
+import org.breezyweather.unit.pollutant.PollutantConcentration.Companion.microgramsPerCubicMeter
+import org.breezyweather.unit.pollutant.PollutantConcentration.Companion.milligramsPerCubicMeter
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
 import retrofit2.Retrofit
@@ -195,13 +197,17 @@ class LvgmcService @Inject constructor(
                     AirQualityWrapper(
                         current = AirQuality(
                             pM25 = aq.filter { it.code == "PM2.5_60min" }.sortedByDescending { it.time }
-                                .firstOrNull()?.value,
+                                .firstOrNull()?.value?.microgramsPerCubicMeter,
                             pM10 = aq.filter { it.code == "PM10_60min" }.sortedByDescending { it.time }
-                                .firstOrNull()?.value,
-                            sO2 = aq.filter { it.code == "SO2" }.sortedByDescending { it.time }.firstOrNull()?.value,
-                            nO2 = aq.filter { it.code == "NO2" }.sortedByDescending { it.time }.firstOrNull()?.value,
-                            o3 = aq.filter { it.code == "O3" }.sortedByDescending { it.time }.firstOrNull()?.value,
-                            cO = aq.filter { it.code == "CO" }.sortedByDescending { it.time }.firstOrNull()?.value
+                                .firstOrNull()?.value?.microgramsPerCubicMeter,
+                            sO2 = aq.filter { it.code == "SO2" }.sortedByDescending { it.time }
+                                .firstOrNull()?.value?.microgramsPerCubicMeter,
+                            nO2 = aq.filter { it.code == "NO2" }.sortedByDescending { it.time }
+                                .firstOrNull()?.value?.microgramsPerCubicMeter,
+                            o3 = aq.filter { it.code == "O3" }.sortedByDescending { it.time }
+                                .firstOrNull()?.value?.microgramsPerCubicMeter,
+                            cO = aq.filter { it.code == "CO" }.sortedByDescending { it.time }
+                                .firstOrNull()?.value?.milligramsPerCubicMeter
                         )
                     )
                 } else {

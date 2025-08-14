@@ -21,12 +21,10 @@ import android.graphics.Color
 import androidx.annotation.ColorInt
 import androidx.annotation.StringRes
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.options.basic.UnitEnum
-import org.breezyweather.common.basic.models.options.unit.AirQualityCOUnit
-import org.breezyweather.common.basic.models.options.unit.AirQualityUnit
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.unit.formatting.UnitWidth
+import org.breezyweather.unit.pollutant.PollutantConcentrationUnit
 import org.breezyweather.unit.precipitation.PrecipitationUnit
 import kotlin.math.roundToInt
 
@@ -181,11 +179,11 @@ enum class PollutantIndex(
             }
         }
 
-        fun getUnit(pollutantIndex: PollutantIndex): UnitEnum<Double> {
+        fun getUnit(pollutantIndex: PollutantIndex): PollutantConcentrationUnit {
             return if (pollutantIndex == CO) {
-                AirQualityCOUnit.MILLIGRAM_PER_CUBIC_METER
+                PollutantConcentrationUnit.MILLIGRAM_PER_CUBIC_METER
             } else {
-                AirQualityUnit.MICROGRAM_PER_CUBIC_METER
+                PollutantConcentrationUnit.MICROGRAM_PER_CUBIC_METER
             }
         }
     }

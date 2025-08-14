@@ -256,8 +256,6 @@
     <string name="unit_kn_voice">Nós</string>
     <string name="unit_mph_voice">Milhas por hora</string>
     <string name="unit_ftps_voice">Pés por segundo</string>
-    <string name="unit_mugpcum_voice">Microgramas por metro cúbico</string>
-    <string name="unit_mgpcum_voice">Miligramas por metro cúbico</string>
     <string name="unit_ppcm_voice">Por metro cúbico</string>
     <string name="uv_index_6_7">Alto</string>
     <string name="uv_index_8_10">Muito alto</string>
@@ -416,10 +414,8 @@
     <string name="unit_fahrenheit_short">°F</string>
     <string name="unit_kelvin">K</string>
     <string name="unit_kelvin_short">K</string>
-    <string name="unit_mugpcum">μg/m³</string>
     <string name="air_quality_pm25">PM2.5</string>
     <string name="air_quality_pm10">PM10</string>
-    <string name="unit_mgpcum">mg/m³</string>
     <string name="unit_celsius">°C</string>
     <string name="common_weather_text_snow_grains">Grãos de neve</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Tempestade leve ou moderada</string>

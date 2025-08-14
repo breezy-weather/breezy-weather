@@ -171,7 +171,6 @@
     <string name="unit_ftps">ft/s</string>
     <string name="unit_ftps_voice">Pés por segundo</string>
     <string name="unit_kelvin">K</string>
-    <string name="unit_mugpcum">μg/m³</string>
     <string name="unit_ppcm">/m³</string>
     <string name="unit_ppcm_voice">Por metro cúbico</string>
     <string name="about_contributors">Contribuidores</string>
@@ -213,7 +212,6 @@
     <string name="settings_main_cards_title">Blocos</string>
     <string name="settings_modules_live_wallpaper_summary">Define uma animação climática como papel de parede</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Tempestade com granizo pesado</string>
-    <string name="unit_mgpcum">mg/m³</string>
     <string name="pollen_alnus">Amieiro</string>
     <string name="pollen_betula">Bétula</string>
     <string name="pollen_artemisia">Artemísia</string>
@@ -248,7 +246,6 @@
     <string name="settings_modules_monochrome_icons_title">Ícones monocromáticos</string>
     <string name="settings_modules_section_widgets_in_use">Widgets em uso</string>
     <string name="settings_items_drag_to_sort">Toque para arrastar os itens da lista para classificar</string>
-    <string name="unit_mgpcum_voice">Miligramas por metro cúbico</string>
     <string name="notification_update_error">%d falha na(s) atualização(ões)</string>
     <string name="locations">Localizações</string>
     <string name="location_message_search_failed">A procura da localização falhou</string>
@@ -337,7 +334,6 @@
     <string name="unit_celsius_short">°</string>
     <string name="unit_fahrenheit">°F</string>
     <string name="unit_fahrenheit_short">°</string>
-    <string name="unit_mugpcum_voice">Microgramas por metro cúbico</string>
     <string name="settings_icon_packs_weather_icon_light">Ícone claro</string>
     <string name="settings_icon_packs_weather_icon_dark">Ícone escuro</string>
     <string name="settings_icon_packs_get_more">Obter mais</string>

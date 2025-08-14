@@ -71,6 +71,16 @@ Android translations are only in English at the moment.
 | Inch of mercury       | Android >= 11     | Android 7 to 10 | Android < 7          |
 
 
+## Air pollutant concentration
+
+Android translations are only in English at the moment.
+
+| Unit                      | `NumberFormatter` | `MeasureFormat` | Android translations |
+|---------------------------|-------------------|-----------------|----------------------|
+| Microgram per cubic meter | Android >= 11     | Android 8 to 10 | Android < 8          |
+| Milligram per cubic meter | Android >= 11     | Android 8 to 10 | Android < 8          |
+
+
 ## Duration
 
 | Unit        | `NumberFormatter`¹ | `MeasureFormat` | Android translations |

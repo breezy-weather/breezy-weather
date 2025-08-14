@@ -519,9 +519,6 @@
     <string name="settings_notifications">அறிவிப்புகள்</string>
     <string name="settings_enabled">இயக்கப்பட்டது</string>
     <string name="settings_disabled">முடக்கப்பட்டது</string>
-    <string name="unit_mugpcum">μg/m³</string>
-    <string name="unit_mugpcum_voice">ஒரு கன மீட்டருக்கு மைக்ரோகிராம்</string>
-    <string name="unit_mgpcum">mg/m³</string>
     <string name="common_weather_text_overcast">மேகமூட்டம்</string>
     <string name="weather_kind_thunderstorm">இடியுடன் கூடிய மழை</string>
     <string name="temperature_degree_day">டிகிரி நாள்</string>
@@ -609,7 +606,6 @@
     <string name="settings_debug_dump_crash_logs_saved">செயலிழப்பு பதிவுகள் சேமிக்கப்பட்டன</string>
     <string name="settings_debug_dump_crash_logs_tap_to_open">திறக்க தட்டவும்</string>
     <string name="settings_items_drag_to_sort">பட்டியல் உருப்படிகளை வரிசைப்படுத்த தட்டவும்</string>
-    <string name="unit_mgpcum_voice">ஒரு கன மீட்டருக்கு மில்லிகிராம்</string>
     <string name="unit_ppcm">/m³</string>
     <string name="common_weather_text_rain_snow_mixed_light">லேசான மழை மற்றும் பனி கலக்கப்படுகிறது</string>
     <string name="metno_weather_text_andthunder">%s மற்றும் இடி</string>

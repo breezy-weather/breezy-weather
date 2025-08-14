@@ -270,7 +270,6 @@
     <string name="pollen">Pollen</string>
     <string name="weather_kind_hail">Hagel</string>
     <string name="sunshine_duration">Zonuren</string>
-    <string name="unit_mugpcum">μg/m³</string>
     <string name="action_back">Terug</string>
     <string name="action_help_me_choose">Help mij kiezen</string>
     <string name="weather_source_accu_preference_days_1">1 dag</string>
@@ -378,8 +377,6 @@
     <string name="unit_kelvin_short">K</string>
     <string name="unit_fahrenheit_short">°</string>
     <string name="unit_ppcm">/m³</string>
-    <string name="unit_mgpcum">mg/m³</string>
-    <string name="unit_mgpcum_voice">Milligram per kubieke meter</string>
     <string name="unit_ppcm_voice">Per kubieke meter</string>
     <string name="notification_updating_weather_data">Weergegevens bijwerken (%1$d/%2$d)</string>
     <string name="notification_style_cities">Steden</string>
@@ -453,7 +450,6 @@
     <string name="weather_kind_wind">Wind</string>
     <string name="widget_custom_subtitle_keyword_xsr_description">Zonsopgang van vandaag, morgen, …, 4 dagen later</string>
     <string name="notification_channel_alerts">Waarschuwingen</string>
-    <string name="unit_mugpcum_voice">Microgram per kubieke meter</string>
     <string name="about_source_code">Broncode</string>
     <string name="about_contributors">Bijdragen</string>
     <string name="common_weather_text_mostly_clear">Overwegend onbewolkt</string>

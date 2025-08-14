@@ -60,6 +60,8 @@ import org.breezyweather.sources.china.json.ChinaForecastResult
 import org.breezyweather.sources.china.json.ChinaLocationResult
 import org.breezyweather.sources.china.json.ChinaMinutelyResult
 import org.breezyweather.unit.distance.Distance.Companion.kilometers
+import org.breezyweather.unit.pollutant.PollutantConcentration.Companion.microgramsPerCubicMeter
+import org.breezyweather.unit.pollutant.PollutantConcentration.Companion.milligramsPerCubicMeter
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
 import retrofit2.Retrofit
@@ -220,12 +222,12 @@ class ChinaService @Inject constructor(
                     mainResult.aqi?.let {
                         AirQualityWrapper(
                             current = AirQuality(
-                                pM25 = it.pm25?.toDoubleOrNull(),
-                                pM10 = it.pm10?.toDoubleOrNull(),
-                                sO2 = it.so2?.toDoubleOrNull(),
-                                nO2 = it.no2?.toDoubleOrNull(),
-                                o3 = it.o3?.toDoubleOrNull(),
-                                cO = it.co?.toDoubleOrNull()
+                                pM25 = it.pm25?.toDoubleOrNull()?.microgramsPerCubicMeter,
+                                pM10 = it.pm10?.toDoubleOrNull()?.microgramsPerCubicMeter,
+                                sO2 = it.so2?.toDoubleOrNull()?.microgramsPerCubicMeter,
+                                nO2 = it.no2?.toDoubleOrNull()?.microgramsPerCubicMeter,
+                                o3 = it.o3?.toDoubleOrNull()?.microgramsPerCubicMeter,
+                                cO = it.co?.toDoubleOrNull()?.milligramsPerCubicMeter
                             )
                         )
                     }

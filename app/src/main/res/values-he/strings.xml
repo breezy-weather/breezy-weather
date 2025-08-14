@@ -449,8 +449,6 @@
     <string name="settings_color_app">עקוב אחרי העדפות/הגדרות האפליקציה</string>
     <string name="unit_kn_voice">קשרים</string>
     <string name="unit_ftps_voice">רגל לשנייה</string>
-    <string name="unit_mgpcum_voice">מיליגרמים עבור מטר מעוקב</string>
-    <string name="unit_mugpcum_voice">מיקרוגרמים עבור מטר מעוקב</string>
     <string name="unit_ppcm_voice">עבור מטר מעוקב</string>
     <string name="notification_refreshed_at">רוענן ב</string>
     <string name="notification_channel_alerts">התראות</string>

@@ -451,15 +451,12 @@
     <string name="widget_style_mini">Mini</string>
     <string name="settings_background_updates_worker_info_title">Prosessitiedot</string>
     <string name="unit_ppcm">/m³</string>
-    <string name="unit_mugpcum">μg/m³</string>
-    <string name="unit_mgpcum">mg/m³</string>
     <string name="null_data_text">N/A</string>
     <string name="widget_style_nano">Nano</string>
     <string name="common_weather_text_drizzle_moderate">Kohtalaista tihkusadetta</string>
     <string name="settings_modules_week_icon_mode_title">Viikkonäkymissä näytettävä kuvake</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">Kerrostuva sumu</string>
     <string name="common_weather_text_rain_snow_mixed_heavy">Rankkaa vesisateen ja lumen sekoitusta</string>
-    <string name="unit_mugpcum_voice">Mikrogrammaa per kuutiometri</string>
     <string name="common_weather_text_drizzle_freezing_light">Kevyttä jäätävää tihkusadetta</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Ukkosmyrsky ja lieviä raekuuroja</string>
     <string name="message_parsing_error_content">Varmista, että olet päivittänyt sovelluksen uusimpaan versioon. Palvelin saattaa olla tilapäisesti poissa käytöstä, yritä siinä tapauksessa myöhemmin uudelleen. Jos ongelma jatkuu, poista kaatumisloki debug-asetuksista ja ilmoita ongelmasta GitHubissa.</string>
@@ -487,7 +484,6 @@
     <string name="settings_main_hourly_trends_title">Tuntikohtainen kehitys</string>
     <string name="notification_channel_background_services">Taustapalvelut</string>
     <string name="settings_modules_live_wallpaper_error">Taustakuvanvalitsinta ei voitu käynnistää. Voit silti ottaa %s -taustakuvan käyttöön valitsemalla “Live Wallpaper” kotinäytön taustakuvanvalitsimesta.</string>
-    <string name="unit_mgpcum_voice">Milligrammaa per kuutiometri</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Ukkosmyrsky ja rajuja raekuuroja</string>
     <string name="common_weather_text_rain_snow_mixed_showers_light">Kuurottaista kevyttä vesisateen ja lumen sekoitusta</string>
     <string name="common_weather_text_drizzle_freezing_heavy">Rankkaa jäätävää tihkusadetta</string>

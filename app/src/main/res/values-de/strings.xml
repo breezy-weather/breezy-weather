@@ -181,7 +181,6 @@
     <string name="air_quality_level_3_description">Die Luft ist stark verschmutzt und für empfindliche Personengruppen gesundheitsschädlich. Verbringe weniger Zeit im Freien, falls bei dir Symptome wie Atembeschwerden oder Hustenreiz auftreten.</string>
     <string name="air_quality_level_5">Sehr ungesund</string>
     <string name="widget_custom_subtitle_keyword_xnw_description">Wetter nachts heute, morgen, …, in 4 Tagen</string>
-    <string name="unit_mugpcum_voice">Mikrogramm pro Kubikmeter</string>
     <string name="dialog_permissions_location_background_content">Damit die Wetteraktualisierung im Hintergrund für den aktuellsten von Android bekannten Standort erfolgt, musst du die Standortberechtigung auf „Immer zulassen“ setzen. Wenn du dies nicht tust, wird das Wetter auf Grundlage der zuletzt im Vordergrund abgerufenen Koordinaten aktualisiert, die veraltet sein können.</string>
     <string name="widget_subtitle_data_time">Aktualisierungszeit</string>
     <string name="widget_subtitle_data_aqi">Luftqualität</string>
@@ -221,7 +220,6 @@
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Gewitter mit starkem Hagel</string>
     <string name="widget_custom_subtitle_keyword_cps_description">Aktueller Luftdruck</string>
     <string name="widget_custom_subtitle_keyword_d_description">Datum</string>
-    <string name="unit_mugpcum">μg/m³</string>
     <string name="common_weather_text_overcast">Bedeckt</string>
     <string name="unit_mph">mph</string>
     <string name="widget_custom_subtitle_keyword_lat_description">Breitengrad</string>
@@ -238,7 +236,6 @@
     <string name="widget_subtitle_data_feels_like">Gefühlte Temperatur</string>
     <string name="ephemeris_sunset_at">Sonnenuntergang um %s</string>
     <string name="widget_custom_subtitle_keyword_cuv_description">Aktueller UV-Index</string>
-    <string name="unit_mgpcum">mg/m³</string>
     <string name="unit_ppcm">/m³</string>
     <string name="air_quality_level_4">Ungesund</string>
     <string name="widget_custom_subtitle_keyword_hd_description">Stündliche Beschreibung</string>
@@ -296,7 +293,6 @@
     <string name="unit_fahrenheit_short">°</string>
     <string name="unit_kelvin">K</string>
     <string name="unit_kelvin_short">K</string>
-    <string name="unit_mgpcum_voice">Milligramm pro Kubikmeter</string>
     <string name="air_quality_level_5_description">Empfindliche Personengruppen werden unmittelbare gesundheitliche Auswirkungen spüren und sollten Aktivitäten im Freien vermeiden. Bei gesunden Menschen kommt es bei längerer Exposition wahrscheinlich zu Atembeschwerden und Hustenreiz. Wir empfehlen, nicht nach draußen zu gehen und Aktivitäten im Freien zu verschieben.</string>
     <string name="settings_source_default_value">Standard (unverändert)</string>
     <string name="about_matrix">Matrix-Raum</string>

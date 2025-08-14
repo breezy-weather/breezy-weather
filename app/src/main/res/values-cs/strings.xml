@@ -259,8 +259,6 @@
     <string name="unit_kn_voice">Uzly</string>
     <string name="unit_mph_voice">Míle za hodinu</string>
     <string name="unit_ftps_voice">Stopy za sekundu</string>
-    <string name="unit_mugpcum_voice">Mikrogramy na metr krychlový</string>
-    <string name="unit_mgpcum_voice">Milligramy na metr krychlový</string>
     <string name="unit_ppcm_voice">Na metr krychlový</string>
     <string name="settings_notifications">Oznámení</string>
     <string name="location_message_reverse_geocoding_failed">Zdroji počasí se nepodařilo najít odpovídající místo</string>
@@ -356,7 +354,6 @@
     <string name="unit_mph">mph</string>
     <string name="unit_kn">kn</string>
     <string name="action_add_new_location">Přidat novou polohu</string>
-    <string name="unit_mugpcum">μg/m³</string>
     <string name="notification_channel_widget">Widget</string>
     <string name="unit_ppcm">/m³</string>
     <string name="about_source_code">Zdrojový kód</string>
@@ -383,7 +380,6 @@
     <string name="widget_clock_font_analog">Analogový</string>
     <string name="unit_fahrenheit">°F</string>
     <string name="unit_kelvin_short">K</string>
-    <string name="unit_mgpcum">mg/m³</string>
     <string name="weather_source_accu_preference_days_1">1 den</string>
     <string name="weather_source_accu_preference_days_5">5 dní</string>
     <string name="weather_source_accu_preference_days_10">10 dní</string>

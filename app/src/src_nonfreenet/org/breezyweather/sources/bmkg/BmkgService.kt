@@ -62,6 +62,7 @@ import org.breezyweather.sources.bmkg.json.BmkgLocationResult
 import org.breezyweather.sources.bmkg.json.BmkgPm25Result
 import org.breezyweather.sources.bmkg.json.BmkgWarningResult
 import org.breezyweather.unit.distance.Distance.Companion.meters
+import org.breezyweather.unit.pollutant.PollutantConcentration.Companion.microgramsPerCubicMeter
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import retrofit2.Retrofit
 import java.text.SimpleDateFormat
@@ -427,7 +428,7 @@ class BmkgService @Inject constructor(
             }
         }
         return AirQuality(
-            pM25 = pm25
+            pM25 = pm25?.microgramsPerCubicMeter
         )
     }
 

@@ -444,7 +444,6 @@
     <string name="settings_debug_dump_crash_logs_title">अकस्मात गिरने के अभिलेख साझा करे</string>
     <string name="settings_automatic">स्वचालित</string>
     <string name="settings_disabled">अक्षम</string>
-    <string name="unit_mugpcum_voice">माइक्रोग्राम प्रति घन मीटर</string>
     <string name="notification_channel_forecast">पूर्वानुमान</string>
     <string name="notification_style_native">मूल</string>
     <string name="about_contribution_WangDaYeeeeee">मूल परियोजना जियोमेट्रिक वेदर के विकासकर्ता</string>
@@ -504,8 +503,6 @@
     <string name="notification_updating_weather_data">अद्यतन मौसम डेटा (%1$d/%2$d)</string>
     <string name="about_app">अनुप्रयोग के बारे में</string>
     <string name="about_contact">संपर्क</string>
-    <string name="unit_mugpcum">μg/m³</string>
-    <string name="unit_mgpcum_voice">मिलीग्राम प्रति घन मीटर</string>
     <string name="notification_channel_crash_logs">अकस्मात गिरने के अभिलेख</string>
     <string name="settings_debug_dump_crash_logs_tap_to_open">खोलने के लिए दबाएं</string>
     <string name="settings_changes_apply_after_restart">पुनः आरंभ होने के बाद परिवर्तन प्रभावी होंगे</string>
@@ -566,7 +563,6 @@
     <string name="settings_weather_source_open_meteo_instance_air_quality">वायु गुणवत्ता सर्वर</string>
     <string name="settings_appearance_calendar_title">वैकल्पिक कैलेंडर</string>
     <string name="settings_modules_configure_widget_summary">इस विजेट को कॉन्फ़िगर करें</string>
-    <string name="unit_mgpcum">मिलीग्राम/मीटर³ (mg/m³)</string>
     <string name="settings_background_updates_refresh_never_warning1">पृष्ठभूमि अपडेट को बंद करके, आप सूचनाएँ या पूर्वानुमान के संदेश प्राप्त नहीं करेंगे। विजेट तब तक ताजगी नहीं पाएगा जब तक आप ऐप नहीं खोलते।</string>
     <string name="settings_weather_source_open_meteo_instance_forecast">पूर्वानुमान उदाहरण (Forecast Instance)</string>
     <string name="settings_invalid_syntax">अमान्य संटेक्स्ट (syntax)</string>

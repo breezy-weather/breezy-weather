@@ -20,7 +20,6 @@
     <string name="uv_index">UV-index</string>
     <string name="common_weather_text_snow">Snö</string>
     <string name="settings_units_precipitation">Nederbördsenhet</string>
-    <string name="unit_mugpcum_voice">Mikrogram per kubikmeter</string>
     <string name="settings_background_updates_refresh_skip_when_battery_low">Ignorera när batterinivån är låg</string>
     <string name="ephemeris_moon_phase_full_moon">Fullmåne</string>
     <string name="common_weather_text_cloudy">Molnigt</string>
@@ -125,7 +124,6 @@
     <string name="ephemeris">Solen &amp; månen</string>
     <string name="weather_kind_thunder">Åska</string>
     <string name="air_quality_pm25">PM2,5</string>
-    <string name="unit_mugpcum">μg/m³</string>
     <string name="pollen_olea">Olivträd</string>
     <string name="action_location_list">Platslista</string>
     <string name="action_edit">Redigera</string>
@@ -139,7 +137,6 @@
     <string name="action_undo">Ångra</string>
     <string name="pollen_level_1">Mycket lågt</string>
     <string name="widget_custom_subtitle_keyword_w_description">Vecka</string>
-    <string name="unit_mgpcum">mg/m³</string>
     <string name="wind_direction_SW_short">SV</string>
     <string name="precipitation_duration">Nederbördens varaktighet</string>
     <string name="setting_weather_source_accu_hours">Timmar</string>
@@ -160,7 +157,6 @@
     <string name="air_quality_pm25_voice">PM två komma fem</string>
     <string name="settings_units_speed">Hastighetsenhet</string>
     <string name="cloud_cover">Molntäcke</string>
-    <string name="unit_mgpcum_voice">Milligram per kubikmeter</string>
     <string name="widget_custom_subtitle_keyword_ct_description">Nuvarande temperatur (°C/°F)</string>
     <string name="action_help">Hjälp</string>
     <string name="action_search">Sök</string>

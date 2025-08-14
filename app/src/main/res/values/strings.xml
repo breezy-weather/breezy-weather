@@ -895,10 +895,6 @@
     <string name="unit_fahrenheit_short">°</string>
     <string name="unit_kelvin">K</string>
     <string name="unit_kelvin_short">K</string>
-    <string name="unit_mugpcum">μg/m³</string>
-    <string name="unit_mugpcum_voice">Micrograms per cubic meter</string>
-    <string name="unit_mgpcum">mg/m³</string>
-    <string name="unit_mgpcum_voice">Milligrams per cubic meter</string>
     <string name="unit_ppcm">/m³</string>
     <string name="unit_ppcm_voice">Per cubic meter</string>
     <!-- Notifications -->

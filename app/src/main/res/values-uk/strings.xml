@@ -450,9 +450,6 @@
     <string name="unit_mph">миль/год</string>
     <string name="unit_celsius">°C</string>
     <string name="unit_fahrenheit_short">°</string>
-    <string name="unit_mugpcum">мкг/м³</string>
-    <string name="unit_mugpcum_voice">Мікрограмів на кубічний метр</string>
-    <string name="unit_mgpcum">мг/м³</string>
     <string name="notification_refreshed_at">Оновлено о</string>
     <string name="notification_channel_alerts">Попередження</string>
     <string name="notification_channel_widget">Віджет</string>
@@ -478,7 +475,6 @@
     <string name="unit_celsius_short">°</string>
     <string name="unit_fahrenheit">°F</string>
     <string name="common_weather_text_rain_snow_mixed_showers_heavy">Сильна злива зі снігом</string>
-    <string name="unit_mgpcum_voice">Міліграмів на кубічний метр</string>
     <string name="common_weather_text_drizzle">Мряка</string>
     <string name="common_weather_text_drizzle_light">Невелика мряка</string>
     <string name="common_weather_text_drizzle_moderate">Помірна мряка</string>

@@ -36,6 +36,8 @@ import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_HIGHEST
 import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
 import org.breezyweather.domain.settings.SourceConfigStore
 import org.breezyweather.sources.atmo.json.AtmoPointResult
+import org.breezyweather.unit.pollutant.PollutantConcentration
+import org.breezyweather.unit.pollutant.PollutantConcentration.Companion.microgramsPerCubicMeter
 import retrofit2.Retrofit
 import java.util.Calendar
 import java.util.Date
@@ -130,11 +132,11 @@ abstract class AtmoService : HttpSource(), WeatherSource, ConfigurableSource {
     }
 
     private fun getAirQuality(requestedDate: Date, aqiAtmoAuraResult: AtmoPointResult): AirQuality {
-        var pm25: Double? = null
-        var pm10: Double? = null
-        var so2: Double? = null
-        var no2: Double? = null
-        var o3: Double? = null
+        var pm25: PollutantConcentration? = null
+        var pm10: PollutantConcentration? = null
+        var so2: PollutantConcentration? = null
+        var no2: PollutantConcentration? = null
+        var o3: PollutantConcentration? = null
 
         aqiAtmoAuraResult.polluants
             ?.filter { p -> p.horaires?.firstOrNull { it.datetimeEcheance == requestedDate } != null }
@@ -142,19 +144,19 @@ abstract class AtmoService : HttpSource(), WeatherSource, ConfigurableSource {
                 when (p.polluant) {
                     "o3" -> o3 = p.horaires?.firstOrNull {
                         it.datetimeEcheance == requestedDate
-                    }?.concentration
+                    }?.concentration?.microgramsPerCubicMeter
                     "no2" -> no2 = p.horaires?.firstOrNull {
                         it.datetimeEcheance == requestedDate
-                    }?.concentration
+                    }?.concentration?.microgramsPerCubicMeter
                     "pm2.5" -> pm25 = p.horaires?.firstOrNull {
                         it.datetimeEcheance == requestedDate
-                    }?.concentration
+                    }?.concentration?.microgramsPerCubicMeter
                     "pm10" -> pm10 = p.horaires?.firstOrNull {
                         it.datetimeEcheance == requestedDate
-                    }?.concentration
+                    }?.concentration?.microgramsPerCubicMeter
                     "so2" -> so2 = p.horaires?.firstOrNull {
                         it.datetimeEcheance == requestedDate
-                    }?.concentration
+                    }?.concentration?.microgramsPerCubicMeter
                 }
             }
 

@@ -225,7 +225,6 @@
     <string name="settings_debug_dump_crash_logs_saved">Дневниците на падовите се зачувани</string>
     <string name="unit_mph_voice">Милји на час</string>
     <string name="unit_ftps_voice">Стапала во секунда</string>
-    <string name="unit_mugpcum">μg/m³</string>
     <string name="notification_channel_background_services">Услуги во позадина</string>
     <string name="notification_running_in_background">Работи во заднина за да продолжи да се ажурира</string>
     <string name="notification_precipitation_starting_desc">Се очекува да започне во %s</string>
@@ -404,9 +403,6 @@
     <string name="unit_fahrenheit_short">°</string>
     <string name="unit_kelvin">К</string>
     <string name="unit_kelvin_short">К</string>
-    <string name="unit_mugpcum_voice">Микрограми на кубен метар</string>
-    <string name="unit_mgpcum">mg/m³</string>
-    <string name="unit_mgpcum_voice">Милиграми на кубен метар</string>
     <string name="unit_ppcm">/m³</string>
     <string name="unit_ppcm_voice">На кубен метар</string>
     <string name="notification_refreshed_at">Освежено во</string>

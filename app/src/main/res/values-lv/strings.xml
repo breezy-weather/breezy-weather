@@ -386,8 +386,6 @@
     <string name="settings_debug_dump_crash_logs_title">Kopīgot avāriju žurnālus</string>
     <string name="settings_debug_dump_crash_logs_summary">Saglabā kļūdu žurnālus failā, lai tos kopīgotu ar izstrādātājiem</string>
     <string name="unit_celsius">°C</string>
-    <string name="unit_mugpcum">μg/m³</string>
-    <string name="unit_mugpcum_voice">Mikrogrami uz kubikmetru</string>
     <string name="notification_style_cities">Pilsētas</string>
     <string name="about_app">Par lietotni</string>
     <string name="about_contact">Sazināties</string>
@@ -402,8 +400,6 @@
     <string name="settings_disabled">Atspējots</string>
     <string name="unit_kelvin">K</string>
     <string name="unit_kelvin_short">K</string>
-    <string name="unit_mgpcum">mg/m³</string>
-    <string name="unit_mgpcum_voice">Miligrami uz kubikmetru</string>
     <string name="notification_refreshed_at">Atsvaidzināti</string>
     <string name="notification_channel_alerts">Brīdinājumi</string>
     <string name="notification_channel_forecast">Prognoze</string>

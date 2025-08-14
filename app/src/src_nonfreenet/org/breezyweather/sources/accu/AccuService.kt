@@ -90,6 +90,8 @@ import org.breezyweather.unit.distance.Distance.Companion.feet
 import org.breezyweather.unit.distance.Distance.Companion.kilometers
 import org.breezyweather.unit.distance.Distance.Companion.meters
 import org.breezyweather.unit.distance.Distance.Companion.miles
+import org.breezyweather.unit.pollutant.PollutantConcentration
+import org.breezyweather.unit.pollutant.PollutantConcentration.Companion.microgramsPerCubicMeter
 import org.breezyweather.unit.precipitation.Precipitation.Companion.centimeters
 import org.breezyweather.unit.precipitation.Precipitation.Companion.inches
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
@@ -605,20 +607,20 @@ class AccuService @Inject constructor(
         val airQualityHourly = mutableMapOf<Date, AirQuality>()
         airQualityHourlyResult
             .forEach {
-                var pm25: Double? = null
-                var pm10: Double? = null
-                var so2: Double? = null
-                var no2: Double? = null
-                var o3: Double? = null
-                var co: Double? = null
+                var pm25: PollutantConcentration? = null
+                var pm10: PollutantConcentration? = null
+                var so2: PollutantConcentration? = null
+                var no2: PollutantConcentration? = null
+                var o3: PollutantConcentration? = null
+                var co: PollutantConcentration? = null
                 it.pollutants?.forEach { p ->
                     when (p.type) {
-                        "O3" -> o3 = p.concentration.value
-                        "NO2" -> no2 = p.concentration.value
-                        "PM2_5" -> pm25 = p.concentration.value
-                        "PM10" -> pm10 = p.concentration.value
-                        "SO2" -> so2 = p.concentration.value
-                        "CO" -> co = p.concentration.value?.div(1000.0)
+                        "O3" -> o3 = p.concentration.value?.microgramsPerCubicMeter
+                        "NO2" -> no2 = p.concentration.value?.microgramsPerCubicMeter
+                        "PM2_5" -> pm25 = p.concentration.value?.microgramsPerCubicMeter
+                        "PM10" -> pm10 = p.concentration.value?.microgramsPerCubicMeter
+                        "SO2" -> so2 = p.concentration.value?.microgramsPerCubicMeter
+                        "CO" -> co = p.concentration.value?.microgramsPerCubicMeter
                     }
                 }
                 val airQuality = if (pm25 != null ||

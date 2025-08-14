@@ -404,10 +404,6 @@
     <string name="unit_fahrenheit_short">°</string>
     <string name="unit_kelvin">K</string>
     <string name="unit_kelvin_short">K</string>
-    <string name="unit_mugpcum">μg/m³</string>
-    <string name="unit_mugpcum_voice">Mikrogramoj por kuba metro</string>
-    <string name="unit_mgpcum">mg/m³</string>
-    <string name="unit_mgpcum_voice">Miligramoj por kuba metro</string>
     <string name="unit_ppcm">/m³</string>
     <string name="unit_ppcm_voice">Por kuba metro</string>
     <!-- Notifications -->

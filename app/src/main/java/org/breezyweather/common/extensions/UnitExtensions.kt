@@ -21,6 +21,7 @@ import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.unit.distance.Distance
 import org.breezyweather.unit.duration.format
 import org.breezyweather.unit.formatting.UnitWidth
+import org.breezyweather.unit.pollutant.PollutantConcentrationUnit
 import org.breezyweather.unit.precipitation.Precipitation
 import org.breezyweather.unit.precipitation.PrecipitationUnit
 import org.breezyweather.unit.pressure.Pressure
@@ -160,6 +161,27 @@ fun Pressure.formatValue(
     return formatValue(
         unit = settings.getPressureUnit(context),
         width = width,
+        locale = context.currentLocale,
+        useNumberFormatter = settings.useNumberFormatter,
+        useMeasureFormat = settings.useMeasureFormat
+    )
+}
+
+/**
+ * Convenient format function with parameters filled for our app
+ */
+fun PollutantConcentrationUnit.formatMeasure(
+    context: Context,
+    value: Number,
+    valueWidth: UnitWidth = UnitWidth.SHORT,
+    unitWidth: UnitWidth = UnitWidth.SHORT,
+): String {
+    val settings = SettingsManager.getInstance(context)
+    return format(
+        context = context,
+        value = value,
+        valueWidth = valueWidth,
+        unitWidth = unitWidth,
         locale = context.currentLocale,
         useNumberFormatter = settings.useNumberFormatter,
         useMeasureFormat = settings.useMeasureFormat

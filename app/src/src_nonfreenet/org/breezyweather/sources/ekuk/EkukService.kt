@@ -36,6 +36,8 @@ import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_HIGHEST
 import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
 import org.breezyweather.sources.ekuk.json.EkukObservationsResult
 import org.breezyweather.sources.ekuk.json.EkukStationsResult
+import org.breezyweather.unit.pollutant.PollutantConcentration.Companion.microgramsPerCubicMeter
+import org.breezyweather.unit.pollutant.PollutantConcentration.Companion.milligramsPerCubicMeter
 import retrofit2.Retrofit
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -178,12 +180,12 @@ class EkukService @Inject constructor(
                 .firstOrNull()?.value?.toDoubleOrNull()
         }
         return AirQuality(
-            pM25 = pollutantConcentrations.getOrElse("PM25") { null },
-            pM10 = pollutantConcentrations.getOrElse("PM10") { null },
-            sO2 = pollutantConcentrations.getOrElse("SO2") { null },
-            nO2 = pollutantConcentrations.getOrElse("NO2") { null },
-            o3 = pollutantConcentrations.getOrElse("O3") { null },
-            cO = pollutantConcentrations.getOrElse("CO") { null }
+            pM25 = pollutantConcentrations.getOrElse("PM25") { null }?.microgramsPerCubicMeter,
+            pM10 = pollutantConcentrations.getOrElse("PM10") { null }?.microgramsPerCubicMeter,
+            sO2 = pollutantConcentrations.getOrElse("SO2") { null }?.microgramsPerCubicMeter,
+            nO2 = pollutantConcentrations.getOrElse("NO2") { null }?.microgramsPerCubicMeter,
+            o3 = pollutantConcentrations.getOrElse("O3") { null }?.microgramsPerCubicMeter,
+            cO = pollutantConcentrations.getOrElse("CO") { null }?.milligramsPerCubicMeter
         )
     }
 

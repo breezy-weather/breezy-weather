@@ -495,28 +495,6 @@
         <item>k</item>
     </string-array>
 
-    <!-- air quality unit. -->
-    <string-array name="air_quality_units">
-        <item>@string/unit_mugpcum</item>
-    </string-array>
-    <string-array name="air_quality_unit_voices">
-        <item>@string/unit_mugpcum_voice</item>
-    </string-array>
-    <string-array name="air_quality_unit_values">
-        <item>mugpcum</item>
-    </string-array>
-
-    <!-- air quality co unit. -->
-    <string-array name="air_quality_co_units">
-        <item>@string/unit_mgpcum</item>
-    </string-array>
-    <string-array name="air_quality_co_unit_voices">
-        <item>@string/unit_mgpcum_voice</item>
-    </string-array>
-    <string-array name="air_quality_co_unit_values">
-        <item>mgpcum</item>
-    </string-array>
-
     <!-- pollen unit. -->
     <string-array name="pollen_units">
         <item>@string/unit_ppcm</item>

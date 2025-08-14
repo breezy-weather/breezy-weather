@@ -215,7 +215,6 @@
     <string name="settings_notifications">الإشعارات</string>
     <string name="settings_modules_notification_style_title">‎الأسلوب</string>
     <string name="settings_modules_notification_feels_like_switch">استخدم درجة حرارة تبدو وكأنها</string>
-    <string name="unit_mugpcum">مكغ\\م³</string>
     <string name="settings_modules_week_icon_mode_title">أيقونات لعرضها في طريقة العرض الأسبوعية</string>
     <string name="unit_kph_voice">كيلومتر في الساعة</string>
     <string name="common_weather_text_overcast">غائم</string>
@@ -237,7 +236,6 @@
     <string name="air_quality_level_4">غير صحي</string>
     <string name="settings_icon_packs_weather_icon_dark">أيقونة داكنة</string>
     <string name="uv_index_11">الأقصى</string>
-    <string name="unit_mgpcum_voice">ملليغرام لكل متر مكعب</string>
     <string name="precipitation_between_time">هطول الأمطار من %1$s إلى %2$s</string>
     <string name="widget_style_temperature">الحرارة</string>
     <string name="widget_style_rectangle">مستطيل</string>
@@ -248,7 +246,6 @@
     <string name="wind_direction_variable">متغير</string>
     <string name="air_quality_level_2">متوسطة</string>
     <string name="widget_week_style_3_days">3 أيام</string>
-    <string name="unit_mgpcum">مغ\\م³</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">درجة الحرارة الحالية (°)</string>
     <string name="uv_index_8_10">مرتفع جدا</string>
     <string name="location_results_by">نتائج البحث بواسطة %s</string>
@@ -393,7 +390,6 @@
     <string name="unit_mps_voice">متر في الثانية</string>
     <string name="unit_kn_voice">عقدة</string>
     <string name="unit_ftps_voice">قدم في الثانية</string>
-    <string name="unit_mugpcum_voice">ميكروغرام لكل متر مكعب</string>
     <string name="unit_ppcm">\\م³</string>
     <string name="unit_ppcm_voice">لكل متر مكعب</string>
     <string name="notification_channel_alerts">تنبيهات</string>

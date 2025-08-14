@@ -10,8 +10,6 @@
 
     <string name="unit_mps_voice">Metres per second</string>
     <string name="unit_kph_voice">Kilometres per hour</string>
-    <string name="unit_mugpcum_voice">Micrograms per cubic metre</string>
-    <string name="unit_mgpcum_voice">Milligrams per cubic metre</string>
     <string name="unit_ppcm_voice">Per cubic metre</string>
 
 </resources>

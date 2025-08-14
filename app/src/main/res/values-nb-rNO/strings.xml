@@ -174,10 +174,6 @@
     <string name="notification_precipitation_starting">Nedbør snart</string>
     <string name="unit_ppcm_voice">Per kubikkmeter</string>
     <string name="unit_ppcm">/m³</string>
-    <string name="unit_mgpcum_voice">Milligram per kubikkmeter</string>
-    <string name="unit_mgpcum">mg/m³</string>
-    <string name="unit_mugpcum_voice">Mikrogram per kubikkmeter</string>
-    <string name="unit_mugpcum">μg/m³</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">Rimtåke</string>
     <string name="common_weather_text_snow_grains">Snøkorn</string>
     <string name="unit_mph">mph</string>

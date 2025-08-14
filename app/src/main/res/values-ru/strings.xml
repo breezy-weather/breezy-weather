@@ -221,7 +221,6 @@
     <string name="unit_kn">узлов</string>
     <string name="unit_mph">миль/ч</string>
     <string name="unit_ftps">футов/с</string>
-    <string name="unit_mugpcum">мкг/м³</string>
     <string name="unit_ppcm">/м³</string>
     <string name="locations">Местоположения</string>
     <string name="air_quality_level_5">Очень вредно</string>
@@ -334,7 +333,6 @@
     <string name="unit_mph_voice">Миль в час</string>
     <string name="unit_ftps_voice">Футов в секунду</string>
     <string name="unit_celsius_short">°</string>
-    <string name="unit_mgpcum_voice">Миллиграммы на кубический метр</string>
     <string name="notification_channel_background_services">Фоновые сервисы</string>
     <string name="location_results_by">Результаты местоположения по %s</string>
     <string name="location_swipe_to_delete">Вы можете смахнуть влево, чтобы удалить этот элемент</string>
@@ -349,8 +347,6 @@
     <string name="widget_clock_font_analog">Analog</string>
     <string name="unit_kn_voice">Узлы</string>
     <string name="unit_fahrenheit">°F</string>
-    <string name="unit_mugpcum_voice">Микрограммы на кубический метр</string>
-    <string name="unit_mgpcum">мг/м³</string>
     <string name="common_weather_text_overcast">Пасмурно</string>
     <string name="common_weather_text_clear_sky">Ясно</string>
     <string name="alerts_to_follow">Надвигающиеся предупреждения – нажмите здесь для просмотра.</string>

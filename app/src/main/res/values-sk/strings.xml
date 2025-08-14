@@ -380,12 +380,8 @@
     <string name="message_parsing_error_title">Nepodarilo sa spracovať dáta o počasí</string>
     <string name="settings_source_api_key">API kľúč</string>
     <string name="notification_precipitation_stopping_desc">Predpokladaný koniec o %s</string>
-    <string name="unit_mgpcum_voice">Miligramy na meter kubický</string>
     <string name="notification_updating_weather_data">Aktualizácia údajov o počasí (%1$d/%2$d)</string>
     <string name="settings_global">Všeobecné nastavenia</string>
-    <string name="unit_mugpcum">μg/m³</string>
-    <string name="unit_mugpcum_voice">Mikrogramy na meter kubický</string>
-    <string name="unit_mgpcum">mg/m³</string>
     <string name="settings_per_location">Nastavenia lokality</string>
     <string name="settings_location_summary">Nastavenia služieb určovania polohy</string>
     <string name="settings_location_access_background_title">Prístup k polohe na pozadí</string>

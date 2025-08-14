@@ -314,8 +314,6 @@
     <string name="uv_index_11">Ekstremalnie wysoki</string>
     <string name="air_quality_level_4">Szkodliwe</string>
     <string name="unit_mph">mph</string>
-    <string name="unit_mugpcum">μg/m³</string>
-    <string name="unit_mgpcum">mg/m³</string>
     <string name="settings_main_section_options">Opcje</string>
     <string name="air_quality_pm10">PM10</string>
     <string name="action_location_list">Lista lokalizacji</string>
@@ -412,7 +410,6 @@
     <string name="settings_main_background_animation_title">Animacja tła</string>
     <string name="common_weather_text_snow_grains">Śnieg ziarnisty</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">Mgła osadzająca szadź</string>
-    <string name="unit_mgpcum_voice">Miligramów na metr sześcienny</string>
     <string name="settings_location_access_precise_summaryOn">Włączone. Używana jest przede wszystkim sieć komórkowa, ale GPS również może być użyty jako rezerwowe źródło lokalizacji.</string>
     <string name="settings_weather_sources_summary">Domyślne źródło danych pogodowych dla nowych lokalizacji, osobiste klucze API i inne ustawienia źródeł danych</string>
     <string name="settings_main_summary">Kolejność bloków, wyświetlane elementy, animacje</string>
@@ -424,7 +421,6 @@
     <string name="settings_modules_section_notification_widget">Widżet w powiadomieniu</string>
     <string name="settings_modules_notification_widget_title">Widżet w powiadomieniu</string>
     <string name="settings_debug_dump_crash_logs_summary">Zapisuje dzienniki błędów do pliku w celu udostępnienia ich programistom</string>
-    <string name="unit_mugpcum_voice">Mikrogramów na metr sześcienny</string>
     <string name="settings_modules_notification_feels_like_switch">Użyj temperatury odczuwalnej</string>
     <string name="settings_location_access_background_summaryOff">Włącz opcję „Zawsze zezwalaj”, aby odświeżać bieżącą lokalizację w tle.</string>
     <string name="settings_units_summary">Temperatura, opady, odległość, prędkość, ciśnienie</string>

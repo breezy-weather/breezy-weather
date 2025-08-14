@@ -77,6 +77,7 @@ import org.breezyweather.sources.nlsc.NlscService.Companion.MATSU_BBOX
 import org.breezyweather.sources.nlsc.NlscService.Companion.PENGHU_BBOX
 import org.breezyweather.sources.nlsc.NlscService.Companion.TAIWAN_BBOX
 import org.breezyweather.sources.nlsc.NlscService.Companion.WUQIU_BBOX
+import org.breezyweather.unit.pollutant.PollutantConcentration.Companion.microgramsPerCubicMeter
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
 import retrofit2.Retrofit
 import java.text.SimpleDateFormat
@@ -492,32 +493,32 @@ class CwaService @Inject constructor(
     ): AirQuality? {
         return airQualityResult?.data?.aqi?.getOrNull(0)?.let {
             AirQuality(
-                pM25 = it.pm25?.toDoubleOrNull(),
-                pM10 = it.pm10?.toDoubleOrNull(),
+                pM25 = it.pm25?.toDoubleOrNull()?.microgramsPerCubicMeter,
+                pM10 = it.pm10?.toDoubleOrNull()?.microgramsPerCubicMeter,
                 sO2 = computePollutantInUgm3FromPpb(
                     PollutantIndex.SO2,
                     it.so2?.toDoubleOrNull(),
                     temperature,
                     pressure
-                ),
+                )?.microgramsPerCubicMeter,
                 nO2 = computePollutantInUgm3FromPpb(
                     PollutantIndex.NO2,
                     it.no2?.toDoubleOrNull(),
                     temperature,
                     pressure
-                ),
+                )?.microgramsPerCubicMeter,
                 o3 = computePollutantInUgm3FromPpb(
                     PollutantIndex.O3,
                     it.o3?.toDoubleOrNull(),
                     temperature,
                     pressure
-                ),
+                )?.microgramsPerCubicMeter,
                 cO = computePollutantInUgm3FromPpb(
                     PollutantIndex.CO,
                     it.co?.toDoubleOrNull(),
                     temperature,
                     pressure
-                )
+                )?.microgramsPerCubicMeter
             )
         }
     }

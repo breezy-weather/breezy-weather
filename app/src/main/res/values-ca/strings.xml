@@ -224,8 +224,6 @@
     <string name="unit_kn_voice">Nusos</string>
     <string name="unit_mph_voice">Milles per hora</string>
     <string name="unit_ftps_voice">Peus per segon</string>
-    <string name="unit_mugpcum_voice">Micrograms per metre cúbic</string>
-    <string name="unit_mgpcum_voice">Mil·ligrams per metre cúbic</string>
     <string name="unit_ppcm_voice">Per metre cúbic</string>
     <string name="temperature_degree_day_heating">Dia de graus de calefacció</string>
     <string name="temperature_degree_day_cooling">Gelant temperatura diària</string>
@@ -387,7 +385,6 @@
     <string name="settings_modules_summary">Establir fons de pantalla, configurar ginys utilitzats, giny de notificació</string>
     <string name="common_weather_text_rain_light">Pluja dèbil</string>
     <string name="action_show_errors">Toca per veure’n els detalls</string>
-    <string name="unit_mugpcum">μg/m³</string>
     <string name="pollen_olea">Olivera</string>
     <string name="action_location_list">Llista d’ubicacions</string>
     <string name="settings_weather_sources_per_location_summary">Personalitza les fonts de dades meteorològiques utilitzades per a aquesta ubicació</string>
@@ -409,7 +406,6 @@
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Tempesta elèctrica lleu o moderada</string>
     <string name="air_quality_level_6">Perillós</string>
     <string name="settings_background_updates_summary">Freqüència de refresc, resolució de problemes</string>
-    <string name="unit_mgpcum">mg/m³</string>
     <string name="settings_location_access_precise_title">Ús del GPS del dispositiu</string>
     <string name="settings_notifications_forecast_tomorrow_title">Notificació per al pronòstic del pròxim dia</string>
     <string name="settings_main_section_displayed_data">Dades mostrades</string>

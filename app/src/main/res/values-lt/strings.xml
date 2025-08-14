@@ -312,9 +312,6 @@
     <string name="settings_location_access_background_summaryOff">Įjunkite „Leisti visą laiką“, kad jūsų dabartinė vieta būtų atnaujinama fone.</string>
     <string name="settings_location_access_background_summaryOn">Įjungta. Programėlė fone galės atnaujinti dabartinės jūsų buvimo vietos orų duomenis.</string>
     <string name="unit_kph">km/h</string>
-    <string name="unit_mugpcum_voice">Mikrogramai kubiniame metre</string>
-    <string name="unit_mgpcum_voice">Miligramai kubiniame metre</string>
-    <string name="unit_mgpcum">mg/m³</string>
     <string name="settings_icon_packs_weather_icon_light">Šviesi piktograma</string>
     <string name="settings_icon_packs_title">Piktogramų paketai</string>
     <string name="settings_icon_packs_check_details">Išsami informacija</string>
@@ -345,7 +342,6 @@
     <string name="unit_kelvin_short">K</string>
     <string name="unit_ppcm">/m³</string>
     <string name="unit_ppcm_voice">Vienam kubiniam metrui</string>
-    <string name="unit_mugpcum">μg/m³</string>
     <string name="notification_channel_forecast">Prognozė</string>
     <string name="notification_channel_widget">Valdiklis</string>
     <string name="notification_channel_background_services">Fono paslaugos</string>

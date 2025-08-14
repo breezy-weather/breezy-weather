@@ -22,6 +22,8 @@ import breezyweather.domain.weather.reference.AlertSeverity
 import breezyweather.domain.weather.reference.WeatherCode
 import org.breezyweather.unit.distance.Distance
 import org.breezyweather.unit.distance.Distance.Companion.meters
+import org.breezyweather.unit.pollutant.PollutantConcentration
+import org.breezyweather.unit.pollutant.PollutantConcentration.Companion.microgramsPerCubicMeter
 import org.breezyweather.unit.precipitation.Precipitation
 import org.breezyweather.unit.precipitation.Precipitation.Companion.micrometers
 import org.breezyweather.unit.pressure.Pressure
@@ -83,6 +85,12 @@ object PressureColumnAdapter : ColumnAdapter<Pressure, Long> {
     override fun decode(databaseValue: Long): Pressure = databaseValue.pascals
 
     override fun encode(value: Pressure): Long = value.value
+}
+
+object PollutantConcentrationColumnAdapter : ColumnAdapter<PollutantConcentration, Long> {
+    override fun decode(databaseValue: Long): PollutantConcentration = databaseValue.microgramsPerCubicMeter
+
+    override fun encode(value: PollutantConcentration): Long = value.value
 }
 
 object DurationColumnAdapter : ColumnAdapter<Duration, Long> {

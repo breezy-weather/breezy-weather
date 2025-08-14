@@ -243,7 +243,6 @@
     <string name="common_weather_text_snow_grains">Ninsoare Fină</string>
     <string name="settings_icon_packs_weather_icon_grey">Pictogramă gri</string>
     <string name="settings_icon_packs_weather_icon_dark">Pictogramă întunecată</string>
-    <string name="unit_mugpcum">μg/m³</string>
     <string name="location_message_search_failed">Căutarea locației a eșuat</string>
     <string name="action_more">Mai mult</string>
     <string name="message_network_unavailable">Rețea indisponibilă</string>
@@ -257,8 +256,6 @@
     <string name="settings_icon_packs_check_details">Verifică detaliile</string>
     <string name="unit_kn">knot</string>
     <string name="unit_kn_voice">knots</string>
-    <string name="unit_mugpcum_voice">Micrograme pe metru cub</string>
-    <string name="unit_mgpcum">mg/m³</string>
     <string name="unit_ppcm_voice">Pe metru cub</string>
     <string name="about_matrix">Server Matrix</string>
     <string name="about_source_code">Codul sursă</string>
@@ -268,7 +265,6 @@
     <string name="openmeteo_weather_text_depositing_rime_fog">Brumă</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Furtună Uşoară spre Moderată</string>
     <string name="unit_celsius">°C</string>
-    <string name="unit_mgpcum_voice">Miligrame pe metru cub</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Furtună cu Grindină Ușoară</string>
     <string name="unit_mps">m/s</string>
     <string name="widget_style_mini">Mini</string>

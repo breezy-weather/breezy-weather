@@ -71,9 +71,6 @@
     <string name="settings_follow_system">Як у сістэме</string>
     <string name="unit_fahrenheit_short">°</string>
     <string name="unit_kelvin">K</string>
-    <string name="unit_mugpcum_voice">Мікраграмы на кубічны метр</string>
-    <string name="unit_mgpcum">мг/м³</string>
-    <string name="unit_mgpcum_voice">Міліграмы на кубічны метр</string>
     <string name="notification_refreshed_at">Абноўлена ў</string>
     <string name="notification_precipitation_starting_desc">Паводле прагнозу пачнуцца ў %s</string>
     <string name="notification_precipitation_continuing">Ападкі</string>
@@ -417,7 +414,6 @@
     <string name="unit_celsius_short">°</string>
     <string name="unit_fahrenheit">°F</string>
     <string name="unit_kelvin_short">K</string>
-    <string name="unit_mugpcum">мкг/м³</string>
     <string name="unit_ppcm">/м³</string>
     <string name="unit_ppcm_voice">На кубічны метр</string>
     <string name="notification_channel_alerts">Абвесткі</string>

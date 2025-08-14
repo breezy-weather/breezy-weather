@@ -123,7 +123,6 @@
     <string name="action_show_errors">Додирните да бисте видели детаље</string>
     <string name="settings_appearance_dark_mode_title">Тамни режим апликације</string>
     <string name="settings_item_delete">Избрисати ову ставку</string>
-    <string name="unit_mugpcum">μg/m³</string>
     <string name="notification_channel_widget">Виџет</string>
     <string name="widget_custom_subtitle_explanation">Можете да унесете било шта, али обратите пажњу на дужину текста. Ако желите да цитирате податке о времену, користите $ за референцу на одговарајућу кључну реч.
 \n
@@ -249,7 +248,6 @@
     <string name="widget_trend_hourly">Тренд по сатима</string>
     <string name="widget_multi_city">Више градова</string>
     <string name="widget_material_you_forecast">Material You – Прогноза</string>
-    <string name="unit_mgpcum">mg/m³</string>
     <string name="weather_message_unsupported_feature">Извор не подржава једну од тражених функција</string>
     <string name="dialog_permissions_notification_title">Будите информисани</string>
     <string name="about_contribution_WangDaYeeeeee">Програмер оригиналног пројекта Geometric Weather</string>
@@ -313,8 +311,6 @@
     <string name="settings_color_night_always">Увек ноћ</string>
     <string name="unit_bft_voice">по Бофоровој скали</string>
     <string name="unit_kelvin_short">K</string>
-    <string name="unit_mugpcum_voice">Микрограми по кубном метру</string>
-    <string name="unit_mgpcum_voice">Милиграми по кубном метру</string>
     <string name="unit_ppcm">/m³</string>
     <string name="unit_ppcm_voice">По кубном метру</string>
     <string name="about_contribution_designer">Дизајнер логотипа</string>

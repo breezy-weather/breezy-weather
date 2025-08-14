@@ -410,7 +410,6 @@
     <string name="settings_modules_notification_widget_title">Bildirim widget’ı</string>
     <string name="settings_location_summary">Konum servisi ayarları</string>
     <string name="settings_location_service">Konum servisi</string>
-    <string name="unit_mugpcum">μg/m³</string>
     <string name="settings_background_updates_worker_info_summary">Son çalıştırma zamanı: %s</string>
     <string name="settings_location">Konum</string>
     <string name="unit_ppcm">/m³</string>
@@ -435,8 +434,6 @@
     <string name="settings_none">Hiçbiri</string>
     <string name="widget_clock_font_sans_serif">Sans Serif</string>
     <string name="unit_ftps">ft/sn</string>
-    <string name="unit_mgpcum">mg/m³</string>
-    <string name="unit_mgpcum_voice">Metreküp başına miligram</string>
     <string name="weather_message_unsupported_feature">Kaynak istenilen özelliklerin birini desteklemiyor</string>
     <string name="widget_custom_subtitle_keyword_hd_description">Saatlik açıklama</string>
     <string name="widget_week_style_3_days">3 günlük</string>
@@ -458,7 +455,6 @@
     <string name="widget_custom_subtitle_keyword_xnw_description">Bugünün, yarının, …, 4 gün sonrasının gece hava durumu</string>
     <string name="settings_modules_section_widgets_in_use">Kullanılan widget’lar</string>
     <string name="unit_fahrenheit_short">F</string>
-    <string name="unit_mugpcum_voice">Metreküp başına mikrogram</string>
     <string name="settings_debug_summary">Çökme günlükleri</string>
     <string name="settings_debug_dump_crash_logs_title">Çökme günlüklerini paylaş</string>
     <string name="settings_item_delete">Bu öğeyi sil</string>

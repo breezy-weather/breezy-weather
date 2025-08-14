@@ -42,8 +42,6 @@ import breezyweather.domain.weather.wrappers.CurrentWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import org.breezyweather.common.basic.models.options.basic.UnitUtils
-import org.breezyweather.common.basic.models.options.unit.CLOUD_COVER_BKN
-import org.breezyweather.common.basic.models.options.unit.CLOUD_COVER_FEW
 import org.breezyweather.common.basic.models.options.unit.SpeedUnit
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.common.extensions.ensurePositive
@@ -51,10 +49,13 @@ import org.breezyweather.common.extensions.getIsoFormattedDate
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.domain.weather.index.PollutantIndex
 import org.breezyweather.ui.theme.weatherView.WeatherViewController
+import org.breezyweather.unit.CLOUD_COVER_BKN
+import org.breezyweather.unit.CLOUD_COVER_FEW
 import org.breezyweather.unit.distance.Distance
 import org.breezyweather.unit.distance.Distance.Companion.meters
 import org.breezyweather.unit.duration.toValidDailyOrNull
 import org.breezyweather.unit.duration.toValidHalfDayOrNull
+import org.breezyweather.unit.pollutant.PollutantConcentration.Companion.microgramsPerCubicMeter
 import org.breezyweather.unit.precipitation.Precipitation.Companion.micrometers
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.pressure.Pressure
@@ -1249,12 +1250,18 @@ private fun getDailyAirQualityFromHourlyList(
 
     // average() would return NaN when called for an empty list
     return AirQuality(
-        pM25 = hourlyList.mapNotNull { it.pM25 }.takeIf { it.isNotEmpty() }?.average(),
-        pM10 = hourlyList.mapNotNull { it.pM10 }.takeIf { it.isNotEmpty() }?.average(),
-        sO2 = hourlyList.mapNotNull { it.sO2 }.takeIf { it.isNotEmpty() }?.average(),
-        nO2 = hourlyList.mapNotNull { it.nO2 }.takeIf { it.isNotEmpty() }?.average(),
-        o3 = hourlyList.mapNotNull { it.o3 }.takeIf { it.isNotEmpty() }?.average(),
-        cO = hourlyList.mapNotNull { it.cO }.takeIf { it.isNotEmpty() }?.average()
+        pM25 = hourlyList.mapNotNull { it.pM25?.inMicrogramsPerCubicMeter }.takeIf { it.isNotEmpty() }?.average()
+            ?.microgramsPerCubicMeter,
+        pM10 = hourlyList.mapNotNull { it.pM10?.inMicrogramsPerCubicMeter }.takeIf { it.isNotEmpty() }?.average()
+            ?.microgramsPerCubicMeter,
+        sO2 = hourlyList.mapNotNull { it.sO2?.inMicrogramsPerCubicMeter }.takeIf { it.isNotEmpty() }?.average()
+            ?.microgramsPerCubicMeter,
+        nO2 = hourlyList.mapNotNull { it.nO2?.inMicrogramsPerCubicMeter }.takeIf { it.isNotEmpty() }?.average()
+            ?.microgramsPerCubicMeter,
+        o3 = hourlyList.mapNotNull { it.o3?.inMicrogramsPerCubicMeter }.takeIf { it.isNotEmpty() }?.average()
+            ?.microgramsPerCubicMeter,
+        cO = hourlyList.mapNotNull { it.cO?.inMicrogramsPerCubicMeter }.takeIf { it.isNotEmpty() }?.average()
+            ?.microgramsPerCubicMeter
     )
 }
 

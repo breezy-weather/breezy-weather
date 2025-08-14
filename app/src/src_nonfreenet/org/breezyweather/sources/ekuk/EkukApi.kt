@@ -31,5 +31,6 @@ interface EkukApi {
         @Query("stations") station: String,
         @Query("indicators") indicators: String = "",
         @Query("range") range: String,
+        @Query("type") type: String = "INDICATOR",
     ): Observable<List<EkukObservationsResult>>
 }

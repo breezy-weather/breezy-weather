@@ -208,13 +208,11 @@
     <string name="settings_debug">Veakõrvaldus</string>
     <string name="settings_debug_summary">Krahhilogid</string>
     <string name="settings_debug_dump_crash_logs_summary">Salvestab krahhilogi faili arendajatele jagamiseks</string>
-    <string name="unit_mgpcum">mg/m³</string>
     <string name="unit_ppcm">/m³</string>
     <string name="notification_updating_weather_data">Ilmateateandmete uuendamine (%1$d/%2$d)</string>
     <string name="common_weather_text_drizzle_freezing_light">Kerge külmuv tibutamine</string>
     <string name="weather_kind_thunderstorm">Äikesetorm</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Äikesetorm tugeva rahega</string>
-    <string name="unit_mugpcum_voice">Mikrogramm kuupmeetri kohta</string>
     <string name="notification_running_in_background">Töötab tagataustal, et ajakohastada</string>
     <string name="common_weather_text_fog">Udu</string>
     <string name="common_weather_text_rain_showers_moderate">Mõõdukad vihmahood</string>
@@ -245,7 +243,6 @@
     <string name="settings_modules_monochrome_icons_title">Monokroomsed ikoonid</string>
     <string name="about_privacy_policy">Privaatsuspoliitika</string>
     <string name="settings_disabled">Väljas</string>
-    <string name="unit_mgpcum_voice">Milligramm kuupmeetri kohta</string>
     <string name="notification_channel_alerts">Hoiatused</string>
     <string name="about_contribution_designer">Logo disainer</string>
     <string name="common_weather_text_drizzle_light">Kerge tibutamine</string>
@@ -425,7 +422,6 @@
     <string name="settings_modules_notification_style_title">Stiil</string>
     <string name="settings_modules_notification_temp_icon_switch">Temperatuur olekuriba ikoonina</string>
     <string name="settings_item_delete">Kustuta see ese</string>
-    <string name="unit_mugpcum">μg/m³</string>
     <string name="notification_update_error">%d uuendus(ed) ebaõnnestus(id)</string>
     <string name="notification_precipitation_starting">Sademed lähiajal</string>
     <string name="notification_precipitation_starting_desc">Eeldatavalt algab kell %s</string>

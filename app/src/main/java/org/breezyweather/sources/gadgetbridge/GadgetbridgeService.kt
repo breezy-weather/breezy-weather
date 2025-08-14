@@ -158,12 +158,12 @@ class GadgetbridgeService @Inject constructor() : BroadcastSource {
 
         return GadgetbridgeAirQuality(
             aqi = aqi,
-            co = airQuality.cO?.toFloat(),
-            no2 = airQuality.nO2?.toFloat(),
-            o3 = airQuality.o3?.toFloat(),
-            pm10 = airQuality.pM10?.toFloat(),
-            pm25 = airQuality.pM25?.toFloat(),
-            so2 = airQuality.sO2?.toFloat(),
+            co = airQuality.cO?.inMicrogramsPerCubicMeter?.toFloat(),
+            no2 = airQuality.nO2?.inMicrogramsPerCubicMeter?.toFloat(),
+            o3 = airQuality.o3?.inMicrogramsPerCubicMeter?.toFloat(),
+            pm10 = airQuality.pM10?.inMicrogramsPerCubicMeter?.toFloat(),
+            pm25 = airQuality.pM25?.inMicrogramsPerCubicMeter?.toFloat(),
+            so2 = airQuality.sO2?.inMicrogramsPerCubicMeter?.toFloat(),
             coAqi = airQuality.getIndex(PollutantIndex.CO),
             no2Aqi = airQuality.getIndex(PollutantIndex.NO2),
             o3Aqi = airQuality.getIndex(PollutantIndex.O3),

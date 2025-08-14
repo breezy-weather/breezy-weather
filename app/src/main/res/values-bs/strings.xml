@@ -471,10 +471,6 @@
     <string name="settings_color_day_always">Uvijek dan</string>
     <string name="settings_color_night_always">Uvijek noć</string>
     <string name="settings_color_light">Svijetla</string>
-    <string name="unit_mugpcum">μg/m³</string>
-    <string name="unit_mugpcum_voice">Mikrograma po kubnom metru</string>
-    <string name="unit_mgpcum">mg/m³</string>
-    <string name="unit_mgpcum_voice">Miligrama po kubnom metru</string>
     <string name="unit_ppcm">/m³</string>
     <string name="unit_ppcm_voice">Po metru kubnom</string>
     <string name="notification_running_in_background">Radi u pozadini zbog ažuriranja</string>
