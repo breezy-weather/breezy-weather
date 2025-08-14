@@ -349,8 +349,7 @@ class IpmaService @Inject constructor(
         locations: List<IpmaLocationResult>,
     ): List<LocationAddressInfo> {
         val locationList = mutableListOf<LocationAddressInfo>()
-        val locationMap = mutableMapOf<String, LatLng>()
-        locations.mapIndexed { i, loc ->
+        val locationMap = locations.withIndex().associate { (i, loc) ->
             i.toString() to LatLng(loc.latitude.toDouble(), loc.longitude.toDouble())
         }
         LatLng(latitude, longitude).getNearestLocation(locationMap, 50000.0)?.let {
