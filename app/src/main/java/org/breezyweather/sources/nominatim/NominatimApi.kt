@@ -36,7 +36,6 @@ interface NominatimApi {
         @Query("featureType") featureType: String = "city",
         @Query("format") format: String = "jsonv2",
         @Query("addressdetails") addressDetails: Boolean = true,
-        @Query("extratags") extraTags: Boolean = true,
     ): Observable<List<NominatimLocationResult>>
 
     @GET("reverse")
@@ -48,6 +47,5 @@ interface NominatimApi {
         @Query("zoom") zoom: Int = 13,
         @Query("format") format: String = "jsonv2",
         @Query("addressdetails") addressDetails: Boolean = true,
-        @Query("extratags") extraTags: Boolean = true,
     ): Observable<NominatimLocationResult>
 }
