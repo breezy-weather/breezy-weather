@@ -39,7 +39,9 @@ data class Minutely(
         get() = Date(date.time + minuteInterval.minutes.inWholeMilliseconds)
 
     fun toValidOrNull(): Minutely? {
-        return if (precipitationIntensity?.toValidHourlyOrNull() != null) this else null
+        return copy(
+            precipitationIntensity = precipitationIntensity?.toValidHourlyOrNull()
+        )
     }
 
     companion object {

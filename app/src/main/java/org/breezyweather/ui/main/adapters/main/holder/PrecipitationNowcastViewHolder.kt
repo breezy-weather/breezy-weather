@@ -121,13 +121,13 @@ class PrecipitationNowcastViewHolder(parent: ViewGroup) : AbstractMainCardViewHo
              * - Between heavy level and 2 * heavy level: keep light and heavy lines
              * - Above 2 * heavy level: keep heavy line only
              */
-            if (maxY < Precipitation.PRECIPITATION_HOURLY_HEAVY * 2.0f) {
+            if (maxY.micrometers.inMillimeters < Precipitation.PRECIPITATION_HOURLY_HEAVY * 2.0f) {
                 put(
                     Precipitation.PRECIPITATION_HOURLY_LIGHT,
                     context.getString(R.string.precipitation_intensity_light)
                 )
             }
-            if (maxY <= Precipitation.PRECIPITATION_HOURLY_HEAVY) {
+            if (maxY.micrometers.inMillimeters <= Precipitation.PRECIPITATION_HOURLY_HEAVY) {
                 put(
                     Precipitation.PRECIPITATION_HOURLY_MEDIUM,
                     context.getString(R.string.precipitation_intensity_medium)
@@ -224,7 +224,7 @@ class PrecipitationNowcastViewHolder(parent: ViewGroup) : AbstractMainCardViewHo
             decorations = if (isTrendHorizontalLinesEnabled) {
                 trendHorizontalLines.entries.map { line ->
                     HorizontalLine(
-                        y = { line.key },
+                        y = { line.key.millimeters.inMicrometers },
                         verticalLabelPosition = Position.Vertical.Bottom,
                         line = LineComponent(fill = fill(lineColor)),
                         labelComponent = TextComponent(color = labelColor),
@@ -300,14 +300,12 @@ private class MarkerLabelFormatterMinutelyDecorator(
                 Precipitation.PRECIPITATION_HOURLY_LIGHT -> aContext.getString(R.string.precipitation_intensity_light)
                 Precipitation.PRECIPITATION_HOURLY_MEDIUM -> aContext.getString(R.string.precipitation_intensity_medium)
                 Precipitation.PRECIPITATION_HOURLY_HEAVY -> aContext.getString(R.string.precipitation_intensity_heavy)
-                else -> (mappedValues.getOrElse(model.x.toLong()) { null }?.value ?: 0)
-                    .micrometers
-                    .formatMeasureIntensity(aContext)
+                else -> mappedValues.getOrElse(model.x.toLong()) { null }
+                    ?.formatMeasureIntensity(aContext)
             }
         } else {
-            (mappedValues.getOrElse(model.x.toLong()) { null }?.value ?: 0)
-                .micrometers
-                .formatMeasureIntensity(aContext)
+            mappedValues.getOrElse(model.x.toLong()) { null }
+                ?.formatMeasureIntensity(aContext)
         }
 
         return SpannableStringBuilder().append(

@@ -31,6 +31,7 @@ import breezyweather.domain.weather.wrappers.WeatherWrapper
 import io.reactivex.rxjava3.core.Observable
 import kotlinx.coroutines.rx3.rxObservable
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
+import org.breezyweather.common.extensions.toDate
 import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.unit.distance.Distance.Companion.meters
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
@@ -41,6 +42,7 @@ import java.util.TimeZone
 import javax.inject.Inject
 import kotlin.math.roundToInt
 import kotlin.random.Random
+import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.minutes
 
 class DebugService @Inject constructor() : WeatherSource {
@@ -147,6 +149,8 @@ class DebugService @Inject constructor() : WeatherSource {
     }
 
     private fun getMinutelyList(location: Location): List<Minutely> {
+        // Needed to get rounded minutes
+        val startingDate = Date().time.milliseconds.inWholeMinutes.minutes.inWholeMilliseconds.toDate()
         return arrayOf(
             MINUTELY_NO_PRECIPITATION,
             MINUTELY_ONE_PRECIPITATION,
@@ -157,24 +161,23 @@ class DebugService @Inject constructor() : WeatherSource {
             MINUTELY_INTERVAL_15
         ).firstOrNull { "$MINUTELY_CITY_LABEL$it" == location.city }.let {
             when (it) {
-                MINUTELY_NO_PRECIPITATION -> listOf(Minutely(Date(), 5, null))
-                MINUTELY_ONE_PRECIPITATION -> generateMinutelyList(1)
-                MINUTELY_TWO_PRECIPITATION -> generateMinutelyList(2)
-                MINUTELY_THREE_PRECIPITATION -> generateMinutelyList(3)
-                MINUTELY_INTERVAL_1 -> generateMinutelyList(90, interval = 1)
-                MINUTELY_INTERVAL_5 -> generateMinutelyList(18, interval = 5)
-                else -> generateMinutelyList(8)
+                MINUTELY_NO_PRECIPITATION -> listOf(Minutely(startingDate, 5, null))
+                MINUTELY_ONE_PRECIPITATION -> generateMinutelyList(startingDate, 1)
+                MINUTELY_TWO_PRECIPITATION -> generateMinutelyList(startingDate, 2)
+                MINUTELY_THREE_PRECIPITATION -> generateMinutelyList(startingDate, 3)
+                MINUTELY_INTERVAL_1 -> generateMinutelyList(startingDate, 90, interval = 1)
+                MINUTELY_INTERVAL_5 -> generateMinutelyList(startingDate, 18, interval = 5)
+                else -> generateMinutelyList(startingDate, 8)
             }
         }
     }
 
-    private fun generateMinutelyList(times: Int, interval: Int = 15): List<Minutely> {
-        val currentDate = Date()
+    private fun generateMinutelyList(startingDate: Date, times: Int, interval: Int = 15): List<Minutely> {
         return buildList {
-            add(Minutely(currentDate, interval, Random.nextDouble().times(20).millimeters))
+            add(Minutely(startingDate, interval, Random.nextDouble().times(20).millimeters))
             if (times > 1) {
                 for (i in 1..<times) {
-                    val date = Date(currentDate.time + (i * interval).minutes.inWholeMilliseconds)
+                    val date = Date(startingDate.time + (i * interval).minutes.inWholeMilliseconds)
                     add(
                         Minutely(
                             date,

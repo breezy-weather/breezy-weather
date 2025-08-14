@@ -81,7 +81,9 @@ fun UnitSettingsScreen(
                 }.toTypedArray()
                 ListPreferenceViewWithCard(
                     title = stringResource(id),
-                    summary = { _, value -> nameArray[valueArray.indexOfFirst { it == value }] },
+                    summary = { _, value ->
+                        valueArray.indexOfFirst { it == value }.let { if (it == -1) nameArray[0] else nameArray[it] }
+                    },
                     selectedKey = SettingsManager.getInstance(context).temperatureUnit?.id ?: "auto",
                     valueArray = valueArray,
                     nameArray = nameArray,
@@ -101,21 +103,30 @@ fun UnitSettingsScreen(
             }
             smallSeparatorItem()
             listPreferenceItem(R.string.settings_units_precipitation) { id ->
-                val allowedPrecipitationUnits = PrecipitationUnit.entries
+                val allowedPrecipitationUnits = PrecipitationUnit.entries.filter { it != PrecipitationUnit.MICROMETER }
                 val valueArray = arrayOf("auto") + allowedPrecipitationUnits.map { it.id }
+                val defaultUnit = PrecipitationUnit.getDefaultUnit(context.currentLocale)
+                val snowfallUnit = PrecipitationUnit.getDefaultSnowfallUnit(context.currentLocale)
                 val nameArray = arrayOf(
                     stringResource(
                         R.string.parenthesis,
                         stringResource(R.string.settings_regional_preference),
-                        PrecipitationUnit.getDefaultUnit(context.currentLocale)
-                            .getDisplayName(context, context.currentLocale, UnitWidth.LONG)
+                        if (defaultUnit != snowfallUnit) {
+                            defaultUnit.getDisplayName(context, context.currentLocale, UnitWidth.LONG) +
+                                "/" +
+                                snowfallUnit.getDisplayName(context, context.currentLocale, UnitWidth.LONG)
+                        } else {
+                            defaultUnit.getDisplayName(context, context.currentLocale, UnitWidth.LONG)
+                        }
                     )
                 ) + allowedPrecipitationUnits.map {
                     it.getDisplayName(context, context.currentLocale, UnitWidth.LONG)
                 }
                 ListPreferenceViewWithCard(
                     title = stringResource(id),
-                    summary = { _, value -> nameArray[valueArray.indexOfFirst { it == value }] },
+                    summary = { _, value ->
+                        valueArray.indexOfFirst { it == value }.let { if (it == -1) nameArray[0] else nameArray[it] }
+                    },
                     selectedKey = SettingsManager.getInstance(context).precipitationUnit?.id ?: "auto",
                     valueArray = valueArray,
                     nameArray = nameArray,
@@ -148,7 +159,9 @@ fun UnitSettingsScreen(
                 }.toTypedArray()
                 ListPreferenceViewWithCard(
                     title = stringResource(id),
-                    summary = { _, value -> nameArray[valueArray.indexOfFirst { it == value }] },
+                    summary = { _, value ->
+                        valueArray.indexOfFirst { it == value }.let { if (it == -1) nameArray[0] else nameArray[it] }
+                    },
                     selectedKey = SettingsManager.getInstance(context).speedUnit?.id ?: "auto",
                     valueArray = valueArray,
                     nameArray = nameArray,
@@ -181,7 +194,9 @@ fun UnitSettingsScreen(
                 }
                 ListPreferenceViewWithCard(
                     title = stringResource(id),
-                    summary = { _, value -> nameArray[valueArray.indexOfFirst { it == value }] },
+                    summary = { _, value ->
+                        valueArray.indexOfFirst { it == value }.let { if (it == -1) nameArray[0] else nameArray[it] }
+                    },
                     selectedKey = SettingsManager.getInstance(context).distanceUnit?.id ?: "auto",
                     valueArray = valueArray,
                     nameArray = nameArray,
@@ -214,7 +229,9 @@ fun UnitSettingsScreen(
                 }
                 ListPreferenceViewWithCard(
                     title = stringResource(id),
-                    summary = { _, value -> nameArray[valueArray.indexOfFirst { it == value }] },
+                    summary = { _, value ->
+                        valueArray.indexOfFirst { it == value }.let { if (it == -1) nameArray[0] else nameArray[it] }
+                    },
                     selectedKey = SettingsManager.getInstance(context).pressureUnit?.id ?: "auto",
                     valueArray = valueArray,
                     nameArray = nameArray,

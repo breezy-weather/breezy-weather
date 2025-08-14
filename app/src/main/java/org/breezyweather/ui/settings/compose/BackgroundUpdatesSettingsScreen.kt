@@ -110,7 +110,9 @@ fun BackgroundSettingsScreen(
                 val dialogNeverRefreshOpenState = remember { mutableStateOf(false) }
                 ListPreferenceViewWithCard(
                     title = stringResource(id),
-                    summary = { _, value -> nameArray[valueArray.indexOfFirst { it == value }] },
+                    summary = { _, value ->
+                        valueArray.indexOfFirst { it == value }.let { if (it == -1) nameArray[0] else nameArray[it] }
+                    },
                     selectedKey = updateInterval.id,
                     valueArray = valueArray,
                     nameArray = nameArray,
