@@ -44,9 +44,12 @@ data class LocationAddressInfo(
      */
     val country: String? = null,
     /**
-     * We don't support locations in the middle of the ocean, so ensure this is non empty.
+     * Contrary to its name, this code represents not just countries, but also dependent territories, and special areas
+     *  of geographical interest
      * Must be a valid ISO 3166-1 alpha-2 code
      * https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
+     *
+     * We don't support locations in the middle of the ocean, so ensure this is non empty.
      *
      * Will throw an error if it is not a valid 2 alpha letter code
      */

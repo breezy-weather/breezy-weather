@@ -457,6 +457,9 @@ class BmdService @Inject constructor(
 
     override val testingLocations: List<Location> = emptyList()
 
+    // Only supports its own country
+    override val knownAmbiguousCountryCodes: Array<String>? = null
+
     companion object {
         private const val BMD_API_BASE_URL = "https://api.bdservers.site/"
     }

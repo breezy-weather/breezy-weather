@@ -123,6 +123,9 @@ class NominatimService @Inject constructor(
         }
     }
 
+    // TODO
+    override val knownAmbiguousCountryCodes: Array<String>? = null
+
     companion object {
         private const val NOMINATIM_BASE_URL = "https://nominatim.openstreetmap.org/"
         private const val USER_AGENT =

@@ -396,6 +396,9 @@ class HereService @Inject constructor(
 
     override val testingLocations: List<Location> = emptyList()
 
+    // Ignore, this source is getting removed on 2025-08-31
+    override val knownAmbiguousCountryCodes: Array<String>? = null
+
     companion object {
         // private const val HERE_GEOCODING_BASE_URL = "https://geocode.search.hereapi.com/"
         private const val HERE_WEATHER_BASE_URL = "https://weather.cc.api.here.com/"

@@ -536,6 +536,9 @@ class VedurIsService @Inject constructor(
 
     override val testingLocations: List<Location> = emptyList()
 
+    // Only supports its own country
+    override val knownAmbiguousCountryCodes: Array<String>? = null
+
     companion object {
         private const val VEDUR_IS_BASE_URL = "https://gottvedur.is/"
         private const val EARTH_POLAR_RADIUS = 6356752

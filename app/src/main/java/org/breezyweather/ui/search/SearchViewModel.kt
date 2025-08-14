@@ -27,6 +27,7 @@ import org.breezyweather.BreezyWeather
 import org.breezyweather.common.basic.BreezyViewModel
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.launchIO
+import org.breezyweather.common.source.LocationSearchSource
 import org.breezyweather.common.utils.helpers.SnackbarHelper
 import org.breezyweather.ui.main.utils.RefreshErrorType
 import javax.inject.Inject
@@ -103,11 +104,14 @@ class SearchViewModel @Inject constructor(
         _locationSearchSource.value = locSearchSource
     }
 
-    fun setSelectedLocation(location: Location) {
+    fun setSelectedLocation(
+        location: Location,
+        locationSearchSource: LocationSearchSource,
+    ) {
         viewModelScope.launchIO {
             _isLoading.value = true
             _selectedLocation.value = mRepository.getLocationWithAppliedPreference(
-                mRepository.getLocationWithUnambiguousCountryCode(location, getApplication()),
+                mRepository.getLocationWithUnambiguousCountryCode(location, locationSearchSource, getApplication()),
                 getApplication()
             )
             _isLoading.value = false

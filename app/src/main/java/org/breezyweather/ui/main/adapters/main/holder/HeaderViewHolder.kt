@@ -67,7 +67,9 @@ class HeaderViewHolder(parent: ViewGroup) : AbstractMainViewHolder(
 
         if (BreezyWeather.instance.debugMode) {
             timezoneText.visibility = View.VISIBLE
-            timezoneText.text = location.timeZone.id
+            timezoneText.text = arrayOf(location.countryCode, location.timeZone.id).joinToString(
+                context.getString(R.string.dot_separator)
+            )
         }
 
         location.weather?.base?.refreshTime?.let {

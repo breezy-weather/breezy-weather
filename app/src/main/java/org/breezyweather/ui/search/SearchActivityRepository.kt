@@ -26,6 +26,7 @@ import io.reactivex.rxjava3.observers.DisposableObserver
 import org.breezyweather.BuildConfig
 import org.breezyweather.common.rxjava.ObserverContainer
 import org.breezyweather.common.rxjava.SchedulerTransformer
+import org.breezyweather.common.source.LocationSearchSource
 import org.breezyweather.domain.location.model.applyDefaultPreset
 import org.breezyweather.domain.settings.ConfigStore
 import org.breezyweather.domain.settings.SettingsManager
@@ -84,9 +85,17 @@ class SearchActivityRepository @Inject internal constructor(
 
     suspend fun getLocationWithUnambiguousCountryCode(
         location: Location,
+        locationSearchSource: LocationSearchSource,
         context: Context,
     ): Location {
-        return mRefreshHelper.getLocationWithUnambiguousCountryCode(location, context)
+        return if (locationSearchSource.knownAmbiguousCountryCodes?.any { cc ->
+                location.countryCode.equals(cc, ignoreCase = true)
+            } != false
+        ) {
+            mRefreshHelper.getLocationWithUnambiguousCountryCode(location, context)
+        } else {
+            location
+        }
     }
 
     fun getLocationWithAppliedPreference(

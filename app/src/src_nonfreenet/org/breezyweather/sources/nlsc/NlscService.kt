@@ -110,6 +110,9 @@ class NlscService @Inject constructor(
         }
     }
 
+    // Only supports its own country
+    override val knownAmbiguousCountryCodes: Array<String>? = null
+
     companion object {
         private const val NLSC_BASE_URL = "https://api.nlsc.gov.tw/"
 

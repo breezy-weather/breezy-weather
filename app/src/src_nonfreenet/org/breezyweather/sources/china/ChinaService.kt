@@ -622,6 +622,9 @@ class ChinaService @Inject constructor(
 
     override val testingLocations: List<Location> = emptyList()
 
+    // Only supports its own country
+    override val knownAmbiguousCountryCodes: Array<String>? = null
+
     companion object {
         private const val CHINA_WEATHER_BASE_URL = "https://weatherapi.market.xiaomi.com/wtr-v3/"
         private const val CHINA_APP_KEY = "weather20151024"

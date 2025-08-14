@@ -1075,6 +1075,9 @@ class NwsService @Inject constructor(
 
     override val testingLocations: List<Location> = emptyList()
 
+    // TODO
+    override val knownAmbiguousCountryCodes: Array<String>? = null
+
     companion object {
         // Number of hours after which a station data is considered outdated
         // TODO: Move this to global for all sources

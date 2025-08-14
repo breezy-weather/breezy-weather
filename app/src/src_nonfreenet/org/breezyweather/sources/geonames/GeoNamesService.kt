@@ -156,6 +156,9 @@ class GeoNamesService @Inject constructor(
         )
     }
 
+    // TODO: Same as Open-Meteo
+    override val knownAmbiguousCountryCodes: Array<String>? = null
+
     companion object {
         private const val GEO_NAMES_BASE_URL = "https://secure.geonames.org/"
     }

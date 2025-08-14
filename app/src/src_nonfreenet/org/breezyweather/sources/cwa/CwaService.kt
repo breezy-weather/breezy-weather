@@ -648,8 +648,8 @@ class CwaService @Inject constructor(
     }
 
     // Forecast data from the main weather API call are unsorted.
-// We need to first store the numbers into maps, then sort the keys,
-// and retrieve the relevant numbers using the sorted keys.
+    // We need to first store the numbers into maps, then sort the keys,
+    // and retrieve the relevant numbers using the sorted keys.
     private fun getHourlyForecast(
         hourlyResult: CwaForecastResult,
     ): List<HourlyWrapper> {
@@ -1082,6 +1082,9 @@ class CwaService @Inject constructor(
             )
         )
     }
+
+    // Only supports its own country
+    override val knownAmbiguousCountryCodes: Array<String>? = null
 
     override val testingLocations: List<Location> = emptyList()
 

@@ -617,6 +617,9 @@ class MgmService @Inject constructor(
 
     override val testingLocations: List<Location> = emptyList()
 
+    // Only supports its own country
+    override val knownAmbiguousCountryCodes: Array<String>? = null
+
     companion object {
         private const val MGM_BASE_URL = "https://servis.mgm.gov.tr/"
     }

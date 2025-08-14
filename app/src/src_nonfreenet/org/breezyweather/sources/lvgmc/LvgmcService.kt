@@ -599,6 +599,9 @@ class LvgmcService @Inject constructor(
 
     override val testingLocations: List<Location> = emptyList()
 
+    // Only supports its own country
+    override val knownAmbiguousCountryCodes: Array<String>? = null
+
     companion object {
         private const val LVGMC_BASE_URL = "https://videscentrs.lvgmc.lv/"
     }

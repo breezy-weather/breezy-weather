@@ -23,7 +23,7 @@ import io.reactivex.rxjava3.core.Observable
 /**
  * Reverse geocoding source
  */
-interface ReverseGeocodingSource : FeatureSource {
+interface ReverseGeocodingSource : FeatureSource, AddressSource {
 
     /**
      * Returns address info for the nearest location for the coordinates in parameter

@@ -196,7 +196,7 @@ class SearchActivity : BreezyActivity() {
                                     headlineContent = { Text(location.getPlace(context)) },
                                     supportingContent = { Text(location.administrationLevels()) },
                                     modifier = Modifier.clickable {
-                                        viewModel.setSelectedLocation(location)
+                                        viewModel.setSelectedLocation(location, locationSearchSource)
                                     }
                                 )
                             }

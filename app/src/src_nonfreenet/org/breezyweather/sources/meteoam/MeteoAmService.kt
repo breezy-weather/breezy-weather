@@ -339,6 +339,9 @@ class MeteoAmService @Inject constructor(
 
     override val testingLocations: List<Location> = emptyList()
 
+    // TODO
+    override val knownAmbiguousCountryCodes: Array<String>? = null
+
     companion object {
         private const val METEOAM_BASE_URL = "https://api.meteoam.it/"
     }

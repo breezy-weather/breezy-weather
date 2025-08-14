@@ -363,6 +363,9 @@ class MetIeService @Inject constructor(
 
     override val testingLocations: List<Location> = emptyList()
 
+    // Only supports its own country
+    override val knownAmbiguousCountryCodes: Array<String>? = null
+
     companion object {
         private const val MET_IE_BASE_URL = "https://prodapi.metweb.ie/"
 

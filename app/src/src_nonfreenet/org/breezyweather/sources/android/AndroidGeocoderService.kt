@@ -65,4 +65,7 @@ class AndroidGeocoderService @Inject constructor() : ReverseGeocodingSource {
             send(locationList)
         }
     }
+
+    // Each device can implement their own geocoder, so better be safe
+    override val knownAmbiguousCountryCodes: Array<String>? = null
 }

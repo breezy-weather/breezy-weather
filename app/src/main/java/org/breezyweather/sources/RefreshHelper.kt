@@ -61,6 +61,7 @@ import org.breezyweather.common.extensions.shortcutManager
 import org.breezyweather.common.extensions.sizeInBytes
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.common.extensions.toDateNoHour
+import org.breezyweather.common.source.AddressSource
 import org.breezyweather.common.source.BroadcastSource
 import org.breezyweather.common.source.ConfigurableSource
 import org.breezyweather.common.source.HttpSource
@@ -275,8 +276,9 @@ class RefreshHelper @Inject constructor(
                         )
                         location
                     } else {
-                        needsCountryCodeRefresh = !location.reverseGeocodingSource.isNullOrEmpty() &&
-                            !location.reverseGeocodingSource.equals(BuildConfig.DEFAULT_GEOCODING_SOURCE)
+                        needsCountryCodeRefresh = reverseGeocodingService.knownAmbiguousCountryCodes?.any { cc ->
+                            it.countryCode.equals(cc, ignoreCase = true)
+                        } != false
                         it
                     }
                 }
@@ -396,7 +398,10 @@ class RefreshHelper @Inject constructor(
         location: Location,
         context: Context,
     ): Location {
-        return if (ambigousCountryCodes.any { cc -> location.countryCode.equals(cc, ignoreCase = true) }) {
+        return if (AddressSource.ambiguousCountryCodes.any { cc ->
+                location.countryCode.equals(cc, ignoreCase = true)
+            }
+        ) {
             try {
                 // Getting the address for this from the fallback reverse geocoding source
                 requestReverseGeocoding(
@@ -1372,28 +1377,5 @@ class RefreshHelper @Inject constructor(
 
         const val CACHING_DISTANCE_LIMIT = 5000 // 5 km
         const val REVERSE_GEOCODING_DISTANCE_LIMIT = 50000 // 50 km
-
-        /**
-         * For technical reasons, we need to better identify each territory
-         * Crimea is not included to let each location search/address lookup source resolves it the way they want
-         *  and we will resolve the timezone as Europe/Simferopol whether identified as UA or RU
-         */
-        private val ambigousCountryCodes = arrayOf(
-            "AR", // Claims: AQ
-            "AU", // Territories: CX, CC, HM (uninhabited), NF. Claims: AQ
-            "CL", // Claims: AQ
-            "CN", // Territories: HK, MO. Claims: TW
-            "DK", // Territories: FO, GL
-            "FI", // Territories: AX
-            "FR", // Territories: GF, PF, TF (uninhabited), GP, MQ, YT, NC, RE, BL, MF, PM, WF. Claims: AQ
-            "GB", // Territories: AI, BM, IO, KY, FK, GI, GG, IM, JE, MS, PN, SH, GS (uninhabited), TC, VG. Claims: AQ
-            "IL", // Claims: PS
-            "MA", // Claims: EH
-            "NL", // Territories: AW, BQ, CW, SX
-            "NO", // Territories: BV, SJ. Claims: AQ
-            "NZ", // Territories: TK. Associated states: CK, NU. Claims: AQ
-            "RS", // Claims: XK
-            "US" // Territories: AS, GU, MP, PR, UM (uninhabited), VI
-        )
     }
 }

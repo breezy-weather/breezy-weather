@@ -476,6 +476,8 @@ class ImsService @Inject constructor(
 
     override val testingLocations: List<Location> = emptyList()
 
+    override val knownAmbiguousCountryCodes: Array<String>? = arrayOf("IL")
+
     companion object {
         private const val IMS_BASE_URL = "https://ims.gov.il/"
     }

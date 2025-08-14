@@ -23,7 +23,7 @@ import io.reactivex.rxjava3.core.Observable
 /**
  * Location search source
  */
-interface LocationSearchSource : Source {
+interface LocationSearchSource : AddressSource {
     /**
      * Credits and acknowledgments that will be shown at the bottom of main screen
      * Please check terms of the source to be sure to put the correct term here
