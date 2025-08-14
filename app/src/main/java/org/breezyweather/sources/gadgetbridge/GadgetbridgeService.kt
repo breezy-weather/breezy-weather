@@ -26,6 +26,7 @@ import breezyweather.domain.weather.reference.WeatherCode
 import kotlinx.serialization.json.Json
 import org.breezyweather.common.basic.models.options.unit.SpeedUnit
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
+import org.breezyweather.common.extensions.gzipCompress
 import org.breezyweather.common.source.BroadcastSource
 import org.breezyweather.common.utils.helpers.LogHelper
 import org.breezyweather.domain.location.model.getPlace
@@ -56,17 +57,17 @@ class GadgetbridgeService @Inject constructor() : BroadcastSource {
         }
 
         return Bundle().apply {
+            putByteArray(
+                "WeatherGz",
+                Json.encodeToString(
+                    allLocations.mapNotNull {
+                        if (it.weather?.current != null) getWeatherData(context, it) else null
+                    }
+                ).gzipCompress()
+            )
             putString(
                 "WeatherJson",
                 Json.encodeToString(getWeatherData(context, allLocations[0]))
-            )
-            putString(
-                "WeatherSecondaryJson",
-                Json.encodeToString(
-                    allLocations.drop(1).mapNotNull {
-                        if (it.weather?.current != null) getWeatherData(context, it) else null
-                    }
-                )
             )
         }
     }
