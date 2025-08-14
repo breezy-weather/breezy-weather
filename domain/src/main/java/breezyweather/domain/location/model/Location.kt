@@ -264,7 +264,7 @@ data class Location(
             if (city.isNotEmpty()) {
                 builder.append(city)
             }
-            if (!district.isNullOrEmpty()) {
+            if (!district.isNullOrEmpty() && district != city) {
                 if (builder.toString().isNotEmpty()) {
                     builder.append(", ")
                 }
