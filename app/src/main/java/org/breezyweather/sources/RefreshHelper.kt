@@ -178,6 +178,8 @@ class RefreshHelper @Inject constructor(
      * - Apply updated coordinates
      * - Reverse geocoding (if current location)
      * On non-current location, just returns the location
+     *
+     * TODO: Remove redundancy with default reverse geocoding calls
      */
     suspend fun getLocation(
         context: Context,
@@ -188,6 +190,8 @@ class RefreshHelper @Inject constructor(
             // There was already an error earlier in the process, so no errors
             return LocationResult(location, emptyList())
         }
+
+        var needsCountryCodeRefresh = false
 
         val currentErrors = mutableListOf<RefreshError>()
 
@@ -271,7 +275,8 @@ class RefreshHelper @Inject constructor(
                         )
                         location
                     } else {
-                        locationRepository.update(it)
+                        needsCountryCodeRefresh = !location.reverseGeocodingSource.isNullOrEmpty() &&
+                            !location.reverseGeocodingSource.equals(BuildConfig.DEFAULT_GEOCODING_SOURCE)
                         it
                     }
                 }
@@ -302,9 +307,7 @@ class RefreshHelper @Inject constructor(
                         ).copy(
                             // We failed to refresh, so retry reverse geocoding next time
                             needsGeocodeRefresh = true
-                        ).also {
-                            locationRepository.update(it)
-                        }
+                        )
                     } catch (_: Throwable) {
                         /**
                          * Returns the original location
@@ -330,13 +333,25 @@ class RefreshHelper @Inject constructor(
             locationWithUpdatedCoordinates // Same as "location"
         }
 
-        // STEP 3 - Add timezone if missing
+        // STEP 3 - Validate ambiguous ISO 3166 codes
+        val locationInfoFromDefaultSource = if (needsCountryCodeRefresh) {
+            getLocationWithUnambiguousCountryCode(locationGeocoded, context)
+        } else {
+            locationGeocoded
+        }
+
+        // STEP 4 - Add timezone if missing
         val locationWithTimeZone = if (locationGeocoded.isTimeZoneInvalid) {
-            locationGeocoded.copy(
+            locationInfoFromDefaultSource.copy(
                 timeZone = getTimeZoneForLocation(context, locationGeocoded)
             )
         } else {
-            locationGeocoded
+            locationInfoFromDefaultSource
+        }
+
+        // STEP 5 - If there was any change, update in database
+        if (location != locationWithTimeZone) {
+            locationRepository.update(locationWithTimeZone)
         }
 
         return LocationResult(locationWithTimeZone, currentErrors)
@@ -375,6 +390,35 @@ class RefreshHelper @Inject constructor(
             }.awaitFirstOrElse {
                 throw ReverseGeocodingException()
             }
+    }
+
+    suspend fun getLocationWithUnambiguousCountryCode(
+        location: Location,
+        context: Context,
+    ): Location {
+        return if (ambigousCountryCodes.any { cc -> location.countryCode.equals(cc, ignoreCase = true) }) {
+            try {
+                // Getting the address for this from the fallback reverse geocoding source
+                requestReverseGeocoding(
+                    sourceManager.getReverseGeocodingSourceOrDefault(BuildConfig.DEFAULT_GEOCODING_SOURCE),
+                    location,
+                    context
+                ).let {
+                    if (!it.countryCode.equals(location.countryCode, ignoreCase = true)) {
+                        location.copy(
+                            countryCode = it.countryCode,
+                            country = it.country
+                        )
+                    } else {
+                        location
+                    }
+                }
+            } catch (_: Throwable) {
+                location
+            }
+        } else {
+            location
+        }
     }
 
     suspend fun updateLocation(location: Location, oldFormattedId: String? = null) {
@@ -1327,5 +1371,28 @@ class RefreshHelper @Inject constructor(
 
         const val CACHING_DISTANCE_LIMIT = 5000 // 5 km
         const val REVERSE_GEOCODING_DISTANCE_LIMIT = 50000 // 50 km
+
+        /**
+         * For technical reasons, we need to better identify each territory
+         * Crimea is not included to let each location search/address lookup source resolves it the way they want
+         *  and we will resolve the timezone as Europe/Simferopol whether identified as UA or RU
+         */
+        private val ambigousCountryCodes = arrayOf(
+            "AR", // Claims: AQ
+            "AU", // Territories: CX, CC, HM (uninhabited), NF. Claims: AQ
+            "CL", // Claims: AQ
+            "CN", // Territories: HK, MO. Claims: TW
+            "DK", // Territories: FO, GL
+            "FI", // Territories: AX
+            "FR", // Territories: GF, PF, TF (uninhabited), GP, MQ, YT, NC, RE, BL, MF, PM, WF. Claims: AQ
+            "GB", // Territories: AI, BM, IO, KY, FK, GI, GG, IM, JE, MS, PN, SH, GS (uninhabited), TC, VG. Claims: AQ
+            "IL", // Claims: PS
+            "MA", // Claims: EH
+            "NL", // Territories: AW, BQ, CW, SX
+            "NO", // Territories: BV, SJ. Claims: AQ
+            "NZ", // Territories: TK. Associated states: CK, NU. Claims: AQ
+            "RS", // Claims: XK
+            "US" // Territories: AS, GU, MP, PR, UM (uninhabited), VI
+        )
     }
 }

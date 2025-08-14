@@ -21,16 +21,18 @@ import breezyweather.domain.location.model.LocationAddressInfo
 import breezyweather.domain.source.SourceFeature
 import com.google.maps.android.PolyUtil
 import com.google.maps.android.SphericalUtil
-import com.google.maps.android.data.geojson.GeoJsonFeature
+import com.google.maps.android.data.Feature
 import com.google.maps.android.data.geojson.GeoJsonMultiPolygon
 import com.google.maps.android.data.geojson.GeoJsonParser
 import com.google.maps.android.data.geojson.GeoJsonPoint
 import com.google.maps.android.data.geojson.GeoJsonPolygon
 import com.google.maps.android.model.LatLng
+import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.R
 import org.breezyweather.common.extensions.codeForNaturalEarth
 import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.extensions.getCountryName
 import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.utils.helpers.LogHelper
 import org.breezyweather.sources.RefreshHelper
@@ -50,12 +52,20 @@ import javax.inject.Inject
  *
  * https://mapshaper.org/ was used to convert to GeoJSON
  * TODO: It would be best to make our own converter so that we can exclude features we don’t want and
- * make the geojson file more lightweight
+ *  make the geojson file more lightweight
  */
-class NaturalEarthService @Inject constructor() : ReverseGeocodingSource {
+class NaturalEarthService @Inject constructor(
+    @ApplicationContext context: Context,
+) : ReverseGeocodingSource {
 
     override val id = "naturalearth"
     override val name = "Natural Earth"
+
+    private val geoJsonParser: GeoJsonParser by lazy {
+        val text = context.resources.openRawResource(R.raw.ne_50m_admin_0_countries)
+            .bufferedReader().use { it.readText() }
+        GeoJsonParser(JSONObject(text))
+    }
 
     override val supportedFeatures = mapOf(
         SourceFeature.REVERSE_GEOCODING to name
@@ -68,13 +78,7 @@ class NaturalEarthService @Inject constructor() : ReverseGeocodingSource {
     ): Observable<List<LocationAddressInfo>> {
         val languageCode = context.currentLocale.codeForNaturalEarth
 
-        // Countries
-        val matchingCountries = getMatchingFeaturesForLocation(
-            context,
-            R.raw.ne_50m_admin_0_countries,
-            latitude,
-            longitude
-        )
+        val matchingCountries = geoJsonParser.features.filter { isMatchingFeature(it, latitude, longitude) }
         if (matchingCountries.size != 1) {
             LogHelper.log(
                 msg = "[NaturalEarthService] Reverse geocoding skipped: ${matchingCountries.size} matching results"
@@ -82,44 +86,39 @@ class NaturalEarthService @Inject constructor() : ReverseGeocodingSource {
             return Observable.just(emptyList())
         }
 
+        val countryCode = matchingCountries[0].getProperty("ISO_A2") ?: ""
         return Observable.just(
             listOf(
                 LocationAddressInfo(
-                    country = matchingCountries[0].getProperty("NAME_$languageCode")
+                    country = countryCode.takeIf { it.isNotEmpty() }
+                        ?.let { context.currentLocale.getCountryName(it) }
+                        ?: matchingCountries[0].getProperty("NAME_$languageCode")
                         ?: matchingCountries[0].getProperty("NAME_LONG"),
-                    countryCode = matchingCountries[0].getProperty("ISO_A2")
-                        ?: ""
+                    countryCode = countryCode
                 )
             )
         )
     }
 
-    private fun getMatchingFeaturesForLocation(
-        context: Context,
-        file: Int,
+    private fun isMatchingFeature(
+        feature: Feature,
         latitude: Double,
         longitude: Double,
-    ): List<GeoJsonFeature> {
-        val text = context.resources.openRawResource(file)
-            .bufferedReader().use { it.readText() }
-        val geoJsonParser = GeoJsonParser(JSONObject(text))
-
-        return geoJsonParser.features.filter { feature ->
-            when (feature.geometry) {
-                is GeoJsonPolygon -> (feature.geometry as GeoJsonPolygon).coordinates.any { polygon ->
+    ): Boolean {
+        return when (feature.geometry) {
+            is GeoJsonPolygon -> (feature.geometry as GeoJsonPolygon).coordinates.any { polygon ->
+                PolyUtil.containsLocation(latitude, longitude, polygon, true)
+            }
+            is GeoJsonMultiPolygon -> (feature.geometry as GeoJsonMultiPolygon).polygons.any {
+                it.coordinates.any { polygon ->
                     PolyUtil.containsLocation(latitude, longitude, polygon, true)
                 }
-                is GeoJsonMultiPolygon -> (feature.geometry as GeoJsonMultiPolygon).polygons.any {
-                    it.coordinates.any { polygon ->
-                        PolyUtil.containsLocation(latitude, longitude, polygon, true)
-                    }
-                }
-                is GeoJsonPoint -> SphericalUtil.computeDistanceBetween(
-                    LatLng(latitude, longitude),
-                    (feature.geometry as GeoJsonPoint).coordinates
-                ) < RefreshHelper.REVERSE_GEOCODING_DISTANCE_LIMIT
-                else -> false
             }
+            is GeoJsonPoint -> SphericalUtil.computeDistanceBetween(
+                LatLng(latitude, longitude),
+                (feature.geometry as GeoJsonPoint).coordinates
+            ) < RefreshHelper.REVERSE_GEOCODING_DISTANCE_LIMIT
+            else -> false
         }
     }
 }

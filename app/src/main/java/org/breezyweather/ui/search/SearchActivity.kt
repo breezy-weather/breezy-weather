@@ -66,19 +66,15 @@ import androidx.compose.ui.unit.dp
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.ViewModelProvider
 import breezyweather.domain.location.model.Location
-import breezyweather.domain.source.SourceFeature
 import dagger.hilt.android.AndroidEntryPoint
 import org.breezyweather.BuildConfig
 import org.breezyweather.R
 import org.breezyweather.common.basic.BreezyActivity
 import org.breezyweather.common.extensions.inputMethodManager
-import org.breezyweather.domain.location.model.applyDefaultPreset
 import org.breezyweather.domain.location.model.getPlace
-import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.sources.SourceManager
 import org.breezyweather.sources.getConfiguredLocationSearchSources
 import org.breezyweather.sources.getLocationSearchSourceOrDefault
-import org.breezyweather.sources.getWeatherSource
 import org.breezyweather.ui.common.composables.AlertDialogNoPadding
 import org.breezyweather.ui.common.composables.SecondarySourcesPreference
 import org.breezyweather.ui.common.widgets.Material3Scaffold
@@ -110,8 +106,9 @@ class SearchActivity : BreezyActivity() {
     private fun ContentView() {
         val context = LocalContext.current
         val dialogLocationSearchSourceOpenState = rememberSaveable { mutableStateOf(false) }
-        val dialogLocationSourcesOpenState = rememberSaveable { mutableStateOf(false) }
-        var selectedLocation: Location? by rememberSaveable { mutableStateOf(null) }
+        val dialogLocationSourcesOpenState = viewModel.dialogLocationSourcesOpenState.collectAsState()
+        val selectedLocation = viewModel.selectedLocation.collectAsState()
+        val isLoading = viewModel.isLoading.collectAsState()
         var text by rememberSaveable { mutableStateOf("") }
         var latestTextSearch by rememberSaveable { mutableStateOf("") }
         val locationSearchSourceState = viewModel.locationSearchSource.collectAsState()
@@ -184,7 +181,7 @@ class SearchActivity : BreezyActivity() {
                     )
                     HorizontalDivider(color = SearchBarDefaults.colors().dividerColor)
                     val listResourceState = viewModel.listResource.collectAsState()
-                    if (listResourceState.value.second == LoadableLocationStatus.LOADING) {
+                    if (listResourceState.value.second == LoadableLocationStatus.LOADING || isLoading.value) {
                         LinearProgressIndicator(modifier = Modifier.fillMaxWidth())
                     }
                     if (listResourceState.value.first.isNotEmpty()) {
@@ -199,101 +196,20 @@ class SearchActivity : BreezyActivity() {
                                     headlineContent = { Text(location.getPlace(context)) },
                                     supportingContent = { Text(location.administrationLevels()) },
                                     modifier = Modifier.clickable {
-                                        val defaultSource = SettingsManager.getInstance(context).defaultForecastSource
-
-                                        selectedLocation = when (defaultSource) {
-                                            "auto" -> location.applyDefaultPreset(sourceManager)
-                                            else -> {
-                                                val source = sourceManager.getWeatherSource(defaultSource)
-                                                if (source == null) {
-                                                    location.applyDefaultPreset(sourceManager)
-                                                } else {
-                                                    location.copy(
-                                                        forecastSource = source.id,
-                                                        currentSource = if (SourceFeature.CURRENT in
-                                                            source.supportedFeatures &&
-                                                            source.isFeatureSupportedForLocation(
-                                                                location,
-                                                                SourceFeature.CURRENT
-                                                            )
-                                                        ) {
-                                                            source.id
-                                                        } else {
-                                                            null
-                                                        },
-                                                        airQualitySource = if (SourceFeature.AIR_QUALITY in
-                                                            source.supportedFeatures &&
-                                                            source.isFeatureSupportedForLocation(
-                                                                location,
-                                                                SourceFeature.AIR_QUALITY
-                                                            )
-                                                        ) {
-                                                            source.id
-                                                        } else {
-                                                            null
-                                                        },
-                                                        pollenSource = if (SourceFeature.POLLEN in
-                                                            source.supportedFeatures &&
-                                                            source.isFeatureSupportedForLocation(
-                                                                location,
-                                                                SourceFeature.POLLEN
-                                                            )
-                                                        ) {
-                                                            source.id
-                                                        } else {
-                                                            null
-                                                        },
-                                                        minutelySource = if (SourceFeature.MINUTELY in
-                                                            source.supportedFeatures &&
-                                                            source.isFeatureSupportedForLocation(
-                                                                location,
-                                                                SourceFeature.MINUTELY
-                                                            )
-                                                        ) {
-                                                            source.id
-                                                        } else {
-                                                            null
-                                                        },
-                                                        alertSource = if (SourceFeature.ALERT in
-                                                            source.supportedFeatures &&
-                                                            source.isFeatureSupportedForLocation(
-                                                                location,
-                                                                SourceFeature.ALERT
-                                                            )
-                                                        ) {
-                                                            source.id
-                                                        } else {
-                                                            null
-                                                        },
-                                                        normalsSource = if (SourceFeature.NORMALS in
-                                                            source.supportedFeatures &&
-                                                            source.isFeatureSupportedForLocation(
-                                                                location,
-                                                                SourceFeature.NORMALS
-                                                            )
-                                                        ) {
-                                                            source.id
-                                                        } else {
-                                                            null
-                                                        }
-                                                    )
-                                                }
-                                            }
-                                        }
-                                        dialogLocationSourcesOpenState.value = true
+                                        viewModel.setSelectedLocation(location)
                                     }
                                 )
                             }
                         }
-                        if (dialogLocationSourcesOpenState.value && selectedLocation != null) {
+                        if (dialogLocationSourcesOpenState.value && selectedLocation.value != null) {
                             SecondarySourcesPreference(
                                 sourceManager = sourceManager,
-                                location = selectedLocation!!,
+                                location = selectedLocation.value!!,
                                 onClose = { location: Location? ->
                                     if (location != null) {
                                         finishSelf(location)
                                     }
-                                    dialogLocationSourcesOpenState.value = false
+                                    viewModel.closeDialogLocationSources()
                                 }
                             )
                         }

@@ -20,7 +20,6 @@ const val COORDINATES_PRECISION = 5
  * on the original Natural Earth file already converted to JSON
  *
  * TODO: Make this task convert shapefile to json instead of relying on external tools
- * TODO: Add missing Penghu and Matsu islands to Taiwan geometry as they are supported by the Taiwanese CWA source
  */
 fun TaskContainerScope.registerNaturalEarthConfigTask(project: Project): TaskProvider<Task> {
     return with(project) {
@@ -81,8 +80,15 @@ fun TaskContainerScope.registerNaturalEarthConfigTask(project: Project): TaskPro
                                         "NAME_LEN"
                                     )
                                     properties.keys().forEach { k ->
-                                        if (!k.startsWith("NAME_") && k != "ISO_A2") {
-                                            propertiesToRemove.add(k)
+                                        if (k != "ISO_A2") {
+                                            if (!k.startsWith("NAME_")) {
+                                                // Remove everything we don't need
+                                                propertiesToRemove.add(k)
+                                            } else if (!properties.getString("ISO_A2").isNullOrEmpty()) {
+                                                // Remove every name as Android already provides it
+                                                // Unless it's an unknown country (with no ISO A2)
+                                                propertiesToRemove.add(k)
+                                            }
                                         }
                                     }
                                     propertiesToRemove.forEach { p ->

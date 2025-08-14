@@ -481,8 +481,7 @@ class MainActivityViewModel @Inject constructor(
     fun addLocation(
         location: Location,
         index: Int? = null,
-        context: Context? = null, // Needed if adding timezone
-        addTimeZoneIfMissing: Boolean = false,
+        context: Context? = null, // Needed for timezone
     ): Boolean {
         // do not add an existing location.
         if (validLocationList.value.firstOrNull { it.formattedId == location.formattedId } != null) {
@@ -491,7 +490,7 @@ class MainActivityViewModel @Inject constructor(
 
         _locationListLoading.value = true
 
-        val locationToAdd = if (addTimeZoneIfMissing && context != null && location.isTimeZoneInvalid) {
+        val locationWithValidTimeZone = if (context != null && location.isTimeZoneInvalid) {
             location.copy(
                 timeZone = runBlocking {
                     refreshHelper.getTimeZoneForLocation(context, location)
@@ -502,7 +501,7 @@ class MainActivityViewModel @Inject constructor(
         }
 
         val valid = validLocationList.value.toMutableList()
-        valid.add(index ?: valid.size, locationToAdd)
+        valid.add(index ?: valid.size, locationWithValidTimeZone)
 
         updateInnerData(valid)
         writeLocationList(locationList = valid)

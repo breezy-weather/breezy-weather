@@ -472,7 +472,7 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
                                 if (viewModel.locationExists(newLocation)) {
                                     SnackbarHelper.showSnackbar(getString(R.string.location_message_already_exists))
                                 } else {
-                                    viewModel.addLocation(newLocation, null)
+                                    viewModel.addLocation(newLocation, null, requireContext())
                                     SnackbarHelper.showSnackbar(getString(R.string.location_message_added))
                                 }
                             }
@@ -495,7 +495,7 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
                         if (viewModel.locationExists(addedLocation)) {
                             SnackbarHelper.showSnackbar(getString(R.string.location_message_already_exists))
                         } else {
-                            viewModel.addLocation(addedLocation, null)
+                            viewModel.addLocation(addedLocation, null, requireContext())
                             SnackbarHelper.showSnackbar(getString(R.string.location_message_added))
                         }
                     }

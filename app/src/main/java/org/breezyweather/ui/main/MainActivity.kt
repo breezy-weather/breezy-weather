@@ -155,7 +155,7 @@ class MainActivity : BreezyActivity(), HomeFragment.Callback, ManagementFragment
                     if (viewModel.locationExists(location)) {
                         SnackbarHelper.showSnackbar(getString(R.string.location_message_already_exists))
                     } else {
-                        viewModel.addLocation(location, null)
+                        viewModel.addLocation(location, null, this)
                         SnackbarHelper.showSnackbar(getString(R.string.location_message_added))
                     }
                 }

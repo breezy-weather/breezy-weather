@@ -17,6 +17,7 @@
 package org.breezyweather.ui.search
 
 import android.app.Application
+import androidx.lifecycle.viewModelScope
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.location.model.LocationAddressInfo
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -25,6 +26,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import org.breezyweather.BreezyWeather
 import org.breezyweather.common.basic.BreezyViewModel
 import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.extensions.launchIO
 import org.breezyweather.common.utils.helpers.SnackbarHelper
 import org.breezyweather.ui.main.utils.RefreshErrorType
 import javax.inject.Inject
@@ -42,6 +44,12 @@ class SearchViewModel @Inject constructor(
         repository.lastSelectedLocationSearchSource
     )
     val locationSearchSource = _locationSearchSource.asStateFlow()
+    private val _selectedLocation: MutableStateFlow<Location?> = MutableStateFlow(null)
+    val selectedLocation = _selectedLocation.asStateFlow()
+    private val _dialogLocationSourcesOpenState: MutableStateFlow<Boolean> = MutableStateFlow(false)
+    val dialogLocationSourcesOpenState = _dialogLocationSourcesOpenState.asStateFlow()
+    private val _isLoading: MutableStateFlow<Boolean> = MutableStateFlow(false)
+    val isLoading = _isLoading.asStateFlow()
     private val mRepository: SearchActivityRepository = repository
 
     fun requestLocationList(str: String) {
@@ -93,6 +101,22 @@ class SearchViewModel @Inject constructor(
     fun setEnabledSource(locSearchSource: String) {
         mRepository.lastSelectedLocationSearchSource = locSearchSource
         _locationSearchSource.value = locSearchSource
+    }
+
+    fun setSelectedLocation(location: Location) {
+        viewModelScope.launchIO {
+            _isLoading.value = true
+            _selectedLocation.value = mRepository.getLocationWithAppliedPreference(
+                mRepository.getLocationWithUnambiguousCountryCode(location, getApplication()),
+                getApplication()
+            )
+            _isLoading.value = false
+            _dialogLocationSourcesOpenState.value = true
+        }
+    }
+
+    fun closeDialogLocationSources() {
+        _dialogLocationSourcesOpenState.value = false
     }
 
     override fun onCleared() {
