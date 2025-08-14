@@ -406,8 +406,9 @@ class RefreshHelper @Inject constructor(
                 ).let {
                     if (!it.countryCode.equals(location.countryCode, ignoreCase = true)) {
                         location.copy(
-                            countryCode = it.countryCode,
-                            country = it.country
+                            // Don't replace country as it doesn’t make sense when it’s a territory
+                            // country = it.country,
+                            countryCode = it.countryCode
                         )
                     } else {
                         location
