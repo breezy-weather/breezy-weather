@@ -254,11 +254,6 @@
     <string name="weather_kind_thunder">Hřmění</string>
     <string name="weather_kind_thunderstorm">Bouřka</string>
     <string name="weather_kind_wind">Vítr</string>
-    <string name="unit_kph_voice">Kilometry za hodinu</string>
-    <string name="unit_mps_voice">Metry za sekundu</string>
-    <string name="unit_kn_voice">Uzly</string>
-    <string name="unit_mph_voice">Míle za hodinu</string>
-    <string name="unit_ftps_voice">Stopy za sekundu</string>
     <string name="unit_ppcm_voice">Na metr krychlový</string>
     <string name="settings_notifications">Oznámení</string>
     <string name="location_message_reverse_geocoding_failed">Zdroji počasí se nepodařilo najít odpovídající místo</string>
@@ -292,7 +287,6 @@
     <string name="settings_modules_notification_persistent_switch">Trvalý</string>
     <string name="settings_modules_notification_widget_title">Widget oznámení</string>
     <string name="settings_modules_notification_style_title">Styl</string>
-    <string name="unit_ftps">ft/s</string>
     <string name="common_weather_text_mostly_clear">Skoro jasno</string>
     <string name="weather_api_unauthorized_content">U některých zdrojů dat o počasí je třeba zadat vlastní klíč API. Pokud jste ho již poskytli, překontrolujte zadaný klíč API.</string>
     <string name="weather_api_key_required_missing_content">Chcete-li tento zdroj použít, musíte zadat klíč API.</string>
@@ -301,7 +295,6 @@
     <string name="action_close">Zavřít</string>
     <string name="action_show_errors">Klepnutím zobrazíte podrobnosti</string>
     <string name="widget_subtitle_data_aqi">Kvalita ovzduší</string>
-    <string name="unit_mps">m/s</string>
     <string name="uv_index_0_2">Nízký</string>
     <string name="message_server_timeout">Vypršel časový limit požadavku</string>
     <string name="message_parsing_error_title">Nepodařilo se zpracovat údaje o počasí</string>
@@ -351,8 +344,6 @@
     <string name="unit_fahrenheit_short">°</string>
     <string name="about_contribution_WangDaYeeeeee">Vývojář původního projektu Geometric Weather</string>
     <string name="air_quality_level_2">Dostatečná</string>
-    <string name="unit_mph">mph</string>
-    <string name="unit_kn">kn</string>
     <string name="action_add_new_location">Přidat novou polohu</string>
     <string name="notification_channel_widget">Widget</string>
     <string name="unit_ppcm">/m³</string>
@@ -405,7 +396,6 @@
     <string name="settings_modules_week_icon_mode_title">Ikona pro zobrazení v týdenním zobrazení</string>
     <string name="settings_modules_monochrome_icons_title">Monochromatické ikony</string>
     <string name="settings_modules_section_notification_widget">Widget oznámení</string>
-    <string name="unit_kph">km/h</string>
     <string name="notification_channel_background_services">Služby na pozadí</string>
     <string name="air_quality_level_1_description">Kvalita ovzduší je vhodná pro většinu jedinců; užívejte si své normální venkovní aktivity.</string>
     <string name="weather_api_limit_reached_content">Pro obejití limitu zadejte svůj vlastní klíč API.</string>
@@ -492,7 +482,6 @@
     <string name="settings_weather_sources_per_location_summary">Přizpůsobte zdroj dat o počasí použitý pro toto umístění</string>
     <string name="settings_appearance_dark_mode_locations_title">Tmavý režim založený na umístění</string>
     <string name="settings_main_threshold_lines_on_charts">Prahové linky na grafech</string>
-    <string name="unit_bft_voice">na Beaufortově stupnici</string>
     <string name="common_weather_text_drizzle_light">Lehké mrholení</string>
     <string name="common_weather_text_drizzle_freezing">Mrznoucí mrholení</string>
     <string name="action_delete">Odstranit</string>
@@ -752,8 +741,6 @@
     <string name="action_configure_item">Nastavit %s</string>
     <string name="settings_appearance_section_regional">Jazyk a oblast</string>
     <string name="settings_appearance_section_theme">Motiv</string>
-    <string name="unit_bft_display_name">Beaufort</string>
-    <string name="unit_bft_nominative">%s Bft</string>
     <string name="about_update_check_eol">Tato verze systému Android již není podporována</string>
     <string name="air_quality_short">Kvalita ovzduší</string>
     <string name="ephemeris_sun">Slunce</string>

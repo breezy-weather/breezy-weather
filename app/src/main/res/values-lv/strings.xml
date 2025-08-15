@@ -468,18 +468,6 @@
     <string name="common_weather_text_snow_light">Neliels sniegs</string>
     <string name="common_weather_text_drizzle_freezing">Sasalstoša smidzināšana</string>
     <string name="common_weather_text_drizzle_freezing_heavy">Spēcīga sasalstoša smidzināšana</string>
-    <string name="unit_bft_nominative">%s Dēļa pēda</string>
-    <string name="unit_bft_voice">pēc Boforta skalas</string>
-    <string name="unit_mps">m/s</string>
-    <string name="unit_mps_voice">Metri sekundē</string>
-    <string name="unit_kph">km/h</string>
-    <string name="unit_kph_voice">Kilometri stundā</string>
-    <string name="unit_kn">Mezgls</string>
-    <string name="unit_kn_voice">Mezgli</string>
-    <string name="unit_mph">mph</string>
-    <string name="unit_mph_voice">Jūdzes stundā</string>
-    <string name="unit_ftps">ft/s</string>
-    <string name="unit_ftps_voice">Pēdas sekundē</string>
     <string name="unit_ppcm">/m³</string>
     <string name="unit_ppcm_voice">Par kubikmetru</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Pērkona negaiss neliels vai mērens</string>
@@ -775,7 +763,6 @@
     <string name="settings_appearance_section_theme">Izskats</string>
     <string name="settings_appearance_dark_mode_locations_day_night">Ņemt vērā dienu/nakti</string>
     <string name="settings_appearance_dark_mode_locations_dark">Vienmēr tumšs, kad lietotnē ir tumšais izskats</string>
-    <string name="unit_bft_display_name">Boforts</string>
     <string name="message_incompatible_times_content">Maini savu prognožu vai gaisa kvalitātes avotu, lai laiks sakristu!</string>
     <string name="humidity_from_to_number">%1$s līdz %2$s</string>
     <string name="dew_point_from_to_number">%1$s līdz %2$s</string>

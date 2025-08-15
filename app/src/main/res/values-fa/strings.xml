@@ -399,9 +399,6 @@
     <string name="settings_debug_dump_crash_logs_saved">گزارش خرابی‌ نگه‌داری شد</string>
     <string name="settings_items_drag_to_sort">برای ترتیب دهی به گزینه های‌‌ فهرست ضربه بزنید و بکشید</string>
     <string name="settings_item_delete">پاک کردن گزینه</string>
-    <string name="unit_mps">m/s</string>
-    <string name="unit_kn">kn</string>
-    <string name="unit_kn_voice">نیوتن</string>
     <string name="unit_celsius">°C</string>
     <string name="about_source_code">کد منبع</string>
     <string name="about_contribution_designer">طراح نماد</string>
@@ -414,7 +411,6 @@
     <string name="settings_automatic">خودکار</string>
     <string name="settings_none">هیچکدام</string>
     <string name="settings_color_day_night">روز / شب</string>
-    <string name="unit_ftps_voice">فوت بر ثانیه</string>
     <string name="unit_celsius_short">°</string>
     <string name="notification_style_native">بومی</string>
     <string name="about_contact">ارتباط</string>
@@ -449,11 +445,7 @@
     <string name="settings_modules_summary">تنظیم تصویر زمینه، پیکربندی ابزارک های مورد استفاده، ابزارک آگاه‌سازی</string>
     <string name="settings_main_section_animations">پویانمایی ها</string>
     <string name="about_matrix">اتاق ماتریکس</string>
-    <string name="unit_kph">km/h</string>
-    <string name="unit_mph">mph</string>
     <string name="settings_notifications_section_forecast">پیش‌بین­ی</string>
-    <string name="unit_mps_voice">متر بر ثانیه</string>
-    <string name="unit_kph_voice">کیلومتر بر ساعت</string>
     <string name="settings_per_location">اولویت های مکان</string>
     <string name="settings_per_location_summary">شخصی‌سازی های بیشتر برای این مکان</string>
     <string name="settings_weather_source_open_meteo_weather_models_best_match">بهترین سازگاری</string>
@@ -474,8 +466,6 @@
     <string name="settings_enabled">روشن</string>
     <string name="settings_disabled">خاموش</string>
     <string name="settings_follow_system">دنباله‌رو سامانه</string>
-    <string name="unit_mph_voice">مایل بر ساعت</string>
-    <string name="unit_ftps">ft/s</string>
     <string name="settings_modules">ابزارک و کاغذدیواری زنده</string>
     <string name="common_weather_text_clear_sky">آسمان صاف</string>
     <string name="common_weather_text_partly_cloudy">اندکی صاف</string>
@@ -532,7 +522,6 @@
     <string name="common_weather_text_rain_freezing_heavy">تگرگ سنگین</string>
     <string name="weather_kind_hail">تگرگ</string>
     <string name="settings_main_threshold_lines_on_charts">خطوط آستانه در نمودارها</string>
-    <string name="unit_bft_voice">در مقیاس بوفور</string>
     <string name="notification_refreshed_at">بازخوانی شده در</string>
     <string name="notification_channel_widget">ابزارک</string>
     <string name="notification_channel_background_services">خدمات پس‌زمینه</string>
@@ -735,8 +724,6 @@
     <string name="label_collapsed">فشرده</string>
     <string name="settings_appearance_section_regional">زبان و منطقه</string>
     <string name="settings_appearance_section_theme">پوسته</string>
-    <string name="unit_bft_display_name">بوفور</string>
-    <string name="unit_bft_nominative">%s بوفور</string>
     <string name="pressure_about_description1">فشار جوی فشاری است که جو زمین به سمت پایین اعمال می‌کند. این برنامه از فشار میانگین سطح دریا استفاده می‌کند تا مقایسه فشار در مکان‌های با ارتفاعات مختلف آسان‌تر شود.</string>
     <string name="ephemeris_sun">خورشید</string>
     <string name="ephemeris_moon">ماه</string>

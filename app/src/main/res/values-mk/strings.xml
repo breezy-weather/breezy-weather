@@ -223,8 +223,6 @@
     <string name="settings_modules_broadcast_send_data_title">Испратете податоци за времето до %s</string>
     <string name="about_privacy_policy">Политика за приватност</string>
     <string name="settings_debug_dump_crash_logs_saved">Дневниците на падовите се зачувани</string>
-    <string name="unit_mph_voice">Милји на час</string>
-    <string name="unit_ftps_voice">Стапала во секунда</string>
     <string name="notification_channel_background_services">Услуги во позадина</string>
     <string name="notification_running_in_background">Работи во заднина за да продолжи да се ажурира</string>
     <string name="notification_precipitation_starting_desc">Се очекува да започне во %s</string>
@@ -308,9 +306,6 @@
     <string name="settings_debug_dump_crash_logs_summary">Зачувува дневници за грешки во датотека за споделување со програмерите</string>
     <string name="settings_debug_dump_crash_logs_tap_to_open">Допрете за да се отвори</string>
     <string name="settings_disabled">Оневозможено</string>
-    <string name="unit_mps_voice">Метри во секунда</string>
-    <string name="unit_kph">km/h</string>
-    <string name="unit_kph_voice">Километри на час</string>
     <string name="notification_updating_weather_data">Се ажурираат временските податоци (%1$d/%2$d)</string>
     <string name="notification_update_error">%d ажурирања не успеаја</string>
     <string name="notification_style_cities">Градови</string>
@@ -392,11 +387,6 @@
     <string name="settings_color_light">Светлина</string>
     <string name="settings_color_grey">Сиво</string>
     <string name="settings_color_dark">Темно</string>
-    <string name="unit_bft_nominative">%s Бф</string>
-    <string name="unit_bft_voice">на скала Бофор</string>
-    <string name="unit_mps">m/s</string>
-    <string name="unit_kn">кн</string>
-    <string name="unit_kn_voice">Јазли</string>
     <string name="unit_celsius">°C</string>
     <string name="unit_celsius_short">°</string>
     <string name="unit_fahrenheit">°F</string>
@@ -498,8 +488,6 @@
     <string name="settings_items_drag_to_sort">Допрете за да ги повлечете ставките од списокот за подредување</string>
     <string name="settings_item_delete">Избришете ја оваа ставка</string>
     <string name="settings_enabled">Овозможено</string>
-    <string name="unit_mph">милји на час</string>
-    <string name="unit_ftps">ft/s</string>
     <string name="location_search_source">Локација извор за пребарување</string>
     <string name="settings_weather_source_none">Никој</string>
     <string name="location_search_change_source">Променете ја локацијата извор на пребарување</string>

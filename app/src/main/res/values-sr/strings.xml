@@ -145,8 +145,6 @@
     <string name="widget_custom_subtitle_keyword_cuv_description">Тренутно УВ</string>
     <string name="widget_custom_subtitle_keyword_w_description">Недеља</string>
     <string name="settings_debug_dump_crash_logs_summary">Чува евиденције грешака у фајл за дељење са програмерима</string>
-    <string name="unit_kn">kn</string>
-    <string name="unit_mps">m/s</string>
     <string name="action_set">Постави</string>
     <string name="action_continue">Настави</string>
     <string name="action_share">Дели</string>
@@ -190,7 +188,6 @@
     <string name="settings_main_cards_fade_in_switch">Изблеђивање картица</string>
     <string name="settings_main_cards_other_element_animations_switch">Остале анимације елемената</string>
     <string name="notification_channel_alerts">Упозорења</string>
-    <string name="unit_mps_voice">Метри у секунди</string>
     <string name="unit_celsius_short">°</string>
     <string name="settings_section_general">Опште</string>
     <string name="weather_source_accu_preference_hours_120">120 сати</string>
@@ -309,7 +306,6 @@
     <string name="settings_debug_dump_crash_logs_title">Дели евиденције отказивања</string>
     <string name="settings_color_day_always">Увек дан</string>
     <string name="settings_color_night_always">Увек ноћ</string>
-    <string name="unit_bft_voice">по Бофоровој скали</string>
     <string name="unit_kelvin_short">K</string>
     <string name="unit_ppcm">/m³</string>
     <string name="unit_ppcm_voice">По кубном метру</string>
@@ -331,7 +327,6 @@
     <string name="widget_live_wallpaper_weather_kind">Време</string>
     <string name="widget_live_wallpaper_day_night_type">Време (сати)</string>
     <string name="settings_items_drag_to_sort">Додирните да бисте превукли ставке са листе за сортирање</string>
-    <string name="unit_kph">km/h</string>
     <string name="notification_style_cities">Градови</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Олуја са грмљавином - слаба или умерена</string>
     <string name="weather_kind_hail">Град</string>
@@ -362,7 +357,6 @@
     <string name="settings_main_background_animation_enabled">Омогућено</string>
     <string name="settings_main_gravity_sensor_switch">Гравитациони сензор</string>
     <string name="settings_notifications">Обавештења</string>
-    <string name="unit_ftps">ft/s</string>
     <string name="about_source_code">Изворни кôд</string>
     <string name="unit_fahrenheit_short">°</string>
     <string name="unit_kelvin">K</string>
@@ -441,8 +435,6 @@
     <string name="settings_notifications_precipitations_title">Обавештења о падавинама</string>
     <string name="settings_modules_section_widgets_in_use">Виџети у употреби</string>
     <string name="settings_modules_configure_widget_summary">Конфигуришите овај виџет</string>
-    <string name="unit_kn_voice">Чворови</string>
-    <string name="unit_kph_voice">Километри на сат</string>
     <string name="common_weather_text_drizzle_freezing_heavy">Јака ледена росуља</string>
     <string name="notification_running_in_background">Ради у позадини, да би се редовно ажурирало</string>
     <string name="common_weather_text_mostly_clear">Углавном ведро</string>
@@ -467,9 +459,6 @@
     <string name="action_back">Назад</string>
     <string name="action_save">Сачувај</string>
     <string name="action_learn_more">Сазнај више</string>
-    <string name="unit_mph">mph</string>
-    <string name="unit_mph_voice">Миље на сат</string>
-    <string name="unit_ftps_voice">Стопе у секунди</string>
     <string name="settings_weather_sources_per_location_summary">Прилагодите изворе података о времену коришћене за ову локацију</string>
     <string name="settings_main_background_animation_disabled">Онемогућено</string>
     <string name="settings_notifications_forecast_today_title">Обавештење за дневну прогнозу</string>
@@ -779,8 +768,6 @@
     <string name="widget_custom_subtitle_alert_box_title">Помоћ за прилагођене титлове</string>
     <string name="settings_appearance_dark_mode_locations_day_night">Прати дан/ноћ</string>
     <string name="settings_appearance_dark_mode_locations_dark">Увек тамно када је апликација у тамном режиму</string>
-    <string name="unit_bft_display_name">Бофорт</string>
-    <string name="unit_bft_nominative">%s Bft</string>
     <string name="about_update_check_eol">Ова верзија Android-а више није подржана</string>
     <string name="humidity_from_to_number">%1$s до %2$s</string>
     <string name="dew_point_from_to_number">%1$s до %2$s</string>

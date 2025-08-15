@@ -216,11 +216,6 @@
     <string name="weather_kind_thunder">Гром</string>
     <string name="weather_kind_thunderstorm">Штормовая гроза</string>
     <string name="weather_kind_wind">Ветер</string>
-    <string name="unit_kph">км/ч</string>
-    <string name="unit_mps">м/с</string>
-    <string name="unit_kn">узлов</string>
-    <string name="unit_mph">миль/ч</string>
-    <string name="unit_ftps">футов/с</string>
     <string name="unit_ppcm">/м³</string>
     <string name="locations">Местоположения</string>
     <string name="air_quality_level_5">Очень вредно</string>
@@ -328,10 +323,6 @@
     <string name="settings_item_delete">Удалить этот элемент</string>
     <string name="settings_items_drag_to_sort">Нажмите, чтобы перетащить элементы списка для сортировки</string>
     <string name="settings_icon_packs_weather_icon_grey">Серая иконка</string>
-    <string name="unit_kph_voice">Километров в час</string>
-    <string name="unit_mps_voice">Метров в секунду</string>
-    <string name="unit_mph_voice">Миль в час</string>
-    <string name="unit_ftps_voice">Футов в секунду</string>
     <string name="unit_celsius_short">°</string>
     <string name="notification_channel_background_services">Фоновые сервисы</string>
     <string name="location_results_by">Результаты местоположения по %s</string>
@@ -345,7 +336,6 @@
     <string name="widget_style_oreo">Oreo</string>
     <string name="widget_clock_font_sans_serif_black">Sans Serif Black</string>
     <string name="widget_clock_font_analog">Analog</string>
-    <string name="unit_kn_voice">Узлы</string>
     <string name="unit_fahrenheit">°F</string>
     <string name="common_weather_text_overcast">Пасмурно</string>
     <string name="common_weather_text_clear_sky">Ясно</string>
@@ -487,7 +477,6 @@
     <string name="common_weather_text_drizzle_freezing_light">Лёгкая морозящая изморось</string>
     <string name="metno_weather_text_andthunder">%s с грозой</string>
     <string name="common_weather_text_drizzle_freezing">Морозящая изморось</string>
-    <string name="unit_bft_voice">на шкале Бофорта</string>
     <string name="settings_appearance_dark_mode_locations_title">Тёмная тема по местоположению</string>
     <string name="weather_message_unsupported_feature">Источник не поддерживает одну из запрошенных функций</string>
     <string name="about_contribution_designer">Дизайнер логотипа</string>
@@ -743,8 +732,6 @@
     <string name="action_configure_item">Настроить %s</string>
     <string name="settings_appearance_section_regional">Язык и регион</string>
     <string name="settings_appearance_section_theme">Тема</string>
-    <string name="unit_bft_display_name">Бофорт</string>
-    <string name="unit_bft_nominative">%s баллов</string>
     <string name="about_update_check_eol">Эта версия Android больше не поддерживается</string>
     <string name="air_quality_short">Чистота воздуха</string>
     <string name="ephemeris_sun">Солнце</string>

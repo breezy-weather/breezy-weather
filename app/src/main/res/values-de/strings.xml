@@ -168,8 +168,6 @@
     <string name="common_weather_text_rain">Regen</string>
     <string name="weather_kind_haze">Dunst</string>
     <string name="precipitation_between_time">Niederschlag von %1$s bis %2$s</string>
-    <string name="unit_mps">m/s</string>
-    <string name="unit_kn">kn</string>
     <string name="unit_ppcm_voice">Pro Kubikmeter</string>
     <string name="notification_channel_alerts">Warnungen</string>
     <string name="common_weather_text_clear_sky">Klarer Himmel</string>
@@ -208,9 +206,6 @@
     <string name="dialog_permissions_location_background_title">Zugriff auf Standort im Hintergrund</string>
     <string name="weather_api_unauthorized_content">Bei einigen Wetterdiensten musst du deinen eigenen API-Schlüssel angeben. Wenn du bereits einen angegeben hast, überprüfe bitte den API-Schlüssel, den du angegeben hast.</string>
     <string name="weather_api_limit_reached_title">Limit für API-Anfragen erreicht</string>
-    <string name="unit_kph_voice">Kilometer pro Stunde</string>
-    <string name="unit_ftps">ft/s</string>
-    <string name="unit_kn_voice">Knoten</string>
     <string name="about_contribution_WangDaYeeeeee">Entwickler des ursprünglichen Projekts Geometric Weather</string>
     <string name="air_quality_level_2">Mäßig</string>
     <string name="air_quality_level_4_description">Empfindliche Personengruppen werden unmittelbare gesundheitliche Auswirkungen spüren. Bei gesunden Menschen kann es bei längerem Kontakt zu Atembeschwerden und Hustenreiz kommen. Schränke Aktivitäten im Freien ein.</string>
@@ -221,18 +216,15 @@
     <string name="widget_custom_subtitle_keyword_cps_description">Aktueller Luftdruck</string>
     <string name="widget_custom_subtitle_keyword_d_description">Datum</string>
     <string name="common_weather_text_overcast">Bedeckt</string>
-    <string name="unit_mph">mph</string>
     <string name="widget_custom_subtitle_keyword_lat_description">Breitengrad</string>
     <string name="weather_api_limit_reached_content">Um das Limit zu umgehen, füge deinen eigenen API-Schlüssel hinzu.</string>
     <string name="dialog_permissions_location_title">Zugriff auf Standortinformationen</string>
     <string name="alerts_to_follow">Anstehende Warnungen. Zum Anzeigen hier tippen.</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Gewitter mit leichtem Hagel</string>
-    <string name="unit_mph_voice">Meilen pro Stunde</string>
     <string name="widget_clock_font_sans_serif_black">Sans Serif Black</string>
     <string name="message_tap_again_to_exit">Zum Beenden erneut antippen</string>
     <string name="ephemeris_sunrise_at">Sonnenaufgang um %s</string>
     <string name="ephemeris_moonrise_at">Mondaufgang um %s</string>
-    <string name="unit_kph">km/h</string>
     <string name="widget_subtitle_data_feels_like">Gefühlte Temperatur</string>
     <string name="ephemeris_sunset_at">Sonnenuntergang um %s</string>
     <string name="widget_custom_subtitle_keyword_cuv_description">Aktueller UV-Index</string>
@@ -242,9 +234,7 @@
     <string name="widget_material_you_current">Material You – Aktuell</string>
     <string name="widget_label_align_end">Rechtsbündig</string>
     <string name="widget_custom_subtitle_keyword_ch_description">Aktuelle Luftfeuchtigkeit</string>
-    <string name="unit_mps_voice">Meter pro Sekunde</string>
     <string name="widget_custom_subtitle_keyword_xntd_description">Temperatur nachts heute, morgen, …, in 4 Tagen (°)</string>
-    <string name="unit_ftps_voice">Fuß pro Sekunde</string>
     <string name="wind_direction_variable">Wechselnd</string>
     <string name="air_quality_level_1">Sehr gut</string>
     <string name="air_quality_level_3">Schlecht</string>
@@ -478,8 +468,6 @@
     <string name="common_weather_text_rain_snow_mixed_light">Leichter Schneeregen</string>
     <string name="common_weather_text_rain_snow_mixed">Schneeregen</string>
     <string name="common_weather_text_rain_snow_mixed_heavy">Starker Schneeregen</string>
-    <string name="unit_bft_nominative">%s Bft</string>
-    <string name="unit_bft_voice">Auf der Beaufortskala</string>
     <string name="settings_appearance_dark_mode_locations_title">Ortsbasiertes dunkles Design</string>
     <string name="weather_message_unsupported_feature">Quelle unterstützt eines der gewünschten Features nicht</string>
     <string name="about_contribution_designer">Logo-Designer</string>
@@ -748,7 +736,6 @@
     <string name="settings_appearance_section_regional">Sprache und Region</string>
     <string name="settings_appearance_section_theme">Erscheinungsbild</string>
     <string name="action_configure_item">%s konfigurieren</string>
-    <string name="unit_bft_display_name">Beaufort</string>
     <string name="about_update_check_eol">Diese Androidversion wird nicht mehr unterstützt</string>
     <string name="precipitation_snow_total_day">Schnee tagsüber</string>
     <string name="precipitation_snow_total_night">Schnee nachts</string>

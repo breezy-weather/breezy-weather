@@ -89,8 +89,6 @@
     <string name="action_search">Leita</string>
     <string name="action_close">Loka</string>
     <string name="action_close_menu">Loka valmynd</string>
-    <string name="unit_mps">m/s</string>
-    <string name="unit_mps_voice">metrum á sekúndu</string>
     <string name="common_weather_text_clear_sky">Heiðskírt</string>
     <string name="common_weather_text_partly_cloudy">Léttskýjað</string>
     <string name="common_weather_text_cloudy">Skýjað</string>

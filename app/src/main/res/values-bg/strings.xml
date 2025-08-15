@@ -373,7 +373,6 @@
     <string name="settings_debug_dump_crash_logs_summary">Записва логовете за грешки във файл за споделяне с разработчиците</string>
     <string name="settings_changes_apply_after_restart">Промените ще влязат в сила след рестартиране</string>
     <string name="settings_items_drag_to_sort">Докоснете, за да плъзнете елементите от списъка за да сортирате</string>
-    <string name="unit_mph_voice">Мили в час</string>
     <string name="about_translators">Преводачи</string>
     <string name="common_weather_text_clear_sky">Ясно небе</string>
     <string name="settings_disabled">Деактивирано</string>
@@ -391,15 +390,6 @@
     <string name="settings_color_grey">Сиво</string>
     <string name="settings_color_dark">Тъмно</string>
     <string name="settings_color_light">Светло</string>
-    <string name="unit_kph">km/h</string>
-    <string name="unit_kn_voice">Възли</string>
-    <string name="unit_mps">m/s</string>
-    <string name="unit_kph_voice">Километри в час</string>
-    <string name="unit_ftps">ft/s</string>
-    <string name="unit_mps_voice">Метри в секунда</string>
-    <string name="unit_kn">kn</string>
-    <string name="unit_mph">mph</string>
-    <string name="unit_ftps_voice">Фута в секунда</string>
     <string name="unit_celsius">°C</string>
     <string name="unit_kelvin">K</string>
     <string name="unit_celsius_short">°</string>
@@ -448,7 +438,6 @@
     <string name="precipitation_nowcasting">Текуща прогноза за валежите</string>
     <string name="about_privacy_policy">Политика за поверителност</string>
     <string name="settings_appearance_dark_mode_locations_title">Тъмен режим базиран на местоположението</string>
-    <string name="unit_bft_voice">по скалата на Бофорт</string>
     <string name="about_contact">Контакт</string>
     <string name="about_dependencies">Зависимости</string>
     <string name="action_save">Запази</string>
@@ -753,8 +742,6 @@
     <string name="settings_notifications_permission_summary">Необходимо е да работят уведомленията за сигнали, прогнози и актуализации на приложенията. %s</string>
     <string name="settings_modules_notification_permission_summary">Необходимо е да се покаже призпособлението за известия. %s</string>
     <string name="settings_debug_notification_permission">Необходимо е за уведомления за логове на сривовете и неуспешни актуализации на времето. %s</string>
-    <string name="unit_bft_display_name">Бофорт</string>
-    <string name="unit_bft_nominative">%s Бфт</string>
     <string name="about_update_check_eol">Тази версия на Android вече не се поддържа</string>
     <string name="common_weather_text_drifting_snow">Наноси сняг</string>
     <string name="common_weather_text_glaze">Заледяване</string>

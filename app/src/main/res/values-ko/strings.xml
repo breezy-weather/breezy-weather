@@ -260,13 +260,6 @@
     <string name="settings_item_delete">이 항목 삭제</string>
     <string name="action_location_list">위치 목록</string>
     <string name="widget_subtitle_data_aqi">대기질</string>
-    <string name="unit_kph_voice">시속 킬로미터</string>
-    <string name="unit_mps">m/s</string>
-    <string name="unit_mps_voice">초속 미터</string>
-    <string name="unit_kn">kn</string>
-    <string name="unit_kn_voice">노트</string>
-    <string name="unit_ftps">ft/s</string>
-    <string name="unit_ftps_voice">초속 피트</string>
     <string name="unit_celsius_short">°</string>
     <string name="uv_index_0_2">낮음</string>
     <string name="uv_alert_level">경보</string>
@@ -282,8 +275,6 @@
     <string name="uv_index_6_7">높음</string>
     <string name="uv_index_8_10">매우 높음</string>
     <string name="uv_index_11">위험</string>
-    <string name="unit_mph">mph</string>
-    <string name="unit_mph_voice">시속 마일</string>
     <string name="setting_weather_source_accu_days">일수</string>
     <string name="weather_source_accu_preference_days_1">1일</string>
     <string name="weather_source_accu_preference_days_5">5일</string>
@@ -316,7 +307,6 @@
     <string name="widget_style_temperature">온도</string>
     <string name="widget_week_style_5_days">5일</string>
     <string name="widget_week_style_3_days">3일</string>
-    <string name="unit_kph">km/h</string>
     <string name="unit_celsius">°C</string>
     <string name="unit_kelvin_short">K</string>
     <string name="unit_fahrenheit">°F</string>

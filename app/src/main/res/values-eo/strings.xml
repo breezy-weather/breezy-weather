@@ -386,18 +386,6 @@
     <string name="settings_color_dark">Malhela</string>
     <string name="settings_invalid_syntax">Nevalida sintakso</string>
     <!-- Units -->
-    <string name="unit_bft_nominative">%s Bft</string>
-    <string name="unit_bft_voice">sur la boforta skalo</string>
-    <string name="unit_mps">m/s</string>
-    <string name="unit_mps_voice">Metroj por sekundo</string>
-    <string name="unit_kph">km/h</string>
-    <string name="unit_kph_voice">Kilometroj por horo</string>
-    <string name="unit_kn">kn</string>
-    <string name="unit_kn_voice">Nodoj</string>
-    <string name="unit_mph">mph</string>
-    <string name="unit_mph_voice">Mejloj en horo</string>
-    <string name="unit_ftps">ft/s</string>
-    <string name="unit_ftps_voice">Futoj en sekundo</string>
     <string name="unit_celsius">°C</string>
     <string name="unit_celsius_short">°</string>
     <string name="unit_fahrenheit">°F</string>

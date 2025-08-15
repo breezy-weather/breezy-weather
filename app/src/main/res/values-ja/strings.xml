@@ -308,12 +308,6 @@
     <string name="action_undo">元に戻す</string>
     <string name="notification_channel_widget">ウィジェット</string>
     <string name="settings_unavailable_no_background_updates">利用できません。最初にバックグラウンド更新を有効にしてください</string>
-    <string name="unit_kph">km/h</string>
-    <string name="unit_mps_voice">メートル毎秒</string>
-    <string name="unit_kph_voice">キロメートル毎時</string>
-    <string name="unit_kn_voice">ノット</string>
-    <string name="unit_mph">mph</string>
-    <string name="unit_ftps_voice">フィート毎秒</string>
     <string name="unit_ppcm">/m³</string>
     <string name="notification_channel_alerts">警報</string>
     <string name="notification_channel_crash_logs">クラッシュログ</string>
@@ -364,7 +358,6 @@
     <string name="settings_modules_week_icon_mode_title">週次ビューで表示するアイコン</string>
     <string name="settings_notifications_alerts_title">悪天候警報の通知</string>
     <string name="settings_modules_notification_feels_like_switch">体感温度を使用</string>
-    <string name="unit_kn">kn</string>
     <string name="notification_precipitation_starting">まもなく雨が降ります</string>
     <string name="notification_precipitation_starting_desc">%s頃から降り始める予報となっています</string>
     <string name="notification_precipitation_stopping">雨はもうすぐ止むでしょう</string>
@@ -424,7 +417,6 @@
     <string name="settings_background_updates_battery_optimization_disabled">バッテリーの最適化はすでに無効になっています。</string>
     <string name="settings_debug_dump_crash_logs_summary">エラーログをファイルに保存して開発者と共有</string>
     <string name="settings_items_drag_to_sort">並べ替えるリスト項目をタップしてドラッグしてください</string>
-    <string name="unit_mph_voice">マイル毎時</string>
     <string name="action_help_me_choose">ヘルプ</string>
     <string name="weather_api_unauthorized_content">一部の情報源には、あなた自身のAPIキーを設定する必要があります。既に設定している場合は、キーを再確認してください。</string>
     <string name="weather_api_key_required_missing_content">この情報源を利用するには、APIキーを設定する必要があります。</string>
@@ -433,7 +425,6 @@
     <string name="action_save">保存</string>
     <string name="action_share">共有</string>
     <string name="settings_modules_notification_persistent_switch">永続的</string>
-    <string name="unit_ftps">ft/s</string>
     <string name="weather_message_invalid_location">場所が不正です。削除して改めて追加してください</string>
     <string name="locations">場所</string>
     <string name="dialog_permissions_location_title">位置情報へのアクセス</string>
@@ -493,9 +484,6 @@
     <string name="settings_location_access_switch_title">位置情報へのアクセス</string>
     <string name="settings_location_access_background_summaryOff">現在地の気象データをバックグラウンドで更新するには、「常に許可」を有効にしてください。</string>
     <string name="settings_debug">デバッグ</string>
-    <string name="unit_bft_nominative">風力%s</string>
-    <string name="unit_bft_voice">風力階級</string>
-    <string name="unit_mps">m/s</string>
     <string name="unit_celsius">°C</string>
     <string name="unit_celsius_short">°</string>
     <string name="unit_fahrenheit">°F</string>
@@ -733,5 +721,4 @@
     <string name="about_update_check_eol">このAndroidのバージョンはサポートしていません</string>
     <string name="settings_appearance_section_regional">言語と地域</string>
     <string name="settings_appearance_section_theme">テーマ</string>
-    <string name="unit_bft_display_name">ビューフォート</string>
 </resources>

@@ -248,11 +248,6 @@
     <string name="weather_kind_thunder">Tuono</string>
     <string name="weather_kind_thunderstorm">Temporale</string>
     <string name="weather_kind_wind">Vento</string>
-    <string name="unit_kph_voice">Chilometri all’ora</string>
-    <string name="unit_mps_voice">Metri al secondo</string>
-    <string name="unit_kn_voice">Nodi</string>
-    <string name="unit_mph_voice">Miglia all’ora</string>
-    <string name="unit_ftps_voice">Piedi al secondo</string>
     <string name="unit_ppcm_voice">Per metro cubo</string>
     <string name="weather_api_limit_reached_content">Per risolvere il problema, aggiungi la tua chiave API.</string>
     <string name="wind_direction_NE_short">NE</string>
@@ -372,11 +367,6 @@
     <string name="notification_channel_background_services">Servizi in background</string>
     <string name="about_matrix">Stanza Matrix</string>
     <string name="common_weather_text_overcast">Coperto</string>
-    <string name="unit_kph">km/h</string>
-    <string name="unit_mps">m/s</string>
-    <string name="unit_kn">kn</string>
-    <string name="unit_mph">mph</string>
-    <string name="unit_ftps">ft/s</string>
     <string name="unit_celsius">°C</string>
     <string name="unit_celsius_short">°</string>
     <string name="unit_fahrenheit">°F</string>
@@ -492,8 +482,6 @@
     <string name="common_weather_text_snow_grains">Neve a granelli</string>
     <string name="weather_message_unsupported_feature">La fonte non supporta una delle funzionalità richieste</string>
     <string name="settings_appearance_dark_mode_locations_title">Modalità scura basata sulla posizione</string>
-    <string name="unit_bft_nominative">%s Bft</string>
-    <string name="unit_bft_voice">sulla scala di Beaufort</string>
     <string name="temperature_normal_short">Norma</string>
     <string name="temperature_normals">Norme di temperatura</string>
     <string name="temperature_average_short">Media</string>
@@ -702,7 +690,6 @@
     <string name="content_provider_permission_description">ottenere informazioni meteo da Breezy Weather, comprese le coordinate delle tue posizioni, come la tua posizione attuale se l’hai aggiunta</string>
     <string name="common_weather_text_mostly_cloudy">Per lo più nuvoloso</string>
     <string name="content_provider_permission_label">Leggere dati Breezy Weather</string>
-    <string name="unit_bft_display_name">Beaufort</string>
     <string name="broadcast_source_breezy_weather_update_notifier">Notifica di aggiornamento posizione %s</string>
     <string name="action_add_as_location">Aggiungi come posizione</string>
 </resources>

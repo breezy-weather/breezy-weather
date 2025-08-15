@@ -151,8 +151,6 @@
     <string name="settings_main_section_animations">Animações</string>
     <string name="settings_main_background_animation_title">Animação de fundo</string>
     <string name="settings_main_background_animation_enabled">Ativado</string>
-    <string name="unit_mps_voice">Metros por segundo</string>
-    <string name="unit_kn_voice">Nós</string>
     <string name="notification_channel_alerts">Alertas</string>
     <string name="notification_channel_widget">Widget</string>
     <string name="settings_location">Localização</string>
@@ -168,15 +166,12 @@
     <string name="widget_live_wallpaper_day_night_type">Hora</string>
     <string name="settings_modules_section_notification_widget">Widget de notificação</string>
     <string name="unit_celsius">°C</string>
-    <string name="unit_ftps">ft/s</string>
-    <string name="unit_ftps_voice">Pés por segundo</string>
     <string name="unit_kelvin">K</string>
     <string name="unit_ppcm">/m³</string>
     <string name="unit_ppcm_voice">Por metro cúbico</string>
     <string name="about_contributors">Contribuidores</string>
     <string name="widget_custom_subtitle_keyword_xms_description">Pôr da lua de hoje, amanhã, …, 4 dias depois</string>
     <string name="widget_clock_font_analog">Analógico</string>
-    <string name="unit_kph">km/h</string>
     <string name="weather_api_unauthorized_content">Em algumas fontes de dados do tempo, vai precisar de fornecer a sua própria chave de API. Se já forneceu uma, por favor, verifique novamente a chave de API que forneceu.</string>
     <string name="weather_api_limit_reached_title">Atingido o limite de pedidos à API</string>
     <string name="weather_api_limit_reached_content">Para contornar o limite, adicione a sua própria chave de API.</string>
@@ -208,7 +203,6 @@
     <string name="message_server_timeout">Solicitação expirou</string>
     <string name="settings_background_updates_refresh_skip_when_battery_low">Ignorar quando a pilha estiver baixa</string>
     <string name="settings_main_section_displayed_data">Dados exibidos</string>
-    <string name="unit_mph">mph</string>
     <string name="settings_main_cards_title">Blocos</string>
     <string name="settings_modules_live_wallpaper_summary">Define uma animação climática como papel de parede</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Tempestade com granizo pesado</string>
@@ -330,7 +324,6 @@
     <string name="settings_notifications_forecast_time_today_title">Horário de notificação para a previsão do dia</string>
     <string name="settings_modules">Widgets &amp; Papel de parede animado</string>
     <string name="settings_modules_summary">Widgets, widget de notificação, fundo, partilha de dados com outras aplicações</string>
-    <string name="unit_mph_voice">Milhas por hora</string>
     <string name="unit_celsius_short">°</string>
     <string name="unit_fahrenheit">°F</string>
     <string name="unit_fahrenheit_short">°</string>
@@ -408,7 +401,6 @@
     <string name="widget_style_oreo">Oreo</string>
     <string name="settings_background_updates_battery_optimization_disabled">A otimização da pilha já está desativada.</string>
     <string name="settings_location_access_permission_already_granted">Permissão já concedida</string>
-    <string name="unit_kn">kn</string>
     <string name="settings_modules_live_wallpaper_title">Papel de parede animado</string>
     <string name="settings_modules_live_wallpaper_error">Não foi possível iniciar o seletor de papéis de parede. Ainda pode ativar o papel de parede %s escolhendo “Live Wallpaper” no seletor de papéis de parede do ecrã inicial.</string>
     <string name="settings_modules_notification_widget_title">Widget de notificação</string>
@@ -444,8 +436,6 @@
     <string name="settings_notifications">Notificações</string>
     <string name="settings_notifications_forecast_tomorrow_title">Notificação para a previsão do dia seguinte</string>
     <string name="settings_notifications_forecast_time_tomorrow_title">Horário de notificação para a previsão do dia seguinte</string>
-    <string name="unit_kph_voice">Quilómetros por hora</string>
-    <string name="unit_mps">m/s</string>
     <string name="notification_style_native">Nativo</string>
     <string name="about_dependencies">Dependências</string>
     <string name="common_weather_text_rain_showers_light">Pancadas de chuva fraca</string>
@@ -479,7 +469,6 @@
     <string name="temperature_degree_day_cooling">Grau de resfriamento do dia</string>
     <string name="weather_message_unsupported_feature">A fonte não suporta uma das funcionalidades solicitadas</string>
     <string name="about_privacy_policy">Política de privacidade</string>
-    <string name="unit_bft_voice">na escala de Beaufort</string>
     <string name="common_weather_text_snow_showers">Nevasca</string>
     <string name="common_weather_text_rain_snow_mixed_showers_light">Pancadas de chuva leve com neve</string>
     <string name="settings_debug_dump_crash_logs_tap_to_open">Toque para abrir</string>
@@ -803,8 +792,6 @@
     <string name="widget_custom_subtitle_alert_box_title">Ajuda para legendas personalizadas</string>
     <string name="settings_appearance_section_regional">Idioma e região</string>
     <string name="settings_appearance_section_theme">Tema</string>
-    <string name="unit_bft_display_name">Beaufort</string>
-    <string name="unit_bft_nominative">força %s</string>
     <string name="about_update_check_eol">Esta versão do Android não é mais compatível</string>
     <string name="precipitation_total_day">Precipitação de dia</string>
     <string name="precipitation_total_night">Precipitação noturna</string>

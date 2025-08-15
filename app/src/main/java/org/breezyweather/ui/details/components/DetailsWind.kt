@@ -468,7 +468,7 @@ fun WindScale(
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Text(
-                    stringResource(R.string.unit_bft_display_name),
+                    SpeedUnit.BEAUFORT_SCALE.getDisplayName(context, context.currentLocale),
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier.weight(1f)
                 )

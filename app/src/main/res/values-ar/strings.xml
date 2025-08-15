@@ -161,11 +161,6 @@
     <string name="weather_kind_thunder">رعد</string>
     <string name="weather_kind_thunderstorm">عاصفة رعدية</string>
     <string name="weather_kind_wind">رياح</string>
-    <string name="unit_kph">كم\\س</string>
-    <string name="unit_mps">م\\س</string>
-    <string name="unit_kn">عق</string>
-    <string name="unit_mph">ميل\\س</string>
-    <string name="unit_ftps">قدم\\س</string>
     <string name="unit_celsius">°م</string>
     <string name="unit_celsius_short">°</string>
     <string name="unit_fahrenheit">°ف</string>
@@ -216,7 +211,6 @@
     <string name="settings_modules_notification_style_title">‎الأسلوب</string>
     <string name="settings_modules_notification_feels_like_switch">استخدم درجة حرارة تبدو وكأنها</string>
     <string name="settings_modules_week_icon_mode_title">أيقونات لعرضها في طريقة العرض الأسبوعية</string>
-    <string name="unit_kph_voice">كيلومتر في الساعة</string>
     <string name="common_weather_text_overcast">غائم</string>
     <string name="settings_background_updates_summary">معدل التحديث، استكشاف الأخطاء وإصلاحها</string>
     <string name="settings_main_hourly_trends_title">الاتجاهات بالساعة</string>
@@ -276,7 +270,6 @@
     <string name="dialog_permissions_location_title">الوصول إلى معلومات الموقع</string>
     <string name="widget_custom_subtitle_keyword_ut_description">وقت التحديث</string>
     <string name="widget_clock_font_sans_serif">Sans Serif</string>
-    <string name="unit_mph_voice">ميل في الساعة</string>
     <string name="common_weather_text_clear_sky">سماء صافية</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">عاصفة رعدية مع برد خفيف</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">عاصفة رعدية مع برد كثيف</string>
@@ -387,9 +380,6 @@
     <string name="settings_debug_summary">سجلات الأعطال</string>
     <string name="settings_debug_dump_crash_logs_title">مشاركة سجلات الأعطال</string>
     <string name="settings_debug_dump_crash_logs_summary">يحفظ سجلات الأخطاء في ملف لمشاركتها مع المطورين</string>
-    <string name="unit_mps_voice">متر في الثانية</string>
-    <string name="unit_kn_voice">عقدة</string>
-    <string name="unit_ftps_voice">قدم في الثانية</string>
     <string name="unit_ppcm">\\م³</string>
     <string name="unit_ppcm_voice">لكل متر مكعب</string>
     <string name="notification_channel_alerts">تنبيهات</string>
@@ -476,7 +466,6 @@
     <string name="common_weather_text_rain_snow_mixed_showers_heavy">أمطار غزيرة وثلوج مختلطة</string>
     <string name="common_weather_text_snow_showers_light">رشات ثلج خفيفة</string>
     <string name="common_weather_text_snow_showers_heavy">رشات ثلج غزيرة</string>
-    <string name="unit_bft_voice">على مقياس بوفورت</string>
     <string name="common_weather_text_drizzle">رذاذ</string>
     <string name="common_weather_text_rain_snow_mixed_heavy">أمطار غزيرة وثلج مختلط</string>
     <string name="common_weather_text_rain_snow_mixed_showers_light">مطر خفيف ورشات ثلج مختلطة</string>

@@ -251,11 +251,6 @@
     <string name="weather_kind_thunder">Trovoada</string>
     <string name="weather_kind_thunderstorm">Tempestade</string>
     <string name="weather_kind_wind">Vento</string>
-    <string name="unit_kph_voice">Quilômetros por hora</string>
-    <string name="unit_mps_voice">Metros por segundo</string>
-    <string name="unit_kn_voice">Nós</string>
-    <string name="unit_mph_voice">Milhas por hora</string>
-    <string name="unit_ftps_voice">Pés por segundo</string>
     <string name="unit_ppcm_voice">Por metro cúbico</string>
     <string name="uv_index_6_7">Alto</string>
     <string name="uv_index_8_10">Muito alto</string>
@@ -395,7 +390,6 @@
     <string name="unit_fahrenheit">°F</string>
     <string name="wind_direction_S_short">S</string>
     <string name="widget_clock_font_sans_serif">Sans Serif</string>
-    <string name="unit_mps">m/s</string>
     <string name="wind_direction_NE_short">NE</string>
     <string name="wind_direction_SE_short">SE</string>
     <string name="widget_style_nano">Nano</string>
@@ -407,10 +401,6 @@
     <string name="unit_celsius_short">°</string>
     <string name="wind_direction_N_short">N</string>
     <string name="widget_style_mini">Mini</string>
-    <string name="unit_kph">km/h</string>
-    <string name="unit_kn">kn</string>
-    <string name="unit_mph">mph</string>
-    <string name="unit_ftps">ft/s</string>
     <string name="unit_fahrenheit_short">°F</string>
     <string name="unit_kelvin">K</string>
     <string name="unit_kelvin_short">K</string>
@@ -460,7 +450,6 @@
     <string name="weather_message_invalid_location">Localização inválida, por favor, remova e adicione ela novamente</string>
     <string name="about_dependencies">Dependências</string>
     <string name="about_contact">Contato</string>
-    <string name="unit_bft_voice">na escala de Beaufort</string>
     <string name="weather_message_unsupported_feature">A fonte não suporta um dos recursos solicitados</string>
     <string name="settings_appearance_dark_mode_locations_title">Modo escuro baseado na localização</string>
     <string name="about_contribution_designer">Designer da logo</string>
@@ -799,8 +788,6 @@
     <string name="action_configure_item">Configurar %s</string>
     <string name="settings_appearance_section_regional">Idioma e região</string>
     <string name="settings_appearance_section_theme">Tema</string>
-    <string name="unit_bft_display_name">Beaufort</string>
-    <string name="unit_bft_nominative">%s Bft</string>
     <string name="about_update_check_eol">Esta versão do Android não é mais compatível</string>
     <string name="air_quality_short">Qual. do ar</string>
     <string name="ephemeris_sun">Sol</string>

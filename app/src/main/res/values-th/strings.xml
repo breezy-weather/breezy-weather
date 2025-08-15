@@ -482,10 +482,6 @@
     <string name="settings_notifications_alerts_title">การแจ้งเตือนการเตือนภัยสภาพอากาศที่รุนแรง</string>
     <string name="settings_notifications_precipitations_title">การแจ้งเตือนหยาดน้ำฟ้า</string>
     <string name="settings_notifications_forecast_today_title">การแจ้งเตือนการพยากรณ์รายวัน</string>
-    <string name="unit_bft_voice">ในมาตราโบฟอร์ต</string>
-    <string name="unit_mps">m/s</string>
-    <string name="unit_mph_voice">ไมล์ต่อชั่วโมง</string>
-    <string name="unit_ftps">ft/s</string>
     <string name="notification_update_error">มีการอัปเดต %d รายการที่ไม่สำเร็จ</string>
     <string name="notification_precipitation_starting">หยาดน้ำฟ้าจะตกในอีกไม่นาน</string>
     <string name="notification_precipitation_continuing_desc">คาดว่าจะตกจนถึงเวลา %s เป็นอย่างน้อย</string>
@@ -498,7 +494,6 @@
     <string name="settings_debug_notification_permission">ต้องใช้เพื่อแจ้งเตือนเกี่ยวกับบันทึกแอปล่มและการอัปเดตสภาพอากาศที่ไม่สำเร็จ %s</string>
     <string name="settings_debug_summary">บันทึกแอปล่ม</string>
     <string name="notification_precipitation_continuing">หยาดน้ำฟ้า</string>
-    <string name="unit_ftps_voice">ฟุตต่อวินาที</string>
     <string name="notification_precipitation_starting_desc">คาดว่าจะเริ่มตกเวลา %s</string>
     <string name="settings_per_location">การตั้งค่าสถานที่</string>
     <string name="settings_per_location_summary">การตั้งค่าเพิ่มเติมสำหรับสถานที่นี้</string>
@@ -597,12 +592,6 @@
     <string name="settings_color_grey">สีเทา</string>
     <string name="settings_color_dark">สีมืด</string>
     <string name="settings_invalid_syntax">ซินแทกซ์ไม่ถูกต้อง</string>
-    <string name="unit_kn">kn</string>
-    <string name="unit_kn_voice">นอต</string>
-    <string name="unit_mph">mph</string>
-    <string name="unit_mps_voice">เมตรต่อวินาที</string>
-    <string name="unit_kph">กม./ชม.</string>
-    <string name="unit_kph_voice">กิโลเมตรต่อชั่วโมง</string>
     <string name="unit_celsius">°C</string>
     <string name="unit_celsius_short">°</string>
     <string name="unit_fahrenheit">°F</string>
@@ -730,8 +719,6 @@
     <string name="action_configure_item">ตั้งค่า %s</string>
     <string name="settings_appearance_section_regional">ภาษาและภูมิภาค</string>
     <string name="settings_appearance_section_theme">ธีม</string>
-    <string name="unit_bft_display_name">โบฟอร์ต</string>
-    <string name="unit_bft_nominative">%s โบฟอร์ต</string>
     <string name="about_update_check_eol">แอนดรอยด์เวอร์ชันนี้ไม่ได้รับการสนับสนุนแล้ว</string>
     <string name="ephemeris_dawn_at">ฟ้าสาง เวลา %s</string>
     <string name="ephemeris_dusk_at">พลบค่ำ เวลา %s</string>

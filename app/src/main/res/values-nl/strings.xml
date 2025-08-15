@@ -136,15 +136,12 @@
     <string name="common_weather_text_rain_freezing_light">Lichte ijzel</string>
     <string name="common_weather_text_drizzle_freezing">IJzelende motregen</string>
     <string name="common_weather_text_rain">Regen</string>
-    <string name="unit_mps_voice">Meters per seconde</string>
     <string name="settings_location_access_background_title">Locatietoegang op de achtergrond</string>
     <string name="settings_main">Hoofdscherm</string>
     <string name="settings_notifications_forecast_today_title">Melding voor de dagvoorspelling</string>
     <string name="notification_channel_background_services">Achtergronddiensten</string>
     <string name="pollen_artemisia">Bijvoet</string>
     <string name="settings_appearance_dark_mode_locations_title">Locatiegebaseerde donkere modus</string>
-    <string name="unit_bft_nominative">%s Bft</string>
-    <string name="unit_bft_voice">op schaal van Beaufort</string>
     <string name="common_weather_text_rain_showers_light">Lichte regenbuien</string>
     <string name="common_weather_text_rain_showers_moderate">Matige regenbuien</string>
     <string name="common_weather_text_rain_showers_heavy">Zware regenbuien</string>
@@ -248,7 +245,6 @@
     <string name="widget_clock_font_sans_serif_black">Sans Serif Zwaar</string>
     <string name="widget_clock_font_analog">Analoog</string>
     <string name="settings_automatic">Automatisch</string>
-    <string name="unit_ftps_voice">Voet per seconde</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">Huidige temperatuur (°)</string>
     <string name="widget_custom_subtitle_keyword_hd_description">Beschrijving per uur</string>
     <string name="widget_custom_subtitle_keyword_xdw_description">Dagweer van vandaag, morgen, …, 4 dagen later</string>
@@ -363,14 +359,6 @@
     <string name="settings_color_day_night">Dag / Nacht</string>
     <string name="settings_color_day_always">Altijd dag</string>
     <string name="settings_color_night_always">Altijd nacht</string>
-    <string name="unit_kph_voice">Kilometer per uur</string>
-    <string name="unit_kph">km/u</string>
-    <string name="unit_mps">m/s</string>
-    <string name="unit_kn">kn</string>
-    <string name="unit_kn_voice">Knopen</string>
-    <string name="unit_mph">mpu</string>
-    <string name="unit_mph_voice">Mijl per uur</string>
-    <string name="unit_ftps">ft/s</string>
     <string name="unit_celsius_short">°</string>
     <string name="unit_fahrenheit">°F</string>
     <string name="unit_kelvin">K</string>
@@ -791,7 +779,6 @@
     <string name="settings_appearance_section_regional">Taal en regio</string>
     <string name="settings_appearance_section_theme">Thema</string>
     <string name="settings_regional_preference">Regionale voorkeuren</string>
-    <string name="unit_bft_display_name">Beaufort</string>
     <string name="about_update_check_eol">Deze Android-versie wordt niet meer ondersteund</string>
     <string name="content_provider_permission_label">Gegevens van Breezy Weather lezen</string>
     <string name="content_provider_permission_description">weerinformatie van Breezy Weather ophalen, inclusief de coördinaten van je locaties, zoals je huidige locatie als je deze hebt toegevoegd</string>

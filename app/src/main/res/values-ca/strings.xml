@@ -219,11 +219,6 @@
     <string name="weather_kind_wind">Vent</string>
     <string name="settings_color_day_always">Sempre diürn</string>
     <string name="settings_color_night_always">Sempre nocturn</string>
-    <string name="unit_kph_voice">Kilòmetres per hora</string>
-    <string name="unit_mps_voice">Metres per segon</string>
-    <string name="unit_kn_voice">Nusos</string>
-    <string name="unit_mph_voice">Milles per hora</string>
-    <string name="unit_ftps_voice">Peus per segon</string>
     <string name="unit_ppcm_voice">Per metre cúbic</string>
     <string name="temperature_degree_day_heating">Dia de graus de calefacció</string>
     <string name="temperature_degree_day_cooling">Gelant temperatura diària</string>
@@ -286,7 +281,6 @@
     <string name="air_quality_level_4">Insalubre</string>
     <string name="metno_weather_text_andthunder">%s i trons</string>
     <string name="weather_source_accu_preference_days_5">5 dies</string>
-    <string name="unit_mph">mph</string>
     <string name="location_message_permission_missing">Falta el permís d’accés a la ubicació</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Tempesta elèctrica amb lleugera calamarsa</string>
     <string name="settings_section_general">General</string>
@@ -339,7 +333,6 @@
     <string name="settings_location">Ubicació</string>
     <string name="settings_notifications_alerts_title">Notificacions d’alertes meteorològiques severes</string>
     <string name="settings_weather_sources_summary">Font meteorològica per defecte per a ubicacions noves, claus API personalitzades, i altres opcions de la font</string>
-    <string name="unit_ftps">ft/s</string>
     <string name="air_quality_so2_voice">Diòxid de sofre</string>
     <string name="common_weather_text_drizzle_freezing">Plugim gelada</string>
     <string name="air_quality_level_6_description">Qualsevol exposició a l’aire, fins i tot durant uns minuts, pot provocar greus efectes per a la salut de totes les persones. Eviteu les activitats a l’aire lliure.</string>
@@ -431,9 +424,7 @@
     <string name="about_privacy_policy">Política de privacitat</string>
     <string name="settings_debug_dump_crash_logs_title">Compartir registres d’errors</string>
     <string name="settings_modules_live_wallpaper_error">No s’ha pogut llançar el selector de fons de pantalla. Encara pots habilitar el fons de pantalla %s triant «Fons de pantalla animat» al teu selector de fons de pantalla d’inici.</string>
-    <string name="unit_bft_voice">a l’escala Beaufort</string>
     <string name="message_server_timeout">S’ha excedit el temps d’espera de la sol·licitud</string>
-    <string name="unit_mps">m/s</string>
     <string name="ephemeris_sunrise_at">Sortida del sol a les %s</string>
     <string name="settings_weather_sources">Fonts meteorològiques</string>
     <string name="common_weather_text_snow_showers">Ruixats de neu</string>
@@ -451,11 +442,9 @@
     <string name="settings_location_access_background_summaryOn">Activat. L’aplicació podrà actualitzar les dades meteorològiques per a la ubicació actual en segon pla.</string>
     <string name="unit_celsius">°C</string>
     <string name="settings_units_summary">Temperatura, precipitació, distància, velocitat, pressió</string>
-    <string name="unit_kn">kn</string>
     <string name="common_weather_text_drizzle_heavy">Plugim intens</string>
     <string name="common_weather_text_mostly_clear">Majoritàriament clar</string>
     <string name="settings_main_background_animation_disabled">Desactivat</string>
-    <string name="unit_kph">km/h</string>
     <string name="common_weather_text_rain_moderate">Pluja moderada</string>
     <string name="settings_debug">Depuració</string>
     <string name="settings_main_cards_fade_in_switch">Les targetes s’esvaeixen</string>

@@ -234,8 +234,6 @@
     <string name="settings_notifications_forecast_tomorrow_title">Notificare privind prognoza zilei următoare</string>
     <string name="settings_modules_section_widgets_in_use">Widget-uri utilizate</string>
     <string name="settings_item_delete">Ștergeți acest articol</string>
-    <string name="unit_ftps">ft/s</string>
-    <string name="unit_ftps_voice">picioare pe secundă</string>
     <string name="settings_modules_week_icon_mode_title">Pictogramă de afișat în vizualizarea săptămânală</string>
     <string name="settings_icon_packs_weather_adaptive_icon">Pictogramă vreme</string>
     <string name="unit_kelvin_short">K</string>
@@ -254,8 +252,6 @@
     <string name="settings_items_drag_to_sort">Atinge pentru a trage elementele din listă spre a le sorta</string>
     <string name="settings_source_default_value">Implicit (neschimbat)</string>
     <string name="settings_icon_packs_check_details">Verifică detaliile</string>
-    <string name="unit_kn">knot</string>
-    <string name="unit_kn_voice">knots</string>
     <string name="unit_ppcm_voice">Pe metru cub</string>
     <string name="about_matrix">Server Matrix</string>
     <string name="about_source_code">Codul sursă</string>
@@ -266,10 +262,8 @@
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Furtună Uşoară spre Moderată</string>
     <string name="unit_celsius">°C</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Furtună cu Grindină Ușoară</string>
-    <string name="unit_mps">m/s</string>
     <string name="widget_style_mini">Mini</string>
     <string name="widget_material_you_current">Material You – Actual</string>
-    <string name="unit_mph">mile/h</string>
     <string name="common_weather_text_clear_sky">Senin</string>
     <string name="precipitation_none">Fără precipitații</string>
     <string name="precipitation_between_time">Precipitații de la %1$s până la %2$s</string>
@@ -362,10 +356,6 @@
     <string name="settings_modules_notification_feels_like_switch">Utilizează temperatura resimțită</string>
     <string name="settings_debug">Depanare</string>
     <string name="settings_debug_dump_crash_logs_summary">Salvează jurnalele de incidente într-un fișier pentru a le partaja cu dezvoltatorii</string>
-    <string name="unit_kph">km/h</string>
-    <string name="unit_kph_voice">kilometri pe oră</string>
-    <string name="unit_mps_voice">metri pe secundă</string>
-    <string name="unit_mph_voice">mile pe oră</string>
     <string name="unit_fahrenheit">°F</string>
     <string name="setting_weather_source_accu_hours">Ore</string>
     <string name="action_location_list">Lista locațiilor</string>
@@ -495,7 +485,6 @@
     <string name="location_delete_location_dialog_message_no_name">Ești pe cale să ștergi această locație din lista ta de locații salvate.</string>
     <string name="location_search_change_source">Schimbă serviciul de căutare a locației</string>
     <string name="settings_appearance_dark_mode_locations_title">Mod Luminos / Întunecat pentru locații</string>
-    <string name="unit_bft_voice">pe scara Beaufort</string>
     <string name="message_parsing_error_content">Asigură-te că ai actualizat la cea mai recentă versiune a aplicației. Este posibil ca serverul să fie temporar indisponibil, în acest caz, te rog să încerci din nou mai târziu. Dacă problema persistă, descarcă un jurnal de incident (crash log) din setările de depanare și raportează problema pe GitHub.</string>
     <string name="settings_unavailable_no_background_updates">Indisponibil, întâi activează actualizările de fundal</string>
     <string name="common_weather_text_drizzle_moderate">Burniță Moderată</string>

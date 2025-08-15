@@ -176,9 +176,7 @@
     <string name="unit_ppcm">/m³</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">Rimtåke</string>
     <string name="common_weather_text_snow_grains">Snøkorn</string>
-    <string name="unit_mph">mph</string>
     <string name="settings_background_updates_worker_info_summary">Sist kjørt: %s</string>
-    <string name="unit_mps">m/s</string>
     <string name="settings_invalid_syntax">Ugyldig syntaks</string>
     <string name="settings_items_drag_to_sort">Trykk for å flytte objektet</string>
     <string name="settings_changes_apply_after_restart">Endringer vil skje etter omstart</string>
@@ -186,7 +184,6 @@
     <string name="settings_location_access_permission_already_granted">Tillatelse er allerede gitt</string>
     <string name="settings_none">Ingen</string>
     <string name="settings_color_app">Følg appen</string>
-    <string name="unit_kph">km/h</string>
     <string name="settings_color_day_night">Dag/natt</string>
     <string name="settings_automatic">Automatisk</string>
     <string name="settings_unavailable_no_background_updates">Ikke tilgjengelig, aktiver bakgrunnsoppdateringer først</string>
@@ -208,18 +205,10 @@
     <string name="settings_location_summary">Innstillinger for posisjonstjenester</string>
     <string name="settings_location">Posisjon</string>
     <string name="settings_background_updates_worker_info_title">Prosessinformasjon</string>
-    <string name="unit_bft_voice">på Beauforts skala</string>
-    <string name="unit_bft_display_name">Beaufort</string>
     <string name="settings_color_night_always">Alltid natt</string>
     <string name="settings_color_day_always">Alltid dag</string>
-    <string name="unit_mps_voice">Meter per sekund</string>
     <string name="settings_debug_dump_crash_logs_saved">Krasjlogger lagret</string>
-    <string name="unit_kph_voice">Kilometer i timen</string>
     <string name="unit_kelvin_short">K</string>
-    <string name="unit_ftps">ft/s</string>
-    <string name="unit_mph_voice">Engelske mil i timen</string>
-    <string name="unit_kn_voice">Knop</string>
-    <string name="unit_kn">knop</string>
     <string name="settings_appearance_language_title">Språk</string>
     <string name="settings_units_precipitation">Nedbørsenhet</string>
     <string name="settings_main_background_animation_title">Bakgrunnsanimasjon</string>
@@ -308,7 +297,6 @@
     <string name="settings_weather_source_open_meteo_weather_models_best_match">Beste alternativ</string>
     <string name="settings_weather_source_open_meteo_weather_models">Værvarslingsmodell</string>
     <string name="settings_source_api_key">API-nøkkel</string>
-    <string name="unit_ftps_voice">Fot i sekundet</string>
     <string name="common_weather_text_drizzle_freezing_light">Lett underkjølt yr</string>
     <string name="widget_custom_subtitle_keyword_enter_description">Ny linje</string>
     <string name="widget_custom_subtitle_keyword_xnw_description">Vær på nattestid i dag, i morgen, …, 4 dager senere</string>

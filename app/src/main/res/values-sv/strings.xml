@@ -31,7 +31,6 @@
     <string name="metno_weather_text_andthunder">%s och åska</string>
     <string name="action_about">Om</string>
     <string name="weather_source_accu_preference_days_5">5 dagar</string>
-    <string name="unit_mph">mph</string>
     <string name="notification_style_cities">Städer</string>
     <string name="location_message_permission_missing">Behörighet till platsåtkomst saknas</string>
     <string name="location_message_failed_to_locate">Misslyckades med att hitta nuvarande plats</string>
@@ -77,19 +76,16 @@
     <string name="widget_custom_subtitle_keyword_atd_description">Nuvarande känns som-temperatur (°)</string>
     <string name="widget_custom_subtitle_keyword_cw_description">Nuvarande väder</string>
     <string name="weather_source_accu_preference_hours_72">72 timmar</string>
-    <string name="unit_ftps_voice">Fot per sekund</string>
     <string name="unit_ppcm_voice">Per kubikmeter</string>
     <string name="precipitation_probability">Sannolikhet för nederbörd</string>
     <string name="widget_subtitle_data_aqi">Luftkvalitet</string>
     <string name="uv_index_11">Extremt</string>
-    <string name="unit_ftps">ft/s</string>
     <string name="hourly_forecast">Timprognos</string>
     <string name="widget_custom_subtitle_keyword_ut_description">Uppdateringstid</string>
     <string name="air_quality_so2_voice">Svaveldioxid</string>
     <string name="widget_custom_subtitle_keyword_al_description">Varningar</string>
     <string name="action_more">Se mer</string>
     <string name="air_quality_index">Luftkvalitetsindex</string>
-    <string name="unit_kn_voice">Knop</string>
     <string name="air_quality_no2_full">Kvävedioxid (%s)</string>
     <string name="widget_custom_subtitle_keyword_lat_description">Latitud</string>
     <string name="pollen">Pollen</string>
@@ -160,7 +156,6 @@
     <string name="widget_custom_subtitle_keyword_ct_description">Nuvarande temperatur (°C/°F)</string>
     <string name="action_help">Hjälp</string>
     <string name="action_search">Sök</string>
-    <string name="unit_mps">m/s</string>
     <string name="ephemeris_sunrise_at">Soluppgång vid %s</string>
     <string name="temperature_wind_chill">Vindkyla</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Lägg till plats manuellt och ta bort ”%s”</string>
@@ -169,7 +164,6 @@
     <string name="action_delete">Ta bort</string>
     <string name="wind_direction_NE_short">NO</string>
     <string name="action_save">Spara</string>
-    <string name="unit_mps_voice">Meter per sekund</string>
     <string name="widget_custom_subtitle_keyword_cuv_description">Nuvarande UV</string>
     <string name="widget_custom_subtitle_keyword_cv_description">Nuvarande sikt</string>
     <string name="alerts">Varningar</string>
@@ -178,12 +172,10 @@
     <string name="widget_custom_subtitle_keyword_cwd_description">Nuvarande vind</string>
     <string name="wind_direction_NW_short">NV</string>
     <string name="action_settings">Inställningar</string>
-    <string name="unit_kn">kn</string>
     <string name="daily_today_short">I dag</string>
     <string name="humidity">Luftfuktighet</string>
     <string name="humidity_dew_point">Luftfuktighet / daggpunkt</string>
     <string name="precipitation_snow">Snö</string>
-    <string name="unit_kph">km/h</string>
     <string name="ephemeris_moonset_at">Månnedgång vid %s</string>
     <string name="widget_style_nano">Nano</string>
     <string name="air_quality_co_full">Kolmonoxid (%s)</string>
@@ -331,7 +323,6 @@
     <string name="settings_color_night_always">Alltid natt</string>
     <string name="weather_api_key_required_missing_title">Nödvändig API-nyckel saknas</string>
     <string name="widget_custom_subtitle_keyword_xmr_description">Månuppgång för i dag, i morgon, …, 4 dagar senare</string>
-    <string name="unit_mph_voice">Miles per timme</string>
     <string name="settings_icon_packs_title">Ikonpaket</string>
     <string name="settings_icon_packs_check_details">Visa detaljer</string>
     <string name="settings_main_gravity_sensor_switch">Gravitationssensor</string>
@@ -428,7 +419,6 @@
     <string name="settings_debug_dump_crash_logs_title">Dela kraschloggar</string>
     <string name="settings_location_service">Platstjänst</string>
     <string name="widget_custom_subtitle_keyword_xnwd_description">Vind nattetid för i dag, i morgon, …, 4 dagar senare</string>
-    <string name="unit_bft_voice">på Beaufortskalan</string>
     <string name="settings_none">Ingen</string>
     <string name="common_weather_text_partly_cloudy">Halvklart</string>
     <string name="message_server_timeout">Tiden för begäran löpte ut</string>
@@ -446,7 +436,6 @@
     <string name="widget_style_tile">Ruta</string>
     <string name="settings_icon_packs_get_more">Hämta fler</string>
     <string name="settings_main_background_animation_disabled">Inaktiverad</string>
-    <string name="unit_kph_voice">Kilometer per timme</string>
     <string name="common_weather_text_rain_moderate">Måttligt regn</string>
     <string name="settings_disabled">Inaktiverad</string>
     <string name="common_weather_text_rain_snow_mixed_showers_heavy">Kraftiga snöblandade regnskurar</string>
@@ -682,7 +671,6 @@
     <string name="wind_gusts_short">Vindbyar</string>
     <string name="wind_origin">Från %s</string>
     <string name="wind_strength_scale">Beaufortskalan</string>
-    <string name="unit_bft_display_name">Beaufort</string>
     <string name="uv_index_about">Om UV-index</string>
     <string name="uv_index_scale">UV-indexskala</string>
     <string name="uv_index_time_to_burn">Tid till solbränna</string>
@@ -728,7 +716,6 @@
     <string name="label_collapsed">Hopfälld</string>
     <string name="settings_appearance_section_regional">Språk och region</string>
     <string name="settings_appearance_section_theme">Tema</string>
-    <string name="unit_bft_nominative">%s Bft</string>
     <string name="about_update_check_eol">Denna Android-version stöds inte längre</string>
     <string name="chart_maximum_value">Maxvärde</string>
     <string name="settings_appearance_dark_mode_locations_day_night">Följ dag/natt</string>

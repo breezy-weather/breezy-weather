@@ -311,7 +311,6 @@
     <string name="settings_location_service">Vietos nustatymo paslauga</string>
     <string name="settings_location_access_background_summaryOff">Įjunkite „Leisti visą laiką“, kad jūsų dabartinė vieta būtų atnaujinama fone.</string>
     <string name="settings_location_access_background_summaryOn">Įjungta. Programėlė fone galės atnaujinti dabartinės jūsų buvimo vietos orų duomenis.</string>
-    <string name="unit_kph">km/h</string>
     <string name="settings_icon_packs_weather_icon_light">Šviesi piktograma</string>
     <string name="settings_icon_packs_title">Piktogramų paketai</string>
     <string name="settings_icon_packs_check_details">Išsami informacija</string>
@@ -327,16 +326,7 @@
     <string name="settings_appearance">Išvaizda</string>
     <string name="settings_none">Be</string>
     <string name="settings_color_day_night">Diena / Naktis</string>
-    <string name="unit_kph_voice">Kilometrai per valandą</string>
-    <string name="unit_mps">m/s</string>
-    <string name="unit_mps_voice">Metrai per sekundę</string>
-    <string name="unit_kn">kn</string>
     <string name="settings_color_dark">Tamsus</string>
-    <string name="unit_kn_voice">Mazgai</string>
-    <string name="unit_mph">mph</string>
-    <string name="unit_mph_voice">Mylios per valandą</string>
-    <string name="unit_ftps">ft/s</string>
-    <string name="unit_ftps_voice">Pėdos per sekundę</string>
     <string name="unit_fahrenheit_short">°</string>
     <string name="unit_kelvin">K</string>
     <string name="unit_kelvin_short">K</string>
@@ -443,7 +433,6 @@
     <string name="settings_modules_notification_persistent_switch">Nuolatinis</string>
     <string name="settings_debug_summary">Strigčių žurnalai</string>
     <string name="settings_changes_apply_after_restart">Pakeitimai įsigalios iš naujo paleidus</string>
-    <string name="unit_bft_voice">pagal Boforto skalę</string>
     <string name="common_weather_text_rain_light">Nedidelis lietus</string>
     <string name="common_weather_text_rain_moderate">Vidutinio stiprumo lietus</string>
     <string name="notification_updating_weather_data">Atnaujinami orų duomenys (%1$d/%2$d)</string>

@@ -398,18 +398,6 @@
     <string name="settings_color_light">Светлы</string>
     <string name="settings_color_grey">Шэры</string>
     <string name="settings_color_dark">Цёмны</string>
-    <string name="unit_bft_nominative">%s Бф</string>
-    <string name="unit_bft_voice">па шкале Бофарта</string>
-    <string name="unit_mps">м/с</string>
-    <string name="unit_mps_voice">Метраў за секунду</string>
-    <string name="unit_kph">км/гадз</string>
-    <string name="unit_kph_voice">Кіламетраў за гадзіну</string>
-    <string name="unit_kn">вузлоў</string>
-    <string name="unit_kn_voice">Вузлы</string>
-    <string name="unit_mph">міль/гадз</string>
-    <string name="unit_mph_voice">Міль за гадзіну</string>
-    <string name="unit_ftps">футаў/с</string>
-    <string name="unit_ftps_voice">Футаў за секунду</string>
     <string name="unit_celsius">°C</string>
     <string name="unit_celsius_short">°</string>
     <string name="unit_fahrenheit">°F</string>
@@ -739,7 +727,6 @@
     <string name="ephemeris_sun">Сонца</string>
     <string name="ephemeris_moon">Месяц</string>
     <string name="about_update_check_eol">Гэта версія Android больш не падтрымліваецца</string>
-    <string name="unit_bft_display_name">Балы Бофарта</string>
     <string name="ephemeris_dusk_at">Змрок ў %s</string>
     <string name="ephemeris_about_dusk">Змрок — найцямнейшая частка змяркання перад поўным знікненнем бачнага святла.</string>
     <string name="ephemeris_about_dawn">Світанне — час перад ўсходам сонца, калі з’яўляецца першае бачнае святло.</string>

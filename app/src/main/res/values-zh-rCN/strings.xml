@@ -291,16 +291,6 @@
     <string name="air_quality_level_6">危险</string>
     <string name="air_quality_level_6_description">在空气中的任何暴露，哪怕只是几分钟，都会对每个人的健康造成严重影响。避免户外活动。</string>
     <!-- Units -->
-    <string name="unit_kph">千米/时</string>
-    <string name="unit_kph_voice">千米每小时</string>
-    <string name="unit_mps">米/秒</string>
-    <string name="unit_mps_voice">米每秒</string>
-    <string name="unit_kn">节</string>
-    <string name="unit_kn_voice">节</string>
-    <string name="unit_mph">英里/时</string>
-    <string name="unit_mph_voice">英里每小时</string>
-    <string name="unit_ftps">英尺/秒</string>
-    <string name="unit_ftps_voice">英尺每秒</string>
     <string name="unit_ppcm">/米³</string>
     <string name="unit_ppcm_voice">每立方米</string>
     <string name="uv_alert_level">预警水平</string>
@@ -490,8 +480,6 @@
     <string name="common_weather_text_drizzle">毛毛雨</string>
     <string name="common_weather_text_drizzle_light">小毛毛雨</string>
     <string name="metno_weather_text_andthunder">%s 并伴有雷电</string>
-    <string name="unit_bft_nominative">%s级</string>
-    <string name="unit_bft_voice">蒲福风级</string>
     <string name="settings_appearance_dark_mode_locations_title">基于位置的深色模式</string>
     <string name="weather_message_unsupported_feature">数据源不支持所请求功能中的一个</string>
     <string name="about_contribution_designer">Logo 设计者</string>
@@ -823,7 +811,6 @@
     <string name="settings_appearance_section_regional">语言和区域</string>
     <string name="settings_appearance_section_theme">主题</string>
     <string name="action_configure_item">配置 %s</string>
-    <string name="unit_bft_display_name">蒲福风级</string>
     <string name="about_update_check_eol">这个 Android 版本不再受支持</string>
     <string name="air_quality_short">空气质量</string>
     <string name="ephemeris_sun">太阳</string>

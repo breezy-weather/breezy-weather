@@ -415,12 +415,6 @@
     <string name="settings_color_light">Solas</string>
     <string name="settings_color_grey">Liath</string>
     <string name="settings_color_dark">Dorcha</string>
-    <string name="unit_mps">m/s</string>
-    <string name="unit_mps_voice">Méadair in aghaidh an tsoicind</string>
-    <string name="unit_kph">km/h</string>
-    <string name="unit_kph_voice">Ciliméadair san uair</string>
-    <string name="unit_kn_voice">Muirmhíle</string>
-    <string name="unit_ftps_voice">Cosa in aghaidh an tsoicind</string>
     <string name="unit_celsius">°C</string>
     <string name="unit_celsius_short">°</string>
     <string name="unit_fahrenheit">°F</string>
@@ -588,11 +582,6 @@
     <string name="settings_unavailable_no_animations">Níl sé ar fáil, cumasaigh beochan i suíomhanna Android ar dtús</string>
     <string name="settings_automatic">Uathoibríoch</string>
     <string name="settings_invalid_syntax">Comhréir neamhbhailí</string>
-    <string name="unit_bft_voice">ar scála Beaufort</string>
-    <string name="unit_kn">kn</string>
-    <string name="unit_mph">mph</string>
-    <string name="unit_mph_voice">Míle san uair</string>
-    <string name="unit_ftps">ft/s</string>
     <string name="unit_ppcm">/m³</string>
     <string name="notification_channel_crash_logs">Logaí tuairteála</string>
     <string name="about_translators">Aistritheoirí</string>
@@ -734,8 +723,6 @@
     <string name="action_configure_item">Cumraigh %s</string>
     <string name="settings_appearance_section_regional">Teanga agus réigiún</string>
     <string name="settings_appearance_section_theme">Téama</string>
-    <string name="unit_bft_display_name">Beaufort</string>
-    <string name="unit_bft_nominative">%s Bft</string>
     <string name="about_update_check_eol">Ní thacaítear leis an leagan Android seo a thuilleadh</string>
     <string name="air_quality_short">Cáilíocht aeir</string>
     <string name="ephemeris_sun">Grian</string>

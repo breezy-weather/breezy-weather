@@ -363,8 +363,6 @@
     <string name="metno_weather_text_andthunder">%s és mennydörgés</string>
     <string name="weather_kind_haze">Száraz légköri homály</string>
     <string name="weather_kind_thunder">Mennydörgés</string>
-    <string name="unit_kph">km/h</string>
-    <string name="unit_mps_voice">Méter per másodperc</string>
     <string name="settings_main">Főképernyő</string>
     <string name="about_privacy_policy">Adatvédelmi irányelvek</string>
     <string name="settings_modules_notification_feels_like_switch">Hőérzet használata</string>
@@ -378,7 +376,6 @@
     <string name="settings_modules_section_notification_widget">Értesítési modul</string>
     <string name="settings_debug">Hibakeresés</string>
     <string name="settings_debug_dump_crash_logs_title">Hibanapló megosztása</string>
-    <string name="unit_bft_voice">a Beaufort-skálán</string>
     <string name="unit_celsius">°C</string>
     <string name="unit_kelvin_short">K</string>
     <string name="notification_channel_alerts">Riasztások</string>
@@ -405,7 +402,6 @@
     <string name="notification_style_cities">Városok</string>
     <string name="settings_main_section_animations">Animációk</string>
     <string name="settings_main_background_animation_title">Háttér animálása</string>
-    <string name="unit_kph_voice">Kilométer per óra</string>
     <string name="settings_items_drag_to_sort">Tartsa lenyomva és csúsztassa az ujját a listaelemek elrendezéséhez</string>
     <string name="settings_modules_configure_widget_summary">Modul testreszabása</string>
     <string name="notification_channel_widget">Modul</string>
@@ -458,23 +454,17 @@
     <string name="common_weather_text_drizzle_freezing">Fagyos szemerkélő eső</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Enyhe vagy mérsékelt zivatar</string>
     <string name="settings_automatic">Automatikus</string>
-    <string name="unit_ftps_voice">Láb per másodperc</string>
     <string name="settings_main_section_options">Beállítások</string>
     <string name="settings_main_cards_other_element_animations_switch">Egyéb elemek animálása</string>
     <string name="settings_notifications">Értesítések</string>
     <string name="settings_notifications_forecast_today_title">Értesítés a napi előrejelzésről</string>
     <string name="settings_modules_summary">Modulok, értesítési modul, háttérkép, adatmegosztás más alkalmazásokkal</string>
     <string name="settings_color_grey">Szürke</string>
-    <string name="unit_kn">kn</string>
-    <string name="unit_kn_voice">Csomó</string>
-    <string name="unit_mph_voice">Mérföld per óra</string>
-    <string name="unit_ftps">ft/s</string>
     <string name="unit_ppcm">/m³</string>
     <string name="about_source_code">Forráskód</string>
     <string name="about_matrix">Matrix szoba</string>
     <string name="alerts_to_follow">A közelgő riasztások megtekintéséhez koppintson ide.</string>
     <string name="settings_color_light">Világos</string>
-    <string name="unit_mph">mph</string>
     <string name="unit_fahrenheit_short">°</string>
     <string name="unit_kelvin">K</string>
     <string name="settings_modules_live_wallpaper_error">Nem sikerült elindítani a háttérképválasztót. Továbbra is engedélyezheti a %s háttérképet az „Élő háttérkép” lehetőség kiválasztásával a kezdőképernyő háttérképválasztójában.</string>
@@ -489,7 +479,6 @@
     <string name="common_weather_text_cloudy">Felhős</string>
     <string name="common_weather_text_rain_snow_mixed">Havas eső</string>
     <string name="common_weather_text_rain_snow_mixed_showers_heavy">Záporos, intenzív havas eső</string>
-    <string name="unit_mps">m/s</string>
     <string name="precipitation_nowcasting">Csapadék percről percre</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Zivatar, heves jégesővel</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Zivatar, enyhe jégesővel</string>
@@ -740,8 +729,6 @@
     <string name="settings_appearance_section_regional">Nyelv és régió</string>
     <string name="settings_appearance_section_theme">Téma</string>
     <string name="action_configure_item">%s konfigurálása</string>
-    <string name="unit_bft_display_name">Beaufort</string>
-    <string name="unit_bft_nominative">%s Bft</string>
     <string name="about_update_check_eol">Ez az Android verzió már nem támogatott</string>
     <string name="ephemeris_sun">Nap</string>
     <string name="ephemeris_moon">Hold</string>

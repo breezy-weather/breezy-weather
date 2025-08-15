@@ -246,16 +246,6 @@
     <string name="weather_kind_thunderstorm">雷雨</string>
     <string name="weather_kind_wind">風</string>
     <!-- Units -->
-    <string name="unit_kph">km/h</string>
-    <string name="unit_kph_voice">公里每小時</string>
-    <string name="unit_mps">m/s</string>
-    <string name="unit_mps_voice">公尺每秒</string>
-    <string name="unit_kn">kn</string>
-    <string name="unit_kn_voice">節</string>
-    <string name="unit_mph">mph</string>
-    <string name="unit_mph_voice">英里每小時</string>
-    <string name="unit_ftps">ft/s</string>
-    <string name="unit_ftps_voice">英尺每秒</string>
     <string name="unit_ppcm">/m³</string>
     <string name="unit_ppcm_voice">每立方公尺</string>
     <string name="temperature_degree_day_heating">加熱度日數</string>
@@ -486,8 +476,6 @@
     <string name="common_weather_text_rain_heavy">大雨</string>
     <string name="common_weather_text_rain_showers">陣雨</string>
     <string name="common_weather_text_rain_showers_light">小陣雨</string>
-    <string name="unit_bft_nominative">%s級</string>
-    <string name="unit_bft_voice">級</string>
     <string name="settings_appearance_dark_mode_locations_title">位置深色模式</string>
     <string name="weather_message_unsupported_feature">該來源並不支援某項要求的功能</string>
     <string name="about_contribution_designer">Logo 設計</string>
@@ -820,7 +808,6 @@
     <string name="settings_appearance_section_regional">語言和區域</string>
     <string name="settings_appearance_section_theme">佈景主題</string>
     <string name="action_configure_item">設定%s</string>
-    <string name="unit_bft_display_name">蒲福風級</string>
     <string name="about_update_check_eol">不再支援此 Android 版本</string>
     <string name="air_quality_short">空氣品質</string>
     <string name="ephemeris_sun">太陽</string>

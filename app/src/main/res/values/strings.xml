@@ -875,20 +875,6 @@
     <string name="settings_color_dark">Dark</string>
     <string name="settings_invalid_syntax">Invalid syntax</string>
     <!-- Units -->
-    <string name="unit_bft_display_name">Beaufort</string>
-    <!-- %s is between 0 and 12 of the scale. Some non-Latin countries prefer to format with a prefix such as "Force 3" -->
-    <string name="unit_bft_nominative">%s Bft</string>
-    <string name="unit_bft_voice">on Beaufort scale</string>
-    <string name="unit_mps">m/s</string>
-    <string name="unit_mps_voice">Meters per second</string>
-    <string name="unit_kph">km/h</string>
-    <string name="unit_kph_voice">Kilometers per hour</string>
-    <string name="unit_kn">kn</string>
-    <string name="unit_kn_voice">Knots</string>
-    <string name="unit_mph">mph</string>
-    <string name="unit_mph_voice">Miles per hour</string>
-    <string name="unit_ftps">ft/s</string>
-    <string name="unit_ftps_voice">Feet per second</string>
     <string name="unit_celsius">°C</string>
     <string name="unit_celsius_short">°</string>
     <string name="unit_fahrenheit">°F</string>

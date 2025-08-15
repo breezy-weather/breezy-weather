@@ -305,8 +305,6 @@
     <string name="settings_units_speed">יחידת מהירות</string>
     <string name="settings_main_cards_title">כרטיסים</string>
     <string name="settings_invalid_syntax">תחביר לא תקני</string>
-    <string name="unit_bft_voice">על סולם ביופורט</string>
-    <string name="unit_kph_voice">קילומטרים לשניה</string>
     <string name="unit_celsius">C°</string>
     <string name="unit_celsius_short">°</string>
     <string name="unit_fahrenheit">F°</string>
@@ -344,11 +342,7 @@
     <string name="settings_main_gravity_sensor_switch">חיישן כבידה</string>
     <string name="settings_color_light">בהיר</string>
     <string name="settings_color_grey">אפור</string>
-    <string name="unit_mps">מ”ש</string>
-    <string name="unit_mps_voice">מטרים לשניה</string>
     <string name="settings_color_dark">אפל</string>
-    <string name="unit_kph">קמ”ש</string>
-    <string name="unit_mph_voice">מיילים לשעה</string>
     <string name="unit_kelvin_short">K</string>
     <string name="widget_live_wallpaper_weather_kind">מזג אוויר</string>
     <string name="widget_live_wallpaper_day_night_type">זמן</string>
@@ -447,8 +441,6 @@
     <string name="settings_automatic">אוטומטי</string>
     <string name="settings_none">ללא</string>
     <string name="settings_color_app">עקוב אחרי העדפות/הגדרות האפליקציה</string>
-    <string name="unit_kn_voice">קשרים</string>
-    <string name="unit_ftps_voice">רגל לשנייה</string>
     <string name="unit_ppcm_voice">עבור מטר מעוקב</string>
     <string name="notification_refreshed_at">רוענן ב</string>
     <string name="notification_channel_alerts">התראות</string>

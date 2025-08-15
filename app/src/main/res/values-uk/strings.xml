@@ -393,13 +393,6 @@
     <string name="settings_none">Немає</string>
     <string name="settings_color_day_always">Завжди день</string>
     <string name="settings_color_night_always">Завжди ніч</string>
-    <string name="unit_kph">км/год</string>
-    <string name="unit_kph_voice">Кілометрів за годину</string>
-    <string name="unit_mps">м/с</string>
-    <string name="unit_mps_voice">Метрів за секунду</string>
-    <string name="unit_mph_voice">Миль за годину</string>
-    <string name="unit_ftps">фт/с</string>
-    <string name="unit_ftps_voice">Футів за секунду</string>
     <string name="notification_channel_forecast">Прогноз</string>
     <string name="notification_update_error">Не вдалося виконати %d оновлення(ень)</string>
     <string name="notification_style_cities">Міста</string>
@@ -442,12 +435,6 @@
     <string name="settings_debug_dump_crash_logs_summary">Зберегти журнал зі збоями у файл для надсилання розробникам</string>
     <string name="settings_color_grey">Сіра</string>
     <string name="settings_color_dark">Темна</string>
-    <string name="unit_bft_display_name">Бофорт</string>
-    <string name="unit_bft_nominative">%s бала</string>
-    <string name="unit_bft_voice">за шкалою Бофорта</string>
-    <string name="unit_kn">вуз</string>
-    <string name="unit_kn_voice">Вузлів</string>
-    <string name="unit_mph">миль/год</string>
     <string name="unit_celsius">°C</string>
     <string name="unit_fahrenheit_short">°</string>
     <string name="notification_refreshed_at">Оновлено о</string>

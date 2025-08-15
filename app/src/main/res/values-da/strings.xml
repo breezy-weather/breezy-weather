@@ -312,7 +312,6 @@
     <string name="settings_location_access_permission_already_granted">Tilladelse allerede tildelt</string>
     <string name="settings_location_service">Placeringstjeneste</string>
     <string name="settings_item_delete">Slet dette element</string>
-    <string name="unit_mps">m/s</string>
     <string name="unit_ppcm_voice">Per kubikmeter</string>
     <string name="about_app">Om app</string>
     <string name="notification_style_native">Indbygget</string>
@@ -327,8 +326,6 @@
     <string name="common_weather_text_rain_showers_light">Let byge</string>
     <string name="common_weather_text_rain_freezing_light">Let isslag</string>
     <string name="settings_appearance_calendar_title">Alternativ kalender</string>
-    <string name="unit_mps_voice">Meter i sekundet</string>
-    <string name="unit_bft_voice">på Beaufortskalaen</string>
     <string name="notification_channel_background_services">Baggrundstjenester</string>
     <string name="notification_precipitation_starting_desc">Forventes at begynde kl. %s</string>
     <string name="precipitation_intensity_medium">Middel</string>
@@ -419,8 +416,6 @@
     <string name="settings_main_background_animation_disabled">Deaktiveret</string>
     <string name="settings_notifications">Notifikationer</string>
     <string name="settings_notifications_summary">Notifikationer for vejrvarsler, nedbør, eller vejrudsigt for den første placering</string>
-    <string name="unit_kph">km/t</string>
-    <string name="unit_kph_voice">Kilometer i timen</string>
     <string name="notification_running_in_background">Kører i baggrunden, for at fortsætte opdateringer</string>
     <string name="notification_updating_weather_data">Opdaterer vejrdata (%1$d/%2$d)</string>
     <string name="widget_label_view_style">Visningsstil</string>
@@ -546,12 +541,6 @@
     <string name="settings_weather_source_open_meteo_weather_models">Vejrmodeller</string>
     <string name="settings_units">Enheder</string>
     <string name="settings_color_night_always">Altid nat</string>
-    <string name="unit_kn">kn</string>
-    <string name="unit_kn_voice">Knob</string>
-    <string name="unit_mph">mph</string>
-    <string name="unit_mph_voice">Engelske mil i timen</string>
-    <string name="unit_ftps">ft/s</string>
-    <string name="unit_ftps_voice">Fod i sekundet</string>
     <string name="common_weather_text_drizzle_light">Let støvregn</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">Aflejrende rimtåge</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Let tordenvejr</string>

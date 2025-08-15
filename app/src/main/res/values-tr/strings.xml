@@ -346,7 +346,6 @@
     <string name="common_weather_text_snow_showers_heavy">Şiddetli kar yağışı</string>
     <string name="common_weather_text_snow_grains">Kar taneleri</string>
     <string name="settings_location_access_switch_title">Konum erişimi</string>
-    <string name="unit_bft_voice">Beaufort ölçeğinde</string>
     <string name="about_source_code">Kaynak kodu</string>
     <string name="common_weather_text_rain_showers_heavy">Şiddetli sağanak yağış</string>
     <string name="common_weather_text_rain_showers_moderate">Orta şiddetli sağanak yağış</string>
@@ -378,7 +377,6 @@
     <string name="settings_modules_week_icon_mode_title">Haftalık görünümlerde gösterilecek simge</string>
     <string name="settings_modules_section_notification_widget">Bildirim widget’ı</string>
     <string name="settings_modules_notification_temp_icon_switch">Durum çubuğu simgesinde sıcaklığı göster</string>
-    <string name="unit_kn">kn</string>
     <string name="settings_modules_broadcast_send_data_title">%s’e hava durumu bilgisini gönder</string>
     <string name="about_privacy_policy">Gizlilik sözleşmesi</string>
     <string name="settings_color_day_night">Gündüz / Gece</string>
@@ -433,13 +431,11 @@
     <string name="settings_items_drag_to_sort">Sürükleyip sıralamak için liste öğelerine dokunun</string>
     <string name="settings_none">Hiçbiri</string>
     <string name="widget_clock_font_sans_serif">Sans Serif</string>
-    <string name="unit_ftps">ft/sn</string>
     <string name="weather_message_unsupported_feature">Kaynak istenilen özelliklerin birini desteklemiyor</string>
     <string name="widget_custom_subtitle_keyword_hd_description">Saatlik açıklama</string>
     <string name="widget_week_style_3_days">3 günlük</string>
     <string name="settings_background_updates_worker_info_title">İşlem bilgisi</string>
     <string name="settings_main_threshold_lines_on_charts">Grafiklerdeki eşik çizgileri</string>
-    <string name="unit_mph_voice">Saatte mil</string>
     <string name="about_matrix">Matrix odası</string>
     <string name="weather_kind_wind">Rüzgâr</string>
     <string name="common_weather_text_drizzle">Çiseleme</string>
@@ -460,11 +456,6 @@
     <string name="settings_item_delete">Bu öğeyi sil</string>
     <string name="unit_fahrenheit">°F</string>
     <string name="settings_automatic">Otomatik</string>
-    <string name="unit_mps">m/sn</string>
-    <string name="unit_mps_voice">Saniyede metre</string>
-    <string name="unit_kn_voice">Saatte deniz mili</string>
-    <string name="unit_mph">m/sa</string>
-    <string name="unit_ftps_voice">Saniye başına feet</string>
     <string name="settings_location_access_switch_summaryOff">Anlık konumunuzu konum olarak eklemek istiyorsanız lütfen kabul edin.</string>
     <string name="settings_source_default_value">Varsayılan (değiştirilmemiş)</string>
     <string name="unit_kelvin">K</string>
@@ -479,7 +470,6 @@
     <string name="weather_kind_thunderstorm">Gök gürültülü fırtına</string>
     <string name="settings_notifications_precipitations_title">Yağış bildirimleri</string>
     <string name="settings_notifications_forecast_time_tomorrow_title">Sonraki gün tahmin bildirimi zamanı</string>
-    <string name="unit_kph_voice">Saatte kilometre</string>
     <string name="notification_update_error">%d güncelleme başarısız oldu</string>
     <string name="notification_updating_weather_data">Hava durumu verisi güncelleniyor (%1$d/%2$d)</string>
     <string name="weather_api_unauthorized_content">Bazı hava durumu kaynakları için kendi API anahtarınızı girmeniz gerekir. Eğer önceden girdiyseniz, API anahtarınızı tekrar kontrol edin.</string>
@@ -492,7 +482,6 @@
     <string name="widget_custom_subtitle_keyword_xnwd_description">Bugünün, yarının, …, 4 gün sonrasının gece rüzgarı</string>
     <string name="settings_color_day_always">Sürekli gündüz</string>
     <string name="settings_color_night_always">Sürekli gece</string>
-    <string name="unit_kph">km/s</string>
     <string name="settings_location_access_background_title">Arka planda konum erişimi</string>
     <string name="settings_location_access_precise_title">GPS sensörü kullanımı</string>
     <string name="settings_color_app">Sistemi takip et</string>
