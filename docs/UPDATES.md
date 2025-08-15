@@ -1,19 +1,21 @@
 ## Weather update process
 
-*Latest update of this document: 2025-02-10 (v5.4.3)*
+*Latest update of this document: 2025-08-15 (v6.0.5-alpha)*
 
 1. If the location refreshed is current location, the first thing done is refresh the current longitude and latitude from your location source.
     - If it fails, it will fallback to latest known longitude and latitude, and continue to the next step.
     - If we don’t have latest known longitude and latitude (meaning there has never been any successful refresh), the refresh process for this location ends now.
     - If refreshing manually, an error will be displayed in both cases.
     - If refreshing in the background, an error will only be displayed if we don’t have any latest known longitude and latitude.
-2. If the location refreshed is current location AND (longitude OR latitude OR address lookup source changed), we try to get from the address lookup source an update (city/province/country info). If no address lookup source is selected, we fallback to an offline reverse geocoding that only supports country lookup.
+2. If the coordinates changed OR address lookup source changed OR you just added a location from coordinates (and not from the search), we try to get from the address lookup source an update (city/province/country info). If no address lookup source is selected, we fallback to an offline reverse geocoding that only supports country lookup.
+3. Starting from v6.0.5-alpha, if the address lookup is not our offline reverse geocoding and it gave us an ambiguous ISO 3166-1 alpha-2 code, we process it again with our offline reverse geocoding, so that it is consistent across all sources and make it easy for the weather sources to know which ISO 3166-1 alpha-2 codes they support.
+4. Starting from v6.0.5-alpha, if the location is missing timezone info, we process it locally, based on the disambiguated ISO 3166-1 alpha-2 code to make the process faster.
 
 Info: Some weather sources need what we call "location parameters" before we can get weather. An example is that we have a longitude/latitude, but some weather sources only want a city identifier or grid forecast identifier on the weather endpoint. In such cases, we ask the weather source to provide us these information before we can proceed to actual weather request. These information are then saved, and usually no longer requested if it is a manually added location or only if longitude/latitude changed if current location.
 
-3. If main weather data is no longer valid (see caching section below) and if needed, we update location parameters for main weather source.
-4. If main weather data is no longer valid (see caching section below), we ask main weather source to provide us refreshed weather data for anything it supports, except any feature that was set up to use a secondary source. Otherwise, it fallbacks to previous saved data and move to next step. Starting from v5.3.0, Breezy Weather will attempt to restore previous saved data when a source partially fails on a feature but not on others.
-5. If we have secondary weather sources set up, we group all features requested to the same source together to make a single request and we proceed for each of them the same way as main weather source: if any of the secondary data is no longer valid (see caching section below), refresh location parameters if needed and requested updated secondary weather data. Otherwise, fallback to previous saved data and move to next step.
+5. We group all features requested to the same source together to make a single request and we proceed this way if the data is no longer valid (see caching section below):
+    - If needed, we update location parameters.
+    - Then, we ask the source to provide us refreshed data for the features it was selected for and that are no longer up-to-date. If it failed for any or all of the features, we attempt to restore previous saved data for the failed features.
 6. We gather all data from all sources together and complete it with:
     - missing past data back to yesterday 00:00: this allows us to show you yesterday info when sources only support forecast and not past data
     - extrapolated missing data (such as wet bulb temperature, humidity from dew point OR dew point from humidity, weather codes from all known data, etc)
