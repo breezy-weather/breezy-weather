@@ -272,14 +272,11 @@
     <string name="location_message_already_exists">Seznam lokacij že vsebuje to lokacijo z istim glavnim virom vremena.</string>
     <string name="weather_source_accu_preference_days_5">5 dni</string>
     <string name="current_weather">Trenutno vreme</string>
-    <string name="unit_celsius">°C</string>
     <string name="notification_channel_app_updates">Posodobitve aplikacije</string>
     <string name="location_delete_location_dialog_message">Izbrisali boste “%s” iz svojega seznama shrani lokacij.</string>
     <string name="location_message_location_access_off">Lokacijske storitve so izključene</string>
     <string name="notification_style_cities">Mesta</string>
     <string name="notification_channel_alerts">Alarmi</string>
-    <string name="unit_ppcm_voice">Na kubik</string>
-    <string name="unit_ppcm">/m³</string>
     <string name="common_weather_text_rain_showers_light">Rahel dež</string>
     <string name="common_weather_text_dust_storm">Prašna nevihta</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Nevihta z veliko točo</string>
@@ -322,7 +319,6 @@
     <string name="weather_source_continent_south_america">Južna Amerika</string>
     <string name="location_delete_location_dialog_message_no_name">To lokacijo boste izbrisali iz seznama shranjenih lokacij.</string>
     <string name="common_weather_text_tornado">Tornado</string>
-    <string name="unit_kelvin_short">K</string>
     <string name="common_weather_text_rain_snow_mixed_showers_heavy">Močan dež z snegom</string>
     <string name="forecast">Napoved</string>
     <string name="metno_weather_text_andthunder">%s in grmenje</string>

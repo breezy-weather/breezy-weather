@@ -236,16 +236,10 @@
     <string name="settings_color_day_always">हमेशा दिन</string>
     <string name="settings_color_night_always">हमेशा रात</string>
     <string name="settings_color_light">प्रकाश</string>
-    <string name="unit_fahrenheit">°फे</string>
-    <string name="unit_celsius">°से</string>
-    <string name="unit_celsius_short">°</string>
-    <string name="unit_fahrenheit_short">°</string>
     <string name="settings_color_app">अनुप्रयोग का पालन करे</string>
     <string name="settings_color_dark">काला</string>
     <string name="settings_follow_system">प्रणाली का पालन करें</string>
     <string name="settings_none">कोई नहीं</string>
-    <string name="unit_kelvin">के</string>
-    <string name="unit_kelvin_short">के</string>
     <string name="settings_color_day_night">दिन / रात</string>
     <string name="null_data_text">एन/ए</string>
     <string name="pressure">दबाव</string>
@@ -497,7 +491,6 @@
     <string name="settings_item_delete">इस आइटम को हटाएँ</string>
     <string name="settings_enabled">सक्रिय</string>
     <string name="settings_unavailable_no_background_updates">अनुपलब्ध, पृष्ठभूमि अद्यतन पहले सक्षम करें</string>
-    <string name="unit_ppcm_voice">प्रति घन मीटर</string>
     <string name="notification_refreshed_at">पर ताज़ा किया गया</string>
     <string name="notification_update_error">%d अद्यतन विफल</string>
     <string name="notification_running_in_background">अद्यतन रखने के लिए पृष्ठभूमि में चल रहा है</string>
@@ -557,7 +550,6 @@
     <string name="widget_clock_font_sans_serif_black">सैंस सेरिफ ब्लैक</string>
     <string name="settings_weather_source_portal">पोर्टल</string>
     <string name="settings_main_summary">कार्ड क्रम, प्रदर्शित आइटम, और एनिमेशन</string>
-    <string name="unit_ppcm">प्रति मीटर³ (/m³)</string>
     <string name="message_server_unavailable_title">सर्वर अनुपलब्ध</string>
     <string name="message_server_unavailable_content">यह आमतौर पर एक अस्थायी त्रुटि है। यदि त्रुटि बनी रहती है, कृपया GitHub पर एक समस्या की रिपोर्ट करें।</string>
     <string name="settings_background_updates_refresh_never_warning2">पृष्ठभूमि अपडेट प्रक्रिया हल्की है: यह केवल आपके चयनित दर पर आपकी पहली स्थान सूची को ताजगी देता है, और आपको चाहिए तो दूसरी स्थानों को केवल एक बार प्रतिदिन। यह बैटरी की दृष्टि से उर्जा कुशल है और मासिक डेटा खपत को %d एमबी से अधिक नहीं होने देता।</string>

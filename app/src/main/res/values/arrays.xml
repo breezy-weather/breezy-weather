@@ -460,35 +460,4 @@
         <item>@color/pollenRecosanteLevel_4</item>
         <item>@color/pollenRecosanteLevel_5</item>
     </integer-array>
-
-    <!-- temperature unit. -->
-    <string-array name="temperature_units">
-        <item>@string/settings_follow_system</item>
-        <item>@string/unit_celsius</item>
-        <item>@string/unit_fahrenheit</item>
-        <item>@string/unit_kelvin</item>
-    </string-array>
-    <string-array name="temperature_units_short">
-        <item>@string/settings_follow_system</item>
-        <item>@string/unit_celsius_short</item>
-        <item>@string/unit_fahrenheit_short</item>
-        <item>@string/unit_kelvin_short</item>
-    </string-array>
-    <string-array name="temperature_unit_values">
-        <item>auto</item>
-        <item>c</item>
-        <item>f</item>
-        <item>k</item>
-    </string-array>
-
-    <!-- pollen unit. -->
-    <string-array name="pollen_units">
-        <item>@string/unit_ppcm</item>
-    </string-array>
-    <string-array name="pollen_unit_voices">
-        <item>@string/unit_ppcm_voice</item>
-    </string-array>
-    <string-array name="pollen_unit_values">
-        <item>ppcm</item>
-    </string-array>
 </resources>

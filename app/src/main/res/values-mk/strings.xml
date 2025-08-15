@@ -387,14 +387,6 @@
     <string name="settings_color_light">Светлина</string>
     <string name="settings_color_grey">Сиво</string>
     <string name="settings_color_dark">Темно</string>
-    <string name="unit_celsius">°C</string>
-    <string name="unit_celsius_short">°</string>
-    <string name="unit_fahrenheit">°F</string>
-    <string name="unit_fahrenheit_short">°</string>
-    <string name="unit_kelvin">К</string>
-    <string name="unit_kelvin_short">К</string>
-    <string name="unit_ppcm">/m³</string>
-    <string name="unit_ppcm_voice">На кубен метар</string>
     <string name="notification_refreshed_at">Освежено во</string>
     <string name="notification_channel_alerts">Известувања</string>
     <string name="notification_channel_forecast">Прогноза</string>

@@ -387,8 +387,6 @@
     <string name="settings_main_hourly_trends_title">Ωριαίες τάσεις</string>
     <string name="settings_debug">Εντοπισμός σφαλμάτων</string>
     <string name="common_weather_text_rain_freezing_heavy">Σφοδρή παγωμένη βροχή</string>
-    <string name="unit_ppcm">/μ³</string>
-    <string name="unit_ppcm_voice">Ανά κυβικό μέτρο</string>
     <string name="notification_channel_alerts">Ειδοποιήσεις</string>
     <string name="notification_channel_widget">Γραφικό στοιχείο</string>
     <string name="notification_precipitation_starting">Υετός σύντομα</string>
@@ -424,12 +422,8 @@
     <string name="settings_debug_dump_crash_logs_title">Κοινή χρήση αρχείων καταγραφής σφαλμάτων</string>
     <string name="settings_debug_dump_crash_logs_summary">Αποθηκεύει αρχεία καταγραφής σφαλμάτων σε ένα αρχείο για κοινή χρήση με τους προγραμματιστές</string>
     <string name="settings_color_day_night">Μέρα / Νύχτα</string>
-    <string name="unit_fahrenheit">°F</string>
     <string name="settings_modules_notification_persistent_switch">Μόνιμη</string>
     <string name="settings_unavailable_no_background_updates">Μη διαθέσιμο, ενεργοποίησ πρώτα τις ενημερώσεις στο παρασκήνιο</string>
-    <string name="unit_celsius">°C</string>
-    <string name="unit_celsius_short">°</string>
-    <string name="unit_fahrenheit_short">°</string>
     <string name="notification_channel_background_services">Υπηρεσίες παρασκηνίου</string>
     <string name="notification_channel_crash_logs">Καταγραφές σφαλμάτων</string>
     <string name="notification_update_error">%d ενημερώσεις απέτυχαν</string>
@@ -464,14 +458,12 @@
     <string name="null_data_text">Μ/Δ</string>
     <string name="settings_main_background_animation_title">Κινούμενα σχέδια φόντου</string>
     <string name="settings_color_app">Ακολούθησε την εφαρμογή</string>
-    <string name="unit_kelvin_short">Κ</string>
     <string name="settings_notifications">Ειδοποιήσεις</string>
     <string name="about_contact">Επικοινωνία</string>
     <string name="common_weather_text_rain_showers_light">Ασθενής μπόρα</string>
     <string name="common_weather_text_snow_showers_light">Ασθενείς μπόρες χιονιού</string>
     <string name="settings_main_threshold_lines_on_charts">Γραμμές κατωφλίου στα γραφήματα</string>
     <string name="settings_modules_notification_widget_title">Γραφικό στοιχείο ειδοποίησης</string>
-    <string name="unit_kelvin">Κ</string>
     <string name="about_source_code">Πηγαίος κώδικας</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Καταιγίδα με ελαφριά χαλαζόπτωση</string>
     <string name="settings_modules_section_widgets_in_use">Γραφικά στοιχεία σε χρήση</string>

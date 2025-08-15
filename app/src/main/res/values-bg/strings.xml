@@ -390,14 +390,6 @@
     <string name="settings_color_grey">Сиво</string>
     <string name="settings_color_dark">Тъмно</string>
     <string name="settings_color_light">Светло</string>
-    <string name="unit_celsius">°C</string>
-    <string name="unit_kelvin">K</string>
-    <string name="unit_celsius_short">°</string>
-    <string name="unit_fahrenheit_short">°</string>
-    <string name="unit_fahrenheit">°F</string>
-    <string name="unit_kelvin_short">K</string>
-    <string name="unit_ppcm">/m³</string>
-    <string name="unit_ppcm_voice">На кубичен метър</string>
     <string name="about_source_code">Програмен код</string>
     <string name="notification_style_cities">Градове</string>
     <string name="about_app">Относно приложението</string>

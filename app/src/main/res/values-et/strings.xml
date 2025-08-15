@@ -208,7 +208,6 @@
     <string name="settings_debug">Veakõrvaldus</string>
     <string name="settings_debug_summary">Krahhilogid</string>
     <string name="settings_debug_dump_crash_logs_summary">Salvestab krahhilogi faili arendajatele jagamiseks</string>
-    <string name="unit_ppcm">/m³</string>
     <string name="notification_updating_weather_data">Ilmateateandmete uuendamine (%1$d/%2$d)</string>
     <string name="common_weather_text_drizzle_freezing_light">Kerge külmuv tibutamine</string>
     <string name="weather_kind_thunderstorm">Äikesetorm</string>
@@ -375,7 +374,6 @@
     <string name="settings_modules_live_wallpaper_summary">Sea ilmaanimatsioon taustapildina</string>
     <string name="notification_channel_widget">Vidin</string>
     <string name="notification_channel_background_services">Tagatausta teenused</string>
-    <string name="unit_ppcm_voice">Kuupmeetri kohta</string>
     <string name="notification_refreshed_at">Värskendatud kell</string>
     <string name="notification_channel_forecast">Prognoos</string>
     <string name="notification_channel_crash_logs">Krahhilogid</string>
@@ -550,17 +548,11 @@
     <string name="settings_color_light">Hele</string>
     <string name="settings_color_day_night">Päev / Öö</string>
     <string name="settings_items_drag_to_sort">Vajuta, et lohistada nimekirja objekte sorteerimiseks</string>
-    <string name="unit_kelvin_short">K</string>
-    <string name="unit_fahrenheit">°F</string>
-    <string name="unit_celsius">°C</string>
-    <string name="unit_celsius_short">°</string>
-    <string name="unit_fahrenheit_short">°</string>
     <string name="settings_none">Puudub</string>
     <string name="settings_color_app">Järgi rakendust</string>
     <string name="settings_color_day_always">Alati päev</string>
     <string name="settings_color_night_always">Alati öö</string>
     <string name="settings_color_grey">Hall</string>
-    <string name="unit_kelvin">K</string>
     <string name="null_data_text">PUUDUB</string>
     <string name="settings_follow_system">Järgi süsteemi</string>
     <string name="dialog_app_update_check_title">Püsige kursis</string>

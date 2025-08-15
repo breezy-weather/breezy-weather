@@ -246,8 +246,6 @@
     <string name="weather_kind_thunderstorm">雷雨</string>
     <string name="weather_kind_wind">風</string>
     <!-- Units -->
-    <string name="unit_ppcm">/m³</string>
-    <string name="unit_ppcm_voice">每立方公尺</string>
     <string name="temperature_degree_day_heating">加熱度日數</string>
     <string name="temperature_degree_day_cooling">降溫度日數</string>
     <string name="air_quality_o3_full">地表臭氧 (%s)</string>
@@ -255,7 +253,6 @@
     <string name="weather_source_accu_preference_days_10">10 天</string>
     <string name="weather_source_accu_preference_hours_12">12 小時</string>
     <string name="locations">位置</string>
-    <string name="unit_celsius_short">°</string>
     <string name="notification_update_error">%d 更新失敗</string>
     <string name="common_weather_text_snow_grains">雪粒</string>
     <string name="settings_modules_notification_style_title">樣式</string>
@@ -265,7 +262,6 @@
     <string name="settings_main_section_options">選項</string>
     <string name="settings_main_background_animation_title">背景動畫</string>
     <string name="settings_modules_live_wallpaper_error">無法啟動桌布選擇器。您仍然可以透過在主畫面的桌布選項中選擇「動態桌布」來啟用 %s 的桌布。</string>
-    <string name="unit_fahrenheit">°F</string>
     <string name="location_message_reverse_geocoding_failed">天氣來源無法找到相符的位置</string>
     <string name="action_undo">復原</string>
     <string name="widget_clock_font_analog">類比時鐘</string>
@@ -290,7 +286,6 @@
     <string name="message_source_not_installed_error_title">資料來源不再可用</string>
     <string name="widget_style_pixel">Pixel</string>
     <string name="settings_main_summary">區塊順序、顯示項目、動畫</string>
-    <string name="unit_kelvin">K</string>
     <string name="about_source_code">原始碼</string>
     <string name="common_weather_text_clear_sky">天晴</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">雷雨伴有大冰雹</string>
@@ -307,7 +302,6 @@
     <string name="widget_clock_font_sans_serif_black">無襯線體（粗）</string>
     <string name="settings_background_updates_worker_info_summary">最後執行：%s</string>
     <string name="settings_weather_sources">天氣資料來源</string>
-    <string name="unit_kelvin_short">K</string>
     <string name="uv_index_0_2">低量級</string>
     <string name="uv_index_8_10">過量級</string>
     <string name="uv_index_11">危險級</string>
@@ -371,7 +365,6 @@
     <string name="action_delete">刪除</string>
     <string name="action_share">分享</string>
     <string name="settings_modules_summary">設定桌布、使用中的小工具、通知小工具</string>
-    <string name="unit_fahrenheit_short">°</string>
     <string name="notification_channel_alerts">警特報</string>
     <string name="weather_message_invalid_location">位置無效，請刪除後再新增</string>
     <string name="wind_direction_SW_short">西南風</string>
@@ -410,7 +403,6 @@
     <string name="action_add_new_location">新增新位置</string>
     <string name="action_close">關閉</string>
     <string name="dialog_permissions_notification_title">即時獲得資訊</string>
-    <string name="unit_celsius">°C</string>
     <string name="null_data_text">N/A</string>
     <string name="settings_notifications">通知</string>
     <string name="settings_main_cards_other_element_animations_switch">其他動畫</string>

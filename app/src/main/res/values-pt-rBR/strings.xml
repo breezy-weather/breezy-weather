@@ -251,7 +251,6 @@
     <string name="weather_kind_thunder">Trovoada</string>
     <string name="weather_kind_thunderstorm">Tempestade</string>
     <string name="weather_kind_wind">Vento</string>
-    <string name="unit_ppcm_voice">Por metro cúbico</string>
     <string name="uv_index_6_7">Alto</string>
     <string name="uv_index_8_10">Muito alto</string>
     <string name="uv_index_11">Extremo</string>
@@ -385,9 +384,7 @@
     <string name="settings_notifications_forecast_time_tomorrow_title">Horário da notificação para a previsão do dia seguinte</string>
     <string name="action_close">Fechar</string>
     <string name="notification_channel_widget">Widget</string>
-    <string name="unit_ppcm">/m³</string>
     <string name="null_data_text">N/A</string>
-    <string name="unit_fahrenheit">°F</string>
     <string name="wind_direction_S_short">S</string>
     <string name="widget_clock_font_sans_serif">Sans Serif</string>
     <string name="wind_direction_NE_short">NE</string>
@@ -398,15 +395,10 @@
     <string name="widget_style_oreo">Oreo</string>
     <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>
     <string name="widget_clock_font_sans_serif_black">Sans Serif Black</string>
-    <string name="unit_celsius_short">°</string>
     <string name="wind_direction_N_short">N</string>
     <string name="widget_style_mini">Mini</string>
-    <string name="unit_fahrenheit_short">°F</string>
-    <string name="unit_kelvin">K</string>
-    <string name="unit_kelvin_short">K</string>
     <string name="air_quality_pm25">PM2.5</string>
     <string name="air_quality_pm10">PM10</string>
-    <string name="unit_celsius">°C</string>
     <string name="common_weather_text_snow_grains">Grãos de neve</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Tempestade leve ou moderada</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Tempestade com granizo leve</string>

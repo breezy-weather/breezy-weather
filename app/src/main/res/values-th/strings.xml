@@ -592,15 +592,7 @@
     <string name="settings_color_grey">สีเทา</string>
     <string name="settings_color_dark">สีมืด</string>
     <string name="settings_invalid_syntax">ซินแทกซ์ไม่ถูกต้อง</string>
-    <string name="unit_celsius">°C</string>
-    <string name="unit_celsius_short">°</string>
-    <string name="unit_fahrenheit">°F</string>
-    <string name="unit_fahrenheit_short">°</string>
-    <string name="unit_kelvin">K</string>
-    <string name="unit_kelvin_short">K</string>
     <string name="notification_updating_weather_data">กำลังอัปเดตข้อมูลสภาพอากาศ (%1$d/%2$d)</string>
-    <string name="unit_ppcm">/ลบ.ม.</string>
-    <string name="unit_ppcm_voice">ต่อลูกบาศก์เมตร</string>
     <string name="notification_refreshed_at">รีเฟรชเมื่อ</string>
     <string name="notification_channel_alerts">การเตือนภัย</string>
     <string name="notification_channel_forecast">การพยากรณ์</string>

@@ -236,8 +236,6 @@
     <string name="settings_item_delete">Ștergeți acest articol</string>
     <string name="settings_modules_week_icon_mode_title">Pictogramă de afișat în vizualizarea săptămânală</string>
     <string name="settings_icon_packs_weather_adaptive_icon">Pictogramă vreme</string>
-    <string name="unit_kelvin_short">K</string>
-    <string name="unit_ppcm">/m³</string>
     <string name="common_weather_text_snow_grains">Ninsoare Fină</string>
     <string name="settings_icon_packs_weather_icon_grey">Pictogramă gri</string>
     <string name="settings_icon_packs_weather_icon_dark">Pictogramă întunecată</string>
@@ -252,7 +250,6 @@
     <string name="settings_items_drag_to_sort">Atinge pentru a trage elementele din listă spre a le sorta</string>
     <string name="settings_source_default_value">Implicit (neschimbat)</string>
     <string name="settings_icon_packs_check_details">Verifică detaliile</string>
-    <string name="unit_ppcm_voice">Pe metru cub</string>
     <string name="about_matrix">Server Matrix</string>
     <string name="about_source_code">Codul sursă</string>
     <string name="about_contribution_WangDaYeeeeee">Dezvoltator al proiectului original Geometric Weather</string>
@@ -260,7 +257,6 @@
     <string name="common_weather_text_overcast">Înnorat</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">Brumă</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Furtună Uşoară spre Moderată</string>
-    <string name="unit_celsius">°C</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Furtună cu Grindină Ușoară</string>
     <string name="widget_style_mini">Mini</string>
     <string name="widget_material_you_current">Material You – Actual</string>
@@ -283,7 +279,6 @@
     <string name="notification_channel_alerts">Alerte</string>
     <string name="about_contributors">Contribuitori</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Furtună cu Grindină Intensă</string>
-    <string name="unit_celsius_short">°</string>
     <string name="settings_weather_source_portal">Portal</string>
     <string name="weather_source_accu_preference_days_5">5 zile</string>
     <string name="setting_weather_source_accu_days">Zile</string>
@@ -301,8 +296,6 @@
     <string name="settings_modules_section_notification_widget">Widget de notificare</string>
     <string name="settings_debug_summary">Jurnale de incidente</string>
     <string name="settings_debug_dump_crash_logs_title">Distribuie jurnalele de incidente</string>
-    <string name="unit_fahrenheit_short">°</string>
-    <string name="unit_kelvin">K</string>
     <string name="notification_channel_background_services">Servicii de fundal</string>
     <string name="alerts_to_follow">Există alerte viitoare, apasă aici pentru a le vedea.</string>
     <string name="wind_direction_SE_short">SE</string>
@@ -356,7 +349,6 @@
     <string name="settings_modules_notification_feels_like_switch">Utilizează temperatura resimțită</string>
     <string name="settings_debug">Depanare</string>
     <string name="settings_debug_dump_crash_logs_summary">Salvează jurnalele de incidente într-un fișier pentru a le partaja cu dezvoltatorii</string>
-    <string name="unit_fahrenheit">°F</string>
     <string name="setting_weather_source_accu_hours">Ore</string>
     <string name="action_location_list">Lista locațiilor</string>
     <string name="action_back">Înapoi</string>

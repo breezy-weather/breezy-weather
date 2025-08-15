@@ -215,7 +215,6 @@
     <string name="weather_kind_thunder">Truenos</string>
     <string name="weather_kind_thunderstorm">Tormenta eléctrica</string>
     <string name="weather_kind_wind">Viento</string>
-    <string name="unit_ppcm_voice">Por metro cúbico</string>
     <string name="air_quality_level_1">Excelente</string>
     <string name="uv_index_8_10">Muy alto</string>
     <string name="wind_direction_NW_short">NO</string>
@@ -426,18 +425,13 @@
     <string name="settings_modules_section_notification_widget">Widget de notificaciones</string>
     <string name="settings_modules_notification_style_title">Estilo</string>
     <string name="settings_debug">Depurar</string>
-    <string name="unit_celsius_short">°</string>
     <string name="common_weather_text_rain_showers_light">Ligeros chubascos</string>
     <string name="common_weather_text_drizzle_moderate">Llovizna moderada</string>
     <string name="common_weather_text_rain_snow_mixed_heavy">Fuertes lluvias y nieve</string>
     <string name="settings_items_drag_to_sort">Toque para arrastrar los elementos de la lista para ordenarlos</string>
     <string name="common_weather_text_rain_heavy">Fuertes lluvias</string>
-    <string name="unit_kelvin_short">K</string>
     <string name="about_contact">Contacto</string>
-    <string name="unit_kelvin">K</string>
     <string name="common_weather_text_drizzle">Llovizna</string>
-    <string name="unit_ppcm">/m³</string>
-    <string name="unit_fahrenheit_short">°</string>
     <string name="about_contribution_designer">Diseñador de logotipos</string>
     <string name="common_weather_text_snow_heavy">Nieve intensa</string>
     <string name="common_weather_text_rain_freezing_heavy">Lluvia fuerte fría</string>
@@ -448,7 +442,6 @@
     <string name="settings_modules_notification_feels_like_switch">Utilizar la sensación térmica</string>
     <string name="common_weather_text_rain_freezing">Lluvia gélida</string>
     <string name="common_weather_text_rain_snow_mixed_light">Lluvia ligera y nieve</string>
-    <string name="unit_fahrenheit">°F</string>
     <string name="settings_color_app">Seguir a la aplicación</string>
     <string name="common_weather_text_rain_snow_mixed_showers">Chubascos mixtos de lluvia y nieve</string>
     <string name="common_weather_text_overcast">Nublado</string>
@@ -463,7 +456,6 @@
     <string name="settings_debug_dump_crash_logs_saved">Registros de fallos guardados</string>
     <string name="common_weather_text_rain_snow_mixed_showers_light">Lluvias ligeras de aguanieve</string>
     <string name="settings_debug_dump_crash_logs_tap_to_open">Toca para abrir</string>
-    <string name="unit_celsius">°C</string>
     <string name="common_weather_text_drizzle_heavy">Llovizna intensa</string>
     <string name="common_weather_text_mostly_clear">Principalmente despejado</string>
     <string name="common_weather_text_rain_moderate">Lluvias moderadas</string>

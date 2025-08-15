@@ -69,8 +69,6 @@
     <string name="settings_main_gravity_sensor_switch">Датчык змянення становішча</string>
     <string name="settings_notifications">Апавяшчэнні</string>
     <string name="settings_follow_system">Як у сістэме</string>
-    <string name="unit_fahrenheit_short">°</string>
-    <string name="unit_kelvin">K</string>
     <string name="notification_refreshed_at">Абноўлена ў</string>
     <string name="notification_precipitation_starting_desc">Паводле прагнозу пачнуцца ў %s</string>
     <string name="notification_precipitation_continuing">Ападкі</string>
@@ -398,12 +396,6 @@
     <string name="settings_color_light">Светлы</string>
     <string name="settings_color_grey">Шэры</string>
     <string name="settings_color_dark">Цёмны</string>
-    <string name="unit_celsius">°C</string>
-    <string name="unit_celsius_short">°</string>
-    <string name="unit_fahrenheit">°F</string>
-    <string name="unit_kelvin_short">K</string>
-    <string name="unit_ppcm">/м³</string>
-    <string name="unit_ppcm_voice">На кубічны метр</string>
     <string name="notification_channel_alerts">Абвесткі</string>
     <string name="notification_channel_forecast">Прагноз</string>
     <string name="notification_channel_widget">Віджэт</string>

@@ -376,8 +376,6 @@
     <string name="settings_modules_section_notification_widget">Értesítési modul</string>
     <string name="settings_debug">Hibakeresés</string>
     <string name="settings_debug_dump_crash_logs_title">Hibanapló megosztása</string>
-    <string name="unit_celsius">°C</string>
-    <string name="unit_kelvin_short">K</string>
     <string name="notification_channel_alerts">Riasztások</string>
     <string name="notification_update_error">%d frissítés sikertelen</string>
     <string name="about_dependencies">Függőségek</string>
@@ -439,9 +437,6 @@
     <string name="settings_notifications_summary">Értesítések az időjárási riasztásokról, csapadékokról vagy az előrejelzésekről az első helyszínhez</string>
     <string name="settings_notifications_forecast_time_tomorrow_title">Értesítés ideje a másnapi előrejelzéshez</string>
     <string name="settings_debug_dump_crash_logs_summary">A hibanaplót fájlba menti, hogy megoszthassa a fejlesztőkkel</string>
-    <string name="unit_celsius_short">°</string>
-    <string name="unit_fahrenheit">°F</string>
-    <string name="unit_ppcm_voice">Per köbméter</string>
     <string name="common_weather_text_rain">Eső</string>
     <string name="common_weather_text_rain_light">Enyhe eső</string>
     <string name="common_weather_text_overcast">Borús</string>
@@ -460,13 +455,10 @@
     <string name="settings_notifications_forecast_today_title">Értesítés a napi előrejelzésről</string>
     <string name="settings_modules_summary">Modulok, értesítési modul, háttérkép, adatmegosztás más alkalmazásokkal</string>
     <string name="settings_color_grey">Szürke</string>
-    <string name="unit_ppcm">/m³</string>
     <string name="about_source_code">Forráskód</string>
     <string name="about_matrix">Matrix szoba</string>
     <string name="alerts_to_follow">A közelgő riasztások megtekintéséhez koppintson ide.</string>
     <string name="settings_color_light">Világos</string>
-    <string name="unit_fahrenheit_short">°</string>
-    <string name="unit_kelvin">K</string>
     <string name="settings_modules_live_wallpaper_error">Nem sikerült elindítani a háttérképválasztót. Továbbra is engedélyezheti a %s háttérképet az „Élő háttérkép” lehetőség kiválasztásával a kezdőképernyő háttérképválasztójában.</string>
     <string name="settings_debug_summary">Hibanapló</string>
     <string name="notification_style_native">Natív</string>

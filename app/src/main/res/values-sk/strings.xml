@@ -101,9 +101,7 @@
     <string name="ephemeris_moon_phase_full_moon">Úplnok</string>
     <string name="visibility">Viditeľnosť</string>
     <string name="ceiling">Výška mrakov</string>
-    <string name="unit_ppcm">/m³</string>
     <string name="ephemeris_sunset_at">Západ slnka v %s</string>
-    <string name="unit_ppcm_voice">Na meter kubický</string>
     <string name="temperature_normals">Teplotné normy</string>
     <string name="nighttime">Noc</string>
     <string name="notification_channel_forecast">Predpoveď</string>
@@ -318,9 +316,7 @@
     <string name="settings_notifications_section_forecast">Predpoveď</string>
     <string name="settings_notifications_forecast_tomorrow_title">Notifikácia s predpoveďou na nasledujúci deň</string>
     <string name="settings_follow_system">Systémový</string>
-    <string name="unit_kelvin">K</string>
     <string name="notification_precipitation_continuing">Zrážky</string>
-    <string name="unit_kelvin_short">K</string>
     <string name="notification_precipitation_starting">Zrážky očakávané</string>
     <string name="notification_style_native">Natívne</string>
     <string name="settings_main_section_animations">Animácie</string>
@@ -329,15 +325,11 @@
     <string name="settings_modules_broadcast_title">Zdieľanie dát</string>
     <string name="settings_color_dark">Tmavý</string>
     <string name="settings_color_light">Svetlý</string>
-    <string name="unit_celsius_short">°</string>
     <string name="notification_precipitation_starting_desc">Očakávaný začiatok o %s</string>
     <string name="notification_style_cities">Mestá</string>
-    <string name="unit_fahrenheit_short">°</string>
     <string name="about_open_link_message">Otvoriť %s?</string>
     <string name="settings_notifications_forecast_time_tomorrow_title">Čas notifikácie s predpoveďou na ďalší deň</string>
-    <string name="unit_fahrenheit">°F</string>
     <string name="settings_invalid_syntax">Neplatná syntax</string>
-    <string name="unit_celsius">°C</string>
     <string name="settings_changes_apply_after_restart">Zmeny budú aplikované po reštarte aplikácie</string>
     <string name="settings_modules_broadcast_send_data_summary_empty">Žiadne kompatibilné balíčky neboli nájdené</string>
     <string name="settings_automatic">Automaticky</string>

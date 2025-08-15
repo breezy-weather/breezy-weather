@@ -8,7 +8,7 @@ Syntax inspired by [Kotlin duration](https://kotlinlang.org/docs/time-measuremen
 
 Some precision may be lost during conversions.
 
-Remains to do :
+Remains to do:
 
 - Percentage formatting
 - Add missing non-English Android translations (for the units we use in Breezy Weather)

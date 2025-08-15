@@ -385,7 +385,6 @@
     <string name="settings_debug_summary">Avāriju žurnāli</string>
     <string name="settings_debug_dump_crash_logs_title">Kopīgot avāriju žurnālus</string>
     <string name="settings_debug_dump_crash_logs_summary">Saglabā kļūdu žurnālus failā, lai tos kopīgotu ar izstrādātājiem</string>
-    <string name="unit_celsius">°C</string>
     <string name="notification_style_cities">Pilsētas</string>
     <string name="about_app">Par lietotni</string>
     <string name="about_contact">Sazināties</string>
@@ -398,8 +397,6 @@
     <string name="common_weather_text_rain_showers">Lietusgāzes</string>
     <string name="common_weather_text_drizzle_freezing_light">Neliela sasalstoša smidzināšana</string>
     <string name="settings_disabled">Atspējots</string>
-    <string name="unit_kelvin">K</string>
-    <string name="unit_kelvin_short">K</string>
     <string name="notification_refreshed_at">Atsvaidzināti</string>
     <string name="notification_channel_alerts">Brīdinājumi</string>
     <string name="notification_channel_forecast">Prognoze</string>
@@ -444,9 +441,6 @@
     <string name="settings_color_light">Gaiša</string>
     <string name="settings_color_grey">Pelēka</string>
     <string name="settings_color_dark">Tumša</string>
-    <string name="unit_celsius_short">°</string>
-    <string name="unit_fahrenheit">°F</string>
-    <string name="unit_fahrenheit_short">°</string>
     <string name="common_weather_text_rain_light">Neliels lietus</string>
     <string name="common_weather_text_rain_heavy">Spēcīgs lietus</string>
     <string name="common_weather_text_snow_moderate">Mērens sniegs</string>
@@ -468,8 +462,6 @@
     <string name="common_weather_text_snow_light">Neliels sniegs</string>
     <string name="common_weather_text_drizzle_freezing">Sasalstoša smidzināšana</string>
     <string name="common_weather_text_drizzle_freezing_heavy">Spēcīga sasalstoša smidzināšana</string>
-    <string name="unit_ppcm">/m³</string>
-    <string name="unit_ppcm_voice">Par kubikmetru</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Pērkona negaiss neliels vai mērens</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Pērkona negaiss ar stipru krusu</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Pērkona negaiss ar nelielu krusu</string>

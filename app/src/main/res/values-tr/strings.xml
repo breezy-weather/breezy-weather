@@ -336,7 +336,6 @@
     <string name="settings_units_temperature">Sıcaklık birimi</string>
     <string name="sunshine_duration">Güneşli saatler</string>
     <string name="settings_location_access_permission_already_granted">İzin zaten verildi</string>
-    <string name="unit_ppcm_voice">Metreküp</string>
     <string name="notification_channel_alerts">Alarmlar</string>
     <string name="common_weather_text_snow_showers">Sağanak kar</string>
     <string name="common_weather_text_drizzle_heavy">Şiddetli çiseleme</string>
@@ -380,8 +379,6 @@
     <string name="settings_modules_broadcast_send_data_title">%s’e hava durumu bilgisini gönder</string>
     <string name="about_privacy_policy">Gizlilik sözleşmesi</string>
     <string name="settings_color_day_night">Gündüz / Gece</string>
-    <string name="unit_celsius">°C</string>
-    <string name="unit_celsius_short">°</string>
     <string name="notification_channel_background_services">Arkaplan servisleri</string>
     <string name="notification_running_in_background">Güncel kalmak için arkaplanda çalışıyor</string>
     <string name="notification_style_native">Yerel</string>
@@ -410,7 +407,6 @@
     <string name="settings_location_service">Konum servisi</string>
     <string name="settings_background_updates_worker_info_summary">Son çalıştırma zamanı: %s</string>
     <string name="settings_location">Konum</string>
-    <string name="unit_ppcm">/m³</string>
     <string name="common_weather_text_rain_snow_mixed_light">Karla karışık hafif yağmur</string>
     <string name="metno_weather_text_andthunder">%s ve fırtına</string>
     <string name="common_weather_text_rain_snow_mixed_heavy">Karla karışık şiddetli yağış</string>
@@ -450,16 +446,12 @@
     <string name="widget_custom_subtitle_keyword_xdw_description">Bugünün, yarının, …, 4 gün sonrasının gündüz hava durumu</string>
     <string name="widget_custom_subtitle_keyword_xnw_description">Bugünün, yarının, …, 4 gün sonrasının gece hava durumu</string>
     <string name="settings_modules_section_widgets_in_use">Kullanılan widget’lar</string>
-    <string name="unit_fahrenheit_short">F</string>
     <string name="settings_debug_summary">Çökme günlükleri</string>
     <string name="settings_debug_dump_crash_logs_title">Çökme günlüklerini paylaş</string>
     <string name="settings_item_delete">Bu öğeyi sil</string>
-    <string name="unit_fahrenheit">°F</string>
     <string name="settings_automatic">Otomatik</string>
     <string name="settings_location_access_switch_summaryOff">Anlık konumunuzu konum olarak eklemek istiyorsanız lütfen kabul edin.</string>
     <string name="settings_source_default_value">Varsayılan (değiştirilmemiş)</string>
-    <string name="unit_kelvin">K</string>
-    <string name="unit_kelvin_short">K</string>
     <string name="notification_channel_widget">Widget</string>
     <string name="settings_weather_sources_summary">Yeni konumlar için varsayılan hava durumu kaynağı, özel API anahtarları, diğer kaynak ayarları</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Hafif dolu ve gök gürültülü sağanak</string>

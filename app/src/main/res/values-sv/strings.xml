@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="unit_celsius_short">°</string>
     <string name="daily_yesterday_short">I går</string>
     <string name="about_app">Om appen</string>
     <string name="uv_index_6_7">Högt</string>
@@ -38,13 +37,11 @@
     <string name="precipitation_nowcasting">Korttidsprognos för nederbörd</string>
     <string name="daily_tomorrow_short">I morgon</string>
     <string name="air_quality">Luftkvalitet</string>
-    <string name="unit_kelvin_short">K</string>
     <string name="settings_background_updates_refresh_never">Aldrig</string>
     <string name="action_help_me_choose">Hjälp mig välja</string>
     <string name="uv_alert_level">Varning</string>
     <string name="wind_direction_W_short">V</string>
     <string name="about_contact">Kontakt</string>
-    <string name="unit_kelvin">K</string>
     <string name="widget_style_pixel">Pixel</string>
     <string name="uv_index_8_10">Mycket högt</string>
     <string name="daily_forecast">Daglig prognos</string>
@@ -52,8 +49,6 @@
     <string name="weather_kind_hail">Hagel</string>
     <string name="location_message_added">Plats tillagd</string>
     <string name="about_translators">Översättare</string>
-    <string name="unit_ppcm">/m³</string>
-    <string name="unit_fahrenheit_short">°</string>
     <string name="air_quality_co_voice">Kolmonoxid</string>
     <string name="about_contribution_designer">Logotypdesigner</string>
     <string name="widget_week_style_3_days">3 dagar</string>
@@ -76,7 +71,6 @@
     <string name="widget_custom_subtitle_keyword_atd_description">Nuvarande känns som-temperatur (°)</string>
     <string name="widget_custom_subtitle_keyword_cw_description">Nuvarande väder</string>
     <string name="weather_source_accu_preference_hours_72">72 timmar</string>
-    <string name="unit_ppcm_voice">Per kubikmeter</string>
     <string name="precipitation_probability">Sannolikhet för nederbörd</string>
     <string name="widget_subtitle_data_aqi">Luftkvalitet</string>
     <string name="uv_index_11">Extremt</string>
@@ -108,7 +102,6 @@
     <string name="pollen_betula">Björk</string>
     <string name="uv_index_3_5">Måttligt</string>
     <string name="action_refresh">Uppdatera</string>
-    <string name="unit_fahrenheit">°F</string>
     <string name="notification_channel_forecast">Prognos</string>
     <string name="temperature_feels_like">Känns som</string>
     <string name="temperature_feels_like_with_unit">Känns som %s</string>
@@ -167,7 +160,6 @@
     <string name="widget_custom_subtitle_keyword_cuv_description">Nuvarande UV</string>
     <string name="widget_custom_subtitle_keyword_cv_description">Nuvarande sikt</string>
     <string name="alerts">Varningar</string>
-    <string name="unit_celsius">°C</string>
     <string name="action_next">Nästa</string>
     <string name="widget_custom_subtitle_keyword_cwd_description">Nuvarande vind</string>
     <string name="wind_direction_NW_short">NV</string>

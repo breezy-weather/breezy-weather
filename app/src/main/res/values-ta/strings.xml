@@ -238,10 +238,6 @@
     <string name="settings_follow_system">அமைப்பைப் பின்தொடரவும்</string>
     <string name="settings_color_day_night">பகல் / இரவு</string>
     <string name="settings_invalid_syntax">தவறான தொடரியல்</string>
-    <string name="unit_celsius">. C.</string>
-    <string name="unit_fahrenheit">° f</string>
-    <string name="unit_fahrenheit_short">°</string>
-    <string name="unit_kelvin">கே</string>
     <string name="notification_precipitation_starting_desc">%s இல் தொடங்கும் என்று எதிர்பார்க்கப்படுகிறது</string>
     <string name="common_weather_text_cloudy">மேகமூட்டமான</string>
     <string name="common_weather_text_rain_snow_mixed_showers_light">லேசான மழை மற்றும் பனி கலந்த மழை</string>
@@ -438,7 +434,6 @@
     <string name="settings_color_day_always">எப்போதும் நாள்</string>
     <string name="settings_color_night_always">எப்போதும் இரவு</string>
     <string name="settings_color_light">ஒளி</string>
-    <string name="unit_kelvin_short">கே</string>
     <string name="notification_channel_alerts">விழிப்பூட்டல்கள்</string>
     <string name="notification_channel_forecast">முன்னறிவிப்பு</string>
     <string name="notification_updating_weather_data">வானிலை தரவைப் புதுப்பித்தல் (%1$d/%2$d)</string>
@@ -477,9 +472,7 @@
     <string name="settings_modules_section_notification_widget">அறிவிப்பு விட்செட்</string>
     <string name="settings_modules_notification_style_title">சூல் தண்டு</string>
     <string name="settings_modules_broadcast_send_data_summary_empty">இணக்கமான தொகுப்புகள் எதுவும் கிடைக்கவில்லை</string>
-    <string name="unit_celsius_short">°</string>
     <string name="notification_refreshed_at">புத்துணர்ச்சி பொழுது</string>
-    <string name="unit_ppcm_voice">ஒரு கன மீட்டருக்கு</string>
     <string name="notification_channel_widget">விட்செட்</string>
     <string name="notification_channel_background_services">பின்னணி சேவைகள்</string>
     <string name="notification_running_in_background">புதுப்பிக்க பின்னணியில் இயங்குகிறது</string>
@@ -594,7 +587,6 @@
     <string name="settings_debug_dump_crash_logs_saved">செயலிழப்பு பதிவுகள் சேமிக்கப்பட்டன</string>
     <string name="settings_debug_dump_crash_logs_tap_to_open">திறக்க தட்டவும்</string>
     <string name="settings_items_drag_to_sort">பட்டியல் உருப்படிகளை வரிசைப்படுத்த தட்டவும்</string>
-    <string name="unit_ppcm">/m³</string>
     <string name="common_weather_text_rain_snow_mixed_light">லேசான மழை மற்றும் பனி கலக்கப்படுகிறது</string>
     <string name="metno_weather_text_andthunder">%s மற்றும் இடி</string>
     <string name="common_weather_text_tornado">ஊசிப்புயல்</string>

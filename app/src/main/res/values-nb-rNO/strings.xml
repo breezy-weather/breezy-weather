@@ -115,7 +115,6 @@
     <string name="settings_color_light">Lyst</string>
     <string name="settings_notifications_forecast_tomorrow_title">Varsling for morgendagens værmelding</string>
     <string name="settings_notifications_section_forecast">Værvarsel</string>
-    <string name="unit_celsius">°C</string>
     <string name="notification_precipitation_starting_desc">Forventet å starte %s</string>
     <string name="settings_follow_system">Følg systemet</string>
     <string name="common_weather_text_rain_snow_mixed_light">Lett sludd</string>
@@ -172,8 +171,6 @@
     <string name="notification_precipitation_continuing_desc">Forventet å fortsette til minst %s</string>
     <string name="notification_precipitation_continuing">Nedbør</string>
     <string name="notification_precipitation_starting">Nedbør snart</string>
-    <string name="unit_ppcm_voice">Per kubikkmeter</string>
-    <string name="unit_ppcm">/m³</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">Rimtåke</string>
     <string name="common_weather_text_snow_grains">Snøkorn</string>
     <string name="settings_background_updates_worker_info_summary">Sist kjørt: %s</string>
@@ -190,10 +187,6 @@
     <string name="settings_disabled">Deaktivert</string>
     <string name="settings_item_delete">Slett objektet</string>
     <string name="settings_debug_dump_crash_logs_tap_to_open">Trykk for å åpne</string>
-    <string name="unit_kelvin">K</string>
-    <string name="unit_fahrenheit">°F</string>
-    <string name="unit_fahrenheit_short">°</string>
-    <string name="unit_celsius_short">°</string>
     <string name="settings_enabled">Aktivert</string>
     <string name="settings_background_updates_dont_kill_my_app_summary">Noen produsenter har ekstra apprestriksjoner som avslutter bakgrunnstjenester. Du kan finne mer informasjon om dette på nettsiden «Don’t kill my app!».</string>
     <string name="settings_background_updates_dont_kill_my_app_title">Produsentspesifikke instruksjoner</string>
@@ -208,7 +201,6 @@
     <string name="settings_color_night_always">Alltid natt</string>
     <string name="settings_color_day_always">Alltid dag</string>
     <string name="settings_debug_dump_crash_logs_saved">Krasjlogger lagret</string>
-    <string name="unit_kelvin_short">K</string>
     <string name="settings_appearance_language_title">Språk</string>
     <string name="settings_units_precipitation">Nedbørsenhet</string>
     <string name="settings_main_background_animation_title">Bakgrunnsanimasjon</string>

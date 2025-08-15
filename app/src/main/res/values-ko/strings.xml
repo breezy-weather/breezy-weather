@@ -256,11 +256,9 @@
     <string name="settings_main_cards_other_element_animations_switch">기타 항목 애니메이션</string>
     <string name="settings_notifications_summary">날씨 경보, 강수, 예보</string>
     <string name="settings_notifications_forecast_today_title">오늘 예보 알림</string>
-    <string name="unit_ppcm">/m³</string>
     <string name="settings_item_delete">이 항목 삭제</string>
     <string name="action_location_list">위치 목록</string>
     <string name="widget_subtitle_data_aqi">대기질</string>
-    <string name="unit_celsius_short">°</string>
     <string name="uv_index_0_2">낮음</string>
     <string name="uv_alert_level">경보</string>
     <string name="alerts_to_follow">날씨 경보가 있습니다. 여기를 눌러 확인하세요.</string>
@@ -307,11 +305,6 @@
     <string name="widget_style_temperature">온도</string>
     <string name="widget_week_style_5_days">5일</string>
     <string name="widget_week_style_3_days">3일</string>
-    <string name="unit_celsius">°C</string>
-    <string name="unit_kelvin_short">K</string>
-    <string name="unit_fahrenheit">°F</string>
-    <string name="unit_fahrenheit_short">°</string>
-    <string name="unit_kelvin">K</string>
     <string name="notification_channel_alerts">경보</string>
     <string name="notification_style_cities">도시</string>
     <string name="about_matrix">Matrix 서버</string>

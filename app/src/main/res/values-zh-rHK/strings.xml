@@ -490,14 +490,6 @@
     <string name="settings_color_light">淺色</string>
     <string name="settings_color_dark">深色</string>
     <string name="settings_invalid_syntax">無效的語法</string>
-    <string name="unit_celsius">°C</string>
-    <string name="unit_celsius_short">°</string>
-    <string name="unit_fahrenheit">°F</string>
-    <string name="unit_kelvin">K</string>
-    <string name="unit_fahrenheit_short">°</string>
-    <string name="unit_kelvin_short">K</string>
-    <string name="unit_ppcm">/m³</string>
-    <string name="unit_ppcm_voice">每立方米</string>
     <string name="notification_refreshed_at">更新於</string>
     <string name="notification_channel_alerts">警告</string>
     <string name="notification_channel_forecast">預報</string>

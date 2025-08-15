@@ -254,7 +254,6 @@
     <string name="weather_kind_thunder">Hřmění</string>
     <string name="weather_kind_thunderstorm">Bouřka</string>
     <string name="weather_kind_wind">Vítr</string>
-    <string name="unit_ppcm_voice">Na metr krychlový</string>
     <string name="settings_notifications">Oznámení</string>
     <string name="location_message_reverse_geocoding_failed">Zdroji počasí se nepodařilo najít odpovídající místo</string>
     <string name="settings_background_updates_worker_info_title">Informace o procesech</string>
@@ -303,7 +302,6 @@
     <string name="settings_background_updates_battery_optimization_disabled">Optimalizace baterie je již vypnutá.</string>
     <string name="settings_notifications_forecast_tomorrow_title">Oznámení pro předpověď na další den</string>
     <string name="settings_debug_dump_crash_logs_title">Sdílet protokoly o pádech</string>
-    <string name="unit_kelvin">K</string>
     <string name="notification_update_error">%d aktualizace se nezdařila/y</string>
     <string name="about_matrix">Matrix místnost</string>
     <string name="common_weather_text_overcast">Zataženo</string>
@@ -324,7 +322,6 @@
     <string name="location_message_permission_missing">Chybí oprávnění k přístupu k poloze</string>
     <string name="widget_style_nano">Nano</string>
     <string name="widget_style_pixel">Pixel</string>
-    <string name="unit_celsius_short">°</string>
     <string name="notification_channel_alerts">Výstrahy</string>
     <string name="common_weather_text_clear_sky">Jasno</string>
     <string name="air_quality_o3_full">Přízemní (troposférický) ozon (%s)</string>
@@ -338,15 +335,12 @@
     <string name="settings_main_background_animation_enabled">Povoleno</string>
     <string name="settings_main_section_animations">Animace</string>
     <string name="settings_modules_live_wallpaper_error">Nelze spustit nástroj pro výběr tapet. Tapetu %s můžete stále povolit výběrem možnosti „Živé tapety“ ve výběru tapet na domovské obrazovce.</string>
-    <string name="unit_celsius">°C</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Bouřka slabá nebo středně silná</string>
     <string name="air_quality_level_6">Nebezpečná</string>
-    <string name="unit_fahrenheit_short">°</string>
     <string name="about_contribution_WangDaYeeeeee">Vývojář původního projektu Geometric Weather</string>
     <string name="air_quality_level_2">Dostatečná</string>
     <string name="action_add_new_location">Přidat novou polohu</string>
     <string name="notification_channel_widget">Widget</string>
-    <string name="unit_ppcm">/m³</string>
     <string name="about_source_code">Zdrojový kód</string>
     <string name="air_quality_level_6_description">Jakékoli vystavení ovzduší, byť jen na několik minut, může mít pro každého vážné zdravotní následky. Vyhněte se venkovním aktivitám.</string>
     <string name="action_location_list">Seznam poloh</string>
@@ -369,8 +363,6 @@
     <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>
     <string name="widget_clock_font_sans_serif_black">Sans Serif Black</string>
     <string name="widget_clock_font_analog">Analogový</string>
-    <string name="unit_fahrenheit">°F</string>
-    <string name="unit_kelvin_short">K</string>
     <string name="weather_source_accu_preference_days_1">1 den</string>
     <string name="weather_source_accu_preference_days_5">5 dní</string>
     <string name="weather_source_accu_preference_days_10">10 dní</string>

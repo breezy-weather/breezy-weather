@@ -308,10 +308,8 @@
     <string name="action_undo">元に戻す</string>
     <string name="notification_channel_widget">ウィジェット</string>
     <string name="settings_unavailable_no_background_updates">利用できません。最初にバックグラウンド更新を有効にしてください</string>
-    <string name="unit_ppcm">/m³</string>
     <string name="notification_channel_alerts">警報</string>
     <string name="notification_channel_crash_logs">クラッシュログ</string>
-    <string name="unit_ppcm_voice">毎立方メートル</string>
     <string name="air_quality_o3_full">地表オゾン（%s）</string>
     <string name="air_quality_no2_full">二酸化窒素（%s）</string>
     <string name="pollen_alnus">ハンノキ</string>
@@ -349,7 +347,6 @@
     <string name="settings_debug_summary">クラッシュログ</string>
     <string name="settings_debug_dump_crash_logs_title">クラッシュログを共有</string>
     <string name="settings_item_delete">この項目を削除</string>
-    <string name="unit_kelvin">K</string>
     <string name="weather_source_accu_preference_hours_72">72時間</string>
     <string name="weather_source_accu_preference_hours_120">120時間</string>
     <string name="weather_source_accu_preference_hours_240">240時間</string>
@@ -484,11 +481,6 @@
     <string name="settings_location_access_switch_title">位置情報へのアクセス</string>
     <string name="settings_location_access_background_summaryOff">現在地の気象データをバックグラウンドで更新するには、「常に許可」を有効にしてください。</string>
     <string name="settings_debug">デバッグ</string>
-    <string name="unit_celsius">°C</string>
-    <string name="unit_celsius_short">°</string>
-    <string name="unit_fahrenheit">°F</string>
-    <string name="unit_fahrenheit_short">°</string>
-    <string name="unit_kelvin_short">K</string>
     <string name="notification_channel_background_services">バックグラウンドサービス</string>
     <string name="notification_precipitation_continuing">雨が降っています</string>
     <string name="common_weather_text_rain_snow_mixed_light">弱いみぞれ</string>

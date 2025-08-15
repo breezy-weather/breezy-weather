@@ -201,7 +201,6 @@
     <string name="setting_weather_source_accu_hours">Uren</string>
     <string name="weather_source_accu_preference_hours_240">240 uur</string>
     <string name="widget_subtitle_data_wind">Wind</string>
-    <string name="unit_celsius">°C</string>
     <string name="notification_update_error">%d update(s) mislukt</string>
     <string name="about_contact">Contact</string>
     <string name="about_matrix">Matrixkamer</string>
@@ -359,13 +358,6 @@
     <string name="settings_color_day_night">Dag / Nacht</string>
     <string name="settings_color_day_always">Altijd dag</string>
     <string name="settings_color_night_always">Altijd nacht</string>
-    <string name="unit_celsius_short">°</string>
-    <string name="unit_fahrenheit">°F</string>
-    <string name="unit_kelvin">K</string>
-    <string name="unit_kelvin_short">K</string>
-    <string name="unit_fahrenheit_short">°</string>
-    <string name="unit_ppcm">/m³</string>
-    <string name="unit_ppcm_voice">Per kubieke meter</string>
     <string name="notification_updating_weather_data">Weergegevens bijwerken (%1$d/%2$d)</string>
     <string name="notification_style_cities">Steden</string>
     <string name="notification_style_native">Natief</string>

@@ -261,7 +261,6 @@
     <string name="wind_direction_NW_short">BL</string>
     <string name="air_quality_level_5">Sangat tidak sehat</string>
     <string name="wind_direction_SW_short">BD</string>
-    <string name="unit_celsius_short">°</string>
     <string name="settings_source_api_key">Kunci API</string>
     <string name="dialog_permissions_notification_title">Tetap terinformasi</string>
     <string name="pollen_artemisia">Artemisia</string>
@@ -283,18 +282,14 @@
     <string name="notification_style_cities">Kota</string>
     <string name="settings_section_general">Umum</string>
     <string name="common_weather_text_rain_heavy">Hujan lebat</string>
-    <string name="unit_kelvin_short">K</string>
     <string name="settings_color_day_always">Selalu pagi</string>
     <string name="settings_color_night_always">Selalu malam</string>
     <string name="settings_icon_packs_title">Paket ikon</string>
     <string name="about_contact">Kontak</string>
-    <string name="unit_kelvin">K</string>
     <string name="widget_style_pixel">Piksel</string>
     <string name="common_weather_text_drizzle">Gerimis</string>
     <string name="action_share">Bagikan</string>
     <string name="weather_kind_hail">Hujan es</string>
-    <string name="unit_ppcm">/m³</string>
-    <string name="unit_fahrenheit_short">°</string>
     <string name="about_contribution_designer">Perancang logo</string>
     <string name="common_weather_text_snow_heavy">Salju lebat</string>
     <string name="widget_week_style_3_days">3 hari</string>
@@ -314,7 +309,6 @@
     <string name="weather_source_accu_preference_hours_72">72 jam</string>
     <string name="settings_weather_source_portal">Portal</string>
     <string name="settings_color_grey">Abu-abu</string>
-    <string name="unit_ppcm_voice">Meter per kubik</string>
     <string name="common_weather_text_snow_grains">Butir salju</string>
     <string name="widget_subtitle_data_aqi">Kualitas udara</string>
     <string name="settings_location">Lokasi</string>
@@ -333,7 +327,6 @@
     <string name="settings_background_updates">Pembaruan latar belakang</string>
     <string name="pollen_betula">Burja</string>
     <string name="widget_subtitle_data_feels_like">Suhu yang dirasakan</string>
-    <string name="unit_fahrenheit">°F</string>
     <string name="settings_notifications">Notifikasi</string>
     <string name="widget_style_rectangle">Persegi panjang</string>
     <string name="settings_color_dark">Gelap</string>
@@ -383,7 +376,6 @@
     <string name="action_delete">Hapus</string>
     <string name="action_save">Simpan</string>
     <string name="null_data_text">N/A</string>
-    <string name="unit_celsius">°C</string>
     <string name="widget_style_tile">Ubin</string>
     <string name="common_weather_text_drizzle_heavy">Gerimis lebat</string>
     <string name="common_weather_text_mostly_clear">Sebagian besar cerah</string>

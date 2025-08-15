@@ -276,8 +276,6 @@
     <string name="settings_color_light">Argia</string>
     <string name="settings_color_grey">Grisa</string>
     <string name="settings_color_dark">Iluna</string>
-    <string name="unit_ppcm">/m³</string>
-    <string name="unit_ppcm_voice">Metro kubikoko</string>
     <string name="notification_channel_alerts">Alertak</string>
     <string name="notification_channel_background_services">Bigarren planoko zerbitzuak</string>
     <string name="notification_running_in_background">Bigarren planoan korrika eguneratzen jarraitzeko</string>
@@ -351,12 +349,6 @@
     <string name="settings_modules_live_wallpaper_title">Horma-paper animatua</string>
     <string name="settings_main_cards_title">Txartelak</string>
     <string name="settings_debug">Arazketa</string>
-    <string name="unit_celsius">°C</string>
-    <string name="unit_fahrenheit_short">°</string>
-    <string name="unit_kelvin_short">K</string>
-    <string name="unit_celsius_short">°</string>
-    <string name="unit_kelvin">K</string>
-    <string name="unit_fahrenheit">°F</string>
     <string name="settings_location_access_precise_summaryOn">Gaitua. Gailuan erabiltzen duzun sare-operadorea gehienetan erabiliko da, baina GPSa alternatiba gisa ere erabil daiteke.</string>
     <string name="settings_weather_sources_summary">Datu meteorologikoen iturrien ezarpenak</string>
     <string name="settings_source_default_value">Lehenetsia (aldatu gabe)</string>

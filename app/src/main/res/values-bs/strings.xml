@@ -277,12 +277,6 @@
     <string name="weather_kind_wind">Vjetar</string>
     <string name="settings_unavailable_no_background_updates">Onemogućeno, najprije omogućite pozadinska ažuriranja</string>
     <string name="settings_color_dark">Tamna</string>
-    <string name="unit_celsius">°C</string>
-    <string name="unit_fahrenheit">°F</string>
-    <string name="unit_celsius_short">°</string>
-    <string name="unit_fahrenheit_short">°</string>
-    <string name="unit_kelvin">K</string>
-    <string name="unit_kelvin_short">K</string>
     <string name="notification_refreshed_at">Osvježeno u</string>
     <string name="notification_channel_alerts">Upozorenja</string>
     <string name="notification_channel_forecast">Prognoza</string>
@@ -460,8 +454,6 @@
     <string name="settings_color_day_always">Uvijek dan</string>
     <string name="settings_color_night_always">Uvijek noć</string>
     <string name="settings_color_light">Svijetla</string>
-    <string name="unit_ppcm">/m³</string>
-    <string name="unit_ppcm_voice">Po metru kubnom</string>
     <string name="notification_running_in_background">Radi u pozadini zbog ažuriranja</string>
     <string name="notification_precipitation_starting">Početak padavina</string>
     <string name="notification_precipitation_starting_desc">Početak se očekuje u %s</string>

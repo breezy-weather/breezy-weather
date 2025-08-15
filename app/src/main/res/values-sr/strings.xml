@@ -188,7 +188,6 @@
     <string name="settings_main_cards_fade_in_switch">Изблеђивање картица</string>
     <string name="settings_main_cards_other_element_animations_switch">Остале анимације елемената</string>
     <string name="notification_channel_alerts">Упозорења</string>
-    <string name="unit_celsius_short">°</string>
     <string name="settings_section_general">Опште</string>
     <string name="weather_source_accu_preference_hours_120">120 сати</string>
     <string name="location_results_by">Резултати за локације од %s</string>
@@ -306,9 +305,6 @@
     <string name="settings_debug_dump_crash_logs_title">Дели евиденције отказивања</string>
     <string name="settings_color_day_always">Увек дан</string>
     <string name="settings_color_night_always">Увек ноћ</string>
-    <string name="unit_kelvin_short">K</string>
-    <string name="unit_ppcm">/m³</string>
-    <string name="unit_ppcm_voice">По кубном метру</string>
     <string name="about_contribution_designer">Дизајнер логотипа</string>
     <string name="common_weather_text_rain_showers_moderate">Умерени пљускови</string>
     <string name="common_weather_text_rain_showers_heavy">Јаки пљускови</string>
@@ -358,12 +354,8 @@
     <string name="settings_main_gravity_sensor_switch">Гравитациони сензор</string>
     <string name="settings_notifications">Обавештења</string>
     <string name="about_source_code">Изворни кôд</string>
-    <string name="unit_fahrenheit_short">°</string>
-    <string name="unit_kelvin">K</string>
     <string name="about_contributors">Сарадници</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">Таложење магле</string>
-    <string name="unit_celsius">°C</string>
-    <string name="unit_fahrenheit">°F</string>
     <string name="action_refresh">Освежи</string>
     <string name="action_restart">Рестартуј</string>
     <string name="message_parsing_error_content">Уверите се да сте ажурирали апликацију на најновију верзију. Сервер може бити привремено недоступан, у том случају, покушајте поново касније. Ако се проблем настави, извуците евиденцију о отказивању апликације из подешавања за отклањање грешака и пријавите проблем на GitHub-у.</string>

@@ -415,13 +415,6 @@
     <string name="settings_color_light">Solas</string>
     <string name="settings_color_grey">Liath</string>
     <string name="settings_color_dark">Dorcha</string>
-    <string name="unit_celsius">°C</string>
-    <string name="unit_celsius_short">°</string>
-    <string name="unit_fahrenheit">°F</string>
-    <string name="unit_fahrenheit_short">°</string>
-    <string name="unit_kelvin">K</string>
-    <string name="unit_kelvin_short">K</string>
-    <string name="unit_ppcm_voice">In aghaidh an mhéadair chiúbaigh</string>
     <string name="notification_refreshed_at">Athnuachan ag</string>
     <string name="notification_channel_alerts">Foláirimh</string>
     <string name="notification_channel_forecast">Réamhaisnéis</string>
@@ -582,7 +575,6 @@
     <string name="settings_unavailable_no_animations">Níl sé ar fáil, cumasaigh beochan i suíomhanna Android ar dtús</string>
     <string name="settings_automatic">Uathoibríoch</string>
     <string name="settings_invalid_syntax">Comhréir neamhbhailí</string>
-    <string name="unit_ppcm">/m³</string>
     <string name="notification_channel_crash_logs">Logaí tuairteála</string>
     <string name="about_translators">Aistritheoirí</string>
     <string name="about_contribution_WangDaYeeeeee">Forbróir an tionscadail bunaidh Aimsir Gheoiméadrach</string>

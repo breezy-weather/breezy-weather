@@ -32,9 +32,6 @@
     <string name="action_done">Immed</string>
     <string name="action_continue">Kemmel</string>
     <string name="action_close">Mdel</string>
-    <string name="unit_celsius_short">°</string>
-    <string name="unit_fahrenheit_short">°</string>
-    <string name="unit_kelvin_short">K</string>
     <string name="widget_week">S dduṛt</string>
     <string name="widget_day_week">Yal ass + yal smana</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">Taẓɣelt tamirant (°)</string>
@@ -53,8 +50,6 @@
     <string name="settings_none">Ula yiwen</string>
     <string name="settings_color_light">Aceɛlal</string>
     <string name="settings_color_dark">Aberkan</string>
-    <string name="unit_celsius">°C</string>
-    <string name="unit_fahrenheit">°F</string>
     <string name="setting_weather_source_accu_hours">Isragen</string>
     <string name="weather_source_accu_preference_hours_1">1 n wesrag</string>
     <string name="weather_source_accu_preference_hours_12">12 n yisragen</string>
@@ -77,7 +72,6 @@
     <string name="settings_main_section_options">Iɣewwaṛen</string>
     <string name="settings_main_background_animation_enabled">Urmid</string>
     <string name="settings_notifications">Ilɣa</string>
-    <string name="unit_kelvin">K</string>
     <string name="precipitation_rain">Lehwa</string>
     <string name="precipitation_snow">Adfel</string>
     <string name="precipitation_ice">Agris</string>

@@ -248,7 +248,6 @@
     <string name="weather_kind_thunder">Tuono</string>
     <string name="weather_kind_thunderstorm">Temporale</string>
     <string name="weather_kind_wind">Vento</string>
-    <string name="unit_ppcm_voice">Per metro cubo</string>
     <string name="weather_api_limit_reached_content">Per risolvere il problema, aggiungi la tua chiave API.</string>
     <string name="wind_direction_NE_short">NE</string>
     <string name="wind_direction_S_short">S</string>
@@ -367,13 +366,6 @@
     <string name="notification_channel_background_services">Servizi in background</string>
     <string name="about_matrix">Stanza Matrix</string>
     <string name="common_weather_text_overcast">Coperto</string>
-    <string name="unit_celsius">°C</string>
-    <string name="unit_celsius_short">°</string>
-    <string name="unit_fahrenheit">°F</string>
-    <string name="unit_fahrenheit_short">°</string>
-    <string name="unit_kelvin">K</string>
-    <string name="unit_kelvin_short">K</string>
-    <string name="unit_ppcm">/m³</string>
     <string name="notification_channel_alerts">Allerte</string>
     <string name="about_contribution_WangDaYeeeeee">Sviluppatore del progetto originario Geometric Weather</string>
     <string name="common_weather_text_clear_sky">Cielo sereno</string>

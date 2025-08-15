@@ -875,14 +875,6 @@
     <string name="settings_color_dark">Dark</string>
     <string name="settings_invalid_syntax">Invalid syntax</string>
     <!-- Units -->
-    <string name="unit_celsius">°C</string>
-    <string name="unit_celsius_short">°</string>
-    <string name="unit_fahrenheit">°F</string>
-    <string name="unit_fahrenheit_short">°</string>
-    <string name="unit_kelvin">K</string>
-    <string name="unit_kelvin_short">K</string>
-    <string name="unit_ppcm">/m³</string>
-    <string name="unit_ppcm_voice">Per cubic meter</string>
     <!-- Notifications -->
     <string name="notification_refreshed_at">Refreshed at</string>
     <string name="notification_channel_alerts">Alerts</string>

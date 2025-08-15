@@ -758,14 +758,6 @@
     <string name="action_open_in_other_app_no_app">Aucune appli de carte compatible trouvée</string>
     <string name="widget_material_you_forecast">Material You – Prévisions</string>
     <string name="widget_material_you_current">Material You – En ce moment</string>
-    <string name="unit_celsius">°C</string>
-    <string name="unit_celsius_short">°</string>
-    <string name="unit_fahrenheit">°F</string>
-    <string name="unit_fahrenheit_short">°</string>
-    <string name="unit_kelvin">K</string>
-    <string name="unit_kelvin_short">K</string>
-    <string name="unit_ppcm">/m³</string>
-    <string name="unit_ppcm_voice">Par mètre cube</string>
     <string name="notification_channel_alerts">Vigilances</string>
     <string name="about_matrix">Salon Matrix</string>
     <!-- Content provider -->

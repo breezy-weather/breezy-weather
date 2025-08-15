@@ -168,7 +168,6 @@
     <string name="common_weather_text_rain">Regen</string>
     <string name="weather_kind_haze">Dunst</string>
     <string name="precipitation_between_time">Niederschlag von %1$s bis %2$s</string>
-    <string name="unit_ppcm_voice">Pro Kubikmeter</string>
     <string name="notification_channel_alerts">Warnungen</string>
     <string name="common_weather_text_clear_sky">Klarer Himmel</string>
     <string name="common_weather_text_mostly_clear">Überwiegend klar</string>
@@ -228,7 +227,6 @@
     <string name="widget_subtitle_data_feels_like">Gefühlte Temperatur</string>
     <string name="ephemeris_sunset_at">Sonnenuntergang um %s</string>
     <string name="widget_custom_subtitle_keyword_cuv_description">Aktueller UV-Index</string>
-    <string name="unit_ppcm">/m³</string>
     <string name="air_quality_level_4">Ungesund</string>
     <string name="widget_custom_subtitle_keyword_hd_description">Stündliche Beschreibung</string>
     <string name="widget_material_you_current">Material You – Aktuell</string>
@@ -277,12 +275,6 @@
     <string name="widget_clock_font_analog">Analog</string>
     <string name="settings_color_day_always">Immer Tag</string>
     <string name="settings_color_night_always">Immer Nacht</string>
-    <string name="unit_celsius">°C</string>
-    <string name="unit_celsius_short">°</string>
-    <string name="unit_fahrenheit">°F</string>
-    <string name="unit_fahrenheit_short">°</string>
-    <string name="unit_kelvin">K</string>
-    <string name="unit_kelvin_short">K</string>
     <string name="air_quality_level_5_description">Empfindliche Personengruppen werden unmittelbare gesundheitliche Auswirkungen spüren und sollten Aktivitäten im Freien vermeiden. Bei gesunden Menschen kommt es bei längerer Exposition wahrscheinlich zu Atembeschwerden und Hustenreiz. Wir empfehlen, nicht nach draußen zu gehen und Aktivitäten im Freien zu verschieben.</string>
     <string name="settings_source_default_value">Standard (unverändert)</string>
     <string name="about_matrix">Matrix-Raum</string>

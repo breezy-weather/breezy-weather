@@ -8,6 +8,4 @@
     <string name="widget_label_text_color">Text colour</string>
     <string name="widget_clock_font_analog">Analogue</string>
 
-    <string name="unit_ppcm_voice">Per cubic metre</string>
-
 </resources>

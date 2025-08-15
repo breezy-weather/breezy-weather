@@ -221,9 +221,6 @@
     <string name="settings_source_default_value">Domyślne (bez zmian)</string>
     <string name="settings_main">Główny ekran</string>
     <string name="settings_modules_monochrome_icons_title">Ikony monochromatyczne</string>
-    <string name="unit_celsius">°C</string>
-    <string name="unit_celsius_short">°</string>
-    <string name="unit_fahrenheit">°F</string>
     <string name="settings_main_section_animations">Animacje</string>
     <string name="settings_main_daily_trends_title">Trendy dzienne</string>
     <string name="settings_main_section_displayed_data">Wyświetlane dane</string>
@@ -238,10 +235,7 @@
     <string name="locations">Lokalizacje</string>
     <string name="widget_style_mini">Mały</string>
     <string name="widget_style_oreo">Oreo</string>
-    <string name="unit_fahrenheit_short">°</string>
-    <string name="unit_kelvin_short">K</string>
     <string name="common_weather_text_overcast">Zachmurzenie całkowite</string>
-    <string name="unit_kelvin">K</string>
     <string name="wind_direction_variable">Zmienny</string>
     <string name="wind_direction_NW_short">NW</string>
     <string name="uv_index_0_2">Niski</string>
@@ -258,7 +252,6 @@
     <string name="widget_custom_subtitle_keyword_al_description">Alerty</string>
     <string name="widget_custom_subtitle_keyword_als_description">Alerty (krótkie)</string>
     <string name="widget_clock_font_analog">Analogowy</string>
-    <string name="unit_ppcm">/m³</string>
     <string name="common_weather_text_clear_sky">Bezchmurnie</string>
     <string name="about_contributors">Współtwórcy</string>
     <string name="weather_source_accu_preference_days_5">5 dni</string>
@@ -444,7 +437,6 @@
     <string name="alerts_to_follow">Dotknij tutaj, aby zobaczyć nadchodzące alerty.</string>
     <string name="air_quality_o3_full">Ozon na poziomie gruntu (%s)</string>
     <string name="settings_modules_section_widgets_in_use">Widżety w użyciu</string>
-    <string name="unit_ppcm_voice">Na metr sześcienny</string>
     <string name="action_save">Zapisz</string>
     <string name="settings_weather_sources_per_location_summary">Dostosuj źródła danych pogodowych używanych dla tej lokalizacji</string>
     <string name="message_parsing_error_content">Upewnij się, że zaktualizowałeś do najnowszej wersji aplikacji. Serwer może być tymczasowo nie dostępny, w tym przypadku spróbuj ponownie później. Jeśli problem się utrwala, proszę o wygenerowanie dziennika crasha z ustawień debugowania i zgłoszenie problemu na GitHubie.</string>

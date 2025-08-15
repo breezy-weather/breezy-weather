@@ -362,7 +362,6 @@
     <string name="settings_modules_live_wallpaper_summary">Đặt hoạt ảnh thời tiết làm hình nền</string>
     <string name="settings_color_dark">Tối</string>
     <string name="common_weather_text_clear_sky">Trời trong</string>
-    <string name="unit_ppcm_voice">Trên mét khối</string>
     <string name="notification_channel_background_services">Dịch vụ chạy dưới nền</string>
     <string name="about_source_code">Mã nguồn</string>
     <string name="notification_channel_forecast">Dự báo</string>
@@ -410,17 +409,10 @@
     <string name="temperature_degree_day_cooling">Nhiệt độ nguội ban ngày</string>
     <string name="temperature_degree_day_heating">Nhiệt độ nóng ban ngày</string>
     <string name="location_service_native">API gốc</string>
-    <string name="unit_fahrenheit">°F</string>
-    <string name="unit_ppcm">/m³</string>
     <string name="null_data_text">N/A</string>
-    <string name="unit_kelvin_short">K</string>
-    <string name="unit_kelvin">K</string>
     <string name="settings_weather_source_portal">Cổng thông tin</string>
-    <string name="unit_celsius">°C</string>
-    <string name="unit_celsius_short">°</string>
     <string name="widget_clock_font_sans_serif">Không chân</string>
     <string name="pollen_alnus">Xích dương</string>
-    <string name="unit_fahrenheit_short">°</string>
     <string name="action_delete">Xoá</string>
     <string name="pollen_betula">Bạch dương</string>
     <string name="precipitation_nowcasting">Lượng mưa từng phút</string>

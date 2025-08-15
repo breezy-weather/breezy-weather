@@ -216,7 +216,6 @@
     <string name="weather_kind_thunder">Гром</string>
     <string name="weather_kind_thunderstorm">Штормовая гроза</string>
     <string name="weather_kind_wind">Ветер</string>
-    <string name="unit_ppcm">/м³</string>
     <string name="locations">Местоположения</string>
     <string name="air_quality_level_5">Очень вредно</string>
     <string name="uv_index_3_5">Умеренный</string>
@@ -311,7 +310,6 @@
     <string name="settings_modules_configure_widget_summary">Настроить этот виджет</string>
     <string name="settings_modules_section_notification_widget">Виджет в уведомлениях</string>
     <string name="settings_modules_notification_widget_title">Виджет в уведомлениях</string>
-    <string name="unit_kelvin">K</string>
     <string name="about_contribution_WangDaYeeeeee">Разработчик оригинального проекта Geometric Weather</string>
     <string name="common_weather_text_mostly_clear">В основном ясно</string>
     <string name="settings_modules_week_icon_mode_title">Иконки для отображения в недельных просмотрах</string>
@@ -323,7 +321,6 @@
     <string name="settings_item_delete">Удалить этот элемент</string>
     <string name="settings_items_drag_to_sort">Нажмите, чтобы перетащить элементы списка для сортировки</string>
     <string name="settings_icon_packs_weather_icon_grey">Серая иконка</string>
-    <string name="unit_celsius_short">°</string>
     <string name="notification_channel_background_services">Фоновые сервисы</string>
     <string name="location_results_by">Результаты местоположения по %s</string>
     <string name="location_swipe_to_delete">Вы можете смахнуть влево, чтобы удалить этот элемент</string>
@@ -336,7 +333,6 @@
     <string name="widget_style_oreo">Oreo</string>
     <string name="widget_clock_font_sans_serif_black">Sans Serif Black</string>
     <string name="widget_clock_font_analog">Analog</string>
-    <string name="unit_fahrenheit">°F</string>
     <string name="common_weather_text_overcast">Пасмурно</string>
     <string name="common_weather_text_clear_sky">Ясно</string>
     <string name="alerts_to_follow">Надвигающиеся предупреждения – нажмите здесь для просмотра.</string>
@@ -353,7 +349,6 @@
     <string name="settings_notifications_forecast_time_today_title">Время уведомления для дневного прогноза</string>
     <string name="settings_modules_summary">Виджеты, виджет уведомлений, обои, обмен данными с другими приложениями</string>
     <string name="settings_notifications_forecast_time_tomorrow_title">Время уведомления для прогноза на следующий день</string>
-    <string name="unit_celsius">°C</string>
     <string name="about_contributors">Участники</string>
     <string name="common_weather_text_snow_grains">Снежная крупа</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Средняя гроза</string>
@@ -377,8 +372,6 @@
     <string name="settings_modules_notification_style_title">Стиль</string>
     <string name="settings_debug_summary">Журналы ошибок</string>
     <string name="settings_debug_dump_crash_logs_title">Поделиться журналами ошибок</string>
-    <string name="unit_fahrenheit_short">°</string>
-    <string name="unit_ppcm_voice">На кубический метр</string>
     <string name="notification_channel_widget">Виджет</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Гроза с сильным градом</string>
     <string name="air_quality_index">Индекс качества воздуха</string>
@@ -394,7 +387,6 @@
     <string name="settings_location_access_switch_summaryOff">Пожалуйста, разрешите, если вы хотите иметь возможность добавить ваше текущее местоположение в качестве местоположения.</string>
     <string name="settings_location_access_precise_summaryOff">Включите «Использовать точное местоположение», если у вас возникли проблемы с определением местоположения.</string>
     <string name="settings_modules_notification_feels_like_switch">Использовать темперутуру “по ощущениям”</string>
-    <string name="unit_kelvin_short">K</string>
     <string name="about_matrix">Комната Matrix</string>
     <string name="about_source_code">Исходный код</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Гроза со слабым градом</string>

@@ -161,12 +161,6 @@
     <string name="weather_kind_thunder">رعد</string>
     <string name="weather_kind_thunderstorm">عاصفة رعدية</string>
     <string name="weather_kind_wind">رياح</string>
-    <string name="unit_celsius">°م</string>
-    <string name="unit_celsius_short">°</string>
-    <string name="unit_fahrenheit">°ف</string>
-    <string name="unit_fahrenheit_short">°</string>
-    <string name="unit_kelvin">K</string>
-    <string name="unit_kelvin_short">ك</string>
     <string name="settings_main_cards_title">البطاقات</string>
     <string name="widget_custom_subtitle_keyword_d_description">التاريخ</string>
     <string name="widget_custom_subtitle_keyword_ct_description">درجة الحرارة الحالية (°C°/F)</string>
@@ -380,8 +374,6 @@
     <string name="settings_debug_summary">سجلات الأعطال</string>
     <string name="settings_debug_dump_crash_logs_title">مشاركة سجلات الأعطال</string>
     <string name="settings_debug_dump_crash_logs_summary">يحفظ سجلات الأخطاء في ملف لمشاركتها مع المطورين</string>
-    <string name="unit_ppcm">\\م³</string>
-    <string name="unit_ppcm_voice">لكل متر مكعب</string>
     <string name="notification_channel_alerts">تنبيهات</string>
     <string name="notification_channel_background_services">خدمات الخلفية</string>
     <string name="about_contribution_WangDaYeeeeee">مطور المشروع الأصلي الطقس الهندسي</string>

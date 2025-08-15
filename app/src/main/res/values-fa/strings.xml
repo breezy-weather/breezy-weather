@@ -399,7 +399,6 @@
     <string name="settings_debug_dump_crash_logs_saved">گزارش خرابی‌ نگه‌داری شد</string>
     <string name="settings_items_drag_to_sort">برای ترتیب دهی به گزینه های‌‌ فهرست ضربه بزنید و بکشید</string>
     <string name="settings_item_delete">پاک کردن گزینه</string>
-    <string name="unit_celsius">°C</string>
     <string name="about_source_code">کد منبع</string>
     <string name="about_contribution_designer">طراح نماد</string>
     <string name="weather_kind_thunder">رعد</string>
@@ -411,7 +410,6 @@
     <string name="settings_automatic">خودکار</string>
     <string name="settings_none">هیچکدام</string>
     <string name="settings_color_day_night">روز / شب</string>
-    <string name="unit_celsius_short">°</string>
     <string name="notification_style_native">بومی</string>
     <string name="about_contact">ارتباط</string>
     <string name="about_open_link_message">بازکردن %s؟</string>
@@ -433,10 +431,6 @@
     <string name="about_translators">مترجمان</string>
     <string name="common_weather_text_mostly_clear">بیشتر صاف</string>
     <string name="common_weather_text_cloudy">ابری</string>
-    <string name="unit_fahrenheit">°F</string>
-    <string name="unit_fahrenheit_short">°</string>
-    <string name="unit_kelvin">K</string>
-    <string name="unit_kelvin_short">K</string>
     <string name="settings_main_background_animation_title">پویانمایی پس‌زمینه</string>
     <string name="settings_notifications_alerts_title">آگاه‌سازی هشدار های هواشناسی مهم</string>
     <string name="settings_notifications_precipitations_title">آگاه‌ساز های بارش</string>
@@ -495,8 +489,6 @@
     <string name="notification_precipitation_stopping_desc">انتظار میرود در %s به پایان برسد</string>
     <string name="common_weather_text_snow_grains">دانه های برف</string>
     <string name="notification_update_error">%d به‌روزرسانی ناموفق</string>
-    <string name="unit_ppcm">/m³</string>
-    <string name="unit_ppcm_voice">بر متر مکعب</string>
     <string name="notification_updating_weather_data">به‌روزرسانی داده های هواشناسی (%1$d/%2$d)</string>
     <string name="about_contribution_WangDaYeeeeee">توسعه دهنده پروژه اصلی Geometric Weather</string>
     <string name="common_weather_text_rain_freezing_light">تگرگ سبک</string>

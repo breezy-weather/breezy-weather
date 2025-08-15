@@ -420,10 +420,6 @@
     <string name="settings_debug_summary">Журнал збоїв</string>
     <string name="settings_item_delete">Видалити цей елемент</string>
     <string name="settings_color_light">Світла</string>
-    <string name="unit_kelvin">К</string>
-    <string name="unit_kelvin_short">К</string>
-    <string name="unit_ppcm">/м³</string>
-    <string name="unit_ppcm_voice">На кубічний метр</string>
     <string name="notification_running_in_background">Запущено у фоні для постійного оновлення</string>
     <string name="about_contributors">Учасники</string>
     <string name="about_translators">Перекладачі</string>
@@ -435,8 +431,6 @@
     <string name="settings_debug_dump_crash_logs_summary">Зберегти журнал зі збоями у файл для надсилання розробникам</string>
     <string name="settings_color_grey">Сіра</string>
     <string name="settings_color_dark">Темна</string>
-    <string name="unit_celsius">°C</string>
-    <string name="unit_fahrenheit_short">°</string>
     <string name="notification_refreshed_at">Оновлено о</string>
     <string name="notification_channel_alerts">Попередження</string>
     <string name="notification_channel_widget">Віджет</string>
@@ -459,8 +453,6 @@
     <string name="common_weather_text_drizzle_heavy">Сильна мряка</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Гроза з невеликим градом</string>
     <string name="common_weather_text_clear_sky">Ясне небо</string>
-    <string name="unit_celsius_short">°</string>
-    <string name="unit_fahrenheit">°F</string>
     <string name="common_weather_text_rain_snow_mixed_showers_heavy">Сильна злива зі снігом</string>
     <string name="common_weather_text_drizzle">Мряка</string>
     <string name="common_weather_text_drizzle_light">Невелика мряка</string>

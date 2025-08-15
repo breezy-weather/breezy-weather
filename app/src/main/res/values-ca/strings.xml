@@ -219,7 +219,6 @@
     <string name="weather_kind_wind">Vent</string>
     <string name="settings_color_day_always">Sempre diürn</string>
     <string name="settings_color_night_always">Sempre nocturn</string>
-    <string name="unit_ppcm_voice">Per metre cúbic</string>
     <string name="temperature_degree_day_heating">Dia de graus de calefacció</string>
     <string name="temperature_degree_day_cooling">Gelant temperatura diària</string>
     <string name="alerts_to_follow">Alertes pròximes, toca per a veure-les.</string>
@@ -251,7 +250,6 @@
     <string name="air_quality_level_3">Baix</string>
     <string name="precipitation_nowcasting">Precipitació minut a minut</string>
     <string name="settings_background_updates_battery_optimization_activity_not_found">No s’ha pogut obrir la configuració del dispositiu.</string>
-    <string name="unit_celsius_short">°</string>
     <string name="settings_source_api_key">Clau API</string>
     <string name="common_weather_text_rain_showers_light">Ruixats dèbils</string>
     <string name="dialog_permissions_notification_title">Manteniu-vos informats</string>
@@ -286,19 +284,15 @@
     <string name="settings_section_general">General</string>
     <string name="settings_notifications_forecast_today_title">Notificació per al pronòstic del dia</string>
     <string name="common_weather_text_rain_heavy">Pluja intensa</string>
-    <string name="unit_kelvin_short">K</string>
     <string name="weather_api_key_required_missing_title">Falta la clau API requerida</string>
     <string name="action_help_me_choose">Ajuda’m a triar</string>
     <string name="settings_icon_packs_title">Paquets d’icones</string>
     <string name="settings_icon_packs_check_details">Comprovar detalls</string>
     <string name="settings_location_access_switch_summaryOff">Permeteu-ho si voleu poder afegir la vostra ubicació actual com a ubicació.</string>
     <string name="about_contact">Contacte</string>
-    <string name="unit_kelvin">K</string>
     <string name="common_weather_text_drizzle">Plugim</string>
     <string name="action_share">Compartir</string>
     <string name="dialog_permissions_notification_content">Toqueu aquí per a activar les notificacions sobre les alertes meteorològiques, o decidiu més tard a configuració.</string>
-    <string name="unit_ppcm">/m³</string>
-    <string name="unit_fahrenheit_short">°</string>
     <string name="air_quality_co_voice">Monòxid de carboni</string>
     <string name="settings_modules_section_widgets_in_use">Ginys en ús</string>
     <string name="message_parsing_error_content">Assegura’t d’haver actualitzat a la versió més recent de l’aplicació. És possible que el servidor no estigui disponible temporalment, en aquest cas, torneu-ho a provar més tard. Si el problema persisteix, aboqueu un registre d’error de la configuració de depuració i informeu d’un problema a GitHub.</string>
@@ -362,7 +356,6 @@
     <string name="settings_modules_monochrome_icons_title">Icones monocromes</string>
     <string name="settings_background_updates">Actualitzacions en segon pla</string>
     <string name="pollen_betula">Bedoll</string>
-    <string name="unit_fahrenheit">°F</string>
     <string name="settings_icon_packs_weather_icon_light">Icona clara</string>
     <string name="air_quality_o3_voice">Ozó</string>
     <string name="settings_notifications">Notificacions</string>
@@ -440,7 +433,6 @@
     <string name="common_weather_text_drizzle_freezing_heavy">Plugim gelada intensa</string>
     <string name="widget_material_you_current">Material You – Actual</string>
     <string name="settings_location_access_background_summaryOn">Activat. L’aplicació podrà actualitzar les dades meteorològiques per a la ubicació actual en segon pla.</string>
-    <string name="unit_celsius">°C</string>
     <string name="settings_units_summary">Temperatura, precipitació, distància, velocitat, pressió</string>
     <string name="common_weather_text_drizzle_heavy">Plugim intens</string>
     <string name="common_weather_text_mostly_clear">Majoritàriament clar</string>
