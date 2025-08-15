@@ -44,11 +44,11 @@ import androidx.compose.ui.res.stringResource
 import androidx.core.net.toUri
 import org.breezyweather.R
 import org.breezyweather.background.weather.WeatherUpdateJob
-import org.breezyweather.common.basic.models.options.UpdateInterval
 import org.breezyweather.common.extensions.formatTime
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.plus
 import org.breezyweather.common.extensions.powerManager
+import org.breezyweather.common.options.UpdateInterval
 import org.breezyweather.common.utils.helpers.SnackbarHelper
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.ui.common.widgets.Material3Scaffold

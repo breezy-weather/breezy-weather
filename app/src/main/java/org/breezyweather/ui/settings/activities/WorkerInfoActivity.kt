@@ -45,8 +45,8 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import org.breezyweather.R
-import org.breezyweather.common.basic.BreezyActivity
-import org.breezyweather.common.basic.BreezyViewModel
+import org.breezyweather.common.activities.BreezyActivity
+import org.breezyweather.common.activities.BreezyViewModel
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.toDate
 import org.breezyweather.common.extensions.workManager

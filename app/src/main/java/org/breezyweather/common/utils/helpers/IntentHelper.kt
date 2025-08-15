@@ -26,7 +26,7 @@ import android.provider.Settings
 import androidx.annotation.RequiresApi
 import androidx.core.net.toUri
 import breezyweather.domain.location.model.Location
-import org.breezyweather.common.basic.models.options.appearance.DetailScreen
+import org.breezyweather.common.options.appearance.DetailScreen
 import org.breezyweather.ui.about.AboutActivity
 import org.breezyweather.ui.alert.AlertActivity
 import org.breezyweather.ui.details.DetailsActivity

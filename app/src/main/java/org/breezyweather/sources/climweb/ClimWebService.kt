@@ -47,6 +47,7 @@ import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
 import org.breezyweather.domain.settings.SourceConfigStore
 import org.breezyweather.sources.climweb.json.ClimWebAlertsResult
 import org.breezyweather.sources.climweb.json.ClimWebNormals
+import org.breezyweather.unit.temperature.Temperature.Companion.celsius
 import org.json.JSONObject
 import retrofit2.Retrofit
 import java.text.SimpleDateFormat
@@ -288,14 +289,18 @@ abstract class ClimWebService : HttpSource(), WeatherSource, ConfigurableSource,
             // Some sources enter duplicate normals in their data. We use the latest date for a given month.
             normalsResult.filter { it.date != null && regex.matches(it.date) }.sortedBy { it.date }.lastOrNull()?.let {
                 Normals(
-                    daytimeTemperature = it.maxTemp
-                        ?: it.maximumTemperature
-                        ?: it.meanMaximumTemperature
-                        ?: it.temperatureMaximale,
-                    nighttimeTemperature = it.minTemp
-                        ?: it.minimumTemperature
-                        ?: it.meanMinimumTemperature
-                        ?: it.temperatureMinimale
+                    daytimeTemperature = (
+                        it.maxTemp
+                            ?: it.maximumTemperature
+                            ?: it.meanMaximumTemperature
+                            ?: it.temperatureMaximale
+                        )?.celsius,
+                    nighttimeTemperature = (
+                        it.minTemp
+                            ?: it.minimumTemperature
+                            ?: it.meanMinimumTemperature
+                            ?: it.temperatureMinimale
+                        )?.celsius
                 )
             }
         }.filter { it.value != null } as Map<Month, Normals>

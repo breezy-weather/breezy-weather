@@ -65,6 +65,7 @@ import org.breezyweather.unit.pollutant.PollutantConcentration.Companion.milligr
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
 import org.breezyweather.unit.speed.Speed.Companion.kilometersPerHour
+import org.breezyweather.unit.temperature.Temperature.Companion.celsius
 import retrofit2.Retrofit
 import java.util.Calendar
 import java.util.Date
@@ -263,8 +264,8 @@ class ChinaService @Inject constructor(
             weatherText = getWeatherText(current.weather),
             weatherCode = getWeatherCode(current.weather),
             temperature = TemperatureWrapper(
-                temperature = current.temperature?.value?.toDoubleOrNull(),
-                feelsLike = current.feelsLike?.value?.toDoubleOrNull()
+                temperature = current.temperature?.value?.toDoubleOrNull()?.celsius,
+                feelsLike = current.feelsLike?.value?.toDoubleOrNull()?.celsius
             ),
             wind = if (current.wind != null) {
                 Wind(
@@ -326,6 +327,7 @@ class ChinaService @Inject constructor(
                         weatherCode = getWeatherCode(weather.from),
                         temperature = TemperatureWrapper(
                             temperature = dailyForecast.temperature?.value?.getOrNull(index)?.from?.toDoubleOrNull()
+                                ?.celsius
                         ),
                         precipitationProbability = PrecipitationProbability(
                             total = getPrecipitationProbability(dailyForecast, index)
@@ -345,6 +347,7 @@ class ChinaService @Inject constructor(
                         weatherCode = getWeatherCode(weather.to),
                         temperature = TemperatureWrapper(
                             temperature = dailyForecast.temperature?.value?.getOrNull(index)?.to?.toDoubleOrNull()
+                                ?.celsius
                         ),
                         precipitationProbability = PrecipitationProbability(
                             total = getPrecipitationProbability(dailyForecast, index)
@@ -397,7 +400,7 @@ class ChinaService @Inject constructor(
                     weatherText = getWeatherText(weather.toString()),
                     weatherCode = getWeatherCode(weather.toString()),
                     temperature = TemperatureWrapper(
-                        temperature = hourlyForecast.temperature?.value?.getOrNull(index)?.toDouble()
+                        temperature = hourlyForecast.temperature?.value?.getOrNull(index)?.toDouble()?.celsius
                     ),
                     wind = if (hourlyForecast.wind != null) {
                         Wind(

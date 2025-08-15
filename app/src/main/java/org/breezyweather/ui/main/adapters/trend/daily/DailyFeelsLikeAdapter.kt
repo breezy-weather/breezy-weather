@@ -24,16 +24,17 @@ import android.view.ViewGroup
 import androidx.annotation.Size
 import breezyweather.domain.location.model.Location
 import org.breezyweather.R
-import org.breezyweather.common.basic.BreezyActivity
-import org.breezyweather.common.basic.models.options.appearance.DetailScreen
-import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
+import org.breezyweather.common.activities.BreezyActivity
+import org.breezyweather.common.extensions.formatMeasure
 import org.breezyweather.common.extensions.getThemeColor
+import org.breezyweather.common.options.appearance.DetailScreen
 import org.breezyweather.ui.common.widgets.trend.TrendRecyclerView
 import org.breezyweather.ui.common.widgets.trend.chart.PolylineAndHistogramView
 import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.resource.ResourceHelper
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
 import org.breezyweather.ui.theme.weatherView.WeatherViewController
+import org.breezyweather.unit.formatting.UnitWidth
 import kotlin.math.max
 
 /**
@@ -43,10 +44,8 @@ class DailyFeelsLikeAdapter(
     activity: BreezyActivity,
     location: Location,
     provider: ResourceProvider,
-    unit: TemperatureUnit,
 ) : AbsDailyTrendAdapter(activity, location) {
     private val mResourceProvider: ResourceProvider = provider
-    private val mTemperatureUnit: TemperatureUnit = unit
     private val mDaytimeTemperatures: Array<Float?>
     private val mNighttimeTemperatures: Array<Float?>
     private var mHighestTemperature: Float? = null
@@ -69,7 +68,7 @@ class DailyFeelsLikeAdapter(
                     .append(activity.getString(R.string.daytime))
                     .append(activity.getString(R.string.colon_separator))
                 day.temperature?.feelsLikeTemperature?.let {
-                    talkBackBuilder.append(mTemperatureUnit.formatContentDescription(activity, it))
+                    talkBackBuilder.append(it.formatMeasure(activity, unitWidth = UnitWidth.LONG))
                 }
             }
             daily.night?.let { night ->
@@ -77,7 +76,7 @@ class DailyFeelsLikeAdapter(
                     .append(activity.getString(R.string.nighttime))
                     .append(activity.getString(R.string.colon_separator))
                 night.temperature?.feelsLikeTemperature?.let {
-                    talkBackBuilder.append(mTemperatureUnit.formatContentDescription(activity, it))
+                    talkBackBuilder.append(it.formatMeasure(activity, unitWidth = UnitWidth.LONG))
                 }
             }
             dailyItem.setDayIconDrawable(
@@ -87,16 +86,18 @@ class DailyFeelsLikeAdapter(
             mPolylineAndHistogramView.setData(
                 buildTemperatureArrayForItem(mDaytimeTemperatures, position),
                 buildTemperatureArrayForItem(mNighttimeTemperatures, position),
-                daily.day?.temperature?.feelsLikeTemperature?.let {
-                    mTemperatureUnit.formatMeasureShort(activity, it)
-                } ?: daily.day?.temperature?.temperature?.let {
-                    mTemperatureUnit.formatMeasureShort(activity, it)
-                },
-                daily.night?.temperature?.feelsLikeTemperature?.let {
-                    mTemperatureUnit.formatMeasureShort(activity, it)
-                } ?: daily.night?.temperature?.temperature?.let {
-                    mTemperatureUnit.formatMeasureShort(activity, it)
-                },
+                (daily.day?.temperature?.feelsLikeTemperature ?: daily.day?.temperature?.temperature)
+                    ?.formatMeasure(
+                        activity,
+                        valueWidth = UnitWidth.NARROW,
+                        unitWidth = UnitWidth.NARROW
+                    ),
+                (daily.night?.temperature?.feelsLikeTemperature ?: daily.night?.temperature?.temperature)
+                    ?.formatMeasure(
+                        activity,
+                        valueWidth = UnitWidth.NARROW,
+                        unitWidth = UnitWidth.NARROW
+                    ),
                 mHighestTemperature,
                 mLowestTemperature,
                 null,
@@ -164,8 +165,8 @@ class DailyFeelsLikeAdapter(
             var i = 0
             while (i < mDaytimeTemperatures.size) {
                 mDaytimeTemperatures[i] =
-                    weather.dailyForecast.getOrNull(i / 2)?.day?.temperature?.feelsLikeTemperature?.toFloat()
-                        ?: weather.dailyForecast.getOrNull(i / 2)?.day?.temperature?.temperature?.toFloat()
+                    weather.dailyForecast.getOrNull(i / 2)?.day?.temperature?.feelsLikeTemperature?.value?.toFloat()
+                        ?: weather.dailyForecast.getOrNull(i / 2)?.day?.temperature?.temperature?.value?.toFloat()
                 i += 2
             }
         }
@@ -185,8 +186,8 @@ class DailyFeelsLikeAdapter(
             var i = 0
             while (i < mNighttimeTemperatures.size) {
                 mNighttimeTemperatures[i] =
-                    weather.dailyForecast.getOrNull(i / 2)?.night?.temperature?.feelsLikeTemperature?.toFloat()
-                        ?: weather.dailyForecast.getOrNull(i / 2)?.night?.temperature?.temperature?.toFloat()
+                    weather.dailyForecast.getOrNull(i / 2)?.night?.temperature?.feelsLikeTemperature?.value?.toFloat()
+                        ?: weather.dailyForecast.getOrNull(i / 2)?.night?.temperature?.temperature?.value?.toFloat()
                 i += 2
             }
         }
@@ -203,20 +204,12 @@ class DailyFeelsLikeAdapter(
             }
         }
         weather.dailyForecast.forEach { daily ->
-            daily.day?.temperature?.feelsLikeTemperature?.let {
-                if (mHighestTemperature == null || it > mHighestTemperature!!) {
-                    mHighestTemperature = it.toFloat()
-                }
-            } ?: daily.day?.temperature?.temperature?.let {
+            (daily.day?.temperature?.feelsLikeTemperature ?: daily.day?.temperature?.temperature)?.value?.let {
                 if (mHighestTemperature == null || it > mHighestTemperature!!) {
                     mHighestTemperature = it.toFloat()
                 }
             }
-            daily.night?.temperature?.feelsLikeTemperature?.let {
-                if (mLowestTemperature == null || it < mLowestTemperature!!) {
-                    mLowestTemperature = it.toFloat()
-                }
-            } ?: daily.night?.temperature?.temperature?.let {
+            (daily.night?.temperature?.feelsLikeTemperature ?: daily.night?.temperature?.temperature)?.value?.let {
                 if (mLowestTemperature == null || it < mLowestTemperature!!) {
                     mLowestTemperature = it.toFloat()
                 }

@@ -25,8 +25,8 @@ import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Daily
 import breezyweather.domain.weather.reference.WeatherCode
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.common.extensions.cancelNotification
+import org.breezyweather.common.extensions.formatMeasure
 import org.breezyweather.common.extensions.notificationBuilder
 import org.breezyweather.common.extensions.notify
 import org.breezyweather.common.extensions.toBitmap
@@ -36,6 +36,7 @@ import org.breezyweather.remoteviews.Notifications
 import org.breezyweather.remoteviews.presenters.AbstractRemoteViewsPresenter
 import org.breezyweather.ui.theme.resource.ResourceHelper
 import org.breezyweather.ui.theme.resource.ResourcesProviderFactory
+import org.breezyweather.unit.formatting.UnitWidth
 
 class ForecastNotificationNotifier(
     private val context: Context,
@@ -83,7 +84,6 @@ class ForecastNotificationNotifier(
         } else {
             daily.day?.weatherCode
         }
-        val temperatureUnit = SettingsManager.getInstance(context).getTemperatureUnit(context)
 
         val notification: Notification = with(completeNotificationBuilder) {
             priority = NotificationCompat.PRIORITY_MAX
@@ -103,14 +103,14 @@ class ForecastNotificationNotifier(
                 setLargeIcon(ResourceHelper.getWeatherIcon(provider, it, daytime).toBitmap())
             }
 
-            setContentTitle(getDayString(daily, temperatureUnit))
-            setContentText(getNightString(daily, temperatureUnit))
+            setContentTitle(getDayString(daily))
+            setContentText(getNightString(daily))
             setStyle(
                 NotificationCompat.BigTextStyle()
                     .bigText(
-                        getDayString(daily, temperatureUnit) +
+                        getDayString(daily) +
                             "\n\n" +
-                            getNightString(daily, temperatureUnit)
+                            getNightString(daily)
                     )
                     // do not show any title when expanding the notification
                     .setBigContentTitle("")
@@ -153,21 +153,17 @@ class ForecastNotificationNotifier(
         )
     }
 
-    private fun getDayString(daily: Daily, temperatureUnit: TemperatureUnit) =
+    private fun getDayString(daily: Daily) =
         context.getString(R.string.daytime) +
             context.getString(R.string.colon_separator) +
-            daily.day?.temperature?.temperature?.let {
-                temperatureUnit.formatMeasure(context, it, 0)
-            } +
+            daily.day?.temperature?.temperature?.formatMeasure(context, valueWidth = UnitWidth.NARROW) +
             context.getString(R.string.dot_separator) +
             daily.day?.weatherText
 
-    private fun getNightString(daily: Daily, temperatureUnit: TemperatureUnit) =
+    private fun getNightString(daily: Daily) =
         context.getString(R.string.nighttime) +
             context.getString(R.string.colon_separator) +
-            daily.night?.temperature?.temperature?.let {
-                temperatureUnit.formatMeasure(context, it, 0)
-            } +
+            daily.night?.temperature?.temperature?.formatMeasure(context, valueWidth = UnitWidth.NARROW) +
             context.getString(R.string.dot_separator) +
             daily.night?.weatherText
 }

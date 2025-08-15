@@ -39,14 +39,15 @@ import breezyweather.domain.weather.model.Pollen
 import kotlinx.collections.immutable.ImmutableSet
 import kotlinx.collections.immutable.persistentSetOf
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.options.unit.PollenUnit
 import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.extensions.formatMeasure
 import org.breezyweather.common.source.PollenIndexSource
 import org.breezyweather.domain.weather.index.PollenIndex
 import org.breezyweather.domain.weather.model.getColor
 import org.breezyweather.domain.weather.model.getConcentration
 import org.breezyweather.domain.weather.model.getIndexName
 import org.breezyweather.domain.weather.model.validPollens
+import org.breezyweather.unit.pollen.PollenConcentrationUnit
 import java.text.Collator
 
 @Composable
@@ -58,7 +59,7 @@ fun PollenGrid(
     maxItemsInEachRow: Int = 2,
 ) {
     val context = LocalContext.current
-    val unit = PollenUnit.PER_CUBIC_METER
+    val unit = PollenConcentrationUnit.PER_CUBIC_METER
     FlowRow(
         maxItemsInEachRow = maxItemsInEachRow,
         verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.normal_margin)),
@@ -79,7 +80,7 @@ fun PollenGrid(
                     subtitle = if (pollenIndexSource != null) {
                         pollen.getIndexName(context, validPollen, pollenIndexSource) ?: ""
                     } else {
-                        unit.formatMeasure(context, pollen.getConcentration(validPollen)?.toDouble() ?: 0.0) +
+                        unit.formatMeasure(context, pollen.getConcentration(validPollen)?.inPerCubicMeter ?: 0.0) +
                             " – " +
                             pollen.getIndexName(context, validPollen)
                     },

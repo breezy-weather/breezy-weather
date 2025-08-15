@@ -45,6 +45,7 @@ import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
 import org.breezyweather.domain.settings.SourceConfigStore
 import org.breezyweather.sources.recosante.json.RecosanteRaepIndiceDetail
 import org.breezyweather.sources.recosante.json.RecosanteResult
+import org.breezyweather.unit.pollen.PollenConcentration.Companion.pollenIndex
 import retrofit2.Retrofit
 import java.util.Calendar
 import java.util.Date
@@ -217,25 +218,25 @@ class RecosanteService @Inject constructor(
             }
 
         return Pollen(
-            alder = alder,
-            ash = ash,
-            birch = birch,
-            chestnut = chestnut,
-            cypress = cypress,
-            grass = grass,
-            hazel = hazel,
-            hornbeam = hornbeam,
-            linden = linden,
-            mugwort = mugwort,
-            oak = oak,
-            olive = olive,
-            plane = plane,
-            plantain = plantain,
-            poplar = poplar,
-            ragweed = ragweed,
-            sorrel = sorrel,
-            urticaceae = urticaceae,
-            willow = willow
+            alder = alder?.pollenIndex,
+            ash = ash?.pollenIndex,
+            birch = birch?.pollenIndex,
+            chestnut = chestnut?.pollenIndex,
+            cypress = cypress?.pollenIndex,
+            grass = grass?.pollenIndex,
+            hazel = hazel?.pollenIndex,
+            hornbeam = hornbeam?.pollenIndex,
+            linden = linden?.pollenIndex,
+            mugwort = mugwort?.pollenIndex,
+            oak = oak?.pollenIndex,
+            olive = olive?.pollenIndex,
+            plane = plane?.pollenIndex,
+            plantain = plantain?.pollenIndex,
+            poplar = poplar?.pollenIndex,
+            ragweed = ragweed?.pollenIndex,
+            sorrel = sorrel?.pollenIndex,
+            urticaceae = urticaceae?.pollenIndex,
+            willow = willow?.pollenIndex
         )
     }
 

@@ -19,7 +19,7 @@ package org.breezyweather.domain.weather.model
 import android.content.Context
 import breezyweather.domain.weather.model.DailyRelativeHumidity
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.options.basic.UnitUtils
+import org.breezyweather.common.utils.UnitUtils
 
 fun DailyRelativeHumidity.getRangeSummary(context: Context): String? {
     return if (min == null || max == null) {

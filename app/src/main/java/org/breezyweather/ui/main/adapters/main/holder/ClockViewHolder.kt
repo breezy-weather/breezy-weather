@@ -24,10 +24,10 @@ import android.widget.AnalogClock
 import android.widget.TextClock
 import breezyweather.domain.location.model.Location
 import org.breezyweather.R
-import org.breezyweather.common.basic.BreezyActivity
-import org.breezyweather.common.basic.models.options.appearance.DetailScreen
+import org.breezyweather.common.activities.BreezyActivity
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
+import org.breezyweather.common.options.appearance.DetailScreen
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
 import java.util.Date

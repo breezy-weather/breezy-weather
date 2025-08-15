@@ -26,14 +26,15 @@ import android.widget.RemoteViews
 import breezyweather.domain.location.model.Location
 import org.breezyweather.R
 import org.breezyweather.background.receiver.widget.WidgetMaterialYouCurrentProvider
-import org.breezyweather.common.basic.models.options.NotificationTextColor
+import org.breezyweather.common.extensions.formatMeasure
+import org.breezyweather.common.options.NotificationTextColor
 import org.breezyweather.domain.location.model.isDaylight
-import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.remoteviews.Widgets
 import org.breezyweather.remoteviews.common.WidgetSize
 import org.breezyweather.remoteviews.common.WidgetSizeUtils
 import org.breezyweather.ui.theme.resource.ResourceHelper
 import org.breezyweather.ui.theme.resource.ResourcesProviderFactory
+import org.breezyweather.unit.formatting.UnitWidth
 import kotlin.math.min
 import kotlin.math.roundToInt
 
@@ -109,9 +110,6 @@ class MaterialYouCurrentWidgetIMP : AbstractRemoteViewsPresenter() {
 
             val provider = ResourcesProviderFactory.newInstance
 
-            val settings = SettingsManager.getInstance(context)
-            val temperatureUnit = settings.getTemperatureUnit(context)
-
             // current.
             weather.current?.weatherCode?.let {
                 views.setViewVisibility(R.id.widget_material_you_current_currentIcon, View.VISIBLE)
@@ -170,9 +168,11 @@ class MaterialYouCurrentWidgetIMP : AbstractRemoteViewsPresenter() {
                 }
             } ?: views.setViewVisibility(R.id.widget_material_you_current_currentIcon, View.INVISIBLE)
 
-            val temperatureText = weather.current?.temperature?.temperature?.let {
-                temperatureUnit.formatMeasureShort(context, it)
-            }
+            val temperatureText = weather.current?.temperature?.temperature?.formatMeasure(
+                context,
+                valueWidth = UnitWidth.NARROW,
+                unitWidth = UnitWidth.NARROW
+            )
             views.setTextViewText(
                 R.id.widget_material_you_current_currentTemperature,
                 temperatureText

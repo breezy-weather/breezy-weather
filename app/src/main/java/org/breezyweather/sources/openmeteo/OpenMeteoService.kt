@@ -91,11 +91,13 @@ import org.breezyweather.ui.common.composables.AlertDialogNoPadding
 import org.breezyweather.ui.settings.preference.composables.PreferenceView
 import org.breezyweather.ui.settings.preference.composables.SwitchPreferenceView
 import org.breezyweather.unit.distance.Distance.Companion.meters
+import org.breezyweather.unit.pollen.PollenConcentration.Companion.perCubicMeter
 import org.breezyweather.unit.pollutant.PollutantConcentration.Companion.microgramsPerCubicMeter
 import org.breezyweather.unit.precipitation.Precipitation.Companion.centimeters
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
 import org.breezyweather.unit.speed.Speed.Companion.metersPerSecond
+import org.breezyweather.unit.temperature.Temperature.Companion.celsius
 import retrofit2.HttpException
 import retrofit2.Retrofit
 import java.text.Collator
@@ -103,7 +105,6 @@ import java.util.Calendar
 import java.util.Date
 import javax.inject.Inject
 import javax.inject.Named
-import kotlin.math.roundToInt
 import kotlin.time.Duration.Companion.minutes
 import kotlin.time.Duration.Companion.seconds
 
@@ -385,8 +386,8 @@ class OpenMeteoService @Inject constructor(
             weatherText = getWeatherText(context, current.weatherCode),
             weatherCode = getWeatherCode(current.weatherCode),
             temperature = TemperatureWrapper(
-                temperature = current.temperature,
-                feelsLike = current.apparentTemperature
+                temperature = current.temperature?.celsius,
+                feelsLike = current.apparentTemperature?.celsius
             ),
             wind = Wind(
                 degree = current.windDirection,
@@ -395,7 +396,7 @@ class OpenMeteoService @Inject constructor(
             ),
             uV = UV(index = current.uvIndex),
             relativeHumidity = current.relativeHumidity?.toDouble(),
-            dewPoint = current.dewPoint,
+            dewPoint = current.dewPoint?.celsius,
             pressure = current.pressureMsl?.hectopascals,
             cloudCover = current.cloudCover,
             visibility = current.visibility?.meters
@@ -420,15 +421,15 @@ class OpenMeteoService @Inject constructor(
                 date = theDayWithDstFixed,
                 day = HalfDayWrapper(
                     temperature = TemperatureWrapper(
-                        temperature = dailyResult.temperatureMax?.getOrNull(i),
-                        feelsLike = dailyResult.apparentTemperatureMax?.getOrNull(i)
+                        temperature = dailyResult.temperatureMax?.getOrNull(i)?.celsius,
+                        feelsLike = dailyResult.apparentTemperatureMax?.getOrNull(i)?.celsius
                     )
                 ),
                 night = HalfDayWrapper(
                     temperature = TemperatureWrapper(
                         // For night temperature, we take the minTemperature from the following day
-                        temperature = dailyResult.temperatureMin?.getOrNull(i + 1),
-                        feelsLike = dailyResult.apparentTemperatureMin?.getOrNull(i + 1)
+                        temperature = dailyResult.temperatureMin?.getOrNull(i + 1)?.celsius,
+                        feelsLike = dailyResult.apparentTemperatureMin?.getOrNull(i + 1)?.celsius
                     )
                 ),
                 uV = UV(index = dailyResult.uvIndexMax?.getOrNull(i)),
@@ -439,9 +440,9 @@ class OpenMeteoService @Inject constructor(
                     min = dailyResult.relativeHumidityMin?.getOrNull(i)?.toDouble()
                 ),
                 dewPoint = DailyDewPoint(
-                    average = dailyResult.dewPointMean?.getOrNull(i),
-                    max = dailyResult.dewPointMax?.getOrNull(i),
-                    min = dailyResult.dewPointMin?.getOrNull(i)
+                    average = dailyResult.dewPointMean?.getOrNull(i)?.celsius,
+                    max = dailyResult.dewPointMax?.getOrNull(i)?.celsius,
+                    min = dailyResult.dewPointMin?.getOrNull(i)?.celsius
                 ),
                 pressure = DailyPressure(
                     average = dailyResult.pressureMslMean?.getOrNull(i)?.hectopascals,
@@ -479,8 +480,8 @@ class OpenMeteoService @Inject constructor(
                     weatherText = getWeatherText(context, hourlyResult.weatherCode?.getOrNull(i)),
                     weatherCode = getWeatherCode(hourlyResult.weatherCode?.getOrNull(i)),
                     temperature = TemperatureWrapper(
-                        temperature = hourlyResult.temperature?.getOrNull(i),
-                        feelsLike = hourlyResult.apparentTemperature?.getOrNull(i)
+                        temperature = hourlyResult.temperature?.getOrNull(i)?.celsius,
+                        feelsLike = hourlyResult.apparentTemperature?.getOrNull(i)?.celsius
                     ),
                     precipitation = Precipitation(
                         total = hourlyResult.precipitation?.getOrNull(i)?.millimeters,
@@ -497,7 +498,7 @@ class OpenMeteoService @Inject constructor(
                     ),
                     uV = UV(index = hourlyResult.uvIndex?.getOrNull(i)),
                     relativeHumidity = hourlyResult.relativeHumidity?.getOrNull(i)?.toDouble(),
-                    dewPoint = hourlyResult.dewPoint?.getOrNull(i),
+                    dewPoint = hourlyResult.dewPoint?.getOrNull(i)?.celsius,
                     pressure = hourlyResult.pressureMsl?.getOrNull(i)?.hectopascals,
                     cloudCover = hourlyResult.cloudCover?.getOrNull(i),
                     visibility = hourlyResult.visibility?.getOrNull(i)?.meters
@@ -536,12 +537,12 @@ class OpenMeteoService @Inject constructor(
         val pollenHourly = mutableMapOf<Date, Pollen>()
         for (i in hourlyAirQualityResult.time.indices) {
             pollenHourly[hourlyAirQualityResult.time[i].seconds.inWholeMilliseconds.toDate()] = Pollen(
-                alder = hourlyAirQualityResult.alderPollen?.getOrNull(i)?.roundToInt(),
-                birch = hourlyAirQualityResult.birchPollen?.getOrNull(i)?.roundToInt(),
-                grass = hourlyAirQualityResult.grassPollen?.getOrNull(i)?.roundToInt(),
-                mugwort = hourlyAirQualityResult.mugwortPollen?.getOrNull(i)?.roundToInt(),
-                olive = hourlyAirQualityResult.olivePollen?.getOrNull(i)?.roundToInt(),
-                ragweed = hourlyAirQualityResult.ragweedPollen?.getOrNull(i)?.roundToInt()
+                alder = hourlyAirQualityResult.alderPollen?.getOrNull(i)?.perCubicMeter,
+                birch = hourlyAirQualityResult.birchPollen?.getOrNull(i)?.perCubicMeter,
+                grass = hourlyAirQualityResult.grassPollen?.getOrNull(i)?.perCubicMeter,
+                mugwort = hourlyAirQualityResult.mugwortPollen?.getOrNull(i)?.perCubicMeter,
+                olive = hourlyAirQualityResult.olivePollen?.getOrNull(i)?.perCubicMeter,
+                ragweed = hourlyAirQualityResult.ragweedPollen?.getOrNull(i)?.perCubicMeter
             )
         }
         return PollenWrapper(

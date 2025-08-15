@@ -23,13 +23,14 @@ import androidx.core.app.NotificationCompat
 import androidx.core.graphics.drawable.IconCompat
 import breezyweather.domain.location.model.Location
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.options.appearance.CalendarHelper
+import org.breezyweather.common.extensions.formatMeasure
 import org.breezyweather.common.extensions.getFormattedMediumDayAndMonthInAdditionalCalendar
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.extensions.notificationBuilder
 import org.breezyweather.common.extensions.notify
 import org.breezyweather.common.extensions.toBitmap
+import org.breezyweather.common.options.appearance.CalendarHelper
 import org.breezyweather.domain.location.model.getPlace
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.domain.weather.model.getName
@@ -74,8 +75,7 @@ object NativeWidgetNotificationIMP : AbstractRemoteViewsPresenter() {
 
         val contentTitle = StringBuilder()
         if (!tempIcon && tempFeelsLikeOrAir != null) {
-            val temperatureUnit = SettingsManager.getInstance(context).getTemperatureUnit(context)
-            contentTitle.append(temperatureUnit.formatMeasure(context, value = tempFeelsLikeOrAir))
+            contentTitle.append(tempFeelsLikeOrAir.formatMeasure(context))
         }
         if (!current.weatherText.isNullOrEmpty()) {
             if (contentTitle.toString().isNotEmpty()) contentTitle.append(" – ")

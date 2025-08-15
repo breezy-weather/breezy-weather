@@ -53,7 +53,7 @@ import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toImmutableMap
 import org.breezyweather.BreezyWeather
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
+import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.formatTime
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.getFormattedTime
@@ -72,6 +72,7 @@ import org.breezyweather.ui.theme.weatherView.materialWeatherView.MaterialWeathe
 import org.breezyweather.ui.theme.weatherView.materialWeatherView.implementor.MeteorShowerImplementor
 import org.breezyweather.ui.theme.weatherView.materialWeatherView.implementor.SunImplementor
 import org.breezyweather.unit.formatting.UnitWidth
+import org.breezyweather.unit.temperature.TemperatureUnit
 import org.shredzone.commons.suncalc.MoonPosition
 import org.shredzone.commons.suncalc.SunPosition
 import java.util.Calendar
@@ -198,7 +199,16 @@ fun EphemerisChart(
     EphemerisChart(
         location,
         modelProducer,
-        { _, value, _ -> TemperatureUnit.CELSIUS.formatMeasureShort(context, value) }, // Hack
+        { _, value, _ ->
+            // Hack
+            TemperatureUnit.CELSIUS.format(
+                context = context,
+                value = value,
+                valueWidth = UnitWidth.NARROW,
+                unitWidth = UnitWidth.NARROW,
+                locale = context.currentLocale
+            )
+        },
         lineColors = if (mappedMoonValues.isNotEmpty()) {
             persistentListOf(
                 MaterialWeatherThemeDelegate.getBrighterColor(MeteorShowerImplementor.themeColor), // Moon

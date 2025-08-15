@@ -66,6 +66,7 @@ interface WeatherValue<T : WeatherUnit> {
         valueWidth: UnitWidth = UnitWidth.SHORT,
         unitWidth: UnitWidth = UnitWidth.SHORT,
         locale: Locale = Locale.getDefault(),
+        showSign: Boolean = false,
         useNumberFormatter: Boolean = true,
         useMeasureFormat: Boolean = true,
     ): String {
@@ -75,6 +76,7 @@ interface WeatherValue<T : WeatherUnit> {
             valueWidth = valueWidth,
             unitWidth = unitWidth,
             locale = locale,
+            showSign = showSign,
             useNumberFormatter = useNumberFormatter,
             useMeasureFormat = useMeasureFormat
         )

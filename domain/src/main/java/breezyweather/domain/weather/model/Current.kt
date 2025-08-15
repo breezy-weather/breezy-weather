@@ -27,7 +27,6 @@ import java.io.Serializable
  *
  * default unit
  * [.relativeHumidity] : [RelativeHumidityUnit.PERCENT]
- * [.dewPoint] : [TemperatureUnit.C]
  */
 data class Current(
     val weatherText: String? = null,
@@ -37,7 +36,7 @@ data class Current(
     val uV: UV? = null,
     val airQuality: AirQuality? = null,
     val relativeHumidity: Double? = null,
-    val dewPoint: Double? = null,
+    val dewPoint: org.breezyweather.unit.temperature.Temperature? = null,
     /**
      * Pressure at sea level
      * Use Kotlin extensions to initialize this value, like 1013.25.hectopascals

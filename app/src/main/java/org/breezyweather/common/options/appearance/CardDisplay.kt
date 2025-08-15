@@ -14,13 +14,13 @@
  * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package org.breezyweather.common.basic.models.options.appearance
+package org.breezyweather.common.options.appearance
 
 import android.app.Activity
 import android.content.Context
 import androidx.annotation.StringRes
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.options.basic.BaseEnum
+import org.breezyweather.common.options.BaseEnum
 import org.breezyweather.common.utils.helpers.IntentHelper
 
 enum class CardDisplay(
@@ -62,7 +62,7 @@ enum class CardDisplay(
         } else {
             try {
                 value.split("&").toTypedArray().mapNotNull { cardId ->
-                    CardDisplay.entries.firstOrNull { it.id == cardId }
+                    entries.firstOrNull { it.id == cardId }
                 }
             } catch (e: Exception) {
                 emptyList()

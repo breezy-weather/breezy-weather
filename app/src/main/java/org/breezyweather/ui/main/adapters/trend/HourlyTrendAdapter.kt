@@ -20,8 +20,8 @@ import android.annotation.SuppressLint
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import breezyweather.domain.location.model.Location
-import org.breezyweather.common.basic.BreezyActivity
-import org.breezyweather.common.basic.models.options.appearance.HourlyTrendDisplay
+import org.breezyweather.common.activities.BreezyActivity
+import org.breezyweather.common.options.appearance.HourlyTrendDisplay
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.ui.common.widgets.trend.TrendRecyclerView
 import org.breezyweather.ui.main.adapters.trend.hourly.AbsHourlyTrendAdapter
@@ -59,28 +59,13 @@ class HourlyTrendAdapter(
 
         adapters = SettingsManager.getInstance(activity).hourlyTrendDisplayList.map {
             when (it) {
-                HourlyTrendDisplay.TAG_TEMPERATURE -> HourlyTemperatureAdapter(
-                    activity,
-                    location,
-                    provider,
-                    SettingsManager.getInstance(activity).getTemperatureUnit(activity)
-                )
+                HourlyTrendDisplay.TAG_TEMPERATURE -> HourlyTemperatureAdapter(activity, location, provider)
                 HourlyTrendDisplay.TAG_AIR_QUALITY -> HourlyAirQualityAdapter(activity, location)
                 HourlyTrendDisplay.TAG_WIND -> HourlyWindAdapter(activity, location)
                 HourlyTrendDisplay.TAG_UV_INDEX -> HourlyUVAdapter(activity, location)
                 HourlyTrendDisplay.TAG_PRECIPITATION -> HourlyPrecipitationAdapter(activity, location, provider)
-                HourlyTrendDisplay.TAG_FEELS_LIKE -> HourlyFeelsLikeAdapter(
-                    activity,
-                    location,
-                    provider,
-                    SettingsManager.getInstance(activity).getTemperatureUnit(activity)
-                )
-                HourlyTrendDisplay.TAG_HUMIDITY -> HourlyHumidityAdapter(
-                    activity,
-                    location,
-                    provider,
-                    SettingsManager.getInstance(activity).getTemperatureUnit(activity)
-                )
+                HourlyTrendDisplay.TAG_FEELS_LIKE -> HourlyFeelsLikeAdapter(activity, location, provider)
+                HourlyTrendDisplay.TAG_HUMIDITY -> HourlyHumidityAdapter(activity, location, provider)
                 HourlyTrendDisplay.TAG_PRESSURE -> HourlyPressureAdapter(activity, location, provider)
                 HourlyTrendDisplay.TAG_CLOUD_COVER -> HourlyCloudCoverAdapter(activity, location)
                 HourlyTrendDisplay.TAG_VISIBILITY -> HourlyVisibilityAdapter(activity, location, provider)

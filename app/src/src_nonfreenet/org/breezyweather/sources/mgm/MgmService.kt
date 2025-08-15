@@ -55,6 +55,7 @@ import org.breezyweather.sources.mgm.json.MgmLocationResult
 import org.breezyweather.sources.mgm.json.MgmNormalsResult
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
 import org.breezyweather.unit.speed.Speed.Companion.kilometersPerHour
+import org.breezyweather.unit.temperature.Temperature.Companion.celsius
 import retrofit2.Retrofit
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -221,8 +222,8 @@ class MgmService @Inject constructor(
                     normalsResult.getOrNull(0)?.let { normals ->
                         mapOf(
                             Date().getCalendarMonth(location) to Normals(
-                                daytimeTemperature = normals.meanMax,
-                                nighttimeTemperature = normals.meanMin
+                                daytimeTemperature = normals.meanMax?.celsius,
+                                nighttimeTemperature = normals.meanMin?.celsius
                             )
                         )
                     }
@@ -242,7 +243,7 @@ class MgmService @Inject constructor(
             weatherText = getWeatherText(context, currentResult?.condition),
             weatherCode = getWeatherCode(currentResult?.condition),
             temperature = TemperatureWrapper(
-                temperature = getValid(currentResult?.temperature)
+                temperature = getValid(currentResult?.temperature)?.celsius
             ),
             wind = Wind(
                 degree = getValid(currentResult?.windDirection),
@@ -333,7 +334,7 @@ class MgmService @Inject constructor(
                     weatherText = getWeatherText(context, it.condition),
                     weatherCode = getWeatherCode(it.condition),
                     temperature = TemperatureWrapper(
-                        temperature = it.temperature
+                        temperature = it.temperature?.celsius
                     ),
                     wind = Wind(
                         degree = it.windDirection,
@@ -418,7 +419,7 @@ class MgmService @Inject constructor(
             day = HalfDayWrapper(
                 weatherText = getWeatherText(context, condition),
                 weatherCode = getWeatherCode(condition),
-                temperature = maxTemp?.let { TemperatureWrapper(temperature = it) },
+                temperature = maxTemp?.let { TemperatureWrapper(temperature = it.celsius) },
                 wind = Wind(
                     degree = windDirection,
                     speed = windSpeed?.kilometersPerHour
@@ -427,7 +428,7 @@ class MgmService @Inject constructor(
             night = HalfDayWrapper(
                 weatherText = getWeatherText(context, condition),
                 weatherCode = getWeatherCode(condition),
-                temperature = nextDayMinTemp?.let { TemperatureWrapper(temperature = it) },
+                temperature = nextDayMinTemp?.let { TemperatureWrapper(temperature = it.celsius) },
                 wind = Wind(
                     degree = windDirection,
                     speed = windSpeed?.kilometersPerHour

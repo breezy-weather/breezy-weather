@@ -35,10 +35,10 @@ import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toImmutableList
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.options.NotificationStyle
-import org.breezyweather.common.basic.models.options.WidgetWeekIconMode
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.plus
+import org.breezyweather.common.options.NotificationStyle
+import org.breezyweather.common.options.WidgetWeekIconMode
 import org.breezyweather.common.source.BroadcastSource
 import org.breezyweather.common.utils.helpers.SnackbarHelper
 import org.breezyweather.domain.settings.SettingsManager

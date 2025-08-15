@@ -52,6 +52,7 @@ import org.breezyweather.sources.lhmt.json.LhmtWeatherResult
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
 import org.breezyweather.unit.speed.Speed.Companion.metersPerSecond
+import org.breezyweather.unit.temperature.Temperature.Companion.celsius
 import retrofit2.Retrofit
 import java.text.SimpleDateFormat
 import java.util.Locale
@@ -200,8 +201,8 @@ class LhmtService @Inject constructor(
                 weatherText = getWeatherText(context, it.conditionCode),
                 weatherCode = getWeatherCode(it.conditionCode),
                 temperature = TemperatureWrapper(
-                    temperature = it.airTemperature,
-                    feelsLike = it.feelsLikeTemperature
+                    temperature = it.airTemperature?.celsius,
+                    feelsLike = it.feelsLikeTemperature?.celsius
                 ),
                 wind = Wind(
                     degree = it.windDirection,
@@ -244,8 +245,8 @@ class LhmtService @Inject constructor(
                         weatherText = getWeatherText(context, it.conditionCode),
                         weatherCode = getWeatherCode(it.conditionCode),
                         temperature = TemperatureWrapper(
-                            temperature = it.airTemperature,
-                            feelsLike = it.feelsLikeTemperature
+                            temperature = it.airTemperature?.celsius,
+                            feelsLike = it.feelsLikeTemperature?.celsius
                         ),
                         precipitation = Precipitation(
                             total = it.totalPrecipitation?.millimeters

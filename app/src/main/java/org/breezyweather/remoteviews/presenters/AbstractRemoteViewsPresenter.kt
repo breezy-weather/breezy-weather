@@ -32,10 +32,6 @@ import androidx.core.content.ContextCompat
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Weather
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.options.NotificationTextColor
-import org.breezyweather.common.basic.models.options.WidgetWeekIconMode
-import org.breezyweather.common.basic.models.options.basic.UnitUtils
-import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.common.extensions.formatMeasure
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.getFormattedMediumDayAndMonth
@@ -43,12 +39,14 @@ import org.breezyweather.common.extensions.getFormattedMediumDayAndMonthInAdditi
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.hasPermission
 import org.breezyweather.common.extensions.is12Hour
+import org.breezyweather.common.options.NotificationTextColor
+import org.breezyweather.common.options.WidgetWeekIconMode
 import org.breezyweather.common.source.PollenIndexSource
 import org.breezyweather.common.utils.ColorUtils
+import org.breezyweather.common.utils.UnitUtils
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.domain.location.model.getPlace
 import org.breezyweather.domain.settings.ConfigStore
-import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.domain.weather.model.getDescription
 import org.breezyweather.domain.weather.model.getIndex
 import org.breezyweather.domain.weather.model.getName
@@ -56,6 +54,7 @@ import org.breezyweather.domain.weather.model.getShortDescription
 import org.breezyweather.domain.weather.model.getSummary
 import org.breezyweather.domain.weather.model.pollensWithConcentration
 import org.breezyweather.ui.theme.ThemeManager
+import org.breezyweather.unit.formatting.UnitWidth
 import java.util.Date
 
 abstract class AbstractRemoteViewsPresenter {
@@ -198,12 +197,10 @@ abstract class AbstractRemoteViewsPresenter {
 
         @DrawableRes
         fun getCardBackgroundId(color: WidgetColor): Int {
-            return when (color.backgroundType) {
-                WidgetColor.WidgetBackgroundType.NONE -> {
-                    throw IllegalArgumentException("Trying to get widget background when background type is NONE")
-                }
-                else -> if (color.isLightThemed) R.drawable.widget_card_light else R.drawable.widget_card_dark
+            require(color.backgroundType != WidgetColor.WidgetBackgroundType.NONE) {
+                "Trying to get widget background when background type is NONE"
             }
+            return if (color.isLightThemed) R.drawable.widget_card_light else R.drawable.widget_card_dark
         }
 
         fun isWeekIconDaytime(mode: WidgetWeekIconMode?, daytime: Boolean): Boolean {
@@ -270,7 +267,6 @@ abstract class AbstractRemoteViewsPresenter {
             pollenIndexSource: PollenIndexSource?,
         ): String {
             if (subtitleP.isNullOrEmpty()) return ""
-            val temperatureUnit = SettingsManager.getInstance(context).getTemperatureUnit(context)
             var subtitle = subtitleP
                 .replace(
                     "\$cw$",
@@ -278,24 +274,28 @@ abstract class AbstractRemoteViewsPresenter {
                         ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "\$ct$",
-                    weather.current?.temperature?.temperature?.let {
-                        temperatureUnit.formatMeasure(context, it, 0)
-                    } ?: context.getString(R.string.null_data_text)
+                    weather.current?.temperature?.temperature?.formatMeasure(context, unitWidth = UnitWidth.NARROW)
+                        ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "\$ctd$",
-                    weather.current?.temperature?.temperature?.let {
-                        temperatureUnit.formatMeasureShort(context, it)
-                    } ?: context.getString(R.string.null_data_text)
+                    weather.current?.temperature?.temperature?.formatMeasure(
+                        context,
+                        valueWidth = UnitWidth.NARROW,
+                        unitWidth = UnitWidth.NARROW
+                    ) ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "\$at$",
-                    weather.current?.temperature?.feelsLikeTemperature?.let {
-                        temperatureUnit.formatMeasure(context, it, 0)
-                    } ?: context.getString(R.string.null_data_text)
+                    weather.current?.temperature?.feelsLikeTemperature?.formatMeasure(
+                        context,
+                        unitWidth = UnitWidth.NARROW
+                    ) ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "\$atd$",
-                    weather.current?.temperature?.feelsLikeTemperature?.let {
-                        temperatureUnit.formatMeasureShort(context, it)
-                    } ?: context.getString(R.string.null_data_text)
+                    weather.current?.temperature?.feelsLikeTemperature?.formatMeasure(
+                        context,
+                        valueWidth = UnitWidth.NARROW,
+                        unitWidth = UnitWidth.NARROW
+                    ) ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "\$cwd$",
                     weather.current?.wind?.getShortDescription(context)
@@ -330,9 +330,8 @@ abstract class AbstractRemoteViewsPresenter {
                         ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "\$cdp$",
-                    weather.current?.dewPoint?.let {
-                        temperatureUnit.formatMeasure(context, it, 0)
-                    } ?: context.getString(R.string.null_data_text)
+                    weather.current?.dewPoint?.formatMeasure(context, unitWidth = UnitWidth.NARROW)
+                        ?: context.getString(R.string.null_data_text)
                 ).replace("\$l$", location.getPlace(context))
                 .replace("\$lat$", location.latitude.toString())
                 .replace("\$lon$", location.longitude.toString())
@@ -368,7 +367,6 @@ abstract class AbstractRemoteViewsPresenter {
                 subtitle,
                 location,
                 weather,
-                temperatureUnit,
                 pollenIndexSource
             )
             return subtitle
@@ -428,7 +426,6 @@ abstract class AbstractRemoteViewsPresenter {
             subtitleP: String,
             location: Location,
             weather: Weather,
-            temperatureUnit: TemperatureUnit,
             pollenIndexSource: PollenIndexSource?,
         ): String {
             var subtitle = subtitleP
@@ -443,24 +440,30 @@ abstract class AbstractRemoteViewsPresenter {
                         ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "$" + i + "dt$",
-                    weather.dailyForecastStartingToday.getOrNull(i)?.day?.temperature?.temperature?.let {
-                        temperatureUnit.formatMeasure(context, it, 0)
-                    } ?: context.getString(R.string.null_data_text)
+                    weather.dailyForecastStartingToday.getOrNull(i)?.day?.temperature?.temperature?.formatMeasure(
+                        context,
+                        unitWidth = UnitWidth.NARROW
+                    ) ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "$" + i + "nt$",
-                    weather.dailyForecastStartingToday.getOrNull(i)?.night?.temperature?.temperature?.let {
-                        temperatureUnit.formatMeasure(context, it, 0)
-                    } ?: context.getString(R.string.null_data_text)
+                    weather.dailyForecastStartingToday.getOrNull(i)?.night?.temperature?.temperature?.formatMeasure(
+                        context,
+                        unitWidth = UnitWidth.NARROW
+                    ) ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "$" + i + "dtd$",
-                    weather.dailyForecastStartingToday.getOrNull(i)?.day?.temperature?.temperature?.let {
-                        temperatureUnit.formatMeasureShort(context, it)
-                    } ?: context.getString(R.string.null_data_text)
+                    weather.dailyForecastStartingToday.getOrNull(i)?.day?.temperature?.temperature?.formatMeasure(
+                        context,
+                        valueWidth = UnitWidth.NARROW,
+                        unitWidth = UnitWidth.NARROW
+                    ) ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "$" + i + "ntd$",
-                    weather.dailyForecastStartingToday.getOrNull(i)?.night?.temperature?.temperature?.let {
-                        temperatureUnit.formatMeasureShort(context, it)
-                    } ?: context.getString(R.string.null_data_text)
+                    weather.dailyForecastStartingToday.getOrNull(i)?.night?.temperature?.temperature?.formatMeasure(
+                        context,
+                        valueWidth = UnitWidth.NARROW,
+                        unitWidth = UnitWidth.NARROW
+                    ) ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "$" + i + "dp$",
                     weather.dailyForecastStartingToday.getOrNull(i)?.day?.precipitationProbability?.total?.let {

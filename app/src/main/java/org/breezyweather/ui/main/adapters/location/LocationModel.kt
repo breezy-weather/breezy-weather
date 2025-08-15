@@ -20,7 +20,6 @@ import android.content.Context
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.reference.WeatherCode
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.getRelativeTime
 import org.breezyweather.common.extensions.uncapitalize
@@ -32,7 +31,6 @@ import kotlin.time.Duration.Companion.hours
 class LocationModel(
     context: Context,
     val location: Location,
-    unit: TemperatureUnit, // TODO: Add back temperature
     var selected: Boolean,
 ) {
     var weatherCode: WeatherCode? = null

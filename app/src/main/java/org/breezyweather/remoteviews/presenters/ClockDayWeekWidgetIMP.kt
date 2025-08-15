@@ -27,9 +27,10 @@ import android.widget.RemoteViews
 import breezyweather.domain.location.model.Location
 import org.breezyweather.R
 import org.breezyweather.background.receiver.widget.WidgetClockDayWeekProvider
-import org.breezyweather.common.basic.models.options.appearance.CalendarHelper
+import org.breezyweather.common.extensions.formatMeasure
 import org.breezyweather.common.extensions.getFormattedMediumDayAndMonthInAdditionalCalendar
 import org.breezyweather.common.extensions.getShortWeekdayDayMonth
+import org.breezyweather.common.options.appearance.CalendarHelper
 import org.breezyweather.domain.location.model.getPlace
 import org.breezyweather.domain.location.model.isDaylight
 import org.breezyweather.domain.settings.SettingsManager
@@ -39,6 +40,7 @@ import org.breezyweather.domain.weather.model.isToday
 import org.breezyweather.remoteviews.Widgets
 import org.breezyweather.ui.theme.resource.ResourceHelper
 import org.breezyweather.ui.theme.resource.ResourcesProviderFactory
+import org.breezyweather.unit.formatting.UnitWidth
 import java.util.Date
 import kotlin.math.roundToInt
 
@@ -84,7 +86,6 @@ object ClockDayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
         val provider = ResourcesProviderFactory.newInstance
         val dayTime = location.isDaylight
         val settings = SettingsManager.getInstance(context)
-        val temperatureUnit = settings.getTemperatureUnit(context)
         val weekIconMode = settings.widgetWeekIconMode
         val minimalIcon = settings.isWidgetUsingMonochromeIcons
 
@@ -157,7 +158,7 @@ object ClockDayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
         builder.append(location.getPlace(context))
         weather.current?.temperature?.temperature?.let {
             builder.append(" ").append(
-                temperatureUnit.formatMeasure(context, it, 0)
+                it.formatMeasure(context, unitWidth = UnitWidth.NARROW)
             )
         }
         views.setTextViewText(R.id.widget_clock_day_week_subtitle, builder.toString())
@@ -203,10 +204,7 @@ object ClockDayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
             } ?: views.setTextViewText(dailyId[0], null)
             views.setTextViewText(
                 dailyId[1],
-                weather.dailyForecastStartingToday.getOrNull(i)?.getTrendTemperature(
-                    context,
-                    temperatureUnit
-                )
+                weather.dailyForecastStartingToday.getOrNull(i)?.getTrendTemperature(context)
             )
             if (weekIconDaytime) {
                 weather.dailyForecastStartingToday.getOrNull(i)?.day?.weatherCode?.let {

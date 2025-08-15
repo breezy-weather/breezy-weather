@@ -21,11 +21,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import breezyweather.domain.location.model.Location
 import org.breezyweather.R
-import org.breezyweather.common.basic.BreezyActivity
-import org.breezyweather.common.basic.models.options.appearance.DetailScreen
-import org.breezyweather.common.basic.models.options.basic.UnitUtils
+import org.breezyweather.common.activities.BreezyActivity
 import org.breezyweather.common.extensions.formatMeasure
 import org.breezyweather.common.extensions.getVisibilityDescription
+import org.breezyweather.common.options.appearance.DetailScreen
+import org.breezyweather.common.utils.UnitUtils
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
 import org.breezyweather.unit.formatting.UnitWidth

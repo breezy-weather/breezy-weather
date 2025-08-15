@@ -23,7 +23,7 @@ import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
 import breezyweather.domain.weather.model.UV
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.options.basic.UnitUtils
+import org.breezyweather.common.utils.UnitUtils
 
 fun UV.getLevel(context: Context): String? {
     if (index == null) return null

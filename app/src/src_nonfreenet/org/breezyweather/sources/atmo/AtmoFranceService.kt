@@ -41,12 +41,12 @@ import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
 import org.breezyweather.domain.settings.SourceConfigStore
 import org.breezyweather.sources.atmo.json.AtmoFrancePollenProperties
 import org.breezyweather.sources.atmo.json.AtmoFrancePollenResult
+import org.breezyweather.unit.pollen.PollenConcentration.Companion.perCubicMeter
 import retrofit2.Retrofit
 import java.util.Calendar
 import java.util.Date
 import javax.inject.Inject
 import javax.inject.Named
-import kotlin.math.roundToInt
 
 /**
  * Atmo France
@@ -190,12 +190,12 @@ class AtmoFranceService @Inject constructor(
 
     private fun getPollen(pollenResult: AtmoFrancePollenProperties): Pollen {
         return Pollen(
-            alder = pollenResult.concAul?.roundToInt(),
-            birch = pollenResult.concBoul?.roundToInt(),
-            grass = pollenResult.concGram?.roundToInt(),
-            mugwort = pollenResult.concArm?.roundToInt(),
-            olive = pollenResult.concOliv?.roundToInt(),
-            ragweed = pollenResult.concAmbr?.roundToInt()
+            alder = pollenResult.concAul?.perCubicMeter,
+            birch = pollenResult.concBoul?.perCubicMeter,
+            grass = pollenResult.concGram?.perCubicMeter,
+            mugwort = pollenResult.concArm?.perCubicMeter,
+            olive = pollenResult.concOliv?.perCubicMeter,
+            ragweed = pollenResult.concAmbr?.perCubicMeter
         )
     }
 

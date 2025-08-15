@@ -43,6 +43,7 @@ import org.breezyweather.sources.veduris.json.VedurIsStationResult
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
 import org.breezyweather.unit.speed.Speed.Companion.metersPerSecond
+import org.breezyweather.unit.temperature.Temperature.Companion.celsius
 import org.json.JSONObject
 import retrofit2.Retrofit
 import java.text.SimpleDateFormat
@@ -191,7 +192,7 @@ class VedurIsService @Inject constructor(
                     weatherText = getWeatherText(context, it.icon),
                     weatherCode = getWeatherCode(it.icon),
                     temperature = TemperatureWrapper(
-                        temperature = it.temperature
+                        temperature = it.temperature?.celsius
                     ),
                     precipitation = Precipitation(
                         total = it.precipitation?.millimeters
@@ -215,7 +216,7 @@ class VedurIsService @Inject constructor(
                         weatherText = getWeatherText(context, it.icon),
                         weatherCode = getWeatherCode(it.icon),
                         temperature = TemperatureWrapper(
-                            temperature = it.temperature
+                            temperature = it.temperature?.celsius
                         ),
                         precipitation = Precipitation(
                             total = it.precipitation?.millimeters
@@ -269,7 +270,7 @@ class VedurIsService @Inject constructor(
                 weatherText = getWeatherText(context, it.icon),
                 weatherCode = getWeatherCode(it.icon),
                 temperature = TemperatureWrapper(
-                    temperature = it.temperature
+                    temperature = it.temperature?.celsius
                 ),
                 wind = Wind(
                     degree = it.windDirection,
@@ -277,7 +278,7 @@ class VedurIsService @Inject constructor(
                     gusts = it.maxWindGust?.metersPerSecond
                 ),
                 relativeHumidity = if (it.humidity != 0.0) it.humidity else null,
-                dewPoint = it.dewPoint,
+                dewPoint = it.dewPoint?.celsius,
                 pressure = it.pressure?.hectopascals,
                 cloudCover = it.cloudCover?.toInt()
             )

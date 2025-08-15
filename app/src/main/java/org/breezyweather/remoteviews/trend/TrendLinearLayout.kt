@@ -26,9 +26,11 @@ import androidx.annotation.ColorInt
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.ColorUtils
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.common.extensions.dpToPx
+import org.breezyweather.common.extensions.formatMeasure
 import org.breezyweather.common.extensions.getTypefaceFromTextAppearance
+import org.breezyweather.unit.formatting.UnitWidth
+import org.breezyweather.unit.temperature.Temperature.Companion.deciCelsius
 
 /**
  * Trend linear layout.
@@ -46,7 +48,6 @@ class TrendLinearLayout @JvmOverloads constructor(
     private var mHistoryTempYs: Array<Float> = emptyArray()
     private var mHighestTemp: Float? = null
     private var mLowestTemp: Float? = null
-    private var mTemperatureUnit: TemperatureUnit
 
     private var mKeyLineVisibility: Boolean = false
 
@@ -67,7 +68,6 @@ class TrendLinearLayout @JvmOverloads constructor(
         setWillNotDraw(false)
         mPaint.setTypeface(getContext().getTypefaceFromTextAppearance(R.style.subtitle_text))
         mPaint.textSize = textSize
-        mTemperatureUnit = TemperatureUnit.CELSIUS
         setColor(true)
         trendMarginTop = getContext().dpToPx(trendMarginTop.toInt().toFloat())
         trendMarginBottom = getContext().dpToPx(trendMarginBottom.toInt().toFloat())
@@ -106,13 +106,21 @@ class TrendLinearLayout @JvmOverloads constructor(
         mPaint.textAlign = Paint.Align.LEFT
         mPaint.color = mTextColor
         canvas.drawText(
-            mTemperatureUnit.formatMeasureShort(context, mHistoryTemps[0].toDouble()),
+            mHistoryTemps[0].toDouble().deciCelsius.formatMeasure(
+                context,
+                valueWidth = UnitWidth.NARROW,
+                unitWidth = UnitWidth.NARROW
+            ),
             2 * marginText,
             mHistoryTempYs[0] - mPaint.fontMetrics.bottom - marginText,
             mPaint
         )
         canvas.drawText(
-            mTemperatureUnit.formatMeasureShort(context, mHistoryTemps[1].toDouble()),
+            mHistoryTemps[1].toDouble().deciCelsius.formatMeasure(
+                context,
+                valueWidth = UnitWidth.NARROW,
+                unitWidth = UnitWidth.NARROW
+            ),
             2 * marginText,
             mHistoryTempYs[1] - mPaint.fontMetrics.top + marginText,
             mPaint
@@ -152,13 +160,11 @@ class TrendLinearLayout @JvmOverloads constructor(
         historyTemps: Array<Float>,
         highestTemp: Float,
         lowestTemp: Float,
-        unit: TemperatureUnit,
         daily: Boolean,
     ) {
         mHistoryTemps = historyTemps
         mHighestTemp = highestTemp
         mLowestTemp = lowestTemp
-        mTemperatureUnit = unit
         if (daily) {
             trendItemHeight = context.dpToPx(WidgetItemView.TREND_VIEW_HEIGHT_DIP_2X.toFloat())
             bottomMargin = context.dpToPx(

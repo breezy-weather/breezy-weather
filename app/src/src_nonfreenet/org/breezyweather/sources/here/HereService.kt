@@ -55,6 +55,7 @@ import org.breezyweather.unit.distance.Distance.Companion.kilometers
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
 import org.breezyweather.unit.speed.Speed.Companion.kilometersPerHour
+import org.breezyweather.unit.temperature.Temperature.Companion.celsius
 import retrofit2.Retrofit
 import javax.inject.Inject
 import javax.inject.Named
@@ -172,8 +173,8 @@ class HereService @Inject constructor(
             weatherText = result.description,
             weatherCode = getWeatherCode(result.iconId),
             temperature = TemperatureWrapper(
-                temperature = result.temperature,
-                feelsLike = result.comfort?.toDouble()
+                temperature = result.temperature?.celsius,
+                feelsLike = result.comfort?.toDoubleOrNull()?.celsius
             ),
             wind = Wind(
                 degree = result.windDirection,
@@ -181,7 +182,7 @@ class HereService @Inject constructor(
             ),
             uV = UV(index = result.uvIndex?.toDouble()),
             relativeHumidity = result.humidity?.toDouble(),
-            dewPoint = result.dewPoint,
+            dewPoint = result.dewPoint?.celsius,
             pressure = result.barometerPressure?.hectopascals,
             visibility = result.visibility?.kilometers
         )
@@ -204,7 +205,7 @@ class HereService @Inject constructor(
                     day = HalfDayWrapper(
                         temperature = TemperatureWrapper(
                             temperature = if (!dailyForecast.highTemperature.isNullOrEmpty()) {
-                                dailyForecast.highTemperature.toDouble()
+                                dailyForecast.highTemperature.toDoubleOrNull()?.celsius
                             } else {
                                 null
                             }
@@ -215,7 +216,7 @@ class HereService @Inject constructor(
                         // so we try to get low temp from next day if available
                         temperature = TemperatureWrapper(
                             temperature = if (!dailySimpleForecasts.getOrNull(i + 1)?.lowTemperature.isNullOrEmpty()) {
-                                dailySimpleForecasts[i + 1].lowTemperature!!.toDouble()
+                                dailySimpleForecasts[i + 1].lowTemperature!!.toDoubleOrNull()?.celsius
                             } else {
                                 null
                             }
@@ -241,8 +242,8 @@ class HereService @Inject constructor(
                 weatherText = result.description,
                 weatherCode = getWeatherCode(result.iconId),
                 temperature = TemperatureWrapper(
-                    temperature = result.temperature,
-                    feelsLike = result.comfort?.toDouble()
+                    temperature = result.temperature?.celsius,
+                    feelsLike = result.comfort?.toDoubleOrNull()?.celsius
                 ),
                 precipitation = Precipitation(
                     total = result.precipitation1H?.millimeters ?: (result.rainFall + result.snowFall)?.millimeters,
@@ -258,7 +259,7 @@ class HereService @Inject constructor(
                 ),
                 uV = UV(index = result.uvIndex?.toDouble()),
                 relativeHumidity = result.humidity?.toDouble(),
-                dewPoint = result.dewPoint,
+                dewPoint = result.dewPoint?.celsius,
                 pressure = result.barometerPressure?.hectopascals,
                 visibility = result.visibility?.kilometers
             )

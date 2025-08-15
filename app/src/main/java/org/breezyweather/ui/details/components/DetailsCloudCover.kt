@@ -60,14 +60,14 @@ import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.persistentMapOf
 import kotlinx.collections.immutable.toImmutableMap
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.options.appearance.DetailScreen
-import org.breezyweather.common.basic.models.options.basic.UnitUtils
 import org.breezyweather.common.extensions.cloudCoverScaleThresholds
 import org.breezyweather.common.extensions.formatTime
 import org.breezyweather.common.extensions.getCloudCoverDescription
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.extensions.toDate
+import org.breezyweather.common.options.appearance.DetailScreen
+import org.breezyweather.common.utils.UnitUtils
 import org.breezyweather.domain.weather.model.getFullLabel
 import org.breezyweather.domain.weather.model.getRangeDescriptionSummary
 import org.breezyweather.domain.weather.model.getRangeSummary

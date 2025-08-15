@@ -65,14 +65,14 @@ import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.persistentMapOf
 import kotlinx.collections.immutable.toImmutableMap
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.options.appearance.DetailScreen
-import org.breezyweather.common.basic.models.options.basic.UnitUtils
 import org.breezyweather.common.extensions.formatMeasure
 import org.breezyweather.common.extensions.formatTime
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.extensions.roundUpToNearestMultiplier
 import org.breezyweather.common.extensions.toDate
+import org.breezyweather.common.options.appearance.DetailScreen
+import org.breezyweather.common.utils.UnitUtils
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.ui.common.charts.BreezyBarChart
 import org.breezyweather.ui.common.charts.BreezyLineChart
@@ -272,7 +272,6 @@ private fun PrecipitationItem(
     modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
-    val precipitationUnit = SettingsManager.getInstance(context).getPrecipitationUnit(context)
 
     Column(
         modifier = modifier.fillMaxWidth()
@@ -281,7 +280,7 @@ private fun PrecipitationItem(
         TextFixedHeight(
             text = precipitation?.let { prec ->
                 UnitUtils.formatUnitsDifferentFontSize(
-                    formattedMeasure = prec.formatMeasure(context, precipitationUnit),
+                    formattedMeasure = prec.formatMeasure(context),
                     fontSize = MaterialTheme.typography.headlineSmall.fontSize
                 )
             } ?: AnnotatedString(""),
@@ -289,7 +288,7 @@ private fun PrecipitationItem(
             modifier = Modifier
                 .clearAndSetSemantics {
                     precipitation?.let { prec ->
-                        contentDescription = prec.formatMeasure(context, precipitationUnit, unitWidth = UnitWidth.LONG)
+                        contentDescription = prec.formatMeasure(context, unitWidth = UnitWidth.LONG)
                     }
                 }
         )

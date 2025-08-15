@@ -25,10 +25,10 @@ import android.view.ViewGroup
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.UV
 import org.breezyweather.R
-import org.breezyweather.common.basic.BreezyActivity
-import org.breezyweather.common.basic.models.options.appearance.DetailScreen
-import org.breezyweather.common.basic.models.options.basic.UnitUtils
+import org.breezyweather.common.activities.BreezyActivity
 import org.breezyweather.common.extensions.getThemeColor
+import org.breezyweather.common.options.appearance.DetailScreen
+import org.breezyweather.common.utils.UnitUtils
 import org.breezyweather.domain.weather.model.getContentDescription
 import org.breezyweather.domain.weather.model.getUVColor
 import org.breezyweather.ui.common.widgets.trend.TrendRecyclerView

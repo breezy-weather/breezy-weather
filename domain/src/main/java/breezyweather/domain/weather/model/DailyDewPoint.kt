@@ -16,9 +16,11 @@
 
 package breezyweather.domain.weather.model
 
+import org.breezyweather.unit.temperature.Temperature
+
 data class DailyDewPoint(
-    override val average: Double? = null,
-    override val max: Double? = null,
-    override val min: Double? = null,
+    override val average: Temperature? = null,
+    override val max: Temperature? = null,
+    override val min: Temperature? = null,
     override val summary: String? = null,
-) : DailyAvgMinMax<Double>
+) : DailyAvgMinMax<Temperature>

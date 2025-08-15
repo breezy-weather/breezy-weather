@@ -32,8 +32,8 @@ import org.breezyweather.BuildConfig
 import org.breezyweather.R
 import org.breezyweather.background.forecast.TodayForecastNotificationJob
 import org.breezyweather.background.forecast.TomorrowForecastNotificationJob
-import org.breezyweather.common.basic.models.options.UpdateInterval
 import org.breezyweather.common.extensions.plus
+import org.breezyweather.common.options.UpdateInterval
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.ui.common.composables.AnimatedVisibilitySlideVertically
 import org.breezyweather.ui.common.widgets.Material3Scaffold

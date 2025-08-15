@@ -57,6 +57,7 @@ import org.breezyweather.sources.RefreshHelper
 import org.breezyweather.sources.ims.json.ImsLocation
 import org.breezyweather.sources.ims.json.ImsWeatherData
 import org.breezyweather.unit.speed.Speed.Companion.kilometersPerHour
+import org.breezyweather.unit.temperature.Temperature.Companion.celsius
 import retrofit2.Retrofit
 import java.util.Calendar
 import java.util.Date
@@ -222,8 +223,8 @@ class ImsService @Inject constructor(
                             weatherText = getWeatherText(context, currentWeatherCode),
                             weatherCode = getWeatherCode(currentWeatherCode),
                             temperature = TemperatureWrapper(
-                                temperature = hourlyResult.value.preciseTemperature?.toDoubleOrNull(),
-                                feelsLike = hourlyResult.value.windChill?.toDoubleOrNull()
+                                temperature = hourlyResult.value.preciseTemperature?.toDoubleOrNull()?.celsius,
+                                feelsLike = hourlyResult.value.windChill?.toDoubleOrNull()?.celsius
                             ),
                             precipitationProbability = PrecipitationProbability(
                                 total = hourlyResult.value.rainChance?.toDoubleOrNull()
@@ -261,8 +262,8 @@ class ImsService @Inject constructor(
             weatherCode = getWeatherCode(data.analysis.weatherCode),
             temperature = data.analysis.temperature?.toDoubleOrNull()?.let {
                 TemperatureWrapper(
-                    temperature = it,
-                    feelsLike = data.analysis.feelsLike?.toDoubleOrNull()
+                    temperature = it?.celsius,
+                    feelsLike = data.analysis.feelsLike?.toDoubleOrNull()?.celsius
                 )
             },
             wind = data.analysis.windSpeed?.let { windSpeed ->
@@ -275,7 +276,7 @@ class ImsService @Inject constructor(
             },
             uV = data.analysis.uvIndex?.toDoubleOrNull()?.let { UV(it) },
             relativeHumidity = data.analysis.relativeHumidity?.toDoubleOrNull(),
-            dewPoint = data.analysis.dewPointTemp?.toDoubleOrNull(),
+            dewPoint = data.analysis.dewPointTemp?.toDoubleOrNull()?.celsius,
             dailyForecast = dailyForecast
         )
     }

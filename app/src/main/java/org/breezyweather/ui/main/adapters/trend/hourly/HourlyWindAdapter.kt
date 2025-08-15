@@ -27,11 +27,11 @@ import android.view.ViewGroup
 import androidx.appcompat.content.res.AppCompatResources
 import breezyweather.domain.location.model.Location
 import org.breezyweather.R
-import org.breezyweather.common.basic.BreezyActivity
-import org.breezyweather.common.basic.models.options.appearance.DetailScreen
+import org.breezyweather.common.activities.BreezyActivity
 import org.breezyweather.common.extensions.formatValue
 import org.breezyweather.common.extensions.getBeaufortScaleStrength
 import org.breezyweather.common.extensions.getThemeColor
+import org.breezyweather.common.options.appearance.DetailScreen
 import org.breezyweather.domain.weather.model.getColor
 import org.breezyweather.domain.weather.model.getContentDescription
 import org.breezyweather.ui.common.images.RotateDrawable

@@ -21,17 +21,16 @@ import java.io.Serializable
 
 /**
  * Temperature.
- * default unit : [TemperatureUnit.C]
  */
 data class Temperature(
-    val temperature: Double? = null,
-    val sourceFeelsLike: Double? = null,
-    val computedApparent: Double? = null,
-    val computedWindChill: Double? = null,
-    val computedHumidex: Double? = null,
+    val temperature: org.breezyweather.unit.temperature.Temperature? = null,
+    val sourceFeelsLike: org.breezyweather.unit.temperature.Temperature? = null,
+    val computedApparent: org.breezyweather.unit.temperature.Temperature? = null,
+    val computedWindChill: org.breezyweather.unit.temperature.Temperature? = null,
+    val computedHumidex: org.breezyweather.unit.temperature.Temperature? = null,
 ) : Serializable {
 
-    val feelsLikeTemperature: Double? = sourceFeelsLike
+    val feelsLikeTemperature: org.breezyweather.unit.temperature.Temperature? = sourceFeelsLike
         ?: computedApparent
         ?: computedWindChill
         ?: computedHumidex

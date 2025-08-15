@@ -8,12 +8,9 @@ Syntax inspired by [Kotlin duration](https://kotlinlang.org/docs/time-measuremen
 
 Some precision may be lost during conversions.
 
-Very early work
-
 Remains to do :
 
-- Temperature unit
-- Pollen concentration unit
+- Percentage formatting
 - Add missing non-English Android translations (for the units we use in Breezy Weather)
 - Plus and minus operations
 - Parse from string
@@ -22,6 +19,20 @@ Remains to do :
 # Summary of supported units
 
 Android translations are provided without plural rules.
+
+## Temperature
+
+Android translations are only in English at the moment.
+
+| Unit               | `NumberFormatter` | `MeasureFormat` | Android translations |
+|--------------------|-------------------|-----------------|----------------------|
+| Decidegree Celsius | ❌                 | ❌               | ✅                    |
+| Degree Celsius     | Android >= 11     | Android 7 to 10 | Android < 7          |
+| Degree Fahrenheit  | Android >= 11     | Android 7 to 10 | Android < 7          |
+| Kelvin             | Android >= 11     | Android 7 to 10 | Android < 7          |
+
+Supports temperature deviations conversions (such as degree days).
+
 
 ## Distance
 
@@ -94,6 +105,15 @@ Android translations are only in English at the moment.
 |---------------------------|-------------------|-----------------|----------------------|
 | Microgram per cubic meter | Android >= 11     | Android 8 to 10 | Android < 8          |
 | Milligram per cubic meter | Android >= 11     | Android 8 to 10 | Android < 8          |
+
+
+## Pollen concentration
+
+Android translations are only in English at the moment.
+
+| Unit            | `NumberFormatter` | `MeasureFormat` | Android translations |
+|-----------------|-------------------|-----------------|----------------------|
+| Per cubic meter | ❌                 | ❌               | ✅                    |
 
 
 ## Duration

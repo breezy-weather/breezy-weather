@@ -27,12 +27,12 @@ import androidx.compose.ui.res.stringResource
 import kotlinx.collections.immutable.ImmutableList
 import org.breezyweather.BreezyWeather
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.options.appearance.BackgroundAnimationMode
-import org.breezyweather.common.basic.models.options.appearance.CardDisplay
-import org.breezyweather.common.basic.models.options.appearance.DailyTrendDisplay
-import org.breezyweather.common.basic.models.options.appearance.HourlyTrendDisplay
 import org.breezyweather.common.extensions.isMotionReduced
 import org.breezyweather.common.extensions.plus
+import org.breezyweather.common.options.appearance.BackgroundAnimationMode
+import org.breezyweather.common.options.appearance.CardDisplay
+import org.breezyweather.common.options.appearance.DailyTrendDisplay
+import org.breezyweather.common.options.appearance.HourlyTrendDisplay
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.common.utils.helpers.SnackbarHelper
 import org.breezyweather.domain.settings.SettingsManager

@@ -25,11 +25,11 @@ import android.view.ViewGroup
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Precipitation
 import org.breezyweather.R
-import org.breezyweather.common.basic.BreezyActivity
-import org.breezyweather.common.basic.models.options.appearance.DetailScreen
+import org.breezyweather.common.activities.BreezyActivity
 import org.breezyweather.common.extensions.formatMeasure
 import org.breezyweather.common.extensions.formatValue
 import org.breezyweather.common.extensions.getThemeColor
+import org.breezyweather.common.options.appearance.DetailScreen
 import org.breezyweather.domain.weather.model.getHalfDayPrecipitationColor
 import org.breezyweather.ui.common.widgets.trend.TrendRecyclerView
 import org.breezyweather.ui.common.widgets.trend.chart.DoubleHistogramView

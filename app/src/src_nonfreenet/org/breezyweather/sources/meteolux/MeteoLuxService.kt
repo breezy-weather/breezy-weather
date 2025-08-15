@@ -50,6 +50,7 @@ import org.breezyweather.sources.meteolux.json.MeteoLuxWeatherResult
 import org.breezyweather.unit.precipitation.Precipitation.Companion.centimeters
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.speed.Speed.Companion.kilometersPerHour
+import org.breezyweather.unit.temperature.Temperature.Companion.celsius
 import retrofit2.Retrofit
 import java.text.SimpleDateFormat
 import java.util.Locale
@@ -178,8 +179,8 @@ class MeteoLuxService @Inject constructor(
                 weatherText = getWeatherText(context, it.icon?.id),
                 weatherCode = getWeatherCode(it.icon?.id),
                 temperature = TemperatureWrapper(
-                    temperature = it.temperature?.temperature,
-                    feelsLike = it.temperature?.felt
+                    temperature = it.temperature?.temperature?.celsius,
+                    feelsLike = it.temperature?.felt?.celsius
                 ),
                 wind = Wind(
                     degree = getWindDegree(it.wind?.direction),
@@ -205,8 +206,8 @@ class MeteoLuxService @Inject constructor(
                         weatherText = getWeatherText(context, it.icon?.id),
                         weatherCode = getWeatherCode(it.icon?.id),
                         temperature = TemperatureWrapper(
-                            temperature = it.temperatureMax?.temperature,
-                            feelsLike = it.temperatureMax?.felt
+                            temperature = it.temperatureMax?.temperature?.celsius,
+                            feelsLike = it.temperatureMax?.felt?.celsius
                         ),
                         precipitation = Precipitation(
                             rain = getRangeMax(it.rain)?.millimeters,
@@ -222,8 +223,8 @@ class MeteoLuxService @Inject constructor(
                         weatherText = getWeatherText(context, it.icon?.id),
                         weatherCode = getWeatherCode(it.icon?.id),
                         temperature = TemperatureWrapper(
-                            temperature = it.temperatureMin?.temperature,
-                            feelsLike = it.temperatureMin?.felt
+                            temperature = it.temperatureMin?.temperature?.celsius,
+                            feelsLike = it.temperatureMin?.felt?.celsius
                         ),
                         wind = Wind(
                             degree = getWindDegree(it.wind?.direction),
@@ -255,8 +256,8 @@ class MeteoLuxService @Inject constructor(
                     weatherText = getWeatherText(context, it.icon?.id),
                     weatherCode = getWeatherCode(it.icon?.id),
                     temperature = TemperatureWrapper(
-                        temperature = it.temperature?.temperature?.average(),
-                        feelsLike = it.temperature?.felt
+                        temperature = it.temperature?.temperature?.takeIf { t -> t.isNotEmpty() }?.average()?.celsius,
+                        feelsLike = it.temperature?.felt?.celsius
                     ),
                     precipitation = Precipitation(
                         rain = getRangeMax(it.rain)?.millimeters,

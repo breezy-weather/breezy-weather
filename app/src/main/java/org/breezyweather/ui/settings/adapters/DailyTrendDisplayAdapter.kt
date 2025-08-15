@@ -26,7 +26,7 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.options.appearance.DailyTrendDisplay
+import org.breezyweather.common.options.appearance.DailyTrendDisplay
 import org.breezyweather.ui.common.widgets.slidingItem.SlidingItemContainerLayout
 
 class DailyTrendDisplayAdapter(

@@ -90,6 +90,7 @@ import org.breezyweather.unit.distance.Distance.Companion.feet
 import org.breezyweather.unit.distance.Distance.Companion.kilometers
 import org.breezyweather.unit.distance.Distance.Companion.meters
 import org.breezyweather.unit.distance.Distance.Companion.miles
+import org.breezyweather.unit.pollen.PollenConcentration.Companion.perCubicMeter
 import org.breezyweather.unit.pollutant.PollutantConcentration
 import org.breezyweather.unit.pollutant.PollutantConcentration.Companion.microgramsPerCubicMeter
 import org.breezyweather.unit.precipitation.Precipitation.Companion.centimeters
@@ -100,6 +101,9 @@ import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
 import org.breezyweather.unit.speed.Speed
 import org.breezyweather.unit.speed.Speed.Companion.kilometersPerHour
 import org.breezyweather.unit.speed.Speed.Companion.milesPerHour
+import org.breezyweather.unit.temperature.Temperature
+import org.breezyweather.unit.temperature.Temperature.Companion.celsius
+import org.breezyweather.unit.temperature.Temperature.Companion.fahrenheit
 import retrofit2.Retrofit
 import java.util.Calendar
 import java.util.Date
@@ -396,8 +400,8 @@ class AccuService @Inject constructor(
                 ) {
                     mapOf(
                         Month.fromCalendarMonth(cal[Calendar.MONTH]) to Normals(
-                            daytimeTemperature = accuClimoResult.Normals.Temperatures.Maximum.Metric?.Value,
-                            nighttimeTemperature = accuClimoResult.Normals.Temperatures.Minimum.Metric?.Value
+                            daytimeTemperature = accuClimoResult.Normals.Temperatures.Maximum.Metric?.Value?.celsius,
+                            nighttimeTemperature = accuClimoResult.Normals.Temperatures.Minimum.Metric?.Value?.celsius
                         )
                     )
                 } else {
@@ -419,8 +423,8 @@ class AccuService @Inject constructor(
             weatherText = currentResult.WeatherText,
             weatherCode = getWeatherCode(currentResult.WeatherIcon),
             temperature = TemperatureWrapper(
-                temperature = currentResult.Temperature?.Metric?.Value,
-                feelsLike = currentResult.RealFeelTemperature?.Metric?.Value
+                temperature = currentResult.Temperature?.Metric?.Value?.celsius,
+                feelsLike = currentResult.RealFeelTemperature?.Metric?.Value?.celsius
             ),
             wind = Wind(
                 degree = currentResult.Wind?.Direction?.Degrees?.toDouble(),
@@ -429,7 +433,7 @@ class AccuService @Inject constructor(
             ),
             uV = UV(index = currentResult.UVIndex?.toDouble()),
             relativeHumidity = currentResult.RelativeHumidity?.toDouble(),
-            dewPoint = currentResult.DewPoint?.Metric?.Value,
+            dewPoint = currentResult.DewPoint?.Metric?.Value?.celsius,
             pressure = currentResult.Pressure?.Metric?.Value?.hectopascals,
             cloudCover = currentResult.CloudCover,
             visibility = currentResult.Visibility?.Metric?.Value?.kilometers,
@@ -451,8 +455,8 @@ class AccuService @Inject constructor(
                     weatherSummary = forecasts.Day?.LongPhrase,
                     weatherCode = getWeatherCode(forecasts.Day?.Icon),
                     temperature = TemperatureWrapper(
-                        temperature = getTemperatureInCelsius(forecasts.Temperature?.Maximum),
-                        feelsLike = getTemperatureInCelsius(forecasts.RealFeelTemperature?.Maximum)
+                        temperature = getTemperature(forecasts.Temperature?.Maximum),
+                        feelsLike = getTemperature(forecasts.RealFeelTemperature?.Maximum)
                     ),
                     precipitation = Precipitation(
                         total = getQuantity(forecasts.Day?.TotalLiquid),
@@ -484,8 +488,8 @@ class AccuService @Inject constructor(
                     weatherSummary = forecasts.Night?.LongPhrase,
                     weatherCode = getWeatherCode(forecasts.Night?.Icon),
                     temperature = TemperatureWrapper(
-                        temperature = getTemperatureInCelsius(forecasts.Temperature?.Minimum),
-                        feelsLike = getTemperatureInCelsius(forecasts.RealFeelTemperature?.Minimum)
+                        temperature = getTemperature(forecasts.Temperature?.Minimum),
+                        feelsLike = getTemperature(forecasts.RealFeelTemperature?.Minimum)
                     ),
                     precipitation = Precipitation(
                         total = getQuantity(forecasts.Night?.TotalLiquid),
@@ -548,10 +552,10 @@ class AccuService @Inject constructor(
         val ragweed = list.firstOrNull { it.Name == "Ragweed" }
         val tree = list.firstOrNull { it.Name == "Tree" }
         return Pollen(
-            grass = grass?.Value,
-            mold = mold?.Value,
-            ragweed = ragweed?.Value,
-            tree = tree?.Value
+            grass = grass?.Value?.perCubicMeter,
+            mold = mold?.Value?.perCubicMeter,
+            ragweed = ragweed?.Value?.perCubicMeter,
+            tree = tree?.Value?.perCubicMeter
         )
     }
 
@@ -574,8 +578,8 @@ class AccuService @Inject constructor(
                 weatherText = result.IconPhrase,
                 weatherCode = getWeatherCode(result.WeatherIcon),
                 temperature = TemperatureWrapper(
-                    temperature = getTemperatureInCelsius(result.Temperature),
-                    feelsLike = getTemperatureInCelsius(result.RealFeelTemperature)
+                    temperature = getTemperature(result.Temperature),
+                    feelsLike = getTemperature(result.RealFeelTemperature)
                 ),
                 precipitation = Precipitation(
                     total = getQuantity(result.TotalLiquid),
@@ -597,7 +601,7 @@ class AccuService @Inject constructor(
                 ),
                 uV = UV(index = result.UVIndex?.toDouble()),
                 relativeHumidity = result.RelativeHumidity?.toDouble(),
-                dewPoint = getTemperatureInCelsius(result.DewPoint),
+                dewPoint = getTemperature(result.DewPoint),
                 cloudCover = result.CloudCover,
                 visibility = getDistance(result.Visibility)
             )
@@ -753,24 +757,24 @@ class AccuService @Inject constructor(
         }
     }
 
-    private fun getTemperatureInCelsius(value: AccuValue?): Double? {
+    private fun getTemperature(value: AccuValue?): Temperature? {
         return if (value?.UnitType == 18) { // F
-            value.Value?.minus(32)?.div(1.8)
+            value.Value?.fahrenheit
         } else {
-            value?.Value
+            value?.Value?.celsius
         }
     }
 
-    private fun getDegreeDayInCelsius(value: AccuValue?): Double? {
-        return if (value?.UnitType == 18) { // F
-            value.Value?.div(1.8)
+    private fun getDegreeDayInCelsius(value: AccuValue?): Temperature? {
+        return if (value?.UnitType == 18) {
+            value.Value?.div(1.8)?.celsius // TODO: Convert using degree day conversion
         } else {
-            value?.Value
+            value?.Value?.celsius
         }
     }
 
     private fun getSpeedInMetersPerSecond(value: AccuValue?): Speed? {
-        return if (value?.UnitType == 9) { // mi/h
+        return if (value?.UnitType == 9) {
             value.Value?.milesPerHour
         } else {
             value?.Value?.kilometersPerHour

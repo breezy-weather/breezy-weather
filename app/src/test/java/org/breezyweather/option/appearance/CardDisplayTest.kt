@@ -21,8 +21,7 @@ import io.kotest.matchers.shouldBe
 import io.mockk.every
 import io.mockk.mockk
 import kotlinx.coroutines.test.runTest
-import org.breezyweather.R
-import org.breezyweather.common.basic.models.options.appearance.CardDisplay
+import org.breezyweather.common.options.appearance.CardDisplay
 import org.junit.jupiter.api.Test
 
 class CardDisplayTest {

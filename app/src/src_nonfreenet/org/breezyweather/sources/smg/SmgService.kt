@@ -56,6 +56,7 @@ import org.breezyweather.unit.pollutant.PollutantConcentration.Companion.microgr
 import org.breezyweather.unit.pollutant.PollutantConcentration.Companion.milligramsPerCubicMeter
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
 import org.breezyweather.unit.speed.Speed.Companion.kilometersPerHour
+import org.breezyweather.unit.temperature.Temperature.Companion.celsius
 import retrofit2.Retrofit
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -311,7 +312,7 @@ class SmgService @Inject constructor(
             report.station?.getOrNull(0)?.takeIf { it.stationname?.getOrNull(0) == "TAIPA GRANDE" }?.let {
                 current = CurrentWrapper(
                     temperature = TemperatureWrapper(
-                        temperature = it.Temperature?.getOrNull(0)?.dValue?.getOrNull(0)?.toDoubleOrNull()
+                        temperature = it.Temperature?.getOrNull(0)?.dValue?.getOrNull(0)?.toDoubleOrNull()?.celsius
                     ),
                     wind = Wind(
                         degree = it.WindDirection?.getOrNull(0)?.Degree?.getOrNull(0)?.toDoubleOrNull(),
@@ -323,7 +324,7 @@ class SmgService @Inject constructor(
                             ?.getOrNull(0)?.Value?.getOrNull(0)?.toDoubleOrNull()
                     ),
                     relativeHumidity = it.Humidity?.getOrNull(0)?.dValue?.getOrNull(0)?.toDoubleOrNull(),
-                    dewPoint = it.DewPoint?.getOrNull(0)?.dValue?.getOrNull(0)?.toDoubleOrNull(),
+                    dewPoint = it.DewPoint?.getOrNull(0)?.dValue?.getOrNull(0)?.toDoubleOrNull()?.celsius,
                     pressure = it.MeanSeaLevelPressure?.getOrNull(0)?.dValue?.getOrNull(0)?.toDoubleOrNull()
                         ?.hectopascals,
                     dailyForecast = bulletinResult.Forecast?.Custom?.getOrNull(0)?.TodaySituation?.getOrNull(0)
@@ -363,14 +364,14 @@ class SmgService @Inject constructor(
                             weatherText = getWeatherText(context, it.dailyWeatherStatus?.getOrNull(0)),
                             weatherCode = getWeatherCode(it.dailyWeatherStatus?.getOrNull(0)),
                             temperature = TemperatureWrapper(
-                                temperature = maxTemp
+                                temperature = maxTemp?.celsius
                             )
                         ),
                         night = HalfDayWrapper(
                             weatherText = getWeatherText(context, it.dailyWeatherStatus?.getOrNull(0)),
                             weatherCode = getWeatherCode(it.dailyWeatherStatus?.getOrNull(0)),
                             temperature = TemperatureWrapper(
-                                temperature = minTemp
+                                temperature = minTemp?.celsius
                             )
                         )
                     )
@@ -398,7 +399,7 @@ class SmgService @Inject constructor(
                         ),
                         weatherCode = getWeatherCode(it.hourlyWeatherStatus?.getOrNull(0)?.Value?.getOrNull(0)),
                         temperature = TemperatureWrapper(
-                            temperature = it.Temperature?.getOrNull(0)?.Value?.getOrNull(0)?.toDoubleOrNull()
+                            temperature = it.Temperature?.getOrNull(0)?.Value?.getOrNull(0)?.toDoubleOrNull()?.celsius
                         ),
                         wind = Wind(
                             degree = it.Winddiv?.getOrNull(0)?.Value?.getOrNull(0)?.toDoubleOrNull(),
@@ -610,18 +611,18 @@ class SmgService @Inject constructor(
     // Source: https://www.smg.gov.mo/en/subpage/348/page/252
     private fun getNormals(): Map<Month, Normals> {
         return mapOf(
-            Month.JANUARY to Normals(18.6, 12.7),
-            Month.FEBRUARY to Normals(19.2, 13.9),
-            Month.MARCH to Normals(21.4, 16.5),
-            Month.APRIL to Normals(25.1, 20.3),
-            Month.MAY to Normals(28.7, 23.7),
-            Month.JUNE to Normals(30.5, 25.7),
-            Month.JULY to Normals(31.4, 26.1),
-            Month.AUGUST to Normals(31.5, 25.9),
-            Month.SEPTEMBER to Normals(30.8, 25.1),
-            Month.OCTOBER to Normals(28.5, 22.7),
-            Month.NOVEMBER to Normals(24.7, 18.8),
-            Month.DECEMBER to Normals(20.3, 14.3)
+            Month.JANUARY to Normals(18.6.celsius, 12.7.celsius),
+            Month.FEBRUARY to Normals(19.2.celsius, 13.9.celsius),
+            Month.MARCH to Normals(21.4.celsius, 16.5.celsius),
+            Month.APRIL to Normals(25.1.celsius, 20.3.celsius),
+            Month.MAY to Normals(28.7.celsius, 23.7.celsius),
+            Month.JUNE to Normals(30.5.celsius, 25.7.celsius),
+            Month.JULY to Normals(31.4.celsius, 26.1.celsius),
+            Month.AUGUST to Normals(31.5.celsius, 25.9.celsius),
+            Month.SEPTEMBER to Normals(30.8.celsius, 25.1.celsius),
+            Month.OCTOBER to Normals(28.5.celsius, 22.7.celsius),
+            Month.NOVEMBER to Normals(24.7.celsius, 18.8.celsius),
+            Month.DECEMBER to Normals(20.3.celsius, 14.3.celsius)
         )
     }
 

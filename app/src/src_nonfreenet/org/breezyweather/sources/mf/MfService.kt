@@ -76,6 +76,7 @@ import org.breezyweather.sources.mf.json.MfWarningsResult
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
 import org.breezyweather.unit.speed.Speed.Companion.metersPerSecond
+import org.breezyweather.unit.temperature.Temperature.Companion.celsius
 import retrofit2.Retrofit
 import java.nio.charset.StandardCharsets
 import java.util.Calendar
@@ -402,7 +403,7 @@ class MfService @Inject constructor(
             weatherText = currentResult.properties.gridded.weatherDescription,
             weatherCode = getWeatherCode(currentResult.properties.gridded.weatherIcon),
             temperature = TemperatureWrapper(
-                temperature = currentResult.properties.gridded.temperature
+                temperature = currentResult.properties.gridded.temperature?.celsius
             ),
             wind = Wind(
                 degree = currentResult.properties.gridded.windDirection?.toDouble(),
@@ -438,14 +439,14 @@ class MfService @Inject constructor(
                         // Too complicated to get weather from hourly, so let's just use daily info for both day and night
                         weatherText = dailyForecast.dailyWeatherDescription,
                         weatherCode = getWeatherCode(dailyForecast.dailyWeatherIcon),
-                        temperature = TemperatureWrapper(temperature = dailyForecast.tMax)
+                        temperature = TemperatureWrapper(temperature = dailyForecast.tMax?.celsius)
                     ),
                     night = HalfDayWrapper(
                         weatherText = dailyForecast.dailyWeatherDescription,
                         weatherCode = getWeatherCode(dailyForecast.dailyWeatherIcon),
                         // tMin is for current day, so it actually takes the previous night,
                         // so we try to get tMin from next day if available
-                        temperature = TemperatureWrapper(temperature = dailyForecasts.getOrNull(i + 1)?.tMin)
+                        temperature = TemperatureWrapper(temperature = dailyForecasts.getOrNull(i + 1)?.tMin?.celsius)
                     ),
                     uV = UV(index = dailyForecast.uvIndex?.toDouble()),
                     relativeHumidity = DailyRelativeHumidity(
@@ -468,8 +469,8 @@ class MfService @Inject constructor(
                 weatherText = hourlyForecast.weatherDescription,
                 weatherCode = getWeatherCode(hourlyForecast.weatherIcon),
                 temperature = TemperatureWrapper(
-                    temperature = hourlyForecast.t,
-                    feelsLike = hourlyForecast.tWindchill
+                    temperature = hourlyForecast.t?.celsius,
+                    feelsLike = hourlyForecast.tWindchill?.celsius
                 ),
                 precipitation = getHourlyPrecipitation(hourlyForecast),
                 precipitationProbability = getHourlyPrecipitationProbability(
@@ -817,8 +818,8 @@ class MfService @Inject constructor(
             Month.entries.associateWith { month ->
                 normalsStats.getOrElse(month.value - 1) { null }?.let {
                     Normals(
-                        daytimeTemperature = it.tMax,
-                        nighttimeTemperature = it.tMin
+                        daytimeTemperature = it.tMax?.celsius,
+                        nighttimeTemperature = it.tMin?.celsius
                     )
                 }
             }.filter { it.value != null } as Map<Month, Normals>

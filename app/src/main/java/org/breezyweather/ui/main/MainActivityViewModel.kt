@@ -35,8 +35,8 @@ import kotlinx.coroutines.runBlocking
 import org.breezyweather.BuildConfig
 import org.breezyweather.R
 import org.breezyweather.background.updater.AppUpdateChecker
-import org.breezyweather.common.basic.BreezyViewModel
-import org.breezyweather.common.basic.livedata.BusLiveData
+import org.breezyweather.common.activities.BreezyViewModel
+import org.breezyweather.common.activities.livedata.BusLiveData
 import org.breezyweather.common.extensions.hasPermission
 import org.breezyweather.common.extensions.launchIO
 import org.breezyweather.common.source.RefreshError

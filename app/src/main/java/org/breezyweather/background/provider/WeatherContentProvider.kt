@@ -42,7 +42,6 @@ import breezyweather.domain.weather.model.Normals
 import breezyweather.domain.weather.model.Pollen
 import breezyweather.domain.weather.model.PrecipitationDuration
 import breezyweather.domain.weather.model.PrecipitationProbability
-import breezyweather.domain.weather.model.Temperature
 import breezyweather.domain.weather.model.UV
 import breezyweather.domain.weather.model.Wind
 import breezyweather.domain.weather.reference.Month
@@ -53,8 +52,6 @@ import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.json.Json
 import org.breezyweather.BuildConfig
-import org.breezyweather.common.basic.models.options.unit.PollenUnit
-import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.common.extensions.getBeaufortScaleColor
 import org.breezyweather.common.extensions.getBeaufortScaleStrength
 import org.breezyweather.common.extensions.getCloudCoverDescription
@@ -105,12 +102,15 @@ import org.breezyweather.sources.SourceManager
 import org.breezyweather.sources.getFeatureSource
 import org.breezyweather.unit.distance.Distance
 import org.breezyweather.unit.distance.DistanceUnit
+import org.breezyweather.unit.pollen.PollenConcentrationUnit
 import org.breezyweather.unit.precipitation.Precipitation
 import org.breezyweather.unit.precipitation.PrecipitationUnit
 import org.breezyweather.unit.pressure.Pressure
 import org.breezyweather.unit.pressure.PressureUnit
 import org.breezyweather.unit.speed.Speed
 import org.breezyweather.unit.speed.SpeedUnit
+import org.breezyweather.unit.temperature.Temperature
+import org.breezyweather.unit.temperature.TemperatureUnit
 import kotlin.time.Duration
 
 class WeatherContentProvider : ContentProvider() {
@@ -710,7 +710,7 @@ class WeatherContentProvider : ContentProvider() {
     }
 
     private fun getTemperature(
-        temperature: Temperature?,
+        temperature: breezyweather.domain.weather.model.Temperature?,
         temperatureUnit: TemperatureUnit,
     ): BreezyTemperature? {
         return temperature?.let {
@@ -725,24 +725,24 @@ class WeatherContentProvider : ContentProvider() {
     }
 
     private fun getTemperatureUnit(
-        temperature: Double?,
+        temperature: Temperature?,
         temperatureUnit: TemperatureUnit,
     ): BreezyUnit? {
         return temperature?.let {
             BreezyUnit(
-                value = temperatureUnit.convertUnit(it).roundDecimals(1),
+                value = it.toDouble(temperatureUnit).roundDecimals(temperatureUnit.decimals.long),
                 unit = temperatureUnit.id
             )
         }
     }
 
     private fun getDegreeDayTemperatureUnit(
-        temperature: Double?,
+        temperature: Temperature?,
         temperatureUnit: TemperatureUnit,
     ): BreezyUnit? {
         return temperature?.let {
             BreezyUnit(
-                value = temperatureUnit.convertDegreeDayUnit(it).roundDecimals(1),
+                value = it.toDoubleDeviation(temperatureUnit).roundDecimals(temperatureUnit.decimals.long),
                 unit = temperatureUnit.id
             )
         }
@@ -836,7 +836,7 @@ class WeatherContentProvider : ContentProvider() {
     ): BreezyUnit? {
         return speed?.let {
             BreezyUnit(
-                value = it.toDouble(speedUnit).roundDecimals(1),
+                value = it.toDouble(speedUnit).roundDecimals(speedUnit.decimals.long),
                 unit = speedUnit.id,
                 description = it.getBeaufortScaleStrength(context!!),
                 color = colorToHex(it.getBeaufortScaleColor(context!!))
@@ -936,8 +936,12 @@ class WeatherContentProvider : ContentProvider() {
                     component.id to BreezyPollen(
                         name = it.getName(context!!, component),
                         concentration = BreezyUnit(
-                            value = if (pollenIndexSource == null) it.getConcentration(component)?.toDouble() else null,
-                            unit = PollenUnit.PER_CUBIC_METER.id,
+                            value = if (pollenIndexSource == null) {
+                                it.getConcentration(component)?.value?.toDouble()
+                            } else {
+                                null
+                            },
+                            unit = PollenConcentrationUnit.PER_CUBIC_METER.id,
                             description = it.getIndexName(context!!, component, pollenIndexSource),
                             color = colorToHex(it.getColor(context!!, component, pollenIndexSource))
                         )

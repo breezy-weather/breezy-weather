@@ -23,19 +23,19 @@ import android.view.ViewGroup
 import androidx.annotation.Size
 import breezyweather.domain.location.model.Location
 import org.breezyweather.R
-import org.breezyweather.common.basic.BreezyActivity
-import org.breezyweather.common.basic.models.options.appearance.DetailScreen
-import org.breezyweather.common.basic.models.options.basic.UnitUtils
-import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
+import org.breezyweather.common.activities.BreezyActivity
+import org.breezyweather.common.extensions.formatMeasure
 import org.breezyweather.common.extensions.getCalendarMonth
 import org.breezyweather.common.extensions.getThemeColor
-import org.breezyweather.domain.settings.SettingsManager
+import org.breezyweather.common.options.appearance.DetailScreen
+import org.breezyweather.common.utils.UnitUtils
 import org.breezyweather.ui.common.widgets.trend.TrendRecyclerView
 import org.breezyweather.ui.common.widgets.trend.chart.PolylineAndHistogramView
 import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.resource.ResourceHelper
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
 import org.breezyweather.ui.theme.weatherView.WeatherViewController
+import org.breezyweather.unit.formatting.UnitWidth
 import java.util.Date
 import kotlin.math.max
 
@@ -46,11 +46,9 @@ class HourlyTemperatureAdapter(
     activity: BreezyActivity,
     location: Location,
     provider: ResourceProvider,
-    unit: TemperatureUnit,
     showPrecipitationProbability: Boolean = true,
 ) : AbsHourlyTrendAdapter(activity, location) {
     private val mResourceProvider: ResourceProvider = provider
-    private val mTemperatureUnit: TemperatureUnit = unit
     private val mTemperatures: Array<Float?>
     private var mHighestTemperature: Float? = null
     private var mLowestTemperature: Float? = null
@@ -70,7 +68,7 @@ class HourlyTemperatureAdapter(
             val hourly = weather.nextHourlyForecast[position]
             hourly.temperature?.temperature?.let {
                 talkBackBuilder.append(activity.getString(org.breezyweather.unit.R.string.locale_separator))
-                    .append(mTemperatureUnit.formatContentDescription(activity, it))
+                    .append(it.formatMeasure(activity, unitWidth = UnitWidth.LONG))
             }
             if (!hourly.weatherText.isNullOrEmpty()) {
                 talkBackBuilder.append(activity.getString(org.breezyweather.unit.R.string.locale_separator))
@@ -95,9 +93,11 @@ class HourlyTemperatureAdapter(
             mPolylineAndHistogramView.setData(
                 buildTemperatureArrayForItem(mTemperatures, position),
                 null,
-                hourly.temperature?.temperature?.let {
-                    mTemperatureUnit.formatMeasureShort(activity, it)
-                },
+                hourly.temperature?.temperature?.formatMeasure(
+                    activity,
+                    valueWidth = UnitWidth.NARROW,
+                    unitWidth = UnitWidth.NARROW
+                ),
                 null,
                 mHighestTemperature,
                 mLowestTemperature,
@@ -166,7 +166,7 @@ class HourlyTemperatureAdapter(
             var i = 0
             while (i < mTemperatures.size) {
                 mTemperatures[i] =
-                    weather.nextHourlyForecast.getOrNull(i / 2)?.temperature?.temperature?.toFloat()
+                    weather.nextHourlyForecast.getOrNull(i / 2)?.temperature?.temperature?.value?.toFloat()
                 i += 2
             }
         }
@@ -182,12 +182,12 @@ class HourlyTemperatureAdapter(
             }
         }
         weather.normals.getOrElse(Date().getCalendarMonth(location)) { null }?.let { normals ->
-            mHighestTemperature = normals.daytimeTemperature?.toFloat()
-            mLowestTemperature = normals.nighttimeTemperature?.toFloat()
+            mHighestTemperature = normals.daytimeTemperature?.value?.toFloat()
+            mLowestTemperature = normals.nighttimeTemperature?.value?.toFloat()
         }
         weather.nextHourlyForecast
             .forEach { hourly ->
-                hourly.temperature?.temperature?.let {
+                hourly.temperature?.temperature?.value?.let {
                     if (mHighestTemperature == null || it > mHighestTemperature!!) {
                         mHighestTemperature = it.toFloat()
                     }
@@ -223,10 +223,11 @@ class HourlyTemperatureAdapter(
             val keyLineList = mutableListOf<TrendRecyclerView.KeyLine>()
             keyLineList.add(
                 TrendRecyclerView.KeyLine(
-                    normals.daytimeTemperature!!.toFloat(),
-                    SettingsManager.getInstance(activity).getTemperatureUnit(activity).formatMeasureShort(
+                    normals.daytimeTemperature!!.value.toFloat(),
+                    normals.daytimeTemperature!!.formatMeasure(
                         activity,
-                        normals.daytimeTemperature!!
+                        valueWidth = UnitWidth.NARROW,
+                        unitWidth = UnitWidth.NARROW
                     ),
                     activity.getString(R.string.temperature_normal_short),
                     TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
@@ -234,10 +235,11 @@ class HourlyTemperatureAdapter(
             )
             keyLineList.add(
                 TrendRecyclerView.KeyLine(
-                    normals.nighttimeTemperature!!.toFloat(),
-                    SettingsManager.getInstance(activity).getTemperatureUnit(activity).formatMeasureShort(
+                    normals.nighttimeTemperature!!.value.toFloat(),
+                    normals.nighttimeTemperature!!.formatMeasure(
                         activity,
-                        normals.nighttimeTemperature!!
+                        valueWidth = UnitWidth.NARROW,
+                        unitWidth = UnitWidth.NARROW
                     ),
                     activity.getString(R.string.temperature_normal_short),
                     TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE

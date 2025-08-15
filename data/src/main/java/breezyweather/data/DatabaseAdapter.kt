@@ -22,6 +22,8 @@ import breezyweather.domain.weather.reference.AlertSeverity
 import breezyweather.domain.weather.reference.WeatherCode
 import org.breezyweather.unit.distance.Distance
 import org.breezyweather.unit.distance.Distance.Companion.meters
+import org.breezyweather.unit.pollen.PollenConcentration
+import org.breezyweather.unit.pollen.PollenConcentration.Companion.perCubicMeter
 import org.breezyweather.unit.pollutant.PollutantConcentration
 import org.breezyweather.unit.pollutant.PollutantConcentration.Companion.microgramsPerCubicMeter
 import org.breezyweather.unit.precipitation.Precipitation
@@ -30,6 +32,8 @@ import org.breezyweather.unit.pressure.Pressure
 import org.breezyweather.unit.pressure.Pressure.Companion.pascals
 import org.breezyweather.unit.speed.Speed
 import org.breezyweather.unit.speed.Speed.Companion.centimetersPerSecond
+import org.breezyweather.unit.temperature.Temperature
+import org.breezyweather.unit.temperature.Temperature.Companion.deciCelsius
 import java.util.Date
 import java.util.TimeZone
 import kotlin.time.Duration
@@ -71,6 +75,12 @@ object AlertSeverityColumnAdapter : ColumnAdapter<AlertSeverity, Long> {
     override fun encode(value: AlertSeverity): Long = value.id.toLong()
 }
 
+object TemperatureColumnAdapter : ColumnAdapter<Temperature, Long> {
+    override fun decode(databaseValue: Long): Temperature = databaseValue.deciCelsius
+
+    override fun encode(value: Temperature): Long = value.value
+}
+
 object PrecipitationColumnAdapter : ColumnAdapter<Precipitation, Long> {
     override fun decode(databaseValue: Long): Precipitation = databaseValue.micrometers
 
@@ -99,6 +109,12 @@ object PollutantConcentrationColumnAdapter : ColumnAdapter<PollutantConcentratio
     override fun decode(databaseValue: Long): PollutantConcentration = databaseValue.microgramsPerCubicMeter
 
     override fun encode(value: PollutantConcentration): Long = value.value
+}
+
+object PollenConcentrationColumnAdapter : ColumnAdapter<PollenConcentration, Long> {
+    override fun decode(databaseValue: Long): PollenConcentration = databaseValue.perCubicMeter
+
+    override fun encode(value: PollenConcentration): Long = value.value
 }
 
 object DurationColumnAdapter : ColumnAdapter<Duration, Long> {

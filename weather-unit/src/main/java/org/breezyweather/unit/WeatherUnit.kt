@@ -20,7 +20,6 @@ import android.content.Context
 import android.icu.text.MeasureFormat
 import android.icu.util.MeasureUnit
 import android.os.Build
-import android.util.Log
 import org.breezyweather.unit.formatting.UnitDecimals
 import org.breezyweather.unit.formatting.UnitTranslation
 import org.breezyweather.unit.formatting.UnitWidth
@@ -69,7 +68,7 @@ interface WeatherUnit {
     fun getDisplayName(
         context: Context,
         locale: Locale = Locale.getDefault(),
-        unitWidth: UnitWidth = UnitWidth.SHORT,
+        width: UnitWidth = UnitWidth.SHORT,
         useMeasureFormat: Boolean = true,
     ): String {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P &&
@@ -78,27 +77,24 @@ interface WeatherUnit {
             perMeasureUnit == null
         ) {
             return MeasureFormat
-                .getInstance(locale, unitWidth.measureFormatWidth)
+                .getInstance(locale, width.measureFormatWidth)
                 .getUnitDisplayName(measureUnit)
         }
 
         val formattingWithoutPer = context.getString(
-            when (unitWidth) {
+            when (width) {
                 UnitWidth.SHORT -> displayName.short
                 UnitWidth.LONG -> displayName.long
                 UnitWidth.NARROW -> displayName.narrow
             }
         )
-        Log.d("BRZ", "formattingWithoutPer: $formattingWithoutPer")
 
         return per?.let {
             context.getString(
-                when (unitWidth) {
+                when (width) {
                     UnitWidth.SHORT -> it.short
                     UnitWidth.LONG -> it.long
                     UnitWidth.NARROW -> it.narrow
-                }.also { t ->
-                    Log.d("BRZ", "perFormatting: ${context.getString(t)}")
                 },
                 formattingWithoutPer
             )
@@ -139,6 +135,7 @@ interface WeatherUnit {
         valueWidth: UnitWidth = UnitWidth.SHORT,
         unitWidth: UnitWidth = UnitWidth.SHORT,
         locale: Locale = Locale.getDefault(),
+        showSign: Boolean = false,
         useNumberFormatter: Boolean = true,
         useMeasureFormat: Boolean = true,
     ): String {
@@ -148,16 +145,19 @@ interface WeatherUnit {
         ) {
             // LogHelper.log(msg = "Formatting with ICU ${enum.id}: ${enum.measureUnit} per ${enum.perMeasureUnit}")
 
-            return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R && useNumberFormatter) {
-                measureUnit!!.formatWithNumberFormatter(
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R && useNumberFormatter) {
+                return measureUnit!!.formatWithNumberFormatter(
                     locale = locale,
                     value = value,
                     perUnit = perMeasureUnit,
                     precision = getPrecision(valueWidth),
-                    numberFormatterWidth = unitWidth.numberFormatterWidth!!
+                    numberFormatterWidth = unitWidth.numberFormatterWidth!!,
+                    showSign = showSign
                 )
-            } else {
-                measureUnit!!.formatWithMeasureFormat(
+            }
+
+            if (!showSign) {
+                return measureUnit!!.formatWithMeasureFormat(
                     locale = locale,
                     value = value,
                     perUnit = perMeasureUnit,
@@ -174,6 +174,7 @@ interface WeatherUnit {
             valueWidth = valueWidth,
             unitWidth = unitWidth,
             locale = locale,
+            showSign = showSign,
             useNumberFormatter = useNumberFormatter,
             useMeasureFormat = useMeasureFormat
         )
@@ -185,6 +186,7 @@ interface WeatherUnit {
         valueWidth: UnitWidth = UnitWidth.SHORT,
         unitWidth: UnitWidth = UnitWidth.SHORT,
         locale: Locale = Locale.getDefault(),
+        showSign: Boolean = false,
         useNumberFormatter: Boolean = true,
         useMeasureFormat: Boolean = true,
     ): String {
@@ -197,6 +199,7 @@ interface WeatherUnit {
             value.format(
                 decimals = getPrecision(valueWidth),
                 locale = locale,
+                showSign = showSign,
                 useNumberFormatter = useNumberFormatter,
                 useMeasureFormat = useMeasureFormat
             )

@@ -17,7 +17,7 @@
 package org.breezyweather.ui.details
 
 import breezyweather.domain.location.model.Location
-import org.breezyweather.common.basic.models.options.appearance.DetailScreen
+import org.breezyweather.common.options.appearance.DetailScreen
 import org.breezyweather.domain.weather.index.PollutantIndex
 
 data class DetailsUiState(

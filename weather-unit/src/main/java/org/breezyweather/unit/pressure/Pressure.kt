@@ -1,13 +1,10 @@
 package org.breezyweather.unit.pressure
 
-import android.content.Context
 import org.breezyweather.unit.WeatherValue
 import org.breezyweather.unit.formatting.UnitDecimals.Companion.formatToExactDecimals
-import org.breezyweather.unit.formatting.UnitWidth
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
 import org.breezyweather.unit.pressure.Pressure.Companion.millibars
 import org.breezyweather.unit.pressure.Pressure.Companion.pascals
-import java.util.Locale
 import kotlin.math.roundToLong
 
 /*
@@ -211,42 +208,7 @@ value class Pressure internal constructor(
      * Return null if the value is not between 800 hPa and 1200 hPa, otherwise this value
      */
     fun toValidOrNull(): Pressure? {
-        return if (rawValue in 80000..120000) this else null
-    }
-
-    override fun format(
-        context: Context,
-        unit: PressureUnit,
-        valueWidth: UnitWidth,
-        unitWidth: UnitWidth,
-        locale: Locale,
-        useNumberFormatter: Boolean,
-        useMeasureFormat: Boolean,
-    ): String {
-        return super.format(
-            context = context,
-            unit = unit,
-            valueWidth = valueWidth,
-            unitWidth = unitWidth,
-            locale = locale.let {
-                /**
-                 * Use English units with Traditional Chinese
-                 *
-                 * Taiwan guidelines: https://www.bsmi.gov.tw/wSite/public/Attachment/f1736149048776.pdf
-                 * Ongoing issue: https://unicode-org.atlassian.net/jira/software/c/projects/CLDR/issues/CLDR-10604
-                 */
-                if (it.language.equals("zh", ignoreCase = true) &&
-                    arrayOf("TW", "HK", "MO").any { c -> it.country.equals(c, ignoreCase = true) } &&
-                    unitWidth != UnitWidth.LONG
-                ) {
-                    Locale.Builder().setLanguage("en").setRegion("001").build()
-                } else {
-                    it
-                }
-            },
-            useNumberFormatter = useNumberFormatter,
-            useMeasureFormat = useMeasureFormat
-        )
+        return takeIf { rawValue in 80000..120000 }
     }
 }
 

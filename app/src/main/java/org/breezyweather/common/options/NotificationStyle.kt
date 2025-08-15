@@ -1,4 +1,4 @@
-/**
+/*
  * This file is part of Breezy Weather.
  *
  * Breezy Weather is free software: you can redistribute it and/or modify it
@@ -14,12 +14,11 @@
  * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package org.breezyweather.common.basic.models.options
+package org.breezyweather.common.options
 
 import android.content.Context
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.options.basic.BaseEnum
-import org.breezyweather.common.basic.models.options.basic.UnitUtils
+import org.breezyweather.common.utils.UnitUtils
 
 enum class NotificationStyle(
     override val id: String,
@@ -35,7 +34,7 @@ enum class NotificationStyle(
 
         fun getInstance(
             value: String,
-        ) = NotificationStyle.entries.firstOrNull {
+        ) = entries.firstOrNull {
             it.id == value
         } ?: DAILY
     }

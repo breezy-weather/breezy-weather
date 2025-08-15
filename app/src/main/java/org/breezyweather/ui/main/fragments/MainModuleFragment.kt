@@ -16,7 +16,7 @@
 
 package org.breezyweather.ui.main.fragments
 
-import org.breezyweather.common.basic.BreezyFragment
+import org.breezyweather.common.activities.BreezyFragment
 
 abstract class MainModuleFragment : BreezyFragment() {
 

@@ -23,17 +23,18 @@ import android.view.ViewGroup
 import androidx.annotation.Size
 import breezyweather.domain.location.model.Location
 import org.breezyweather.R
-import org.breezyweather.common.basic.BreezyActivity
-import org.breezyweather.common.basic.models.options.appearance.DetailScreen
-import org.breezyweather.common.basic.models.options.basic.UnitUtils
-import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
+import org.breezyweather.common.activities.BreezyActivity
+import org.breezyweather.common.extensions.formatMeasure
 import org.breezyweather.common.extensions.getThemeColor
+import org.breezyweather.common.options.appearance.DetailScreen
+import org.breezyweather.common.utils.UnitUtils
 import org.breezyweather.ui.common.widgets.trend.TrendRecyclerView
 import org.breezyweather.ui.common.widgets.trend.chart.PolylineAndHistogramView
 import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.resource.ResourceHelper
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
 import org.breezyweather.ui.theme.weatherView.WeatherViewController
+import org.breezyweather.unit.formatting.UnitWidth
 import kotlin.math.max
 
 /**
@@ -43,10 +44,8 @@ class HourlyHumidityAdapter(
     activity: BreezyActivity,
     location: Location,
     provider: ResourceProvider,
-    unit: TemperatureUnit,
 ) : AbsHourlyTrendAdapter(activity, location) {
     private val mResourceProvider: ResourceProvider = provider
-    private val mDewPointUnit: TemperatureUnit = unit
     private val mDewPoints: Array<Float?>
     private var mHighestDewPoint: Float? = null
     private var mLowestDewPoint: Float? = null
@@ -73,7 +72,7 @@ class HourlyHumidityAdapter(
                 talkBackBuilder.append(activity.getString(org.breezyweather.unit.R.string.locale_separator))
                     .append(activity.getString(R.string.dew_point))
                     .append(activity.getString(R.string.colon_separator))
-                    .append(mDewPointUnit.formatContentDescription(activity, it))
+                    .append(it.formatMeasure(activity, unitWidth = UnitWidth.LONG))
             }
             hourlyItem.setIconDrawable(
                 hourly.weatherCode?.let {
@@ -84,9 +83,11 @@ class HourlyHumidityAdapter(
             mPolylineAndHistogramView.setData(
                 buildDewPointArrayForItem(mDewPoints, position),
                 null,
-                hourly.dewPoint?.let {
-                    mDewPointUnit.formatMeasureShort(activity, it)
-                },
+                hourly.dewPoint?.formatMeasure(
+                    activity,
+                    valueWidth = UnitWidth.NARROW,
+                    unitWidth = UnitWidth.NARROW
+                ),
                 null,
                 mHighestDewPoint,
                 mLowestDewPoint,
@@ -150,7 +151,7 @@ class HourlyHumidityAdapter(
         run {
             var i = 0
             while (i < mDewPoints.size) {
-                mDewPoints[i] = weather.nextHourlyForecast.getOrNull(i / 2)?.dewPoint?.toFloat()
+                mDewPoints[i] = weather.nextHourlyForecast.getOrNull(i / 2)?.dewPoint?.value?.toFloat()
                 i += 2
             }
         }
@@ -167,7 +168,7 @@ class HourlyHumidityAdapter(
         }
         weather.nextHourlyForecast
             .forEach { hourly ->
-                hourly.dewPoint?.let {
+                hourly.dewPoint?.value?.let {
                     if (mHighestDewPoint == null || it > mHighestDewPoint!!) {
                         mHighestDewPoint = it.toFloat()
                     }

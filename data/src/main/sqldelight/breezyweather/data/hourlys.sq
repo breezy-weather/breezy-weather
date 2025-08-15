@@ -5,6 +5,7 @@ import org.breezyweather.unit.pollutant.PollutantConcentration;
 import org.breezyweather.unit.precipitation.Precipitation;
 import org.breezyweather.unit.pressure.Pressure;
 import org.breezyweather.unit.speed.Speed;
+import org.breezyweather.unit.temperature.Temperature;
 
 CREATE TABLE hourlys(
     _id INTEGER NOT NULL PRIMARY KEY,
@@ -16,11 +17,11 @@ CREATE TABLE hourlys(
     weather_text TEXT,
     weather_code TEXT AS WeatherCode,
 
-    temperature REAL,
-    source_feels_like_temperature REAL,
-    apparent_temperature REAL,
-    wind_chill_temperature REAL,
-    humidex REAL,
+    temperature INTEGER AS Temperature,
+    temperature_source_feels_like INTEGER AS Temperature,
+    temperature_apparent INTEGER AS Temperature,
+    temperature_wind_chill INTEGER AS Temperature,
+    humidex INTEGER AS Temperature,
 
     total_precipitation INTEGER AS Precipitation,
     thunderstorm_precipitation INTEGER AS Precipitation,
@@ -50,7 +51,7 @@ CREATE TABLE hourlys(
 
     -- details
     relative_humidity REAL,
-    dew_point REAL,
+    dew_point INTEGER AS Temperature,
     pressure INTEGER AS Pressure,
     cloud_cover INTEGER,
     visibility INTEGER AS Distance,
@@ -63,14 +64,14 @@ CREATE TABLE hourlys(
 CREATE INDEX hourlys_location_formatted_id_index ON hourlys(location_formatted_id);
 
 getHourlyListByLocationId:
-SELECT date, daylight, weather_text, weather_code, temperature, source_feels_like_temperature, apparent_temperature, wind_chill_temperature, humidex, total_precipitation, thunderstorm_precipitation, rain_precipitation, snow_precipitation, ice_precipitation, total_precipitation_probability, thunderstorm_precipitation_probability, rain_precipitation_probability, snow_precipitation_probability, ice_precipitation_probability, wind_degree, wind_speed, wind_gusts, pm25, pm10, so2, no2, o3, co, uvIndex, relative_humidity, dew_point, pressure, cloud_cover, visibility
+SELECT date, daylight, weather_text, weather_code, temperature, temperature_source_feels_like, temperature_apparent, temperature_wind_chill, humidex, total_precipitation, thunderstorm_precipitation, rain_precipitation, snow_precipitation, ice_precipitation, total_precipitation_probability, thunderstorm_precipitation_probability, rain_precipitation_probability, snow_precipitation_probability, ice_precipitation_probability, wind_degree, wind_speed, wind_gusts, pm25, pm10, so2, no2, o3, co, uvIndex, relative_humidity, dew_point, pressure, cloud_cover, visibility
 FROM hourlys
 WHERE location_formatted_id = :locationFormattedId
 ORDER BY date;
 
 insert:
-INSERT INTO hourlys(location_formatted_id, date, daylight, weather_text, weather_code, temperature, source_feels_like_temperature, apparent_temperature, wind_chill_temperature, humidex, total_precipitation, thunderstorm_precipitation, rain_precipitation, snow_precipitation, ice_precipitation, total_precipitation_probability, thunderstorm_precipitation_probability, rain_precipitation_probability, snow_precipitation_probability, ice_precipitation_probability, wind_degree, wind_speed, wind_gusts, pm25, pm10, so2, no2, o3, co, uvIndex, relative_humidity, dew_point, pressure, cloud_cover, visibility)
-VALUES (:locationFormattedId, :date, :daylight, :weatherText, :weatherCode, :temperature, :sourceFeelsLikeTemperature, :apparentTemperature, :windChillTemperature, :humidex, :totalPrecipitation, :thunderstormPrecipitation, :rainPrecipitation, :snowPrecipitation, :icePrecipitation, :totalPrecipitationProbability, :thunderstormPrecipitationProbability, :rainPrecipitationProbability, :snowPrecipitationProbability, :icePrecipitationProbability, :windDegree, :windSpeed, :windGusts, :pm25, :pm10, :so2, :no2, :o3, :co, :uvIndex, :relativeHumidity, :dewPoint, :pressure, :cloudCover, :visibility);
+INSERT INTO hourlys(location_formatted_id, date, daylight, weather_text, weather_code, temperature, temperature_source_feels_like, temperature_apparent, temperature_wind_chill, humidex, total_precipitation, thunderstorm_precipitation, rain_precipitation, snow_precipitation, ice_precipitation, total_precipitation_probability, thunderstorm_precipitation_probability, rain_precipitation_probability, snow_precipitation_probability, ice_precipitation_probability, wind_degree, wind_speed, wind_gusts, pm25, pm10, so2, no2, o3, co, uvIndex, relative_humidity, dew_point, pressure, cloud_cover, visibility)
+VALUES (:locationFormattedId, :date, :daylight, :weatherText, :weatherCode, :temperature, :temperatureSourceFeelsLike, :temperatureApparent, :temperatureWindChill, :humidex, :totalPrecipitation, :thunderstormPrecipitation, :rainPrecipitation, :snowPrecipitation, :icePrecipitation, :totalPrecipitationProbability, :thunderstormPrecipitationProbability, :rainPrecipitationProbability, :snowPrecipitationProbability, :icePrecipitationProbability, :windDegree, :windSpeed, :windGusts, :pm25, :pm10, :so2, :no2, :o3, :co, :uvIndex, :relativeHumidity, :dewPoint, :pressure, :cloudCover, :visibility);
 
 deleteHourlyListForLocationId:
 DELETE FROM hourlys

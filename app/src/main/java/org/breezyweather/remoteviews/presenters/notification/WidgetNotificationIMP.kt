@@ -25,14 +25,14 @@ import androidx.core.app.NotificationManagerCompat
 import androidx.core.graphics.drawable.IconCompat
 import breezyweather.domain.location.model.Location
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.options.NotificationStyle
-import org.breezyweather.common.basic.models.options.NotificationTextColor
-import org.breezyweather.common.basic.models.options.appearance.CalendarHelper
-import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
+import org.breezyweather.common.extensions.formatMeasure
 import org.breezyweather.common.extensions.getFormattedMediumDayAndMonthInAdditionalCalendar
 import org.breezyweather.common.extensions.getHour
 import org.breezyweather.common.extensions.notificationBuilder
 import org.breezyweather.common.extensions.notify
+import org.breezyweather.common.options.NotificationStyle
+import org.breezyweather.common.options.NotificationTextColor
+import org.breezyweather.common.options.appearance.CalendarHelper
 import org.breezyweather.domain.location.model.getPlace
 import org.breezyweather.domain.location.model.isDaylight
 import org.breezyweather.domain.settings.SettingsManager
@@ -46,6 +46,7 @@ import org.breezyweather.remoteviews.presenters.AbstractRemoteViewsPresenter
 import org.breezyweather.ui.theme.resource.ResourceHelper
 import org.breezyweather.ui.theme.resource.ResourcesProviderFactory
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
+import org.breezyweather.unit.formatting.UnitWidth
 import java.util.Date
 
 object WidgetNotificationIMP : AbstractRemoteViewsPresenter() {
@@ -60,7 +61,6 @@ object WidgetNotificationIMP : AbstractRemoteViewsPresenter() {
 
         // get sp & realTimeWeather.
         val settings = SettingsManager.getInstance(context)
-        val temperatureUnit = settings.getTemperatureUnit(context)
         val dayTime = location.isDaylight
         val tempIcon = settings.isWidgetNotificationTemperatureIconEnabled
         val persistent = settings.isWidgetNotificationPersistent
@@ -77,7 +77,6 @@ object WidgetNotificationIMP : AbstractRemoteViewsPresenter() {
             MultiCityWidgetNotificationIMP.buildNotificationAndSendIt(
                 context,
                 locationList,
-                temperatureUnit,
                 dayTime,
                 tempIcon,
                 persistent
@@ -115,7 +114,6 @@ object WidgetNotificationIMP : AbstractRemoteViewsPresenter() {
                     RemoteViews(context.packageName, R.layout.notification_base),
                     provider,
                     location,
-                    temperatureUnit,
                     dayTime
                 )
             )
@@ -127,7 +125,6 @@ object WidgetNotificationIMP : AbstractRemoteViewsPresenter() {
                     settings.widgetNotificationStyle === NotificationStyle.DAILY,
                     provider,
                     location,
-                    temperatureUnit,
                     dayTime
                 )
             )
@@ -163,7 +160,6 @@ object WidgetNotificationIMP : AbstractRemoteViewsPresenter() {
         views: RemoteViews,
         provider: ResourceProvider,
         location: Location,
-        temperatureUnit: TemperatureUnit,
         dayTime: Boolean,
     ): RemoteViews {
         val current = location.weather?.current ?: return views
@@ -196,7 +192,7 @@ object WidgetNotificationIMP : AbstractRemoteViewsPresenter() {
             temperature?.let {
                 setTextViewText(
                     R.id.notification_base_realtimeTemp,
-                    temperatureUnit.formatMeasureShort(context, it)
+                    it.formatMeasure(context, valueWidth = UnitWidth.NARROW, unitWidth = UnitWidth.NARROW)
                 )
             }
             if (current.airQuality?.isIndexValid == true) {
@@ -230,13 +226,12 @@ object WidgetNotificationIMP : AbstractRemoteViewsPresenter() {
         daily: Boolean,
         provider: ResourceProvider,
         location: Location,
-        temperatureUnit: TemperatureUnit,
         dayTime: Boolean,
     ): RemoteViews {
         val weather = location.weather ?: return viewsP
 
         // today
-        val views = buildBaseView(context, viewsP, provider, location, temperatureUnit, dayTime)
+        val views = buildBaseView(context, viewsP, provider, location, dayTime)
         val viewIds = arrayOf(
             Triple(R.id.notification_big_week_1, R.id.notification_big_temp_1, R.id.notification_big_icon_1),
             Triple(R.id.notification_big_week_2, R.id.notification_big_temp_2, R.id.notification_big_icon_2),
@@ -263,7 +258,7 @@ object WidgetNotificationIMP : AbstractRemoteViewsPresenter() {
                         )
                         setTextViewText(
                             viewId.second,
-                            daily.getTrendTemperature(context, temperatureUnit)
+                            daily.getTrendTemperature(context)
                         )
                         if (weatherCode != null) {
                             setImageViewUri(
@@ -289,7 +284,7 @@ object WidgetNotificationIMP : AbstractRemoteViewsPresenter() {
                         hourly.temperature?.temperature?.let {
                             setTextViewText(
                                 viewId.second,
-                                temperatureUnit.formatMeasureShort(context, it)
+                                it.formatMeasure(context, valueWidth = UnitWidth.NARROW, unitWidth = UnitWidth.NARROW)
                             )
                         }
                         hourly.weatherCode?.let { weatherCode ->

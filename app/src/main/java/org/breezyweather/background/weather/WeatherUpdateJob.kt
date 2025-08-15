@@ -45,7 +45,6 @@ import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.ensureActive
 import org.breezyweather.BuildConfig
 import org.breezyweather.background.updater.AppUpdateChecker
-import org.breezyweather.common.basic.models.options.NotificationStyle
 import org.breezyweather.common.bus.EventBus
 import org.breezyweather.common.extensions.createFileInCacheDir
 import org.breezyweather.common.extensions.getFormattedDate
@@ -56,6 +55,7 @@ import org.breezyweather.common.extensions.isRunning
 import org.breezyweather.common.extensions.setForegroundSafely
 import org.breezyweather.common.extensions.withIOContext
 import org.breezyweather.common.extensions.workManager
+import org.breezyweather.common.options.NotificationStyle
 import org.breezyweather.common.source.LocationResult
 import org.breezyweather.common.source.RefreshError
 import org.breezyweather.common.source.WeatherResult

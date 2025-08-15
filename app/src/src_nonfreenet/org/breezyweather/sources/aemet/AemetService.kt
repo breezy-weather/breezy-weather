@@ -66,6 +66,7 @@ import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
 import org.breezyweather.unit.speed.Speed.Companion.kilometersPerHour
 import org.breezyweather.unit.speed.Speed.Companion.metersPerSecond
+import org.breezyweather.unit.temperature.Temperature.Companion.celsius
 import retrofit2.Retrofit
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -267,7 +268,7 @@ class AemetService @Inject constructor(
         return currentResult.lastOrNull()?.let {
             CurrentWrapper(
                 temperature = TemperatureWrapper(
-                    temperature = it.ta
+                    temperature = it.ta?.celsius
                 ),
                 wind = Wind(
                     degree = it.dv,
@@ -275,7 +276,7 @@ class AemetService @Inject constructor(
                     gusts = it.vmax?.metersPerSecond
                 ),
                 relativeHumidity = it.hr,
-                dewPoint = it.tpr,
+                dewPoint = it.tpr?.celsius,
                 pressure = it.pres?.hectopascals,
                 visibility = it.vis?.meters
             )
@@ -289,8 +290,8 @@ class AemetService @Inject constructor(
             .filter { it.mes?.toIntOrNull() != null && it.mes.toInt() in 1..12 }
             .associate {
                 Month.of(it.mes!!.toInt()) to Normals(
-                    daytimeTemperature = it.max?.toDoubleOrNull(),
-                    nighttimeTemperature = it.min?.toDoubleOrNull()
+                    daytimeTemperature = it.max?.toDoubleOrNull()?.celsius,
+                    nighttimeTemperature = it.min?.toDoubleOrNull()?.celsius
                 )
             }
     }
@@ -361,8 +362,8 @@ class AemetService @Inject constructor(
                         weatherText = getWeatherText(context, wxMap.getOrElse(key) { null }),
                         weatherCode = getWeatherCode(wxMap.getOrElse(key) { null }),
                         temperature = TemperatureWrapper(
-                            temperature = maxTMap.getOrElse(key) { null },
-                            feelsLike = maxAtMap.getOrElse(key) { null }
+                            temperature = maxTMap.getOrElse(key) { null }?.celsius,
+                            feelsLike = maxAtMap.getOrElse(key) { null }?.celsius
                         ),
                         precipitationProbability = PrecipitationProbability(
                             total = ppMap.getOrElse(key) { null }
@@ -377,8 +378,8 @@ class AemetService @Inject constructor(
                         weatherText = getWeatherText(context, wxMap.getOrElse(key) { null }),
                         weatherCode = getWeatherCode(wxMap.getOrElse(key) { null }),
                         temperature = TemperatureWrapper(
-                            temperature = minTMap.getOrElse(key) { null },
-                            feelsLike = minAtMap.getOrElse(key) { null }
+                            temperature = minTMap.getOrElse(key) { null }?.celsius,
+                            feelsLike = minAtMap.getOrElse(key) { null }?.celsius
                         ),
                         precipitationProbability = PrecipitationProbability(
                             total = ppMap.getOrElse(key) { null }
@@ -510,8 +511,8 @@ class AemetService @Inject constructor(
                     weatherText = getWeatherText(context, wxMap.getOrElse(key) { null }),
                     weatherCode = getWeatherCode(wxMap.getOrElse(key) { null }),
                     temperature = TemperatureWrapper(
-                        temperature = tMap.getOrElse(key) { null },
-                        feelsLike = atMap.getOrElse(key) { null }
+                        temperature = tMap.getOrElse(key) { null }?.celsius,
+                        feelsLike = atMap.getOrElse(key) { null }?.celsius
                     ),
                     precipitation = Precipitation(
                         total = prMap.getOrElse(key) { null }?.millimeters,

@@ -24,7 +24,7 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import breezyweather.domain.location.model.Location
 import org.breezyweather.R
-import org.breezyweather.common.basic.BreezyActivity
+import org.breezyweather.common.activities.BreezyActivity
 import org.breezyweather.common.utils.helpers.SnackbarHelper
 import org.breezyweather.ui.common.widgets.slidingItem.SlidingItemTouchCallback
 import org.breezyweather.ui.main.MainActivityViewModel

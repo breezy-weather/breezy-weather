@@ -21,8 +21,7 @@ import io.kotest.matchers.shouldBe
 import io.mockk.every
 import io.mockk.mockk
 import kotlinx.coroutines.test.runTest
-import org.breezyweather.R
-import org.breezyweather.common.basic.models.options.appearance.DailyTrendDisplay
+import org.breezyweather.common.options.appearance.DailyTrendDisplay
 import org.junit.jupiter.api.Test
 
 class DailyTrendDisplayTest {

@@ -1,0 +1,179 @@
+ALTER TABLE dailys
+DROP COLUMN daytime_temperature;
+
+ALTER TABLE dailys
+ADD COLUMN daytime_temperature INTEGER;
+
+ALTER TABLE dailys
+DROP COLUMN daytime_source_feels_like_temperature;
+
+ALTER TABLE dailys
+ADD COLUMN daytime_temperature_source_feels_like INTEGER;
+
+ALTER TABLE dailys
+DROP COLUMN daytime_apparent_temperature;
+
+ALTER TABLE dailys
+ADD COLUMN daytime_temperature_apparent INTEGER;
+
+ALTER TABLE dailys
+DROP COLUMN daytime_wind_chill_temperature;
+
+ALTER TABLE dailys
+ADD COLUMN daytime_temperature_wind_chill INTEGER;
+
+ALTER TABLE dailys
+DROP COLUMN daytime_humidex;
+
+ALTER TABLE dailys
+ADD COLUMN daytime_humidex INTEGER;
+
+
+ALTER TABLE dailys
+DROP COLUMN nighttime_temperature;
+
+ALTER TABLE dailys
+ADD COLUMN nighttime_temperature INTEGER;
+
+ALTER TABLE dailys
+DROP COLUMN nighttime_source_feels_like_temperature;
+
+ALTER TABLE dailys
+ADD COLUMN nighttime_temperature_source_feels_like INTEGER;
+
+ALTER TABLE dailys
+DROP COLUMN nighttime_apparent_temperature;
+
+ALTER TABLE dailys
+ADD COLUMN nighttime_temperature_apparent INTEGER;
+
+ALTER TABLE dailys
+DROP COLUMN nighttime_wind_chill_temperature;
+
+ALTER TABLE dailys
+ADD COLUMN nighttime_temperature_wind_chill INTEGER;
+
+ALTER TABLE dailys
+DROP COLUMN nighttime_humidex;
+
+ALTER TABLE dailys
+ADD COLUMN nighttime_humidex INTEGER;
+
+
+ALTER TABLE dailys
+DROP COLUMN degree_day_heating;
+
+ALTER TABLE dailys
+ADD COLUMN degree_day_heating INTEGER;
+
+ALTER TABLE dailys
+DROP COLUMN degree_day_cooling;
+
+ALTER TABLE dailys
+ADD COLUMN degree_day_cooling INTEGER;
+
+
+ALTER TABLE dailys
+DROP COLUMN dewpoint_average;
+
+ALTER TABLE dailys
+ADD COLUMN dewpoint_average INTEGER;
+
+ALTER TABLE dailys
+DROP COLUMN dewpoint_min;
+
+ALTER TABLE dailys
+ADD COLUMN dewpoint_min INTEGER;
+
+ALTER TABLE dailys
+DROP COLUMN dewpoint_max;
+
+ALTER TABLE dailys
+ADD COLUMN dewpoint_max INTEGER;
+
+
+ALTER TABLE hourlys
+DROP COLUMN temperature;
+
+ALTER TABLE hourlys
+ADD COLUMN temperature INTEGER;
+
+ALTER TABLE hourlys
+DROP COLUMN source_feels_like_temperature;
+
+ALTER TABLE hourlys
+ADD COLUMN temperature_source_feels_like INTEGER;
+
+ALTER TABLE hourlys
+DROP COLUMN apparent_temperature;
+
+ALTER TABLE hourlys
+ADD COLUMN temperature_apparent INTEGER;
+
+ALTER TABLE hourlys
+DROP COLUMN wind_chill_temperature;
+
+ALTER TABLE hourlys
+ADD COLUMN temperature_wind_chill INTEGER;
+
+ALTER TABLE hourlys
+DROP COLUMN humidex;
+
+ALTER TABLE hourlys
+ADD COLUMN humidex INTEGER;
+
+ALTER TABLE hourlys
+DROP COLUMN dew_point;
+
+ALTER TABLE hourlys
+ADD COLUMN dew_point INTEGER;
+
+
+ALTER TABLE weathers
+DROP COLUMN temperature;
+
+ALTER TABLE weathers
+ADD COLUMN temperature INTEGER;
+
+ALTER TABLE weathers
+DROP COLUMN source_feels_like_temperature;
+
+ALTER TABLE weathers
+ADD COLUMN temperature_source_feels_like INTEGER;
+
+ALTER TABLE weathers
+DROP COLUMN apparent_temperature;
+
+ALTER TABLE weathers
+ADD COLUMN temperature_apparent INTEGER;
+
+ALTER TABLE weathers
+DROP COLUMN wind_chill_temperature;
+
+ALTER TABLE weathers
+ADD COLUMN temperature_wind_chill INTEGER;
+
+ALTER TABLE weathers
+DROP COLUMN humidex;
+
+ALTER TABLE weathers
+ADD COLUMN humidex INTEGER;
+
+ALTER TABLE weathers
+DROP COLUMN dew_point;
+
+ALTER TABLE weathers
+ADD COLUMN dew_point INTEGER;
+
+
+ALTER TABLE normals
+DROP COLUMN daytime_temperature;
+
+ALTER TABLE normals
+ADD COLUMN temperature_max_average INTEGER;
+
+ALTER TABLE normals
+DROP COLUMN nighttime_temperature;
+
+ALTER TABLE normals
+ADD COLUMN temperature_min_average INTEGER;

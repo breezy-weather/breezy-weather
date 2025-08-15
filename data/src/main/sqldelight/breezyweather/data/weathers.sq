@@ -3,6 +3,7 @@ import org.breezyweather.unit.distance.Distance;
 import org.breezyweather.unit.pollutant.PollutantConcentration;
 import org.breezyweather.unit.pressure.Pressure;
 import org.breezyweather.unit.speed.Speed;
+import org.breezyweather.unit.temperature.Temperature;
 
 CREATE TABLE weathers(
     _id INTEGER NOT NULL PRIMARY KEY,
@@ -24,11 +25,11 @@ CREATE TABLE weathers(
     weather_text TEXT,
     weather_code TEXT AS WeatherCode,
 
-    temperature REAL,
-    source_feels_like_temperature REAL,
-    apparent_temperature REAL,
-    wind_chill_temperature REAL,
-    humidex REAL,
+    temperature INTEGER AS Temperature,
+    temperature_source_feels_like INTEGER AS Temperature,
+    temperature_apparent INTEGER AS Temperature,
+    temperature_wind_chill INTEGER AS Temperature,
+    humidex INTEGER AS Temperature,
 
     wind_degree REAL,
     wind_speed INTEGER AS Speed,
@@ -44,7 +45,7 @@ CREATE TABLE weathers(
     co INTEGER AS PollutantConcentration,
 
     relative_humidity REAL,
-    dew_point REAL,
+    dew_point INTEGER AS Temperature,
     pressure INTEGER AS Pressure,
     visibility INTEGER AS Distance,
     cloud_cover INTEGER,
@@ -60,13 +61,13 @@ CREATE TABLE weathers(
 CREATE INDEX weathers_location_formatted_id_index ON weathers(location_formatted_id);
 
 getWeatherByLocationId:
-SELECT refresh_time, main_update_time, current_update_time, air_quality_update_time, pollen_update_time, minutely_update_time, alerts_update_time, normals_update_time, normals_update_latitude, normals_update_longitude, weather_text, weather_code, temperature, source_feels_like_temperature, apparent_temperature, wind_chill_temperature, humidex, wind_degree, wind_speed, wind_gusts, uv_index, pm25, pm10, so2, no2, o3, co, relative_humidity, dew_point, pressure, visibility, cloud_cover, ceiling, daily_forecast, hourly_forecast
+SELECT refresh_time, main_update_time, current_update_time, air_quality_update_time, pollen_update_time, minutely_update_time, alerts_update_time, normals_update_time, normals_update_latitude, normals_update_longitude, weather_text, weather_code, temperature, temperature_source_feels_like, temperature_apparent, temperature_wind_chill, humidex, wind_degree, wind_speed, wind_gusts, uv_index, pm25, pm10, so2, no2, o3, co, relative_humidity, dew_point, pressure, visibility, cloud_cover, ceiling, daily_forecast, hourly_forecast
 FROM weathers
 WHERE location_formatted_id = :locationFormattedId;
 
 insert:
-INSERT INTO weathers(location_formatted_id, refresh_time, main_update_time, current_update_time, air_quality_update_time, pollen_update_time, minutely_update_time, alerts_update_time, normals_update_time, normals_update_latitude, normals_update_longitude, weather_text, weather_code, temperature, source_feels_like_temperature, apparent_temperature, wind_chill_temperature, humidex, wind_degree, wind_speed, wind_gusts, uv_index, pm25, pm10, so2, no2, o3, co, relative_humidity, dew_point, pressure, visibility, cloud_cover, ceiling, daily_forecast, hourly_forecast)
-VALUES (:locationFormattedId, :refreshTime, :mainUpdateTime, :currentUpdateTime, :airQualityUpdateTime, :pollenUpdateTime, :minutelyUpdateTime, :alertsUpdateTime, :normalsUpdateTime, :normalsUpdateLatitude, :normalsUpdateLongitude, :weatherText, :weatherCode, :temperature, :sourceFeelsLikeTemperature, :apparentTemperature, :windChillTemperature, :humidex, :windDegree, :windSpeed, :windGusts, :uvIndex, :pm25, :pm10, :so2, :no2, :o3, :co, :relativeHumidity, :dewPoint, :pressure, :visibility, :cloudCover, :ceiling, :dailyForecast, :hourlyForecast);
+INSERT INTO weathers(location_formatted_id, refresh_time, main_update_time, current_update_time, air_quality_update_time, pollen_update_time, minutely_update_time, alerts_update_time, normals_update_time, normals_update_latitude, normals_update_longitude, weather_text, weather_code, temperature, temperature_source_feels_like, temperature_apparent, temperature_wind_chill, humidex, wind_degree, wind_speed, wind_gusts, uv_index, pm25, pm10, so2, no2, o3, co, relative_humidity, dew_point, pressure, visibility, cloud_cover, ceiling, daily_forecast, hourly_forecast)
+VALUES (:locationFormattedId, :refreshTime, :mainUpdateTime, :currentUpdateTime, :airQualityUpdateTime, :pollenUpdateTime, :minutelyUpdateTime, :alertsUpdateTime, :normalsUpdateTime, :normalsUpdateLatitude, :normalsUpdateLongitude, :weatherText, :weatherCode, :temperature, :temperatureSourceFeelsLike, :temperatureApparent, :temperatureWindChill, :humidex, :windDegree, :windSpeed, :windGusts, :uvIndex, :pm25, :pm10, :so2, :no2, :o3, :co, :relativeHumidity, :dewPoint, :pressure, :visibility, :cloudCover, :ceiling, :dailyForecast, :hourlyForecast);
 
 update:
 UPDATE weathers SET
@@ -84,9 +85,9 @@ UPDATE weathers SET
     weather_text = coalesce(:weatherText, weather_text),
     weather_code = coalesce(:weatherCode, weather_code),
     temperature = coalesce(:temperature, temperature),
-    source_feels_like_temperature = coalesce(:realFeelTemperature, source_feels_like_temperature),
-    apparent_temperature = coalesce(:apparentTemperature, apparent_temperature),
-    wind_chill_temperature = coalesce(:windChillTemperature, wind_chill_temperature),
+    temperature_source_feels_like = coalesce(:temperatureSourceFeelsLike, temperature_source_feels_like),
+    temperature_apparent = coalesce(:apparentTemperature, temperature_apparent),
+    temperature_wind_chill = coalesce(:windChillTemperature, temperature_wind_chill),
     humidex = coalesce(:humidex, humidex),
     wind_degree = coalesce(:windDegree, wind_degree),
     wind_speed = coalesce(:windSpeed, wind_speed),

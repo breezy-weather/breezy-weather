@@ -33,10 +33,13 @@ import breezyweather.data.DurationColumnAdapter
 import breezyweather.data.Hourlys
 import breezyweather.data.Locations
 import breezyweather.data.Minutelys
+import breezyweather.data.Normals
+import breezyweather.data.PollenConcentrationColumnAdapter
 import breezyweather.data.PollutantConcentrationColumnAdapter
 import breezyweather.data.PrecipitationColumnAdapter
 import breezyweather.data.PressureColumnAdapter
 import breezyweather.data.SpeedColumnAdapter
+import breezyweather.data.TemperatureColumnAdapter
 import breezyweather.data.TimeZoneColumnAdapter
 import breezyweather.data.WeatherCodeColumnAdapter
 import breezyweather.data.Weathers
@@ -94,6 +97,11 @@ class DbModule {
             ),
             weathersAdapter = Weathers.Adapter(
                 weather_codeAdapter = WeatherCodeColumnAdapter,
+                temperatureAdapter = TemperatureColumnAdapter,
+                temperature_source_feels_likeAdapter = TemperatureColumnAdapter,
+                temperature_apparentAdapter = TemperatureColumnAdapter,
+                temperature_wind_chillAdapter = TemperatureColumnAdapter,
+                humidexAdapter = TemperatureColumnAdapter,
                 wind_speedAdapter = SpeedColumnAdapter,
                 wind_gustsAdapter = SpeedColumnAdapter,
                 pm25Adapter = PollutantConcentrationColumnAdapter,
@@ -102,12 +110,18 @@ class DbModule {
                 no2Adapter = PollutantConcentrationColumnAdapter,
                 o3Adapter = PollutantConcentrationColumnAdapter,
                 coAdapter = PollutantConcentrationColumnAdapter,
+                dew_pointAdapter = TemperatureColumnAdapter,
                 pressureAdapter = PressureColumnAdapter,
                 visibilityAdapter = DistanceColumnAdapter,
                 ceilingAdapter = DistanceColumnAdapter
             ),
             dailysAdapter = Dailys.Adapter(
                 daytime_weather_codeAdapter = WeatherCodeColumnAdapter,
+                daytime_temperatureAdapter = TemperatureColumnAdapter,
+                daytime_temperature_source_feels_likeAdapter = TemperatureColumnAdapter,
+                daytime_temperature_apparentAdapter = TemperatureColumnAdapter,
+                daytime_temperature_wind_chillAdapter = TemperatureColumnAdapter,
+                daytime_humidexAdapter = TemperatureColumnAdapter,
                 daytime_total_precipitationAdapter = PrecipitationColumnAdapter,
                 daytime_thunderstorm_precipitationAdapter = PrecipitationColumnAdapter,
                 daytime_rain_precipitationAdapter = PrecipitationColumnAdapter,
@@ -120,6 +134,11 @@ class DbModule {
                 daytime_ice_precipitation_durationAdapter = DurationColumnAdapter,
                 daytime_wind_speedAdapter = SpeedColumnAdapter,
                 daytime_wind_gustsAdapter = SpeedColumnAdapter,
+                nighttime_temperatureAdapter = TemperatureColumnAdapter,
+                nighttime_temperature_source_feels_likeAdapter = TemperatureColumnAdapter,
+                nighttime_temperature_apparentAdapter = TemperatureColumnAdapter,
+                nighttime_temperature_wind_chillAdapter = TemperatureColumnAdapter,
+                nighttime_humidexAdapter = TemperatureColumnAdapter,
                 nighttime_weather_codeAdapter = WeatherCodeColumnAdapter,
                 nighttime_total_precipitationAdapter = PrecipitationColumnAdapter,
                 nighttime_thunderstorm_precipitationAdapter = PrecipitationColumnAdapter,
@@ -133,13 +152,39 @@ class DbModule {
                 nighttime_ice_precipitation_durationAdapter = DurationColumnAdapter,
                 nighttime_wind_speedAdapter = SpeedColumnAdapter,
                 nighttime_wind_gustsAdapter = SpeedColumnAdapter,
+                degree_day_heatingAdapter = TemperatureColumnAdapter,
+                degree_day_coolingAdapter = TemperatureColumnAdapter,
                 pm25Adapter = PollutantConcentrationColumnAdapter,
                 pm10Adapter = PollutantConcentrationColumnAdapter,
                 so2Adapter = PollutantConcentrationColumnAdapter,
                 no2Adapter = PollutantConcentrationColumnAdapter,
                 o3Adapter = PollutantConcentrationColumnAdapter,
                 coAdapter = PollutantConcentrationColumnAdapter,
+                alderAdapter = PollenConcentrationColumnAdapter,
+                ashAdapter = PollenConcentrationColumnAdapter,
+                birchAdapter = PollenConcentrationColumnAdapter,
+                chestnutAdapter = PollenConcentrationColumnAdapter,
+                cypressAdapter = PollenConcentrationColumnAdapter,
+                grassAdapter = PollenConcentrationColumnAdapter,
+                hazelAdapter = PollenConcentrationColumnAdapter,
+                hornbeamAdapter = PollenConcentrationColumnAdapter,
+                lindenAdapter = PollenConcentrationColumnAdapter,
+                moldAdapter = PollenConcentrationColumnAdapter,
+                mugwortAdapter = PollenConcentrationColumnAdapter,
+                oakAdapter = PollenConcentrationColumnAdapter,
+                oliveAdapter = PollenConcentrationColumnAdapter,
+                planeAdapter = PollenConcentrationColumnAdapter,
+                plantainAdapter = PollenConcentrationColumnAdapter,
+                poplarAdapter = PollenConcentrationColumnAdapter,
+                ragweedAdapter = PollenConcentrationColumnAdapter,
+                sorrelAdapter = PollenConcentrationColumnAdapter,
+                treeAdapter = PollenConcentrationColumnAdapter,
+                urticaceaeAdapter = PollenConcentrationColumnAdapter,
+                willowAdapter = PollenConcentrationColumnAdapter,
                 sunshine_durationAdapter = DurationColumnAdapter,
+                dewpoint_averageAdapter = TemperatureColumnAdapter,
+                dewpoint_minAdapter = TemperatureColumnAdapter,
+                dewpoint_maxAdapter = TemperatureColumnAdapter,
                 pressure_averageAdapter = PressureColumnAdapter,
                 pressure_maxAdapter = PressureColumnAdapter,
                 pressure_minAdapter = PressureColumnAdapter,
@@ -149,6 +194,11 @@ class DbModule {
             ),
             hourlysAdapter = Hourlys.Adapter(
                 weather_codeAdapter = WeatherCodeColumnAdapter,
+                temperatureAdapter = TemperatureColumnAdapter,
+                temperature_source_feels_likeAdapter = TemperatureColumnAdapter,
+                temperature_apparentAdapter = TemperatureColumnAdapter,
+                temperature_wind_chillAdapter = TemperatureColumnAdapter,
+                humidexAdapter = TemperatureColumnAdapter,
                 total_precipitationAdapter = PrecipitationColumnAdapter,
                 thunderstorm_precipitationAdapter = PrecipitationColumnAdapter,
                 rain_precipitationAdapter = PrecipitationColumnAdapter,
@@ -162,6 +212,7 @@ class DbModule {
                 no2Adapter = PollutantConcentrationColumnAdapter,
                 o3Adapter = PollutantConcentrationColumnAdapter,
                 coAdapter = PollutantConcentrationColumnAdapter,
+                dew_pointAdapter = TemperatureColumnAdapter,
                 pressureAdapter = PressureColumnAdapter,
                 visibilityAdapter = DistanceColumnAdapter
             ),
@@ -170,6 +221,10 @@ class DbModule {
             ),
             alertsAdapter = Alerts.Adapter(
                 severityAdapter = AlertSeverityColumnAdapter
+            ),
+            normalsAdapter = Normals.Adapter(
+                temperature_max_averageAdapter = TemperatureColumnAdapter,
+                temperature_min_averageAdapter = TemperatureColumnAdapter
             )
         )
     }

@@ -25,6 +25,7 @@ import breezyweather.domain.weather.model.Wind
 import breezyweather.domain.weather.reference.WeatherCode
 import org.breezyweather.unit.distance.Distance
 import org.breezyweather.unit.pressure.Pressure
+import org.breezyweather.unit.temperature.Temperature
 import java.util.Date
 import kotlin.time.Duration
 
@@ -42,7 +43,7 @@ data class HourlyWrapper(
     val wind: Wind? = null,
     val uV: UV? = null,
     val relativeHumidity: Double? = null,
-    val dewPoint: Double? = null,
+    val dewPoint: Temperature? = null,
     /**
      * Pressure at sea level
      * Use Kotlin extensions to initialize this value, like 1013.25.hectopascals

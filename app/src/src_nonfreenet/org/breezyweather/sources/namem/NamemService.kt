@@ -63,6 +63,7 @@ import org.breezyweather.unit.pollutant.PollutantConcentration.Companion.milligr
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
 import org.breezyweather.unit.speed.Speed.Companion.metersPerSecond
+import org.breezyweather.unit.temperature.Temperature.Companion.celsius
 import retrofit2.Retrofit
 import java.util.Date
 import javax.inject.Inject
@@ -245,8 +246,8 @@ class NamemService @Inject constructor(
             weatherText = getWeatherText(context, current?.nh),
             weatherCode = getWeatherCode(current?.nh),
             temperature = TemperatureWrapper(
-                temperature = current?.ttt,
-                feelsLike = current?.tttFeels
+                temperature = current?.ttt?.celsius,
+                feelsLike = current?.tttFeels?.celsius
             ),
             wind = Wind(
                 degree = current?.windDir,
@@ -302,8 +303,8 @@ class NamemService @Inject constructor(
     ): Normals? {
         return normalsResult.foreMonthly?.lastOrNull { it.obsDate != null && it.obsDate < Date() }?.let {
             Normals(
-                daytimeTemperature = it.ttMaxAve,
-                nighttimeTemperature = it.ttMinAve
+                daytimeTemperature = it.ttMaxAve?.celsius,
+                nighttimeTemperature = it.ttMinAve?.celsius
             )
         }
     }
@@ -325,8 +326,8 @@ class NamemService @Inject constructor(
                             weatherText = getWeatherText(context, forecast.wwN),
                             weatherCode = getWeatherCode(forecast.wwN),
                             temperature = TemperatureWrapper(
-                                temperature = forecast.temN,
-                                feelsLike = forecast.temNFeel
+                                temperature = forecast.temN?.celsius,
+                                feelsLike = forecast.temNFeel?.celsius
                             ),
                             precipitationProbability = PrecipitationProbability(
                                 total = forecast.wwNPer
@@ -345,8 +346,8 @@ class NamemService @Inject constructor(
                         weatherText = getWeatherText(context, forecast.wwD),
                         weatherCode = getWeatherCode(forecast.wwD),
                         temperature = TemperatureWrapper(
-                            temperature = forecast.temD,
-                            feelsLike = forecast.temDFeel
+                            temperature = forecast.temD?.celsius,
+                            feelsLike = forecast.temDFeel?.celsius
                         ),
                         precipitationProbability = PrecipitationProbability(
                             total = forecast.wwDPer
@@ -360,8 +361,8 @@ class NamemService @Inject constructor(
                             weatherText = getWeatherText(context, it.wwN),
                             weatherCode = getWeatherCode(it.wwN),
                             temperature = TemperatureWrapper(
-                                temperature = it.temN,
-                                feelsLike = it.temNFeel
+                                temperature = it.temN?.celsius,
+                                feelsLike = it.temNFeel?.celsius
                             ),
                             precipitationProbability = PrecipitationProbability(
                                 total = it.wwNPer
@@ -387,7 +388,7 @@ class NamemService @Inject constructor(
                     HourlyWrapper(
                         date = it.fdate,
                         temperature = TemperatureWrapper(
-                            temperature = it.tem?.toDoubleOrNull()
+                            temperature = it.tem?.toDoubleOrNull()?.celsius
                         ),
                         precipitation = Precipitation(
                             total = it.pre?.toDoubleOrNull()?.millimeters

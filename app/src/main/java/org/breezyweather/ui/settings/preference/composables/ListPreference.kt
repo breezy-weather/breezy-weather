@@ -61,8 +61,8 @@ import androidx.core.os.LocaleListCompat
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.ImmutableMap
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.options.appearance.CalendarHelper
-import org.breezyweather.common.basic.models.options.appearance.LocaleHelper
+import org.breezyweather.common.options.appearance.CalendarHelper
+import org.breezyweather.common.options.appearance.LocaleHelper
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.ui.common.composables.AlertDialogNoPadding
 import org.breezyweather.ui.common.widgets.Material3ExpressiveCardListItem

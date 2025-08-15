@@ -23,14 +23,13 @@ import android.widget.TextView
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.reference.WeatherCode
 import org.breezyweather.R
-import org.breezyweather.common.basic.BreezyActivity
-import org.breezyweather.common.basic.models.options.appearance.DetailScreen
-import org.breezyweather.common.basic.models.options.basic.UnitUtils
+import org.breezyweather.common.activities.BreezyActivity
 import org.breezyweather.common.extensions.areBlocksSquished
 import org.breezyweather.common.extensions.formatMeasure
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
+import org.breezyweather.common.options.appearance.DetailScreen
+import org.breezyweather.common.utils.UnitUtils
 import org.breezyweather.common.utils.helpers.IntentHelper
-import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.ui.theme.resource.ResourceHelper
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
 import org.breezyweather.unit.formatting.UnitWidth
@@ -101,11 +100,6 @@ class PrecipitationViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
             precipitationAmountView.maxLines = if (itemView.context.areBlocksSquished) 2 else 3
 
             precipitation?.total?.let { total ->
-                val precipitationUnit = if (isSnow) {
-                    SettingsManager.getInstance(context).getSnowfallUnit(context)
-                } else {
-                    SettingsManager.getInstance(context).getPrecipitationUnit(context)
-                }
                 precipitationValueView.text = UnitUtils.formatUnitsHalfSize(total.formatMeasure(context))
 
                 talkBackBuilder.append(context.getString(R.string.colon_separator))

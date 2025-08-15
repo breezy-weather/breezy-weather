@@ -1,4 +1,4 @@
-/**
+/*
  * This file is part of Breezy Weather.
  *
  * Breezy Weather is free software: you can redistribute it and/or modify it
@@ -14,19 +14,32 @@
  * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package org.breezyweather.common.basic
+package org.breezyweather.common.options
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
+import android.content.Context
+import org.breezyweather.R
+import org.breezyweather.common.utils.UnitUtils
 
-// TODO: Issue with getter on application when converted to Kotlin
-open class BreezyViewModel(
-    application: Application,
-) : AndroidViewModel(application) {
-    private var mNewInstance = true
-    fun checkIsNewInstance(): Boolean {
-        val result = mNewInstance
-        mNewInstance = false
-        return result
+enum class WidgetWeekIconMode(
+    override val id: String,
+) : BaseEnum {
+
+    AUTO("auto"),
+    DAY("day"),
+    NIGHT("night"),
+    ;
+
+    companion object {
+
+        fun getInstance(
+            value: String,
+        ) = entries.firstOrNull {
+            it.id == value
+        } ?: AUTO
     }
+
+    override val valueArrayId = R.array.week_icon_mode_values
+    override val nameArrayId = R.array.week_icon_modes
+
+    override fun getName(context: Context) = UnitUtils.getName(context, this)
 }

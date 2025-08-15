@@ -25,11 +25,13 @@ import org.breezyweather.unit.distance.Distance
 import org.breezyweather.unit.distance.Distance.Companion.meters
 import org.breezyweather.unit.duration.format
 import org.breezyweather.unit.formatting.UnitWidth
+import org.breezyweather.unit.pollen.PollenConcentrationUnit
 import org.breezyweather.unit.pollutant.PollutantConcentrationUnit
 import org.breezyweather.unit.precipitation.Precipitation
 import org.breezyweather.unit.precipitation.PrecipitationUnit
 import org.breezyweather.unit.pressure.Pressure
 import org.breezyweather.unit.speed.Speed
+import org.breezyweather.unit.temperature.Temperature
 import kotlin.math.roundToInt
 import kotlin.time.Duration
 import kotlin.time.DurationUnit
@@ -39,6 +41,45 @@ import kotlin.time.DurationUnit
  *  Technically, we can do a <T : WeatherValue> extension, but we need to handle how we are getting the user-preferred
  *  unit
  */
+
+/**
+ * Convenient format function with parameters filled for our app
+ */
+fun Temperature.formatMeasure(
+    context: Context,
+    valueWidth: UnitWidth = UnitWidth.SHORT,
+    unitWidth: UnitWidth = UnitWidth.SHORT,
+    showSign: Boolean = false,
+): String {
+    val settings = SettingsManager.getInstance(context)
+    return format(
+        context = context,
+        unit = settings.getTemperatureUnit(context),
+        valueWidth = valueWidth,
+        unitWidth = unitWidth,
+        locale = context.currentLocale,
+        showSign = showSign,
+        useNumberFormatter = settings.useNumberFormatter,
+        useMeasureFormat = settings.useMeasureFormat
+    )
+}
+
+/**
+ * Convenient format function with parameters filled for our app
+ */
+fun Temperature.formatValue(
+    context: Context,
+    width: UnitWidth = UnitWidth.SHORT,
+): String {
+    val settings = SettingsManager.getInstance(context)
+    return formatValue(
+        unit = settings.getTemperatureUnit(context),
+        width = width,
+        locale = context.currentLocale,
+        useNumberFormatter = settings.useNumberFormatter,
+        useMeasureFormat = settings.useMeasureFormat
+    )
+}
 
 /**
  * Source: https://weather.metoffice.gov.uk/guides/what-does-this-forecast-mean
@@ -256,6 +297,27 @@ fun Pressure.formatValue(
  * Convenient format function with parameters filled for our app
  */
 fun PollutantConcentrationUnit.formatMeasure(
+    context: Context,
+    value: Number,
+    valueWidth: UnitWidth = UnitWidth.SHORT,
+    unitWidth: UnitWidth = UnitWidth.SHORT,
+): String {
+    val settings = SettingsManager.getInstance(context)
+    return format(
+        context = context,
+        value = value,
+        valueWidth = valueWidth,
+        unitWidth = unitWidth,
+        locale = context.currentLocale,
+        useNumberFormatter = settings.useNumberFormatter,
+        useMeasureFormat = settings.useMeasureFormat
+    )
+}
+
+/**
+ * Convenient format function with parameters filled for our app
+ */
+fun PollenConcentrationUnit.formatMeasure(
     context: Context,
     value: Number,
     valueWidth: UnitWidth = UnitWidth.SHORT,

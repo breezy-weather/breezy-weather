@@ -146,48 +146,6 @@ value class PollutantConcentration internal constructor(
         require(decimals >= 0) { "decimals must be not negative, but was $decimals" }
         return formatToExactDecimals(toDouble(unit), decimals.coerceAtMost(unit.decimals.long)) + unit.id
     }
-
-    /**
-     * Return null if the value is not between 800 hPa and 1200 hPa, otherwise this value
-     */
-    fun toValidOrNull(): PollutantConcentration? {
-        return if (rawValue in 80000..120000) this else null
-    }
-
-    override fun format(
-        context: Context,
-        unit: PollutantConcentrationUnit,
-        valueWidth: UnitWidth,
-        unitWidth: UnitWidth,
-        locale: Locale,
-        useNumberFormatter: Boolean,
-        useMeasureFormat: Boolean,
-    ): String {
-        return super.format(
-            context = context,
-            unit = unit,
-            valueWidth = valueWidth,
-            unitWidth = unitWidth,
-            locale = locale.let {
-                /**
-                 * Use English units with Traditional Chinese
-                 *
-                 * Taiwan guidelines: https://www.bsmi.gov.tw/wSite/public/Attachment/f1736149048776.pdf
-                 * Ongoing issue: https://unicode-org.atlassian.net/jira/software/c/projects/CLDR/issues/CLDR-10604
-                 */
-                if (it.language.equals("zh", ignoreCase = true) &&
-                    arrayOf("TW", "HK", "MO").any { c -> it.country.equals(c, ignoreCase = true) } &&
-                    unitWidth != UnitWidth.LONG
-                ) {
-                    Locale.Builder().setLanguage("en").setRegion("001").build()
-                } else {
-                    it
-                }
-            },
-            useNumberFormatter = useNumberFormatter,
-            useMeasureFormat = useMeasureFormat
-        )
-    }
 }
 
 // constructing from number of units

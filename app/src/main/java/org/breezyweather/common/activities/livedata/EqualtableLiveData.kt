@@ -14,7 +14,7 @@
  * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package org.breezyweather.common.basic.livedata
+package org.breezyweather.common.activities.livedata
 
 import androidx.lifecycle.MutableLiveData
 

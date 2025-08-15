@@ -24,12 +24,11 @@ import android.view.ViewGroup
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Precipitation
 import org.breezyweather.R
-import org.breezyweather.common.basic.BreezyActivity
-import org.breezyweather.common.basic.models.options.appearance.DetailScreen
+import org.breezyweather.common.activities.BreezyActivity
 import org.breezyweather.common.extensions.formatMeasure
 import org.breezyweather.common.extensions.formatValue
 import org.breezyweather.common.extensions.getThemeColor
-import org.breezyweather.domain.settings.SettingsManager
+import org.breezyweather.common.options.appearance.DetailScreen
 import org.breezyweather.domain.weather.model.getHourlyPrecipitationColor
 import org.breezyweather.ui.common.widgets.trend.TrendRecyclerView
 import org.breezyweather.ui.common.widgets.trend.chart.PolylineAndHistogramView
@@ -153,7 +152,6 @@ class HourlyPrecipitationAdapter(
 
     override fun bindBackgroundForHost(host: TrendRecyclerView) {
         mHighestPrecipitation?.let {
-            val unit = SettingsManager.getInstance(activity).getPrecipitationUnit(activity)
             val keyLineList = mutableListOf<TrendRecyclerView.KeyLine>()
             keyLineList.add(
                 TrendRecyclerView.KeyLine(

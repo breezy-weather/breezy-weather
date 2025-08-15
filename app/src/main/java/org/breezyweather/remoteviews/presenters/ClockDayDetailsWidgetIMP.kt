@@ -28,10 +28,11 @@ import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Weather
 import org.breezyweather.R
 import org.breezyweather.background.receiver.widget.WidgetClockDayDetailsProvider
-import org.breezyweather.common.basic.models.options.appearance.CalendarHelper
-import org.breezyweather.common.basic.models.options.basic.UnitUtils
+import org.breezyweather.common.extensions.formatMeasure
 import org.breezyweather.common.extensions.getFormattedMediumDayAndMonthInAdditionalCalendar
 import org.breezyweather.common.extensions.getShortWeekdayDayMonth
+import org.breezyweather.common.options.appearance.CalendarHelper
+import org.breezyweather.common.utils.UnitUtils
 import org.breezyweather.domain.location.model.getPlace
 import org.breezyweather.domain.location.model.isDaylight
 import org.breezyweather.domain.settings.SettingsManager
@@ -42,6 +43,7 @@ import org.breezyweather.domain.weather.model.getTrendTemperature
 import org.breezyweather.remoteviews.Widgets
 import org.breezyweather.ui.theme.resource.ResourceHelper
 import org.breezyweather.ui.theme.resource.ResourcesProviderFactory
+import org.breezyweather.unit.formatting.UnitWidth
 import java.util.Date
 import kotlin.math.roundToInt
 
@@ -87,7 +89,6 @@ object ClockDayDetailsWidgetIMP : AbstractRemoteViewsPresenter() {
         val provider = ResourcesProviderFactory.newInstance
         val dayTime = location.isDaylight
         val settings = SettingsManager.getInstance(context)
-        val temperatureUnit = settings.getTemperatureUnit(context)
         val minimalIcon = settings.isWidgetUsingMonochromeIcons
 
         // Clock
@@ -159,11 +160,11 @@ object ClockDayDetailsWidgetIMP : AbstractRemoteViewsPresenter() {
         builder.append(location.getPlace(context))
         weather.current?.temperature?.temperature?.let {
             builder.append(" ").append(
-                temperatureUnit.formatMeasure(context, it, 0)
+                it.formatMeasure(context, unitWidth = UnitWidth.NARROW)
             )
         }
         views.setTextViewText(R.id.widget_clock_day_subtitle, builder.toString())
-        weather.today?.getTrendTemperature(context, temperatureUnit)?.let {
+        weather.today?.getTrendTemperature(context)?.let {
             views.setTextViewText(
                 R.id.widget_clock_day_todayTemp,
                 context.getString(R.string.daily_today_short) + " " + it
@@ -176,7 +177,7 @@ object ClockDayDetailsWidgetIMP : AbstractRemoteViewsPresenter() {
                 R.id.widget_clock_day_feelsLikeTemp,
                 context.getString(
                     R.string.temperature_feels_like_with_unit,
-                    temperatureUnit.formatMeasure(context, it, 0)
+                    it.formatMeasure(context, unitWidth = UnitWidth.NARROW)
                 )
             )
         } ?: run {

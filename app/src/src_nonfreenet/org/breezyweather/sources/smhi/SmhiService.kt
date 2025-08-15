@@ -44,6 +44,7 @@ import org.breezyweather.unit.distance.Distance.Companion.kilometers
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
 import org.breezyweather.unit.speed.Speed.Companion.metersPerSecond
+import org.breezyweather.unit.temperature.Temperature.Companion.celsius
 import retrofit2.Retrofit
 import javax.inject.Inject
 import javax.inject.Named
@@ -146,7 +147,7 @@ class SmhiService @Inject constructor(
                     result.parameters.firstOrNull { it.name == "Wsymb2" }?.values?.getOrNull(0)
                 ),
                 temperature = TemperatureWrapper(
-                    temperature = result.parameters.firstOrNull { it.name == "t" }?.values?.getOrNull(0)
+                    temperature = result.parameters.firstOrNull { it.name == "t" }?.values?.getOrNull(0)?.celsius
                 ),
                 precipitation = Precipitation(
                     total = result.parameters.firstOrNull { it.name == "pmean" }?.values?.getOrNull(0)?.millimeters

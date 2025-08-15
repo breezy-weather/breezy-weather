@@ -21,10 +21,12 @@ import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.AirQuality
 import breezyweather.domain.weather.model.Weather
 import org.breezyweather.R
+import org.breezyweather.common.extensions.formatMeasure
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
-import org.breezyweather.domain.settings.SettingsManager
+import org.breezyweather.unit.formatting.UnitWidth
+import org.breezyweather.unit.temperature.Temperature
 import java.util.Calendar
 import java.util.Date
 
@@ -95,11 +97,10 @@ fun Weather.getTemperatureRangeSummary(context: Context, location: Location): Pa
     val currentHour = cal[Calendar.HOUR_OF_DAY]
 
     val isDayFirst: Boolean
-    val temperatures = mutableListOf<Double?>()
+    val temperatures = mutableListOf<Temperature?>()
 
     val halfDayTemperatureRange = mutableListOf<String>()
     val halfDayTemperatureRangeVoice = mutableListOf<String>()
-    val temperatureUnit = SettingsManager.getInstance(context).getTemperatureUnit(context)
 
     // Early morning
     if (currentHour < 6) {
@@ -121,12 +122,12 @@ fun Weather.getTemperatureRangeSummary(context: Context, location: Location): Pa
         halfDayTemperatureRange.add(
             context.getString(if (isDayFirst) R.string.daytime_short else R.string.nighttime_short) +
                 context.getString(R.string.colon_separator) +
-                temperatureUnit.formatMeasureShort(context, it)
+                it.formatMeasure(context, valueWidth = UnitWidth.NARROW, unitWidth = UnitWidth.NARROW)
         )
         halfDayTemperatureRangeVoice.add(
             context.getString(if (isDayFirst) R.string.daytime_short else R.string.nighttime_short) +
                 context.getString(R.string.colon_separator) +
-                temperatureUnit.formatContentDescription(context, it)
+                it.formatMeasure(context, valueWidth = UnitWidth.NARROW, unitWidth = UnitWidth.LONG)
         )
     }
 
@@ -134,12 +135,12 @@ fun Weather.getTemperatureRangeSummary(context: Context, location: Location): Pa
         halfDayTemperatureRange.add(
             context.getString(if (isDayFirst) R.string.nighttime_short else R.string.daytime_short) +
                 context.getString(R.string.colon_separator) +
-                temperatureUnit.formatMeasureShort(context, it)
+                it.formatMeasure(context, valueWidth = UnitWidth.NARROW, unitWidth = UnitWidth.NARROW)
         )
         halfDayTemperatureRangeVoice.add(
             context.getString(if (isDayFirst) R.string.nighttime_short else R.string.daytime_short) +
                 context.getString(R.string.colon_separator) +
-                temperatureUnit.formatContentDescription(context, it)
+                it.formatMeasure(context, valueWidth = UnitWidth.NARROW, unitWidth = UnitWidth.LONG)
         )
     }
 

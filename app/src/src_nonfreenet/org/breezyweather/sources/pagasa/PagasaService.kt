@@ -51,6 +51,7 @@ import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
 import org.breezyweather.unit.speed.Speed.Companion.kilometersPerHour
 import org.breezyweather.unit.speed.Speed.Companion.metersPerSecond
+import org.breezyweather.unit.temperature.Temperature.Companion.celsius
 import retrofit2.Retrofit
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -199,7 +200,7 @@ class PagasaService @Inject constructor(
         return currentResult?.getOrNull(nearestStation)?.let {
             CurrentWrapper(
                 temperature = TemperatureWrapper(
-                    temperature = it.temperature?.substringBefore(" ")?.toDoubleOrNull()
+                    temperature = it.temperature?.substringBefore(" ")?.toDoubleOrNull()?.celsius
                 ),
                 wind = Wind(
                     degree = getWindDegree(it.windDirection),
@@ -254,7 +255,7 @@ class PagasaService @Inject constructor(
                             weatherText = getHourlyWeatherText(context, it.symbol?.attributes?.symbol),
                             weatherCode = getHourlyWeatherCode(it.symbol?.attributes?.symbol),
                             temperature = TemperatureWrapper(
-                                temperature = it.temperature?.attributes?.value?.toDoubleOrNull()
+                                temperature = it.temperature?.attributes?.value?.toDoubleOrNull()?.celsius
                             ),
                             precipitation = Precipitation(
                                 total = it.precipitation?.attributes?.value?.toDoubleOrNull()?.millimeters

@@ -27,6 +27,7 @@ import android.widget.RemoteViews
 import breezyweather.domain.location.model.Location
 import org.breezyweather.R
 import org.breezyweather.background.receiver.widget.WidgetWeekProvider
+import org.breezyweather.common.extensions.formatMeasure
 import org.breezyweather.domain.location.model.isDaylight
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.domain.weather.model.getTrendTemperature
@@ -35,6 +36,7 @@ import org.breezyweather.domain.weather.model.isToday
 import org.breezyweather.remoteviews.Widgets
 import org.breezyweather.ui.theme.resource.ResourceHelper
 import org.breezyweather.ui.theme.resource.ResourcesProviderFactory
+import org.breezyweather.unit.formatting.UnitWidth
 import kotlin.math.roundToInt
 
 object WeekWidgetIMP : AbstractRemoteViewsPresenter() {
@@ -81,14 +83,13 @@ object WeekWidgetIMP : AbstractRemoteViewsPresenter() {
         val provider = ResourcesProviderFactory.newInstance
         val dayTime = location.isDaylight
         val settings = SettingsManager.getInstance(context)
-        val temperatureUnit = settings.getTemperatureUnit(context)
         val weekIconMode = settings.widgetWeekIconMode
         val minimalIcon = settings.isWidgetUsingMonochromeIcons
 
         weather.current?.temperature?.temperature?.let {
             views.setTextViewText(
                 R.id.widget_week_temp,
-                temperatureUnit.formatMeasureShort(context, it)
+                it.formatMeasure(context, valueWidth = UnitWidth.NARROW, unitWidth = UnitWidth.NARROW)
             )
         } ?: run {
             views.setTextViewText(R.id.widget_week_temp, null)
@@ -122,10 +123,7 @@ object WeekWidgetIMP : AbstractRemoteViewsPresenter() {
             } ?: views.setTextViewText(dailyId[0], null)
             views.setTextViewText(
                 dailyId[1],
-                weather.dailyForecastStartingToday.getOrNull(i)?.getTrendTemperature(
-                    context,
-                    temperatureUnit
-                )
+                weather.dailyForecastStartingToday.getOrNull(i)?.getTrendTemperature(context)
             )
             if (weekIconDaytime) {
                 weather.dailyForecastStartingToday.getOrNull(i)?.day?.weatherCode?.let {

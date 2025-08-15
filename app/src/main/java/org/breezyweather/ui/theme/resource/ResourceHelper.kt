@@ -34,10 +34,12 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.createBitmap
 import breezyweather.domain.weather.reference.WeatherCode
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.options.NotificationTextColor
-import org.breezyweather.domain.settings.SettingsManager
+import org.breezyweather.common.extensions.formatMeasure
+import org.breezyweather.common.options.NotificationTextColor
 import org.breezyweather.ui.theme.resource.providers.DefaultResourceProvider
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
+import org.breezyweather.unit.formatting.UnitWidth
+import org.breezyweather.unit.temperature.Temperature
 
 object ResourceHelper {
     fun getWeatherIcon(
@@ -163,9 +165,12 @@ object ResourceHelper {
         return provider.moonDrawable
     }
 
-    fun createTempBitmap(context: Context, temp: Double): Bitmap {
-        val temperatureUnit = SettingsManager.getInstance(context).getTemperatureUnit(context)
-        val temperatureFormatted = temperatureUnit.formatMeasureShort(context, temp)
+    fun createTempBitmap(context: Context, temp: Temperature): Bitmap {
+        val temperatureFormatted = temp.formatMeasure(
+            context,
+            valueWidth = UnitWidth.NARROW,
+            unitWidth = UnitWidth.NARROW
+        )
 
         val iconSize = 72
         val bounds = Rect()

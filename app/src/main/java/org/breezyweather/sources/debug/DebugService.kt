@@ -37,6 +37,7 @@ import org.breezyweather.unit.distance.Distance.Companion.meters
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
 import org.breezyweather.unit.speed.Speed.Companion.metersPerSecond
+import org.breezyweather.unit.temperature.Temperature.Companion.celsius
 import java.util.Calendar
 import java.util.Date
 import java.util.TimeZone
@@ -135,14 +136,14 @@ class DebugService @Inject constructor() : WeatherSource {
                 .firstOrNull { "$CURRENT_CITY_LABEL${it.name}" == location.city }
                 ?: WeatherCode.CLEAR,
             temperature = TemperatureWrapper(
-                temperature = Math.random().times(10).plus(15)
+                temperature = Math.random().times(10).plus(15).celsius
             ),
             wind = Wind(
                 degree = Math.random().times(360), // TODO: Add loop case: -1
                 speed = Math.random().times(10).plus(10).metersPerSecond
             ),
             uV = UV(index = Math.random().times(12)),
-            dewPoint = Math.random().times(10).plus(5),
+            dewPoint = Math.random().times(10).plus(5).celsius,
             pressure = Math.random().times(100).plus(963).hectopascals,
             visibility = Math.random().times(50000).meters,
             cloudCover = Math.random().times(100).roundToInt()

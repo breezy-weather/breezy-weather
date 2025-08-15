@@ -72,6 +72,7 @@ import org.breezyweather.unit.pressure.Pressure.Companion.pascals
 import org.breezyweather.unit.speed.Speed
 import org.breezyweather.unit.speed.Speed.Companion.kilometersPerHour
 import org.breezyweather.unit.speed.Speed.Companion.milesPerHour
+import org.breezyweather.unit.temperature.Temperature.Companion.celsius
 import retrofit2.Retrofit
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -268,8 +269,8 @@ class NwsService @Inject constructor(
                 weatherText = it.textDescription,
                 weatherCode = getWeatherCode(it.icon),
                 temperature = TemperatureWrapper(
-                    temperature = it.temperature?.value,
-                    feelsLike = it.windChill?.value
+                    temperature = it.temperature?.value?.celsius,
+                    feelsLike = it.windChill?.value?.celsius
                 ),
                 // stations where the anemometer is not working would report 0 wind speed; ignore them
                 wind = if (it.windSpeed?.value != null && it.windSpeed.value != 0.0) {
@@ -282,7 +283,7 @@ class NwsService @Inject constructor(
                     null
                 },
                 relativeHumidity = it.relativeHumidity?.value,
-                dewPoint = it.dewpoint?.value,
+                dewPoint = it.dewpoint?.value?.celsius,
                 pressure = if (it.seaLevelPressure != null) {
                     it.seaLevelPressure.value?.pascals
                 } else {
@@ -316,7 +317,7 @@ class NwsService @Inject constructor(
                     weatherText = it.shortForecast,
                     weatherCode = getWeatherCode(it.icon),
                     temperature = TemperatureWrapper(
-                        temperature = it.temperature?.value
+                        temperature = it.temperature?.value?.celsius
                     ),
                     precipitationProbability = PrecipitationProbability(
                         total = it.probabilityOfPrecipitation?.value
@@ -332,7 +333,7 @@ class NwsService @Inject constructor(
                     weatherText = it.shortForecast,
                     weatherCode = getWeatherCode(it.icon),
                     temperature = TemperatureWrapper(
-                        temperature = it.temperature?.value
+                        temperature = it.temperature?.value?.celsius
                     ),
                     precipitationProbability = PrecipitationProbability(
                         total = it.probabilityOfPrecipitation?.value
@@ -440,8 +441,8 @@ class NwsService @Inject constructor(
                     cloudCover = skyCoverForecastList.getOrElse(it) { null }
                 ),
                 temperature = TemperatureWrapper(
-                    temperature = temperatureForecastList.getOrElse(it) { null },
-                    feelsLike = apparentTemperatureForecastList.getOrElse(it) { null }
+                    temperature = temperatureForecastList.getOrElse(it) { null }?.celsius,
+                    feelsLike = apparentTemperatureForecastList.getOrElse(it) { null }?.celsius
                 ),
                 precipitation = Precipitation(
                     total = quantitativePrecipitationForecastList.getOrElse(it) { null }?.millimeters,
@@ -458,7 +459,7 @@ class NwsService @Inject constructor(
                     gusts = windGustForecastList.getOrElse(it) { null }?.kilometersPerHour
                 ),
                 relativeHumidity = relativeHumidityList.getOrElse(it) { null }?.toDouble(),
-                dewPoint = dewpointForecastList.getOrElse(it) { null },
+                dewPoint = dewpointForecastList.getOrElse(it) { null }?.celsius,
                 pressure = pressureForecastList.getOrElse(it) { null }?.inchesOfMercury,
                 cloudCover = skyCoverForecastList.getOrElse(it) { null },
                 visibility = visibilityForecastList.getOrElse(it) { null }?.meters

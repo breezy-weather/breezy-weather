@@ -23,11 +23,11 @@ import android.view.ViewGroup
 import androidx.annotation.Size
 import breezyweather.domain.location.model.Location
 import org.breezyweather.R
-import org.breezyweather.common.basic.BreezyActivity
-import org.breezyweather.common.basic.models.options.appearance.DetailScreen
+import org.breezyweather.common.activities.BreezyActivity
 import org.breezyweather.common.extensions.formatMeasure
 import org.breezyweather.common.extensions.formatValue
 import org.breezyweather.common.extensions.getThemeColor
+import org.breezyweather.common.options.appearance.DetailScreen
 import org.breezyweather.ui.common.widgets.trend.TrendRecyclerView
 import org.breezyweather.ui.common.widgets.trend.chart.PolylineAndHistogramView
 import org.breezyweather.ui.theme.ThemeManager
@@ -160,12 +160,12 @@ class HourlyPressureAdapter(
         mLowestPressure = PressureUnit.NORMAL.toFloat()
         weather.nextHourlyForecast
             .forEach { hourly ->
-                hourly.pressure?.let {
-                    if (mHighestPressure == null || it.value > mHighestPressure!!) {
-                        mHighestPressure = it.value.toFloat()
+                hourly.pressure?.value?.let {
+                    if (mHighestPressure == null || it > mHighestPressure!!) {
+                        mHighestPressure = it.toFloat()
                     }
-                    if (mLowestPressure == null || it.value < mLowestPressure!!) {
-                        mLowestPressure = it.value.toFloat()
+                    if (mLowestPressure == null || it < mLowestPressure!!) {
+                        mLowestPressure = it.toFloat()
                     }
                 }
             }

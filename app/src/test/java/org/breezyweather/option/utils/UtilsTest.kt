@@ -22,7 +22,7 @@ import io.mockk.every
 import io.mockk.mockk
 import kotlinx.coroutines.test.runTest
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.options.basic.UnitUtils
+import org.breezyweather.common.utils.UnitUtils
 import org.junit.jupiter.api.Test
 
 class UtilsTest {

@@ -1,4 +1,4 @@
-/**
+/*
  * This file is part of Breezy Weather.
  *
  * Breezy Weather is free software: you can redistribute it and/or modify it
@@ -14,33 +14,38 @@
  * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package org.breezyweather.common.basic.models.options
+package org.breezyweather.common.options
 
 import android.content.Context
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.options.basic.BaseEnum
-import org.breezyweather.common.basic.models.options.basic.UnitUtils
+import org.breezyweather.common.utils.UnitUtils
 
-enum class WidgetWeekIconMode(
+enum class DarkModeLocation(
     override val id: String,
+    val value: Boolean,
 ) : BaseEnum {
 
-    AUTO("auto"),
-    DAY("day"),
-    NIGHT("night"),
+    DAY_NIGHT("day_night", true),
+    DARK("dark", false),
     ;
 
     companion object {
 
         fun getInstance(
             value: String,
-        ) = WidgetWeekIconMode.entries.firstOrNull {
+        ) = entries.firstOrNull {
             it.id == value
-        } ?: AUTO
+        } ?: DARK
+
+        fun getInstance(
+            value: Boolean,
+        ) = entries.firstOrNull {
+            it.value == value
+        } ?: DARK
     }
 
-    override val valueArrayId = R.array.week_icon_mode_values
-    override val nameArrayId = R.array.week_icon_modes
+    override val valueArrayId = R.array.dark_mode_location_values
+    override val nameArrayId = R.array.dark_modes_location
 
     override fun getName(context: Context) = UnitUtils.getName(context, this)
 }

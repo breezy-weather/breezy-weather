@@ -51,10 +51,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import org.breezyweather.BreezyWeather
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.options.DarkMode
-import org.breezyweather.common.basic.models.options.DarkModeLocation
 import org.breezyweather.common.extensions.plus
 import org.breezyweather.common.extensions.toBitmap
+import org.breezyweather.common.options.DarkMode
+import org.breezyweather.common.options.DarkModeLocation
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.ui.common.composables.AlertDialogLink

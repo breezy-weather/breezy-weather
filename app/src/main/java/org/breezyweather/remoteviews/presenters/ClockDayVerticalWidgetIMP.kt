@@ -28,16 +28,16 @@ import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Weather
 import org.breezyweather.R
 import org.breezyweather.background.receiver.widget.WidgetClockDayVerticalProvider
-import org.breezyweather.common.basic.models.options.NotificationTextColor
-import org.breezyweather.common.basic.models.options.basic.UnitUtils
-import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
+import org.breezyweather.common.extensions.formatMeasure
 import org.breezyweather.common.extensions.getFormattedMediumDayAndMonthInAdditionalCalendar
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.getShortWeekdayDayMonth
 import org.breezyweather.common.extensions.getWeek
 import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.extensions.spToPx
+import org.breezyweather.common.options.NotificationTextColor
 import org.breezyweather.common.source.PollenIndexSource
+import org.breezyweather.common.utils.UnitUtils
 import org.breezyweather.domain.location.model.getPlace
 import org.breezyweather.domain.location.model.isDaylight
 import org.breezyweather.domain.settings.SettingsManager
@@ -48,6 +48,7 @@ import org.breezyweather.domain.weather.model.getTrendTemperature
 import org.breezyweather.remoteviews.Widgets
 import org.breezyweather.ui.theme.resource.ResourceHelper
 import org.breezyweather.ui.theme.resource.ResourcesProviderFactory
+import org.breezyweather.unit.formatting.UnitWidth
 import java.util.Date
 import kotlin.math.roundToInt
 
@@ -93,12 +94,10 @@ object ClockDayVerticalWidgetIMP : AbstractRemoteViewsPresenter() {
     ): RemoteViews {
         val color = WidgetColor(context, cardStyle!!, textColor!!, location?.isDaylight ?: true)
         val settings = SettingsManager.getInstance(context)
-        val temperatureUnit = settings.getTemperatureUnit(context)
         val minimalIcon = settings.isWidgetUsingMonochromeIcons
         val views = buildWidgetViewDayPart(
             context,
             location,
-            temperatureUnit,
             color,
             textSize,
             minimalIcon,
@@ -119,7 +118,6 @@ object ClockDayVerticalWidgetIMP : AbstractRemoteViewsPresenter() {
     private fun buildWidgetViewDayPart(
         context: Context,
         location: Location?,
-        temperatureUnit: TemperatureUnit,
         color: WidgetColor,
         textSize: Int,
         minimalIcon: Boolean,
@@ -285,15 +283,15 @@ object ClockDayVerticalWidgetIMP : AbstractRemoteViewsPresenter() {
         views.apply {
             setTextViewText(
                 R.id.widget_clock_day_title,
-                getTitleText(context, location, viewStyle, temperatureUnit)
+                getTitleText(context, location, viewStyle)
             )
             setTextViewText(
                 R.id.widget_clock_day_subtitle,
-                getSubtitleText(context, weather, viewStyle, temperatureUnit)
+                getSubtitleText(context, weather, viewStyle)
             )
             setTextViewText(
                 R.id.widget_clock_day_time,
-                getTimeText(context, location, viewStyle, subtitleData, temperatureUnit, pollenIndexSource)
+                getTimeText(context, location, viewStyle, subtitleData, pollenIndexSource)
             )
         }
 
@@ -453,17 +451,16 @@ object ClockDayVerticalWidgetIMP : AbstractRemoteViewsPresenter() {
         context: Context,
         location: Location,
         viewStyle: String?,
-        unit: TemperatureUnit,
     ): String? {
         val weather = location.weather ?: return null
         return when (viewStyle) {
-            "rectangle" -> Widgets.buildWidgetDayStyleText(context, weather, unit)[0]
+            "rectangle" -> Widgets.buildWidgetDayStyleText(context, weather)[0]
             "symmetry" -> {
                 val stringBuilder = StringBuilder()
                 stringBuilder.append(location.getPlace(context))
                 weather.current?.temperature?.temperature?.let {
                     stringBuilder.append("\n")
-                        .append(unit.formatMeasure(context, it, 0))
+                        .append(it.formatMeasure(context, unitWidth = UnitWidth.NARROW))
                 }
                 stringBuilder.toString()
             }
@@ -476,14 +473,16 @@ object ClockDayVerticalWidgetIMP : AbstractRemoteViewsPresenter() {
                     if (stringBuilder.isNotEmpty()) {
                         stringBuilder.append(" ")
                     }
-                    stringBuilder.append(unit.formatMeasure(context, it, 0))
+                    stringBuilder.append(it.formatMeasure(context, unitWidth = UnitWidth.NARROW))
                 }
                 stringBuilder.toString()
             }
             "mini" -> weather.current?.weatherText
-            "temp" -> weather.current?.temperature?.temperature?.let {
-                unit.formatMeasureShort(context, it)
-            }
+            "temp" -> weather.current?.temperature?.temperature?.formatMeasure(
+                context,
+                valueWidth = UnitWidth.NARROW,
+                unitWidth = UnitWidth.NARROW
+            )
             else -> null
         }
     }
@@ -492,10 +491,9 @@ object ClockDayVerticalWidgetIMP : AbstractRemoteViewsPresenter() {
         context: Context,
         weather: Weather,
         viewStyle: String?,
-        unit: TemperatureUnit,
     ): String? {
         return when (viewStyle) {
-            "rectangle" -> Widgets.buildWidgetDayStyleText(context, weather, unit)[1]
+            "rectangle" -> Widgets.buildWidgetDayStyleText(context, weather)[1]
             "symmetry" -> weather.current?.let { current ->
                 val stringBuilder = StringBuilder()
                 if (!current.weatherText.isNullOrEmpty()) {
@@ -508,14 +506,12 @@ object ClockDayVerticalWidgetIMP : AbstractRemoteViewsPresenter() {
                     if (stringBuilder.toString().isNotEmpty()) {
                         stringBuilder.append(" ")
                     }
-                    stringBuilder.append(weather.today!!.getTrendTemperature(context, unit))
+                    stringBuilder.append(weather.today!!.getTrendTemperature(context))
                 }
                 stringBuilder.toString()
             }
-            "tile", "temp" -> weather.today?.getTrendTemperature(context, unit)
-            "mini" -> weather.current?.temperature?.temperature?.let {
-                unit.formatMeasure(context, it, 0)
-            }
+            "tile", "temp" -> weather.today?.getTrendTemperature(context)
+            "mini" -> weather.current?.temperature?.temperature?.formatMeasure(context, unitWidth = UnitWidth.NARROW)
             else -> null
         }
     }
@@ -525,7 +521,6 @@ object ClockDayVerticalWidgetIMP : AbstractRemoteViewsPresenter() {
         location: Location,
         viewStyle: String?,
         subtitleData: String?,
-        temperatureUnit: TemperatureUnit,
         pollenIndexSource: PollenIndexSource?,
     ): String? {
         val weather = location.weather ?: return null
@@ -579,7 +574,7 @@ object ClockDayVerticalWidgetIMP : AbstractRemoteViewsPresenter() {
             "feels_like" -> weather.current?.temperature?.feelsLikeTemperature?.let {
                 context.getString(
                     R.string.temperature_feels_like_with_unit,
-                    temperatureUnit.formatMeasure(context, it, 0)
+                    it.formatMeasure(context, unitWidth = UnitWidth.NARROW)
                 )
             }
             else -> getCustomSubtitle(context, subtitleData, location, weather, pollenIndexSource)

@@ -20,21 +20,21 @@ import android.content.Context
 import android.os.Build
 import org.breezyweather.BreezyWeather
 import org.breezyweather.BuildConfig
-import org.breezyweather.common.basic.models.options.DarkMode
-import org.breezyweather.common.basic.models.options.NotificationStyle
-import org.breezyweather.common.basic.models.options.UpdateInterval
-import org.breezyweather.common.basic.models.options.WidgetWeekIconMode
-import org.breezyweather.common.basic.models.options.appearance.BackgroundAnimationMode
-import org.breezyweather.common.basic.models.options.appearance.CardDisplay
-import org.breezyweather.common.basic.models.options.appearance.DailyTrendDisplay
-import org.breezyweather.common.basic.models.options.appearance.HourlyTrendDisplay
-import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.common.bus.EventBus
 import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.options.DarkMode
+import org.breezyweather.common.options.NotificationStyle
+import org.breezyweather.common.options.UpdateInterval
+import org.breezyweather.common.options.WidgetWeekIconMode
+import org.breezyweather.common.options.appearance.BackgroundAnimationMode
+import org.breezyweather.common.options.appearance.CardDisplay
+import org.breezyweather.common.options.appearance.DailyTrendDisplay
+import org.breezyweather.common.options.appearance.HourlyTrendDisplay
 import org.breezyweather.unit.distance.DistanceUnit
 import org.breezyweather.unit.precipitation.PrecipitationUnit
 import org.breezyweather.unit.pressure.PressureUnit
 import org.breezyweather.unit.speed.SpeedUnit
+import org.breezyweather.unit.temperature.TemperatureUnit
 
 class SettingsChangedMessage
 
@@ -214,11 +214,10 @@ class SettingsManager private constructor(
             config.edit().putString("temperature_unit", value?.id ?: "auto").apply()
             notifySettingsChanged()
         }
-        get() = TemperatureUnit.entries
-            .firstOrNull { it.id == (config.getString("temperature_unit", "auto") ?: "auto") }
+        get() = TemperatureUnit.getUnit(config.getString("temperature_unit", "auto") ?: "auto")
 
     fun getTemperatureUnit(context: Context): TemperatureUnit {
-        return temperatureUnit ?: TemperatureUnit.getDefaultUnit(context)
+        return temperatureUnit ?: TemperatureUnit.getDefaultUnit(context.currentLocale)
     }
 
     var distanceUnit: DistanceUnit?
@@ -247,17 +246,6 @@ class SettingsManager private constructor(
         return precipitationUnit ?: PrecipitationUnit.getDefaultSnowfallUnit(context.currentLocale)
     }
 
-    var pressureUnit: PressureUnit?
-        set(value) {
-            config.edit().putString("pressure_unit", value?.id ?: "auto").apply()
-            notifySettingsChanged()
-        }
-        get() = PressureUnit.getUnit(config.getString("pressure_unit", "auto") ?: "auto")
-
-    fun getPressureUnit(context: Context): PressureUnit {
-        return pressureUnit ?: PressureUnit.getDefaultUnit(context.currentLocale)
-    }
-
     var speedUnit: SpeedUnit?
         set(value) {
             config.edit().putString("speed_unit", value?.id ?: "auto").apply()
@@ -267,6 +255,17 @@ class SettingsManager private constructor(
 
     fun getSpeedUnit(context: Context): SpeedUnit {
         return speedUnit ?: SpeedUnit.getDefaultUnit(context.currentLocale)
+    }
+
+    var pressureUnit: PressureUnit?
+        set(value) {
+            config.edit().putString("pressure_unit", value?.id ?: "auto").apply()
+            notifySettingsChanged()
+        }
+        get() = PressureUnit.getUnit(config.getString("pressure_unit", "auto") ?: "auto")
+
+    fun getPressureUnit(context: Context): PressureUnit {
+        return pressureUnit ?: PressureUnit.getDefaultUnit(context.currentLocale)
     }
 
     // appearance.

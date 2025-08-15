@@ -16,21 +16,20 @@
 
 package breezyweather.domain.weather.wrappers
 
-import breezyweather.domain.weather.model.Temperature
+import org.breezyweather.unit.temperature.Temperature
 
 /**
  * Temperature.
- * default unit : [TemperatureUnit.CELSIUS]
  */
 data class TemperatureWrapper(
-    val temperature: Double? = null,
-    val feelsLike: Double? = null,
+    val temperature: Temperature? = null,
+    val feelsLike: Temperature? = null,
 ) {
     fun toTemperature(
-        computedApparent: Double? = null,
-        computedWindChill: Double? = null,
-        computedHumidex: Double? = null,
-    ) = Temperature(
+        computedApparent: Temperature? = null,
+        computedWindChill: Temperature? = null,
+        computedHumidex: Temperature? = null,
+    ) = breezyweather.domain.weather.model.Temperature(
         temperature = this.temperature,
         sourceFeelsLike = this.feelsLike,
         computedApparent = computedApparent,

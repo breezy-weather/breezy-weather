@@ -19,32 +19,34 @@ package org.breezyweather.domain.weather.model
 import android.content.Context
 import breezyweather.domain.weather.model.DailyDewPoint
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
+import org.breezyweather.common.extensions.formatMeasure
+import org.breezyweather.common.extensions.formatValue
+import org.breezyweather.unit.formatting.UnitWidth
 
-fun DailyDewPoint.getRangeSummary(context: Context, temperatureUnit: TemperatureUnit): String? {
+fun DailyDewPoint.getRangeSummary(context: Context): String? {
     return if (min == null || max == null) {
         null
     } else if (min == max) {
-        temperatureUnit.formatMeasureShort(context, max!!, 1)
+        max!!.formatMeasure(context, unitWidth = UnitWidth.NARROW)
     } else {
         context.getString(
             R.string.dew_point_from_to_number,
-            temperatureUnit.formatValue(context, min!!),
-            temperatureUnit.formatMeasureShort(context, max!!, 1)
+            min!!.formatValue(context),
+            max!!.formatMeasure(context, unitWidth = UnitWidth.NARROW)
         )
     }
 }
 
-fun DailyDewPoint.getRangeContentDescriptionSummary(context: Context, temperatureUnit: TemperatureUnit): String? {
+fun DailyDewPoint.getRangeContentDescriptionSummary(context: Context): String? {
     return if (min == null || max == null) {
         null
     } else if (min == max) {
-        temperatureUnit.formatContentDescription(context, max!!)
+        max!!.formatMeasure(context, unitWidth = UnitWidth.LONG)
     } else {
         context.getString(
             R.string.dew_point_from_to_number,
-            temperatureUnit.formatValue(context, min!!),
-            temperatureUnit.formatContentDescription(context, max!!)
+            min!!.formatValue(context),
+            max!!.formatMeasure(context, unitWidth = UnitWidth.LONG)
         )
     }
 }

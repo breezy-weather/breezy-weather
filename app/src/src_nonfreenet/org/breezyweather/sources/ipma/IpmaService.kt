@@ -53,6 +53,7 @@ import org.breezyweather.sources.ipma.json.IpmaDistrictResult
 import org.breezyweather.sources.ipma.json.IpmaForecastResult
 import org.breezyweather.sources.ipma.json.IpmaLocationResult
 import org.breezyweather.unit.speed.Speed.Companion.kilometersPerHour
+import org.breezyweather.unit.temperature.Temperature.Companion.celsius
 import retrofit2.Retrofit
 import java.text.SimpleDateFormat
 import java.util.Locale
@@ -178,7 +179,7 @@ class IpmaService @Inject constructor(
                     weatherText = getWeatherText(context, result.idTipoTempo),
                     weatherCode = getWeatherCode(result.idTipoTempo),
                     temperature = result.tMax?.toDoubleOrNull()?.let { tMax ->
-                        TemperatureWrapper(temperature = tMax)
+                        TemperatureWrapper(temperature = tMax.celsius)
                     },
                     precipitationProbability = PrecipitationProbability(
                         total = result.probabilidadePrecipita?.toDoubleOrNull()
@@ -192,7 +193,7 @@ class IpmaService @Inject constructor(
                     weatherCode = getWeatherCode(result.idTipoTempo),
                     temperature = forecastResult.elementAtOrNull(index + 1)
                         ?.tMin?.toDoubleOrNull() // Get next day min temperature to have overnight temp
-                        ?.let { tMin -> TemperatureWrapper(temperature = tMin) },
+                        ?.let { tMin -> TemperatureWrapper(temperature = tMin.celsius) },
                     precipitationProbability = PrecipitationProbability(
                         total = result.probabilidadePrecipita?.toDoubleOrNull()
                     ),
@@ -223,8 +224,8 @@ class IpmaService @Inject constructor(
                 weatherText = getWeatherText(context, it.idTipoTempo),
                 weatherCode = getWeatherCode(it.idTipoTempo),
                 temperature = TemperatureWrapper(
-                    temperature = it.tMed?.toDoubleOrNull(),
-                    feelsLike = it.utci?.toDoubleOrNull()
+                    temperature = it.tMed?.toDoubleOrNull()?.celsius,
+                    feelsLike = it.utci?.toDoubleOrNull()?.celsius
                 ),
                 precipitationProbability = PrecipitationProbability(
                     total = if (it.probabilidadePrecipita != "-99.0") {

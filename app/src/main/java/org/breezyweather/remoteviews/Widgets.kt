@@ -19,7 +19,8 @@ package org.breezyweather.remoteviews
 import android.content.Context
 import android.text.TextPaint
 import breezyweather.domain.weather.model.Weather
-import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
+import org.breezyweather.common.extensions.formatMeasure
+import org.breezyweather.unit.formatting.UnitWidth
 
 object Widgets {
 
@@ -101,18 +102,20 @@ object Widgets {
     const val MATERIAL_YOU_FORECAST_PENDING_INTENT_CODE_WEATHER = 131
     const val MATERIAL_YOU_CURRENT_PENDING_INTENT_CODE_WEATHER = 132
 
-    fun buildWidgetDayStyleText(context: Context, weather: Weather, unit: TemperatureUnit): Array<String> {
+    fun buildWidgetDayStyleText(context: Context, weather: Weather): Array<String> {
         val texts = arrayOf(
             weather.current?.weatherText ?: "",
-            weather.current?.temperature?.temperature?.let {
-                unit.formatMeasure(context, it, 0)
-            } ?: "",
-            weather.today?.day?.temperature?.temperature?.let {
-                unit.formatMeasureShort(context, it)
-            } ?: "",
-            weather.today?.night?.temperature?.temperature?.let {
-                unit.formatMeasureShort(context, it)
-            } ?: ""
+            weather.current?.temperature?.temperature?.formatMeasure(context, unitWidth = UnitWidth.NARROW) ?: "",
+            weather.today?.day?.temperature?.temperature?.formatMeasure(
+                context,
+                valueWidth = UnitWidth.NARROW,
+                unitWidth = UnitWidth.NARROW
+            ) ?: "",
+            weather.today?.night?.temperature?.temperature?.formatMeasure(
+                context,
+                valueWidth = UnitWidth.NARROW,
+                unitWidth = UnitWidth.NARROW
+            ) ?: ""
         )
         val paint = TextPaint()
         val widths = FloatArray(4)

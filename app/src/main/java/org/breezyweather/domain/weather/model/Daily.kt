@@ -20,9 +20,9 @@ import android.content.Context
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Daily
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.common.extensions.capitalize
 import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.extensions.formatMeasure
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.getLongWeekdayDayMonth
 import org.breezyweather.common.extensions.getWeek
@@ -96,11 +96,19 @@ fun Daily.isToday(location: Location): Boolean {
         current[Calendar.DAY_OF_YEAR] == thisDay[Calendar.DAY_OF_YEAR]
 }
 
-fun Daily.getTrendTemperature(context: Context, unit: TemperatureUnit): String? {
+fun Daily.getTrendTemperature(context: Context): String? {
     if (day?.temperature?.temperature == null || night?.temperature?.temperature == null) {
         return null
     }
-    return unit.formatMeasureShort(context, day!!.temperature!!.temperature!!) +
+    return day!!.temperature!!.temperature!!.formatMeasure(
+        context,
+        valueWidth = org.breezyweather.unit.formatting.UnitWidth.NARROW,
+        unitWidth = org.breezyweather.unit.formatting.UnitWidth.NARROW
+    ) +
         "/" +
-        unit.formatMeasureShort(context, night!!.temperature!!.temperature!!)
+        night!!.temperature!!.temperature!!.formatMeasure(
+            context,
+            valueWidth = org.breezyweather.unit.formatting.UnitWidth.NARROW,
+            unitWidth = org.breezyweather.unit.formatting.UnitWidth.NARROW
+        )
 }

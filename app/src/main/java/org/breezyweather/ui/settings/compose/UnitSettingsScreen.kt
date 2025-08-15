@@ -22,10 +22,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.dimensionResource
-import androidx.compose.ui.res.stringArrayResource
 import androidx.compose.ui.res.stringResource
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.plus
 import org.breezyweather.domain.settings.SettingsManager
@@ -41,6 +39,7 @@ import org.breezyweather.unit.formatting.UnitWidth
 import org.breezyweather.unit.precipitation.PrecipitationUnit
 import org.breezyweather.unit.pressure.PressureUnit
 import org.breezyweather.unit.speed.SpeedUnit
+import org.breezyweather.unit.temperature.TemperatureUnit
 
 @Composable
 fun UnitSettingsScreen(
@@ -67,18 +66,18 @@ fun UnitSettingsScreen(
             paddingValues = paddings.plus(PaddingValues(horizontal = dimensionResource(R.dimen.normal_margin)))
         ) {
             listPreferenceItem(R.string.settings_units_temperature) { id ->
-                val valueArray = stringArrayResource(R.array.temperature_unit_values)
-                val nameArray = stringArrayResource(R.array.temperature_units).mapIndexed { index, value ->
-                    if (index == 0) {
-                        stringResource(
-                            R.string.parenthesis,
-                            stringResource(R.string.settings_regional_preference),
-                            TemperatureUnit.getDefaultUnit(context).getName(context)
-                        )
-                    } else {
-                        value
-                    }
-                }.toTypedArray()
+                val allowedTemperatureUnits = TemperatureUnit.entries.filter { it != TemperatureUnit.DECI_CELSIUS }
+                val valueArray = arrayOf("auto") + allowedTemperatureUnits.map { it.id }
+                val nameArray = arrayOf(
+                    stringResource(
+                        R.string.parenthesis,
+                        stringResource(R.string.settings_regional_preference),
+                        TemperatureUnit.getDefaultUnit(context.currentLocale)
+                            .getDisplayName(context, context.currentLocale, UnitWidth.LONG)
+                    )
+                ) + allowedTemperatureUnits.map {
+                    it.getDisplayName(context, context.currentLocale, UnitWidth.LONG)
+                }
                 ListPreferenceViewWithCard(
                     title = stringResource(id),
                     summary = { _, value ->
@@ -90,7 +89,7 @@ fun UnitSettingsScreen(
                     isFirst = true,
                     onValueChanged = { temperatureUnitId ->
                         SettingsManager.getInstance(context).temperatureUnit = if (temperatureUnitId != "auto") {
-                            TemperatureUnit.entries.firstOrNull { it.id == temperatureUnitId }
+                            TemperatureUnit.getUnit(temperatureUnitId)
                         } else {
                             null
                         }

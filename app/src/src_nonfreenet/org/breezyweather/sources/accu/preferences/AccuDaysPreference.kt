@@ -18,8 +18,8 @@ package org.breezyweather.sources.accu.preferences
 
 import android.content.Context
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.options.basic.BaseEnum
-import org.breezyweather.common.basic.models.options.basic.UnitUtils
+import org.breezyweather.common.options.BaseEnum
+import org.breezyweather.common.utils.UnitUtils
 
 enum class AccuDaysPreference(
     override val id: String,

@@ -26,8 +26,8 @@ import kotlinx.coroutines.runBlocking
 import org.breezyweather.background.forecast.TodayForecastNotificationJob
 import org.breezyweather.background.forecast.TomorrowForecastNotificationJob
 import org.breezyweather.background.weather.WeatherUpdateJob
-import org.breezyweather.common.basic.models.options.appearance.DailyTrendDisplay
-import org.breezyweather.common.basic.models.options.appearance.HourlyTrendDisplay
+import org.breezyweather.common.options.appearance.DailyTrendDisplay
+import org.breezyweather.common.options.appearance.HourlyTrendDisplay
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.sources.SourceManager
 import org.breezyweather.sources.getReverseGeocodingSource

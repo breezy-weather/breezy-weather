@@ -25,12 +25,12 @@ import androidx.core.app.NotificationCompat
 import androidx.core.graphics.drawable.IconCompat
 import breezyweather.domain.location.model.Location
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.options.NotificationTextColor
-import org.breezyweather.common.basic.models.options.appearance.CalendarHelper
-import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
+import org.breezyweather.common.extensions.formatMeasure
 import org.breezyweather.common.extensions.getFormattedMediumDayAndMonthInAdditionalCalendar
 import org.breezyweather.common.extensions.notificationBuilder
 import org.breezyweather.common.extensions.notify
+import org.breezyweather.common.options.NotificationTextColor
+import org.breezyweather.common.options.appearance.CalendarHelper
 import org.breezyweather.domain.location.model.getPlace
 import org.breezyweather.domain.location.model.isDaylight
 import org.breezyweather.domain.settings.SettingsManager
@@ -42,13 +42,13 @@ import org.breezyweather.remoteviews.presenters.AbstractRemoteViewsPresenter
 import org.breezyweather.ui.theme.resource.ResourceHelper
 import org.breezyweather.ui.theme.resource.ResourcesProviderFactory
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
+import org.breezyweather.unit.formatting.UnitWidth
 import java.util.Date
 
 object MultiCityWidgetNotificationIMP : AbstractRemoteViewsPresenter() {
     fun buildNotificationAndSendIt(
         context: Context,
         locationList: List<Location>,
-        temperatureUnit: TemperatureUnit,
         dayTime: Boolean,
         tempIcon: Boolean,
         persistent: Boolean,
@@ -85,7 +85,6 @@ object MultiCityWidgetNotificationIMP : AbstractRemoteViewsPresenter() {
                     RemoteViews(context.packageName, R.layout.notification_base),
                     provider,
                     locationList[0],
-                    temperatureUnit,
                     dayTime
                 )
             )
@@ -96,7 +95,6 @@ object MultiCityWidgetNotificationIMP : AbstractRemoteViewsPresenter() {
                     RemoteViews(context.packageName, R.layout.notification_multi_city),
                     provider,
                     locationList,
-                    temperatureUnit,
                     dayTime
                 )
             )
@@ -127,7 +125,6 @@ object MultiCityWidgetNotificationIMP : AbstractRemoteViewsPresenter() {
         views: RemoteViews,
         provider: ResourceProvider,
         location: Location,
-        temperatureUnit: TemperatureUnit,
         dayTime: Boolean,
     ): RemoteViews {
         val current = location.weather?.current ?: return views
@@ -160,7 +157,7 @@ object MultiCityWidgetNotificationIMP : AbstractRemoteViewsPresenter() {
             temperature?.let {
                 setTextViewText(
                     R.id.notification_base_realtimeTemp,
-                    temperatureUnit.formatMeasureShort(context, it)
+                    it.formatMeasure(context, valueWidth = UnitWidth.NARROW, unitWidth = UnitWidth.NARROW)
                 )
             }
             if (current.airQuality?.isIndexValid == true) {
@@ -193,13 +190,12 @@ object MultiCityWidgetNotificationIMP : AbstractRemoteViewsPresenter() {
         viewsP: RemoteViews,
         provider: ResourceProvider,
         locationList: List<Location>,
-        temperatureUnit: TemperatureUnit,
         dayTime: Boolean,
     ): RemoteViews {
         if (locationList.getOrNull(0)?.weather == null) return viewsP
 
         // today
-        val views = buildBaseView(context, viewsP, provider, locationList[0], temperatureUnit, dayTime)
+        val views = buildBaseView(context, viewsP, provider, locationList[0], dayTime)
         val viewIds = arrayOf(
             Triple(
                 R.id.notification_multi_city_1,
@@ -242,7 +238,7 @@ object MultiCityWidgetNotificationIMP : AbstractRemoteViewsPresenter() {
                             )
                         )
                     }
-                    setTextViewText(viewId.third, getCityTitle(context, location, temperatureUnit))
+                    setTextViewText(viewId.third, getCityTitle(context, location))
                 }
             } ?: views.setViewVisibility(viewId.first, View.GONE)
         }
@@ -250,13 +246,13 @@ object MultiCityWidgetNotificationIMP : AbstractRemoteViewsPresenter() {
         return views
     }
 
-    private fun getCityTitle(context: Context, location: Location, unit: TemperatureUnit): String {
+    private fun getCityTitle(context: Context, location: Location): String {
         val builder = StringBuilder(
             location.getPlace(context, true)
         )
         location.weather?.today?.let {
             builder.append(context.getString(org.breezyweather.unit.R.string.locale_separator))
-                .append(it.getTrendTemperature(context, unit))
+                .append(it.getTrendTemperature(context))
         }
         return builder.toString()
     }

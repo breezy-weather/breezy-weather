@@ -25,7 +25,7 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import org.breezyweather.R
-import org.breezyweather.common.basic.BreezyActivity
+import org.breezyweather.common.activities.BreezyActivity
 
 class WeatherIconAdapter(
     private val mActivity: BreezyActivity,

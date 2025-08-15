@@ -22,8 +22,8 @@ import io.mockk.every
 import io.mockk.mockk
 import io.mockk.mockkStatic
 import kotlinx.coroutines.test.runTest
-import org.breezyweather.common.basic.models.options.basic.UnitUtils
 import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.utils.UnitUtils
 import org.junit.jupiter.api.Test
 import java.util.Locale
 

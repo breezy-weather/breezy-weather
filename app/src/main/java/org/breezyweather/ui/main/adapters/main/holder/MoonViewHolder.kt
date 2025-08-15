@@ -28,7 +28,7 @@ import androidx.core.content.ContextCompat
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Weather
 import org.breezyweather.R
-import org.breezyweather.common.basic.BreezyActivity
+import org.breezyweather.common.activities.BreezyActivity
 import org.breezyweather.common.extensions.areBlocksSquished
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.getThemeColor

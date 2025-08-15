@@ -33,10 +33,11 @@ import androidx.core.graphics.createBitmap
 import breezyweather.domain.location.model.Location
 import org.breezyweather.R
 import org.breezyweather.background.receiver.widget.WidgetTrendDailyProvider
-import org.breezyweather.common.basic.models.options.basic.UnitUtils
+import org.breezyweather.common.extensions.formatMeasure
 import org.breezyweather.common.extensions.getCalendarMonth
 import org.breezyweather.common.extensions.getFormattedShortDayAndMonth
 import org.breezyweather.common.extensions.getTabletListAdaptiveWidth
+import org.breezyweather.common.utils.UnitUtils
 import org.breezyweather.common.utils.helpers.AsyncHelper
 import org.breezyweather.domain.location.model.isDaylight
 import org.breezyweather.domain.settings.SettingsManager
@@ -49,6 +50,7 @@ import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.resource.ResourceHelper
 import org.breezyweather.ui.theme.resource.ResourcesProviderFactory
 import org.breezyweather.ui.theme.weatherView.WeatherViewController
+import org.breezyweather.unit.formatting.UnitWidth
 import java.util.Date
 import kotlin.math.max
 import kotlin.math.min
@@ -100,7 +102,6 @@ object DailyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
         var highestTemperature: Float? = null
         var lowestTemperature: Float? = null
         val minimalIcon = SettingsManager.getInstance(context).isWidgetUsingMonochromeIcons
-        val temperatureUnit = SettingsManager.getInstance(context).getTemperatureUnit(context)
         val lightTheme = color.isLightThemed
 
         // TODO: Redundant with DailyTemperatureAdapter
@@ -108,8 +109,8 @@ object DailyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
         run {
             var i = 0
             while (i < daytimeTemperatures.size) {
-                daytimeTemperatures[i] =
-                    weather.dailyForecastStartingToday.getOrNull(i / 2)?.day?.temperature?.temperature?.toFloat()
+                daytimeTemperatures[i] = weather.dailyForecastStartingToday.getOrNull(i / 2)?.day?.temperature
+                    ?.temperature?.value?.toFloat()
                 i += 2
             }
         }
@@ -129,8 +130,8 @@ object DailyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
         run {
             var i = 0
             while (i < nighttimeTemperatures.size) {
-                nighttimeTemperatures[i] =
-                    weather.dailyForecastStartingToday.getOrNull(i / 2)?.night?.temperature?.temperature?.toFloat()
+                nighttimeTemperatures[i] = weather.dailyForecastStartingToday.getOrNull(i / 2)?.night?.temperature
+                    ?.temperature?.value?.toFloat()
                 i += 2
             }
         }
@@ -147,18 +148,18 @@ object DailyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
         }
 
         weather.normals.getOrElse(Date().getCalendarMonth(location)) { null }?.let { normals ->
-            highestTemperature = normals.daytimeTemperature?.toFloat()
-            lowestTemperature = normals.nighttimeTemperature?.toFloat()
+            highestTemperature = normals.daytimeTemperature?.value?.toFloat()
+            lowestTemperature = normals.nighttimeTemperature?.value?.toFloat()
         }
 
         for (i in 0 until itemCount) {
-            weather.dailyForecast[i].day?.temperature?.temperature?.let {
-                if (highestTemperature == null || it > highestTemperature!!) {
+            weather.dailyForecast[i].day?.temperature?.temperature?.value?.let {
+                if (highestTemperature == null || it > highestTemperature) {
                     highestTemperature = it.toFloat()
                 }
             }
-            weather.dailyForecast[i].night?.temperature?.temperature?.let {
-                if (lowestTemperature == null || it < lowestTemperature!!) {
+            weather.dailyForecast[i].night?.temperature?.temperature?.value?.let {
+                if (lowestTemperature == null || it < lowestTemperature) {
                     lowestTemperature = it.toFloat()
                 }
             }
@@ -174,10 +175,12 @@ object DailyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
             ) {
                 val trendParent = drawableView.findViewById<TrendLinearLayout>(R.id.widget_trend_daily)
                 trendParent.setData(
-                    arrayOf(normals.daytimeTemperature!!.toFloat(), normals.nighttimeTemperature!!.toFloat()),
-                    highestTemperature!!,
-                    lowestTemperature!!,
-                    temperatureUnit,
+                    arrayOf(
+                        normals.daytimeTemperature!!.value.toFloat(),
+                        normals.nighttimeTemperature!!.value.toFloat()
+                    ),
+                    highestTemperature,
+                    lowestTemperature,
                     true
                 )
                 trendParent.setColor(lightTheme)
@@ -223,12 +226,16 @@ object DailyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
                 widgetItemView.trendItemView.setData(
                     buildTemperatureArrayForItem(daytimeTemperatures, i),
                     buildTemperatureArrayForItem(nighttimeTemperatures, i),
-                    daily.day?.temperature?.temperature?.let {
-                        temperatureUnit.formatMeasureShort(context, it)
-                    },
-                    daily.night?.temperature?.temperature?.let {
-                        temperatureUnit.formatMeasureShort(context, it)
-                    },
+                    daily.day?.temperature?.temperature?.formatMeasure(
+                        context,
+                        valueWidth = UnitWidth.NARROW,
+                        unitWidth = UnitWidth.NARROW
+                    ),
+                    daily.night?.temperature?.temperature?.formatMeasure(
+                        context,
+                        valueWidth = UnitWidth.NARROW,
+                        unitWidth = UnitWidth.NARROW
+                    ),
                     highestTemperature,
                     lowestTemperature,
                     if (p > 0) p else null,

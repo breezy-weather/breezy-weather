@@ -1,4 +1,4 @@
-/**
+/*
  * This file is part of Breezy Weather.
  *
  * Breezy Weather is free software: you can redistribute it and/or modify it
@@ -14,12 +14,11 @@
  * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package org.breezyweather.common.basic.models.options
+package org.breezyweather.common.options
 
 import android.content.Context
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.options.basic.BaseEnum
-import org.breezyweather.common.basic.models.options.basic.UnitUtils
+import org.breezyweather.common.utils.UnitUtils
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.hours
 import kotlin.time.Duration.Companion.minutes
@@ -44,7 +43,7 @@ enum class UpdateInterval(
 
         fun getInstance(
             value: String,
-        ) = UpdateInterval.entries.firstOrNull {
+        ) = entries.firstOrNull {
             it.id == value
         } ?: INTERVAL_1_30
     }

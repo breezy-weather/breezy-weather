@@ -1,13 +1,10 @@
 package org.breezyweather.unit.distance
 
-import android.content.Context
 import org.breezyweather.unit.WeatherValue
 import org.breezyweather.unit.distance.Distance.Companion.kilometers
 import org.breezyweather.unit.distance.Distance.Companion.meters
 import org.breezyweather.unit.distance.Distance.Companion.miles
 import org.breezyweather.unit.formatting.UnitDecimals.Companion.formatToExactDecimals
-import org.breezyweather.unit.formatting.UnitWidth
-import java.util.Locale
 import kotlin.math.roundToLong
 
 /*
@@ -186,42 +183,7 @@ value class Distance internal constructor(
      * Used by visibility and ceiling
      */
     fun toValidOrNull(): Distance? {
-        return if (rawValue >= 0) this else null
-    }
-
-    override fun format(
-        context: Context,
-        unit: DistanceUnit,
-        valueWidth: UnitWidth,
-        unitWidth: UnitWidth,
-        locale: Locale,
-        useNumberFormatter: Boolean,
-        useMeasureFormat: Boolean,
-    ): String {
-        return super.format(
-            context = context,
-            unit = unit,
-            valueWidth = valueWidth,
-            unitWidth = unitWidth,
-            locale = locale.let {
-                /**
-                 * Use English units with Traditional Chinese
-                 *
-                 * Taiwan guidelines: https://www.bsmi.gov.tw/wSite/public/Attachment/f1736149048776.pdf
-                 * Ongoing issue: https://unicode-org.atlassian.net/jira/software/c/projects/CLDR/issues/CLDR-10604
-                 */
-                if (it.language.equals("zh", ignoreCase = true) &&
-                    arrayOf("TW", "HK", "MO").any { c -> it.country.equals(c, ignoreCase = true) } &&
-                    unitWidth != UnitWidth.LONG
-                ) {
-                    Locale.Builder().setLanguage("en").setRegion("001").build()
-                } else {
-                    it
-                }
-            },
-            useNumberFormatter = useNumberFormatter,
-            useMeasureFormat = useMeasureFormat
-        )
+        return takeIf { rawValue >= 0 }
     }
 }
 

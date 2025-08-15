@@ -8,6 +8,36 @@
     <!-- Value separator -->
     <string name="locale_separator">,\u0020</string>
 
+    <!-- Temperature units -->
+
+    <!-- Decidegree Celsius -->
+    <string name="temperature_dc_display_name_short">°C</string>
+    <string name="temperature_dc_display_name_long">@string/temperature_dc_display_name_short</string>
+    <string name="temperature_dc_nominative_narrow">%sd°</string>
+    <string name="temperature_dc_nominative_short">%sd°C</string>
+    <string name="temperature_dc_nominative_long">@string/temperature_dc_nominative_short</string>
+
+    <!-- Degree Celsius -->
+    <string name="temperature_c_display_name_short">°C</string>
+    <string name="temperature_c_display_name_long">@string/temperature_c_display_name_short</string>
+    <string name="temperature_c_nominative_narrow">%s°</string>
+    <string name="temperature_c_nominative_short">%s°C</string>
+    <string name="temperature_c_nominative_long">@string/temperature_c_nominative_short</string>
+
+    <!-- Degree Fahrenheit -->
+    <string name="temperature_f_display_name_short">°F</string>
+    <string name="temperature_f_display_name_long">@string/temperature_f_display_name_short</string>
+    <string name="temperature_f_nominative_narrow">%s°</string>
+    <string name="temperature_f_nominative_short">%s°F</string>
+    <string name="temperature_f_nominative_long">@string/temperature_f_nominative_short</string>
+
+    <!-- Kelvin -->
+    <string name="temperature_k_display_name_short">K</string>
+    <string name="temperature_k_display_name_long">@string/temperature_k_display_name_short</string>
+    <string name="temperature_k_nominative_narrow">%sK</string>
+    <string name="temperature_k_nominative_short">%s K</string>
+    <string name="temperature_k_nominative_long">@string/temperature_k_nominative_short</string>
+
     <!-- Length units -->
 
     <!-- Micrometer -->

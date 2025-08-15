@@ -23,12 +23,13 @@ import android.widget.TextView
 import androidx.appcompat.content.res.AppCompatResources
 import breezyweather.domain.location.model.Location
 import org.breezyweather.R
-import org.breezyweather.common.basic.BreezyActivity
-import org.breezyweather.common.basic.models.options.appearance.DetailScreen
-import org.breezyweather.common.basic.models.options.basic.UnitUtils
+import org.breezyweather.common.activities.BreezyActivity
+import org.breezyweather.common.extensions.formatMeasure
+import org.breezyweather.common.options.appearance.DetailScreen
+import org.breezyweather.common.utils.UnitUtils
 import org.breezyweather.common.utils.helpers.IntentHelper
-import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
+import org.breezyweather.unit.formatting.UnitWidth
 
 class HumidityViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
     LayoutInflater.from(parent.context).inflate(R.layout.container_main_humidity, parent, false)
@@ -68,9 +69,11 @@ class HumidityViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
                 talkBackBuilder.append(context.getString(R.string.colon_separator))
                 talkBackBuilder.append(humidityValueView.text)
             }
-            dewPointValueView.text = current.dewPoint?.let {
-                SettingsManager.getInstance(context).getTemperatureUnit(context).formatMeasureShort(context, it)
-            }
+            dewPointValueView.text = current.dewPoint?.formatMeasure(
+                context,
+                valueWidth = UnitWidth.NARROW,
+                unitWidth = UnitWidth.NARROW
+            )
 
             current.dewPoint?.let {
                 talkBackBuilder.append(context.getString(org.breezyweather.unit.R.string.locale_separator))

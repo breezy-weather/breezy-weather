@@ -29,13 +29,14 @@ import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import breezyweather.domain.location.model.Location
 import org.breezyweather.BreezyWeather
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.options.basic.UnitUtils
-import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
+import org.breezyweather.common.extensions.formatMeasure
+import org.breezyweather.common.utils.UnitUtils
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.domain.weather.model.getTemperatureRangeSummary
 import org.breezyweather.ui.common.widgets.NumberAnimTextView
 import org.breezyweather.ui.main.widgets.TextRelativeClock
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
+import org.breezyweather.unit.formatting.UnitWidth
 import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.roundToInt
@@ -53,7 +54,6 @@ class HeaderViewHolder(parent: ViewGroup) : AbstractMainViewHolder(
     private val mTemperatureRange: TextView = itemView.findViewById(R.id.container_main_header_temperature_range)
     private var mTemperatureFrom = 0
     private var mTemperatureTo = 0
-    private var mTemperatureUnit: TemperatureUnit? = null
 
     @SuppressLint("SetTextI18n")
     override fun onBindView(
@@ -79,7 +79,7 @@ class HeaderViewHolder(parent: ViewGroup) : AbstractMainViewHolder(
             refreshTimeText.visibility = View.GONE
         }
 
-        mTemperatureUnit = SettingsManager.getInstance(context).getTemperatureUnit(context)
+        val mTemperatureUnit = SettingsManager.getInstance(context).getTemperatureUnit(context)
         location.weather?.current?.let { current ->
             if (!current.weatherText.isNullOrEmpty()) {
                 mWeatherText.visibility = View.VISIBLE
@@ -89,27 +89,32 @@ class HeaderViewHolder(parent: ViewGroup) : AbstractMainViewHolder(
             }
             current.temperature?.temperature?.let {
                 mTemperatureContainer.visibility = View.VISIBLE
-                mTemperatureContainer.contentDescription = mTemperatureUnit!!.formatContentDescription(context, it)
+                mTemperatureContainer.contentDescription = it.formatMeasure(context, unitWidth = UnitWidth.LONG)
                 mTemperatureFrom = mTemperatureTo
-                mTemperatureTo = mTemperatureUnit!!.getConvertedUnit(it).roundToInt()
+                mTemperatureTo = it.toDouble(mTemperatureUnit).roundToInt()
                 mTemperature.isAnimEnabled = itemAnimationEnabled
                 // no longer than 2 seconds.
-                mTemperature.duration =
-                    max(2000.0, abs(mTemperatureTo - mTemperatureFrom) * 20.0).toLong()
-                mTemperatureUnitView.text = mTemperatureUnit!!.getName(context)
+                mTemperature.duration = max(2000.0, abs(mTemperatureTo - mTemperatureFrom) * 20.0).toLong()
+                mTemperatureUnitView.text = mTemperatureUnit.getNominativeUnit(context)
             } ?: run {
                 mTemperatureContainer.visibility = View.GONE
             }
             current.temperature?.feelsLikeTemperature?.let { feelsLike ->
-                if (current.temperature!!.temperature?.roundToInt() != feelsLike.roundToInt()) {
+                if (current.temperature!!.temperature?.toDouble(mTemperatureUnit)?.roundToInt() !=
+                    feelsLike.toDouble(mTemperatureUnit).roundToInt()
+                ) {
                     mFeelsLike.visibility = View.VISIBLE
                     mFeelsLike.text = context.getString(
                         R.string.temperature_feels_like_with_unit,
-                        mTemperatureUnit!!.formatMeasureShort(context, feelsLike)
+                        feelsLike.formatMeasure(
+                            context,
+                            valueWidth = UnitWidth.NARROW,
+                            unitWidth = UnitWidth.NARROW
+                        )
                     )
                     mFeelsLike.contentDescription = context.getString(R.string.temperature_feels_like) +
                         context.getString(R.string.colon_separator) +
-                        mTemperatureUnit!!.formatContentDescription(context, feelsLike)
+                        feelsLike.formatMeasure(context, unitWidth = UnitWidth.LONG)
                 } else {
                     mFeelsLike.visibility = View.GONE
                 }

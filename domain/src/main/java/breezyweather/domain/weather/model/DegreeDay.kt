@@ -20,12 +20,11 @@ import java.io.Serializable
 
 /**
  * Degree Day
- * default unit : [TemperatureUnit.C]
  */
 class DegreeDay(
-    val heating: Double? = null,
-    val cooling: Double? = null,
+    val heating: org.breezyweather.unit.temperature.Temperature? = null,
+    val cooling: org.breezyweather.unit.temperature.Temperature? = null,
 ) : Serializable {
 
-    val isValid = (heating != null && heating > 0) || (cooling != null && cooling > 0)
+    val isValid = (heating != null && heating.value > 0L) || (cooling != null && cooling.value > 0L)
 }

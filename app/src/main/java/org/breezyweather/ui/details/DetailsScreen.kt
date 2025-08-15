@@ -75,8 +75,6 @@ import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.launch
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.options.appearance.CalendarHelper
-import org.breezyweather.common.basic.models.options.appearance.DetailScreen
 import org.breezyweather.common.extensions.getCalendarMonth
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.getFormattedDayOfTheMonth
@@ -86,6 +84,8 @@ import org.breezyweather.common.extensions.getWeek
 import org.breezyweather.common.extensions.setSystemBarStyle
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.common.extensions.toTimezoneSpecificHour
+import org.breezyweather.common.options.appearance.CalendarHelper
+import org.breezyweather.common.options.appearance.DetailScreen
 import org.breezyweather.common.source.PollenIndexSource
 import org.breezyweather.domain.weather.index.PollutantIndex
 import org.breezyweather.domain.weather.model.getConcentration

@@ -106,8 +106,8 @@ class WeatherRepository(
             normalsQueries.getNormalsByLocationId(locationFormattedId)
         }.associate {
             Month.of(it.month.toInt()) to Normals(
-                daytimeTemperature = it.daytime_temperature,
-                nighttimeTemperature = it.nighttime_temperature
+                daytimeTemperature = it.temperature_max_average,
+                nighttimeTemperature = it.temperature_min_average
             )
         }
     }
@@ -144,9 +144,9 @@ class WeatherRepository(
                 weatherCode = weather.current?.weatherCode,
 
                 temperature = weather.current?.temperature?.temperature,
-                sourceFeelsLikeTemperature = weather.current?.temperature?.sourceFeelsLike,
-                apparentTemperature = weather.current?.temperature?.computedApparent,
-                windChillTemperature = weather.current?.temperature?.computedWindChill,
+                temperatureSourceFeelsLike = weather.current?.temperature?.sourceFeelsLike,
+                temperatureApparent = weather.current?.temperature?.computedApparent,
+                temperatureWindChill = weather.current?.temperature?.computedWindChill,
                 humidex = weather.current?.temperature?.computedHumidex,
 
                 windDegree = weather.current?.wind?.degree,
@@ -185,9 +185,9 @@ class WeatherRepository(
                     daytimeWeatherCode = daily.day?.weatherCode,
 
                     daytimeTemperature = daily.day?.temperature?.temperature,
-                    daytimeSourceFeelsLikeTemperature = daily.day?.temperature?.sourceFeelsLike,
-                    daytimeApparentTemperature = daily.day?.temperature?.computedApparent,
-                    daytimeWindChillTemperature = daily.day?.temperature?.computedWindChill,
+                    daytimeTemperatureSourceFeelsLike = daily.day?.temperature?.sourceFeelsLike,
+                    daytimeTemperatureApparent = daily.day?.temperature?.computedApparent,
+                    daytimeTemperatureWindChill = daily.day?.temperature?.computedWindChill,
                     daytimeHumidex = daily.day?.temperature?.computedHumidex,
 
                     daytimeTotalPrecipitation = daily.day?.precipitation?.total,
@@ -218,9 +218,9 @@ class WeatherRepository(
                     nighttimeWeatherCode = daily.night?.weatherCode,
 
                     nighttimeTemperature = daily.night?.temperature?.temperature,
-                    nighttimeSourceFeelsLikeTemperature = daily.night?.temperature?.sourceFeelsLike,
-                    nighttimeApparentTemperature = daily.night?.temperature?.computedApparent,
-                    nighttimeWindChillTemperature = daily.night?.temperature?.computedWindChill,
+                    nighttimeTemperatureSourceFeelsLike = daily.night?.temperature?.sourceFeelsLike,
+                    nighttimeTemperatureApparent = daily.night?.temperature?.computedApparent,
+                    nighttimeTemperatureWindChill = daily.night?.temperature?.computedWindChill,
                     nighttimeHumidex = daily.night?.temperature?.computedHumidex,
 
                     nighttimeTotalPrecipitation = daily.night?.precipitation?.total,
@@ -272,27 +272,27 @@ class WeatherRepository(
                     co = daily.airQuality?.cO,
 
                     // pollen
-                    alder = daily.pollen?.alder?.toLong(),
-                    ash = daily.pollen?.ash?.toLong(),
-                    birch = daily.pollen?.birch?.toLong(),
-                    chestnut = daily.pollen?.chestnut?.toLong(),
-                    cypress = daily.pollen?.cypress?.toLong(),
-                    grass = daily.pollen?.grass?.toLong(),
-                    hazel = daily.pollen?.hazel?.toLong(),
-                    hornbeam = daily.pollen?.hornbeam?.toLong(),
-                    linden = daily.pollen?.linden?.toLong(),
-                    mold = daily.pollen?.mold?.toLong(),
-                    mugwort = daily.pollen?.mugwort?.toLong(),
-                    oak = daily.pollen?.oak?.toLong(),
-                    olive = daily.pollen?.olive?.toLong(),
-                    plane = daily.pollen?.plane?.toLong(),
-                    plantain = daily.pollen?.plantain?.toLong(),
-                    poplar = daily.pollen?.poplar?.toLong(),
-                    ragweed = daily.pollen?.ragweed?.toLong(),
-                    sorrel = daily.pollen?.sorrel?.toLong(),
-                    tree = daily.pollen?.tree?.toLong(),
-                    urticaceae = daily.pollen?.urticaceae?.toLong(),
-                    willow = daily.pollen?.willow?.toLong(),
+                    alder = daily.pollen?.alder,
+                    ash = daily.pollen?.ash,
+                    birch = daily.pollen?.birch,
+                    chestnut = daily.pollen?.chestnut,
+                    cypress = daily.pollen?.cypress,
+                    grass = daily.pollen?.grass,
+                    hazel = daily.pollen?.hazel,
+                    hornbeam = daily.pollen?.hornbeam,
+                    linden = daily.pollen?.linden,
+                    mold = daily.pollen?.mold,
+                    mugwort = daily.pollen?.mugwort,
+                    oak = daily.pollen?.oak,
+                    olive = daily.pollen?.olive,
+                    plane = daily.pollen?.plane,
+                    plantain = daily.pollen?.plantain,
+                    poplar = daily.pollen?.poplar,
+                    ragweed = daily.pollen?.ragweed,
+                    sorrel = daily.pollen?.sorrel,
+                    tree = daily.pollen?.tree,
+                    urticaceae = daily.pollen?.urticaceae,
+                    willow = daily.pollen?.willow,
 
                     // uv.
                     uvIndex = daily.uV?.index,
@@ -332,9 +332,9 @@ class WeatherRepository(
                     weatherText = hourly.weatherText,
 
                     temperature = hourly.temperature?.temperature,
-                    sourceFeelsLikeTemperature = hourly.temperature?.sourceFeelsLike,
-                    apparentTemperature = hourly.temperature?.computedApparent,
-                    windChillTemperature = hourly.temperature?.computedWindChill,
+                    temperatureSourceFeelsLike = hourly.temperature?.sourceFeelsLike,
+                    temperatureApparent = hourly.temperature?.computedApparent,
+                    temperatureWindChill = hourly.temperature?.computedWindChill,
                     humidex = hourly.temperature?.computedHumidex,
 
                     totalPrecipitation = hourly.precipitation?.total,
@@ -407,8 +407,8 @@ class WeatherRepository(
                 normalsQueries.insert(
                     locationFormattedId = location.formattedId,
                     month = normals.key.value.toLong(),
-                    daytimeTemperature = normals.value.daytimeTemperature,
-                    nighttimeTemperature = normals.value.nighttimeTemperature
+                    temperatureMaxAverage = normals.value.daytimeTemperature,
+                    temperatureMinAverage = normals.value.nighttimeTemperature
                 )
             }
         }

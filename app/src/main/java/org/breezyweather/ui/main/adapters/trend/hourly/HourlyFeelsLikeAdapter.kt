@@ -23,16 +23,17 @@ import android.view.ViewGroup
 import androidx.annotation.Size
 import breezyweather.domain.location.model.Location
 import org.breezyweather.R
-import org.breezyweather.common.basic.BreezyActivity
-import org.breezyweather.common.basic.models.options.appearance.DetailScreen
-import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
+import org.breezyweather.common.activities.BreezyActivity
+import org.breezyweather.common.extensions.formatMeasure
 import org.breezyweather.common.extensions.getThemeColor
+import org.breezyweather.common.options.appearance.DetailScreen
 import org.breezyweather.ui.common.widgets.trend.TrendRecyclerView
 import org.breezyweather.ui.common.widgets.trend.chart.PolylineAndHistogramView
 import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.resource.ResourceHelper
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
 import org.breezyweather.ui.theme.weatherView.WeatherViewController
+import org.breezyweather.unit.formatting.UnitWidth
 import kotlin.math.max
 
 /**
@@ -42,10 +43,8 @@ class HourlyFeelsLikeAdapter(
     activity: BreezyActivity,
     location: Location,
     provider: ResourceProvider,
-    unit: TemperatureUnit,
 ) : AbsHourlyTrendAdapter(activity, location) {
     private val mResourceProvider: ResourceProvider = provider
-    private val mTemperatureUnit: TemperatureUnit = unit
     private val mTemperatures: Array<Float?>
     private var mHighestTemperature: Float? = null
     private var mLowestTemperature: Float? = null
@@ -64,7 +63,7 @@ class HourlyFeelsLikeAdapter(
             val hourly = weather.nextHourlyForecast[position]
             hourly.temperature?.feelsLikeTemperature?.let {
                 talkBackBuilder.append(activity.getString(org.breezyweather.unit.R.string.locale_separator))
-                    .append(mTemperatureUnit.formatContentDescription(activity, it))
+                    .append(it.formatMeasure(activity, unitWidth = UnitWidth.LONG))
             }
             hourlyItem.setIconDrawable(
                 hourly.weatherCode?.let {
@@ -75,11 +74,8 @@ class HourlyFeelsLikeAdapter(
             mPolylineAndHistogramView.setData(
                 buildTemperatureArrayForItem(mTemperatures, position),
                 null,
-                hourly.temperature?.feelsLikeTemperature?.let {
-                    mTemperatureUnit.formatMeasureShort(activity, it)
-                } ?: hourly.temperature?.temperature?.let {
-                    mTemperatureUnit.formatMeasureShort(activity, it)
-                },
+                (hourly.temperature?.feelsLikeTemperature ?: hourly.temperature?.temperature)
+                    ?.formatMeasure(activity, valueWidth = UnitWidth.NARROW, unitWidth = UnitWidth.NARROW),
                 null,
                 mHighestTemperature,
                 mLowestTemperature,
@@ -144,8 +140,8 @@ class HourlyFeelsLikeAdapter(
             var i = 0
             while (i < mTemperatures.size) {
                 mTemperatures[i] =
-                    weather.nextHourlyForecast.getOrNull(i / 2)?.temperature?.feelsLikeTemperature?.toFloat()
-                        ?: weather.nextHourlyForecast.getOrNull(i / 2)?.temperature?.temperature?.toFloat()
+                    weather.nextHourlyForecast.getOrNull(i / 2)?.temperature?.feelsLikeTemperature?.value?.toFloat()
+                        ?: weather.nextHourlyForecast.getOrNull(i / 2)?.temperature?.temperature?.value?.toFloat()
                 i += 2
             }
         }
@@ -162,14 +158,7 @@ class HourlyFeelsLikeAdapter(
         }
         weather.nextHourlyForecast
             .forEach { hourly ->
-                hourly.temperature?.feelsLikeTemperature?.let {
-                    if (mHighestTemperature == null || it > mHighestTemperature!!) {
-                        mHighestTemperature = it.toFloat()
-                    }
-                    if (mLowestTemperature == null || it < mLowestTemperature!!) {
-                        mLowestTemperature = it.toFloat()
-                    }
-                } ?: hourly.temperature?.temperature?.let {
+                (hourly.temperature?.feelsLikeTemperature ?: hourly.temperature?.temperature)?.value?.let {
                     if (mHighestTemperature == null || it > mHighestTemperature!!) {
                         mHighestTemperature = it.toFloat()
                     }

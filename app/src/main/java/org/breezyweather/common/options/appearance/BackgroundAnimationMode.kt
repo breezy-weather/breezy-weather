@@ -14,33 +14,33 @@
  * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package org.breezyweather.common.basic.models.options
+package org.breezyweather.common.options.appearance
 
 import android.content.Context
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.options.basic.BaseEnum
-import org.breezyweather.common.basic.models.options.basic.UnitUtils
+import org.breezyweather.common.options.BaseEnum
+import org.breezyweather.common.utils.UnitUtils
 
-enum class NotificationTextColor(
+enum class BackgroundAnimationMode(
     override val id: String,
 ) : BaseEnum {
 
-    DARK("dark"),
-    GREY("grey"),
-    LIGHT("light"),
+    SYSTEM("system"),
+    ENABLED("enabled"),
+    DISABLED("disabled"),
     ;
 
     companion object {
 
         fun getInstance(
             value: String,
-        ) = NotificationTextColor.entries.firstOrNull {
+        ) = entries.firstOrNull {
             it.id == value
-        } ?: DARK
+        } ?: SYSTEM
     }
 
-    override val valueArrayId = R.array.notification_text_color_values
-    override val nameArrayId = R.array.notification_text_colors
+    override val valueArrayId = R.array.background_animation_values
+    override val nameArrayId = R.array.background_animation
 
     override fun getName(context: Context) = UnitUtils.getName(context, this)
 }

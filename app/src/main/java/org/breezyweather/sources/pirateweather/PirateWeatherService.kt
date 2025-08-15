@@ -64,6 +64,7 @@ import org.breezyweather.unit.precipitation.Precipitation.Companion.centimeters
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
 import org.breezyweather.unit.speed.Speed.Companion.metersPerSecond
+import org.breezyweather.unit.temperature.Temperature.Companion.celsius
 import retrofit2.Retrofit
 import java.util.Objects
 import javax.inject.Inject
@@ -160,8 +161,8 @@ class PirateWeatherService @Inject constructor(
             weatherText = result.summary,
             weatherCode = getWeatherCode(result.icon),
             temperature = TemperatureWrapper(
-                temperature = result.temperature,
-                feelsLike = result.apparentTemperature
+                temperature = result.temperature?.celsius,
+                feelsLike = result.apparentTemperature?.celsius
             ),
             wind = Wind(
                 degree = result.windBearing,
@@ -170,7 +171,7 @@ class PirateWeatherService @Inject constructor(
             ),
             uV = UV(index = result.uvIndex),
             relativeHumidity = result.humidity?.times(100),
-            dewPoint = result.dewPoint,
+            dewPoint = result.dewPoint?.celsius,
             pressure = result.pressure?.hectopascals,
             cloudCover = result.cloudCover?.times(100)?.roundToInt(),
             visibility = result.visibility?.kilometers,
@@ -189,8 +190,8 @@ class PirateWeatherService @Inject constructor(
                     weatherSummary = result.summary,
                     weatherCode = getWeatherCode(result.icon),
                     temperature = TemperatureWrapper(
-                        temperature = result.temperatureHigh,
-                        feelsLike = result.apparentTemperatureHigh
+                        temperature = result.temperatureHigh?.celsius,
+                        feelsLike = result.apparentTemperatureHigh?.celsius
                     )
                 ),
                 night = HalfDayWrapper(
@@ -199,13 +200,13 @@ class PirateWeatherService @Inject constructor(
                     // temperatureLow/High are always forward-looking
                     // See https://docs.pirateweather.net/en/latest/API/#temperaturelow
                     temperature = TemperatureWrapper(
-                        temperature = result.temperatureLow,
-                        feelsLike = result.apparentTemperatureLow
+                        temperature = result.temperatureLow?.celsius,
+                        feelsLike = result.apparentTemperatureLow?.celsius
                     )
                 ),
                 uV = UV(index = result.uvIndex),
                 relativeHumidity = DailyRelativeHumidity(average = result.humidity?.times(100)),
-                dewPoint = DailyDewPoint(average = result.dewPoint),
+                dewPoint = DailyDewPoint(average = result.dewPoint?.celsius),
                 pressure = DailyPressure(average = result.pressure?.hectopascals),
                 cloudCover = DailyCloudCover(average = result.cloudCover?.times(100)?.roundToInt()),
                 visibility = DailyVisibility(average = result.visibility?.kilometers)
@@ -225,8 +226,8 @@ class PirateWeatherService @Inject constructor(
                 weatherText = result.summary,
                 weatherCode = getWeatherCode(result.icon),
                 temperature = TemperatureWrapper(
-                    temperature = result.temperature,
-                    feelsLike = result.apparentTemperature
+                    temperature = result.temperature?.celsius,
+                    feelsLike = result.apparentTemperature?.celsius
                 ),
                 // see https://docs.pirateweather.net/en/latest/API/#precipaccumulation
                 precipitation = Precipitation(
@@ -247,7 +248,7 @@ class PirateWeatherService @Inject constructor(
                     index = result.uvIndex
                 ),
                 relativeHumidity = result.humidity?.times(100),
-                dewPoint = result.dewPoint,
+                dewPoint = result.dewPoint?.celsius,
                 pressure = result.pressure?.hectopascals,
                 cloudCover = result.cloudCover?.times(100)?.roundToInt(),
                 visibility = result.visibility?.kilometers

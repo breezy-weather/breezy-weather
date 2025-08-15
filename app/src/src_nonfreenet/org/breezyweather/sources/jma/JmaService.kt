@@ -70,6 +70,7 @@ import org.breezyweather.sources.jma.json.JmaWeekAreaResult
 import org.breezyweather.unit.distance.Distance.Companion.meters
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
 import org.breezyweather.unit.speed.Speed.Companion.metersPerSecond
+import org.breezyweather.unit.temperature.Temperature.Companion.celsius
 import org.json.JSONObject
 import retrofit2.Retrofit
 import java.text.SimpleDateFormat
@@ -310,7 +311,7 @@ class JmaService @Inject constructor(
                 weatherText = getCurrentWeatherText(context, weather),
                 weatherCode = getCurrentWeatherCode(weather),
                 temperature = TemperatureWrapper(
-                    temperature = it.temp?.getOrNull(0)
+                    temperature = it.temp?.getOrNull(0)?.celsius
                 ),
                 wind = Wind(
                     degree = getWindDirection(it.windDirection?.getOrNull(0)),
@@ -443,7 +444,7 @@ class JmaService @Inject constructor(
                         night = false
                     ),
                     temperature = TemperatureWrapper(
-                        temperature = maxTMap.getOrElse(key) { null }
+                        temperature = maxTMap.getOrElse(key) { null }?.celsius
                     ),
                     precipitationProbability = PrecipitationProbability(
                         total = max(
@@ -463,7 +464,7 @@ class JmaService @Inject constructor(
                         night = true
                     ),
                     temperature = TemperatureWrapper(
-                        temperature = minTMap.getOrElse(key + 1.days.inWholeMilliseconds) { null }
+                        temperature = minTMap.getOrElse(key + 1.days.inWholeMilliseconds) { null }?.celsius
                     ),
                     precipitationProbability = PrecipitationProbability(
                         total = max(
@@ -509,7 +510,7 @@ class JmaService @Inject constructor(
                 weatherText = wxTextMap.getOrElse(key) { null },
                 weatherCode = wxCodeMap.getOrElse(key) { null },
                 temperature = TemperatureWrapper(
-                    temperature = tMap.getOrElse(key) { null }
+                    temperature = tMap.getOrElse(key) { null }?.celsius
                 ),
                 wind = Wind(
                     degree = wdMap.getOrElse(key) { null },
@@ -526,8 +527,8 @@ class JmaService @Inject constructor(
         dailyResult.getOrNull(1)?.tempAverage?.areas?.forEach { area ->
             if (area.area.code == weekAreaAmedas) {
                 return Normals(
-                    daytimeTemperature = area.max?.toDoubleOrNull(),
-                    nighttimeTemperature = area.min?.toDoubleOrNull()
+                    daytimeTemperature = area.max?.toDoubleOrNull()?.celsius,
+                    nighttimeTemperature = area.min?.toDoubleOrNull()?.celsius
                 )
             }
         }

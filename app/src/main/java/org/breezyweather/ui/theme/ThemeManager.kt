@@ -19,8 +19,8 @@ package org.breezyweather.ui.theme
 import android.app.UiModeManager
 import android.content.Context
 import breezyweather.domain.location.model.Location
-import org.breezyweather.common.basic.models.options.DarkMode
 import org.breezyweather.common.extensions.uiModeManager
+import org.breezyweather.common.options.DarkMode
 import org.breezyweather.domain.location.model.isDaylight
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.ui.theme.weatherView.WeatherThemeDelegate

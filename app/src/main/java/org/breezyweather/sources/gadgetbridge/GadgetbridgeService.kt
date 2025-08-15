@@ -24,7 +24,6 @@ import breezyweather.domain.weather.model.Daily
 import breezyweather.domain.weather.model.Hourly
 import breezyweather.domain.weather.reference.WeatherCode
 import kotlinx.serialization.json.Json
-import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.common.extensions.gzipCompress
 import org.breezyweather.common.source.BroadcastSource
 import org.breezyweather.common.utils.helpers.LogHelper
@@ -81,7 +80,7 @@ class GadgetbridgeService @Inject constructor() : BroadcastSource {
         return GadgetbridgeData(
             timestamp = location.weather?.base?.forecastUpdateTime?.time?.div(1000)?.toInt(),
             location = location.getPlace(context),
-            currentTemp = current?.temperature?.temperature?.roundCelsiusToKelvin(),
+            currentTemp = current?.temperature?.temperature?.inKelvins?.roundToInt(),
             currentConditionCode = getWeatherCode(current?.weatherCode),
             currentCondition = current?.weatherText,
             currentHumidity = current?.relativeHumidity?.roundToInt(),
@@ -89,15 +88,15 @@ class GadgetbridgeService @Inject constructor() : BroadcastSource {
             windDirection = current?.wind?.degree?.roundToInt(),
             uvIndex = current?.uV?.index?.toFloat(),
 
-            todayMaxTemp = today?.day?.temperature?.temperature?.roundCelsiusToKelvin(),
-            todayMinTemp = today?.night?.temperature?.temperature?.roundCelsiusToKelvin(),
-            feelsLikeTemp = current?.temperature?.feelsLikeTemperature?.roundCelsiusToKelvin(),
+            todayMaxTemp = today?.day?.temperature?.temperature?.inKelvins?.roundToInt(),
+            todayMinTemp = today?.night?.temperature?.temperature?.inKelvins?.roundToInt(),
+            feelsLikeTemp = current?.temperature?.feelsLikeTemperature?.inKelvins?.roundToInt(),
             precipProbability = maxOfNullable(
                 today?.day?.precipitationProbability?.total,
                 today?.night?.precipitationProbability?.total
             )?.roundToInt(),
 
-            dewPoint = current?.dewPoint?.roundCelsiusToKelvin(),
+            dewPoint = current?.dewPoint?.inKelvins?.roundToInt(),
             pressure = current?.pressure?.inHectopascals?.toFloat(),
             cloudCover = current?.cloudCover,
             visibility = current?.visibility?.inMeters?.toFloat(),
@@ -124,8 +123,8 @@ class GadgetbridgeService @Inject constructor() : BroadcastSource {
 
             GadgetbridgeDailyForecast(
                 conditionCode = getWeatherCode(day.day?.weatherCode),
-                maxTemp = day.day?.temperature?.temperature?.roundCelsiusToKelvin(),
-                minTemp = day.night?.temperature?.temperature?.roundCelsiusToKelvin(),
+                maxTemp = day.day?.temperature?.temperature?.inKelvins?.roundToInt(),
+                minTemp = day.night?.temperature?.temperature?.inKelvins?.roundToInt(),
                 humidity = day.relativeHumidity?.average?.roundToInt(),
                 windSpeed = maxWind?.speed?.inKilometersPerHour?.toFloat(),
                 windDirection = maxWind?.degree?.roundToInt(),
@@ -173,7 +172,7 @@ class GadgetbridgeService @Inject constructor() : BroadcastSource {
         return dailyForecast.map { hour ->
             GadgetbridgeHourlyForecast(
                 timestamp = hour.date.time.div(1000).toInt(),
-                temp = hour.temperature?.temperature?.roundCelsiusToKelvin(),
+                temp = hour.temperature?.temperature?.inKelvins?.roundToInt(),
                 conditionCode = getWeatherCode(hour.weatherCode),
                 humidity = hour.relativeHumidity?.roundToInt(),
                 windSpeed = hour.wind?.speed?.inKilometersPerHour?.toFloat(),
@@ -207,12 +206,6 @@ class GadgetbridgeService @Inject constructor() : BroadcastSource {
             a == null -> b
             b == null -> a
             else -> maxOf(a, b)
-        }
-    }
-
-    companion object {
-        fun Double.roundCelsiusToKelvin(): Int {
-            return TemperatureUnit.KELVIN.convertUnit(this).roundToInt()
         }
     }
 }

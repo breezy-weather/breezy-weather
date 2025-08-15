@@ -48,6 +48,7 @@ import org.breezyweather.sources.meteoam.json.MeteoAmReverseLocation
 import org.breezyweather.sources.meteoam.json.MeteoAmReverseLocationResult
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
 import org.breezyweather.unit.speed.Speed.Companion.kilometersPerHour
+import org.breezyweather.unit.temperature.Temperature.Companion.celsius
 import retrofit2.Retrofit
 import java.util.Date
 import javax.inject.Inject
@@ -171,8 +172,9 @@ class MeteoAmService @Inject constructor(
             weatherText = getWeatherText(context, icon),
             weatherCode = getWeatherCode(icon),
             temperature = TemperatureWrapper(
-                temperature = currentResult.getOrElse(keys["2t"].toString()) { null }
-                    ?.getOrElse("0") { null } as? Double
+                temperature = (
+                    currentResult.getOrElse(keys["2t"].toString()) { null }?.getOrElse("0") { null } as? Double
+                    )?.celsius
             ),
             wind = Wind(
                 degree = currentResult.getOrElse(keys["wdir"].toString()) { null }
@@ -232,8 +234,9 @@ class MeteoAmService @Inject constructor(
                 weatherText = getWeatherText(context, icon),
                 weatherCode = getWeatherCode(icon),
                 temperature = TemperatureWrapper(
-                    temperature = data.getOrElse(keys["2t"].toString()) { null }
-                        ?.getOrElse(i.toString()) { null } as? Double
+                    temperature = (
+                        data.getOrElse(keys["2t"].toString()) { null }?.getOrElse(i.toString()) { null } as? Double
+                        )?.celsius
                 ),
                 precipitationProbability = PrecipitationProbability(
                     total = data.getOrElse(keys["tpp"].toString()) { null }?.getOrElse(i.toString()) { null } as? Double

@@ -44,6 +44,7 @@ import org.breezyweather.sources.ilmateenistus.json.IlmateenistusForecastResult
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
 import org.breezyweather.unit.speed.Speed.Companion.metersPerSecond
+import org.breezyweather.unit.temperature.Temperature.Companion.celsius
 import retrofit2.Retrofit
 import java.text.SimpleDateFormat
 import java.util.Locale
@@ -159,7 +160,7 @@ class IlmateenistusService @Inject constructor(
                         weatherText = getWeatherText(context, it.phenomen?.attributes?.className),
                         weatherCode = getWeatherCode(it.phenomen?.attributes?.className),
                         temperature = TemperatureWrapper(
-                            temperature = it.temperature?.attributes?.value?.toDoubleOrNull()
+                            temperature = it.temperature?.attributes?.value?.toDoubleOrNull()?.celsius
                         ),
                         precipitation = Precipitation(
                             total = it.precipitation?.attributes?.value?.toDoubleOrNull()?.millimeters

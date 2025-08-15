@@ -16,12 +16,14 @@
 
 package org.breezyweather.unit.precipitation
 
+import android.content.Context
 import android.icu.util.MeasureUnit
 import android.os.Build
 import org.breezyweather.unit.R
 import org.breezyweather.unit.WeatherUnit
 import org.breezyweather.unit.formatting.UnitDecimals
 import org.breezyweather.unit.formatting.UnitTranslation
+import org.breezyweather.unit.formatting.UnitWidth
 import java.util.Locale
 
 enum class PrecipitationUnit(
@@ -49,7 +51,7 @@ enum class PrecipitationUnit(
         ),
         measureUnit = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) MeasureUnit.MICROMETER else null,
         convertFromReference = { valueInDefaultUnit -> valueInDefaultUnit },
-        convertToReference = { valueInDefaultUnit -> valueInDefaultUnit },
+        convertToReference = { valueInThisUnit -> valueInThisUnit },
         decimals = UnitDecimals(short = 0, long = 1), // Used only by PM2.5 formatting
         chartStep = 5000.0
     ),
@@ -65,7 +67,7 @@ enum class PrecipitationUnit(
         ),
         measureUnit = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) MeasureUnit.MILLIMETER else null,
         convertFromReference = { valueInDefaultUnit -> valueInDefaultUnit.div(1000.0) },
-        convertToReference = { valueInDefaultUnit -> valueInDefaultUnit.times(1000.0) },
+        convertToReference = { valueInThisUnit -> valueInThisUnit.times(1000.0) },
         decimals = UnitDecimals(narrow = 0, short = 1, long = 2),
         chartStep = 5.0
     ),
@@ -81,7 +83,7 @@ enum class PrecipitationUnit(
         ),
         measureUnit = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) MeasureUnit.CENTIMETER else null,
         convertFromReference = { valueInDefaultUnit -> valueInDefaultUnit.div(10000.0) },
-        convertToReference = { valueInDefaultUnit -> valueInDefaultUnit.times(10000.0) },
+        convertToReference = { valueInThisUnit -> valueInThisUnit.times(10000.0) },
         decimals = UnitDecimals(narrow = 1, short = 2, long = 3),
         chartStep = 0.5
     ),
@@ -97,7 +99,7 @@ enum class PrecipitationUnit(
         ),
         measureUnit = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) MeasureUnit.INCH else null,
         convertFromReference = { valueInDefaultUnit -> valueInDefaultUnit.div(25400.0) },
-        convertToReference = { valueInDefaultUnit -> valueInDefaultUnit.times(25400.0) },
+        convertToReference = { valueInThisUnit -> valueInThisUnit.times(25400.0) },
         decimals = UnitDecimals(narrow = 1, short = 2, long = 3),
         chartStep = 0.2
     ),
@@ -118,11 +120,51 @@ enum class PrecipitationUnit(
         measureUnit = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) MeasureUnit.LITER else null,
         perMeasureUnit = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) MeasureUnit.SQUARE_METER else null,
         convertFromReference = { valueInDefaultUnit -> valueInDefaultUnit.div(1000.0) },
-        convertToReference = { valueInDefaultUnit -> valueInDefaultUnit.times(1000.0) },
+        convertToReference = { valueInThisUnit -> valueInThisUnit.times(1000.0) },
         decimals = UnitDecimals(narrow = 0, short = 1, long = 2),
         chartStep = 5.0
     ),
     ;
+
+    /**
+     * Override to:
+     * - Use English units with Traditional Chinese
+     */
+    override fun format(
+        context: Context,
+        value: Number,
+        valueWidth: UnitWidth,
+        unitWidth: UnitWidth,
+        locale: Locale,
+        showSign: Boolean,
+        useNumberFormatter: Boolean,
+        useMeasureFormat: Boolean,
+    ): String {
+        val correctedLocale = locale.let {
+            /**
+             * Taiwan guidelines: https://www.bsmi.gov.tw/wSite/public/Attachment/f1736149048776.pdf
+             * Ongoing issue: https://unicode-org.atlassian.net/jira/software/c/projects/CLDR/issues/CLDR-10604
+             */
+            if (it.language.equals("zh", ignoreCase = true) &&
+                arrayOf("TW", "HK", "MO").any { c -> it.country.equals(c, ignoreCase = true) } &&
+                unitWidth != UnitWidth.LONG
+            ) {
+                Locale.Builder().setLanguage("en").setRegion("001").build()
+            } else {
+                it
+            }
+        }
+        return super.format(
+            context = context,
+            value = value,
+            valueWidth = valueWidth,
+            unitWidth = unitWidth,
+            locale = correctedLocale,
+            showSign = showSign,
+            useNumberFormatter = useNumberFormatter,
+            useMeasureFormat = useNumberFormatter
+        )
+    }
 
     companion object {
 
@@ -132,7 +174,7 @@ enum class PrecipitationUnit(
          * Source (simplified): https://github.com/unicode-org/cldr/blob/3f3967f3cbadc56bbb44a9aed20784e82ac64c67/common/supplemental/units.xml#L474-L478
          */
         fun getDefaultUnit(
-            locale: Locale,
+            locale: Locale = Locale.getDefault(),
         ) = when (locale.country) {
             "BR" -> CENTIMETER
             "US" -> INCH

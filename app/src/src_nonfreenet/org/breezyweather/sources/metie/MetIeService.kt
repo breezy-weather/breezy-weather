@@ -51,6 +51,7 @@ import org.breezyweather.sources.metie.json.MetIeWarningResult
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
 import org.breezyweather.unit.speed.Speed.Companion.kilometersPerHour
+import org.breezyweather.unit.temperature.Temperature.Companion.celsius
 import retrofit2.Retrofit
 import java.text.SimpleDateFormat
 import java.util.Locale
@@ -200,7 +201,7 @@ class MetIeService @Inject constructor(
                 weatherCode = getWeatherCode(result.weatherNumber),
                 weatherText = result.weatherDescription,
                 temperature = TemperatureWrapper(
-                    temperature = result.temperature?.toDouble()
+                    temperature = result.temperature?.celsius
                 ),
                 precipitation = Precipitation(
                     total = result.rainfall?.toDoubleOrNull()?.millimeters

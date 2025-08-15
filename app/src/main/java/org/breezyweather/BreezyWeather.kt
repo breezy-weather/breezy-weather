@@ -27,7 +27,7 @@ import androidx.work.Configuration
 import androidx.work.WorkInfo
 import androidx.work.WorkQuery
 import dagger.hilt.android.HiltAndroidApp
-import org.breezyweather.common.basic.BreezyActivity
+import org.breezyweather.common.activities.BreezyActivity
 import org.breezyweather.common.extensions.uiModeManager
 import org.breezyweather.common.extensions.workManager
 import org.breezyweather.common.utils.helpers.LogHelper

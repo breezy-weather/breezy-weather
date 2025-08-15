@@ -24,7 +24,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import org.breezyweather.BreezyWeather
-import org.breezyweather.common.basic.BreezyViewModel
+import org.breezyweather.common.activities.BreezyViewModel
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.launchIO
 import org.breezyweather.common.source.LocationSearchSource

@@ -59,8 +59,6 @@ import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.persistentMapOf
 import kotlinx.collections.immutable.toImmutableMap
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.options.appearance.DetailScreen
-import org.breezyweather.common.basic.models.options.basic.UnitUtils
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.formatMeasure
 import org.breezyweather.common.extensions.formatValue
@@ -70,6 +68,8 @@ import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.extensions.roundUpToNearestMultiplier
 import org.breezyweather.common.extensions.toDate
 import org.breezyweather.common.extensions.visibilityScaleThresholds
+import org.breezyweather.common.options.appearance.DetailScreen
+import org.breezyweather.common.utils.UnitUtils
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.domain.weather.model.getFullLabel
 import org.breezyweather.domain.weather.model.getRangeContentDescriptionSummary
@@ -319,15 +319,15 @@ private fun VisibilityChart(
         { _, value, _ -> value.toDistance(distanceUnit).formatMeasure(context) },
         persistentListOf(
             persistentMapOf(
-                20000.0.meters.toDouble(distanceUnit).toFloat() to Color(119, 141, 120),
-                15000.0.meters.toDouble(distanceUnit).toFloat() to Color(91, 167, 99),
-                9000.0.meters.toDouble(distanceUnit).toFloat() to Color(90, 169, 90),
-                8000.0.meters.toDouble(distanceUnit).toFloat() to Color(98, 122, 160),
-                6000.0.meters.toDouble(distanceUnit).toFloat() to Color(98, 122, 160),
-                5000.0.meters.toDouble(distanceUnit).toFloat() to Color(167, 91, 91),
-                2200.0.meters.toDouble(distanceUnit).toFloat() to Color(167, 91, 91),
-                1600.0.meters.toDouble(distanceUnit).toFloat() to Color(162, 97, 160),
-                0.0.meters.toDouble(distanceUnit).toFloat() to Color(166, 93, 165)
+                20000.meters.toDouble(distanceUnit).toFloat() to Color(119, 141, 120),
+                15000.meters.toDouble(distanceUnit).toFloat() to Color(91, 167, 99),
+                9000.meters.toDouble(distanceUnit).toFloat() to Color(90, 169, 90),
+                8000.meters.toDouble(distanceUnit).toFloat() to Color(98, 122, 160),
+                6000.meters.toDouble(distanceUnit).toFloat() to Color(98, 122, 160),
+                5000.meters.toDouble(distanceUnit).toFloat() to Color(167, 91, 91),
+                2200.meters.toDouble(distanceUnit).toFloat() to Color(167, 91, 91),
+                1600.meters.toDouble(distanceUnit).toFloat() to Color(162, 97, 160),
+                0.meters.toDouble(distanceUnit).toFloat() to Color(166, 93, 165)
             )
         ),
         topAxisValueFormatter = { _, value, _ ->

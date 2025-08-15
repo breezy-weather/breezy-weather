@@ -42,9 +42,11 @@ fun MeasureUnit.formatWithNumberFormatter(
     perUnit: MeasureUnit? = null,
     precision: Int,
     numberFormatterWidth: NumberFormatter.UnitWidth,
+    showSign: Boolean = false,
 ): String {
     return (NumberFormatter.withLocale(locale) as LocalizedNumberFormatter)
         .precision(if (precision == 0) Precision.integer() else Precision.maxFraction(precision))
+        .sign(if (showSign) NumberFormatter.SignDisplay.ALWAYS else NumberFormatter.SignDisplay.AUTO)
         .unit(this)
         .perUnit(perUnit)
         .unitWidth(numberFormatterWidth)

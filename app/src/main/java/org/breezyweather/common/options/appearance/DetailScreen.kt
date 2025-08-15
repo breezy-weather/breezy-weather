@@ -14,7 +14,7 @@
  * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package org.breezyweather.common.basic.models.options.appearance
+package org.breezyweather.common.options.appearance
 
 import android.content.Context
 import androidx.annotation.DrawableRes
@@ -23,7 +23,7 @@ import breezyweather.domain.location.model.Location
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.options.basic.BaseEnum
+import org.breezyweather.common.options.BaseEnum
 
 enum class DetailScreen(
     override val id: String,
@@ -52,7 +52,7 @@ enum class DetailScreen(
         fun toDetailScreenList(
             location: Location,
         ): ImmutableList<DetailScreen> {
-            return DetailScreen.entries
+            return entries
                 .filter { detailScreen ->
                     when (detailScreen) {
                         TAG_CONDITIONS -> true // Always displayed

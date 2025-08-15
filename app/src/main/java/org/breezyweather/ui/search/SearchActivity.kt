@@ -69,7 +69,7 @@ import breezyweather.domain.location.model.Location
 import dagger.hilt.android.AndroidEntryPoint
 import org.breezyweather.BuildConfig
 import org.breezyweather.R
-import org.breezyweather.common.basic.BreezyActivity
+import org.breezyweather.common.activities.BreezyActivity
 import org.breezyweather.common.extensions.inputMethodManager
 import org.breezyweather.domain.location.model.getPlace
 import org.breezyweather.sources.SourceManager

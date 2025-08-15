@@ -30,10 +30,10 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import org.breezyweather.R
-import org.breezyweather.common.basic.BreezyActivity
-import org.breezyweather.common.basic.models.options.appearance.DailyTrendDisplay
+import org.breezyweather.common.activities.BreezyActivity
 import org.breezyweather.common.extensions.doOnApplyWindowInsets
 import org.breezyweather.common.extensions.getThemeColor
+import org.breezyweather.common.options.appearance.DailyTrendDisplay
 import org.breezyweather.common.utils.ColorUtils
 import org.breezyweather.databinding.ActivityDailyTrendDisplayManageBinding
 import org.breezyweather.domain.settings.SettingsManager

@@ -33,6 +33,7 @@ import androidx.core.graphics.createBitmap
 import breezyweather.domain.location.model.Location
 import org.breezyweather.R
 import org.breezyweather.background.receiver.widget.WidgetTrendHourlyProvider
+import org.breezyweather.common.extensions.formatMeasure
 import org.breezyweather.common.extensions.getCalendarMonth
 import org.breezyweather.common.extensions.getHour
 import org.breezyweather.common.extensions.getTabletListAdaptiveWidth
@@ -46,6 +47,7 @@ import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.resource.ResourceHelper
 import org.breezyweather.ui.theme.resource.ResourcesProviderFactory
 import org.breezyweather.ui.theme.weatherView.WeatherViewController
+import org.breezyweather.unit.formatting.UnitWidth
 import java.util.Date
 import kotlin.math.max
 import kotlin.math.min
@@ -100,7 +102,6 @@ object HourlyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
         var highestTemperature: Float? = null
         var lowestTemperature: Float? = null
         val minimalIcon = SettingsManager.getInstance(context).isWidgetUsingMonochromeIcons
-        val temperatureUnit = SettingsManager.getInstance(context).getTemperatureUnit(context)
         val lightTheme = color.isLightThemed
 
         // TODO: Redundant with HourlyTemperatureAdapter
@@ -108,7 +109,8 @@ object HourlyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
         run {
             var i = 0
             while (i < temperatures.size) {
-                temperatures[i] = weather.nextHourlyForecast.getOrNull(i / 2)?.temperature?.temperature?.toFloat()
+                temperatures[i] = weather.nextHourlyForecast.getOrNull(i / 2)?.temperature?.temperature?.value
+                    ?.toFloat()
                 i += 2
             }
         }
@@ -124,15 +126,15 @@ object HourlyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
             }
         }
         weather.normals.getOrElse(Date().getCalendarMonth(location)) { null }?.let { normals ->
-            highestTemperature = normals.daytimeTemperature?.toFloat()
-            lowestTemperature = normals.nighttimeTemperature?.toFloat()
+            highestTemperature = normals.daytimeTemperature?.value?.toFloat()
+            lowestTemperature = normals.nighttimeTemperature?.value?.toFloat()
         }
         for (i in 0 until itemCount) {
-            weather.nextHourlyForecast[i].temperature?.temperature?.let {
-                if (highestTemperature == null || it > highestTemperature!!) {
+            weather.nextHourlyForecast[i].temperature?.temperature?.value?.let {
+                if (highestTemperature == null || it > highestTemperature) {
                     highestTemperature = it.toFloat()
                 }
-                if (lowestTemperature == null || it < lowestTemperature!!) {
+                if (lowestTemperature == null || it < lowestTemperature) {
                     lowestTemperature = it.toFloat()
                 }
             }
@@ -148,10 +150,12 @@ object HourlyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
             ) {
                 val trendParent = drawableView.findViewById<TrendLinearLayout>(R.id.widget_trend_hourly)
                 trendParent.setData(
-                    arrayOf(normals.daytimeTemperature!!.toFloat(), normals.nighttimeTemperature!!.toFloat()),
-                    highestTemperature!!,
-                    lowestTemperature!!,
-                    temperatureUnit,
+                    arrayOf(
+                        normals.daytimeTemperature!!.value.toFloat(),
+                        normals.nighttimeTemperature!!.value.toFloat()
+                    ),
+                    highestTemperature,
+                    lowestTemperature,
                     false
                 )
                 trendParent.setColor(lightTheme)
@@ -189,9 +193,11 @@ object HourlyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
                 widgetItemView.trendItemView.setData(
                     buildTemperatureArrayForItem(temperatures, i),
                     null,
-                    hourly.temperature?.temperature?.let {
-                        temperatureUnit.formatMeasureShort(context, it)
-                    },
+                    hourly.temperature?.temperature?.formatMeasure(
+                        context,
+                        valueWidth = UnitWidth.NARROW,
+                        unitWidth = UnitWidth.NARROW
+                    ),
                     null,
                     highestTemperature,
                     lowestTemperature,

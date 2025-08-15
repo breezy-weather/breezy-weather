@@ -204,41 +204,6 @@ value class Precipitation internal constructor(
         return if (rawValue in 0..10000000) this else null
     }
 
-    override fun format(
-        context: Context,
-        unit: PrecipitationUnit,
-        valueWidth: UnitWidth,
-        unitWidth: UnitWidth,
-        locale: Locale,
-        useNumberFormatter: Boolean,
-        useMeasureFormat: Boolean,
-    ): String {
-        return super.format(
-            context = context,
-            unit = unit,
-            valueWidth = valueWidth,
-            unitWidth = unitWidth,
-            locale = locale.let {
-                /**
-                 * Use English units with Traditional Chinese
-                 *
-                 * Taiwan guidelines: https://www.bsmi.gov.tw/wSite/public/Attachment/f1736149048776.pdf
-                 * Ongoing issue: https://unicode-org.atlassian.net/jira/software/c/projects/CLDR/issues/CLDR-10604
-                 */
-                if (it.language.equals("zh", ignoreCase = true) &&
-                    arrayOf("TW", "HK", "MO").any { c -> it.country.equals(c, ignoreCase = true) } &&
-                    unitWidth != UnitWidth.LONG
-                ) {
-                    Locale.Builder().setLanguage("en").setRegion("001").build()
-                } else {
-                    it
-                }
-            },
-            useNumberFormatter = useNumberFormatter,
-            useMeasureFormat = useMeasureFormat
-        )
-    }
-
     /**
      * Special case of formatting:
      * mm/h instead of just mm

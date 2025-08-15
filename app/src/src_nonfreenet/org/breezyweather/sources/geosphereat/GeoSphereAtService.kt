@@ -55,6 +55,7 @@ import org.breezyweather.unit.pollutant.PollutantConcentration.Companion.microgr
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.pressure.Pressure.Companion.pascals
 import org.breezyweather.unit.speed.Speed.Companion.metersPerSecond
+import org.breezyweather.unit.temperature.Temperature.Companion.celsius
 import retrofit2.Retrofit
 import java.util.Date
 import javax.inject.Inject
@@ -338,7 +339,7 @@ class GeoSphereAtService @Inject constructor(
                 date = date,
                 weatherCode = getWeatherCode(hourlyResult.features[0].properties!!.parameters!!.sy?.data?.getOrNull(i)),
                 temperature = TemperatureWrapper(
-                    temperature = hourlyResult.features[0].properties!!.parameters!!.t2m?.data?.getOrNull(i)
+                    temperature = hourlyResult.features[0].properties!!.parameters!!.t2m?.data?.getOrNull(i)?.celsius
                 ),
                 precipitation = Precipitation(
                     total = hourlyResult.features[0].properties!!.parameters!!.rrAcc?.data?.getOrNull(i)

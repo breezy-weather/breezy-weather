@@ -18,7 +18,7 @@ package org.breezyweather.common.bus
 
 import android.os.Handler
 import android.os.Looper
-import org.breezyweather.common.basic.livedata.BusLiveData
+import org.breezyweather.common.activities.livedata.BusLiveData
 
 class EventBus private constructor() {
 

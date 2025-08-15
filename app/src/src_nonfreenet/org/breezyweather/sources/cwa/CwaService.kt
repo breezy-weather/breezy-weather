@@ -78,9 +78,12 @@ import org.breezyweather.sources.nlsc.NlscService.Companion.PENGHU_BBOX
 import org.breezyweather.sources.nlsc.NlscService.Companion.TAIWAN_BBOX
 import org.breezyweather.sources.nlsc.NlscService.Companion.WUQIU_BBOX
 import org.breezyweather.unit.pollutant.PollutantConcentration.Companion.microgramsPerCubicMeter
+import org.breezyweather.unit.pressure.Pressure
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
 import org.breezyweather.unit.speed.Speed.Companion.beaufort
 import org.breezyweather.unit.speed.Speed.Companion.metersPerSecond
+import org.breezyweather.unit.temperature.Temperature
+import org.breezyweather.unit.temperature.Temperature.Companion.celsius
 import retrofit2.Retrofit
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -360,8 +363,10 @@ class CwaService @Inject constructor(
                         current = getAirQuality(
                             airQualityResult,
                             currentWrapper?.temperature?.temperature,
-                            getValid(currentResult.records?.station?.getOrNull(0)?.weatherElement?.airPressure)
-                                as Double?
+                            (
+                                getValid(currentResult.records?.station?.getOrNull(0)?.weatherElement?.airPressure)
+                                    as Double?
+                                )?.hectopascals
                         )
                     )
                 } else {
@@ -455,7 +460,7 @@ class CwaService @Inject constructor(
             weatherText = weatherText,
             weatherCode = weatherCode,
             temperature = TemperatureWrapper(
-                temperature = temperature
+                temperature = temperature?.celsius
             ),
             wind = Wind(
                 degree = windDirection,
@@ -482,8 +487,8 @@ class CwaService @Inject constructor(
             ?.filter { it.Month?.toIntOrNull() != null && it.Month.toInt() in 1..12 }
             ?.associate {
                 Month.of(it.Month!!.toInt()) to Normals(
-                    daytimeTemperature = it.Maximum?.toDoubleOrNull(),
-                    nighttimeTemperature = it.Minimum?.toDoubleOrNull()
+                    daytimeTemperature = it.Maximum?.toDoubleOrNull()?.celsius,
+                    nighttimeTemperature = it.Minimum?.toDoubleOrNull()?.celsius
                 )
             }
     }
@@ -492,8 +497,8 @@ class CwaService @Inject constructor(
     // We need to convert these figures to µg/m³ (and mg/m³ for CO).
     private fun getAirQuality(
         airQualityResult: CwaAirQualityResult?,
-        temperature: Double?,
-        pressure: Double?,
+        temperature: Temperature?,
+        pressure: Pressure?,
     ): AirQuality? {
         return airQualityResult?.data?.aqi?.getOrNull(0)?.let {
             AirQuality(
@@ -616,8 +621,8 @@ class CwaService @Inject constructor(
                         weatherText = wxTextMap.getOrElse(dayTime) { null },
                         weatherCode = wxCodeMap.getOrElse(dayTime) { null },
                         temperature = TemperatureWrapper(
-                            temperature = maxTMap.getOrElse(dayTime) { null },
-                            feelsLike = maxAtMap.getOrElse(dayTime) { null }
+                            temperature = maxTMap.getOrElse(dayTime) { null }?.celsius,
+                            feelsLike = maxAtMap.getOrElse(dayTime) { null }?.celsius
                         ),
                         precipitationProbability = PrecipitationProbability(
                             total = popMap.getOrElse(dayTime) { null }
@@ -631,8 +636,8 @@ class CwaService @Inject constructor(
                         weatherText = wxTextMap.getOrElse(nightTime) { null },
                         weatherCode = wxCodeMap.getOrElse(nightTime) { null },
                         temperature = TemperatureWrapper(
-                            temperature = minTMap.getOrElse(nightTime) { null },
-                            feelsLike = minAtMap.getOrElse(nightTime) { null }
+                            temperature = minTMap.getOrElse(nightTime) { null }?.celsius,
+                            feelsLike = minAtMap.getOrElse(nightTime) { null }?.celsius
                         ),
                         precipitationProbability = PrecipitationProbability(
                             total = popMap.getOrElse(nightTime) { null }
@@ -753,8 +758,8 @@ class CwaService @Inject constructor(
                     weatherText = wxTextMap.getOrElse(key) { null },
                     weatherCode = wxCodeMap.getOrElse(key) { null },
                     temperature = TemperatureWrapper(
-                        temperature = tMap.getOrElse(key) { null },
-                        feelsLike = atMap.getOrElse(key) { null }
+                        temperature = tMap.getOrElse(key) { null }?.celsius,
+                        feelsLike = atMap.getOrElse(key) { null }?.celsius
                     ),
                     precipitationProbability = PrecipitationProbability(
                         total = popMap.getOrElse(key) { null }
@@ -764,7 +769,7 @@ class CwaService @Inject constructor(
                         speed = wsMap.getOrElse(key) { null }?.metersPerSecond
                     ),
                     relativeHumidity = rhMap.getOrElse(key) { null },
-                    dewPoint = tdMap.getOrElse(key) { null }
+                    dewPoint = tdMap.getOrElse(key) { null }?.celsius
                 )
             )
         }

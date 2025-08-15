@@ -58,6 +58,7 @@ import org.breezyweather.unit.pollutant.PollutantConcentration.Companion.milligr
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
 import org.breezyweather.unit.speed.Speed.Companion.metersPerSecond
+import org.breezyweather.unit.temperature.Temperature.Companion.celsius
 import retrofit2.Retrofit
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -236,7 +237,7 @@ class LvgmcService @Inject constructor(
             ?.let {
                 CurrentWrapper(
                     temperature = TemperatureWrapper(
-                        it.temperature?.toDoubleOrNull()
+                        it.temperature?.toDoubleOrNull()?.celsius
                     ),
                     wind = Wind(
                         degree = it.windDirection?.toDoubleOrNull(),
@@ -276,7 +277,7 @@ class LvgmcService @Inject constructor(
                         weatherText = getWeatherText(context, it.icon),
                         weatherCode = getWeatherCode(it.icon),
                         temperature = TemperatureWrapper(
-                            temperature = it.temperature?.toDoubleOrNull()
+                            temperature = it.temperature?.toDoubleOrNull()?.celsius
                         ),
                         precipitation = Precipitation(
                             total = it.precipitation12h?.toDoubleOrNull()?.millimeters
@@ -295,7 +296,7 @@ class LvgmcService @Inject constructor(
                         weatherText = getWeatherText(context, it.icon),
                         weatherCode = getWeatherCode(it.icon),
                         temperature = TemperatureWrapper(
-                            temperature = it.temperature?.toDoubleOrNull()
+                            temperature = it.temperature?.toDoubleOrNull()?.celsius
                         ),
                         precipitation = Precipitation(
                             total = it.precipitation12h?.toDoubleOrNull()?.millimeters
@@ -351,8 +352,8 @@ class LvgmcService @Inject constructor(
                     weatherText = getWeatherText(context, it.icon),
                     weatherCode = getWeatherCode(it.icon),
                     temperature = TemperatureWrapper(
-                        temperature = it.temperature?.toDoubleOrNull(),
-                        feelsLike = it.apparentTemperature?.toDoubleOrNull()
+                        temperature = it.temperature?.toDoubleOrNull()?.celsius,
+                        feelsLike = it.apparentTemperature?.toDoubleOrNull()?.celsius
                     ),
                     precipitation = Precipitation(
                         total = it.precipitation1h?.toDoubleOrNull()?.millimeters,

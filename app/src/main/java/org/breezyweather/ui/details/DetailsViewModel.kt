@@ -27,7 +27,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import org.breezyweather.common.basic.models.options.appearance.DetailScreen
+import org.breezyweather.common.options.appearance.DetailScreen
 import org.breezyweather.common.source.PollenIndexSource
 import org.breezyweather.domain.weather.index.PollutantIndex
 import org.breezyweather.sources.SourceManager

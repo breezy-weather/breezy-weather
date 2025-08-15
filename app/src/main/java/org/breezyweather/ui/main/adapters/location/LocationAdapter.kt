@@ -21,9 +21,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import breezyweather.domain.location.model.Location
-import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.databinding.ItemLocationCardBinding
-import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.sources.SourceManager
 import org.breezyweather.ui.common.adapters.SyncListAdapter
 import org.breezyweather.ui.theme.resource.ResourcesProviderFactory
@@ -52,7 +50,6 @@ class LocationAdapter(
     }
 ) {
     private val mResourceProvider: ResourceProvider = ResourcesProviderFactory.newInstance
-    private val mTemperatureUnit: TemperatureUnit = SettingsManager.getInstance(mContext).getTemperatureUnit(mContext)
 
     init {
         update(locationList, selectedId)
@@ -81,7 +78,6 @@ class LocationAdapter(
                 LocationModel(
                     mContext,
                     model.location,
-                    mTemperatureUnit,
                     model.location.formattedId == selectedId
                 )
             )
@@ -96,7 +92,6 @@ class LocationAdapter(
                 LocationModel(
                     mContext,
                     l,
-                    mTemperatureUnit,
                     l.formattedId == selectedId
                 )
             )

@@ -17,7 +17,7 @@
 package org.breezyweather.common.bus
 
 import androidx.lifecycle.Observer
-import org.breezyweather.common.basic.livedata.BusLiveData
+import org.breezyweather.common.activities.livedata.BusLiveData
 import java.lang.ref.WeakReference
 
 internal class MyObserverWrapper<T> internal constructor(

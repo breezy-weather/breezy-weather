@@ -33,7 +33,7 @@ val Pollen.pollensWithConcentration: List<PollenIndex>
     get() {
         return PollenIndex.entries.filter { pollenIndex ->
             val concentration = getConcentration(pollenIndex)
-            concentration != null && concentration > 0
+            concentration != null && concentration.value > 0L
         }
     }
 
@@ -42,7 +42,7 @@ fun Pollen.getIndex(pollen: PollenIndex? = null): Int? {
         val pollensIndex: List<Int> = PollenIndex.entries.mapNotNull { getIndex(it) }
         if (pollensIndex.isNotEmpty()) pollensIndex.max() else null
     } else { // Specific pollen
-        pollen.getIndex(getConcentration(pollen)?.toDouble())
+        pollen.getIndex(getConcentration(pollen)?.inPerCubicMeter)
     }
 }
 
@@ -93,7 +93,7 @@ fun Pollen.getIndexName(
     return if (source != null) {
         if (pollen != null) {
             getConcentration(pollen)?.let {
-                context.resources.getStringArray(source.pollenLabels).getOrElse(it) { null }
+                context.resources.getStringArray(source.pollenLabels).getOrElse(it.inPollenIndex) { null }
             }
         } else {
             null
@@ -102,7 +102,7 @@ fun Pollen.getIndexName(
         if (pollen == null) { // Global pollen risk
             PollenIndex.getPollenIndexToName(context, getIndex())
         } else { // Specific pollen
-            pollen.getName(context, getConcentration(pollen)?.toDouble())
+            pollen.getName(context, getConcentration(pollen)?.inPerCubicMeter)
         }
     }
 }
@@ -131,7 +131,7 @@ fun Pollen.getColor(
     return if (source != null) {
         if (pollen != null) {
             getConcentration(pollen)?.let {
-                context.resources.getIntArray(source.pollenColors).getOrElse(it) { Color.TRANSPARENT }
+                context.resources.getIntArray(source.pollenColors).getOrElse(it.inPollenIndex) { Color.TRANSPARENT }
             } ?: Color.TRANSPARENT
         } else {
             Color.TRANSPARENT
@@ -140,7 +140,7 @@ fun Pollen.getColor(
         if (pollen == null) {
             PollenIndex.getPollenIndexToColor(context, getIndex())
         } else { // Specific pollen
-            pollen.getColor(context, getConcentration(pollen)?.toDouble())
+            pollen.getColor(context, getConcentration(pollen)?.inPerCubicMeter)
         }
     }
 }

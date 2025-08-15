@@ -62,6 +62,7 @@ import org.breezyweather.unit.distance.Distance.Companion.meters
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
 import org.breezyweather.unit.speed.Speed.Companion.kilometersPerHour
+import org.breezyweather.unit.temperature.Temperature.Companion.celsius
 import retrofit2.Retrofit
 import java.util.Calendar
 import java.util.Date
@@ -207,7 +208,7 @@ class BrightSkyService @Inject constructor(
         return CurrentWrapper(
             weatherCode = getWeatherCode(result.icon),
             temperature = TemperatureWrapper(
-                temperature = result.temperature
+                temperature = result.temperature?.celsius
             ),
             wind = Wind(
                 degree = result.windDirection?.toDouble(),
@@ -215,7 +216,7 @@ class BrightSkyService @Inject constructor(
                 gusts = result.windGustSpeed?.kilometersPerHour
             ),
             relativeHumidity = result.relativeHumidity?.toDouble(),
-            dewPoint = result.dewPoint,
+            dewPoint = result.dewPoint?.celsius,
             pressure = result.pressure?.hectopascals,
             cloudCover = result.cloudCover,
             visibility = result.visibility?.meters
@@ -261,7 +262,7 @@ class BrightSkyService @Inject constructor(
                 date = result.timestamp,
                 weatherCode = getWeatherCode(result.icon),
                 temperature = TemperatureWrapper(
-                    temperature = result.temperature
+                    temperature = result.temperature?.celsius
                 ),
                 precipitation = Precipitation(
                     total = result.precipitation?.millimeters
@@ -275,7 +276,7 @@ class BrightSkyService @Inject constructor(
                     gusts = result.windGustSpeed?.kilometersPerHour
                 ),
                 relativeHumidity = result.relativeHumidity?.toDouble(),
-                dewPoint = result.dewPoint,
+                dewPoint = result.dewPoint?.celsius,
                 pressure = result.pressure?.hectopascals,
                 cloudCover = result.cloudCover,
                 visibility = result.visibility?.toDouble()?.meters,

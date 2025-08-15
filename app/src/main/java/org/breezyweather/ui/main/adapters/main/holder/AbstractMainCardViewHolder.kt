@@ -24,7 +24,7 @@ import androidx.annotation.CallSuper
 import breezyweather.domain.location.model.Location
 import com.google.android.material.card.MaterialCardView
 import org.breezyweather.R
-import org.breezyweather.common.basic.BreezyActivity
+import org.breezyweather.common.activities.BreezyActivity
 import org.breezyweather.common.extensions.dpToPx
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
 

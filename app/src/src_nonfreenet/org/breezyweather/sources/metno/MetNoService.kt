@@ -57,6 +57,7 @@ import org.breezyweather.unit.pollutant.PollutantConcentration.Companion.microgr
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
 import org.breezyweather.unit.speed.Speed.Companion.metersPerSecond
+import org.breezyweather.unit.temperature.Temperature.Companion.celsius
 import retrofit2.Retrofit
 import java.util.Date
 import javax.inject.Inject
@@ -283,7 +284,7 @@ class MetNoService @Inject constructor(
                 weatherText = getWeatherText(context, currentTimeseries.symbolCode),
                 weatherCode = getWeatherCode(currentTimeseries.symbolCode),
                 temperature = TemperatureWrapper(
-                    temperature = currentTimeseries.instant?.details?.airTemperature
+                    temperature = currentTimeseries.instant?.details?.airTemperature?.celsius
                 ),
                 wind = if (currentTimeseries.instant?.details != null) {
                     Wind(
@@ -294,7 +295,7 @@ class MetNoService @Inject constructor(
                     null
                 },
                 relativeHumidity = currentTimeseries.instant?.details?.relativeHumidity,
-                dewPoint = currentTimeseries.instant?.details?.dewPointTemperature,
+                dewPoint = currentTimeseries.instant?.details?.dewPointTemperature?.celsius,
                 pressure = currentTimeseries.instant?.details?.airPressureAtSeaLevel?.hectopascals,
                 cloudCover = currentTimeseries.instant?.details?.cloudAreaFraction?.roundToInt()
             )
@@ -314,7 +315,7 @@ class MetNoService @Inject constructor(
                 weatherText = getWeatherText(context, hourlyForecast.data?.symbolCode),
                 weatherCode = getWeatherCode(hourlyForecast.data?.symbolCode),
                 temperature = TemperatureWrapper(
-                    temperature = hourlyForecast.data?.instant?.details?.airTemperature
+                    temperature = hourlyForecast.data?.instant?.details?.airTemperature?.celsius
                 ),
                 precipitation = Precipitation(
                     total = hourlyForecast.data?.next1Hours?.details?.precipitationAmount?.millimeters
@@ -337,7 +338,7 @@ class MetNoService @Inject constructor(
                 },
                 uV = UV(index = hourlyForecast.data?.instant?.details?.ultravioletIndexClearSky),
                 relativeHumidity = hourlyForecast.data?.instant?.details?.relativeHumidity,
-                dewPoint = hourlyForecast.data?.instant?.details?.dewPointTemperature,
+                dewPoint = hourlyForecast.data?.instant?.details?.dewPointTemperature?.celsius,
                 pressure = hourlyForecast.data?.instant?.details?.airPressureAtSeaLevel?.hectopascals,
                 cloudCover = hourlyForecast.data?.instant?.details?.cloudAreaFraction?.roundToInt()
             )

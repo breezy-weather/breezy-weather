@@ -1,4 +1,4 @@
-/**
+/*
  * This file is part of Breezy Weather.
  *
  * Breezy Weather is free software: you can redistribute it and/or modify it
@@ -14,33 +14,34 @@
  * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package org.breezyweather.common.basic.models.options.appearance
+package org.breezyweather.common.options
 
 import android.content.Context
+import androidx.appcompat.app.AppCompatDelegate
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.options.basic.BaseEnum
-import org.breezyweather.common.basic.models.options.basic.UnitUtils
+import org.breezyweather.common.utils.UnitUtils
 
-enum class BackgroundAnimationMode(
+enum class DarkMode(
     override val id: String,
+    val value: Int,
 ) : BaseEnum {
 
-    SYSTEM("system"),
-    ENABLED("enabled"),
-    DISABLED("disabled"),
+    SYSTEM("system", AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM),
+    LIGHT("light", AppCompatDelegate.MODE_NIGHT_NO),
+    DARK("dark", AppCompatDelegate.MODE_NIGHT_YES),
     ;
 
     companion object {
 
         fun getInstance(
             value: String,
-        ) = BackgroundAnimationMode.entries.firstOrNull {
+        ) = entries.firstOrNull {
             it.id == value
         } ?: SYSTEM
     }
 
-    override val valueArrayId = R.array.background_animation_values
-    override val nameArrayId = R.array.background_animation
+    override val valueArrayId = R.array.dark_mode_values
+    override val nameArrayId = R.array.dark_modes
 
     override fun getName(context: Context) = UnitUtils.getName(context, this)
 }

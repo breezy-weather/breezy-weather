@@ -64,6 +64,7 @@ import org.breezyweather.sources.hko.json.HkoOneJsonResult
 import org.breezyweather.sources.hko.json.HkoWarningResult
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
 import org.breezyweather.unit.speed.Speed.Companion.kilometersPerHour
+import org.breezyweather.unit.temperature.Temperature.Companion.celsius
 import org.json.JSONObject
 import retrofit2.Retrofit
 import java.text.SimpleDateFormat
@@ -326,7 +327,7 @@ class HkoService @Inject constructor(
             weatherText = getWeatherText(context, oneJson.FLW?.Icon1?.toIntOrNull()),
             weatherCode = getWeatherCode(oneJson.FLW?.Icon1?.toIntOrNull()),
             temperature = TemperatureWrapper(
-                temperature = regionalWeather?.Temp?.Value?.toDoubleOrNull()
+                temperature = regionalWeather?.Temp?.Value?.toDoubleOrNull()?.celsius
             ),
             wind = Wind(
                 degree = getWindDegree(regionalWeather?.Wind?.WindDirectionCode),
@@ -371,8 +372,8 @@ class HkoService @Inject constructor(
                 }
             }
             Normals(
-                daytimeTemperature = if (maxTemps.isNotEmpty()) maxTemps.average() else null,
-                nighttimeTemperature = if (minTemps.isNotEmpty()) minTemps.average() else null
+                daytimeTemperature = maxTemps.takeIf { it.isNotEmpty() }?.average()?.celsius,
+                nighttimeTemperature = minTemps.takeIf { it.isNotEmpty() }?.average()?.celsius
             )
         }
     }
@@ -489,7 +490,7 @@ class HkoService @Inject constructor(
                             weatherText = getWeatherText(context, currentHourWeather),
                             weatherCode = getWeatherCode(currentHourWeather),
                             temperature = TemperatureWrapper(
-                                temperature = value.ForecastTemperature
+                                temperature = value.ForecastTemperature?.celsius
                             ),
                             wind = Wind(
                                 degree = value.ForecastWindDirection,

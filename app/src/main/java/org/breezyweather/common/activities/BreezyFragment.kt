@@ -14,7 +14,7 @@
  * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package org.breezyweather.common.basic
+package org.breezyweather.common.activities
 
 import android.os.Bundle
 import android.view.View

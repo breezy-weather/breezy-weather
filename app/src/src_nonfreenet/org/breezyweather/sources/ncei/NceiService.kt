@@ -35,6 +35,7 @@ import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_HIGHEST
 import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
 import org.breezyweather.sources.ncei.json.NceiDataResult
+import org.breezyweather.unit.temperature.Temperature.Companion.celsius
 import retrofit2.Retrofit
 import java.util.Calendar
 import java.util.Date
@@ -158,8 +159,8 @@ class NceiService @Inject constructor(
             }
 
             Normals(
-                daytimeTemperature = if (tMaxWeightTotal > 0) tMaxWeightedSum.div(tMaxWeightTotal) else null,
-                nighttimeTemperature = if (tMinWeightTotal > 0) tMinWeightedSum.div(tMinWeightTotal) else null
+                daytimeTemperature = if (tMaxWeightTotal > 0) tMaxWeightedSum.div(tMaxWeightTotal).celsius else null,
+                nighttimeTemperature = if (tMinWeightTotal > 0) tMinWeightedSum.div(tMinWeightTotal).celsius else null
             )
         }
     }

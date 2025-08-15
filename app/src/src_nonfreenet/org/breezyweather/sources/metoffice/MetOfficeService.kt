@@ -52,6 +52,7 @@ import org.breezyweather.unit.distance.Distance.Companion.meters
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.pressure.Pressure.Companion.pascals
 import org.breezyweather.unit.speed.Speed.Companion.metersPerSecond
+import org.breezyweather.unit.temperature.Temperature.Companion.celsius
 import retrofit2.Retrofit
 import javax.inject.Inject
 import javax.inject.Named
@@ -130,8 +131,8 @@ class MetOfficeService @Inject constructor(
                     weatherText = dayText,
                     weatherCode = dayCode,
                     temperature = TemperatureWrapper(
-                        temperature = result.dayMaxScreenTemperature,
-                        feelsLike = result.dayMaxFeelsLikeTemp
+                        temperature = result.dayMaxScreenTemperature?.celsius,
+                        feelsLike = result.dayMaxFeelsLikeTemp?.celsius
                     ),
                     precipitationProbability = PrecipitationProbability(
                         total = result.dayProbabilityOfPrecipitation?.toDouble(),
@@ -144,8 +145,8 @@ class MetOfficeService @Inject constructor(
                     weatherText = nightText,
                     weatherCode = nightCode,
                     temperature = TemperatureWrapper(
-                        temperature = result.nightMinScreenTemperature,
-                        feelsLike = result.nightMinFeelsLikeTemp
+                        temperature = result.nightMinScreenTemperature?.celsius,
+                        feelsLike = result.nightMinFeelsLikeTemp?.celsius
                     ),
                     precipitationProbability = PrecipitationProbability(
                         total = result.nightProbabilityOfPrecipitation?.toDouble(),
@@ -175,8 +176,8 @@ class MetOfficeService @Inject constructor(
                 weatherText = weatherText,
                 weatherCode = weatherCode,
                 temperature = TemperatureWrapper(
-                    temperature = result.screenTemperature,
-                    feelsLike = result.feelsLikeTemperature
+                    temperature = result.screenTemperature?.celsius,
+                    feelsLike = result.feelsLikeTemperature?.celsius
                 ),
                 precipitation = Precipitation(
                     total = result.totalPrecipAmount?.millimeters,
@@ -194,7 +195,7 @@ class MetOfficeService @Inject constructor(
                     index = result.uvIndex?.toDouble()
                 ),
                 relativeHumidity = result.screenRelativeHumidity,
-                dewPoint = result.screenDewPointTemperature,
+                dewPoint = result.screenDewPointTemperature?.celsius,
                 pressure = result.mslp?.toDouble()?.pascals,
                 visibility = result.visibility?.toDouble()?.meters
             )

@@ -27,8 +27,9 @@ import androidx.annotation.LayoutRes
 import breezyweather.domain.location.model.Location
 import org.breezyweather.R
 import org.breezyweather.background.receiver.widget.WidgetMaterialYouForecastProvider
-import org.breezyweather.common.basic.models.options.NotificationTextColor
+import org.breezyweather.common.extensions.formatMeasure
 import org.breezyweather.common.extensions.getHour
+import org.breezyweather.common.options.NotificationTextColor
 import org.breezyweather.domain.location.model.getPlace
 import org.breezyweather.domain.location.model.isDaylight
 import org.breezyweather.domain.settings.SettingsManager
@@ -39,6 +40,7 @@ import org.breezyweather.domain.weather.model.isToday
 import org.breezyweather.remoteviews.Widgets
 import org.breezyweather.ui.theme.resource.ResourceHelper
 import org.breezyweather.ui.theme.resource.ResourcesProviderFactory
+import org.breezyweather.unit.formatting.UnitWidth
 
 class MaterialYouForecastWidgetIMP : AbstractRemoteViewsPresenter() {
 
@@ -134,8 +136,6 @@ private fun buildRemoteViews(
     val provider = ResourcesProviderFactory.newInstance
 
     val settings = SettingsManager.getInstance(context)
-    val temperatureUnit = settings.getTemperatureUnit(context)
-    val speedUnit = settings.getSpeedUnit(context)
 
     views.setTextViewText(
         R.id.widget_material_you_forecast_city,
@@ -160,21 +160,27 @@ private fun buildRemoteViews(
     views.apply {
         setTextViewText(
             R.id.widget_material_you_forecast_currentTemperature,
-            weather.current?.temperature?.temperature?.let {
-                temperatureUnit.formatMeasureShort(context, it)
-            }
+            weather.current?.temperature?.temperature?.formatMeasure(
+                context,
+                valueWidth = UnitWidth.NARROW,
+                unitWidth = UnitWidth.NARROW
+            )
         )
         setTextViewText(
             R.id.widget_material_you_forecast_daytimeTemperature,
-            weather.today?.day?.temperature?.temperature?.let {
-                temperatureUnit.formatMeasureShort(context, it)
-            }
+            weather.today?.day?.temperature?.temperature?.formatMeasure(
+                context,
+                valueWidth = UnitWidth.NARROW,
+                unitWidth = UnitWidth.NARROW
+            )
         )
         setTextViewText(
             R.id.widget_material_you_forecast_nighttimeTemperature,
-            weather.today?.night?.temperature?.temperature?.let {
-                temperatureUnit.formatMeasureShort(context, it)
-            }
+            weather.today?.night?.temperature?.temperature?.formatMeasure(
+                context,
+                valueWidth = UnitWidth.NARROW,
+                unitWidth = UnitWidth.NARROW
+            )
         )
         setTextViewText(
             R.id.widget_material_you_forecast_weatherText,
@@ -248,9 +254,11 @@ private fun buildRemoteViews(
         } ?: views.setViewVisibility(hourlyId[1], View.INVISIBLE)
         views.setTextViewText(
             hourlyId[2],
-            weather.nextHourlyForecast.getOrNull(i)?.temperature?.temperature?.let {
-                temperatureUnit.formatMeasureShort(context, it)
-            }
+            weather.nextHourlyForecast.getOrNull(i)?.temperature?.temperature?.formatMeasure(
+                context,
+                valueWidth = UnitWidth.NARROW,
+                unitWidth = UnitWidth.NARROW
+            )
         )
     }
 
@@ -326,15 +334,19 @@ private fun buildRemoteViews(
         } ?: views.setViewVisibility(dailyId[1], View.INVISIBLE)
         views.setTextViewText(
             dailyId[2],
-            weather.dailyForecastStartingToday.getOrNull(i)?.day?.temperature?.temperature?.let {
-                temperatureUnit.formatMeasureShort(context, it)
-            }
+            weather.dailyForecastStartingToday.getOrNull(i)?.day?.temperature?.temperature?.formatMeasure(
+                context,
+                valueWidth = UnitWidth.NARROW,
+                unitWidth = UnitWidth.NARROW
+            )
         )
         views.setTextViewText(
             dailyId[3],
-            weather.dailyForecastStartingToday.getOrNull(i)?.night?.temperature?.temperature?.let {
-                temperatureUnit.formatMeasureShort(context, it)
-            }
+            weather.dailyForecastStartingToday.getOrNull(i)?.night?.temperature?.temperature?.formatMeasure(
+                context,
+                valueWidth = UnitWidth.NARROW,
+                unitWidth = UnitWidth.NARROW
+            )
         )
         weather.dailyForecastStartingToday.getOrNull(i)?.night?.weatherCode?.let {
             views.setViewVisibility(dailyId[4], View.VISIBLE)

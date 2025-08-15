@@ -38,7 +38,7 @@ data class Hourly(
     val airQuality: AirQuality? = null,
     val uV: UV? = null,
     val relativeHumidity: Double? = null,
-    val dewPoint: Double? = null,
+    val dewPoint: org.breezyweather.unit.temperature.Temperature? = null,
     /**
      * Pressure at sea level
      * Use Kotlin extensions to initialize this value, like 1013.25.hectopascals

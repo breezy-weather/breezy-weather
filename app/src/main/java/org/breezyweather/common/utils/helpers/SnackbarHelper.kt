@@ -18,7 +18,7 @@ package org.breezyweather.common.utils.helpers
 
 import android.view.View
 import org.breezyweather.BreezyWeather
-import org.breezyweather.common.basic.BreezyActivity
+import org.breezyweather.common.activities.BreezyActivity
 import org.breezyweather.common.snackbar.Snackbar
 
 object SnackbarHelper {

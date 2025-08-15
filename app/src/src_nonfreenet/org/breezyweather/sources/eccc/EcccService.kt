@@ -60,6 +60,7 @@ import org.breezyweather.sources.getWindDegree
 import org.breezyweather.unit.distance.Distance.Companion.kilometers
 import org.breezyweather.unit.pressure.Pressure.Companion.kilopascals
 import org.breezyweather.unit.speed.Speed.Companion.kilometersPerHour
+import org.breezyweather.unit.temperature.Temperature.Companion.celsius
 import retrofit2.Retrofit
 import java.util.Calendar
 import java.util.Date
@@ -194,8 +195,8 @@ class EcccService @Inject constructor(
             weatherCode = getWeatherCode(result.iconCode),
             weatherText = result.condition,
             temperature = TemperatureWrapper(
-                temperature = getNonEmptyMetric(result.temperature),
-                feelsLike = getNonEmptyMetric(result.feelsLike)
+                temperature = getNonEmptyMetric(result.temperature)?.celsius,
+                feelsLike = getNonEmptyMetric(result.feelsLike)?.celsius
             ),
             wind = Wind(
                 degree = result.windBearing?.toDoubleOrNull(),
@@ -203,7 +204,7 @@ class EcccService @Inject constructor(
                 gusts = getNonEmptyMetric(result.windGust)?.kilometersPerHour
             ),
             relativeHumidity = result.humidity?.toDoubleOrNull(),
-            dewPoint = getNonEmptyMetric(result.dewpoint),
+            dewPoint = getNonEmptyMetric(result.dewpoint)?.celsius,
             pressure = getNonEmptyMetric(result.pressure)?.kilopascals,
             visibility = getNonEmptyMetric(result.visibility)?.kilometers
         )
@@ -259,7 +260,7 @@ class EcccService @Inject constructor(
                                     weatherText = daytime.summary,
                                     weatherSummary = daytime.text,
                                     temperature = TemperatureWrapper(
-                                        temperature = daytime.temperature?.periodHigh?.toDouble()
+                                        temperature = daytime.temperature?.periodHigh?.celsius
                                     ),
                                     precipitationProbability = PrecipitationProbability(
                                         total = daytime.precip?.toDoubleOrNull()
@@ -273,7 +274,7 @@ class EcccService @Inject constructor(
                                 weatherText = nighttime.summary,
                                 weatherSummary = nighttime.text,
                                 temperature = TemperatureWrapper(
-                                    temperature = nighttime.temperature?.periodLow?.toDouble()
+                                    temperature = nighttime.temperature?.periodLow?.celsius
                                 ),
                                 precipitationProbability = PrecipitationProbability(
                                     total = nighttime.precip?.toDoubleOrNull()
@@ -301,8 +302,8 @@ class EcccService @Inject constructor(
                 weatherText = result.condition,
                 weatherCode = getWeatherCode(result.iconCode),
                 temperature = TemperatureWrapper(
-                    temperature = getNonEmptyMetric(result.temperature),
-                    feelsLike = getNonEmptyMetric(result.feelsLike)
+                    temperature = getNonEmptyMetric(result.temperature)?.celsius,
+                    feelsLike = getNonEmptyMetric(result.feelsLike)?.celsius
                 ),
                 precipitationProbability = if (!result.precip.isNullOrEmpty()) {
                     PrecipitationProbability(total = result.precip.toDoubleOrNull())
@@ -355,8 +356,8 @@ class EcccService @Inject constructor(
     private fun getNormals(normals: EcccRegionalNormalsMetric?): Normals? {
         if (normals?.highTemp == null || normals.lowTemp == null) return null
         return Normals(
-            daytimeTemperature = normals.highTemp.toDouble(),
-            nighttimeTemperature = normals.lowTemp.toDouble()
+            daytimeTemperature = normals.highTemp.celsius,
+            nighttimeTemperature = normals.lowTemp.celsius
         )
     }
 

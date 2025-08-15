@@ -56,6 +56,7 @@ import org.breezyweather.unit.pollutant.PollutantConcentration.Companion.microgr
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
 import org.breezyweather.unit.speed.Speed.Companion.metersPerSecond
+import org.breezyweather.unit.temperature.Temperature.Companion.celsius
 import retrofit2.Retrofit
 import java.util.Date
 import javax.inject.Inject
@@ -178,8 +179,8 @@ class OpenWeatherService @Inject constructor(
             weatherText = currentResult.weather?.getOrNull(0)?.main?.capitalize(),
             weatherCode = getWeatherCode(currentResult.weather?.getOrNull(0)?.id),
             temperature = TemperatureWrapper(
-                temperature = currentResult.main?.temp,
-                feelsLike = currentResult.main?.feelsLike
+                temperature = currentResult.main?.temp?.celsius,
+                feelsLike = currentResult.main?.feelsLike?.celsius
             ),
             wind = Wind(
                 degree = currentResult.wind?.deg?.toDouble(),
@@ -225,8 +226,8 @@ class OpenWeatherService @Inject constructor(
                 weatherText = result.weather?.getOrNull(0)?.main?.capitalize(),
                 weatherCode = getWeatherCode(result.weather?.getOrNull(0)?.id),
                 temperature = TemperatureWrapper(
-                    temperature = result.main?.temp,
-                    feelsLike = result.main?.feelsLike
+                    temperature = result.main?.temp?.celsius,
+                    feelsLike = result.main?.feelsLike?.celsius
                 ),
                 precipitation = Precipitation(
                     total = getTotalPrecipitation(result.rain?.cumul3h, result.snow?.cumul3h)?.millimeters,

@@ -16,33 +16,34 @@
 
 package breezyweather.domain.weather.model
 
+import org.breezyweather.unit.pollen.PollenConcentration
 import java.io.Serializable
 
 /**
  * Pollen (tree, grass, weed) and mold
  */
 class Pollen(
-    val alder: Int? = null,
-    val ash: Int? = null,
-    val birch: Int? = null,
-    val chestnut: Int? = null,
-    val cypress: Int? = null,
-    val grass: Int? = null,
-    val hazel: Int? = null,
-    val hornbeam: Int? = null,
-    val linden: Int? = null,
-    val mold: Int? = null, // Not a pollen, but probably relevant to put with them
-    val mugwort: Int? = null,
-    val oak: Int? = null,
-    val olive: Int? = null,
-    val plane: Int? = null,
-    val plantain: Int? = null,
-    val poplar: Int? = null,
-    val ragweed: Int? = null,
-    val sorrel: Int? = null,
-    val tree: Int? = null,
-    val urticaceae: Int? = null,
-    val willow: Int? = null,
+    val alder: PollenConcentration? = null,
+    val ash: PollenConcentration? = null,
+    val birch: PollenConcentration? = null,
+    val chestnut: PollenConcentration? = null,
+    val cypress: PollenConcentration? = null,
+    val grass: PollenConcentration? = null,
+    val hazel: PollenConcentration? = null,
+    val hornbeam: PollenConcentration? = null,
+    val linden: PollenConcentration? = null,
+    val mold: PollenConcentration? = null, // Not a pollen, but probably relevant to put with them
+    val mugwort: PollenConcentration? = null,
+    val oak: PollenConcentration? = null,
+    val olive: PollenConcentration? = null,
+    val plane: PollenConcentration? = null,
+    val plantain: PollenConcentration? = null,
+    val poplar: PollenConcentration? = null,
+    val ragweed: PollenConcentration? = null,
+    val sorrel: PollenConcentration? = null,
+    val tree: PollenConcentration? = null,
+    val urticaceae: PollenConcentration? = null,
+    val willow: PollenConcentration? = null,
 ) : Serializable {
 
     val isMoldValid: Boolean

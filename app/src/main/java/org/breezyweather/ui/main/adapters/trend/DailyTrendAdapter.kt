@@ -20,8 +20,8 @@ import android.annotation.SuppressLint
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import breezyweather.domain.location.model.Location
-import org.breezyweather.common.basic.BreezyActivity
-import org.breezyweather.common.basic.models.options.appearance.DailyTrendDisplay
+import org.breezyweather.common.activities.BreezyActivity
+import org.breezyweather.common.options.appearance.DailyTrendDisplay
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.ui.common.widgets.trend.TrendRecyclerView
 import org.breezyweather.ui.main.adapters.trend.daily.AbsDailyTrendAdapter
@@ -55,23 +55,13 @@ class DailyTrendAdapter(
 
         adapters = SettingsManager.getInstance(activity).dailyTrendDisplayList.map {
             when (it) {
-                DailyTrendDisplay.TAG_TEMPERATURE -> DailyTemperatureAdapter(
-                    activity,
-                    location,
-                    provider,
-                    SettingsManager.getInstance(activity).getTemperatureUnit(activity)
-                )
+                DailyTrendDisplay.TAG_TEMPERATURE -> DailyTemperatureAdapter(activity, location, provider)
                 DailyTrendDisplay.TAG_AIR_QUALITY -> DailyAirQualityAdapter(activity, location)
                 DailyTrendDisplay.TAG_WIND -> DailyWindAdapter(activity, location)
                 DailyTrendDisplay.TAG_UV_INDEX -> DailyUVAdapter(activity, location)
                 DailyTrendDisplay.TAG_PRECIPITATION -> DailyPrecipitationAdapter(activity, location, provider)
                 DailyTrendDisplay.TAG_SUNSHINE -> DailySunshineAdapter(activity, location)
-                DailyTrendDisplay.TAG_FEELS_LIKE -> DailyFeelsLikeAdapter(
-                    activity,
-                    location,
-                    provider,
-                    SettingsManager.getInstance(activity).getTemperatureUnit(activity)
-                )
+                DailyTrendDisplay.TAG_FEELS_LIKE -> DailyFeelsLikeAdapter(activity, location, provider)
             }
         }.filter {
             it.isValid(location)

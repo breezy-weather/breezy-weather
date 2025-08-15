@@ -14,12 +14,12 @@
  * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package org.breezyweather.common.basic.models.options.appearance
+package org.breezyweather.common.options.appearance
 
 import android.content.Context
 import androidx.annotation.StringRes
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.options.basic.BaseEnum
+import org.breezyweather.common.options.BaseEnum
 
 enum class DailyTrendDisplay(
     override val id: String,
@@ -40,14 +40,14 @@ enum class DailyTrendDisplay(
         fun toDailyTrendDisplayList(
             value: String?,
         ) = if (value.isNullOrEmpty()) {
-            DailyTrendDisplay.entries.toMutableList()
+            entries.toMutableList()
         } else {
             try {
                 value.split("&").toTypedArray().mapNotNull { cardId ->
-                    DailyTrendDisplay.entries.firstOrNull { it.id == cardId }
+                    entries.firstOrNull { it.id == cardId }
                 }
             } catch (e: Exception) {
-                DailyTrendDisplay.entries.toMutableList()
+                entries.toMutableList()
             }
         }
 

@@ -14,7 +14,7 @@
  * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package org.breezyweather.common.basic.models.options.appearance
+package org.breezyweather.common.options.appearance
 
 import android.content.Context
 import android.icu.util.ULocale

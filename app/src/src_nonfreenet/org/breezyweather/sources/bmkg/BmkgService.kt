@@ -65,6 +65,7 @@ import org.breezyweather.unit.distance.Distance.Companion.meters
 import org.breezyweather.unit.pollutant.PollutantConcentration.Companion.microgramsPerCubicMeter
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.speed.Speed.Companion.kilometersPerHour
+import org.breezyweather.unit.temperature.Temperature.Companion.celsius
 import retrofit2.Retrofit
 import java.text.SimpleDateFormat
 import java.util.Locale
@@ -252,7 +253,7 @@ class BmkgService @Inject constructor(
             weatherText = getWeatherText(context, currentResult.data?.cuaca?.weather),
             weatherCode = getWeatherCode(currentResult.data?.cuaca?.weather),
             temperature = TemperatureWrapper(
-                temperature = currentResult.data?.cuaca?.t
+                temperature = currentResult.data?.cuaca?.t?.celsius
             ),
             wind = Wind(
                 degree = currentResult.data?.cuaca?.wdDeg,
@@ -300,7 +301,7 @@ class BmkgService @Inject constructor(
                                 weatherText = getWeatherText(context, it.weather),
                                 weatherCode = getWeatherCode(it.weather),
                                 temperature = TemperatureWrapper(
-                                    temperature = it.t
+                                    temperature = it.t?.celsius
                                 ),
                                 precipitation = Precipitation(
                                     total = it.tp?.millimeters

@@ -56,7 +56,7 @@ import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toImmutableMap
 import kotlinx.coroutines.launch
 import org.breezyweather.R
-import org.breezyweather.common.basic.BreezyActivity
+import org.breezyweather.common.activities.BreezyActivity
 import org.breezyweather.common.extensions.formatMeasureIntensity
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.getThemeColor

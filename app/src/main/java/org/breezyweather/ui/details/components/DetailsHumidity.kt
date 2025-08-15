@@ -53,19 +53,24 @@ import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.persistentMapOf
 import kotlinx.collections.immutable.toImmutableMap
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.options.appearance.DetailScreen
-import org.breezyweather.common.basic.models.options.basic.UnitUtils
+import org.breezyweather.common.extensions.formatMeasure
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.extensions.roundDownToNearestMultiplier
 import org.breezyweather.common.extensions.roundUpToNearestMultiplier
 import org.breezyweather.common.extensions.toDate
+import org.breezyweather.common.options.appearance.DetailScreen
+import org.breezyweather.common.utils.UnitUtils
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.domain.weather.model.getFullLabel
 import org.breezyweather.domain.weather.model.getRangeContentDescriptionSummary
 import org.breezyweather.domain.weather.model.getRangeSummary
 import org.breezyweather.ui.common.charts.BreezyLineChart
 import org.breezyweather.ui.settings.preference.bottomInsetItem
+import org.breezyweather.unit.formatting.UnitWidth
+import org.breezyweather.unit.temperature.Temperature
+import org.breezyweather.unit.temperature.Temperature.Companion.celsius
+import org.breezyweather.unit.temperature.toTemperature
 import java.util.Date
 
 @Composable
@@ -74,7 +79,7 @@ fun DetailsHumidity(
     hourlyList: ImmutableList<Hourly>,
     daily: Daily,
     defaultHumidityValue: Pair<Date, Double>?,
-    defaultDewPointValue: Pair<Date, Double>?,
+    defaultDewPointValue: Pair<Date, Temperature>?,
     modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
@@ -111,7 +116,7 @@ fun DetailsHumidity(
             .associate { it.date.time to it.dewPoint!! }
             .toImmutableMap()
     }
-    var activeDewPointItem: Pair<Date, Double>? by remember { mutableStateOf(null) }
+    var activeDewPointItem: Pair<Date, Temperature>? by remember { mutableStateOf(null) }
     val dewPointMarkerVisibilityListener = remember {
         object : CartesianMarkerVisibilityListener {
             override fun onShown(marker: CartesianMarker, targets: List<CartesianMarker.Target>) {
@@ -351,8 +356,8 @@ private fun HumidityChart(
 fun DewPointHeader(
     location: Location,
     daily: Daily,
-    activeItem: Pair<Date, Double>?,
-    defaultValue: Pair<Date, Double>?,
+    activeItem: Pair<Date, Temperature>?,
+    defaultValue: Pair<Date, Temperature>?,
 ) {
     val context = LocalContext.current
 
@@ -388,7 +393,6 @@ private fun DewPointSummary(
     modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
-    val temperatureUnit = SettingsManager.getInstance(context).getTemperatureUnit(context)
 
     Column(
         modifier = modifier.fillMaxWidth()
@@ -398,11 +402,11 @@ private fun DewPointSummary(
             style = MaterialTheme.typography.labelMedium
         )
         TextFixedHeight(
-            text = daily.dewPoint?.getRangeSummary(context, temperatureUnit) ?: "",
+            text = daily.dewPoint?.getRangeSummary(context) ?: "",
             style = MaterialTheme.typography.displaySmall,
             modifier = Modifier
                 .clearAndSetSemantics {
-                    daily.dewPoint?.getRangeContentDescriptionSummary(context, temperatureUnit)?.let {
+                    daily.dewPoint?.getRangeContentDescriptionSummary(context)?.let {
                         contentDescription = it
                     }
                 }
@@ -413,25 +417,22 @@ private fun DewPointSummary(
 @Composable
 private fun DewPointItem(
     header: @Composable () -> Unit,
-    dewPoint: Double?,
+    dewPoint: Temperature?,
     modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
-    val temperatureUnit = SettingsManager.getInstance(context).getTemperatureUnit(context)
 
     Column(
         modifier = modifier.fillMaxWidth()
     ) {
         header()
         TextFixedHeight(
-            text = dewPoint?.let {
-                temperatureUnit.formatMeasureShort(context, value = it, 1)
-            } ?: "",
+            text = dewPoint?.formatMeasure(context, unitWidth = UnitWidth.NARROW) ?: "",
             style = MaterialTheme.typography.displaySmall,
             modifier = Modifier
                 .clearAndSetSemantics {
                     dewPoint?.let {
-                        contentDescription = temperatureUnit.formatContentDescription(context, it)
+                        contentDescription = it.formatMeasure(context, unitWidth = UnitWidth.LONG)
                     }
                 }
         )
@@ -441,7 +442,7 @@ private fun DewPointItem(
 @Composable
 private fun DewPointChart(
     location: Location,
-    mappedValues: ImmutableMap<Long, Double>,
+    mappedValues: ImmutableMap<Long, Temperature>,
     daily: Daily,
     markerVisibilityListener: CartesianMarkerVisibilityListener,
 ) {
@@ -450,10 +451,10 @@ private fun DewPointChart(
     val temperatureUnit = SettingsManager.getInstance(context).getTemperatureUnit(context)
     val step = temperatureUnit.chartStep
     val maxY = remember(mappedValues) {
-        temperatureUnit.getConvertedUnit(mappedValues.values.max()).roundUpToNearestMultiplier(step)
+        mappedValues.values.max().toDouble(temperatureUnit).roundUpToNearestMultiplier(step)
     }
     val minY = remember(mappedValues) {
-        temperatureUnit.getConvertedUnit(mappedValues.values.min()).roundDownToNearestMultiplier(step)
+        mappedValues.values.min().toDouble(temperatureUnit).roundDownToNearestMultiplier(step)
     }
 
     val modelProducer = remember { CartesianChartModelProducer() }
@@ -463,7 +464,7 @@ private fun DewPointChart(
             lineSeries {
                 series(
                     x = mappedValues.keys,
-                    y = mappedValues.values.map { temperatureUnit.getConvertedUnit(it) }
+                    y = mappedValues.values.map { it.toDouble(temperatureUnit) }
                 )
             }
         }
@@ -474,29 +475,34 @@ private fun DewPointChart(
         modelProducer,
         daily.date,
         maxY,
-        { _, value, _ -> temperatureUnit.formatMeasure(context, value, isValueInDefaultUnit = false) },
+        { _, value, _ ->
+            value.toTemperature(temperatureUnit)
+                .formatMeasure(context, valueWidth = UnitWidth.NARROW, unitWidth = UnitWidth.NARROW)
+        },
         persistentListOf(
             persistentMapOf(
                 // TODO: Duplicate of temperature colors
-                temperatureUnit.getConvertedUnit(47.0).toFloat() to Color(71, 14, 0),
-                temperatureUnit.getConvertedUnit(30.0).toFloat() to Color(232, 83, 25),
-                temperatureUnit.getConvertedUnit(21.0).toFloat() to Color(243, 183, 4),
-                temperatureUnit.getConvertedUnit(10.0).toFloat() to Color(128, 147, 24),
-                temperatureUnit.getConvertedUnit(1.0).toFloat() to Color(68, 125, 99),
-                temperatureUnit.getConvertedUnit(0.0).toFloat() to Color(93, 133, 198),
-                temperatureUnit.getConvertedUnit(-4.0).toFloat() to Color(100, 166, 189),
-                temperatureUnit.getConvertedUnit(-8.0).toFloat() to Color(106, 191, 181),
-                temperatureUnit.getConvertedUnit(-15.0).toFloat() to Color(157, 219, 217),
-                temperatureUnit.getConvertedUnit(-25.0).toFloat() to Color(143, 89, 169),
-                temperatureUnit.getConvertedUnit(-40.0).toFloat() to Color(162, 70, 145),
-                temperatureUnit.getConvertedUnit(-55.0).toFloat() to Color(202, 172, 195),
-                temperatureUnit.getConvertedUnit(-70.0).toFloat() to Color(115, 70, 105)
+                47.celsius.toDouble(temperatureUnit).toFloat() to Color(71, 14, 0),
+                30.celsius.toDouble(temperatureUnit).toFloat() to Color(232, 83, 25),
+                21.celsius.toDouble(temperatureUnit).toFloat() to Color(243, 183, 4),
+                10.celsius.toDouble(temperatureUnit).toFloat() to Color(128, 147, 24),
+                1.celsius.toDouble(temperatureUnit).toFloat() to Color(68, 125, 99),
+                0.celsius.toDouble(temperatureUnit).toFloat() to Color(93, 133, 198),
+                -4.celsius.toDouble(temperatureUnit).toFloat() to Color(100, 166, 189),
+                -8.celsius.toDouble(temperatureUnit).toFloat() to Color(106, 191, 181),
+                -15.celsius.toDouble(temperatureUnit).toFloat() to Color(157, 219, 217),
+                -25.celsius.toDouble(temperatureUnit).toFloat() to Color(143, 89, 169),
+                -40.celsius.toDouble(temperatureUnit).toFloat() to Color(162, 70, 145),
+                -55.celsius.toDouble(temperatureUnit).toFloat() to Color(202, 172, 195),
+                -70.celsius.toDouble(temperatureUnit).toFloat() to Color(115, 70, 105)
             )
         ),
         topAxisValueFormatter = { _, value, _ ->
-            mappedValues.getOrElse(value.toLong()) { null }?.let {
-                temperatureUnit.formatMeasureShort(context, it)
-            } ?: "-"
+            mappedValues.getOrElse(value.toLong()) { null }?.formatMeasure(
+                context,
+                valueWidth = UnitWidth.NARROW,
+                unitWidth = UnitWidth.NARROW
+            ) ?: "-"
         },
         minY = minY,
         endAxisItemPlacer = remember {
