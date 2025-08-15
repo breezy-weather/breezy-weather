@@ -55,6 +55,7 @@ import org.breezyweather.unit.distance.Distance.Companion.meters
 import org.breezyweather.unit.pollutant.PollutantConcentration.Companion.microgramsPerCubicMeter
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
+import org.breezyweather.unit.speed.Speed.Companion.metersPerSecond
 import retrofit2.Retrofit
 import java.util.Date
 import javax.inject.Inject
@@ -182,8 +183,8 @@ class OpenWeatherService @Inject constructor(
             ),
             wind = Wind(
                 degree = currentResult.wind?.deg?.toDouble(),
-                speed = currentResult.wind?.speed,
-                gusts = currentResult.wind?.gust
+                speed = currentResult.wind?.speed?.metersPerSecond,
+                gusts = currentResult.wind?.gust?.metersPerSecond
             ),
             relativeHumidity = currentResult.main?.humidity?.toDouble(),
             pressure = currentResult.main?.pressure?.hectopascals,
@@ -235,8 +236,8 @@ class OpenWeatherService @Inject constructor(
                 precipitationProbability = PrecipitationProbability(total = result.pop?.times(100.0)),
                 wind = Wind(
                     degree = result.wind?.deg?.toDouble(),
-                    speed = result.wind?.speed,
-                    gusts = result.wind?.gust
+                    speed = result.wind?.speed?.metersPerSecond,
+                    gusts = result.wind?.gust?.metersPerSecond
                 ),
                 relativeHumidity = result.main?.humidity?.toDouble(),
                 pressure = result.main?.pressure?.hectopascals,

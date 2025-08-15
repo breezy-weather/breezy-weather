@@ -75,6 +75,7 @@ import org.breezyweather.sources.mf.json.MfWarningsOverseasResult
 import org.breezyweather.sources.mf.json.MfWarningsResult
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
+import org.breezyweather.unit.speed.Speed.Companion.metersPerSecond
 import retrofit2.Retrofit
 import java.nio.charset.StandardCharsets
 import java.util.Calendar
@@ -405,7 +406,7 @@ class MfService @Inject constructor(
             ),
             wind = Wind(
                 degree = currentResult.properties.gridded.windDirection?.toDouble(),
-                speed = currentResult.properties.gridded.windSpeed
+                speed = currentResult.properties.gridded.windSpeed?.metersPerSecond
             )
         )
     }
@@ -477,9 +478,8 @@ class MfService @Inject constructor(
                 ),
                 wind = Wind(
                     degree = hourlyForecast.windDirection?.toDouble(),
-                    speed = hourlyForecast.windSpeed?.toDouble(),
-                    // Seems to be always 0? Or not available in low wind speeds maybe
-                    gusts = hourlyForecast.windSpeedGust?.toDouble()
+                    speed = hourlyForecast.windSpeed?.metersPerSecond,
+                    gusts = hourlyForecast.windSpeedGust?.metersPerSecond
                 ),
                 relativeHumidity = hourlyForecast.relativeHumidity?.toDouble(),
                 pressure = hourlyForecast.pSea?.hectopascals,

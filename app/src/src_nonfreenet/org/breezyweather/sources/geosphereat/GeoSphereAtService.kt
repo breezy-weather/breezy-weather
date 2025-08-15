@@ -54,6 +54,7 @@ import org.breezyweather.sources.geosphereat.json.GeoSphereAtWarningsResult
 import org.breezyweather.unit.pollutant.PollutantConcentration.Companion.microgramsPerCubicMeter
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.pressure.Pressure.Companion.pascals
+import org.breezyweather.unit.speed.Speed.Companion.metersPerSecond
 import retrofit2.Retrofit
 import java.util.Date
 import javax.inject.Inject
@@ -352,9 +353,9 @@ class GeoSphereAtService @Inject constructor(
                 ),
                 wind = if (windSpeed != null) {
                     Wind(
-                        speed = windSpeed,
                         degree = windDegree,
-                        gusts = windGustSpeed
+                        speed = windSpeed.metersPerSecond,
+                        gusts = windGustSpeed?.metersPerSecond
                     )
                 } else {
                     null

@@ -21,8 +21,8 @@ import breezyweather.domain.weather.model.DailyVisibility
 import org.breezyweather.R
 import org.breezyweather.common.extensions.formatMeasure
 import org.breezyweather.common.extensions.formatValue
+import org.breezyweather.common.extensions.getVisibilityDescription
 import org.breezyweather.unit.formatting.UnitWidth
-import org.breezyweather.unit.getVisibilityDescription
 
 fun DailyVisibility.getRangeSummary(context: Context): String? {
     return if (min == null || max == null) {
@@ -56,8 +56,8 @@ fun DailyVisibility.getRangeDescriptionSummary(context: Context): String? {
     return if (min == null || max == null) {
         null
     } else {
-        val minDescription = getVisibilityDescription(context, min)
-        val maxDescription = getVisibilityDescription(context, max)
+        val minDescription = min?.getVisibilityDescription(context)
+        val maxDescription = max?.getVisibilityDescription(context)
 
         if (minDescription == maxDescription) {
             maxDescription

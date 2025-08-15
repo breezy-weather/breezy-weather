@@ -64,6 +64,7 @@ import org.breezyweather.sources.bmkg.json.BmkgWarningResult
 import org.breezyweather.unit.distance.Distance.Companion.meters
 import org.breezyweather.unit.pollutant.PollutantConcentration.Companion.microgramsPerCubicMeter
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
+import org.breezyweather.unit.speed.Speed.Companion.kilometersPerHour
 import retrofit2.Retrofit
 import java.text.SimpleDateFormat
 import java.util.Locale
@@ -255,7 +256,7 @@ class BmkgService @Inject constructor(
             ),
             wind = Wind(
                 degree = currentResult.data?.cuaca?.wdDeg,
-                speed = currentResult.data?.cuaca?.ws?.div(3.6) // convert km/h to m/s
+                speed = currentResult.data?.cuaca?.ws?.kilometersPerHour
             ),
             relativeHumidity = currentResult.data?.cuaca?.hu,
             visibility = currentResult.data?.cuaca?.vs?.meters
@@ -306,7 +307,7 @@ class BmkgService @Inject constructor(
                                 ),
                                 wind = Wind(
                                     degree = it.wdDeg,
-                                    speed = it.ws?.div(3.6) // convert km/h to m/s
+                                    speed = it.ws?.kilometersPerHour
                                 ),
                                 relativeHumidity = it.hu,
                                 cloudCover = it.tcc?.toInt(),

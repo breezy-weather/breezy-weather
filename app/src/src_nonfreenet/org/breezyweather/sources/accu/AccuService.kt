@@ -97,6 +97,9 @@ import org.breezyweather.unit.precipitation.Precipitation.Companion.inches
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.precipitation.PrecipitationUnit
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
+import org.breezyweather.unit.speed.Speed
+import org.breezyweather.unit.speed.Speed.Companion.kilometersPerHour
+import org.breezyweather.unit.speed.Speed.Companion.milesPerHour
 import retrofit2.Retrofit
 import java.util.Calendar
 import java.util.Date
@@ -421,8 +424,8 @@ class AccuService @Inject constructor(
             ),
             wind = Wind(
                 degree = currentResult.Wind?.Direction?.Degrees?.toDouble(),
-                speed = currentResult.Wind?.Speed?.Metric?.Value?.div(3.6),
-                gusts = currentResult.WindGust?.Speed?.Metric?.Value?.div(3.6)
+                speed = currentResult.Wind?.Speed?.Metric?.Value?.kilometersPerHour,
+                gusts = currentResult.WindGust?.Speed?.Metric?.Value?.kilometersPerHour
             ),
             uV = UV(index = currentResult.UVIndex?.toDouble()),
             relativeHumidity = currentResult.RelativeHumidity?.toDouble(),
@@ -766,11 +769,11 @@ class AccuService @Inject constructor(
         }
     }
 
-    private fun getSpeedInMetersPerSecond(value: AccuValue?): Double? {
+    private fun getSpeedInMetersPerSecond(value: AccuValue?): Speed? {
         return if (value?.UnitType == 9) { // mi/h
-            value.Value?.div(2.23694)
+            value.Value?.milesPerHour
         } else {
-            value?.Value?.div(3.6)
+            value?.Value?.kilometersPerHour
         }
     }
 

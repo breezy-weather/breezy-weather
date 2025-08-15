@@ -42,15 +42,15 @@ import breezyweather.domain.weather.wrappers.CurrentWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import org.breezyweather.common.basic.models.options.basic.UnitUtils
-import org.breezyweather.common.basic.models.options.unit.SpeedUnit
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
+import org.breezyweather.common.extensions.CLOUD_COVER_BKN
+import org.breezyweather.common.extensions.CLOUD_COVER_FEW
 import org.breezyweather.common.extensions.ensurePositive
 import org.breezyweather.common.extensions.getIsoFormattedDate
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.domain.weather.index.PollutantIndex
+import org.breezyweather.domain.weather.model.validate
 import org.breezyweather.ui.theme.weatherView.WeatherViewController
-import org.breezyweather.unit.CLOUD_COVER_BKN
-import org.breezyweather.unit.CLOUD_COVER_FEW
 import org.breezyweather.unit.distance.Distance
 import org.breezyweather.unit.distance.Distance.Companion.meters
 import org.breezyweather.unit.duration.toValidDailyOrNull
@@ -60,6 +60,9 @@ import org.breezyweather.unit.precipitation.Precipitation.Companion.micrometers
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.pressure.Pressure
 import org.breezyweather.unit.pressure.Pressure.Companion.pascals
+import org.breezyweather.unit.speed.Speed
+import org.breezyweather.unit.speed.Speed.Companion.kilometersPerHour
+import org.breezyweather.unit.speed.Speed.Companion.metersPerSecond
 import org.shredzone.commons.suncalc.MoonIllumination
 import org.shredzone.commons.suncalc.MoonTimes
 import org.shredzone.commons.suncalc.SunTimes
@@ -211,7 +214,7 @@ internal fun computeMissingHourlyData(
     return hourlyList?.map { hourly ->
         val temp = TemperatureUnit.validateValue(hourly.temperature?.temperature)
         val feelsLike = TemperatureUnit.validateValue(hourly.temperature?.feelsLike)
-        val wind = SpeedUnit.validateWind(hourly.wind)
+        val wind = hourly.wind?.validate()
         val precipitation = hourly.precipitation?.copy(
             total = hourly.precipitation!!.total?.toValidHourlyOrNull(),
             thunderstorm = hourly.precipitation!!.thunderstorm?.toValidHourlyOrNull(),
@@ -313,43 +316,39 @@ private fun computeDewPoint(temperature: Double?, relativeHumidity: Double?): Do
  *
  * @param temperature in °C
  * @param relativeHumidity in %
- * @param windSpeed in m/s
  */
 internal fun computeApparentTemperature(
     temperature: Double?,
     relativeHumidity: Double?,
-    windSpeed: Double?,
+    windSpeed: Speed?,
 ): Double? {
     if (temperature == null || relativeHumidity == null || windSpeed == null) return null
 
-    val e = relativeHumidity / 100 * 6.105 * exp(17.27 * temperature / (237.7 + temperature))
-    return temperature + 0.33 * e - 0.7 * windSpeed - 4.0
+    val e = relativeHumidity.div(100) * 6.105 * exp(17.27 * temperature / (237.7 + temperature))
+    return temperature + 0.33 * e - 0.7 * windSpeed.inMetersPerSecond - 4.0
 }
 
 /**
  * Compute wind chill from temperature and wind speed
  * Uses Environment Canada methodology
  * Source: https://climate.weather.gc.ca/glossary_e.html#w
- * Only valid for (T ≤ 0°C) or (T ≤ 10°C and WS ≥ 5km/h)
+ * Only valid for (T ≤ 0 °C) or (T ≤ 10°C and WS ≥ 5 km/h)
  * TODO: Unit test
  *
  * @param temperature in °C
- * @param windSpeed in m/s
  */
 internal fun computeWindChillTemperature(
     temperature: Double?,
-    windSpeed: Double?,
+    windSpeed: Speed?,
 ): Double? {
     if (temperature == null || windSpeed == null || temperature > 10) return null
-    val windSpeedKph = windSpeed * 3.6
-
-    return if (windSpeedKph >= 5.0) {
+    return if (windSpeed >= 5.kilometersPerHour) {
         13.12 +
             (0.6215 * temperature) -
-            (11.37 * windSpeedKph.pow(0.16)) +
-            (0.3965 * temperature * windSpeedKph.pow(0.16))
+            (11.37 * windSpeed.inKilometersPerHour.pow(0.16)) +
+            (0.3965 * temperature * windSpeed.inKilometersPerHour.pow(0.16))
     } else if (temperature <= 0.0) {
-        temperature + ((-1.59 + 0.1345 * temperature) / 5.0) * windSpeedKph
+        temperature + ((-1.59 + 0.1345 * temperature) / 5.0) * windSpeed.inKilometersPerHour
     } else {
         null
     }
@@ -889,7 +888,7 @@ private fun completeHalfDayFromHourlyList(
         ice = newHalfDay.precipitationDuration!!.ice?.toValidHalfDayOrNull()
     )
 
-    val initialWind = SpeedUnit.validateWind(newHalfDay.wind)
+    val initialWind = newHalfDay.wind?.validate()
     val maxWind = if (initialWind?.speed == null) {
         getHalfDayWindFromHourlyList(halfDayHourlyList)
     } else {
@@ -961,7 +960,7 @@ private fun getHalfDayWeatherCodeFromHourlyList(
     val minPrecipProbability = 30.0 // in %
     val maxVisibilityHaze = 5000.meters
     val maxVisibilityFog = 1000.meters
-    val maxWindSpeedWindy = 10.0 // in m/s
+    val maxWindSpeedWindy = 10.metersPerSecond
 
     // If total precipitation is greater than 1 mm
     // and max probability is greater than 30 % (assume 100 % if not reported)
@@ -1036,7 +1035,7 @@ private fun getHalfDayWeatherCodeFromHourlyList(
     }
 
     // Max winds > 10 m/s, it’s windy
-    if ((maxWind?.speed ?: 0.0) > maxWindSpeedWindy) {
+    if (maxWind?.speed != null && maxWind.speed!! > maxWindSpeedWindy) {
         return WeatherCode.WIND
     }
 
@@ -1569,7 +1568,7 @@ internal fun completeCurrentFromHourlyData(
 
     val initialTemp = TemperatureUnit.validateValue(newCurrent.temperature?.temperature)
     val initialFeelsLike = TemperatureUnit.validateValue(newCurrent.temperature?.feelsLike)
-    val initialWind = SpeedUnit.validateWind(newCurrent.wind)
+    val initialWind = newCurrent.wind?.validate()
     val newWind = if (initialWind?.speed != null || hourly.wind?.speed == null) initialWind else hourly.wind
     val newRelativeHumidity = UnitUtils.validatePercent(newCurrent.relativeHumidity)
         ?: hourly.relativeHumidity
@@ -1628,7 +1627,7 @@ private fun completeCurrentTemperatureFromHourly(
     initialTemp: Double?,
     initialFeelsLike: Double?,
     hourlyTemperature: Temperature?,
-    windSpeed: Double?,
+    windSpeed: Speed?,
     relativeHumidity: Double?,
     dewPoint: Double?,
 ): Temperature? {

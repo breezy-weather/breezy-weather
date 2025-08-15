@@ -49,6 +49,7 @@ import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
 import org.breezyweather.sources.bmd.json.BmdData
 import org.breezyweather.sources.bmd.json.BmdForecastResult
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
+import org.breezyweather.unit.speed.Speed.Companion.kilometersPerHour
 import retrofit2.Retrofit
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -169,7 +170,7 @@ class BmdService @Inject constructor(
                 minTMap[temp.stepStart] = forecast.temp.getOrElse(index + 1) { null }?.valMin
             }
             forecast.windspd?.forEach {
-                wsMap[it.stepStart] = it.valMax?.div(3.6)
+                wsMap[it.stepStart] = it.valMax
             }
             forecast.winddir?.forEach {
                 wdMap[it.stepStart] = getCorrectWindDirection(
@@ -179,7 +180,7 @@ class BmdService @Inject constructor(
                 )
             }
             forecast.windgust?.forEach {
-                wgMap[it.stepStart] = it.valMax?.div(3.6)
+                wgMap[it.stepStart] = it.valMax
             }
             forecast.cldcvr?.forEach {
                 ccMap[it.stepStart] = it.valAvg?.times(12.5)?.toInt()
@@ -209,8 +210,8 @@ class BmdService @Inject constructor(
                     ),
                     wind = Wind(
                         degree = wdMap.getOrElse(key) { null },
-                        speed = wsMap.getOrElse(key) { null },
-                        gusts = wgMap.getOrElse(key) { null }
+                        speed = wsMap.getOrElse(key) { null }?.kilometersPerHour,
+                        gusts = wgMap.getOrElse(key) { null }?.kilometersPerHour
                     ),
                     precipitation = Precipitation(
                         total = rfDayMap.getOrElse(key) { null }?.millimeters
@@ -231,8 +232,8 @@ class BmdService @Inject constructor(
                     ),
                     wind = Wind(
                         degree = wdMap.getOrElse(key) { null },
-                        speed = wsMap.getOrElse(key) { null },
-                        gusts = wgMap.getOrElse(key) { null }
+                        speed = wsMap.getOrElse(key) { null }?.kilometersPerHour,
+                        gusts = wgMap.getOrElse(key) { null }?.kilometersPerHour
                     ),
                     precipitation = Precipitation(
                         total = rfNightMap.getOrElse(key) { null }?.millimeters
@@ -275,7 +276,7 @@ class BmdService @Inject constructor(
                 rhMap[it.stepStart] = it.valAvg
             }
             forecast.windspd?.forEach {
-                wsMap[it.stepStart] = it.valAvg?.div(3.6)
+                wsMap[it.stepStart] = it.valAvg
             }
             forecast.winddir?.forEach {
                 wdMap[it.stepStart] = getCorrectWindDirection(
@@ -285,7 +286,7 @@ class BmdService @Inject constructor(
                 )
             }
             forecast.windgust?.forEach {
-                wgMap[it.stepStart] = it.valAvg?.div(3.6)
+                wgMap[it.stepStart] = it.valAvg
             }
             forecast.cldcvr?.forEach {
                 ccMap[it.stepStart] = it.valAvg?.times(12.5)?.toInt()
@@ -315,8 +316,8 @@ class BmdService @Inject constructor(
                     ),
                     wind = Wind(
                         degree = wdMap.getOrElse(key) { null },
-                        speed = wsMap.getOrElse(key) { null },
-                        gusts = wgMap.getOrElse(key) { null }
+                        speed = wsMap.getOrElse(key) { null }?.kilometersPerHour,
+                        gusts = wgMap.getOrElse(key) { null }?.kilometersPerHour
                     ),
                     relativeHumidity = rhMap.getOrElse(key) { null },
                     cloudCover = ccMap.getOrElse(key) { null }

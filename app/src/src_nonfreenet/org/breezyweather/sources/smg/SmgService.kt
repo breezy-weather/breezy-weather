@@ -55,6 +55,7 @@ import org.breezyweather.sources.smg.json.SmgWarningResult
 import org.breezyweather.unit.pollutant.PollutantConcentration.Companion.microgramsPerCubicMeter
 import org.breezyweather.unit.pollutant.PollutantConcentration.Companion.milligramsPerCubicMeter
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
+import org.breezyweather.unit.speed.Speed.Companion.kilometersPerHour
 import retrofit2.Retrofit
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -301,37 +302,32 @@ class SmgService @Inject constructor(
         uvResult: SmgUvResult,
     ): CurrentWrapper {
         var current = CurrentWrapper()
-        var stationName: String?
         currentResult.Weather?.Custom?.getOrNull(0)?.WeatherReport?.forEach { report ->
             // SMG has not released the coordinates of its various monitoring stations.
             // Therefore we default to "Taipa Grande" which is SMG's office location.
             // This is fine because Macao has a land area of just 32.9km²,
             // which is one-third the size of the forecast grid of most other countries (c. 100km²).
             // TODO: Once we have more intel on the coordinates of the stations, we can locate the nearest one.
-            stationName = report.station?.getOrNull(0)?.stationname?.getOrNull(0)
-            if (report.station?.getOrNull(0) !== null && stationName == "TAIPA GRANDE") {
-                report.station[0].let {
-                    current = CurrentWrapper(
-                        temperature = TemperatureWrapper(
-                            temperature = it.Temperature?.getOrNull(0)?.dValue?.getOrNull(0)?.toDoubleOrNull()
-                        ),
-                        wind = Wind(
-                            degree = it.WindDirection?.getOrNull(0)?.Degree?.getOrNull(0)?.toDoubleOrNull(),
-                            speed = it.WindSpeed?.getOrNull(0)?.dValue?.getOrNull(0)?.toDoubleOrNull()?.div(3.6),
-                            gusts = it.WindGust?.getOrNull(0)?.dValue?.getOrNull(0)?.toDoubleOrNull()?.div(3.6)
-                        ),
-                        uV = UV(
-                            index = uvResult.UV?.Custom?.getOrNull(
-                                0
-                            )?.ActualUVBReport?.getOrNull(0)?.index?.getOrNull(0)?.Value?.getOrNull(0)?.toDoubleOrNull()
-                        ),
-                        relativeHumidity = it.Humidity?.getOrNull(0)?.dValue?.getOrNull(0)?.toDoubleOrNull(),
-                        dewPoint = it.DewPoint?.getOrNull(0)?.dValue?.getOrNull(0)?.toDoubleOrNull(),
-                        pressure = it.MeanSeaLevelPressure?.getOrNull(0)?.dValue?.getOrNull(0)?.toDoubleOrNull()
-                            ?.hectopascals,
-                        dailyForecast = bulletinResult.Forecast?.Custom?.getOrNull(0)?.TodaySituation?.getOrNull(0)
-                    )
-                }
+            report.station?.getOrNull(0)?.takeIf { it.stationname?.getOrNull(0) == "TAIPA GRANDE" }?.let {
+                current = CurrentWrapper(
+                    temperature = TemperatureWrapper(
+                        temperature = it.Temperature?.getOrNull(0)?.dValue?.getOrNull(0)?.toDoubleOrNull()
+                    ),
+                    wind = Wind(
+                        degree = it.WindDirection?.getOrNull(0)?.Degree?.getOrNull(0)?.toDoubleOrNull(),
+                        speed = it.WindSpeed?.getOrNull(0)?.dValue?.getOrNull(0)?.toDoubleOrNull()?.kilometersPerHour,
+                        gusts = it.WindGust?.getOrNull(0)?.dValue?.getOrNull(0)?.toDoubleOrNull()?.kilometersPerHour
+                    ),
+                    uV = UV(
+                        index = uvResult.UV?.Custom?.getOrNull(0)?.ActualUVBReport?.getOrNull(0)?.index
+                            ?.getOrNull(0)?.Value?.getOrNull(0)?.toDoubleOrNull()
+                    ),
+                    relativeHumidity = it.Humidity?.getOrNull(0)?.dValue?.getOrNull(0)?.toDoubleOrNull(),
+                    dewPoint = it.DewPoint?.getOrNull(0)?.dValue?.getOrNull(0)?.toDoubleOrNull(),
+                    pressure = it.MeanSeaLevelPressure?.getOrNull(0)?.dValue?.getOrNull(0)?.toDoubleOrNull()
+                        ?.hectopascals,
+                    dailyForecast = bulletinResult.Forecast?.Custom?.getOrNull(0)?.TodaySituation?.getOrNull(0)
+                )
             }
         }
         return current
@@ -406,7 +402,7 @@ class SmgService @Inject constructor(
                         ),
                         wind = Wind(
                             degree = it.Winddiv?.getOrNull(0)?.Value?.getOrNull(0)?.toDoubleOrNull(),
-                            speed = it.Windspd?.getOrNull(0)?.Value?.getOrNull(0)?.toDoubleOrNull()?.div(3.6)
+                            speed = it.Windspd?.getOrNull(0)?.Value?.getOrNull(0)?.toDoubleOrNull()?.kilometersPerHour
                         ),
                         relativeHumidity = it.Humidity?.getOrNull(0)?.Value?.getOrNull(0)?.toDoubleOrNull()
                     )
@@ -609,9 +605,9 @@ class SmgService @Inject constructor(
     }
 
     // Mean max and mean min temperatures for each month from 1991 to 2020.
-// Hard-coded since Macao has a land area of just 32.9km²,
-// and there are only records for SMG's main office in Taipa Grande.
-// Source: https://www.smg.gov.mo/en/subpage/348/page/252
+    // Hard-coded since Macao has a land area of just 32.9km²,
+    // and there are only records for SMG's main office in Taipa Grande.
+    // Source: https://www.smg.gov.mo/en/subpage/348/page/252
     private fun getNormals(): Map<Month, Normals> {
         return mapOf(
             Month.JANUARY to Normals(18.6, 12.7),
@@ -630,7 +626,7 @@ class SmgService @Inject constructor(
     }
 
     // Source: mostly from https://www.smg.gov.mo/en/subpage/232/page/268
-// Can check with https://cms.smg.gov.mo/uploads/image/introduction/ww-e01.png (replace 01 with the code below)
+    // Can check with https://cms.smg.gov.mo/uploads/image/introduction/ww-e01.png (replace 01 with the code below)
     private fun getWeatherText(
         context: Context,
         weather: String?,

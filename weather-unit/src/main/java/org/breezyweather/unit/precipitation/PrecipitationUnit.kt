@@ -30,7 +30,7 @@ enum class PrecipitationUnit(
     override val nominative: UnitTranslation,
     override val per: UnitTranslation? = null,
     override val measureUnit: MeasureUnit?,
-    override val perMeasureUnit: MeasureUnit?,
+    override val perMeasureUnit: MeasureUnit? = null,
     val convertFromReference: (Double) -> Double,
     val convertToReference: (Double) -> Double,
     override val decimals: UnitDecimals,
@@ -48,7 +48,6 @@ enum class PrecipitationUnit(
             long = R.string.length_microm_nominative_long
         ),
         measureUnit = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) MeasureUnit.MICROMETER else null,
-        perMeasureUnit = null,
         convertFromReference = { valueInDefaultUnit -> valueInDefaultUnit },
         convertToReference = { valueInDefaultUnit -> valueInDefaultUnit },
         decimals = UnitDecimals(short = 0, long = 1), // Used only by PM2.5 formatting
@@ -65,7 +64,6 @@ enum class PrecipitationUnit(
             long = R.string.length_mm_nominative_long
         ),
         measureUnit = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) MeasureUnit.MILLIMETER else null,
-        perMeasureUnit = null,
         convertFromReference = { valueInDefaultUnit -> valueInDefaultUnit.div(1000.0) },
         convertToReference = { valueInDefaultUnit -> valueInDefaultUnit.times(1000.0) },
         decimals = UnitDecimals(narrow = 0, short = 1, long = 2),
@@ -82,7 +80,6 @@ enum class PrecipitationUnit(
             long = R.string.length_cm_nominative_long
         ),
         measureUnit = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) MeasureUnit.CENTIMETER else null,
-        perMeasureUnit = null,
         convertFromReference = { valueInDefaultUnit -> valueInDefaultUnit.div(10000.0) },
         convertToReference = { valueInDefaultUnit -> valueInDefaultUnit.times(10000.0) },
         decimals = UnitDecimals(narrow = 1, short = 2, long = 3),
@@ -99,7 +96,6 @@ enum class PrecipitationUnit(
             long = R.string.length_in_nominative_long
         ),
         measureUnit = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) MeasureUnit.INCH else null,
-        perMeasureUnit = null,
         convertFromReference = { valueInDefaultUnit -> valueInDefaultUnit.div(25400.0) },
         convertToReference = { valueInDefaultUnit -> valueInDefaultUnit.times(25400.0) },
         decimals = UnitDecimals(narrow = 1, short = 2, long = 3),

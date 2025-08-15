@@ -357,9 +357,9 @@ fun Long.toPrecipitation(unit: PrecipitationUnit): Precipitation {
  * @throws IllegalArgumentException if this `Double` value is `NaN`.
  */
 fun Double.toPrecipitation(unit: PrecipitationUnit): Precipitation {
-    val valueInPa = convertPrecipitationUnit(this, unit, PrecipitationUnit.MICROMETER)
-    require(!valueInPa.isNaN()) { "Precipitation value cannot be NaN." }
-    return precipitationOf(valueInPa.roundToLong())
+    val valueInMicrom = convertPrecipitationUnit(this, unit, PrecipitationUnit.MICROMETER)
+    require(!valueInMicrom.isNaN()) { "Precipitation value cannot be NaN." }
+    return precipitationOf(valueInMicrom.roundToLong())
 }
 
 private fun parsePrecipitation(value: String): Precipitation {

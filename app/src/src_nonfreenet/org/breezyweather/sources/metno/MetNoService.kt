@@ -56,6 +56,7 @@ import org.breezyweather.sources.metno.json.MetNoNowcastResult
 import org.breezyweather.unit.pollutant.PollutantConcentration.Companion.microgramsPerCubicMeter
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
+import org.breezyweather.unit.speed.Speed.Companion.metersPerSecond
 import retrofit2.Retrofit
 import java.util.Date
 import javax.inject.Inject
@@ -287,7 +288,7 @@ class MetNoService @Inject constructor(
                 wind = if (currentTimeseries.instant?.details != null) {
                     Wind(
                         degree = currentTimeseries.instant.details.windFromDirection,
-                        speed = currentTimeseries.instant.details.windSpeed
+                        speed = currentTimeseries.instant.details.windSpeed?.metersPerSecond
                     )
                 } else {
                     null
@@ -328,13 +329,11 @@ class MetNoService @Inject constructor(
                         ?: hourlyForecast.data?.next6Hours?.details?.probabilityOfThunder
                         ?: hourlyForecast.data?.next12Hours?.details?.probabilityOfThunder
                 ),
-                wind = if (hourlyForecast.data?.instant?.details != null) {
+                wind = hourlyForecast.data?.instant?.details?.let { details ->
                     Wind(
-                        degree = hourlyForecast.data.instant.details.windFromDirection,
-                        speed = hourlyForecast.data.instant.details.windSpeed
+                        degree = details.windFromDirection,
+                        speed = details.windSpeed?.metersPerSecond
                     )
-                } else {
-                    null
                 },
                 uV = UV(index = hourlyForecast.data?.instant?.details?.ultravioletIndexClearSky),
                 relativeHumidity = hourlyForecast.data?.instant?.details?.relativeHumidity,

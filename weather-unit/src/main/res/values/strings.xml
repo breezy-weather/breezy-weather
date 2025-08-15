@@ -68,6 +68,20 @@
     <string name="length_nmi_nominative_short">%s nmi</string>
     <string name="length_nmi_nominative_long">@string/length_nmi_nominative_short</string>
 
+    <!-- Speed units -->
+
+    <!-- Knot -->
+    <string name="speed_kn_display_name_short">kn</string>
+    <string name="speed_kn_display_name_long">@string/speed_kn_display_name_short</string>
+    <string name="speed_kn_nominative_short">%s kn</string>
+    <string name="speed_kn_nominative_long">@string/speed_kn_nominative_short</string>
+
+    <!-- Beaufort scale -->
+    <string name="speed_bf_display_name_short">Bf</string>
+    <string name="speed_bf_display_name_long">@string/speed_bf_display_name_short</string>
+    <string name="speed_bf_nominative_short">%s Bft</string>
+    <string name="speed_bf_nominative_long">@string/speed_bf_nominative_short</string>
+
     <!-- Volume units -->
 
     <!-- Liter -->

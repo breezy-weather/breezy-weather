@@ -54,6 +54,7 @@ import org.breezyweather.sources.mgm.json.MgmHourlyForecastResult
 import org.breezyweather.sources.mgm.json.MgmLocationResult
 import org.breezyweather.sources.mgm.json.MgmNormalsResult
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
+import org.breezyweather.unit.speed.Speed.Companion.kilometersPerHour
 import retrofit2.Retrofit
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -245,7 +246,7 @@ class MgmService @Inject constructor(
             ),
             wind = Wind(
                 degree = getValid(currentResult?.windDirection),
-                speed = getValid(currentResult?.windSpeed)?.div(3.6)
+                speed = getValid(currentResult?.windSpeed)?.kilometersPerHour
             ),
             relativeHumidity = getValid(currentResult?.humidity),
             pressure = getValid(currentResult?.pressure)?.hectopascals
@@ -336,8 +337,8 @@ class MgmService @Inject constructor(
                     ),
                     wind = Wind(
                         degree = it.windDirection,
-                        speed = it.windSpeed?.div(3.6),
-                        gusts = it.gust?.div(3.6)
+                        speed = it.windSpeed?.kilometersPerHour,
+                        gusts = it.gust?.kilometersPerHour
                     ),
                     relativeHumidity = it.humidity
                 )
@@ -420,7 +421,7 @@ class MgmService @Inject constructor(
                 temperature = maxTemp?.let { TemperatureWrapper(temperature = it) },
                 wind = Wind(
                     degree = windDirection,
-                    speed = windSpeed?.div(3.6)
+                    speed = windSpeed?.kilometersPerHour
                 )
             ),
             night = HalfDayWrapper(
@@ -429,14 +430,14 @@ class MgmService @Inject constructor(
                 temperature = nextDayMinTemp?.let { TemperatureWrapper(temperature = it) },
                 wind = Wind(
                     degree = windDirection,
-                    speed = windSpeed?.div(3.6)
+                    speed = windSpeed?.kilometersPerHour
                 )
             )
         )
     }
 
     // Source: https://www.mgm.gov.tr/Scripts/ziko16_js/angularService/ililceler.js?v=4
-// under function convertHadise
+    // under function convertHadise
     private fun getWeatherText(
         context: Context,
         condition: String?,
@@ -511,8 +512,8 @@ class MgmService @Inject constructor(
     }
 
     // Simply join names of the active alert types as alert headline.
-// Turkish terminology from: https://www.mgm.gov.tr/meteouyari/turkiye.aspx?Gun=1
-// under "harita-alti-hadise"
+    // Turkish terminology from: https://www.mgm.gov.tr/meteouyari/turkiye.aspx?Gun=1
+    // under "harita-alti-hadise"
     private fun getAlertHeadline(
         weather: List<String>?,
     ): String {

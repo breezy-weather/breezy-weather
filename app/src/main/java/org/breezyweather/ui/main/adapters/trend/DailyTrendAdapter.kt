@@ -61,25 +61,11 @@ class DailyTrendAdapter(
                     provider,
                     SettingsManager.getInstance(activity).getTemperatureUnit(activity)
                 )
-                DailyTrendDisplay.TAG_AIR_QUALITY -> DailyAirQualityAdapter(
-                    activity,
-                    location
-                )
-                DailyTrendDisplay.TAG_WIND -> DailyWindAdapter(
-                    activity,
-                    location,
-                    SettingsManager.getInstance(activity).getSpeedUnit(activity)
-                )
+                DailyTrendDisplay.TAG_AIR_QUALITY -> DailyAirQualityAdapter(activity, location)
+                DailyTrendDisplay.TAG_WIND -> DailyWindAdapter(activity, location)
                 DailyTrendDisplay.TAG_UV_INDEX -> DailyUVAdapter(activity, location)
-                DailyTrendDisplay.TAG_PRECIPITATION -> DailyPrecipitationAdapter(
-                    activity,
-                    location,
-                    provider
-                )
-                DailyTrendDisplay.TAG_SUNSHINE -> DailySunshineAdapter(
-                    activity,
-                    location
-                )
+                DailyTrendDisplay.TAG_PRECIPITATION -> DailyPrecipitationAdapter(activity, location, provider)
+                DailyTrendDisplay.TAG_SUNSHINE -> DailySunshineAdapter(activity, location)
                 DailyTrendDisplay.TAG_FEELS_LIKE -> DailyFeelsLikeAdapter(
                     activity,
                     location,

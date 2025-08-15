@@ -41,8 +41,6 @@ import androidx.compose.ui.text.style.BaselineShift
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.em
-import org.breezyweather.R
-import org.breezyweather.common.basic.models.options.unit.SpeedUnit
 import org.breezyweather.common.basic.models.options.unit.UnitWidth
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
@@ -338,15 +336,9 @@ object UnitUtils {
         enum: UnitEnum<Double>,
         formattedValue: String,
         unitWidth: UnitWidth = UnitWidth.SHORT,
-    ) = if (enum == SpeedUnit.BEAUFORT) {
-        // Dirty hack for special case
-        // TODO: Add this kind of formatting for all units
-        context.getString(R.string.unit_bft_nominative, formattedValue)
-    } else {
-        (if (context.isRtl) BidiFormatter.getInstance().unicodeWrap(formattedValue) else formattedValue) +
-            (if (unitWidth != UnitWidth.NARROW) "\u202f" else "") +
-            (if (unitWidth != UnitWidth.FULL) getName(context, enum) else getMeasureContentDescription(context, enum))
-    }
+    ) = (if (context.isRtl) BidiFormatter.getInstance().unicodeWrap(formattedValue) else formattedValue) +
+        (if (unitWidth != UnitWidth.NARROW) "\u202f" else "") +
+        (if (unitWidth != UnitWidth.FULL) getName(context, enum) else getMeasureContentDescription(context, enum))
 
     /**
      * Uses LocalizedNumberFormatter on Android SDK >= 30 (which is the recommended way)

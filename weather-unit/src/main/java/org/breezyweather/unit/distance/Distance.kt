@@ -246,9 +246,9 @@ fun Long.toDistance(unit: DistanceUnit): Distance {
  * @throws IllegalArgumentException if this `Double` value is `NaN`.
  */
 fun Double.toDistance(unit: DistanceUnit): Distance {
-    val valueInPa = convertDistanceUnit(this, unit, DistanceUnit.METER)
-    require(!valueInPa.isNaN()) { "Distance value cannot be NaN." }
-    return distanceOf(valueInPa.roundToLong())
+    val valueInM = convertDistanceUnit(this, unit, DistanceUnit.METER)
+    require(!valueInM.isNaN()) { "Distance value cannot be NaN." }
+    return distanceOf(valueInM.roundToLong())
 }
 
 private fun parseDistance(value: String): Distance {

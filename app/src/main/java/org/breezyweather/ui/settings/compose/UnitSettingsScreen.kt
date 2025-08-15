@@ -25,7 +25,6 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringArrayResource
 import androidx.compose.ui.res.stringResource
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.options.unit.SpeedUnit
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.plus
@@ -41,6 +40,7 @@ import org.breezyweather.unit.distance.DistanceUnit
 import org.breezyweather.unit.formatting.UnitWidth
 import org.breezyweather.unit.precipitation.PrecipitationUnit
 import org.breezyweather.unit.pressure.PressureUnit
+import org.breezyweather.unit.speed.SpeedUnit
 
 @Composable
 fun UnitSettingsScreen(
@@ -145,18 +145,18 @@ fun UnitSettingsScreen(
             }
             smallSeparatorItem()
             listPreferenceItem(R.string.settings_units_speed) { id ->
-                val valueArray = stringArrayResource(R.array.speed_unit_values)
-                val nameArray = stringArrayResource(R.array.speed_units).mapIndexed { index, value ->
-                    if (index == 0) {
-                        stringResource(
-                            R.string.parenthesis,
-                            stringResource(R.string.settings_regional_preference),
-                            SpeedUnit.getDefaultUnit(context).getName(context)
-                        )
-                    } else {
-                        value
-                    }
-                }.toTypedArray()
+                val allowedSpeedUnits = SpeedUnit.entries.filter { it != SpeedUnit.CENTIMETER_PER_SECOND }
+                val valueArray = arrayOf("auto") + allowedSpeedUnits.map { it.id }
+                val nameArray = arrayOf(
+                    stringResource(
+                        R.string.parenthesis,
+                        stringResource(R.string.settings_regional_preference),
+                        SpeedUnit.getDefaultUnit(context.currentLocale)
+                            .getDisplayName(context, context.currentLocale, UnitWidth.LONG)
+                    )
+                ) + allowedSpeedUnits.map {
+                    it.getDisplayName(context, context.currentLocale, UnitWidth.LONG)
+                }
                 ListPreferenceViewWithCard(
                     title = stringResource(id),
                     summary = { _, value ->
@@ -167,7 +167,7 @@ fun UnitSettingsScreen(
                     nameArray = nameArray,
                     onValueChanged = { speedUnitId ->
                         SettingsManager.getInstance(context).speedUnit = if (speedUnitId != "auto") {
-                            SpeedUnit.entries.firstOrNull { it.id == speedUnitId }
+                            SpeedUnit.getUnit(speedUnitId)
                         } else {
                             null
                         }

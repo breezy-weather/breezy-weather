@@ -35,7 +35,6 @@ import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.NotificationTextColor
 import org.breezyweather.common.basic.models.options.WidgetWeekIconMode
 import org.breezyweather.common.basic.models.options.basic.UnitUtils
-import org.breezyweather.common.basic.models.options.unit.SpeedUnit
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.common.extensions.formatMeasure
 import org.breezyweather.common.extensions.getFormattedDate
@@ -272,8 +271,6 @@ abstract class AbstractRemoteViewsPresenter {
         ): String {
             if (subtitleP.isNullOrEmpty()) return ""
             val temperatureUnit = SettingsManager.getInstance(context).getTemperatureUnit(context)
-            // val precipitationUnit = getInstance(context).getPrecipitationUnit(context)
-            val speedUnit = SettingsManager.getInstance(context).getSpeedUnit(context)
             var subtitle = subtitleP
                 .replace(
                     "\$cw$",
@@ -301,7 +298,7 @@ abstract class AbstractRemoteViewsPresenter {
                     } ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "\$cwd$",
-                    weather.current?.wind?.getShortDescription(context, speedUnit)
+                    weather.current?.wind?.getShortDescription(context)
                         ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "\$caqi$",
@@ -372,7 +369,6 @@ abstract class AbstractRemoteViewsPresenter {
                 location,
                 weather,
                 temperatureUnit,
-                speedUnit,
                 pollenIndexSource
             )
             return subtitle
@@ -433,7 +429,6 @@ abstract class AbstractRemoteViewsPresenter {
             location: Location,
             weather: Weather,
             temperatureUnit: TemperatureUnit,
-            speedUnit: SpeedUnit,
             pollenIndexSource: PollenIndexSource?,
         ): String {
             var subtitle = subtitleP
@@ -478,14 +473,12 @@ abstract class AbstractRemoteViewsPresenter {
                     } ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "$" + i + "dwd$",
-                    weather.dailyForecastStartingToday.getOrNull(i)?.day?.wind?.getShortDescription(context, speedUnit)
+                    weather.dailyForecastStartingToday.getOrNull(i)?.day?.wind?.getShortDescription(context)
                         ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "$" + i + "nwd$",
-                    weather.dailyForecastStartingToday.getOrNull(i)?.night?.wind?.getShortDescription(
-                        context,
-                        speedUnit
-                    ) ?: context.getString(R.string.null_data_text)
+                    weather.dailyForecastStartingToday.getOrNull(i)?.night?.wind?.getShortDescription(context)
+                        ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "$" + i + "aqi$",
                     if (weather.dailyForecastStartingToday.getOrNull(i)?.airQuality?.isIndexValid == true) {

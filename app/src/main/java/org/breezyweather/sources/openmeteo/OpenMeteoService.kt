@@ -95,6 +95,7 @@ import org.breezyweather.unit.pollutant.PollutantConcentration.Companion.microgr
 import org.breezyweather.unit.precipitation.Precipitation.Companion.centimeters
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
+import org.breezyweather.unit.speed.Speed.Companion.metersPerSecond
 import retrofit2.HttpException
 import retrofit2.Retrofit
 import java.text.Collator
@@ -389,8 +390,8 @@ class OpenMeteoService @Inject constructor(
             ),
             wind = Wind(
                 degree = current.windDirection,
-                speed = current.windSpeed,
-                gusts = current.windGusts
+                speed = current.windSpeed?.metersPerSecond,
+                gusts = current.windGusts?.metersPerSecond
             ),
             uV = UV(index = current.uvIndex),
             relativeHumidity = current.relativeHumidity?.toDouble(),
@@ -491,8 +492,8 @@ class OpenMeteoService @Inject constructor(
                     ),
                     wind = Wind(
                         degree = hourlyResult.windDirection?.getOrNull(i)?.toDouble(),
-                        speed = hourlyResult.windSpeed?.getOrNull(i),
-                        gusts = hourlyResult.windGusts?.getOrNull(i)
+                        speed = hourlyResult.windSpeed?.getOrNull(i)?.metersPerSecond,
+                        gusts = hourlyResult.windGusts?.getOrNull(i)?.metersPerSecond
                     ),
                     uV = UV(index = hourlyResult.uvIndex?.getOrNull(i)),
                     relativeHumidity = hourlyResult.relativeHumidity?.getOrNull(i)?.toDouble(),

@@ -59,11 +59,9 @@ enum class DetailScreen(
                         TAG_FEELS_LIKE -> false // never displayed, it’s actually a sub menu of TAG_CONDITIONS
                         TAG_PRECIPITATION -> true // Too many conditions
                         TAG_WIND -> location.weather?.dailyForecast?.any {
-                            (it.day?.wind?.speed ?: 0.0) > 0.0 || (it.night?.wind?.speed ?: 0.0) > 0.0
+                            it.day?.wind?.speed != null || it.night?.wind?.speed != null
                         } == true ||
-                            location.weather?.hourlyForecast?.any {
-                                (it.wind?.speed ?: 0.0) > 0.0
-                            } == true
+                            location.weather?.hourlyForecast?.any { it.wind?.speed != null } == true
                         TAG_AIR_QUALITY -> !location.airQualitySource.isNullOrEmpty()
                         TAG_POLLEN -> !location.pollenSource.isNullOrEmpty()
                         TAG_UV_INDEX -> location.weather?.dailyForecast?.any {

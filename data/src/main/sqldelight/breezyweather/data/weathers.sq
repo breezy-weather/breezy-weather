@@ -2,6 +2,7 @@ import breezyweather.domain.weather.reference.WeatherCode;
 import org.breezyweather.unit.distance.Distance;
 import org.breezyweather.unit.pollutant.PollutantConcentration;
 import org.breezyweather.unit.pressure.Pressure;
+import org.breezyweather.unit.speed.Speed;
 
 CREATE TABLE weathers(
     _id INTEGER NOT NULL PRIMARY KEY,
@@ -30,8 +31,8 @@ CREATE TABLE weathers(
     humidex REAL,
 
     wind_degree REAL,
-    wind_speed REAL,
-    wind_gusts REAL,
+    wind_speed INTEGER AS Speed,
+    wind_gusts INTEGER AS Speed,
 
     uv_index REAL,
 

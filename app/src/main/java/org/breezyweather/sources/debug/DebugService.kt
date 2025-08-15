@@ -36,6 +36,7 @@ import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.unit.distance.Distance.Companion.meters
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
+import org.breezyweather.unit.speed.Speed.Companion.metersPerSecond
 import java.util.Calendar
 import java.util.Date
 import java.util.TimeZone
@@ -138,7 +139,7 @@ class DebugService @Inject constructor() : WeatherSource {
             ),
             wind = Wind(
                 degree = Math.random().times(360), // TODO: Add loop case: -1
-                speed = Math.random().times(10).plus(10)
+                speed = Math.random().times(10).plus(10).metersPerSecond
             ),
             uV = UV(index = Math.random().times(12)),
             dewPoint = Math.random().times(10).plus(5),

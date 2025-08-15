@@ -16,14 +16,11 @@
 
 package breezyweather.domain.weather.model
 
+import org.breezyweather.unit.speed.Speed
 import java.io.Serializable
 
 /**
- * DailyWind.
- *
- * default unit:
- * [.speed] : [SpeedUnit.MPS]
- * [.gust] : [SpeedUnit.MPS]
+ * Wind
  */
 data class Wind(
     /**
@@ -33,15 +30,15 @@ data class Wind(
     /**
      * In m/s
      */
-    val speed: Double? = null,
+    val speed: Speed? = null,
     /**
      * In m/s
      */
-    val gusts: Double? = null,
+    val gusts: Speed? = null,
 ) : Serializable {
 
     val isValid: Boolean
-        get() = speed != null && speed > 0
+        get() = speed != null && speed.value > 0
 
     val arrow: String?
         get() = when (degree) {
@@ -58,26 +55,6 @@ data class Wind(
         }
 
     companion object {
-        const val WIND_SPEED_0 = 0.5
-        const val WIND_SPEED_1 = 1.5
-        const val WIND_SPEED_2 = 3.3
-        const val WIND_SPEED_3 = 5.5
-        const val WIND_SPEED_4 = 7.9
-        const val WIND_SPEED_5 = 10.7
-        const val WIND_SPEED_6 = 13.8
-        const val WIND_SPEED_7 = 17.1
-        const val WIND_SPEED_8 = 20.7
-        const val WIND_SPEED_9 = 24.4
-        const val WIND_SPEED_10 = 28.4
-        const val WIND_SPEED_11 = 32.6
-
-        // Extended scale, not official but may be used in the daily chart in the future, just in case
-        const val WIND_SPEED_12 = 36.9
-        const val WIND_SPEED_13 = 41.4
-        const val WIND_SPEED_14 = 46.1
-        const val WIND_SPEED_15 = 50.9
-        const val WIND_SPEED_16 = 56.0
-        const val WIND_SPEED_17 = 61.2
 
         fun validateDegree(degree: Double?): Double? {
             return degree?.let { if (it == -1.0 || it in 0.0..360.0) it else null }

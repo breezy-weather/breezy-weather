@@ -52,6 +52,7 @@ import org.breezyweather.sources.ipma.json.IpmaAlertResult
 import org.breezyweather.sources.ipma.json.IpmaDistrictResult
 import org.breezyweather.sources.ipma.json.IpmaForecastResult
 import org.breezyweather.sources.ipma.json.IpmaLocationResult
+import org.breezyweather.unit.speed.Speed.Companion.kilometersPerHour
 import retrofit2.Retrofit
 import java.text.SimpleDateFormat
 import java.util.Locale
@@ -234,7 +235,7 @@ class IpmaService @Inject constructor(
                 ),
                 wind = Wind(
                     degree = getWindDegree(it.ddVento),
-                    speed = it.ffVento?.toDoubleOrNull()?.div(3.6)
+                    speed = it.ffVento?.toDoubleOrNull()?.kilometersPerHour
                 ),
                 relativeHumidity = it.hR?.toDoubleOrNull()
             ).also { hourly ->

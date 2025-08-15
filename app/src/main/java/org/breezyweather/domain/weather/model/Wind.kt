@@ -22,18 +22,29 @@ import androidx.annotation.ColorInt
 import androidx.core.content.ContextCompat
 import breezyweather.domain.weather.model.Wind
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.options.unit.SpeedUnit
+import org.breezyweather.common.extensions.formatMeasure
+import org.breezyweather.common.extensions.getBeaufortScaleStrength
+import org.breezyweather.unit.formatting.UnitWidth
+import org.breezyweather.unit.speed.Speed.Companion.centimetersPerSecond
+
+fun Wind.validate(): Wind {
+    return copy(
+        degree = Wind.validateDegree(degree),
+        speed = speed?.toValidOrNull(),
+        gusts = gusts?.toValidOrNull()
+    )
+}
 
 @ColorInt
 fun Wind.getColor(context: Context): Int {
     if (speed == null) return Color.TRANSPARENT
-    return when (speed!!) {
-        in 0.0..Wind.WIND_SPEED_3 -> ContextCompat.getColor(context, R.color.colorLevel_1)
-        in Wind.WIND_SPEED_3..Wind.WIND_SPEED_5 -> ContextCompat.getColor(context, R.color.colorLevel_2)
-        in Wind.WIND_SPEED_5..Wind.WIND_SPEED_7 -> ContextCompat.getColor(context, R.color.colorLevel_3)
-        in Wind.WIND_SPEED_7..Wind.WIND_SPEED_9 -> ContextCompat.getColor(context, R.color.colorLevel_4)
-        in Wind.WIND_SPEED_9..Wind.WIND_SPEED_11 -> ContextCompat.getColor(context, R.color.colorLevel_5)
-        in Wind.WIND_SPEED_11..Double.MAX_VALUE -> ContextCompat.getColor(context, R.color.colorLevel_6)
+    return when (speed!!.inBeaufort) {
+        in 0..<4 -> ContextCompat.getColor(context, R.color.colorLevel_1)
+        in 4..<6 -> ContextCompat.getColor(context, R.color.colorLevel_2)
+        in 6..<8 -> ContextCompat.getColor(context, R.color.colorLevel_3)
+        in 8..<10 -> ContextCompat.getColor(context, R.color.colorLevel_4)
+        in 10..<12 -> ContextCompat.getColor(context, R.color.colorLevel_5)
+        in 12..Integer.MAX_VALUE -> ContextCompat.getColor(context, R.color.colorLevel_6)
         else -> Color.TRANSPARENT
     }
 }
@@ -73,29 +84,28 @@ fun Wind.getDirection(context: Context, short: Boolean = true): String? {
 }
 
 fun Wind.getStrength(context: Context): String? {
-    return SpeedUnit.getBeaufortScaleStrength(context, speed)
+    return speed?.getBeaufortScaleStrength(context)
 }
 
-fun Wind.getShortDescription(context: Context, unit: SpeedUnit): String? {
+fun Wind.getShortDescription(context: Context): String? {
     val builder = StringBuilder()
     arrow?.let {
         builder.append(it)
     }
     speed?.let {
         if (builder.toString().isNotEmpty()) builder.append(" ")
-        builder.append(unit.formatMeasure(context, it))
+        builder.append(it.formatMeasure(context))
     }
     return builder.toString().ifEmpty { null }
 }
 
 fun Wind.getContentDescription(
     context: Context,
-    unit: SpeedUnit,
     withGusts: Boolean = false,
 ): String {
     val builder = StringBuilder()
     speed?.let {
-        builder.append(unit.formatContentDescription(context, it))
+        builder.append(it.formatMeasure(context, unitWidth = UnitWidth.LONG))
         if (!getStrength(context).isNullOrEmpty()) {
             builder.append(context.getString(org.breezyweather.unit.R.string.locale_separator))
             builder.append(getStrength(context))
@@ -113,13 +123,13 @@ fun Wind.getContentDescription(
     }
     if (withGusts) {
         gusts?.let {
-            if (it > (speed ?: 0.0)) {
+            if (it > (speed ?: 0.centimetersPerSecond)) {
                 if (builder.toString().isNotEmpty()) {
                     builder.append(context.getString(org.breezyweather.unit.R.string.locale_separator))
                 }
                 builder.append(context.getString(R.string.wind_gusts_short))
                 builder.append(context.getString(R.string.colon_separator))
-                builder.append(unit.formatContentDescription(context, it))
+                builder.append(it.formatMeasure(context, unitWidth = UnitWidth.LONG))
             }
         }
     }

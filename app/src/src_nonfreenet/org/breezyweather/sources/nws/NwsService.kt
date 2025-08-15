@@ -69,6 +69,9 @@ import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
 import org.breezyweather.unit.pressure.Pressure.Companion.inchesOfMercury
 import org.breezyweather.unit.pressure.Pressure.Companion.pascals
+import org.breezyweather.unit.speed.Speed
+import org.breezyweather.unit.speed.Speed.Companion.kilometersPerHour
+import org.breezyweather.unit.speed.Speed.Companion.milesPerHour
 import retrofit2.Retrofit
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -272,8 +275,8 @@ class NwsService @Inject constructor(
                 wind = if (it.windSpeed?.value != null && it.windSpeed.value != 0.0) {
                     Wind(
                         degree = it.windDirection?.value,
-                        speed = it.windSpeed.value.div(3.6),
-                        gusts = it.windGust?.value?.div(3.6)
+                        speed = it.windSpeed.value.kilometersPerHour,
+                        gusts = it.windGust?.value?.kilometersPerHour
                     )
                 } else {
                     null
@@ -320,8 +323,8 @@ class NwsService @Inject constructor(
                     ),
                     wind = Wind(
                         degree = getWindDegree(it.windDirection),
-                        speed = (it.windSpeed?.maxValue ?: it.windSpeed?.value)?.div(3.6),
-                        gusts = it.windGust?.value?.div(3.6)
+                        speed = (it.windSpeed?.maxValue ?: it.windSpeed?.value)?.kilometersPerHour,
+                        gusts = it.windGust?.value?.kilometersPerHour
                     )
                 )
             } else {
@@ -336,8 +339,8 @@ class NwsService @Inject constructor(
                     ),
                     wind = Wind(
                         degree = getWindDegree(it.windDirection),
-                        speed = (it.windSpeed?.maxValue ?: it.windSpeed?.value)?.div(3.6),
-                        gusts = it.windGust?.value?.div(3.6)
+                        speed = (it.windSpeed?.maxValue ?: it.windSpeed?.value)?.kilometersPerHour,
+                        gusts = it.windGust?.value?.kilometersPerHour
                     )
                 )
             }
@@ -428,12 +431,12 @@ class NwsService @Inject constructor(
                 weatherText = getWeatherText(
                     context = context,
                     weather = weatherForecastList.getOrElse(it) { null },
-                    windSpeed = windSpeedForecastList.getOrElse(it) { null }?.div(3.6),
+                    windSpeed = windSpeedForecastList.getOrElse(it) { null }?.kilometersPerHour,
                     cloudCover = skyCoverForecastList.getOrElse(it) { null }
                 ),
                 weatherCode = getWeatherCode(
                     weather = weatherForecastList.getOrElse(it) { null },
-                    windSpeed = windSpeedForecastList.getOrElse(it) { null }?.div(3.6),
+                    windSpeed = windSpeedForecastList.getOrElse(it) { null }?.kilometersPerHour,
                     cloudCover = skyCoverForecastList.getOrElse(it) { null }
                 ),
                 temperature = TemperatureWrapper(
@@ -451,8 +454,8 @@ class NwsService @Inject constructor(
                 ),
                 wind = Wind(
                     degree = windDirectionForecastList.getOrElse(it) { null }?.toDouble(),
-                    speed = windSpeedForecastList.getOrElse(it) { null }?.div(3.6),
-                    gusts = windGustForecastList.getOrElse(it) { null }?.div(3.6)
+                    speed = windSpeedForecastList.getOrElse(it) { null }?.kilometersPerHour,
+                    gusts = windGustForecastList.getOrElse(it) { null }?.kilometersPerHour
                 ),
                 relativeHumidity = relativeHumidityList.getOrElse(it) { null }?.toDouble(),
                 dewPoint = dewpointForecastList.getOrElse(it) { null },
@@ -718,17 +721,17 @@ class NwsService @Inject constructor(
     }
 
     // Weather texts for hourly forecasts
-//
-// Source for strings:
-// https://www.weather.gov/documentation/services-web-api
-// Go to Specification > Schemas > Gridpoint > weather > values > value
-//
-// Source for text construction:
-// https://www.weather.gov/bgm/forecast_terms
+    //
+    // Source for strings:
+    // https://www.weather.gov/documentation/services-web-api
+    // Go to Specification > Schemas > Gridpoint > weather > values > value
+    //
+    // Source for text construction:
+    // https://www.weather.gov/bgm/forecast_terms
     private fun getWeatherText(
         context: Context,
         weather: NwsValueWeatherValue?,
-        windSpeed: Double?,
+        windSpeed: Speed?,
         cloudCover: Int?,
     ): String? {
         var weatherText: String?
@@ -810,16 +813,13 @@ class NwsService @Inject constructor(
         if (weather?.attributes.isNullOrEmpty() ||
             (!weather.attributes.contains("gusty_wind") && !weather.attributes!!.contains("damaging_wind"))
         ) {
-            val mphInMetersPerSecond = 0.44704
             val windDescription: String?
             if (windSpeed != null) {
                 windDescription = when {
-                    windSpeed >= 40.0 * mphInMetersPerSecond
-                    -> context.getString(R.string.nws_weather_text_wind_high_wind)
-                    windSpeed >= 30.0 * mphInMetersPerSecond
-                    -> context.getString(R.string.nws_weather_text_wind_very_windy)
-                    windSpeed >= 20.0 * mphInMetersPerSecond -> context.getString(R.string.nws_weather_text_wind_windy)
-                    windSpeed >= 15.0 * mphInMetersPerSecond -> context.getString(R.string.nws_weather_text_wind_breezy)
+                    windSpeed >= 40.0.milesPerHour -> context.getString(R.string.nws_weather_text_wind_high_wind)
+                    windSpeed >= 30.0.milesPerHour -> context.getString(R.string.nws_weather_text_wind_very_windy)
+                    windSpeed >= 20.0.milesPerHour -> context.getString(R.string.nws_weather_text_wind_windy)
+                    windSpeed >= 15.0.milesPerHour -> context.getString(R.string.nws_weather_text_wind_breezy)
                     else -> null
                 }
                 if (!windDescription.isNullOrEmpty()) {
@@ -872,7 +872,7 @@ class NwsService @Inject constructor(
     // Weather codes for hourly forecasts
     private fun getWeatherCode(
         weather: NwsValueWeatherValue?,
-        windSpeed: Double?,
+        windSpeed: Speed?,
         cloudCover: Int?,
     ): WeatherCode? {
         val mphInMetersPerSecond = 0.44704
@@ -930,8 +930,8 @@ class NwsService @Inject constructor(
                 return WeatherCode.WIND
             }
         }
-        // use 40mph as the threshold for High Wind Advisory in the U.S.
-        if (windSpeed != null && windSpeed >= 40.0 * mphInMetersPerSecond) {
+        // use 40 mph as the threshold for High Wind Advisory in the U.S.
+        if (windSpeed != null && windSpeed >= 40.0.milesPerHour) {
             return WeatherCode.WIND
         }
 
@@ -950,7 +950,7 @@ class NwsService @Inject constructor(
     }
 
     // Weather codes for current observations and daily forecasts
-// Source: https://api.weather.gov/icons
+    // Source: https://api.weather.gov/icons
     private fun getWeatherCode(
         icon: String?,
     ): WeatherCode? {

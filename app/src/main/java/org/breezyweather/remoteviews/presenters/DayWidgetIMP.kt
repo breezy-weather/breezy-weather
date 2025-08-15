@@ -29,7 +29,6 @@ import breezyweather.domain.weather.model.Weather
 import org.breezyweather.R
 import org.breezyweather.background.receiver.widget.WidgetDayProvider
 import org.breezyweather.common.basic.models.options.basic.UnitUtils
-import org.breezyweather.common.basic.models.options.unit.SpeedUnit
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.common.extensions.getFormattedMediumDayAndMonthInAdditionalCalendar
 import org.breezyweather.common.extensions.getFormattedTime
@@ -85,7 +84,6 @@ object DayWidgetIMP : AbstractRemoteViewsPresenter() {
     ): RemoteViews {
         val settings = SettingsManager.getInstance(context)
         val temperatureUnit = settings.getTemperatureUnit(context)
-        val speedUnit = settings.getSpeedUnit(context)
         val minimalIcon = settings.isWidgetUsingMonochromeIcons
         val color = WidgetColor(
             context,
@@ -101,7 +99,6 @@ object DayWidgetIMP : AbstractRemoteViewsPresenter() {
             context,
             location,
             temperatureUnit,
-            speedUnit,
             color,
             minimalIcon,
             viewStyle,
@@ -122,7 +119,6 @@ object DayWidgetIMP : AbstractRemoteViewsPresenter() {
         context: Context,
         location: Location?,
         temperatureUnit: TemperatureUnit,
-        speedUnit: SpeedUnit,
         color: WidgetColor,
         minimalIcon: Boolean,
         viewStyle: String?,
@@ -260,7 +256,6 @@ object DayWidgetIMP : AbstractRemoteViewsPresenter() {
                     viewStyle,
                     subtitleData,
                     temperatureUnit,
-                    speedUnit,
                     pollenIndexSource
                 )
             )
@@ -404,7 +399,6 @@ object DayWidgetIMP : AbstractRemoteViewsPresenter() {
         viewStyle: String?,
         subtitleData: String?,
         temperatureUnit: TemperatureUnit,
-        speedUnit: SpeedUnit,
         pollenIndexSource: PollenIndexSource?,
     ): String? {
         return when (subtitleData) {
@@ -436,7 +430,7 @@ object DayWidgetIMP : AbstractRemoteViewsPresenter() {
                     null
                 }
             }
-            "wind" -> weather.current?.wind?.getShortDescription(context, speedUnit)
+            "wind" -> weather.current?.wind?.getShortDescription(context)
             "lunar" -> when (viewStyle) {
                 "rectangle" -> location.getPlace(context) +
                     " " +

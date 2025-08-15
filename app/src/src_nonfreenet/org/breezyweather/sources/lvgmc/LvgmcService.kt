@@ -57,6 +57,7 @@ import org.breezyweather.unit.pollutant.PollutantConcentration.Companion.microgr
 import org.breezyweather.unit.pollutant.PollutantConcentration.Companion.milligramsPerCubicMeter
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
+import org.breezyweather.unit.speed.Speed.Companion.metersPerSecond
 import retrofit2.Retrofit
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -239,8 +240,8 @@ class LvgmcService @Inject constructor(
                     ),
                     wind = Wind(
                         degree = it.windDirection?.toDoubleOrNull(),
-                        speed = it.windSpeed?.toDoubleOrNull(),
-                        gusts = it.windGusts?.toDoubleOrNull()
+                        speed = it.windSpeed?.toDoubleOrNull()?.metersPerSecond,
+                        gusts = it.windGusts?.toDoubleOrNull()?.metersPerSecond
                     ),
                     uV = UV(
                         index = it.uvIndex?.toDoubleOrNull()
@@ -282,8 +283,8 @@ class LvgmcService @Inject constructor(
                         ),
                         wind = Wind(
                             degree = it.windDirection?.toDoubleOrNull(),
-                            speed = it.windSpeed?.toDoubleOrNull(),
-                            gusts = it.windGusts?.toDoubleOrNull()
+                            speed = it.windSpeed?.toDoubleOrNull()?.metersPerSecond,
+                            gusts = it.windGusts?.toDoubleOrNull()?.metersPerSecond
                         )
                     )
                 }
@@ -301,8 +302,8 @@ class LvgmcService @Inject constructor(
                         ),
                         wind = Wind(
                             degree = it.windDirection?.toDoubleOrNull(),
-                            speed = it.windSpeed?.toDoubleOrNull(),
-                            gusts = it.windGusts?.toDoubleOrNull()
+                            speed = it.windSpeed?.toDoubleOrNull()?.metersPerSecond,
+                            gusts = it.windGusts?.toDoubleOrNull()?.metersPerSecond
                         )
                     )
                     uviMap[time] = it.uvIndex?.toDoubleOrNull()
@@ -363,8 +364,8 @@ class LvgmcService @Inject constructor(
                     ),
                     wind = Wind(
                         degree = it.windDirection?.toDoubleOrNull(),
-                        speed = it.windSpeed?.toDoubleOrNull(),
-                        gusts = it.windGusts?.toDoubleOrNull()
+                        speed = it.windSpeed?.toDoubleOrNull()?.metersPerSecond,
+                        gusts = it.windGusts?.toDoubleOrNull()?.metersPerSecond
                     ),
                     uV = UV(
                         index = it.uvIndex?.toDoubleOrNull()

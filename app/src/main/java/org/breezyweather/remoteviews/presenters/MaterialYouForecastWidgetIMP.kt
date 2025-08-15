@@ -189,7 +189,7 @@ private fun buildRemoteViews(
                 context.getString(R.string.air_quality) + " – " + current.airQuality!!.getName(context)
             } else {
                 current.wind?.let { wind ->
-                    wind.getShortDescription(context, speedUnit)?.let {
+                    wind.getShortDescription(context)?.let {
                         context.getString(R.string.wind) + " – " + it
                     }
                 }

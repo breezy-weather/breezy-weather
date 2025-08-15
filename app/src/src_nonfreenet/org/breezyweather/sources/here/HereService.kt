@@ -54,6 +54,7 @@ import org.breezyweather.sources.here.json.HereWeatherData
 import org.breezyweather.unit.distance.Distance.Companion.kilometers
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
+import org.breezyweather.unit.speed.Speed.Companion.kilometersPerHour
 import retrofit2.Retrofit
 import javax.inject.Inject
 import javax.inject.Named
@@ -176,7 +177,7 @@ class HereService @Inject constructor(
             ),
             wind = Wind(
                 degree = result.windDirection,
-                speed = result.windSpeed?.div(3.6)
+                speed = result.windSpeed?.kilometersPerHour
             ),
             uV = UV(index = result.uvIndex?.toDouble()),
             relativeHumidity = result.humidity?.toDouble(),
@@ -253,7 +254,7 @@ class HereService @Inject constructor(
                 ),
                 wind = Wind(
                     degree = result.windDirection,
-                    speed = result.windSpeed?.div(3.6)
+                    speed = result.windSpeed?.kilometersPerHour
                 ),
                 uV = UV(index = result.uvIndex?.toDouble()),
                 relativeHumidity = result.humidity?.toDouble(),

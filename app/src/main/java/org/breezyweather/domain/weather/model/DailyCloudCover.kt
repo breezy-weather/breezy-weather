@@ -20,7 +20,7 @@ import android.content.Context
 import breezyweather.domain.weather.model.DailyCloudCover
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.basic.UnitUtils
-import org.breezyweather.unit.getCloudCoverDescription
+import org.breezyweather.common.extensions.getCloudCoverDescription
 
 fun DailyCloudCover.getRangeSummary(context: Context): String? {
     return if (min == null || max == null) {

@@ -28,13 +28,13 @@ import org.breezyweather.common.basic.models.options.appearance.BackgroundAnimat
 import org.breezyweather.common.basic.models.options.appearance.CardDisplay
 import org.breezyweather.common.basic.models.options.appearance.DailyTrendDisplay
 import org.breezyweather.common.basic.models.options.appearance.HourlyTrendDisplay
-import org.breezyweather.common.basic.models.options.unit.SpeedUnit
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.common.bus.EventBus
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.unit.distance.DistanceUnit
 import org.breezyweather.unit.precipitation.PrecipitationUnit
 import org.breezyweather.unit.pressure.PressureUnit
+import org.breezyweather.unit.speed.SpeedUnit
 
 class SettingsChangedMessage
 
@@ -263,11 +263,10 @@ class SettingsManager private constructor(
             config.edit().putString("speed_unit", value?.id ?: "auto").apply()
             notifySettingsChanged()
         }
-        get() = SpeedUnit.entries
-            .firstOrNull { it.id == (config.getString("speed_unit", "auto") ?: "auto") }
+        get() = SpeedUnit.getUnit(config.getString("speed_unit", "auto") ?: "auto")
 
     fun getSpeedUnit(context: Context): SpeedUnit {
-        return speedUnit ?: SpeedUnit.getDefaultUnit(context)
+        return speedUnit ?: SpeedUnit.getDefaultUnit(context.currentLocale)
     }
 
     // appearance.

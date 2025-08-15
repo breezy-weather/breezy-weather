@@ -51,6 +51,7 @@ import org.breezyweather.sources.metoffice.json.MetOfficeHourly
 import org.breezyweather.unit.distance.Distance.Companion.meters
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.pressure.Pressure.Companion.pascals
+import org.breezyweather.unit.speed.Speed.Companion.metersPerSecond
 import retrofit2.Retrofit
 import javax.inject.Inject
 import javax.inject.Named
@@ -186,8 +187,8 @@ class MetOfficeService @Inject constructor(
                 ),
                 wind = Wind(
                     degree = result.windDirectionFrom10m?.toDouble(),
-                    speed = result.windSpeed10m,
-                    gusts = result.windGustSpeed10m
+                    speed = result.windSpeed10m?.metersPerSecond,
+                    gusts = result.windGustSpeed10m?.metersPerSecond
                 ),
                 uV = UV(
                     index = result.uvIndex?.toDouble()

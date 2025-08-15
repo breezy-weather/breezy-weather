@@ -30,7 +30,6 @@ import org.breezyweather.R
 import org.breezyweather.background.receiver.widget.WidgetClockDayVerticalProvider
 import org.breezyweather.common.basic.models.options.NotificationTextColor
 import org.breezyweather.common.basic.models.options.basic.UnitUtils
-import org.breezyweather.common.basic.models.options.unit.SpeedUnit
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.common.extensions.getFormattedMediumDayAndMonthInAdditionalCalendar
 import org.breezyweather.common.extensions.getFormattedTime
@@ -95,13 +94,11 @@ object ClockDayVerticalWidgetIMP : AbstractRemoteViewsPresenter() {
         val color = WidgetColor(context, cardStyle!!, textColor!!, location?.isDaylight ?: true)
         val settings = SettingsManager.getInstance(context)
         val temperatureUnit = settings.getTemperatureUnit(context)
-        val speedUnit = settings.getSpeedUnit(context)
         val minimalIcon = settings.isWidgetUsingMonochromeIcons
         val views = buildWidgetViewDayPart(
             context,
             location,
             temperatureUnit,
-            speedUnit,
             color,
             textSize,
             minimalIcon,
@@ -123,7 +120,6 @@ object ClockDayVerticalWidgetIMP : AbstractRemoteViewsPresenter() {
         context: Context,
         location: Location?,
         temperatureUnit: TemperatureUnit,
-        speedUnit: SpeedUnit,
         color: WidgetColor,
         textSize: Int,
         minimalIcon: Boolean,
@@ -297,7 +293,7 @@ object ClockDayVerticalWidgetIMP : AbstractRemoteViewsPresenter() {
             )
             setTextViewText(
                 R.id.widget_clock_day_time,
-                getTimeText(context, location, viewStyle, subtitleData, temperatureUnit, speedUnit, pollenIndexSource)
+                getTimeText(context, location, viewStyle, subtitleData, temperatureUnit, pollenIndexSource)
             )
         }
 
@@ -530,7 +526,6 @@ object ClockDayVerticalWidgetIMP : AbstractRemoteViewsPresenter() {
         viewStyle: String?,
         subtitleData: String?,
         temperatureUnit: TemperatureUnit,
-        speedUnit: SpeedUnit,
         pollenIndexSource: PollenIndexSource?,
     ): String? {
         val weather = location.weather ?: return null
@@ -563,7 +558,7 @@ object ClockDayVerticalWidgetIMP : AbstractRemoteViewsPresenter() {
                     null
                 }
             }
-            "wind" -> weather.current?.wind?.getShortDescription(context, speedUnit)
+            "wind" -> weather.current?.wind?.getShortDescription(context)
             "lunar" -> when (viewStyle) {
                 "rectangle" -> location.getPlace(context) +
                     " " +

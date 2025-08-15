@@ -49,6 +49,8 @@ import org.breezyweather.sources.pagasa.json.PagasaHourlyResult
 import org.breezyweather.sources.pagasa.json.PagasaLocationResult
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
+import org.breezyweather.unit.speed.Speed.Companion.kilometersPerHour
+import org.breezyweather.unit.speed.Speed.Companion.metersPerSecond
 import retrofit2.Retrofit
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -201,7 +203,7 @@ class PagasaService @Inject constructor(
                 ),
                 wind = Wind(
                     degree = getWindDegree(it.windDirection),
-                    speed = it.windSpeed?.substringBefore(" ")?.toDoubleOrNull()?.div(3.6)
+                    speed = it.windSpeed?.substringBefore(" ")?.toDoubleOrNull()?.kilometersPerHour
                 ),
                 relativeHumidity = it.humidity?.substringBefore(" ")?.toDoubleOrNull(),
                 pressure = it.pressure?.toDoubleOrNull()?.hectopascals
@@ -259,7 +261,7 @@ class PagasaService @Inject constructor(
                             ),
                             wind = Wind(
                                 degree = it.windDirection?.attributes?.deg?.toDoubleOrNull(),
-                                speed = it.windSpeed?.attributes?.mps?.toDoubleOrNull()
+                                speed = it.windSpeed?.attributes?.mps?.toDoubleOrNull()?.metersPerSecond
                             ),
                             relativeHumidity = it.relativeHumidity?.attributes?.value?.toDoubleOrNull()
                         )
@@ -303,7 +305,7 @@ class PagasaService @Inject constructor(
     }
 
     // Source: https://pubfiles.pagasa.dost.gov.ph/pagasaweb/images/meteogram-symbols-30px.png
-// There are too many snow and sleet icons for a tropical country like the Philippines
+    // There are too many snow and sleet icons for a tropical country like the Philippines
     private fun getHourlyWeatherCode(
         symbol: String?,
     ): WeatherCode? {

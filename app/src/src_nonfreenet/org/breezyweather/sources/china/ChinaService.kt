@@ -64,6 +64,7 @@ import org.breezyweather.unit.pollutant.PollutantConcentration.Companion.microgr
 import org.breezyweather.unit.pollutant.PollutantConcentration.Companion.milligramsPerCubicMeter
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
+import org.breezyweather.unit.speed.Speed.Companion.kilometersPerHour
 import retrofit2.Retrofit
 import java.util.Calendar
 import java.util.Date
@@ -268,7 +269,7 @@ class ChinaService @Inject constructor(
             wind = if (current.wind != null) {
                 Wind(
                     degree = current.wind.direction?.value?.toDoubleOrNull(),
-                    speed = current.wind.speed?.value?.toDoubleOrNull()?.div(3.6)
+                    speed = current.wind.speed?.value?.toDoubleOrNull()?.kilometersPerHour
                 )
             } else {
                 null
@@ -333,7 +334,7 @@ class ChinaService @Inject constructor(
                             Wind(
                                 degree = dailyForecast.wind.direction?.value?.getOrNull(index)?.from?.toDoubleOrNull(),
                                 speed = dailyForecast.wind.speed?.value?.getOrNull(index)?.from?.toDoubleOrNull()
-                                    ?.div(3.6)
+                                    ?.kilometersPerHour
                             )
                         } else {
                             null
@@ -352,7 +353,7 @@ class ChinaService @Inject constructor(
                             Wind(
                                 degree = dailyForecast.wind.direction?.value?.getOrNull(index)?.to?.toDoubleOrNull(),
                                 speed = dailyForecast.wind.speed?.value?.getOrNull(index)?.to?.toDoubleOrNull()
-                                    ?.div(3.6)
+                                    ?.kilometersPerHour
                             )
                         } else {
                             null
@@ -401,7 +402,8 @@ class ChinaService @Inject constructor(
                     wind = if (hourlyForecast.wind != null) {
                         Wind(
                             degree = hourlyForecast.wind.value?.getOrNull(index)?.direction?.toDoubleOrNull(),
-                            speed = hourlyForecast.wind.value?.getOrNull(index)?.speed?.toDoubleOrNull()?.div(3.6)
+                            speed = hourlyForecast.wind.value?.getOrNull(index)?.speed?.toDoubleOrNull()
+                                ?.kilometersPerHour
                         )
                     } else {
                         null

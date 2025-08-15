@@ -62,7 +62,9 @@ import kotlinx.collections.immutable.toImmutableMap
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.appearance.DetailScreen
 import org.breezyweather.common.basic.models.options.basic.UnitUtils
+import org.breezyweather.common.extensions.cloudCoverScaleThresholds
 import org.breezyweather.common.extensions.formatTime
+import org.breezyweather.common.extensions.getCloudCoverDescription
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.extensions.toDate
@@ -72,9 +74,7 @@ import org.breezyweather.domain.weather.model.getRangeSummary
 import org.breezyweather.ui.common.charts.BreezyLineChart
 import org.breezyweather.ui.common.widgets.Material3ExpressiveCardListItem
 import org.breezyweather.ui.settings.preference.bottomInsetItem
-import org.breezyweather.unit.cloudCoverScaleThresholds
 import org.breezyweather.unit.formatting.UnitWidth
-import org.breezyweather.unit.getCloudCoverDescription
 import java.util.Date
 import kotlin.math.roundToInt
 import kotlin.time.Duration

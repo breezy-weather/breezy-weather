@@ -69,6 +69,7 @@ import org.breezyweather.sources.jma.json.JmaHourlyResult
 import org.breezyweather.sources.jma.json.JmaWeekAreaResult
 import org.breezyweather.unit.distance.Distance.Companion.meters
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
+import org.breezyweather.unit.speed.Speed.Companion.metersPerSecond
 import org.json.JSONObject
 import retrofit2.Retrofit
 import java.text.SimpleDateFormat
@@ -313,7 +314,7 @@ class JmaService @Inject constructor(
                 ),
                 wind = Wind(
                     degree = getWindDirection(it.windDirection?.getOrNull(0)),
-                    speed = it.wind?.getOrNull(0)
+                    speed = it.wind?.getOrNull(0)?.metersPerSecond
                 ),
                 relativeHumidity = it.humidity?.getOrNull(0),
                 pressure = it.normalPressure?.getOrNull(0)?.hectopascals,
@@ -512,7 +513,7 @@ class JmaService @Inject constructor(
                 ),
                 wind = Wind(
                     degree = wdMap.getOrElse(key) { null },
-                    speed = wsMap.getOrElse(key) { null }
+                    speed = wsMap.getOrElse(key) { null }?.metersPerSecond
                 )
             )
         }
@@ -616,7 +617,7 @@ class JmaService @Inject constructor(
     }
 
     // There are 118 daily weather codes used by JMA.
-// They have been listed in its own file at JmaConstants.kt.
+    // They have been listed in its own file at JmaConstants.kt.
     private fun getDailyWeatherText(
         context: Context,
         weather: String?,
@@ -636,7 +637,7 @@ class JmaService @Inject constructor(
     }
 
     // There are 118 daily weather codes used by JMA.
-// They have been listed in its own file at JmaConstants.kt.
+    // They have been listed in its own file at JmaConstants.kt.
     private fun getDailyWeatherCode(
         weather: String?,
         night: Boolean = false,

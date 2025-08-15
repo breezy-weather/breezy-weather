@@ -217,9 +217,10 @@ fun Long.toPollutantConcentration(unit: PollutantConcentrationUnit): PollutantCo
  * @throws IllegalArgumentException if this `Double` value is `NaN`.
  */
 fun Double.toPollutantConcentration(unit: PollutantConcentrationUnit): PollutantConcentration {
-    val valueInPa = convertPollutantConcentrationUnit(this, unit, PollutantConcentrationUnit.MICROGRAM_PER_CUBIC_METER)
-    require(!valueInPa.isNaN()) { "Pollutant concentration value cannot be NaN." }
-    return pollutantConcentrationOf(valueInPa.roundToLong())
+    val valueInMicrogPCuM =
+        convertPollutantConcentrationUnit(this, unit, PollutantConcentrationUnit.MICROGRAM_PER_CUBIC_METER)
+    require(!valueInMicrogPCuM.isNaN()) { "Pollutant concentration value cannot be NaN." }
+    return pollutantConcentrationOf(valueInMicrogPCuM.roundToLong())
 }
 
 private fun parsePollutantConcentration(value: String): PollutantConcentration {

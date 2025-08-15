@@ -64,6 +64,8 @@ import org.breezyweather.sources.getWindDegree
 import org.breezyweather.unit.distance.Distance.Companion.meters
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
+import org.breezyweather.unit.speed.Speed.Companion.kilometersPerHour
+import org.breezyweather.unit.speed.Speed.Companion.metersPerSecond
 import retrofit2.Retrofit
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -269,8 +271,8 @@ class AemetService @Inject constructor(
                 ),
                 wind = Wind(
                     degree = it.dv,
-                    speed = it.vv,
-                    gusts = it.vmax
+                    speed = it.vv?.metersPerSecond,
+                    gusts = it.vmax?.metersPerSecond
                 ),
                 relativeHumidity = it.hr,
                 dewPoint = it.tpr,
@@ -333,12 +335,12 @@ class AemetService @Inject constructor(
                 day.viento?.forEach {
                     if (it.periodo == null || it.periodo == "00-24") {
                         wdMap[time] = getWindDegree(it.direccion)
-                        wsMap[time] = it.velocidad?.div(3.6)
+                        wsMap[time] = it.velocidad
                     }
                 }
                 day.rachaMax?.forEach {
                     if (it.periodo == null || it.periodo == "00-24") {
-                        wgMap[time] = it.value?.toDoubleOrNull()?.div(3.6)
+                        wgMap[time] = it.value?.toDoubleOrNull()
                     }
                 }
                 maxTMap[time] = day.temperatura?.maxima
@@ -367,8 +369,8 @@ class AemetService @Inject constructor(
                         ),
                         wind = Wind(
                             degree = wdMap.getOrElse(key) { null },
-                            speed = wsMap.getOrElse(key) { null },
-                            gusts = wgMap.getOrElse(key) { null }
+                            speed = wsMap.getOrElse(key) { null }?.kilometersPerHour,
+                            gusts = wgMap.getOrElse(key) { null }?.kilometersPerHour
                         )
                     ),
                     night = HalfDayWrapper(
@@ -383,8 +385,8 @@ class AemetService @Inject constructor(
                         ),
                         wind = Wind(
                             degree = wdMap.getOrElse(key) { null },
-                            speed = wsMap.getOrElse(key) { null },
-                            gusts = wgMap.getOrElse(key) { null }
+                            speed = wsMap.getOrElse(key) { null }?.metersPerSecond,
+                            gusts = wgMap.getOrElse(key) { null }?.metersPerSecond
                         )
                     ),
                     relativeHumidity = DailyRelativeHumidity(
@@ -469,10 +471,10 @@ class AemetService @Inject constructor(
                         wdMap[time] = getWindDegree(direction)
                     }
                     it.velocidad?.first()?.let { speed ->
-                        wsMap[time] = speed.toDoubleOrNull()?.div(3.6)
+                        wsMap[time] = speed.toDoubleOrNull()
                     }
                     it.value?.let { gusts ->
-                        wgMap[time] = gusts.toDoubleOrNull()?.div(3.6)
+                        wgMap[time] = gusts.toDoubleOrNull()
                     }
                 }
             }
@@ -522,8 +524,8 @@ class AemetService @Inject constructor(
                     ),
                     wind = Wind(
                         degree = wdMap.getOrElse(key) { null },
-                        speed = wsMap.getOrElse(key) { null },
-                        gusts = wgMap.getOrElse(key) { null }
+                        speed = wsMap.getOrElse(key) { null }?.kilometersPerHour,
+                        gusts = wgMap.getOrElse(key) { null }?.kilometersPerHour
                     ),
                     relativeHumidity = rhMap.getOrElse(key) { null }
                 )

@@ -36,6 +36,7 @@ import breezyweather.data.Minutelys
 import breezyweather.data.PollutantConcentrationColumnAdapter
 import breezyweather.data.PrecipitationColumnAdapter
 import breezyweather.data.PressureColumnAdapter
+import breezyweather.data.SpeedColumnAdapter
 import breezyweather.data.TimeZoneColumnAdapter
 import breezyweather.data.WeatherCodeColumnAdapter
 import breezyweather.data.Weathers
@@ -93,6 +94,8 @@ class DbModule {
             ),
             weathersAdapter = Weathers.Adapter(
                 weather_codeAdapter = WeatherCodeColumnAdapter,
+                wind_speedAdapter = SpeedColumnAdapter,
+                wind_gustsAdapter = SpeedColumnAdapter,
                 pm25Adapter = PollutantConcentrationColumnAdapter,
                 pm10Adapter = PollutantConcentrationColumnAdapter,
                 so2Adapter = PollutantConcentrationColumnAdapter,
@@ -115,6 +118,8 @@ class DbModule {
                 daytime_rain_precipitation_durationAdapter = DurationColumnAdapter,
                 daytime_snow_precipitation_durationAdapter = DurationColumnAdapter,
                 daytime_ice_precipitation_durationAdapter = DurationColumnAdapter,
+                daytime_wind_speedAdapter = SpeedColumnAdapter,
+                daytime_wind_gustsAdapter = SpeedColumnAdapter,
                 nighttime_weather_codeAdapter = WeatherCodeColumnAdapter,
                 nighttime_total_precipitationAdapter = PrecipitationColumnAdapter,
                 nighttime_thunderstorm_precipitationAdapter = PrecipitationColumnAdapter,
@@ -126,6 +131,8 @@ class DbModule {
                 nighttime_rain_precipitation_durationAdapter = DurationColumnAdapter,
                 nighttime_snow_precipitation_durationAdapter = DurationColumnAdapter,
                 nighttime_ice_precipitation_durationAdapter = DurationColumnAdapter,
+                nighttime_wind_speedAdapter = SpeedColumnAdapter,
+                nighttime_wind_gustsAdapter = SpeedColumnAdapter,
                 pm25Adapter = PollutantConcentrationColumnAdapter,
                 pm10Adapter = PollutantConcentrationColumnAdapter,
                 so2Adapter = PollutantConcentrationColumnAdapter,
@@ -147,6 +154,8 @@ class DbModule {
                 rain_precipitationAdapter = PrecipitationColumnAdapter,
                 snow_precipitationAdapter = PrecipitationColumnAdapter,
                 ice_precipitationAdapter = PrecipitationColumnAdapter,
+                wind_speedAdapter = SpeedColumnAdapter,
+                wind_gustsAdapter = SpeedColumnAdapter,
                 pm25Adapter = PollutantConcentrationColumnAdapter,
                 pm10Adapter = PollutantConcentrationColumnAdapter,
                 so2Adapter = PollutantConcentrationColumnAdapter,

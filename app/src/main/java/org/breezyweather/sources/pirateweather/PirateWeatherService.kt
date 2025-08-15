@@ -63,6 +63,7 @@ import org.breezyweather.unit.distance.Distance.Companion.kilometers
 import org.breezyweather.unit.precipitation.Precipitation.Companion.centimeters
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
+import org.breezyweather.unit.speed.Speed.Companion.metersPerSecond
 import retrofit2.Retrofit
 import java.util.Objects
 import javax.inject.Inject
@@ -164,8 +165,8 @@ class PirateWeatherService @Inject constructor(
             ),
             wind = Wind(
                 degree = result.windBearing,
-                speed = result.windSpeed,
-                gusts = result.windGust
+                speed = result.windSpeed?.metersPerSecond,
+                gusts = result.windGust?.metersPerSecond
             ),
             uV = UV(index = result.uvIndex),
             relativeHumidity = result.humidity?.times(100),
@@ -239,8 +240,8 @@ class PirateWeatherService @Inject constructor(
                 ),
                 wind = Wind(
                     degree = result.windBearing,
-                    speed = result.windSpeed,
-                    gusts = result.windGust
+                    speed = result.windSpeed?.metersPerSecond,
+                    gusts = result.windGust?.metersPerSecond
                 ),
                 uV = UV(
                     index = result.uvIndex

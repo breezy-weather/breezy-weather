@@ -24,7 +24,6 @@ import breezyweather.domain.weather.model.Daily
 import breezyweather.domain.weather.model.Hourly
 import breezyweather.domain.weather.reference.WeatherCode
 import kotlinx.serialization.json.Json
-import org.breezyweather.common.basic.models.options.unit.SpeedUnit
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.common.extensions.gzipCompress
 import org.breezyweather.common.source.BroadcastSource
@@ -86,9 +85,7 @@ class GadgetbridgeService @Inject constructor() : BroadcastSource {
             currentConditionCode = getWeatherCode(current?.weatherCode),
             currentCondition = current?.weatherText,
             currentHumidity = current?.relativeHumidity?.roundToInt(),
-            windSpeed = current?.wind?.speed?.let {
-                SpeedUnit.KILOMETER_PER_HOUR.convertUnit(it)
-            }?.toFloat(),
+            windSpeed = current?.wind?.speed?.inKilometersPerHour?.toFloat(),
             windDirection = current?.wind?.degree?.roundToInt(),
             uvIndex = current?.uV?.index?.toFloat(),
 
@@ -122,19 +119,15 @@ class GadgetbridgeService @Inject constructor() : BroadcastSource {
         if (dailyForecast.isNullOrEmpty() || dailyForecast.size < 2) return null
 
         return dailyForecast.subList(1, dailyForecast.size).map { day ->
-            val maxWind = listOf(
-                day.day?.wind,
-                day.night?.wind
-            ).maxByOrNull { it?.speed ?: Double.MIN_VALUE }
+            val maxWind = listOf(day.day?.wind, day.night?.wind)
+                .maxByOrNull { it?.speed?.value ?: Long.MIN_VALUE }
 
             GadgetbridgeDailyForecast(
                 conditionCode = getWeatherCode(day.day?.weatherCode),
                 maxTemp = day.day?.temperature?.temperature?.roundCelsiusToKelvin(),
                 minTemp = day.night?.temperature?.temperature?.roundCelsiusToKelvin(),
                 humidity = day.relativeHumidity?.average?.roundToInt(),
-                windSpeed = maxWind?.speed?.let {
-                    SpeedUnit.KILOMETER_PER_HOUR.convertUnit(it)
-                }?.toFloat(),
+                windSpeed = maxWind?.speed?.inKilometersPerHour?.toFloat(),
                 windDirection = maxWind?.degree?.roundToInt(),
                 uvIndex = day.uV?.index?.toFloat(),
                 precipProbability = maxOfNullable(
@@ -183,9 +176,7 @@ class GadgetbridgeService @Inject constructor() : BroadcastSource {
                 temp = hour.temperature?.temperature?.roundCelsiusToKelvin(),
                 conditionCode = getWeatherCode(hour.weatherCode),
                 humidity = hour.relativeHumidity?.roundToInt(),
-                windSpeed = hour.wind?.speed?.let {
-                    SpeedUnit.KILOMETER_PER_HOUR.convertUnit(it)
-                }?.toFloat(),
+                windSpeed = hour.wind?.speed?.inKilometersPerHour?.toFloat(),
                 windDirection = hour.wind?.degree?.roundToInt(),
                 uvIndex = hour.uV?.index?.toFloat(),
                 precipProbability = hour.precipitationProbability?.total?.roundToInt()

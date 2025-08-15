@@ -1,0 +1,49 @@
+ALTER TABLE dailys
+DROP COLUMN daytime_wind_speed;
+
+ALTER TABLE dailys
+ADD COLUMN daytime_wind_speed INTEGER;
+
+ALTER TABLE dailys
+DROP COLUMN daytime_wind_gusts;
+
+ALTER TABLE dailys
+ADD COLUMN daytime_wind_gusts INTEGER;
+
+ALTER TABLE dailys
+DROP COLUMN nighttime_wind_speed;
+
+ALTER TABLE dailys
+ADD COLUMN nighttime_wind_speed INTEGER;
+
+ALTER TABLE dailys
+DROP COLUMN nighttime_wind_gusts;
+
+ALTER TABLE dailys
+ADD COLUMN nighttime_wind_gusts INTEGER;
+
+
+ALTER TABLE hourlys
+DROP COLUMN wind_speed;
+
+ALTER TABLE hourlys
+ADD COLUMN wind_speed INTEGER;
+
+ALTER TABLE hourlys
+DROP COLUMN wind_gusts;
+
+ALTER TABLE hourlys
+ADD COLUMN wind_gusts INTEGER;
+
+
+ALTER TABLE weathers
+DROP COLUMN wind_speed;
+
+ALTER TABLE weathers
+ADD COLUMN wind_speed INTEGER;
+
+ALTER TABLE weathers
+DROP COLUMN wind_gusts;
+
+ALTER TABLE weathers
+ADD COLUMN wind_gusts INTEGER;

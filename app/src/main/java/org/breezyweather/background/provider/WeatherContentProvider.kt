@@ -54,8 +54,11 @@ import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.json.Json
 import org.breezyweather.BuildConfig
 import org.breezyweather.common.basic.models.options.unit.PollenUnit
-import org.breezyweather.common.basic.models.options.unit.SpeedUnit
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
+import org.breezyweather.common.extensions.getBeaufortScaleColor
+import org.breezyweather.common.extensions.getBeaufortScaleStrength
+import org.breezyweather.common.extensions.getCloudCoverDescription
+import org.breezyweather.common.extensions.getVisibilityDescription
 import org.breezyweather.common.extensions.gzipCompress
 import org.breezyweather.common.extensions.roundDecimals
 import org.breezyweather.common.source.HttpSource
@@ -102,13 +105,12 @@ import org.breezyweather.sources.SourceManager
 import org.breezyweather.sources.getFeatureSource
 import org.breezyweather.unit.distance.Distance
 import org.breezyweather.unit.distance.DistanceUnit
-import org.breezyweather.unit.getCloudCoverDescription
-import org.breezyweather.unit.getVisibilityDescription
 import org.breezyweather.unit.precipitation.Precipitation
 import org.breezyweather.unit.precipitation.PrecipitationUnit
 import org.breezyweather.unit.pressure.Pressure
 import org.breezyweather.unit.pressure.PressureUnit
-import kotlin.math.roundToInt
+import org.breezyweather.unit.speed.Speed
+import org.breezyweather.unit.speed.SpeedUnit
 import kotlin.time.Duration
 
 class WeatherContentProvider : ContentProvider() {
@@ -829,17 +831,15 @@ class WeatherContentProvider : ContentProvider() {
     }
 
     private fun getSpeedUnit(
-        speed: Double?,
+        speed: Speed?,
         speedUnit: SpeedUnit,
     ): BreezyUnit? {
         return speed?.let {
             BreezyUnit(
-                value = speedUnit.convertUnit(it).roundDecimals(1),
+                value = it.toDouble(speedUnit).roundDecimals(1),
                 unit = speedUnit.id,
-                description = SpeedUnit.getBeaufortScaleStrength(context!!, it),
-                color = colorToHex(
-                    SpeedUnit.getBeaufortScaleColor(context!!, SpeedUnit.BEAUFORT.convertUnit(it).roundToInt())
-                )
+                description = it.getBeaufortScaleStrength(context!!),
+                color = colorToHex(it.getBeaufortScaleColor(context!!))
             )
         }
     }
@@ -852,7 +852,7 @@ class WeatherContentProvider : ContentProvider() {
             BreezyUnit(
                 value = it.toDouble(distanceUnit).roundDecimals(distanceUnit.decimals.long),
                 unit = distanceUnit.id,
-                description = getVisibilityDescription(context!!, it)
+                description = it.getVisibilityDescription(context!!)
             )
         }
     }

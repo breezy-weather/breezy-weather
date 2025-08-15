@@ -27,11 +27,12 @@ import org.breezyweather.R
 import org.breezyweather.common.basic.BreezyActivity
 import org.breezyweather.common.basic.models.options.appearance.DetailScreen
 import org.breezyweather.common.basic.models.options.basic.UnitUtils
+import org.breezyweather.common.extensions.formatMeasure
 import org.breezyweather.common.utils.helpers.IntentHelper
-import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.domain.weather.model.getContentDescription
 import org.breezyweather.domain.weather.model.getDirection
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
+import org.breezyweather.unit.formatting.UnitWidth
 
 class WindViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
     LayoutInflater.from(parent.context).inflate(R.layout.container_main_wind, parent, false)
@@ -53,13 +54,11 @@ class WindViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
 
         location.weather?.current?.wind?.let { wind ->
             talkBackBuilder.append(context.getString(R.string.colon_separator))
-
-            val speedUnit = SettingsManager.getInstance(context).getSpeedUnit(context)
-            talkBackBuilder.append(wind.getContentDescription(context, speedUnit))
+            talkBackBuilder.append(wind.getContentDescription(context))
 
             wind.speed?.let { speed ->
                 windSpeedValueView.text = UnitUtils.formatUnitsHalfSize(
-                    speedUnit.formatMeasureShort(context, speed, isValueInDefaultUnit = true)
+                    speed.formatMeasure(context, valueWidth = UnitWidth.NARROW)
                 )
             }
 
@@ -83,7 +82,7 @@ class WindViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
             windDetailView.text = if (wind.speed != null && wind.gusts != null && wind.gusts!! > wind.speed!!) {
                 context.getString(R.string.wind_gusts_short) +
                     context.getString(R.string.colon_separator) +
-                    speedUnit.formatMeasureShort(context, wind.gusts!!, isValueInDefaultUnit = true)
+                    wind.gusts!!.formatMeasure(context, valueWidth = UnitWidth.NARROW)
             } else {
                 wind.getDirection(context, short = true)?.let {
                     if (wind.degree!! in 0.0..360.0) {

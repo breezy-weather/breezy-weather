@@ -4,6 +4,7 @@ import org.breezyweather.unit.distance.Distance;
 import org.breezyweather.unit.pollutant.PollutantConcentration;
 import org.breezyweather.unit.precipitation.Precipitation;
 import org.breezyweather.unit.pressure.Pressure;
+import org.breezyweather.unit.speed.Speed;
 
 CREATE TABLE hourlys(
     _id INTEGER NOT NULL PRIMARY KEY,
@@ -34,8 +35,8 @@ CREATE TABLE hourlys(
     ice_precipitation_probability REAL,
 
     wind_degree REAL,
-    wind_speed REAL,
-    wind_gusts REAL,
+    wind_speed INTEGER AS Speed,
+    wind_gusts INTEGER AS Speed,
 
     pm25 INTEGER AS PollutantConcentration,
     pm10 INTEGER AS PollutantConcentration,

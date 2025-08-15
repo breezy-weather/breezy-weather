@@ -30,7 +30,7 @@ enum class DistanceUnit(
     override val nominative: UnitTranslation,
     override val per: UnitTranslation? = null,
     override val measureUnit: MeasureUnit?,
-    override val perMeasureUnit: MeasureUnit?,
+    override val perMeasureUnit: MeasureUnit? = null,
     val convertFromReference: (Double) -> Double,
     val convertToReference: (Double) -> Double,
     override val decimals: UnitDecimals,
@@ -48,7 +48,6 @@ enum class DistanceUnit(
             long = R.string.length_m_nominative_long
         ),
         measureUnit = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) MeasureUnit.METER else null,
-        perMeasureUnit = null,
         convertFromReference = { valueInDefaultUnit -> valueInDefaultUnit },
         convertToReference = { valueInDefaultUnit -> valueInDefaultUnit },
         decimals = UnitDecimals(0),
@@ -65,7 +64,6 @@ enum class DistanceUnit(
             long = R.string.length_km_nominative_long
         ),
         measureUnit = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) MeasureUnit.KILOMETER else null,
-        perMeasureUnit = null,
         convertFromReference = { valueInDefaultUnit -> valueInDefaultUnit.div(1000.0) },
         convertToReference = { valueInDefaultUnit -> valueInDefaultUnit.times(1000.0) },
         decimals = UnitDecimals(narrow = 0, short = 1, long = 2),
@@ -82,7 +80,6 @@ enum class DistanceUnit(
             long = R.string.length_mi_nominative_long
         ),
         measureUnit = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) MeasureUnit.MILE else null,
-        perMeasureUnit = null,
         convertFromReference = { valueInDefaultUnit -> valueInDefaultUnit.div(1609.344) },
         convertToReference = { valueInDefaultUnit -> valueInDefaultUnit.times(1609.344) },
         decimals = UnitDecimals(narrow = 0, short = 1, long = 2),
@@ -107,7 +104,6 @@ enum class DistanceUnit(
             long = R.string.length_nmi_nominative_long
         ),
         measureUnit = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) MeasureUnit.NAUTICAL_MILE else null,
-        perMeasureUnit = null,
         convertFromReference = { valueInDefaultUnit -> valueInDefaultUnit.div(1852.0) },
         convertToReference = { valueInDefaultUnit -> valueInDefaultUnit.times(1852.0) },
         decimals = UnitDecimals(narrow = 0, short = 1, long = 2),
@@ -132,7 +128,6 @@ enum class DistanceUnit(
             long = R.string.length_ft_nominative_long
         ),
         measureUnit = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) MeasureUnit.FOOT else null,
-        perMeasureUnit = null,
         convertFromReference = { valueInDefaultUnit -> valueInDefaultUnit.times(3.28084) },
         convertToReference = { valueInDefaultUnit -> valueInDefaultUnit.div(3.28084) },
         decimals = UnitDecimals(0),

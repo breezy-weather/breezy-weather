@@ -47,6 +47,7 @@ import org.breezyweather.unit.distance.Distance
 import org.breezyweather.unit.pollutant.PollutantConcentration
 import org.breezyweather.unit.precipitation.Precipitation
 import org.breezyweather.unit.pressure.Pressure
+import org.breezyweather.unit.speed.Speed
 import java.util.Date
 import kotlin.time.Duration
 
@@ -71,8 +72,8 @@ object WeatherMapper {
         windChillTemperature: Double?,
         humidex: Double?,
         windDegree: Double?,
-        windSpeed: Double?,
-        windGusts: Double?,
+        windSpeed: Speed?,
+        windGusts: Speed?,
         uvIndex: Double?,
         pm25: PollutantConcentration?,
         pm10: PollutantConcentration?,
@@ -162,8 +163,8 @@ object WeatherMapper {
         daytimeSnowPrecipitationDuration: Duration?,
         daytimeIcePrecipitationDuration: Duration?,
         daytimeWindDegree: Double?,
-        daytimeWindSpeed: Double?,
-        daytimeWindGusts: Double?,
+        daytimeWindSpeed: Speed?,
+        daytimeWindGusts: Speed?,
         nighttimeWeatherText: String?,
         nighttimeweatherSummary: String?,
         nighttimeWeatherCode: WeatherCode?,
@@ -188,8 +189,8 @@ object WeatherMapper {
         nighttimeSnowPrecipitationDuration: Duration?,
         nighttimeIcePrecipitationDuration: Duration?,
         nighttimeWindDegree: Double?,
-        nighttimeWindSpeed: Double?,
-        nighttimeWindGusts: Double?,
+        nighttimeWindSpeed: Speed?,
+        nighttimeWindGusts: Speed?,
         degreeDayHeating: Double?,
         degreeDayCooling: Double?,
         sunRiseDate: Long?,
@@ -407,8 +408,8 @@ object WeatherMapper {
         snowPrecipitationProbability: Double?,
         icePrecipitationProbability: Double?,
         windDegree: Double?,
-        windSpeed: Double?,
-        windGusts: Double?,
+        windSpeed: Speed?,
+        windGusts: Speed?,
         pm25: PollutantConcentration?,
         pm10: PollutantConcentration?,
         so2: PollutantConcentration?,

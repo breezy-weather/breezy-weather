@@ -28,7 +28,6 @@ import breezyweather.domain.weather.model.Weather
 import org.breezyweather.R
 import org.breezyweather.background.receiver.widget.WidgetTextProvider
 import org.breezyweather.common.basic.models.options.basic.UnitUtils
-import org.breezyweather.common.basic.models.options.unit.SpeedUnit
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.common.extensions.getFormattedMediumDayAndMonthInAdditionalCalendar
 import org.breezyweather.common.extensions.getFormattedTime
@@ -86,7 +85,6 @@ object TextWidgetIMP : AbstractRemoteViewsPresenter() {
         val weather = location?.weather ?: return views
         val settings = SettingsManager.getInstance(context)
         val temperatureUnit = settings.getTemperatureUnit(context)
-        val speedUnit = settings.getSpeedUnit(context)
 
         val color = WidgetColor(
             context,
@@ -142,7 +140,6 @@ object TextWidgetIMP : AbstractRemoteViewsPresenter() {
                     weather,
                     subtitleData,
                     temperatureUnit,
-                    speedUnit,
                     pollenIndexSource
                 )
             )
@@ -181,7 +178,6 @@ object TextWidgetIMP : AbstractRemoteViewsPresenter() {
         weather: Weather,
         subtitleData: String?,
         temperatureUnit: TemperatureUnit,
-        speedUnit: SpeedUnit,
         pollenIndexSource: PollenIndexSource?,
     ): String? {
         return when (subtitleData) {
@@ -197,7 +193,7 @@ object TextWidgetIMP : AbstractRemoteViewsPresenter() {
                     null
                 }
             }
-            "wind" -> weather.current?.wind?.getShortDescription(context, speedUnit)
+            "wind" -> weather.current?.wind?.getShortDescription(context)
             "lunar" -> Date().getFormattedMediumDayAndMonthInAdditionalCalendar(location, context)
             "feels_like" -> weather.current?.temperature?.feelsLikeTemperature?.let {
                 context.getString(

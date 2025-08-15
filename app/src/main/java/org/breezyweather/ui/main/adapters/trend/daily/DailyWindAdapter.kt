@@ -26,18 +26,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.content.res.AppCompatResources
 import breezyweather.domain.location.model.Location
-import breezyweather.domain.weather.model.Wind
 import org.breezyweather.R
 import org.breezyweather.common.basic.BreezyActivity
 import org.breezyweather.common.basic.models.options.appearance.DetailScreen
-import org.breezyweather.common.basic.models.options.unit.SpeedUnit
+import org.breezyweather.common.extensions.formatValue
+import org.breezyweather.common.extensions.getBeaufortScaleStrength
 import org.breezyweather.common.extensions.getThemeColor
-import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.domain.weather.model.getColor
 import org.breezyweather.domain.weather.model.getContentDescription
 import org.breezyweather.ui.common.images.RotateDrawable
 import org.breezyweather.ui.common.widgets.trend.TrendRecyclerView
 import org.breezyweather.ui.common.widgets.trend.chart.DoubleHistogramView
+import org.breezyweather.unit.speed.Speed.Companion.beaufort
 
 /**
  * Daily wind adapter.
@@ -45,9 +45,7 @@ import org.breezyweather.ui.common.widgets.trend.chart.DoubleHistogramView
 class DailyWindAdapter(
     activity: BreezyActivity,
     location: Location,
-    unit: SpeedUnit,
 ) : AbsDailyTrendAdapter(activity, location) {
-    private val mSpeedUnit: SpeedUnit = unit
     private var mHighestWindSpeed: Float = 0f
 
     inner class ViewHolder(itemView: View) : AbsDailyTrendAdapter.ViewHolder(itemView) {
@@ -68,7 +66,7 @@ class DailyWindAdapter(
                     .append(activity.getString(org.breezyweather.unit.R.string.locale_separator))
                     .append(activity.getString(R.string.daytime))
                     .append(activity.getString(R.string.colon_separator))
-                    .append(daily.day!!.wind!!.getContentDescription(activity, mSpeedUnit))
+                    .append(daily.day!!.wind!!.getContentDescription(activity))
             }
             val dayWindColor = daily.day?.wind?.getColor(activity) ?: Color.TRANSPARENT
             val dayIcon = daily.day?.wind?.degree?.let { degree ->
@@ -88,10 +86,10 @@ class DailyWindAdapter(
             val nightWindColor = daily.night?.wind?.getColor(activity) ?: Color.TRANSPARENT
 
             mDoubleHistogramView.setData(
-                daily.day?.wind?.speed?.toFloat() ?: 0f,
-                daily.night?.wind?.speed?.toFloat() ?: 0f,
-                daily.day?.wind?.speed?.let { mSpeedUnit.formatValue(activity, it) },
-                daily.night?.wind?.speed?.let { mSpeedUnit.formatValue(activity, it) },
+                daily.day?.wind?.speed?.value?.toFloat() ?: 0f,
+                daily.night?.wind?.speed?.value?.toFloat() ?: 0f,
+                daily.day?.wind?.speed?.formatValue(activity),
+                daily.night?.wind?.speed?.formatValue(activity),
                 mHighestWindSpeed
             )
             mDoubleHistogramView.setLineColors(
@@ -107,7 +105,7 @@ class DailyWindAdapter(
                     .append(activity.getString(org.breezyweather.unit.R.string.locale_separator))
                     .append(activity.getString(R.string.nighttime))
                     .append(activity.getString(R.string.colon_separator))
-                    .append(daily.night!!.wind!!.getContentDescription(activity, mSpeedUnit))
+                    .append(daily.night!!.wind!!.getContentDescription(activity))
             }
             val nightIcon = daily.night?.wind?.degree?.let { degree ->
                 if (degree == -1.0) {
@@ -133,11 +131,11 @@ class DailyWindAdapter(
     init {
         mHighestWindSpeed = maxOf(
             location.weather!!.dailyForecast
-                .mapNotNull { it.day?.wind?.speed }
-                .maxOrNull() ?: 0.0,
+                .mapNotNull { it.day?.wind?.speed?.value }
+                .maxOrNull() ?: 0L,
             location.weather!!.dailyForecast
-                .mapNotNull { it.night?.wind?.speed }
-                .maxOrNull() ?: 0.0
+                .mapNotNull { it.night?.wind?.speed?.value }
+                .maxOrNull() ?: 0L
         ).toFloat()
     }
 
@@ -157,37 +155,36 @@ class DailyWindAdapter(
     override fun getDisplayName(context: Context) = context.getString(R.string.tag_wind)
 
     override fun bindBackgroundForHost(host: TrendRecyclerView) {
-        val unit = SettingsManager.getInstance(activity).getSpeedUnit(activity)
         val keyLineList = mutableListOf<TrendRecyclerView.KeyLine>()
         keyLineList.add(
             TrendRecyclerView.KeyLine(
-                Wind.WIND_SPEED_3.toFloat(),
-                unit.formatValue(activity, Wind.WIND_SPEED_3),
-                activity.getString(R.string.wind_strength_3),
+                4.beaufort.inCentimetersPerSecond.toFloat(),
+                4.beaufort.formatValue(activity),
+                4.beaufort.getBeaufortScaleStrength(activity),
                 TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
             )
         )
         keyLineList.add(
             TrendRecyclerView.KeyLine(
-                Wind.WIND_SPEED_7.toFloat(),
-                unit.formatValue(activity, Wind.WIND_SPEED_7),
-                activity.getString(R.string.wind_strength_7),
+                8.beaufort.inCentimetersPerSecond.toFloat(),
+                8.beaufort.formatValue(activity),
+                8.beaufort.getBeaufortScaleStrength(activity),
                 TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
             )
         )
         keyLineList.add(
             TrendRecyclerView.KeyLine(
-                -Wind.WIND_SPEED_3.toFloat(),
-                unit.formatValue(activity, Wind.WIND_SPEED_3),
-                activity.getString(R.string.wind_strength_3),
+                4.beaufort.inCentimetersPerSecond.times(-1.0).toFloat(),
+                4.beaufort.formatValue(activity),
+                4.beaufort.getBeaufortScaleStrength(activity),
                 TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE
             )
         )
         keyLineList.add(
             TrendRecyclerView.KeyLine(
-                -Wind.WIND_SPEED_7.toFloat(),
-                unit.formatValue(activity, Wind.WIND_SPEED_7),
-                activity.getString(R.string.wind_strength_7),
+                8.beaufort.inCentimetersPerSecond.times(-1.0).toFloat(),
+                8.beaufort.formatValue(activity),
+                8.beaufort.getBeaufortScaleStrength(activity),
                 TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE
             )
         )

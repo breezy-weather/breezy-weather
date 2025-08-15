@@ -25,10 +25,10 @@ import org.breezyweather.common.basic.BreezyActivity
 import org.breezyweather.common.basic.models.options.appearance.DetailScreen
 import org.breezyweather.common.basic.models.options.basic.UnitUtils
 import org.breezyweather.common.extensions.formatMeasure
+import org.breezyweather.common.extensions.getVisibilityDescription
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
 import org.breezyweather.unit.formatting.UnitWidth
-import org.breezyweather.unit.getVisibilityDescription
 
 class VisibilityViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
     LayoutInflater.from(parent.context).inflate(R.layout.container_main_visibility, parent, false)
@@ -51,7 +51,7 @@ class VisibilityViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
             visibilityValueView.text = UnitUtils.formatUnitsHalfSize(
                 visibility.formatMeasure(context)
             )
-            visibilityDescriptionView.text = getVisibilityDescription(context, visibility)
+            visibilityDescriptionView.text = visibility.getVisibilityDescription(context)
 
             talkBackBuilder.append(context.getString(R.string.colon_separator))
             talkBackBuilder.append(visibility.formatMeasure(context, unitWidth = UnitWidth.LONG))

@@ -12,9 +12,7 @@ Very early work
 
 Remains to do :
 
-- Speed unit
 - Temperature unit
-- Air quality concentration unit
 - Pollen concentration unit
 - Add missing non-English Android translations (for the units we use in Breezy Weather)
 - Plus and minus operations
@@ -36,6 +34,23 @@ Android translations are only in English at the moment.
 | Mile          | Android >= 11     | Android 7 to 10 | Android < 7          |
 | Nautical mile | Android >= 11     | Android 7 to 10 | Android < 7          |
 | Foot          | Android >= 11     | Android 7 to 10 | Android < 7          |
+
+
+## Speed
+
+Android translations are only in English at the moment.
+
+| Unit                  | `NumberFormatter` | `MeasureFormat` | Android translations |
+|-----------------------|-------------------|-----------------|----------------------|
+| Centimeter per second | Android >= 11     | Android 8 to 10 | Android < 8          |
+| Meter per second      | Android >= 11     | Android 7 to 10 | Android < 7          |
+| Kilometer per hour    | Android >= 11     | Android 7 to 10 | Android < 7          |
+| Mile per hour         | Android >= 11     | Android 7 to 10 | Android < 7          |
+| Knot                  | Android >= 11     | Android 8 to 10 | Android < 8          |
+| Foot per second       | Android >= 11     | Android 7 to 10 | Android < 7          |
+| Beaufort scale¹       | Android >= 16     | ❌               | Android < 16         |
+
+¹ Not an unit, but a scale, so during conversions, uses the starting value in meters per second of the scale level
 
 
 ## Precipitation

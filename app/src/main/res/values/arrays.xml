@@ -363,6 +363,21 @@
     </string-array>
 
     <!-- Beaufort scale levels -->
+    <string-array name="wind_strength_descriptions">
+        <item>@string/wind_strength_0</item>
+        <item>@string/wind_strength_1</item>
+        <item>@string/wind_strength_2</item>
+        <item>@string/wind_strength_3</item>
+        <item>@string/wind_strength_4</item>
+        <item>@string/wind_strength_5</item>
+        <item>@string/wind_strength_6</item>
+        <item>@string/wind_strength_7</item>
+        <item>@string/wind_strength_8</item>
+        <item>@string/wind_strength_9</item>
+        <item>@string/wind_strength_10</item>
+        <item>@string/wind_strength_11</item>
+        <item>@string/wind_strength_12</item>
+    </string-array>
     <integer-array name="wind_strength_colors">
         <item>@color/windStrength_bf0</item>
         <item>@color/windStrength_bf1</item>

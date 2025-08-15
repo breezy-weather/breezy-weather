@@ -56,6 +56,7 @@ import org.breezyweather.common.utils.helpers.LogHelper
 import org.breezyweather.sources.RefreshHelper
 import org.breezyweather.sources.ims.json.ImsLocation
 import org.breezyweather.sources.ims.json.ImsWeatherData
+import org.breezyweather.unit.speed.Speed.Companion.kilometersPerHour
 import retrofit2.Retrofit
 import java.util.Calendar
 import java.util.Date
@@ -229,7 +230,7 @@ class ImsService @Inject constructor(
                             ),
                             wind = hourlyResult.value.windSpeed?.let { windSpeed ->
                                 Wind(
-                                    speed = windSpeed.div(3.6),
+                                    speed = windSpeed.kilometersPerHour,
                                     degree = hourlyResult.value.windDirectionId?.let { windDirId ->
                                         data.windDirections?.getOrElse(windDirId) { null }?.direction?.toDoubleOrNull()
                                     }
@@ -266,7 +267,7 @@ class ImsService @Inject constructor(
             },
             wind = data.analysis.windSpeed?.let { windSpeed ->
                 Wind(
-                    speed = windSpeed.div(3.6),
+                    speed = windSpeed.kilometersPerHour,
                     degree = data.analysis.windDirectionId?.let {
                         data.windDirections?.getOrElse(it) { null }?.direction?.toDoubleOrNull()
                     }

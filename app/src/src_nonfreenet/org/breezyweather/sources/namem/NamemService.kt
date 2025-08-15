@@ -62,6 +62,7 @@ import org.breezyweather.unit.pollutant.PollutantConcentration.Companion.microgr
 import org.breezyweather.unit.pollutant.PollutantConcentration.Companion.milligramsPerCubicMeter
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
+import org.breezyweather.unit.speed.Speed.Companion.metersPerSecond
 import retrofit2.Retrofit
 import java.util.Date
 import javax.inject.Inject
@@ -249,7 +250,7 @@ class NamemService @Inject constructor(
             ),
             wind = Wind(
                 degree = current?.windDir,
-                speed = current?.windSpeed
+                speed = current?.windSpeed?.metersPerSecond
             ),
             relativeHumidity = current?.ff,
             pressure = current?.pslp?.hectopascals
@@ -331,7 +332,7 @@ class NamemService @Inject constructor(
                                 total = forecast.wwNPer
                             ),
                             wind = Wind(
-                                speed = forecast.wndN
+                                speed = forecast.wndN?.metersPerSecond
                             )
                         )
                     )
@@ -351,7 +352,7 @@ class NamemService @Inject constructor(
                             total = forecast.wwDPer
                         ),
                         wind = Wind(
-                            speed = forecast.wndD
+                            speed = forecast.wndD?.metersPerSecond
                         )
                     ),
                     night = dailyResult.fore5Day.getOrNull(i + 1)?.let {
@@ -366,7 +367,7 @@ class NamemService @Inject constructor(
                                 total = it.wwNPer
                             ),
                             wind = Wind(
-                                speed = it.wndN
+                                speed = it.wndN?.metersPerSecond
                             )
                         )
                     }
@@ -395,7 +396,7 @@ class NamemService @Inject constructor(
                             total = it.preProb?.toDoubleOrNull()
                         ),
                         wind = Wind(
-                            speed = it.wnd?.toDoubleOrNull()
+                            speed = it.wnd?.toDoubleOrNull()?.metersPerSecond
                         )
                     )
                 )

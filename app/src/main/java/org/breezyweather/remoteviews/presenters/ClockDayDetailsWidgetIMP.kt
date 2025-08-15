@@ -184,10 +184,9 @@ object ClockDayDetailsWidgetIMP : AbstractRemoteViewsPresenter() {
         }
         views.setTextViewText(R.id.widget_clock_day_aqiHumidity, getAQIHumidityTempText(context, weather))
         weather.current?.wind?.let { wind ->
-            val speedUnit = settings.getSpeedUnit(context)
             views.setTextViewText(
                 R.id.widget_clock_day_wind,
-                wind.getShortDescription(context, speedUnit)
+                wind.getShortDescription(context)
             )
         }
         if (color.textColor != Color.TRANSPARENT) {

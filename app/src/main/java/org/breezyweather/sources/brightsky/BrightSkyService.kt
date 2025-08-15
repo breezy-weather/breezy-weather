@@ -61,6 +61,7 @@ import org.breezyweather.sources.brightsky.json.BrightSkyWeatherResult
 import org.breezyweather.unit.distance.Distance.Companion.meters
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
+import org.breezyweather.unit.speed.Speed.Companion.kilometersPerHour
 import retrofit2.Retrofit
 import java.util.Calendar
 import java.util.Date
@@ -210,8 +211,8 @@ class BrightSkyService @Inject constructor(
             ),
             wind = Wind(
                 degree = result.windDirection?.toDouble(),
-                speed = result.windSpeed?.div(3.6),
-                gusts = result.windGustSpeed?.div(3.6)
+                speed = result.windSpeed?.kilometersPerHour,
+                gusts = result.windGustSpeed?.kilometersPerHour
             ),
             relativeHumidity = result.relativeHumidity?.toDouble(),
             dewPoint = result.dewPoint,
@@ -270,8 +271,8 @@ class BrightSkyService @Inject constructor(
                 ),
                 wind = Wind(
                     degree = result.windDirection?.toDouble(),
-                    speed = result.windSpeed?.div(3.6),
-                    gusts = result.windGustSpeed?.div(3.6)
+                    speed = result.windSpeed?.kilometersPerHour,
+                    gusts = result.windGustSpeed?.kilometersPerHour
                 ),
                 relativeHumidity = result.relativeHumidity?.toDouble(),
                 dewPoint = result.dewPoint,

@@ -4,6 +4,7 @@ import org.breezyweather.unit.distance.Distance;
 import org.breezyweather.unit.pollutant.PollutantConcentration;
 import org.breezyweather.unit.precipitation.Precipitation;
 import org.breezyweather.unit.pressure.Pressure;
+import org.breezyweather.unit.speed.Speed;
 
 CREATE TABLE dailys(
     _id INTEGER NOT NULL PRIMARY KEY,
@@ -41,8 +42,8 @@ CREATE TABLE dailys(
     daytime_ice_precipitation_duration INTEGER AS Duration,
 
     daytime_wind_degree REAL,
-    daytime_wind_speed REAL,
-    daytime_wind_gusts REAL,
+    daytime_wind_speed INTEGER AS Speed,
+    daytime_wind_gusts INTEGER AS Speed,
 
     -- nighttime
     nighttime_weather_text TEXT,
@@ -74,8 +75,8 @@ CREATE TABLE dailys(
     nighttime_ice_precipitation_duration INTEGER AS Duration,
 
     nighttime_wind_degree REAL,
-    nighttime_wind_speed REAL,
-    nighttime_wind_gusts REAL,
+    nighttime_wind_speed INTEGER AS Speed,
+    nighttime_wind_gusts INTEGER AS Speed,
 
     degree_day_heating REAL,
     degree_day_cooling REAL,

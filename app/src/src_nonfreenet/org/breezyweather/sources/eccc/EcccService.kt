@@ -59,6 +59,7 @@ import org.breezyweather.sources.eccc.json.EcccUnit
 import org.breezyweather.sources.getWindDegree
 import org.breezyweather.unit.distance.Distance.Companion.kilometers
 import org.breezyweather.unit.pressure.Pressure.Companion.kilopascals
+import org.breezyweather.unit.speed.Speed.Companion.kilometersPerHour
 import retrofit2.Retrofit
 import java.util.Calendar
 import java.util.Date
@@ -198,8 +199,8 @@ class EcccService @Inject constructor(
             ),
             wind = Wind(
                 degree = result.windBearing?.toDoubleOrNull(),
-                speed = getNonEmptyMetric(result.windSpeed)?.div(3.6),
-                gusts = getNonEmptyMetric(result.windGust)?.div(3.6)
+                speed = getNonEmptyMetric(result.windSpeed)?.kilometersPerHour,
+                gusts = getNonEmptyMetric(result.windGust)?.kilometersPerHour
             ),
             relativeHumidity = result.humidity?.toDoubleOrNull(),
             dewPoint = getNonEmptyMetric(result.dewpoint),
@@ -310,8 +311,8 @@ class EcccService @Inject constructor(
                 },
                 wind = Wind(
                     degree = getWindDegree(result.windDir),
-                    speed = getNonEmptyMetric(result.windSpeed)?.div(3.6),
-                    gusts = getNonEmptyMetric(result.windGust)?.div(3.6)
+                    speed = getNonEmptyMetric(result.windSpeed)?.kilometersPerHour,
+                    gusts = getNonEmptyMetric(result.windGust)?.kilometersPerHour
                 ),
                 uV = if (!result.uv?.index.isNullOrEmpty()) {
                     UV(index = result.uv.index.toDoubleOrNull())

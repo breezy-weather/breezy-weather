@@ -65,9 +65,11 @@ import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.formatMeasure
 import org.breezyweather.common.extensions.formatValue
 import org.breezyweather.common.extensions.getFormattedTime
+import org.breezyweather.common.extensions.getVisibilityDescription
 import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.extensions.roundUpToNearestMultiplier
 import org.breezyweather.common.extensions.toDate
+import org.breezyweather.common.extensions.visibilityScaleThresholds
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.domain.weather.model.getFullLabel
 import org.breezyweather.domain.weather.model.getRangeContentDescriptionSummary
@@ -80,8 +82,6 @@ import org.breezyweather.unit.distance.Distance
 import org.breezyweather.unit.distance.Distance.Companion.meters
 import org.breezyweather.unit.distance.toDistance
 import org.breezyweather.unit.formatting.UnitWidth
-import org.breezyweather.unit.getVisibilityDescription
-import org.breezyweather.unit.visibilityScaleThresholds
 import java.util.Date
 import kotlin.math.max
 
@@ -227,7 +227,7 @@ private fun VisibilityItem(
                 }
         )
         TextFixedHeight(
-            text = getVisibilityDescription(context, visibility) ?: "",
+            text = visibility?.getVisibilityDescription(context) ?: "",
             style = MaterialTheme.typography.labelMedium
         )
     }
@@ -403,10 +403,8 @@ fun VisibilityScale(
                         .padding(top = dimensionResource(R.dimen.small_margin))
                 ) {
                     Text(
-                        text = getVisibilityDescription(
-                            context,
-                            startingValue.toDouble(distanceUnit).plus(0.1).toDistance(distanceUnit)
-                        )!!,
+                        text = startingValue.toDouble(distanceUnit).plus(0.1).toDistance(distanceUnit)
+                            .getVisibilityDescription(context)!!,
                         modifier = Modifier.weight(1.5f)
                     )
                     Text(

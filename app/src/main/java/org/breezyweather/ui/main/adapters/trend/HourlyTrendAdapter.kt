@@ -65,21 +65,10 @@ class HourlyTrendAdapter(
                     provider,
                     SettingsManager.getInstance(activity).getTemperatureUnit(activity)
                 )
-                HourlyTrendDisplay.TAG_AIR_QUALITY -> HourlyAirQualityAdapter(
-                    activity,
-                    location
-                )
-                HourlyTrendDisplay.TAG_WIND -> HourlyWindAdapter(
-                    activity,
-                    location,
-                    SettingsManager.getInstance(activity).getSpeedUnit(activity)
-                )
+                HourlyTrendDisplay.TAG_AIR_QUALITY -> HourlyAirQualityAdapter(activity, location)
+                HourlyTrendDisplay.TAG_WIND -> HourlyWindAdapter(activity, location)
                 HourlyTrendDisplay.TAG_UV_INDEX -> HourlyUVAdapter(activity, location)
-                HourlyTrendDisplay.TAG_PRECIPITATION -> HourlyPrecipitationAdapter(
-                    activity,
-                    location,
-                    provider
-                )
+                HourlyTrendDisplay.TAG_PRECIPITATION -> HourlyPrecipitationAdapter(activity, location, provider)
                 HourlyTrendDisplay.TAG_FEELS_LIKE -> HourlyFeelsLikeAdapter(
                     activity,
                     location,
@@ -92,17 +81,9 @@ class HourlyTrendAdapter(
                     provider,
                     SettingsManager.getInstance(activity).getTemperatureUnit(activity)
                 )
-                HourlyTrendDisplay.TAG_PRESSURE -> HourlyPressureAdapter(
-                    activity,
-                    location,
-                    provider
-                )
+                HourlyTrendDisplay.TAG_PRESSURE -> HourlyPressureAdapter(activity, location, provider)
                 HourlyTrendDisplay.TAG_CLOUD_COVER -> HourlyCloudCoverAdapter(activity, location)
-                HourlyTrendDisplay.TAG_VISIBILITY -> HourlyVisibilityAdapter(
-                    activity,
-                    location,
-                    provider
-                )
+                HourlyTrendDisplay.TAG_VISIBILITY -> HourlyVisibilityAdapter(activity, location, provider)
             }
         }.filter {
             it.isValid(location)

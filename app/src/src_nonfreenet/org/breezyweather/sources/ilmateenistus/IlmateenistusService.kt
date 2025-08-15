@@ -43,6 +43,7 @@ import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
 import org.breezyweather.sources.ilmateenistus.json.IlmateenistusForecastResult
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
+import org.breezyweather.unit.speed.Speed.Companion.metersPerSecond
 import retrofit2.Retrofit
 import java.text.SimpleDateFormat
 import java.util.Locale
@@ -165,7 +166,7 @@ class IlmateenistusService @Inject constructor(
                         ),
                         wind = Wind(
                             degree = it.windDirection?.attributes?.deg?.toDoubleOrNull(),
-                            speed = it.windSpeed?.attributes?.mps?.toDoubleOrNull()
+                            speed = it.windSpeed?.attributes?.mps?.toDoubleOrNull()?.metersPerSecond
                         ),
                         pressure = it.pressure?.attributes?.value?.toDoubleOrNull()?.hectopascals
                     )

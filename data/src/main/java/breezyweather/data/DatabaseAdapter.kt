@@ -28,6 +28,8 @@ import org.breezyweather.unit.precipitation.Precipitation
 import org.breezyweather.unit.precipitation.Precipitation.Companion.micrometers
 import org.breezyweather.unit.pressure.Pressure
 import org.breezyweather.unit.pressure.Pressure.Companion.pascals
+import org.breezyweather.unit.speed.Speed
+import org.breezyweather.unit.speed.Speed.Companion.centimetersPerSecond
 import java.util.Date
 import java.util.TimeZone
 import kotlin.time.Duration
@@ -69,16 +71,22 @@ object AlertSeverityColumnAdapter : ColumnAdapter<AlertSeverity, Long> {
     override fun encode(value: AlertSeverity): Long = value.id.toLong()
 }
 
-object DistanceColumnAdapter : ColumnAdapter<Distance, Long> {
-    override fun decode(databaseValue: Long): Distance = databaseValue.meters
-
-    override fun encode(value: Distance): Long = value.value
-}
-
 object PrecipitationColumnAdapter : ColumnAdapter<Precipitation, Long> {
     override fun decode(databaseValue: Long): Precipitation = databaseValue.micrometers
 
     override fun encode(value: Precipitation): Long = value.value
+}
+
+object SpeedColumnAdapter : ColumnAdapter<Speed, Long> {
+    override fun decode(databaseValue: Long): Speed = databaseValue.centimetersPerSecond
+
+    override fun encode(value: Speed): Long = value.value
+}
+
+object DistanceColumnAdapter : ColumnAdapter<Distance, Long> {
+    override fun decode(databaseValue: Long): Distance = databaseValue.meters
+
+    override fun encode(value: Distance): Long = value.value
 }
 
 object PressureColumnAdapter : ColumnAdapter<Pressure, Long> {

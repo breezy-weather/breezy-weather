@@ -49,6 +49,7 @@ import org.breezyweather.sources.getWindDegree
 import org.breezyweather.sources.meteolux.json.MeteoLuxWeatherResult
 import org.breezyweather.unit.precipitation.Precipitation.Companion.centimeters
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
+import org.breezyweather.unit.speed.Speed.Companion.kilometersPerHour
 import retrofit2.Retrofit
 import java.text.SimpleDateFormat
 import java.util.Locale
@@ -182,8 +183,8 @@ class MeteoLuxService @Inject constructor(
                 ),
                 wind = Wind(
                     degree = getWindDegree(it.wind?.direction),
-                    speed = getRangeMax(it.wind?.speed)?.div(3.6), // convert km/h to m/s
-                    gusts = getRangeMax(it.wind?.gusts)?.div(3.6) // convert km/h to m/s
+                    speed = getRangeMax(it.wind?.speed)?.kilometersPerHour,
+                    gusts = getRangeMax(it.wind?.gusts)?.kilometersPerHour
                 )
             )
         }
@@ -213,8 +214,8 @@ class MeteoLuxService @Inject constructor(
                         ),
                         wind = Wind(
                             degree = getWindDegree(it.wind?.direction),
-                            speed = getRangeMax(it.wind?.speed)?.div(3.6), // convert km/h to m/s
-                            gusts = getRangeMax(it.wind?.gusts)?.div(3.6) // convert km/h to m/s
+                            speed = getRangeMax(it.wind?.speed)?.kilometersPerHour,
+                            gusts = getRangeMax(it.wind?.gusts)?.kilometersPerHour
                         )
                     ),
                     night = HalfDayWrapper(
@@ -226,8 +227,8 @@ class MeteoLuxService @Inject constructor(
                         ),
                         wind = Wind(
                             degree = getWindDegree(it.wind?.direction),
-                            speed = getRangeMax(it.wind?.speed)?.div(3.6), // convert km/h to m/s
-                            gusts = getRangeMax(it.wind?.gusts)?.div(3.6) // convert km/h to m/s
+                            speed = getRangeMax(it.wind?.speed)?.kilometersPerHour,
+                            gusts = getRangeMax(it.wind?.gusts)?.kilometersPerHour
                         )
                     ),
                     uV = UV(
@@ -263,8 +264,8 @@ class MeteoLuxService @Inject constructor(
                     ),
                     wind = Wind(
                         degree = getWindDegree(it.wind?.direction),
-                        speed = getRangeMax(it.wind?.speed)?.div(3.6), // convert km/h to m/s
-                        gusts = getRangeMax(it.wind?.gusts)?.div(3.6) // convert km/h to m/s
+                        speed = getRangeMax(it.wind?.speed)?.kilometersPerHour,
+                        gusts = getRangeMax(it.wind?.gusts)?.kilometersPerHour
                     )
                 )
             )
