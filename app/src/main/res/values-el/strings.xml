@@ -702,4 +702,9 @@
     <string name="ephemeris_dawn_at">Αυγή στις %s</string>
     <string name="daytime_short">Μέρα</string>
     <string name="nighttime_short">Νύχτα</string>
+    <string name="pressure_rising">Ανεβαίνει</string>
+    <string name="pressure_falling">Χαμηλώνει</string>
+    <string name="visibility_about">Για την Ωρατότητα</string>
+    <string name="pollen_details">Λεπτομέρειες για την γύρι</string>
+    <string name="nighttime_details">Ξεκινάει το βράδυ και διαρκεί μέχρι την αυγή</string>
 </resources>
