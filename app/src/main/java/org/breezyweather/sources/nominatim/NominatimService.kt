@@ -152,6 +152,35 @@ class NominatimService @Inject constructor(
                                     }
                                 }
                             }
+                            equals("NL", ignoreCase = true) -> {
+                                when {
+                                    locationResult.address.isoLvl3?.equals("NL-AW", ignoreCase = true) == true -> "AW"
+                                    locationResult.address.isoLvl3?.equals("NL-CW", ignoreCase = true) == true -> "CW"
+                                    locationResult.address.isoLvl3?.equals("NL-SX", ignoreCase = true) == true -> "SX"
+                                    locationResult.address.isoLvl8?.startsWith("BQ", ignoreCase = true) == true -> "BQ"
+                                    else -> "NL"
+                                }
+                            }
+                            equals("NO", ignoreCase = true) -> {
+                                with(locationResult.address.isoLvl4) {
+                                    when {
+                                        equals("NO-21", ignoreCase = true) -> "SJ"
+                                        equals("NO-22", ignoreCase = true) -> "SJ"
+                                        else -> "NO"
+                                    }
+                                }
+                            }
+                            equals("US", ignoreCase = true) -> {
+                                when {
+                                    locationResult.address.isoLvl4?.equals("US-AS", ignoreCase = true) == true -> "AS"
+                                    locationResult.address.isoLvl4?.equals("US-GU", ignoreCase = true) == true -> "GU"
+                                    locationResult.address.isoLvl4?.equals("US-MP", ignoreCase = true) == true -> "MP"
+                                    locationResult.address.isoLvl4?.equals("US-PR", ignoreCase = true) == true -> "PR"
+                                    locationResult.address.isoLvl4?.equals("US-VI", ignoreCase = true) == true -> "VI"
+                                    locationResult.address.isoLvl15?.startsWith("UM", ignoreCase = true) == true -> "UM"
+                                    else -> "US"
+                                }
+                            }
                             else -> it
                         }
                     }
@@ -160,16 +189,10 @@ class NominatimService @Inject constructor(
         }
     }
 
-    /**
-     * TODO: In progress
-     */
+    // We have no way to distinguish the ones below. Others were deduced with other info in the code above
     override val knownAmbiguousCountryCodes = arrayOf(
         "AU", // Territories: CX, CC, HM (uninhabited), NF
-        "GB", // Territories: AI, BM, IO, KY, FK, GI, GG, IM, JE, MS, PN, SH, GS (uninhabited), TC, VG
-        "NL", // Territories: AW, BQ, CW, SX
-        "NO", // Territories: BV, SJ
-        "NZ", // Territories: TK. Associated states: CK, NU
-        "US" // Territories: AS, GU, MP, PR, UM (uninhabited), VI
+        "NO", // Territories: BV
     )
 
     companion object {
