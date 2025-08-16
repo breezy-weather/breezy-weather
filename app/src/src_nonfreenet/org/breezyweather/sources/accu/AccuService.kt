@@ -859,12 +859,22 @@ class AccuService @Inject constructor(
             throw InvalidLocationException()
         }
 
+        val countryCode = result.Country.ID.let {
+            if (it.equals("FI", ignoreCase = true) &&
+                result.AdministrativeArea?.ID?.equals("01") == true
+            ) {
+                "AX"
+            } else {
+                it
+            }
+        }
+
         return LocationAddressInfo(
             latitude = result.GeoPosition.Latitude,
             longitude = result.GeoPosition.Longitude,
             timeZoneId = result.TimeZone.Name,
             country = result.Country.LocalizedName.ifEmpty { result.Country.EnglishName },
-            countryCode = result.Country.ID,
+            countryCode = countryCode,
             admin2 = result.AdministrativeArea?.LocalizedName?.ifEmpty {
                 result.AdministrativeArea.EnglishName
             },
@@ -1036,8 +1046,11 @@ class AccuService @Inject constructor(
         )
     )
 
-    // TODO
-    override val knownAmbiguousCountryCodes: Array<String>? = null
+    // We have no way to distinguish the ones below. Others were deduced with other info in the code above
+    override val knownAmbiguousCountryCodes = arrayOf(
+        "MA", // Claims: EH
+        "NO" // Territories: SJ
+    )
 
     companion object {
         private const val ACCU_DEVELOPER_BASE_URL = "https://dataservice.accuweather.com/"
