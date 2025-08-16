@@ -343,8 +343,19 @@ class MeteoAmService @Inject constructor(
 
     override val testingLocations: List<Location> = emptyList()
 
-    // TODO
-    override val knownAmbiguousCountryCodes: Array<String>? = null
+    // This source is really inconsistent. Many missing, half correct, half “incorrect”
+    override val knownAmbiguousCountryCodes: Array<String> = arrayOf(
+        "AU", // Territories: NF
+        "CN", // Territories: HK, MO
+        "ES", // Nearest location for GI
+        "FI", // Territories: AX
+        "FR", // Territories: GF, PF, TF (uninhabited), GP, MQ, YT, NC, RE, BL, MF, PM, WF, CP. Claims: AQ
+        "IL", // Claims: PS
+        "MA", // Claims: EH
+        "NL", // Territories: AW, BQ, CW, SX
+        "NO", // Territories: SJ
+        "US" // Territories: MP, VI
+    )
 
     companion object {
         private const val METEOAM_BASE_URL = "https://api.meteoam.it/"
