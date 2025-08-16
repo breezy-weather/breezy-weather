@@ -32,7 +32,6 @@ import org.breezyweather.common.extensions.getHour
 import org.breezyweather.common.options.NotificationTextColor
 import org.breezyweather.domain.location.model.getPlace
 import org.breezyweather.domain.location.model.isDaylight
-import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.domain.weather.model.getName
 import org.breezyweather.domain.weather.model.getShortDescription
 import org.breezyweather.domain.weather.model.getWeek
@@ -134,8 +133,6 @@ private fun buildRemoteViews(
     val dayTime = location.isDaylight
 
     val provider = ResourcesProviderFactory.newInstance
-
-    val settings = SettingsManager.getInstance(context)
 
     views.setTextViewText(
         R.id.widget_material_you_forecast_city,

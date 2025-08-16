@@ -99,7 +99,7 @@ fun DetailsPrecipitation(
             .associate { it.date.time to it.precipitation!!.total!! }
             .toImmutableMap()
     }
-    var activeQuantityItem: Pair<Date, org.breezyweather.unit.precipitation.Precipitation>? by remember {
+    var activeQuantityItem: Pair<Date, Precipitation>? by remember {
         mutableStateOf(null)
     }
     val quantityMarkerVisibilityListener = remember {

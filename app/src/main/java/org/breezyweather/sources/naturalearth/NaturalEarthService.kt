@@ -123,5 +123,5 @@ class NaturalEarthService @Inject constructor(
     }
 
     // No ambiguous codes
-    override val knownAmbiguousCountryCodes: Array<String>? = emptyArray()
+    override val knownAmbiguousCountryCodes: Array<String> = emptyArray()
 }

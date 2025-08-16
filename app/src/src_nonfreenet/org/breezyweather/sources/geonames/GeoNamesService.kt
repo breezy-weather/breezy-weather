@@ -157,7 +157,7 @@ class GeoNamesService @Inject constructor(
     }
 
     // No known ambiguous code
-    override val knownAmbiguousCountryCodes: Array<String> = arrayOf()
+    override val knownAmbiguousCountryCodes: Array<String> = emptyArray()
 
     companion object {
         private const val GEO_NAMES_BASE_URL = "https://secure.geonames.org/"

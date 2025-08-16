@@ -113,14 +113,14 @@ class NwsService @Inject constructor(
 
     private val supportedCountries = setOf(
         "US",
-        "PR", // Puerto Rico
-        "VI", // St Thomas Islands
+        "GU", // Guam
         "MP", // Mariana Islands
-        "GU" // Guam
-        // The following codes no longer work as of 2024-11-21
-        // "FM", // Palikir - no longer works as of 2024-11-21
-        // "PW", // Melekeok - no longer works as of 2024-11-21
-        // "AS", // Pago Pago - no longer works as of 2024-11-21
+        "PR", // Puerto Rico
+        "VI" // St Thomas Islands
+        // The following codes no longer work as of 2025-08-16
+        // "FM", // Palikir - no longer works as of 2025-08-16
+        // "PW", // Melekeok - no longer works as of 2025-08-16
+        // "AS", // Pago Pago - no longer works as of 2025-08-16 - returns a result but no grid data
         // "UM", "XB", "XH", "XQ", "XU", "XM", "QM", "XV", "XL", "QW" // Minor Outlying Islands
         // Minor Outlying Islands are largely uninhabited, except for temporary U.S. military staff
     )
@@ -812,7 +812,7 @@ class NwsService @Inject constructor(
         // Add wind descriptions if wind speed >= 15 mph
         // (skip if windy attributes are present)
         if (weather?.attributes.isNullOrEmpty() ||
-            (!weather.attributes.contains("gusty_wind") && !weather.attributes!!.contains("damaging_wind"))
+            (!weather.attributes.contains("gusty_wind") && !weather.attributes.contains("damaging_wind"))
         ) {
             val windDescription: String?
             if (windSpeed != null) {
@@ -876,8 +876,6 @@ class NwsService @Inject constructor(
         windSpeed: Speed?,
         cloudCover: Int?,
     ): WeatherCode? {
-        val mphInMetersPerSecond = 0.44704
-
         // Return WeatherCode for extreme conditions first
         weather?.attributes?.let {
             if (it.contains("tornadoes")) {
@@ -998,17 +996,28 @@ class NwsService @Inject constructor(
             if (it.properties == null) {
                 throw InvalidLocationException()
             }
-            listOf(convertLocation(it.properties))
+            listOf(convertLocation(context, it.properties))
         }
     }
 
     private fun convertLocation(
+        context: Context,
         locationProperties: NwsPointProperties,
     ): LocationAddressInfo {
+        val countryCode = when (locationProperties.relativeLocation?.properties?.state) {
+            "AS", "PR", "VI" -> locationProperties.relativeLocation.properties.state
+            "GU" -> if (locationProperties.timeZone.equals("Pacific/Saipan", ignoreCase = true)) "MP" else "GU"
+            else -> "US"
+        }
         return LocationAddressInfo(
             timeZoneId = locationProperties.timeZone,
-            countryCode = "US",
-            admin1 = locationProperties.relativeLocation?.properties?.state,
+            country = context.currentLocale.getCountryName("US"),
+            countryCode = countryCode,
+            admin1 = if (countryCode != "US") {
+                context.currentLocale.getCountryName(countryCode)
+            } else {
+                locationProperties.relativeLocation?.properties?.state
+            },
             admin1Code = locationProperties.relativeLocation?.properties?.state,
             city = locationProperties.relativeLocation?.properties?.city
         )
@@ -1076,8 +1085,7 @@ class NwsService @Inject constructor(
 
     override val testingLocations: List<Location> = emptyList()
 
-    // TODO
-    override val knownAmbiguousCountryCodes: Array<String>? = null
+    override val knownAmbiguousCountryCodes: Array<String> = emptyArray()
 
     companion object {
         // Number of hours after which a station data is considered outdated

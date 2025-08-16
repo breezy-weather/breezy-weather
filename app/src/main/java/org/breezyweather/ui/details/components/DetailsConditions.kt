@@ -123,9 +123,6 @@ fun DetailsConditions(
     modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
-    val temperatureUnit = remember {
-        SettingsManager.getInstance(context).getTemperatureUnit(context)
-    }
     val mappedValues = remember(hourlyList, selectedChart) {
         hourlyList
             .filter {

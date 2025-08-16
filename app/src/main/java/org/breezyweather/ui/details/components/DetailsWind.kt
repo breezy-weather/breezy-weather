@@ -252,7 +252,6 @@ private fun WindItem(
     modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
-    val speedUnit = SettingsManager.getInstance(context).getSpeedUnit(context)
 
     Column(
         modifier = modifier.fillMaxWidth()
