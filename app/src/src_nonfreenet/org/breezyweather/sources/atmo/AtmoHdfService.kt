@@ -58,7 +58,7 @@ class AtmoHdfService @Inject constructor(
             "Hauts-de-France",
             "Hauts de France"
         ) ||
-            location.admin1Code == "32" ||
+            location.admin1Code in arrayOf("FR-HDF", "HDF", "32") ||
             location.admin2 in arrayOf(
                 "Aisne", // 02
                 "Nord", // 59
@@ -68,13 +68,13 @@ class AtmoHdfService @Inject constructor(
                 "Pas de Calais", // 62
                 "Somme" // 80
             ) ||
-            location.admin2Code in arrayOf(
+            arrayOf(
                 "02", // Aisne
                 "59", // Nord
                 "60", // Oise
                 "62", // Pas-de-Calais
                 "80" // Somme
-            )
+            ).any { location.admin2Code?.endsWith(it) == true }
     }
 
     override val testingLocations: List<Location> = emptyList()

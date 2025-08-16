@@ -57,9 +57,10 @@ class AtmoGrandEstService @Inject constructor(
             "GrandEst",
             "Grand-Est"
         ) ||
-            location.admin1Code == "44" ||
+            location.admin1Code in arrayOf("FR-GES", "GES", "44", "FR-6AE", "6AE") ||
             location.admin2 in arrayOf(
                 "Ardennes", // 08
+                "Alsace", // 6AE
                 "Aube", // 08
                 "Marne", // 51
                 "Haute-Marne", // 52
@@ -74,7 +75,7 @@ class AtmoGrandEstService @Inject constructor(
                 "Haut Rhin", // 68
                 "Vosges" // 88
             ) ||
-            location.admin2Code in arrayOf(
+            arrayOf(
                 "08", // Ardennes
                 "10", // Aube
                 "51", // Marne
@@ -82,10 +83,11 @@ class AtmoGrandEstService @Inject constructor(
                 "54", // Meurthe-et-Moselle
                 "55", // Meuse
                 "57", // Moselle
+                "6AE", // Alsace
                 "67", // Bas-Rhin
                 "68", // Haut-Rhin
                 "88" // Vosges
-            )
+            ).any { location.admin2Code?.endsWith(it) == true }
     }
 
     override val testingLocations: List<Location> = emptyList()

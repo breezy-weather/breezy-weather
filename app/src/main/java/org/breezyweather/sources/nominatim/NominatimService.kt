@@ -27,6 +27,7 @@ import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationSearchSource
 import org.breezyweather.common.source.ReverseGeocodingSource
+import org.breezyweather.sources.nominatim.json.NominatimAddress
 import org.breezyweather.sources.nominatim.json.NominatimLocationResult
 import retrofit2.Retrofit
 import javax.inject.Inject
@@ -103,96 +104,125 @@ class NominatimService @Inject constructor(
         return if (locationResult.address?.countryCode == null || locationResult.address.countryCode.isEmpty()) {
             null
         } else {
+            val countryCode = getNonAmbiguousCountryCode(locationResult.address)
+
             LocationAddressInfo(
                 latitude = locationResult.lat.toDoubleOrNull(),
                 longitude = locationResult.lon.toDoubleOrNull(),
-                district = locationResult.address.village,
+                country = locationResult.address.country,
+                countryCode = countryCode,
+                admin1 = locationResult.address.state,
+                admin1Code = getAdmin1CodeForCountry(locationResult.address, countryCode),
+                admin2 = locationResult.address.county,
+                admin2Code = getAdmin2CodeForCountry(locationResult.address, countryCode),
+                admin3 = locationResult.address.municipality,
                 city = locationResult.address.town ?: locationResult.name,
                 cityCode = locationResult.placeId?.toString(),
-                admin3 = locationResult.address.municipality,
-                admin2 = locationResult.address.county,
-                admin1 = locationResult.address.state,
-                country = locationResult.address.country,
-                countryCode = locationResult.address.countryCode.let {
-                    with(it) {
-                        when {
-                            equals("CN", ignoreCase = true) -> {
-                                with(locationResult.address.isoLvl3) {
-                                    when {
-                                        equals("CN-MO", ignoreCase = true) -> "MO"
-                                        equals("CN-HK", ignoreCase = true) -> "HK"
-                                        else -> "CN"
-                                    }
-                                }
+                district = locationResult.address.village
+            )
+        }
+    }
+
+    private fun getAdmin1CodeForCountry(
+        address: NominatimAddress,
+        countryCode: String,
+    ): String? {
+        return when (countryCode) {
+            "FR" -> address.isoLvl4
+            else -> null
+        }
+    }
+
+    private fun getAdmin2CodeForCountry(
+        address: NominatimAddress,
+        countryCode: String,
+    ): String? {
+        return when (countryCode) {
+            "FR" -> address.isoLvl6
+            else -> null
+        }
+    }
+
+    private fun getNonAmbiguousCountryCode(address: NominatimAddress): String {
+        return address.countryCode!!.let {
+            with(it) {
+                when {
+                    equals("CN", ignoreCase = true) -> {
+                        with(address.isoLvl3) {
+                            when {
+                                equals("CN-MO", ignoreCase = true) -> "MO"
+                                equals("CN-HK", ignoreCase = true) -> "HK"
+                                else -> "CN"
                             }
-                            equals("FI", ignoreCase = true) -> {
-                                with(locationResult.address.isoLvl3) {
-                                    when {
-                                        equals("FI-01", ignoreCase = true) -> "AX"
-                                        else -> "FI"
-                                    }
-                                }
-                            }
-                            equals("FR", ignoreCase = true) -> {
-                                with(locationResult.address.isoLvl3) {
-                                    when {
-                                        equals("FR-971", ignoreCase = true) -> "GP"
-                                        equals("FR-972", ignoreCase = true) -> "MQ"
-                                        equals("FR-973", ignoreCase = true) -> "GF"
-                                        equals("FR-974", ignoreCase = true) -> "RE"
-                                        equals("FR-975", ignoreCase = true) -> "PM"
-                                        equals("FR-976", ignoreCase = true) -> "YT"
-                                        equals("FR-977", ignoreCase = true) -> "BL"
-                                        equals("FR-978", ignoreCase = true) -> "MF"
-                                        equals("FR-986", ignoreCase = true) -> "WF"
-                                        equals("FR-987", ignoreCase = true) -> "PF"
-                                        equals("FR-988", ignoreCase = true) -> "NC"
-                                        equals("FR-TF", ignoreCase = true) -> "TF"
-                                        else -> "FR"
-                                    }
-                                }
-                            }
-                            equals("NL", ignoreCase = true) -> {
-                                when {
-                                    locationResult.address.isoLvl3?.equals("NL-AW", ignoreCase = true) == true -> "AW"
-                                    locationResult.address.isoLvl3?.equals("NL-CW", ignoreCase = true) == true -> "CW"
-                                    locationResult.address.isoLvl3?.equals("NL-SX", ignoreCase = true) == true -> "SX"
-                                    locationResult.address.isoLvl8?.startsWith("BQ", ignoreCase = true) == true -> "BQ"
-                                    else -> "NL"
-                                }
-                            }
-                            equals("NO", ignoreCase = true) -> {
-                                with(locationResult.address.isoLvl4) {
-                                    when {
-                                        equals("NO-21", ignoreCase = true) -> "SJ"
-                                        equals("NO-22", ignoreCase = true) -> "SJ"
-                                        else -> "NO"
-                                    }
-                                }
-                            }
-                            equals("US", ignoreCase = true) -> {
-                                when {
-                                    locationResult.address.isoLvl4?.equals("US-AS", ignoreCase = true) == true -> "AS"
-                                    locationResult.address.isoLvl4?.equals("US-GU", ignoreCase = true) == true -> "GU"
-                                    locationResult.address.isoLvl4?.equals("US-MP", ignoreCase = true) == true -> "MP"
-                                    locationResult.address.isoLvl4?.equals("US-PR", ignoreCase = true) == true -> "PR"
-                                    locationResult.address.isoLvl4?.equals("US-VI", ignoreCase = true) == true -> "VI"
-                                    locationResult.address.isoLvl15?.startsWith("UM", ignoreCase = true) == true -> "UM"
-                                    else -> "US"
-                                }
-                            }
-                            else -> it
                         }
                     }
+                    equals("FI", ignoreCase = true) -> {
+                        with(address.isoLvl3) {
+                            when {
+                                equals("FI-01", ignoreCase = true) -> "AX"
+                                else -> "FI"
+                            }
+                        }
+                    }
+                    equals("FR", ignoreCase = true) -> {
+                        with(address.isoLvl3) {
+                            when {
+                                equals("FR-971", ignoreCase = true) -> "GP"
+                                equals("FR-972", ignoreCase = true) -> "MQ"
+                                equals("FR-973", ignoreCase = true) -> "GF"
+                                equals("FR-974", ignoreCase = true) -> "RE"
+                                equals("FR-975", ignoreCase = true) -> "PM"
+                                equals("FR-976", ignoreCase = true) -> "YT"
+                                equals("FR-977", ignoreCase = true) -> "BL"
+                                equals("FR-978", ignoreCase = true) -> "MF"
+                                equals("FR-986", ignoreCase = true) -> "WF"
+                                equals("FR-987", ignoreCase = true) -> "PF"
+                                equals("FR-988", ignoreCase = true) -> "NC"
+                                equals("FR-CP", ignoreCase = true) -> "CP" // Not official, but reserved
+                                equals("FR-TF", ignoreCase = true) -> "TF"
+                                else -> "FR"
+                            }
+                        }
+                    }
+                    equals("NL", ignoreCase = true) -> {
+                        when {
+                            address.isoLvl3?.equals("NL-AW", ignoreCase = true) == true -> "AW"
+                            address.isoLvl3?.equals("NL-CW", ignoreCase = true) == true -> "CW"
+                            address.isoLvl3?.equals("NL-SX", ignoreCase = true) == true -> "SX"
+                            address.isoLvl8?.startsWith("BQ", ignoreCase = true) == true -> "BQ"
+                            else -> "NL"
+                        }
+                    }
+                    equals("NO", ignoreCase = true) -> {
+                        with(address.isoLvl4) {
+                            when {
+                                equals("NO-21", ignoreCase = true) -> "SJ"
+                                equals("NO-22", ignoreCase = true) -> "SJ"
+                                else -> "NO"
+                            }
+                        }
+                    }
+                    equals("US", ignoreCase = true) -> {
+                        when {
+                            address.isoLvl4?.equals("US-AS", ignoreCase = true) == true -> "AS"
+                            address.isoLvl4?.equals("US-GU", ignoreCase = true) == true -> "GU"
+                            address.isoLvl4?.equals("US-MP", ignoreCase = true) == true -> "MP"
+                            address.isoLvl4?.equals("US-PR", ignoreCase = true) == true -> "PR"
+                            address.isoLvl4?.equals("US-VI", ignoreCase = true) == true -> "VI"
+                            address.isoLvl15?.startsWith("UM", ignoreCase = true) == true -> "UM"
+                            else -> "US"
+                        }
+                    }
+                    else -> it
                 }
-            )
+            }
         }
     }
 
     // We have no way to distinguish the ones below. Others were deduced with other info in the code above
     override val knownAmbiguousCountryCodes = arrayOf(
         "AU", // Territories: CX, CC, HM (uninhabited), NF
-        "NO", // Territories: BV
+        "NO" // Territories: BV
     )
 
     companion object {

@@ -69,7 +69,7 @@ class AtmoSudService @Inject constructor(
             "Sud Provence Alpes Cote d'Azur",
             "Sud Provence Alpes Cote d’Azur"
         ) ||
-            location.admin1Code == "93" ||
+            location.admin1Code in arrayOf("FR-PAC", "PAC", "93") ||
             location.admin2 in arrayOf(
                 "Alpes-de-Haute Provence", // 04
                 "Alpes de Haute Provence", // 04
@@ -84,14 +84,14 @@ class AtmoSudService @Inject constructor(
                 "Var", // 83
                 "Vaucluse" // 84
             ) ||
-            location.admin2Code in arrayOf(
+            arrayOf(
                 "04", // Alpes-de-Haute Provence
                 "05", // Hautes-Alpes
                 "06", // Alpes-Maritimes
                 "13", // Bouches du Rhône
                 "83", // Var
                 "84" // Vaucluse
-            )
+            ).any { location.admin2Code?.endsWith(it) == true }
     }
 
     override val testingLocations: List<Location> = emptyList()

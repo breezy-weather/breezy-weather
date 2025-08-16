@@ -57,7 +57,7 @@ class AtmoAuraService @Inject constructor(
             "Auvergne Rhône Alpes",
             "Auvergne Rhone Alpes"
         ) ||
-            location.admin1Code == "84" ||
+            location.admin1Code in arrayOf("FR-ARA", "ARA", "84") ||
             location.admin2 in arrayOf(
                 "Ain", // 01
                 "Allier", // 03
@@ -71,6 +71,7 @@ class AtmoAuraService @Inject constructor(
                 "Loire", // 42
                 "Haute Loire", // 43
                 "Haute-Loire", // 43
+                "Métropole de Lyon", // 69M
                 "Puy-de-Dôme", // 63
                 "Puy-de-Dome", // 63
                 "Puy de Dôme", // 63
@@ -81,7 +82,7 @@ class AtmoAuraService @Inject constructor(
                 "Haute-Savoie", // 74
                 "Haute Savoie" // 74
             ) ||
-            location.admin2Code in arrayOf(
+            arrayOf(
                 "01", // Ain
                 "03", // Allier
                 "07", // Ardèche
@@ -92,9 +93,10 @@ class AtmoAuraService @Inject constructor(
                 "43", // Haute-Loire
                 "63", // Puy-de-Dôme
                 "69", // Rhône
+                "69M", // Métropole de Lyon
                 "73", // Savoie
                 "74" // Haute-Savoie
-            )
+            ).any { location.admin2Code?.endsWith(it, ignoreCase = true) == true }
     }
 
     override val testingLocations: List<Location> = emptyList()
