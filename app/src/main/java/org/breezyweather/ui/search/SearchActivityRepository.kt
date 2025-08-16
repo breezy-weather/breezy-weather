@@ -90,7 +90,8 @@ class SearchActivityRepository @Inject internal constructor(
     ): Location {
         return if (locationSearchSource.knownAmbiguousCountryCodes?.any { cc ->
                 location.countryCode.equals(cc, ignoreCase = true)
-            } != false
+            } != false ||
+            location.countryCode.equals("AN", ignoreCase = true)
         ) {
             mRefreshHelper.getLocationWithUnambiguousCountryCode(location, context)
         } else {

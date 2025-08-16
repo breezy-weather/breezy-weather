@@ -278,7 +278,8 @@ class RefreshHelper @Inject constructor(
                     } else {
                         needsCountryCodeRefresh = reverseGeocodingService.knownAmbiguousCountryCodes?.any { cc ->
                             it.countryCode.equals(cc, ignoreCase = true)
-                        } != false
+                        } != false ||
+                            it.countryCode.equals("AN", ignoreCase = true)
                         it
                     }
                 }

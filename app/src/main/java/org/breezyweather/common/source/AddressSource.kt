@@ -29,6 +29,7 @@ interface AddressSource : Source {
      * You need to test EACH location to validate that a country code is not ambiguous. Don’t assume that because
      *  the first ones succeed that the following will also. We have many evidences in the existing sources that
      *  exceptions are common
+     * Tip: You can copy the following coordinates and make a bulk replace of , with "&lon=" to semi-generate URLs
      * AU:
      * - CX: Flying Fish Cove -10.421667,105.678056
      * - CC: Bantam -12.1178,96.8975
@@ -83,12 +84,12 @@ interface AddressSource : Source {
      * - EH: Tifariti 26.158056,-10.566944
      * NL:
      * - AW: Oranjestad (not to be confused with BQ) 12.518611,-70.035833
-     * - BQ:
+     * - BQ (old: AN):
      * -- Bonaire: Kralendijk 12.144444,-68.265556
      * -- Sint Eustatius: Oranjestad (not to be confused with AW) 17.483333,-62.983333
      * -- Saba: The Bottom 17.626111,-63.249167
-     * - CW: Willemstad 12.116667,-68.933333
-     * - SX: Lower Prince's Quarter 18.052778,-63.0425
+     * - CW (old: AN): Willemstad 12.116667,-68.933333
+     * - SX (old: AN): Lower Prince's Quarter 18.052778,-63.0425
      * NO:
      * - BV: Bouvet Island -54.42,3.36
      * - SJ:

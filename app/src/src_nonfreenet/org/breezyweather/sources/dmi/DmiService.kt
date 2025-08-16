@@ -326,8 +326,11 @@ class DmiService @Inject constructor(
 
     override val testingLocations: List<Location> = emptyList()
 
-    // TODO
-    override val knownAmbiguousCountryCodes: Array<String>? = null
+    // We have no way to distinguish the ones below
+    override val knownAmbiguousCountryCodes: Array<String> = arrayOf(
+        "FI", // Territories: AX
+        "MA" // Claims: EH
+    )
 
     companion object {
         private const val DMI_BASE_URL = "https://www.dmi.dk/"
