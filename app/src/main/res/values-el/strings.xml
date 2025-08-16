@@ -707,4 +707,7 @@
     <string name="visibility_about">Για την Ωρατότητα</string>
     <string name="pollen_details">Λεπτομέρειες για την γύρι</string>
     <string name="nighttime_details">Ξεκινάει το βράδυ και διαρκεί μέχρι την αυγή</string>
+    <string name="air_quality_pm10_full">Εισπνεύσιμη σωματιδιακή ύλη (&lt; %s)</string>
+    <string name="air_quality_pm10_about">Σχετικά με την εισπνεύσιμη σωματιδιακή ύλη (&lt; %s)</string>
+    <string name="air_quality_pm10_index">Κλίμακα δείκτη ποιότητας αέρα για %s</string>
 </resources>
