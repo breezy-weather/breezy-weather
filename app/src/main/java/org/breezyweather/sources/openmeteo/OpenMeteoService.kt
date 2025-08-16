@@ -949,7 +949,7 @@ class OpenMeteoService @Inject constructor(
     override val testingLocations: List<Location> = emptyList()
 
     // Uses GeoNames database which has no ambiguous codes
-    override val knownAmbiguousCountryCodes: Array<String> = arrayOf()
+    override val knownAmbiguousCountryCodes: Array<String> = emptyArray()
 
     companion object {
         private const val OPEN_METEO_AIR_QUALITY_BASE_URL = "https://air-quality-api.open-meteo.com/"

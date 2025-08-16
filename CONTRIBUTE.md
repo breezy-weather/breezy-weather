@@ -153,20 +153,7 @@ As a starting point, we will only implement weather part, but here is the full l
 
 For most complex needs, always have a look at existing sources. If you need to add a new type of pollen for your source, please contact us first as it is a non-trivial change to the code.
 
-Let’s focus on the `requestWeather()` function now. You will need to adapt the existing converter class.
-The goal of a converter class is to normalize the data we received into Breezy Weather data objects.
-
-Here is the minimum code you need to put in your converter:
-```kotlin
-fun convert(
-    location: Location,
-    weatherResult: MySourceWeatherResult
-): WeatherWrapper {
-    return WeatherWrapper()
-}
-```
-
-Yes, of course, you won’t have any data that way, but it’s just to show you that all data is non-mandatory. You can have a look at the non-mandatory parameters of the WeatherResultWrapper object and complete bit by bit the data as you feel.
+In the `requestWeather()`, all properties of the `WeatherWrapper` are optional, so you can start implementing bit by bit, so you can easily test the first data.
 
 Add your service in the constructor of the `SourceManager` class.
 

@@ -1016,10 +1016,42 @@ class MfService @Inject constructor(
     ): LocationAddressInfo? {
         if (result.properties == null) return null
 
+        val countryCode = result.properties.country.substring(0, 2).let {
+            if (it == "FR") {
+                when (result.properties.frenchDepartment) {
+                    "971" -> "GP"
+                    "972" -> "MQ"
+                    "973" -> "GF"
+                    "974" -> "RE"
+                    "975" -> "PM"
+                    "976" -> "YT"
+                    "977" -> "BL"
+                    "978" -> "MF"
+                    "984" -> if (result.properties.timezone == "Antarctica/DumontDUrville") "AQ" else "TF"
+                    "986" -> "WF"
+                    "987" -> "PF"
+                    "988" -> "NC"
+                    else -> when (result.properties.timezone) {
+                        /**
+                         * The nearest location is returned, so sometimes you end up in a different territory.
+                         * HOWEVER, the timezone is always the one from the coordinates in parameter, so we can find the correct
+                         *  territory that way
+                         */
+                        "Europe/Jersey" -> "JE"
+                        "America/Lower_Princes" -> "SX"
+                        else -> it
+                    }
+                }
+            } else {
+                it
+            }
+        }
+
         return LocationAddressInfo(
+            latitude = result.geometry?.coordinates?.getOrElse(1) { null },
+            longitude = result.geometry?.coordinates?.getOrElse(0) { null },
             timeZoneId = result.properties.timezone,
-            country = result.properties.country,
-            countryCode = result.properties.country.substring(0, 2),
+            countryCode = countryCode,
             admin2 = if (!result.properties.frenchDepartment.isNullOrEmpty()) {
                 frenchDepartments.getOrElse(result.properties.frenchDepartment) { null }
             } else {
@@ -1063,8 +1095,8 @@ class MfService @Inject constructor(
                 throw InvalidLocationException()
             }
 
-            val domain = if (frenchDepartments.containsKey(it.properties!!.frenchDepartment!!)) {
-                it.properties.frenchDepartment!!
+            val domain = if (frenchDepartments.containsKey(it.properties.frenchDepartment)) {
+                it.properties.frenchDepartment
             } else if (overseaTerritories.containsKey(it.properties.frenchDepartment)) {
                 if (it.properties.frenchDepartment in arrayOf("977", "978")) {
                     "VIGI978-977"
@@ -1123,7 +1155,7 @@ class MfService @Inject constructor(
                         Jwts.SIG.HS256
                     )
                 }.compact()
-            } catch (ignored: Exception) {
+            } catch (_: Exception) {
                 BuildConfig.MF_WSFT_KEY
             }
         }
@@ -1148,8 +1180,16 @@ class MfService @Inject constructor(
 
     override val testingLocations: List<Location> = emptyList()
 
-    // TODO: At least FR is known to be ambiguous
-    override val knownAmbiguousCountryCodes: Array<String>? = null
+    /**
+     * The main issue on this source is that there are not many nearest locations recognized, so the resolutions are
+     *  wrong on small regions like:
+     * - Macau (nearest on China side, making "CN" ambiguous)
+     * - For others, we were able to deduce from the timezone (no idea why it didn't work for Macau)
+     *
+     * When the nearest point is more than 50 km away, the app rejects the result, so we are safe for non-recognized
+     *  uninhabited islands (if anyone actually need it)
+     */
+    override val knownAmbiguousCountryCodes: Array<String> = arrayOf("CN") // Territories: MO
 
     companion object {
         private const val MF_BASE_URL = "https://webservice.meteofrance.com/"

@@ -411,7 +411,6 @@ class ImsService @Inject constructor(
         // This will make locations in disputed areas appear as being in Israel, but I guess people using IMS as their
         // address lookup source wouldn't be surprised by this kind of behavior
         return LocationAddressInfo(
-            timeZoneId = "Asia/Jerusalem",
             countryCode = "IL",
             city = result.name
         )
