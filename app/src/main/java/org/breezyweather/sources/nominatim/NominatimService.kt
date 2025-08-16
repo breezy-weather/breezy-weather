@@ -128,7 +128,8 @@ class NominatimService @Inject constructor(
         countryCode: String,
     ): String? {
         return when (countryCode) {
-            "FR" -> address.isoLvl4
+            "FR" -> address.isoLvl4 // Keep the iso code "FR-XX" as the INSEE code is different
+            "US" -> address.isoLvl4?.replace("US-", "") // Valid, but "NY" is more common than "US-NY"
             else -> null
         }
     }
@@ -138,7 +139,14 @@ class NominatimService @Inject constructor(
         countryCode: String,
     ): String? {
         return when (countryCode) {
-            "FR" -> address.isoLvl6
+            "FR" -> address.isoLvl6?.replace("FR-", "") // Conversion to INSEE code
+                ?.let {
+                    when (it) {
+                        "69M" -> "69"
+                        "75C" -> "75"
+                        else -> it
+                    }
+                }
             else -> null
         }
     }

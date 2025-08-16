@@ -55,12 +55,24 @@ data class LocationAddressInfo(
      */
     val countryCode: String,
     val admin1: String? = null,
+    /**
+     * Can be an ISO 3166-2 code, or the internal code used by the country
+     */
     val admin1Code: String? = null,
     val admin2: String? = null,
+    /**
+     * Can be an ISO 3166-2 code, or the internal code used by the country
+     */
     val admin2Code: String? = null,
     val admin3: String? = null,
+    /**
+     * Can be an ISO 3166-2 code, or the internal code used by the country
+     */
     val admin3Code: String? = null,
     val admin4: String? = null,
+    /**
+     * Can be an ISO 3166-2 code, or the internal code used by the country
+     */
     val admin4Code: String? = null,
     val city: String? = null,
     val cityCode: String? = null,
