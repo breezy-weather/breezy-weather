@@ -230,8 +230,14 @@ class WmoSevereWeatherService @Inject constructor(
                     ?: xmlAlert.sent?.value,
                 endDate = info.expires?.value ?: originalAlert.endDate,
                 headline = info.headline?.value ?: info.event?.value ?: originalAlert.headline,
-                description = info.description?.value ?: originalAlert.description,
-                instruction = info.instruction?.value ?: originalAlert.instruction,
+                description =
+                info.description?.value?.joinToString("\n") {
+                    it.contentString.trim()
+                } ?: originalAlert.description,
+                instruction =
+                info.instruction?.value?.joinToString("\n") {
+                    it.contentString.trim()
+                } ?: originalAlert.instruction,
                 source = info.senderName?.value
             )
         } ?: originalAlert
