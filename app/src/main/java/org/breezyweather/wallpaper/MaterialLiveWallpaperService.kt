@@ -274,10 +274,14 @@ class MaterialLiveWallpaperService : WallpaperService() {
         }
 
         private fun setIntervalComputer() {
-            // Disable animations
-            /*mIntervalComputer?.reset() ?: run {
-                mIntervalComputer = IntervalComputer()
-            }*/
+            val animationsEnabled = LiveWallpaperConfigManager(applicationContext).animationsEnabled
+            if (animationsEnabled) {
+                mIntervalComputer?.reset() ?: run {
+                    mIntervalComputer = IntervalComputer()
+                }
+            } else {
+                mIntervalComputer?.reset()
+            }
         }
 
         private fun setOpenGravitySensor(openGravitySensor: Boolean) {
@@ -311,14 +315,7 @@ class MaterialLiveWallpaperService : WallpaperService() {
                             mAdaptiveSize[0] = mSizes[0]
                             mAdaptiveSize[1] = mSizes[1]
                             mBackground?.setBounds(0, 0, mSizes[0], mSizes[1])
-                            // Animations disabled: see #1006, #1325
-                            // Possible way to bring it back using shaders: #1665
-                            /*mAnimate =
-                                when (SettingsManager.getInstance(applicationContext).backgroundAnimationMode) {
-                                    BackgroundAnimationMode.SYSTEM -> !applicationContext.isMotionReduced
-                                    BackgroundAnimationMode.ENABLED -> true
-                                    BackgroundAnimationMode.DISABLED -> false
-                                }*/
+                            mAnimate = LiveWallpaperConfigManager(this@MaterialLiveWallpaperService).animationsEnabled
                             setWeatherImplementor()
                         }
                     }
@@ -351,20 +348,13 @@ class MaterialLiveWallpaperService : WallpaperService() {
             }
 
             val settingsManager = SettingsManager.getInstance(applicationContext)
-            // Animations disabled: see #1006, #1325
-            // Possible way to bring it back using shaders: #1665
-            /*mAnimate =
-                when (settingsManager.backgroundAnimationMode) {
-                    BackgroundAnimationMode.SYSTEM -> !applicationContext.isMotionReduced
-                    BackgroundAnimationMode.ENABLED -> true
-                    BackgroundAnimationMode.DISABLED -> false
-                }*/
+            val configManager = LiveWallpaperConfigManager(this@MaterialLiveWallpaperService)
+            mAnimate = configManager.animationsEnabled
             mRotation2D = 0f
             mRotation3D = 0f
             if (mOrientationListener.canDetectOrientation()) {
                 mOrientationListener.enable()
             }
-            val configManager = LiveWallpaperConfigManager(this@MaterialLiveWallpaperService)
 
             val location: Location? = if (configManager.weatherKind == "auto" || configManager.dayNightType == "auto") {
                 // TODO: Isn't there a more efficient way than reloading the location from database

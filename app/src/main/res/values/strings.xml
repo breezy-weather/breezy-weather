@@ -647,6 +647,9 @@
     <string name="widget_live_wallpaper_weather_kind">Weather</string>
     <!-- Time as in “daytime” / “nighttime” -->
     <string name="widget_live_wallpaper_day_night_type">Time</string>
+    <string name="widget_live_wallpaper_animations_enable_dangerous">DANGEROUS</string>
+    <string name="widget_live_wallpaper_animations_enable_warning1">Wallpaper animations are known to cause, among other things: high battery consumption; battery overheating; high memory consumption; degraded system responsiveness; Android system crash.</string>
+    <string name="widget_live_wallpaper_animations_enable_warning2">If you decide to enable them, you assume full responsibility for any problem that may arise, and no support will be provided.</string>
     <!-- Settings (new design) -->
     <string name="settings_section_general">General</string>
     <string name="settings_background_updates">Background updates</string>

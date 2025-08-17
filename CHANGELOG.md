@@ -35,6 +35,7 @@
 - Widgets - Improve line height on many widgets
 - Widgets - Weekly - Spread day/night temperatures on 2 lines if necessary
 - Widgets - Minor fixes
+- Wallpaper - Due to some people running outdated versions of Breezy Weather just to see some gimmicks on their wallpaper, we bring back wallpaper animations behind a dangerous disabled-by-default option. We STRONGLY advise against enabling them.
 
 **Weather sources**
 - [AccuWeather] Restrict pollen to USA, Canada and Europe as it’s only available there (@chunshek)

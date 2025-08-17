@@ -380,6 +380,9 @@
     <string name="widget_custom_subtitle_keyword_xmp_description">Phase lunaire d’aujourd’hui, demain, …, dans 4 jours</string>
     <string name="widget_live_wallpaper_weather_kind">Météo</string>
     <string name="widget_live_wallpaper_day_night_type">Période</string>
+    <string name="widget_live_wallpaper_animations_enable_dangerous">DANGEREUX</string>
+    <string name="widget_live_wallpaper_animations_enable_warning1">Les animations du fond d’écran sont connues pour causer, entre autres : une consommation élevée de la batterie ; une surchauffe de la batterie ; une consommation élevée de mémoire ; une dégradation de la réactivité du système ; un plantage du système Android.</string>
+    <string name="widget_live_wallpaper_animations_enable_warning2">Si vous décidez de les activer, vous assumez l’entière responsabilité des problèmes qui pourraient survenir, et aucune assistance ne sera fournie.</string>
     <string name="location_message_added">Emplacement ajouté</string>
     <string name="location_message_updated">Emplacement mis à jour</string>
     <string name="location_message_already_exists">La liste d’emplacements contient déjà cet emplacement avec cette source de prévisions.</string>
