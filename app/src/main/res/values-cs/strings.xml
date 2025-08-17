@@ -787,4 +787,7 @@
     <string name="broadcast_source_breezy_weather_update_notifier">Oznamování aktualizací umístění %s</string>
     <string name="action_add_as_location">Přidat jako umístění</string>
     <string name="settings_regional_preference">Regionální preference</string>
+    <string name="widget_live_wallpaper_animations_enable_dangerous">NEBEZPEČNÉ</string>
+    <string name="widget_live_wallpaper_animations_enable_warning1">Animace pozadí mohou mimo jiné způsobit následující: zvýšenou spotřebu baterie; přehřívání baterie; zvýšenou spotřebu paměti; zhoršenou odezvu systému; pád systému Android.</string>
+    <string name="widget_live_wallpaper_animations_enable_warning2">Pokud se rozhodnete je povolit, nesete plnou zodpovědnost za jakýkoli problém, který se může objevit. Nebude vám poskytnuta žádná podpora.</string>
 </resources>
