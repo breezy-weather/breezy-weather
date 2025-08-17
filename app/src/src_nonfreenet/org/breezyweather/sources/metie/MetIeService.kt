@@ -50,6 +50,7 @@ import org.breezyweather.sources.metie.json.MetIeWarning
 import org.breezyweather.sources.metie.json.MetIeWarningResult
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
+import org.breezyweather.unit.ratio.Ratio.Companion.percent
 import org.breezyweather.unit.speed.Speed.Companion.kilometersPerHour
 import org.breezyweather.unit.temperature.Temperature.Companion.celsius
 import retrofit2.Retrofit
@@ -210,7 +211,7 @@ class MetIeService @Inject constructor(
                     degree = result.windDirection?.toDoubleOrNull(),
                     speed = result.windSpeed?.kilometersPerHour
                 ),
-                relativeHumidity = result.humidity?.toDoubleOrNull(),
+                relativeHumidity = result.humidity?.toDoubleOrNull()?.percent,
                 pressure = result.pressure?.toDoubleOrNull()?.hectopascals
             )
         }

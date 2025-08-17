@@ -38,6 +38,7 @@ import breezyweather.data.PollenConcentrationColumnAdapter
 import breezyweather.data.PollutantConcentrationColumnAdapter
 import breezyweather.data.PrecipitationColumnAdapter
 import breezyweather.data.PressureColumnAdapter
+import breezyweather.data.RatioColumnAdapter
 import breezyweather.data.SpeedColumnAdapter
 import breezyweather.data.TemperatureColumnAdapter
 import breezyweather.data.TimeZoneColumnAdapter
@@ -110,9 +111,11 @@ class DbModule {
                 no2Adapter = PollutantConcentrationColumnAdapter,
                 o3Adapter = PollutantConcentrationColumnAdapter,
                 coAdapter = PollutantConcentrationColumnAdapter,
+                relative_humidityAdapter = RatioColumnAdapter,
                 dew_pointAdapter = TemperatureColumnAdapter,
                 pressureAdapter = PressureColumnAdapter,
                 visibilityAdapter = DistanceColumnAdapter,
+                cloud_coverAdapter = RatioColumnAdapter,
                 ceilingAdapter = DistanceColumnAdapter
             ),
             dailysAdapter = Dailys.Adapter(
@@ -127,6 +130,11 @@ class DbModule {
                 daytime_rain_precipitationAdapter = PrecipitationColumnAdapter,
                 daytime_snow_precipitationAdapter = PrecipitationColumnAdapter,
                 daytime_ice_precipitationAdapter = PrecipitationColumnAdapter,
+                daytime_total_precipitation_probabilityAdapter = RatioColumnAdapter,
+                daytime_thunderstorm_precipitation_probabilityAdapter = RatioColumnAdapter,
+                daytime_rain_precipitation_probabilityAdapter = RatioColumnAdapter,
+                daytime_snow_precipitation_probabilityAdapter = RatioColumnAdapter,
+                daytime_ice_precipitation_probabilityAdapter = RatioColumnAdapter,
                 daytime_total_precipitation_durationAdapter = DurationColumnAdapter,
                 daytime_thunderstorm_precipitation_durationAdapter = DurationColumnAdapter,
                 daytime_rain_precipitation_durationAdapter = DurationColumnAdapter,
@@ -145,6 +153,11 @@ class DbModule {
                 nighttime_rain_precipitationAdapter = PrecipitationColumnAdapter,
                 nighttime_snow_precipitationAdapter = PrecipitationColumnAdapter,
                 nighttime_ice_precipitationAdapter = PrecipitationColumnAdapter,
+                nighttime_total_precipitation_probabilityAdapter = RatioColumnAdapter,
+                nighttime_thunderstorm_precipitation_probabilityAdapter = RatioColumnAdapter,
+                nighttime_rain_precipitation_probabilityAdapter = RatioColumnAdapter,
+                nighttime_snow_precipitation_probabilityAdapter = RatioColumnAdapter,
+                nighttime_ice_precipitation_probabilityAdapter = RatioColumnAdapter,
                 nighttime_total_precipitation_durationAdapter = DurationColumnAdapter,
                 nighttime_thunderstorm_precipitation_durationAdapter = DurationColumnAdapter,
                 nighttime_rain_precipitation_durationAdapter = DurationColumnAdapter,
@@ -182,12 +195,18 @@ class DbModule {
                 urticaceaeAdapter = PollenConcentrationColumnAdapter,
                 willowAdapter = PollenConcentrationColumnAdapter,
                 sunshine_durationAdapter = DurationColumnAdapter,
+                relative_humidity_averageAdapter = RatioColumnAdapter,
+                relative_humidity_minAdapter = RatioColumnAdapter,
+                relative_humidity_maxAdapter = RatioColumnAdapter,
                 dewpoint_averageAdapter = TemperatureColumnAdapter,
                 dewpoint_minAdapter = TemperatureColumnAdapter,
                 dewpoint_maxAdapter = TemperatureColumnAdapter,
                 pressure_averageAdapter = PressureColumnAdapter,
                 pressure_maxAdapter = PressureColumnAdapter,
                 pressure_minAdapter = PressureColumnAdapter,
+                cloud_cover_averageAdapter = RatioColumnAdapter,
+                cloud_cover_minAdapter = RatioColumnAdapter,
+                cloud_cover_maxAdapter = RatioColumnAdapter,
                 visibility_averageAdapter = DistanceColumnAdapter,
                 visibility_maxAdapter = DistanceColumnAdapter,
                 visibility_minAdapter = DistanceColumnAdapter
@@ -204,6 +223,11 @@ class DbModule {
                 rain_precipitationAdapter = PrecipitationColumnAdapter,
                 snow_precipitationAdapter = PrecipitationColumnAdapter,
                 ice_precipitationAdapter = PrecipitationColumnAdapter,
+                total_precipitation_probabilityAdapter = RatioColumnAdapter,
+                thunderstorm_precipitation_probabilityAdapter = RatioColumnAdapter,
+                rain_precipitation_probabilityAdapter = RatioColumnAdapter,
+                snow_precipitation_probabilityAdapter = RatioColumnAdapter,
+                ice_precipitation_probabilityAdapter = RatioColumnAdapter,
                 wind_speedAdapter = SpeedColumnAdapter,
                 wind_gustsAdapter = SpeedColumnAdapter,
                 pm25Adapter = PollutantConcentrationColumnAdapter,
@@ -212,8 +236,10 @@ class DbModule {
                 no2Adapter = PollutantConcentrationColumnAdapter,
                 o3Adapter = PollutantConcentrationColumnAdapter,
                 coAdapter = PollutantConcentrationColumnAdapter,
+                relative_humidityAdapter = RatioColumnAdapter,
                 dew_pointAdapter = TemperatureColumnAdapter,
                 pressureAdapter = PressureColumnAdapter,
+                cloud_coverAdapter = RatioColumnAdapter,
                 visibilityAdapter = DistanceColumnAdapter
             ),
             minutelysAdapter = Minutelys.Adapter(

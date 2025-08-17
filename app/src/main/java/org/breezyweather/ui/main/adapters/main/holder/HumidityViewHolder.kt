@@ -25,8 +25,8 @@ import breezyweather.domain.location.model.Location
 import org.breezyweather.R
 import org.breezyweather.common.activities.BreezyActivity
 import org.breezyweather.common.extensions.formatMeasure
+import org.breezyweather.common.extensions.formatPercent
 import org.breezyweather.common.options.appearance.DetailScreen
-import org.breezyweather.common.utils.UnitUtils
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
 import org.breezyweather.unit.formatting.UnitWidth
@@ -50,13 +50,13 @@ class HumidityViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
         val talkBackBuilder = StringBuilder(context.getString(R.string.humidity))
         location.weather!!.current?.let { current ->
             current.relativeHumidity?.let { relativeHumidity ->
-                humidityValueView.text = UnitUtils.formatPercent(context, relativeHumidity)
+                humidityValueView.text = relativeHumidity.formatPercent(context, UnitWidth.NARROW)
 
-                if (relativeHumidity in 0.0..100.0) {
+                if (relativeHumidity.inPercent in 0.0..100.0) {
                     wavesBackgroundView.setImageDrawable(
                         AppCompatResources.getDrawable(
                             context,
-                            when (relativeHumidity) {
+                            when (relativeHumidity.inPercent) {
                                 in 0.0..20.0 -> R.drawable.humidity_percent_7
                                 in 20.0..40.0 -> R.drawable.humidity_percent_30
                                 in 60.0..80.0 -> R.drawable.humidity_percent_75

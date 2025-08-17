@@ -104,6 +104,7 @@ import org.breezyweather.ui.settings.preference.bottomInsetItem
 import org.breezyweather.ui.theme.resource.ResourceHelper
 import org.breezyweather.ui.theme.resource.ResourcesProviderFactory
 import org.breezyweather.unit.formatting.UnitWidth
+import org.breezyweather.unit.ratio.Ratio
 import org.breezyweather.unit.temperature.Temperature
 import org.breezyweather.unit.temperature.Temperature.Companion.celsius
 import org.breezyweather.unit.temperature.Temperature.Companion.deciCelsius
@@ -163,7 +164,7 @@ fun DetailsConditions(
             .associate { it.date.time to it.precipitationProbability!!.total!! }
             .toImmutableMap()
     }
-    var activeProbabilityItem: Pair<Date, Double>? by remember { mutableStateOf(null) }
+    var activeProbabilityItem: Pair<Date, Ratio>? by remember { mutableStateOf(null) }
     val probabilityMarkerVisibilityListener = remember {
         object : CartesianMarkerVisibilityListener {
             override fun onShown(marker: CartesianMarker, targets: List<CartesianMarker.Target>) {
@@ -801,67 +802,73 @@ private fun TemperatureChart(
     }
 
     BreezyLineChart(
-        location,
-        modelProducer,
-        daily.date,
-        maxY,
-        { _, value, _ ->
-            value.toTemperature(temperatureUnit)
-                .formatMeasure(context, valueWidth = UnitWidth.NARROW, unitWidth = UnitWidth.NARROW)
-        },
-        persistentListOf(
-            persistentMapOf(
-                47.celsius.toDouble(temperatureUnit).toFloat() to Color(71, 14, 0),
-                30.celsius.toDouble(temperatureUnit).toFloat() to Color(232, 83, 25),
-                21.celsius.toDouble(temperatureUnit).toFloat() to Color(243, 183, 4),
-                10.celsius.toDouble(temperatureUnit).toFloat() to Color(128, 147, 24),
-                1.celsius.toDouble(temperatureUnit).toFloat() to Color(68, 125, 99),
-                0.celsius.toDouble(temperatureUnit).toFloat() to Color(93, 133, 198),
-                -4.celsius.toDouble(temperatureUnit).toFloat() to Color(100, 166, 189),
-                -8.celsius.toDouble(temperatureUnit).toFloat() to Color(106, 191, 181),
-                -15.celsius.toDouble(temperatureUnit).toFloat() to Color(157, 219, 217),
-                -25.celsius.toDouble(temperatureUnit).toFloat() to Color(143, 89, 169),
-                -40.celsius.toDouble(temperatureUnit).toFloat() to Color(162, 70, 145),
-                -55.celsius.toDouble(temperatureUnit).toFloat() to Color(202, 172, 195),
-                -70.celsius.toDouble(temperatureUnit).toFloat() to Color(115, 70, 105)
-            ),
-            persistentMapOf(
-                50f to Color(128, 128, 128, 160),
-                0f to Color(128, 128, 128, 160)
-            )
-        ),
-        topAxisValueFormatter = { _, value, _ ->
-            mappedValues.getOrElse(value.toLong()) { null }?.let { hourly ->
-                hourly.weatherCode?.let {
-                    val ss = SpannableString("abc")
-                    val d = ResourceHelper.getWeatherIcon(provider, it, hourly.isDaylight)
-                    d.setBounds(0, 0, 64, 64)
-                    val span = ImageSpan(d, ImageSpan.ALIGN_BASELINE)
-                    ss.setSpan(span, 0, 3, Spannable.SPAN_INCLUSIVE_EXCLUSIVE)
-                    ss
-                }
-            } ?: "-"
-        },
-        trendHorizontalLines = buildMap {
-            normals?.let {
-                it.daytimeTemperature?.let { normal ->
-                    put(
-                        normal.toDouble(temperatureUnit),
-                        context.getString(R.string.temperature_normal_short)
-                    )
-                }
-                it.nighttimeTemperature?.let { normal ->
-                    put(
-                        normal.toDouble(temperatureUnit),
-                        context.getString(R.string.temperature_normal_short)
-                    )
-                }
+        location = location,
+        modelProducer = modelProducer,
+        theDay = daily.date,
+        maxY = maxY,
+        endAxisValueFormatter = remember {
+            { _, value, _ ->
+                value.toTemperature(temperatureUnit)
+                    .formatMeasure(context, valueWidth = UnitWidth.NARROW, unitWidth = UnitWidth.NARROW)
             }
-        }.toImmutableMap(),
-        minY = minY,
-        endAxisItemPlacer = remember {
-            VerticalAxis.ItemPlacer.step({ step })
         },
+        colors = remember {
+            persistentListOf(
+                persistentMapOf(
+                    47.celsius.toDouble(temperatureUnit).toFloat() to Color(71, 14, 0),
+                    30.celsius.toDouble(temperatureUnit).toFloat() to Color(232, 83, 25),
+                    21.celsius.toDouble(temperatureUnit).toFloat() to Color(243, 183, 4),
+                    10.celsius.toDouble(temperatureUnit).toFloat() to Color(128, 147, 24),
+                    1.celsius.toDouble(temperatureUnit).toFloat() to Color(68, 125, 99),
+                    0.celsius.toDouble(temperatureUnit).toFloat() to Color(93, 133, 198),
+                    -4.celsius.toDouble(temperatureUnit).toFloat() to Color(100, 166, 189),
+                    -8.celsius.toDouble(temperatureUnit).toFloat() to Color(106, 191, 181),
+                    -15.celsius.toDouble(temperatureUnit).toFloat() to Color(157, 219, 217),
+                    -25.celsius.toDouble(temperatureUnit).toFloat() to Color(143, 89, 169),
+                    -40.celsius.toDouble(temperatureUnit).toFloat() to Color(162, 70, 145),
+                    -55.celsius.toDouble(temperatureUnit).toFloat() to Color(202, 172, 195),
+                    -70.celsius.toDouble(temperatureUnit).toFloat() to Color(115, 70, 105)
+                ),
+                persistentMapOf(
+                    50f to Color(128, 128, 128, 160),
+                    0f to Color(128, 128, 128, 160)
+                )
+            )
+        },
+        topAxisValueFormatter = remember(mappedValues) {
+            { _, value, _ ->
+                mappedValues.getOrElse(value.toLong()) { null }?.let { hourly ->
+                    hourly.weatherCode?.let {
+                        val ss = SpannableString("abc")
+                        val d = ResourceHelper.getWeatherIcon(provider, it, hourly.isDaylight)
+                        d.setBounds(0, 0, 64, 64)
+                        val span = ImageSpan(d, ImageSpan.ALIGN_BASELINE)
+                        ss.setSpan(span, 0, 3, Spannable.SPAN_INCLUSIVE_EXCLUSIVE)
+                        ss
+                    }
+                } ?: "-"
+            }
+        },
+        trendHorizontalLines = remember {
+            buildMap {
+                normals?.let {
+                    it.daytimeTemperature?.let { normal ->
+                        put(
+                            normal.toDouble(temperatureUnit),
+                            context.getString(R.string.temperature_normal_short)
+                        )
+                    }
+                    it.nighttimeTemperature?.let { normal ->
+                        put(
+                            normal.toDouble(temperatureUnit),
+                            context.getString(R.string.temperature_normal_short)
+                        )
+                    }
+                }
+            }.toImmutableMap()
+        },
+        minY = minY,
+        endAxisItemPlacer = remember { VerticalAxis.ItemPlacer.step({ step }) },
         markerVisibilityListener = markerVisibilityListener
     )
 }

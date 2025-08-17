@@ -16,9 +16,11 @@
 
 package breezyweather.domain.weather.model
 
+import org.breezyweather.unit.ratio.Ratio
+
 data class DailyRelativeHumidity(
-    override val average: Double? = null,
-    override val max: Double? = null,
-    override val min: Double? = null,
+    override val average: Ratio? = null,
+    override val max: Ratio? = null,
+    override val min: Ratio? = null,
     override val summary: String? = null,
-) : DailyAvgMinMax<Double>
+) : DailyAvgMinMax<Ratio>

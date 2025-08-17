@@ -49,6 +49,7 @@ import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
 import org.breezyweather.sources.bmd.json.BmdData
 import org.breezyweather.sources.bmd.json.BmdForecastResult
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
+import org.breezyweather.unit.ratio.Ratio.Companion.percent
 import org.breezyweather.unit.speed.Speed.Companion.kilometersPerHour
 import org.breezyweather.unit.temperature.Temperature.Companion.celsius
 import retrofit2.Retrofit
@@ -241,10 +242,10 @@ class BmdService @Inject constructor(
                     )
                 ),
                 relativeHumidity = rhMap.getOrElse(key) { null }?.let {
-                    DailyRelativeHumidity(average = it)
+                    DailyRelativeHumidity(average = it.percent)
                 },
                 cloudCover = ccMap.getOrElse(key) { null }?.let {
-                    DailyCloudCover(average = it)
+                    DailyCloudCover(average = it.percent)
                 }
             )
         }
@@ -320,8 +321,8 @@ class BmdService @Inject constructor(
                         speed = wsMap.getOrElse(key) { null }?.kilometersPerHour,
                         gusts = wgMap.getOrElse(key) { null }?.kilometersPerHour
                     ),
-                    relativeHumidity = rhMap.getOrElse(key) { null },
-                    cloudCover = ccMap.getOrElse(key) { null }
+                    relativeHumidity = rhMap.getOrElse(key) { null }?.percent,
+                    cloudCover = ccMap.getOrElse(key) { null }?.percent
                 )
             )
         }

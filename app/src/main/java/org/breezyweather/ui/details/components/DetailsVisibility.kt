@@ -312,30 +312,32 @@ private fun VisibilityChart(
     }
 
     BreezyLineChart(
-        location,
-        modelProducer,
-        daily.date,
-        maxYRounded,
-        { _, value, _ -> value.toDistance(distanceUnit).formatMeasure(context) },
-        persistentListOf(
-            persistentMapOf(
-                20000.meters.toDouble(distanceUnit).toFloat() to Color(119, 141, 120),
-                15000.meters.toDouble(distanceUnit).toFloat() to Color(91, 167, 99),
-                9000.meters.toDouble(distanceUnit).toFloat() to Color(90, 169, 90),
-                8000.meters.toDouble(distanceUnit).toFloat() to Color(98, 122, 160),
-                6000.meters.toDouble(distanceUnit).toFloat() to Color(98, 122, 160),
-                5000.meters.toDouble(distanceUnit).toFloat() to Color(167, 91, 91),
-                2200.meters.toDouble(distanceUnit).toFloat() to Color(167, 91, 91),
-                1600.meters.toDouble(distanceUnit).toFloat() to Color(162, 97, 160),
-                0.meters.toDouble(distanceUnit).toFloat() to Color(166, 93, 165)
+        location = location,
+        modelProducer = modelProducer,
+        theDay = daily.date,
+        maxY = maxYRounded,
+        endAxisValueFormatter = remember { { _, value, _ -> value.toDistance(distanceUnit).formatMeasure(context) } },
+        colors = remember {
+            persistentListOf(
+                persistentMapOf(
+                    20000.meters.toDouble(distanceUnit).toFloat() to Color(119, 141, 120),
+                    15000.meters.toDouble(distanceUnit).toFloat() to Color(91, 167, 99),
+                    9000.meters.toDouble(distanceUnit).toFloat() to Color(90, 169, 90),
+                    8000.meters.toDouble(distanceUnit).toFloat() to Color(98, 122, 160),
+                    6000.meters.toDouble(distanceUnit).toFloat() to Color(98, 122, 160),
+                    5000.meters.toDouble(distanceUnit).toFloat() to Color(167, 91, 91),
+                    2200.meters.toDouble(distanceUnit).toFloat() to Color(167, 91, 91),
+                    1600.meters.toDouble(distanceUnit).toFloat() to Color(162, 97, 160),
+                    0.meters.toDouble(distanceUnit).toFloat() to Color(166, 93, 165)
+                )
             )
-        ),
-        topAxisValueFormatter = { _, value, _ ->
-            mappedValues.getOrElse(value.toLong()) { null }?.formatValue(context) ?: "-"
         },
-        endAxisItemPlacer = remember {
-            VerticalAxis.ItemPlacer.step({ step })
+        topAxisValueFormatter = remember(mappedValues) {
+            { _, value, _ ->
+                mappedValues.getOrElse(value.toLong()) { null }?.formatValue(context) ?: "-"
+            }
         },
+        endAxisItemPlacer = remember { VerticalAxis.ItemPlacer.step({ step }) },
         markerVisibilityListener = markerVisibilityListener
     )
 }

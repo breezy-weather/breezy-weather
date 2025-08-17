@@ -112,7 +112,7 @@ value class Speed internal constructor(
          * The following format is accepted:
          *
          * - The format of string returned by the default [Speed.toString] and `toString` in a specific unit,
-         *   e.g. `50000m` or `30.5km`.
+         *   e.g. `4.2mps` or `30.5kph`.
          *
          * @throws IllegalArgumentException if the string doesn't represent a speed in any of the supported formats.
          */
@@ -129,7 +129,7 @@ value class Speed internal constructor(
          * The following formats is accepted:
          *
          * - The format of string returned by the default [Speed.toString] and `toString` in a specific unit,
-         *   e.g. `50000m` or `30.5km`.
+         *   e.g. `4.2mps` or `30.5kph`.
          */
         fun parseOrNull(value: String): Speed? = try {
             parseSpeed(value)
@@ -196,7 +196,7 @@ value class Speed internal constructor(
      * No more than [unit.decimals.max] decimals will be shown, even if a larger number is requested.
      *
      * @return the value of speed in the specified [unit] followed by that unit abbreviated name:
-     * `pa`, `hpa`, `mb`, `atm`, `mmhg`, `inhg`.
+     * `cmps`, `mps`, `kph`, `mph`, `kn`, `ftps`, `bf`.
      *
      * @throws IllegalArgumentException if [decimals] is less than zero.
      */
@@ -228,8 +228,6 @@ fun Long.toSpeed(unit: SpeedUnit): Speed {
 
 /**
  * Returns a [Speed] equal to this [Double] number of the specified [unit].
- *
- * Depending on its magnitude, the value is rounded to an integer number of nanoseconds or milliseconds.
  *
  * @throws IllegalArgumentException if this `Double` value is `NaN`.
  */

@@ -55,6 +55,7 @@ import org.breezyweather.sources.smg.json.SmgWarningResult
 import org.breezyweather.unit.pollutant.PollutantConcentration.Companion.microgramsPerCubicMeter
 import org.breezyweather.unit.pollutant.PollutantConcentration.Companion.milligramsPerCubicMeter
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
+import org.breezyweather.unit.ratio.Ratio.Companion.percent
 import org.breezyweather.unit.speed.Speed.Companion.kilometersPerHour
 import org.breezyweather.unit.temperature.Temperature.Companion.celsius
 import retrofit2.Retrofit
@@ -323,7 +324,7 @@ class SmgService @Inject constructor(
                         index = uvResult.UV?.Custom?.getOrNull(0)?.ActualUVBReport?.getOrNull(0)?.index
                             ?.getOrNull(0)?.Value?.getOrNull(0)?.toDoubleOrNull()
                     ),
-                    relativeHumidity = it.Humidity?.getOrNull(0)?.dValue?.getOrNull(0)?.toDoubleOrNull(),
+                    relativeHumidity = it.Humidity?.getOrNull(0)?.dValue?.getOrNull(0)?.toDoubleOrNull()?.percent,
                     dewPoint = it.DewPoint?.getOrNull(0)?.dValue?.getOrNull(0)?.toDoubleOrNull()?.celsius,
                     pressure = it.MeanSeaLevelPressure?.getOrNull(0)?.dValue?.getOrNull(0)?.toDoubleOrNull()
                         ?.hectopascals,
@@ -405,7 +406,7 @@ class SmgService @Inject constructor(
                             degree = it.Winddiv?.getOrNull(0)?.Value?.getOrNull(0)?.toDoubleOrNull(),
                             speed = it.Windspd?.getOrNull(0)?.Value?.getOrNull(0)?.toDoubleOrNull()?.kilometersPerHour
                         ),
-                        relativeHumidity = it.Humidity?.getOrNull(0)?.Value?.getOrNull(0)?.toDoubleOrNull()
+                        relativeHumidity = it.Humidity?.getOrNull(0)?.Value?.getOrNull(0)?.toDoubleOrNull()?.percent
                     )
                 )
             }

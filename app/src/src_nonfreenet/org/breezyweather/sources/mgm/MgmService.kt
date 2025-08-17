@@ -54,6 +54,7 @@ import org.breezyweather.sources.mgm.json.MgmHourlyForecastResult
 import org.breezyweather.sources.mgm.json.MgmLocationResult
 import org.breezyweather.sources.mgm.json.MgmNormalsResult
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
+import org.breezyweather.unit.ratio.Ratio.Companion.percent
 import org.breezyweather.unit.speed.Speed.Companion.kilometersPerHour
 import org.breezyweather.unit.temperature.Temperature.Companion.celsius
 import retrofit2.Retrofit
@@ -249,7 +250,7 @@ class MgmService @Inject constructor(
                 degree = getValid(currentResult?.windDirection),
                 speed = getValid(currentResult?.windSpeed)?.kilometersPerHour
             ),
-            relativeHumidity = getValid(currentResult?.humidity),
+            relativeHumidity = getValid(currentResult?.humidity)?.percent,
             pressure = getValid(currentResult?.pressure)?.hectopascals
         )
     }
@@ -341,7 +342,7 @@ class MgmService @Inject constructor(
                         speed = it.windSpeed?.kilometersPerHour,
                         gusts = it.gust?.kilometersPerHour
                     ),
-                    relativeHumidity = it.humidity
+                    relativeHumidity = it.humidity?.percent
                 )
             )
         }

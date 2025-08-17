@@ -61,6 +61,7 @@ import org.breezyweather.sources.brightsky.json.BrightSkyWeatherResult
 import org.breezyweather.unit.distance.Distance.Companion.meters
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
+import org.breezyweather.unit.ratio.Ratio.Companion.percent
 import org.breezyweather.unit.speed.Speed.Companion.kilometersPerHour
 import org.breezyweather.unit.temperature.Temperature.Companion.celsius
 import retrofit2.Retrofit
@@ -215,10 +216,10 @@ class BrightSkyService @Inject constructor(
                 speed = result.windSpeed?.kilometersPerHour,
                 gusts = result.windGustSpeed?.kilometersPerHour
             ),
-            relativeHumidity = result.relativeHumidity?.toDouble(),
+            relativeHumidity = result.relativeHumidity?.percent,
             dewPoint = result.dewPoint?.celsius,
             pressure = result.pressure?.hectopascals,
-            cloudCover = result.cloudCover,
+            cloudCover = result.cloudCover?.percent,
             visibility = result.visibility?.meters
         )
     }
@@ -268,17 +269,17 @@ class BrightSkyService @Inject constructor(
                     total = result.precipitation?.millimeters
                 ),
                 precipitationProbability = PrecipitationProbability(
-                    total = result.precipitationProbability?.toDouble()
+                    total = result.precipitationProbability?.percent
                 ),
                 wind = Wind(
                     degree = result.windDirection?.toDouble(),
                     speed = result.windSpeed?.kilometersPerHour,
                     gusts = result.windGustSpeed?.kilometersPerHour
                 ),
-                relativeHumidity = result.relativeHumidity?.toDouble(),
+                relativeHumidity = result.relativeHumidity?.percent,
                 dewPoint = result.dewPoint?.celsius,
                 pressure = result.pressure?.hectopascals,
-                cloudCover = result.cloudCover,
+                cloudCover = result.cloudCover?.percent,
                 visibility = result.visibility?.toDouble()?.meters,
                 sunshineDuration = result.sunshine?.minutes
             )

@@ -1,12 +1,9 @@
 package org.breezyweather.unit.pollutant
 
-import android.content.Context
 import org.breezyweather.unit.WeatherValue
 import org.breezyweather.unit.formatting.UnitDecimals.Companion.formatToExactDecimals
-import org.breezyweather.unit.formatting.UnitWidth
 import org.breezyweather.unit.pollutant.PollutantConcentration.Companion.microgramsPerCubicMeter
 import org.breezyweather.unit.pollutant.PollutantConcentration.Companion.milligramsPerCubicMeter
-import java.util.Locale
 import kotlin.math.roundToLong
 
 /*
@@ -74,7 +71,7 @@ value class PollutantConcentration internal constructor(
          * The following format is accepted:
          *
          * - The format of string returned by the default [PollutantConcentration.toString] and `toString` in a specific unit,
-         *   e.g. `1013.25hpa` or `29.95inhg`.
+         *   e.g. `10microgpcum` or `2mgpcum`.
          *
          * @throws IllegalArgumentException if the string doesn't represent a pollutant concentration in any of the supported formats.
          */
@@ -91,7 +88,7 @@ value class PollutantConcentration internal constructor(
          * The following formats is accepted:
          *
          * - The format of string returned by the default [PollutantConcentration.toString] and `toString` in a specific unit,
-         *   e.g. `1013.25hpa` or `29.95inhg`.
+         *   e.g. `10microgpcum` or `2mgpcum`.
          */
         fun parseOrNull(value: String): PollutantConcentration? = try {
             parsePollutantConcentration(value)
@@ -138,7 +135,7 @@ value class PollutantConcentration internal constructor(
      * No more than [unit.decimals.max] decimals will be shown, even if a larger number is requested.
      *
      * @return the value of pollutant concentration in the specified [unit] followed by that unit abbreviated name:
-     * `pa`, `hpa`, `mb`, `atm`, `mmhg`, `inhg`.
+     * `microgpcum`, `mgpcum`.
      *
      * @throws IllegalArgumentException if [decimals] is less than zero.
      */
@@ -169,8 +166,6 @@ fun Long.toPollutantConcentration(unit: PollutantConcentrationUnit): PollutantCo
 
 /**
  * Returns a [PollutantConcentration] equal to this [Double] number of the specified [unit].
- *
- * Depending on its magnitude, the value is rounded to an integer number of nanoseconds or milliseconds.
  *
  * @throws IllegalArgumentException if this `Double` value is `NaN`.
  */

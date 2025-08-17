@@ -96,6 +96,7 @@ import org.breezyweather.unit.pollutant.PollutantConcentration.Companion.microgr
 import org.breezyweather.unit.precipitation.Precipitation.Companion.centimeters
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
+import org.breezyweather.unit.ratio.Ratio.Companion.percent
 import org.breezyweather.unit.speed.Speed.Companion.metersPerSecond
 import org.breezyweather.unit.temperature.Temperature.Companion.celsius
 import retrofit2.HttpException
@@ -395,10 +396,10 @@ class OpenMeteoService @Inject constructor(
                 gusts = current.windGusts?.metersPerSecond
             ),
             uV = UV(index = current.uvIndex),
-            relativeHumidity = current.relativeHumidity?.toDouble(),
+            relativeHumidity = current.relativeHumidity?.percent,
             dewPoint = current.dewPoint?.celsius,
             pressure = current.pressureMsl?.hectopascals,
-            cloudCover = current.cloudCover,
+            cloudCover = current.cloudCover?.percent,
             visibility = current.visibility?.meters
         )
     }
@@ -435,9 +436,9 @@ class OpenMeteoService @Inject constructor(
                 uV = UV(index = dailyResult.uvIndexMax?.getOrNull(i)),
                 sunshineDuration = dailyResult.sunshineDuration?.getOrNull(i)?.seconds,
                 relativeHumidity = DailyRelativeHumidity(
-                    average = dailyResult.relativeHumidityMean?.getOrNull(i)?.toDouble(),
-                    max = dailyResult.relativeHumidityMax?.getOrNull(i)?.toDouble(),
-                    min = dailyResult.relativeHumidityMin?.getOrNull(i)?.toDouble()
+                    average = dailyResult.relativeHumidityMean?.getOrNull(i)?.percent,
+                    max = dailyResult.relativeHumidityMax?.getOrNull(i)?.percent,
+                    min = dailyResult.relativeHumidityMin?.getOrNull(i)?.percent
                 ),
                 dewPoint = DailyDewPoint(
                     average = dailyResult.dewPointMean?.getOrNull(i)?.celsius,
@@ -450,9 +451,9 @@ class OpenMeteoService @Inject constructor(
                     min = dailyResult.pressureMslMin?.getOrNull(i)?.hectopascals
                 ),
                 cloudCover = DailyCloudCover(
-                    average = dailyResult.cloudCoverMean?.getOrNull(i),
-                    max = dailyResult.cloudCoverMax?.getOrNull(i),
-                    min = dailyResult.cloudCoverMin?.getOrNull(i)
+                    average = dailyResult.cloudCoverMean?.getOrNull(i)?.percent,
+                    max = dailyResult.cloudCoverMax?.getOrNull(i)?.percent,
+                    min = dailyResult.cloudCoverMin?.getOrNull(i)?.percent
                 ),
                 visibility = DailyVisibility(
                     average = dailyResult.visibilityMean?.getOrNull(i)?.meters,
@@ -489,7 +490,7 @@ class OpenMeteoService @Inject constructor(
                         snow = hourlyResult.snowfall?.getOrNull(i)?.centimeters
                     ),
                     precipitationProbability = PrecipitationProbability(
-                        total = hourlyResult.precipitationProbability?.getOrNull(i)?.toDouble()
+                        total = hourlyResult.precipitationProbability?.getOrNull(i)?.percent
                     ),
                     wind = Wind(
                         degree = hourlyResult.windDirection?.getOrNull(i)?.toDouble(),
@@ -497,10 +498,10 @@ class OpenMeteoService @Inject constructor(
                         gusts = hourlyResult.windGusts?.getOrNull(i)?.metersPerSecond
                     ),
                     uV = UV(index = hourlyResult.uvIndex?.getOrNull(i)),
-                    relativeHumidity = hourlyResult.relativeHumidity?.getOrNull(i)?.toDouble(),
+                    relativeHumidity = hourlyResult.relativeHumidity?.getOrNull(i)?.percent,
                     dewPoint = hourlyResult.dewPoint?.getOrNull(i)?.celsius,
                     pressure = hourlyResult.pressureMsl?.getOrNull(i)?.hectopascals,
-                    cloudCover = hourlyResult.cloudCover?.getOrNull(i),
+                    cloudCover = hourlyResult.cloudCover?.getOrNull(i)?.percent,
                     visibility = hourlyResult.visibility?.getOrNull(i)?.meters
                 )
             )

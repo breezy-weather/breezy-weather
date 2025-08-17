@@ -42,7 +42,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -73,6 +72,7 @@ import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.formatMeasure
 import org.breezyweather.common.extensions.getBeaufortScaleColor
 import org.breezyweather.common.extensions.getBeaufortScaleStrength
+import org.breezyweather.common.extensions.getColorResource
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.extensions.roundUpToNearestMultiplier
@@ -354,88 +354,105 @@ private fun WindChart(
     }
 
     BreezyLineChart(
-        location,
-        modelProducer,
-        daily.date,
-        maxY,
-        { _, value, _ -> value.toSpeed(speedUnit).formatMeasure(context) },
-        persistentListOf(
-            persistentMapOf(
-                104.0.metersPerSecond.toDouble(speedUnit).toFloat() to Color(128, 128, 128),
-                77.0.metersPerSecond.toDouble(speedUnit).toFloat() to Color(205, 202, 112),
-                51.0.metersPerSecond.toDouble(speedUnit).toFloat() to Color(219, 212, 135),
-                46.0.metersPerSecond.toDouble(speedUnit).toFloat() to Color(231, 215, 215),
-                36.0.metersPerSecond.toDouble(speedUnit).toFloat() to colorResource(R.color.windStrength_bf12),
-                30.5.metersPerSecond.toDouble(speedUnit).toFloat() to colorResource(R.color.windStrength_bf11),
-                26.4.metersPerSecond.toDouble(speedUnit).toFloat() to colorResource(R.color.windStrength_bf10),
-                24.475.metersPerSecond.toDouble(speedUnit).toFloat() to Color(109, 97, 163),
-                22.55.metersPerSecond.toDouble(speedUnit).toFloat() to colorResource(R.color.windStrength_bf9),
-                18.9.metersPerSecond.toDouble(speedUnit).toFloat() to colorResource(R.color.windStrength_bf8),
-                17.175.metersPerSecond.toDouble(speedUnit).toFloat() to Color(129, 58, 78),
-                15.45.metersPerSecond.toDouble(speedUnit).toFloat() to colorResource(R.color.windStrength_bf7),
-                13.85.metersPerSecond.toDouble(speedUnit).toFloat() to Color(159, 127, 58),
-                12.25.metersPerSecond.toDouble(speedUnit).toFloat() to colorResource(R.color.windStrength_bf6),
-                9.3.metersPerSecond.toDouble(speedUnit).toFloat() to colorResource(R.color.windStrength_bf5),
-                6.7.metersPerSecond.toDouble(speedUnit).toFloat() to colorResource(R.color.windStrength_bf4),
-                4.4.metersPerSecond.toDouble(speedUnit).toFloat() to colorResource(R.color.windStrength_bf3),
-                2.4.metersPerSecond.toDouble(speedUnit).toFloat() to colorResource(R.color.windStrength_bf2),
-                1.0.metersPerSecond.toDouble(speedUnit).toFloat() to colorResource(R.color.windStrength_bf1),
-                0.0.metersPerSecond.toDouble(speedUnit).toFloat() to colorResource(R.color.windStrength_bf0)
-            ),
-            persistentMapOf(
-                104.0.metersPerSecond.toDouble(speedUnit).toFloat() to Color(128, 128, 128, 160),
-                77.0.metersPerSecond.toDouble(speedUnit).toFloat() to Color(205, 202, 112, 160),
-                51.0.metersPerSecond.toDouble(speedUnit).toFloat() to Color(219, 212, 135, 160),
-                46.0.metersPerSecond.toDouble(speedUnit).toFloat() to Color(231, 215, 215, 160),
-                36.0.metersPerSecond.toDouble(speedUnit).toFloat() to
-                    colorResource(R.color.windStrength_bf12).copy(alpha = 160f.div(255f)),
-                30.5.metersPerSecond.toDouble(speedUnit).toFloat() to
-                    colorResource(R.color.windStrength_bf11).copy(alpha = 160f.div(255f)),
-                26.4.metersPerSecond.toDouble(speedUnit).toFloat() to
-                    colorResource(R.color.windStrength_bf10).copy(alpha = 160f.div(255f)),
-                24.475.metersPerSecond.toDouble(speedUnit).toFloat() to Color(109, 97, 163, 160),
-                22.55.metersPerSecond.toDouble(speedUnit).toFloat() to
-                    colorResource(R.color.windStrength_bf9).copy(alpha = 160f.div(255f)),
-                18.9.metersPerSecond.toDouble(speedUnit).toFloat() to
-                    colorResource(R.color.windStrength_bf8).copy(alpha = 160f.div(255f)),
-                17.175.metersPerSecond.toDouble(speedUnit).toFloat() to Color(129, 58, 78, 160),
-                15.45.metersPerSecond.toDouble(speedUnit).toFloat() to
-                    colorResource(R.color.windStrength_bf7).copy(alpha = 160f.div(255f)),
-                13.85.metersPerSecond.toDouble(speedUnit).toFloat() to Color(159, 127, 58, 160),
-                12.25.metersPerSecond.toDouble(speedUnit).toFloat() to
-                    colorResource(R.color.windStrength_bf6).copy(alpha = 160f.div(255f)),
-                9.3.metersPerSecond.toDouble(speedUnit).toFloat() to
-                    colorResource(R.color.windStrength_bf5).copy(alpha = 160f.div(255f)),
-                6.7.metersPerSecond.toDouble(speedUnit).toFloat() to
-                    colorResource(R.color.windStrength_bf4).copy(alpha = 160f.div(255f)),
-                4.4.metersPerSecond.toDouble(speedUnit).toFloat() to
-                    colorResource(R.color.windStrength_bf3).copy(alpha = 160f.div(255f)),
-                2.4.metersPerSecond.toDouble(speedUnit).toFloat() to
-                    colorResource(R.color.windStrength_bf2).copy(alpha = 160f.div(255f)),
-                1.0.metersPerSecond.toDouble(speedUnit).toFloat() to
-                    colorResource(R.color.windStrength_bf1).copy(alpha = 160f.div(255f)),
-                0.0.metersPerSecond.toDouble(speedUnit).toFloat() to
-                    colorResource(R.color.windStrength_bf0).copy(alpha = 160f.div(255f))
+        location = location,
+        modelProducer = modelProducer,
+        theDay = daily.date,
+        maxY = maxY,
+        endAxisValueFormatter = remember { { _, value, _ -> value.toSpeed(speedUnit).formatMeasure(context) } },
+        colors = remember {
+            persistentListOf(
+                persistentMapOf(
+                    104.0.metersPerSecond.toDouble(speedUnit).toFloat() to Color(128, 128, 128),
+                    77.0.metersPerSecond.toDouble(speedUnit).toFloat() to Color(205, 202, 112),
+                    51.0.metersPerSecond.toDouble(speedUnit).toFloat() to Color(219, 212, 135),
+                    46.0.metersPerSecond.toDouble(speedUnit).toFloat() to Color(231, 215, 215),
+                    36.0.metersPerSecond.toDouble(speedUnit).toFloat() to
+                        context.getColorResource(R.color.windStrength_bf12),
+                    30.5.metersPerSecond.toDouble(speedUnit).toFloat() to
+                        context.getColorResource(R.color.windStrength_bf11),
+                    26.4.metersPerSecond.toDouble(speedUnit).toFloat() to
+                        context.getColorResource(R.color.windStrength_bf10),
+                    24.475.metersPerSecond.toDouble(speedUnit).toFloat() to Color(109, 97, 163),
+                    22.55.metersPerSecond.toDouble(speedUnit).toFloat() to
+                        context.getColorResource(R.color.windStrength_bf9),
+                    18.9.metersPerSecond.toDouble(speedUnit).toFloat() to
+                        context.getColorResource(R.color.windStrength_bf8),
+                    17.175.metersPerSecond.toDouble(speedUnit).toFloat() to Color(129, 58, 78),
+                    15.45.metersPerSecond.toDouble(speedUnit).toFloat() to
+                        context.getColorResource(R.color.windStrength_bf7),
+                    13.85.metersPerSecond.toDouble(speedUnit).toFloat() to Color(159, 127, 58),
+                    12.25.metersPerSecond.toDouble(speedUnit).toFloat() to
+                        context.getColorResource(R.color.windStrength_bf6),
+                    9.3.metersPerSecond.toDouble(speedUnit).toFloat() to
+                        context.getColorResource(R.color.windStrength_bf5),
+                    6.7.metersPerSecond.toDouble(speedUnit).toFloat() to
+                        context.getColorResource(R.color.windStrength_bf4),
+                    4.4.metersPerSecond.toDouble(speedUnit).toFloat() to
+                        context.getColorResource(R.color.windStrength_bf3),
+                    2.4.metersPerSecond.toDouble(speedUnit).toFloat() to
+                        context.getColorResource(R.color.windStrength_bf2),
+                    1.0.metersPerSecond.toDouble(speedUnit).toFloat() to
+                        context.getColorResource(R.color.windStrength_bf1),
+                    0.0.metersPerSecond.toDouble(speedUnit).toFloat() to
+                        context.getColorResource(R.color.windStrength_bf0)
+                ),
+                persistentMapOf(
+                    104.0.metersPerSecond.toDouble(speedUnit).toFloat() to Color(128, 128, 128, 160),
+                    77.0.metersPerSecond.toDouble(speedUnit).toFloat() to Color(205, 202, 112, 160),
+                    51.0.metersPerSecond.toDouble(speedUnit).toFloat() to Color(219, 212, 135, 160),
+                    46.0.metersPerSecond.toDouble(speedUnit).toFloat() to Color(231, 215, 215, 160),
+                    36.0.metersPerSecond.toDouble(speedUnit).toFloat() to
+                        context.getColorResource(R.color.windStrength_bf12).copy(alpha = 160f.div(255f)),
+                    30.5.metersPerSecond.toDouble(speedUnit).toFloat() to
+                        context.getColorResource(R.color.windStrength_bf11).copy(alpha = 160f.div(255f)),
+                    26.4.metersPerSecond.toDouble(speedUnit).toFloat() to
+                        context.getColorResource(R.color.windStrength_bf10).copy(alpha = 160f.div(255f)),
+                    24.475.metersPerSecond.toDouble(speedUnit).toFloat() to Color(109, 97, 163, 160),
+                    22.55.metersPerSecond.toDouble(speedUnit).toFloat() to
+                        context.getColorResource(R.color.windStrength_bf9).copy(alpha = 160f.div(255f)),
+                    18.9.metersPerSecond.toDouble(speedUnit).toFloat() to
+                        context.getColorResource(R.color.windStrength_bf8).copy(alpha = 160f.div(255f)),
+                    17.175.metersPerSecond.toDouble(speedUnit).toFloat() to Color(129, 58, 78, 160),
+                    15.45.metersPerSecond.toDouble(speedUnit).toFloat() to
+                        context.getColorResource(R.color.windStrength_bf7).copy(alpha = 160f.div(255f)),
+                    13.85.metersPerSecond.toDouble(speedUnit).toFloat() to Color(159, 127, 58, 160),
+                    12.25.metersPerSecond.toDouble(speedUnit).toFloat() to
+                        context.getColorResource(R.color.windStrength_bf6).copy(alpha = 160f.div(255f)),
+                    9.3.metersPerSecond.toDouble(speedUnit).toFloat() to
+                        context.getColorResource(R.color.windStrength_bf5).copy(alpha = 160f.div(255f)),
+                    6.7.metersPerSecond.toDouble(speedUnit).toFloat() to
+                        context.getColorResource(R.color.windStrength_bf4).copy(alpha = 160f.div(255f)),
+                    4.4.metersPerSecond.toDouble(speedUnit).toFloat() to
+                        context.getColorResource(R.color.windStrength_bf3).copy(alpha = 160f.div(255f)),
+                    2.4.metersPerSecond.toDouble(speedUnit).toFloat() to
+                        context.getColorResource(R.color.windStrength_bf2).copy(alpha = 160f.div(255f)),
+                    1.0.metersPerSecond.toDouble(speedUnit).toFloat() to
+                        context.getColorResource(R.color.windStrength_bf1).copy(alpha = 160f.div(255f)),
+                    0.0.metersPerSecond.toDouble(speedUnit).toFloat() to
+                        context.getColorResource(R.color.windStrength_bf0).copy(alpha = 160f.div(255f))
+                )
             )
-        ),
-        topAxisValueFormatter = { _, value, _ ->
-            val arrow = mappedValues.getOrElse(value.toLong()) { null }?.arrow ?: "-"
-            SpannableString(arrow).apply {
-                setSpan(RelativeSizeSpan(2f), 0, arrow.length, 0)
+        },
+        topAxisValueFormatter = remember(mappedValues) {
+            { _, value, _ ->
+                val arrow = mappedValues.getOrElse(value.toLong()) { null }?.arrow ?: "-"
+                SpannableString(arrow).apply {
+                    setSpan(RelativeSizeSpan(2f), 0, arrow.length, 0)
+                }
             }
         },
-        trendHorizontalLines = buildMap {
-            if (maxY > 7.beaufort.toDouble(speedUnit)) {
-                put(7.beaufort.toDouble(speedUnit), 7.beaufort.getBeaufortScaleStrength(context)!!)
-            }
-            // TODO: Make this a const:
-            if (maxY < (7.beaufort.inMetersPerSecond + 5.0).metersPerSecond.toDouble(speedUnit)) {
-                put(3.beaufort.toDouble(speedUnit), 3.beaufort.getBeaufortScaleStrength(context)!!)
-            }
-        }.toImmutableMap(),
-        endAxisItemPlacer = remember {
-            VerticalAxis.ItemPlacer.step({ step })
+        trendHorizontalLines = remember {
+            buildMap {
+                if (maxY > 7.beaufort.toDouble(speedUnit)) {
+                    put(7.beaufort.toDouble(speedUnit), 7.beaufort.getBeaufortScaleStrength(context)!!)
+                }
+                // TODO: Make this a const:
+                if (maxY < (7.beaufort.inMetersPerSecond + 5.0).metersPerSecond.toDouble(speedUnit)) {
+                    put(3.beaufort.toDouble(speedUnit), 3.beaufort.getBeaufortScaleStrength(context)!!)
+                }
+            }.toImmutableMap()
         },
+        endAxisItemPlacer = remember { VerticalAxis.ItemPlacer.step({ step }) },
         markerVisibilityListener = markerVisibilityListener
     )
 }

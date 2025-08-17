@@ -1,6 +1,7 @@
 # Breezy Weather unit conversion and formatting library
 
 Android library to handle:
+
 - Unit conversion
 - Formatting in various languages, including on devices without ICU support or with missing CLDR data, with a simplified backport (no handling of plural and non-nominative rules)
 
@@ -10,7 +11,6 @@ Some precision may be lost during conversions.
 
 Remains to do:
 
-- Percentage formatting
 - Add missing non-English Android translations (for the units we use in Breezy Weather)
 - Plus and minus operations
 - Parse from string
@@ -33,6 +33,12 @@ Android translations are only in English at the moment.
 
 Supports temperature deviations conversions (such as degree days).
 
+Supported widths for Android translations:
+
+| Narrow | Short | Long |
+|--------|-------|------|
+| ❌      | ✅     | ✅    |
+
 
 ## Distance
 
@@ -45,6 +51,12 @@ Android translations are only in English at the moment.
 | Mile          | Android >= 11     | Android 7 to 10 | Android < 7          |
 | Nautical mile | Android >= 11     | Android 7 to 10 | Android < 7          |
 | Foot          | Android >= 11     | Android 7 to 10 | Android < 7          |
+
+Supported widths for Android translations:
+
+| Narrow | Short | Long |
+|--------|-------|------|
+| ❌      | ✅     | ✅    |
 
 
 ## Speed
@@ -62,6 +74,12 @@ Android translations are only in English at the moment.
 | Beaufort scale¹       | Android >= 16     | ❌               | Android < 16         |
 
 ¹ Not an unit, but a scale, so during conversions, uses the starting value in meters per second of the scale level
+
+Supported widths for Android translations:
+
+| Narrow | Short | Long |
+|--------|-------|------|
+| ❌      | ✅     | ✅    |
 
 
 ## Precipitation
@@ -84,6 +102,12 @@ Android translations are only in English at the moment.
 | Inch per hour                   | Android >= 11     | Android 8 to 10 | Android < 8          |
 | Liter per square meter per hour | ❌                 | ❌               | ✅                    |
 
+Supported widths for Android translations:
+
+| Narrow | Short | Long |
+|--------|-------|------|
+| ❌      | ✅     | ✅    |
+
 
 ## Pressure
 
@@ -96,6 +120,12 @@ Android translations are only in English at the moment.
 | Millimeter of mercury | Android >= 11     | Android 7 to 10 | Android < 7          |
 | Inch of mercury       | Android >= 11     | Android 7 to 10 | Android < 7          |
 
+Supported widths for Android translations:
+
+| Narrow | Short | Long |
+|--------|-------|------|
+| ❌      | ✅     | ✅    |
+
 
 ## Air pollutant concentration
 
@@ -106,6 +136,12 @@ Android translations are only in English at the moment.
 | Microgram per cubic meter | Android >= 11     | Android 8 to 10 | Android < 8          |
 | Milligram per cubic meter | Android >= 11     | Android 8 to 10 | Android < 8          |
 
+Supported widths for Android translations:
+
+| Narrow | Short | Long |
+|--------|-------|------|
+| ❌      | ✅     | ✅    |
+
 
 ## Pollen concentration
 
@@ -114,6 +150,12 @@ Android translations are only in English at the moment.
 | Unit            | `NumberFormatter` | `MeasureFormat` | Android translations |
 |-----------------|-------------------|-----------------|----------------------|
 | Per cubic meter | ❌                 | ❌               | ✅                    |
+
+Supported widths for Android translations:
+
+| Narrow | Short | Long |
+|--------|-------|------|
+| ❌      | ✅     | ✅    |
 
 
 ## Duration
@@ -130,6 +172,29 @@ Android translations are only in English at the moment.
 
 * ¹ `NumberFormatter` supports only single duration, and will not be used when needing a formatting like `1 hour and 30 minutes`.
 * ² Only English translations are provided.
+
+Supported widths for Android translations:
+
+| Narrow | Short | Long |
+|--------|-------|------|
+| ❌      | ✅     | ✅    |
+
+
+## Ratio
+
+| Unit     | `NumberFormatter`¹ | `NumberFormat` | Android translations |
+|----------|--------------------|----------------|----------------------|
+| Permille | Android >= 11      | ❌              | Android < 11¹        |
+| Percent  | Android >= 11      | Android < 11   | ❌                    |
+| Fraction | Android >= 11      | Android < 11   | N/A                  |
+
+* ¹ Only English translations are provided.
+
+Supported widths for `NumberFormat` and Android translations:
+
+| Narrow | Short | Long |
+|--------|-------|------|
+| ❌      | ✅     | ❌    |
 
 
 # License

@@ -54,6 +54,8 @@ import org.breezyweather.sources.geosphereat.json.GeoSphereAtWarningsResult
 import org.breezyweather.unit.pollutant.PollutantConcentration.Companion.microgramsPerCubicMeter
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.pressure.Pressure.Companion.pascals
+import org.breezyweather.unit.ratio.Ratio.Companion.fraction
+import org.breezyweather.unit.ratio.Ratio.Companion.percent
 import org.breezyweather.unit.speed.Speed.Companion.metersPerSecond
 import org.breezyweather.unit.temperature.Temperature.Companion.celsius
 import retrofit2.Retrofit
@@ -361,10 +363,9 @@ class GeoSphereAtService @Inject constructor(
                 } else {
                     null
                 },
-                relativeHumidity = hourlyResult.features[0].properties!!.parameters!!.rh2m?.data?.getOrNull(i),
+                relativeHumidity = hourlyResult.features[0].properties!!.parameters!!.rh2m?.data?.getOrNull(i)?.percent,
                 pressure = hourlyResult.features[0].properties!!.parameters!!.sp?.data?.getOrNull(i)?.pascals,
-                cloudCover = hourlyResult.features[0].properties!!.parameters!!.tcc?.data?.getOrNull(i)?.times(100)
-                    ?.roundToInt()
+                cloudCover = hourlyResult.features[0].properties!!.parameters!!.tcc?.data?.getOrNull(i)?.fraction
             )
         }
     }

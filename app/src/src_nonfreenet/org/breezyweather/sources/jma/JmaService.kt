@@ -69,6 +69,7 @@ import org.breezyweather.sources.jma.json.JmaHourlyResult
 import org.breezyweather.sources.jma.json.JmaWeekAreaResult
 import org.breezyweather.unit.distance.Distance.Companion.meters
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
+import org.breezyweather.unit.ratio.Ratio.Companion.percent
 import org.breezyweather.unit.speed.Speed.Companion.metersPerSecond
 import org.breezyweather.unit.temperature.Temperature.Companion.celsius
 import org.json.JSONObject
@@ -317,7 +318,7 @@ class JmaService @Inject constructor(
                     degree = getWindDirection(it.windDirection?.getOrNull(0)),
                     speed = it.wind?.getOrNull(0)?.metersPerSecond
                 ),
-                relativeHumidity = it.humidity?.getOrNull(0),
+                relativeHumidity = it.humidity?.getOrNull(0)?.percent,
                 pressure = it.normalPressure?.getOrNull(0)?.hectopascals,
                 visibility = it.visibility?.getOrNull(0)?.meters,
                 dailyForecast = dailyForecast
@@ -446,12 +447,18 @@ class JmaService @Inject constructor(
                     temperature = TemperatureWrapper(
                         temperature = maxTMap.getOrElse(key) { null }?.celsius
                     ),
-                    precipitationProbability = PrecipitationProbability(
-                        total = max(
-                            popMap.getOrElse(key + 6.hours.inWholeMilliseconds) { 0.0 },
-                            popMap.getOrElse(key + 12.hours.inWholeMilliseconds) { 0.0 }
+                    precipitationProbability = if (popMap.containsKey(key + 6.hours.inWholeMilliseconds) ||
+                        popMap.containsKey(key + 12.hours.inWholeMilliseconds)
+                    ) {
+                        PrecipitationProbability(
+                            total = max(
+                                popMap.getOrElse(key + 6.hours.inWholeMilliseconds) { 0.0 },
+                                popMap.getOrElse(key + 12.hours.inWholeMilliseconds) { 0.0 }
+                            ).percent
                         )
-                    )
+                    } else {
+                        null
+                    }
                 ),
                 night = HalfDayWrapper(
                     weatherText = getDailyWeatherText(
@@ -466,12 +473,18 @@ class JmaService @Inject constructor(
                     temperature = TemperatureWrapper(
                         temperature = minTMap.getOrElse(key + 1.days.inWholeMilliseconds) { null }?.celsius
                     ),
-                    precipitationProbability = PrecipitationProbability(
-                        total = max(
-                            popMap.getOrElse(key + 18.hours.inWholeMilliseconds) { 0.0 },
-                            popMap.getOrElse(key + 24.hours.inWholeMilliseconds) { 0.0 }
+                    precipitationProbability = if (popMap.containsKey(key + 6.hours.inWholeMilliseconds) ||
+                        popMap.containsKey(key + 12.hours.inWholeMilliseconds)
+                    ) {
+                        PrecipitationProbability(
+                            total = max(
+                                popMap.getOrElse(key + 6.hours.inWholeMilliseconds) { 0.0 },
+                                popMap.getOrElse(key + 12.hours.inWholeMilliseconds) { 0.0 }
+                            ).percent
                         )
-                    )
+                    } else {
+                        null
+                    }
                 )
             )
         }

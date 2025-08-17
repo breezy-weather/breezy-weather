@@ -59,6 +59,7 @@ import com.google.android.material.textfield.TextInputLayout
 import org.breezyweather.R
 import org.breezyweather.common.activities.BreezyActivity
 import org.breezyweather.common.extensions.doOnApplyWindowInsets
+import org.breezyweather.common.extensions.formatPercent
 import org.breezyweather.common.extensions.getTabletListAdaptiveWidth
 import org.breezyweather.common.extensions.hasPermission
 import org.breezyweather.common.extensions.launchUI
@@ -68,6 +69,8 @@ import org.breezyweather.common.snackbar.SnackbarManager
 import org.breezyweather.common.utils.UnitUtils
 import org.breezyweather.common.utils.helpers.SnackbarHelper
 import org.breezyweather.domain.settings.ConfigStore
+import org.breezyweather.unit.formatting.UnitWidth
+import org.breezyweather.unit.ratio.Ratio.Companion.percent
 import kotlin.math.max
 import kotlin.math.min
 import kotlin.math.roundToInt
@@ -355,7 +358,7 @@ abstract class AbstractWidgetConfigActivity : BreezyActivity() {
             valueTo = 100f
             value = ((cardAlpha.toDouble() / 10.0).roundToInt() * 10.0).toFloat()
             setLabelFormatter { value: Float ->
-                UnitUtils.formatPercent(context, value.toDouble())
+                value.toDouble().percent.formatPercent(context, UnitWidth.NARROW)
             }
             addOnChangeListener { _, value, _ ->
                 if (cardAlpha != value.roundToInt()) {
@@ -418,7 +421,7 @@ abstract class AbstractWidgetConfigActivity : BreezyActivity() {
                 }
             }
             setLabelFormatter { value: Float ->
-                UnitUtils.formatPercent(context, value.toDouble())
+                value.toDouble().percent.formatPercent(context, UnitWidth.NARROW)
             }
         }
 
@@ -480,6 +483,14 @@ abstract class AbstractWidgetConfigActivity : BreezyActivity() {
         }
         mBottomSheetScrollView = findViewById(R.id.activity_widget_config_custom_scrollView)
         mSubtitleInputLayout = findViewById(R.id.activity_widget_config_subtitle_inputLayout)
+        mSubtitleInputLayout?.setEndIconOnClickListener {
+            val message = getString(R.string.widget_custom_subtitle_explanation) + "\n\n" + subtitleCustomKeywords
+            MaterialAlertDialogBuilder(this)
+                .setTitle(R.string.widget_custom_subtitle_alert_box_title)
+                .setMessage(message)
+                .setPositiveButton(R.string.action_done, null)
+                .show()
+        }
         mSubtitleEditText = findViewById<TextInputEditText>(R.id.activity_widget_config_subtitle_inputter).apply {
             addTextChangedListener(object : TextWatcher {
                 override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {
@@ -508,15 +519,6 @@ abstract class AbstractWidgetConfigActivity : BreezyActivity() {
         bottomSheet.post {
             mBottomSheetBehavior!!.peekHeight = mSubtitleInputLayout!!.measuredHeight
             setBottomSheetState(isCustomSubtitle)
-        }
-        val subtitleInputLayout = findViewById<TextInputLayout>(R.id.activity_widget_config_subtitle_inputLayout)
-        subtitleInputLayout.setEndIconOnClickListener {
-            val message = getString(R.string.widget_custom_subtitle_explanation) + "\n\n" + subtitleCustomKeywords
-            MaterialAlertDialogBuilder(this)
-                .setTitle(R.string.widget_custom_subtitle_alert_box_title)
-                .setMessage(message)
-                .setPositiveButton(R.string.action_done, null)
-                .show()
         }
     }
 

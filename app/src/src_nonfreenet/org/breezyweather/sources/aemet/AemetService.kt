@@ -64,6 +64,7 @@ import org.breezyweather.sources.getWindDegree
 import org.breezyweather.unit.distance.Distance.Companion.meters
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
+import org.breezyweather.unit.ratio.Ratio.Companion.percent
 import org.breezyweather.unit.speed.Speed.Companion.kilometersPerHour
 import org.breezyweather.unit.speed.Speed.Companion.metersPerSecond
 import org.breezyweather.unit.temperature.Temperature.Companion.celsius
@@ -275,7 +276,7 @@ class AemetService @Inject constructor(
                     speed = it.vv?.metersPerSecond,
                     gusts = it.vmax?.metersPerSecond
                 ),
-                relativeHumidity = it.hr,
+                relativeHumidity = it.hr?.percent,
                 dewPoint = it.tpr?.celsius,
                 pressure = it.pres?.hectopascals,
                 visibility = it.vis?.meters
@@ -366,7 +367,7 @@ class AemetService @Inject constructor(
                             feelsLike = maxAtMap.getOrElse(key) { null }?.celsius
                         ),
                         precipitationProbability = PrecipitationProbability(
-                            total = ppMap.getOrElse(key) { null }
+                            total = ppMap.getOrElse(key) { null }?.percent
                         ),
                         wind = Wind(
                             degree = wdMap.getOrElse(key) { null },
@@ -382,7 +383,7 @@ class AemetService @Inject constructor(
                             feelsLike = minAtMap.getOrElse(key) { null }?.celsius
                         ),
                         precipitationProbability = PrecipitationProbability(
-                            total = ppMap.getOrElse(key) { null }
+                            total = ppMap.getOrElse(key) { null }?.percent
                         ),
                         wind = Wind(
                             degree = wdMap.getOrElse(key) { null },
@@ -391,8 +392,8 @@ class AemetService @Inject constructor(
                         )
                     ),
                     relativeHumidity = DailyRelativeHumidity(
-                        max = maxRhMap.getOrElse(key) { null },
-                        min = minRhMap.getOrElse(key) { null }
+                        max = maxRhMap.getOrElse(key) { null }?.percent,
+                        min = minRhMap.getOrElse(key) { null }?.percent
                     ),
                     uV = UV(
                         index = uviMap.getOrElse(key) { null }
@@ -519,16 +520,16 @@ class AemetService @Inject constructor(
                         snow = snMap.getOrElse(key) { null }?.millimeters
                     ),
                     precipitationProbability = PrecipitationProbability(
-                        total = ppMap.getOrElse(key) { null },
-                        thunderstorm = ptMap.getOrElse(key) { null },
-                        snow = psMap.getOrElse(key) { null }
+                        total = ppMap.getOrElse(key) { null }?.percent,
+                        thunderstorm = ptMap.getOrElse(key) { null }?.percent,
+                        snow = psMap.getOrElse(key) { null }?.percent
                     ),
                     wind = Wind(
                         degree = wdMap.getOrElse(key) { null },
                         speed = wsMap.getOrElse(key) { null }?.kilometersPerHour,
                         gusts = wgMap.getOrElse(key) { null }?.kilometersPerHour
                     ),
-                    relativeHumidity = rhMap.getOrElse(key) { null }
+                    relativeHumidity = rhMap.getOrElse(key) { null }?.percent
                 )
             )
         }

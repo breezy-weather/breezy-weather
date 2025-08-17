@@ -80,6 +80,7 @@ import org.breezyweather.sources.nlsc.NlscService.Companion.WUQIU_BBOX
 import org.breezyweather.unit.pollutant.PollutantConcentration.Companion.microgramsPerCubicMeter
 import org.breezyweather.unit.pressure.Pressure
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
+import org.breezyweather.unit.ratio.Ratio.Companion.percent
 import org.breezyweather.unit.speed.Speed.Companion.beaufort
 import org.breezyweather.unit.speed.Speed.Companion.metersPerSecond
 import org.breezyweather.unit.temperature.Temperature
@@ -467,7 +468,7 @@ class CwaService @Inject constructor(
                 speed = windSpeed,
                 gusts = windGusts
             ),
-            relativeHumidity = relativeHumidity,
+            relativeHumidity = relativeHumidity?.percent,
             pressure = computeMeanSeaLevelPressure(
                 barometricPressure = barometricPressure,
                 altitude = altitude,
@@ -625,7 +626,7 @@ class CwaService @Inject constructor(
                             feelsLike = maxAtMap.getOrElse(dayTime) { null }?.celsius
                         ),
                         precipitationProbability = PrecipitationProbability(
-                            total = popMap.getOrElse(dayTime) { null }
+                            total = popMap.getOrElse(dayTime) { null }?.percent
                         ),
                         wind = Wind(
                             degree = wdMap.getOrElse(dayTime) { null },
@@ -640,7 +641,7 @@ class CwaService @Inject constructor(
                             feelsLike = minAtMap.getOrElse(nightTime) { null }?.celsius
                         ),
                         precipitationProbability = PrecipitationProbability(
-                            total = popMap.getOrElse(nightTime) { null }
+                            total = popMap.getOrElse(nightTime) { null }?.percent
                         ),
                         wind = Wind(
                             degree = wdMap.getOrElse(nightTime) { null },
@@ -762,13 +763,13 @@ class CwaService @Inject constructor(
                         feelsLike = atMap.getOrElse(key) { null }?.celsius
                     ),
                     precipitationProbability = PrecipitationProbability(
-                        total = popMap.getOrElse(key) { null }
+                        total = popMap.getOrElse(key) { null }?.percent
                     ),
                     wind = Wind(
                         degree = wdMap.getOrElse(key) { null },
                         speed = wsMap.getOrElse(key) { null }?.metersPerSecond
                     ),
-                    relativeHumidity = rhMap.getOrElse(key) { null },
+                    relativeHumidity = rhMap.getOrElse(key) { null }?.percent,
                     dewPoint = tdMap.getOrElse(key) { null }?.celsius
                 )
             )

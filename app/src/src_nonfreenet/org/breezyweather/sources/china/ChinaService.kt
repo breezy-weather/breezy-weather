@@ -64,6 +64,8 @@ import org.breezyweather.unit.pollutant.PollutantConcentration.Companion.microgr
 import org.breezyweather.unit.pollutant.PollutantConcentration.Companion.milligramsPerCubicMeter
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
+import org.breezyweather.unit.ratio.Ratio
+import org.breezyweather.unit.ratio.Ratio.Companion.percent
 import org.breezyweather.unit.speed.Speed.Companion.kilometersPerHour
 import org.breezyweather.unit.temperature.Temperature.Companion.celsius
 import retrofit2.Retrofit
@@ -281,7 +283,7 @@ class ChinaService @Inject constructor(
                 null
             },
             relativeHumidity = if (!current.humidity?.value.isNullOrEmpty()) {
-                current.humidity.value.toDoubleOrNull()
+                current.humidity.value.toDoubleOrNull()?.percent
             } else {
                 null
             },
@@ -368,12 +370,12 @@ class ChinaService @Inject constructor(
         return dailyList
     }
 
-    private fun getPrecipitationProbability(forecast: ChinaForecastDaily, index: Int): Double? {
+    private fun getPrecipitationProbability(forecast: ChinaForecastDaily, index: Int): Ratio? {
         if (forecast.precipitationProbability == null || forecast.precipitationProbability.value.isNullOrEmpty()) {
             return null
         }
 
-        return forecast.precipitationProbability.value.getOrNull(index)?.toDoubleOrNull()
+        return forecast.precipitationProbability.value.getOrNull(index)?.toDoubleOrNull()?.percent
     }
 
     private fun getHourlyList(

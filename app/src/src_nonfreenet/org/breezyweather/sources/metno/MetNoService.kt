@@ -56,6 +56,7 @@ import org.breezyweather.sources.metno.json.MetNoNowcastResult
 import org.breezyweather.unit.pollutant.PollutantConcentration.Companion.microgramsPerCubicMeter
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
+import org.breezyweather.unit.ratio.Ratio.Companion.percent
 import org.breezyweather.unit.speed.Speed.Companion.metersPerSecond
 import org.breezyweather.unit.temperature.Temperature.Companion.celsius
 import retrofit2.Retrofit
@@ -294,10 +295,10 @@ class MetNoService @Inject constructor(
                 } else {
                     null
                 },
-                relativeHumidity = currentTimeseries.instant?.details?.relativeHumidity,
+                relativeHumidity = currentTimeseries.instant?.details?.relativeHumidity?.percent,
                 dewPoint = currentTimeseries.instant?.details?.dewPointTemperature?.celsius,
                 pressure = currentTimeseries.instant?.details?.airPressureAtSeaLevel?.hectopascals,
-                cloudCover = currentTimeseries.instant?.details?.cloudAreaFraction?.roundToInt()
+                cloudCover = currentTimeseries.instant?.details?.cloudAreaFraction?.percent
             )
         } else {
             null
@@ -323,12 +324,12 @@ class MetNoService @Inject constructor(
                         ?: hourlyForecast.data?.next12Hours?.details?.precipitationAmount?.millimeters
                 ),
                 precipitationProbability = PrecipitationProbability(
-                    total = hourlyForecast.data?.next1Hours?.details?.probabilityOfPrecipitation
-                        ?: hourlyForecast.data?.next6Hours?.details?.probabilityOfPrecipitation
-                        ?: hourlyForecast.data?.next12Hours?.details?.probabilityOfPrecipitation,
-                    thunderstorm = hourlyForecast.data?.next1Hours?.details?.probabilityOfThunder
-                        ?: hourlyForecast.data?.next6Hours?.details?.probabilityOfThunder
-                        ?: hourlyForecast.data?.next12Hours?.details?.probabilityOfThunder
+                    total = hourlyForecast.data?.next1Hours?.details?.probabilityOfPrecipitation?.percent
+                        ?: hourlyForecast.data?.next6Hours?.details?.probabilityOfPrecipitation?.percent
+                        ?: hourlyForecast.data?.next12Hours?.details?.probabilityOfPrecipitation?.percent,
+                    thunderstorm = hourlyForecast.data?.next1Hours?.details?.probabilityOfThunder?.percent
+                        ?: hourlyForecast.data?.next6Hours?.details?.probabilityOfThunder?.percent
+                        ?: hourlyForecast.data?.next12Hours?.details?.probabilityOfThunder?.percent
                 ),
                 wind = hourlyForecast.data?.instant?.details?.let { details ->
                     Wind(
@@ -337,10 +338,10 @@ class MetNoService @Inject constructor(
                     )
                 },
                 uV = UV(index = hourlyForecast.data?.instant?.details?.ultravioletIndexClearSky),
-                relativeHumidity = hourlyForecast.data?.instant?.details?.relativeHumidity,
+                relativeHumidity = hourlyForecast.data?.instant?.details?.relativeHumidity?.percent,
                 dewPoint = hourlyForecast.data?.instant?.details?.dewPointTemperature?.celsius,
                 pressure = hourlyForecast.data?.instant?.details?.airPressureAtSeaLevel?.hectopascals,
-                cloudCover = hourlyForecast.data?.instant?.details?.cloudAreaFraction?.roundToInt()
+                cloudCover = hourlyForecast.data?.instant?.details?.cloudAreaFraction?.percent
             )
         }
     }

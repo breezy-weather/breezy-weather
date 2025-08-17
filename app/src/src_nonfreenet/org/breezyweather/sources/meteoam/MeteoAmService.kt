@@ -47,6 +47,7 @@ import org.breezyweather.sources.meteoam.json.MeteoAmObservationResult
 import org.breezyweather.sources.meteoam.json.MeteoAmReverseLocation
 import org.breezyweather.sources.meteoam.json.MeteoAmReverseLocationResult
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
+import org.breezyweather.unit.ratio.Ratio.Companion.percent
 import org.breezyweather.unit.speed.Speed.Companion.kilometersPerHour
 import org.breezyweather.unit.temperature.Temperature.Companion.celsius
 import retrofit2.Retrofit
@@ -185,8 +186,9 @@ class MeteoAmService @Inject constructor(
                     currentResult.getOrElse(keys["wkmh"].toString()) { null }?.getOrElse("0") { null } as? Double
                     )?.kilometersPerHour
             ),
-            relativeHumidity = currentResult.getOrElse(keys["r"].toString()) { null }
-                ?.getOrElse("0") { null } as? Double,
+            relativeHumidity = (
+                currentResult.getOrElse(keys["r"].toString()) { null }?.getOrElse("0") { null } as? Double
+                )?.percent,
             pressure = (currentResult.getOrElse(keys["pmsl"].toString()) { null }?.getOrElse("0") { null } as? Double)
                 ?.hectopascals
         )
@@ -239,7 +241,9 @@ class MeteoAmService @Inject constructor(
                         )?.celsius
                 ),
                 precipitationProbability = PrecipitationProbability(
-                    total = data.getOrElse(keys["tpp"].toString()) { null }?.getOrElse(i.toString()) { null } as? Double
+                    total = (
+                        data.getOrElse(keys["tpp"].toString()) { null }?.getOrElse(i.toString()) { null } as? Double
+                        )?.percent
                 ),
                 wind = Wind(
                     degree = data.getOrElse(keys["wdir"].toString()) { null }?.getOrElse(i.toString()) { null }?.let {
@@ -249,8 +253,9 @@ class MeteoAmService @Inject constructor(
                         data.getOrElse(keys["wkmh"].toString()) { null }?.getOrElse(i.toString()) { null } as? Double
                         )?.kilometersPerHour
                 ),
-                relativeHumidity = data.getOrElse(keys["r"].toString()) { null }
-                    ?.getOrElse(i.toString()) { null } as? Double,
+                relativeHumidity = (
+                    data.getOrElse(keys["r"].toString()) { null }?.getOrElse(i.toString()) { null } as? Double
+                    )?.percent,
                 pressure = (
                     data.getOrElse(keys["pmsl"].toString()) { null }?.getOrElse(i.toString()) { null } as? Double
                     )?.hectopascals

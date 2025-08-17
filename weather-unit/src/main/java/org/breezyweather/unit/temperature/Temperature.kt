@@ -81,7 +81,7 @@ value class Temperature internal constructor(
          * The following format is accepted:
          *
          * - The format of string returned by the default [Temperature.toString] and `toString` in a specific unit,
-         *   e.g. `1013.25hpa` or `29.95inhg`.
+         *   e.g. `32c` or `273.15k`.
          *
          * @throws IllegalArgumentException if the string doesn't represent a temperature in any of the supported formats.
          */
@@ -98,7 +98,7 @@ value class Temperature internal constructor(
          * The following formats is accepted:
          *
          * - The format of string returned by the default [Temperature.toString] and `toString` in a specific unit,
-         *   e.g. `1013.25hpa` or `29.95inhg`.
+         *   e.g. `32c` or `273.15k`.
          */
         fun parseOrNull(value: String): Temperature? = try {
             parseTemperature(value)
@@ -163,7 +163,7 @@ value class Temperature internal constructor(
      * No more than [unit.decimals.max] decimals will be shown, even if a larger number is requested.
      *
      * @return the value of temperature in the specified [unit] followed by that unit abbreviated name:
-     * `pa`, `hpa`, `mb`, `atm`, `mmhg`, `inhg`.
+     * `dc`, `c`, `f`, `k`.
      *
      * @throws IllegalArgumentException if [decimals] is less than zero.
      */
@@ -195,8 +195,6 @@ fun Long.toTemperature(unit: TemperatureUnit): Temperature {
 
 /**
  * Returns a [Temperature] equal to this [Double] number of the specified [unit].
- *
- * Depending on its magnitude, the value is rounded to an integer number of nanoseconds or milliseconds.
  *
  * @throws IllegalArgumentException if this `Double` value is `NaN`.
  */

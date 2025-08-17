@@ -34,6 +34,7 @@ import breezyweather.domain.location.model.Location
 import org.breezyweather.R
 import org.breezyweather.background.receiver.widget.WidgetTrendDailyProvider
 import org.breezyweather.common.extensions.formatMeasure
+import org.breezyweather.common.extensions.formatPercent
 import org.breezyweather.common.extensions.getCalendarMonth
 import org.breezyweather.common.extensions.getFormattedShortDayAndMonth
 import org.breezyweather.common.extensions.getTabletListAdaptiveWidth
@@ -217,12 +218,10 @@ object DailyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
                         ResourceHelper.getWidgetNotificationIcon(provider, it, true, minimalIcon, lightTheme)
                     )
                 }
-                val daytimePrecipitationProbability = daily.day?.precipitationProbability?.total?.toFloat()
-                val nighttimePrecipitationProbability = daily.night?.precipitationProbability?.total?.toFloat()
-                val p = max(
-                    daytimePrecipitationProbability ?: 0f,
-                    nighttimePrecipitationProbability ?: 0f
-                )
+                val daytimePrecipitationProbability = daily.day?.precipitationProbability?.total
+                val nighttimePrecipitationProbability = daily.night?.precipitationProbability?.total
+                val p = listOfNotNull(daytimePrecipitationProbability, nighttimePrecipitationProbability)
+                    .takeIf { it.isNotEmpty() }?.maxBy { it.value }
                 widgetItemView.trendItemView.setData(
                     buildTemperatureArrayForItem(daytimeTemperatures, i),
                     buildTemperatureArrayForItem(nighttimeTemperatures, i),
@@ -238,12 +237,8 @@ object DailyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
                     ),
                     highestTemperature,
                     lowestTemperature,
-                    if (p > 0) p else null,
-                    if (p > 0) {
-                        UnitUtils.formatPercent(context, p.toDouble())
-                    } else {
-                        null
-                    },
+                    p?.takeIf { it.value > 0 }?.inPercent?.toFloat(),
+                    p?.takeIf { it.value > 0 }?.formatPercent(context, UnitWidth.NARROW),
                     100f,
                     0f
                 )

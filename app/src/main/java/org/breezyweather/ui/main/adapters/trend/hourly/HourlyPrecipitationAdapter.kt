@@ -155,7 +155,7 @@ class HourlyPrecipitationAdapter(
             val keyLineList = mutableListOf<TrendRecyclerView.KeyLine>()
             keyLineList.add(
                 TrendRecyclerView.KeyLine(
-                    Precipitation.PRECIPITATION_HOURLY_LIGHT.toFloat(),
+                    Precipitation.PRECIPITATION_HOURLY_LIGHT.millimeters.inMicrometers.toFloat(),
                     activity.getString(R.string.precipitation_intensity_light),
                     Precipitation.PRECIPITATION_HALF_DAY_LIGHT.millimeters.formatValue(activity),
                     TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
@@ -163,7 +163,7 @@ class HourlyPrecipitationAdapter(
             )
             keyLineList.add(
                 TrendRecyclerView.KeyLine(
-                    Precipitation.PRECIPITATION_HOURLY_HEAVY.toFloat(),
+                    Precipitation.PRECIPITATION_HOURLY_HEAVY.millimeters.inMicrometers.toFloat(),
                     activity.getString(R.string.precipitation_intensity_heavy),
                     Precipitation.PRECIPITATION_HALF_DAY_HEAVY.millimeters.formatValue(activity),
                     TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE

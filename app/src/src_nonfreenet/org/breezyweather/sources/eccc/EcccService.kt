@@ -59,6 +59,7 @@ import org.breezyweather.sources.eccc.json.EcccUnit
 import org.breezyweather.sources.getWindDegree
 import org.breezyweather.unit.distance.Distance.Companion.kilometers
 import org.breezyweather.unit.pressure.Pressure.Companion.kilopascals
+import org.breezyweather.unit.ratio.Ratio.Companion.percent
 import org.breezyweather.unit.speed.Speed.Companion.kilometersPerHour
 import org.breezyweather.unit.temperature.Temperature.Companion.celsius
 import retrofit2.Retrofit
@@ -203,7 +204,7 @@ class EcccService @Inject constructor(
                 speed = getNonEmptyMetric(result.windSpeed)?.kilometersPerHour,
                 gusts = getNonEmptyMetric(result.windGust)?.kilometersPerHour
             ),
-            relativeHumidity = result.humidity?.toDoubleOrNull(),
+            relativeHumidity = result.humidity?.toDoubleOrNull()?.percent,
             dewPoint = getNonEmptyMetric(result.dewpoint)?.celsius,
             pressure = getNonEmptyMetric(result.pressure)?.kilopascals,
             visibility = getNonEmptyMetric(result.visibility)?.kilometers
@@ -263,7 +264,7 @@ class EcccService @Inject constructor(
                                         temperature = daytime.temperature?.periodHigh?.celsius
                                     ),
                                     precipitationProbability = PrecipitationProbability(
-                                        total = daytime.precip?.toDoubleOrNull()
+                                        total = daytime.precip?.toDoubleOrNull()?.percent
                                     )
                                 )
                             } else {
@@ -277,7 +278,7 @@ class EcccService @Inject constructor(
                                     temperature = nighttime.temperature?.periodLow?.celsius
                                 ),
                                 precipitationProbability = PrecipitationProbability(
-                                    total = nighttime.precip?.toDoubleOrNull()
+                                    total = nighttime.precip?.toDoubleOrNull()?.percent
                                 )
                             ),
                             sunshineDuration = daytime?.sun?.value?.toDoubleOrNull()?.hours
@@ -306,7 +307,7 @@ class EcccService @Inject constructor(
                     feelsLike = getNonEmptyMetric(result.feelsLike)?.celsius
                 ),
                 precipitationProbability = if (!result.precip.isNullOrEmpty()) {
-                    PrecipitationProbability(total = result.precip.toDoubleOrNull())
+                    PrecipitationProbability(total = result.precip.toDoubleOrNull()?.percent)
                 } else {
                     null
                 },

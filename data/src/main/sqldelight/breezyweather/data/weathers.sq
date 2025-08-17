@@ -2,6 +2,7 @@ import breezyweather.domain.weather.reference.WeatherCode;
 import org.breezyweather.unit.distance.Distance;
 import org.breezyweather.unit.pollutant.PollutantConcentration;
 import org.breezyweather.unit.pressure.Pressure;
+import org.breezyweather.unit.ratio.Ratio;
 import org.breezyweather.unit.speed.Speed;
 import org.breezyweather.unit.temperature.Temperature;
 
@@ -44,11 +45,11 @@ CREATE TABLE weathers(
     o3 INTEGER AS PollutantConcentration,
     co INTEGER AS PollutantConcentration,
 
-    relative_humidity REAL,
+    relative_humidity INTEGER AS Ratio,
     dew_point INTEGER AS Temperature,
     pressure INTEGER AS Pressure,
     visibility INTEGER AS Distance,
-    cloud_cover INTEGER,
+    cloud_cover INTEGER AS Ratio,
     ceiling INTEGER AS Distance,
     daily_forecast TEXT,
     hourly_forecast TEXT,

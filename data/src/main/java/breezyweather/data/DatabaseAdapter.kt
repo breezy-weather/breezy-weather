@@ -30,6 +30,8 @@ import org.breezyweather.unit.precipitation.Precipitation
 import org.breezyweather.unit.precipitation.Precipitation.Companion.micrometers
 import org.breezyweather.unit.pressure.Pressure
 import org.breezyweather.unit.pressure.Pressure.Companion.pascals
+import org.breezyweather.unit.ratio.Ratio
+import org.breezyweather.unit.ratio.Ratio.Companion.permille
 import org.breezyweather.unit.speed.Speed
 import org.breezyweather.unit.speed.Speed.Companion.centimetersPerSecond
 import org.breezyweather.unit.temperature.Temperature
@@ -121,4 +123,10 @@ object DurationColumnAdapter : ColumnAdapter<Duration, Long> {
     override fun decode(databaseValue: Long): Duration = databaseValue.nanoseconds
 
     override fun encode(value: Duration): Long = value.inWholeNanoseconds
+}
+
+object RatioColumnAdapter : ColumnAdapter<Ratio, Long> {
+    override fun decode(databaseValue: Long): Ratio = databaseValue.permille
+
+    override fun encode(value: Ratio): Long = value.value
 }

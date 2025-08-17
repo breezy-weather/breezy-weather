@@ -25,5 +25,6 @@ import java.util.Date
 data class MfWarningOverseasComments(
     @Serializable(DateSerializer::class) @SerialName("begin_time") val beginTime: Date? = null,
     @Serializable(DateSerializer::class) @SerialName("end_time") val endTime: Date? = null,
+    // TODO: Sometimes return a single string "pas de vigilance particulière", see VIGI973 for example
     @SerialName("text_bloc_item") val textBlocItems: List<MfWarningOverseasTextBlocItem>?,
 )

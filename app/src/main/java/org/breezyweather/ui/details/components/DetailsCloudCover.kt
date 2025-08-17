@@ -50,7 +50,6 @@ import breezyweather.domain.weather.model.Daily
 import breezyweather.domain.weather.model.Hourly
 import com.patrykandpatrick.vico.core.cartesian.axis.VerticalAxis
 import com.patrykandpatrick.vico.core.cartesian.data.CartesianChartModelProducer
-import com.patrykandpatrick.vico.core.cartesian.data.CartesianValueFormatter
 import com.patrykandpatrick.vico.core.cartesian.data.lineSeries
 import com.patrykandpatrick.vico.core.cartesian.marker.CartesianMarker
 import com.patrykandpatrick.vico.core.cartesian.marker.CartesianMarkerVisibilityListener
@@ -60,14 +59,19 @@ import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.persistentMapOf
 import kotlinx.collections.immutable.toImmutableMap
 import org.breezyweather.R
-import org.breezyweather.common.extensions.cloudCoverScaleThresholds
+import org.breezyweather.common.extensions.CLOUD_COVER_BKN
+import org.breezyweather.common.extensions.CLOUD_COVER_FEW
+import org.breezyweather.common.extensions.CLOUD_COVER_OVC
+import org.breezyweather.common.extensions.CLOUD_COVER_SCT
+import org.breezyweather.common.extensions.CLOUD_COVER_SKC
+import org.breezyweather.common.extensions.formatPercent
 import org.breezyweather.common.extensions.formatTime
+import org.breezyweather.common.extensions.formatValue
 import org.breezyweather.common.extensions.getCloudCoverDescription
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.extensions.toDate
 import org.breezyweather.common.options.appearance.DetailScreen
-import org.breezyweather.common.utils.UnitUtils
 import org.breezyweather.domain.weather.model.getFullLabel
 import org.breezyweather.domain.weather.model.getRangeDescriptionSummary
 import org.breezyweather.domain.weather.model.getRangeSummary
@@ -75,8 +79,9 @@ import org.breezyweather.ui.common.charts.BreezyLineChart
 import org.breezyweather.ui.common.widgets.Material3ExpressiveCardListItem
 import org.breezyweather.ui.settings.preference.bottomInsetItem
 import org.breezyweather.unit.formatting.UnitWidth
+import org.breezyweather.unit.ratio.Ratio
+import org.breezyweather.unit.ratio.Ratio.Companion.percent
 import java.util.Date
-import kotlin.math.roundToInt
 import kotlin.time.Duration
 import kotlin.time.DurationUnit
 
@@ -85,7 +90,7 @@ fun DetailsCloudCover(
     location: Location,
     hourlyList: ImmutableList<Hourly>,
     daily: Daily,
-    defaultValue: Pair<Date, Int>?,
+    defaultValue: Pair<Date, Ratio>?,
     modifier: Modifier = Modifier,
 ) {
     val mappedValues = remember(hourlyList) {
@@ -94,7 +99,7 @@ fun DetailsCloudCover(
             .associate { it.date.time to it.cloudCover!! }
             .toImmutableMap()
     }
-    var activeItem: Pair<Date, Int>? by remember { mutableStateOf(null) }
+    var activeItem: Pair<Date, Ratio>? by remember { mutableStateOf(null) }
     val markerVisibilityListener = remember {
         object : CartesianMarkerVisibilityListener {
             override fun onShown(marker: CartesianMarker, targets: List<CartesianMarker.Target>) {
@@ -181,8 +186,8 @@ fun DetailsCloudCover(
 private fun CloudCoverHeader(
     location: Location,
     daily: Daily,
-    activeItem: Pair<Date, Int>?,
-    defaultValue: Pair<Date, Int>?,
+    activeItem: Pair<Date, Ratio>?,
+    defaultValue: Pair<Date, Ratio>?,
 ) {
     val context = LocalContext.current
 
@@ -204,7 +209,7 @@ private fun CloudCoverHeader(
 @Composable
 private fun CloudCoverItem(
     header: String?,
-    cloudCover: Int?,
+    cloudCover: Ratio?,
     modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
@@ -217,13 +222,11 @@ private fun CloudCoverItem(
             style = MaterialTheme.typography.labelMedium
         )
         TextFixedHeight(
-            text = cloudCover?.let {
-                UnitUtils.formatPercent(context, it.toDouble())
-            } ?: "",
+            text = cloudCover?.formatPercent(context) ?: "",
             style = MaterialTheme.typography.displaySmall
         )
         TextFixedHeight(
-            text = getCloudCoverDescription(context, cloudCover) ?: "",
+            text = cloudCover?.getCloudCoverDescription(context) ?: "",
             style = MaterialTheme.typography.labelMedium
         )
     }
@@ -257,7 +260,7 @@ private fun CloudCoverSummary(
 @Composable
 private fun CloudCoverChart(
     location: Location,
-    mappedValues: ImmutableMap<Long, Int>,
+    mappedValues: ImmutableMap<Long, Ratio>,
     daily: Daily,
     markerVisibilityListener: CartesianMarkerVisibilityListener,
 ) {
@@ -269,35 +272,31 @@ private fun CloudCoverChart(
             lineSeries {
                 series(
                     x = mappedValues.keys,
-                    y = mappedValues.values
+                    y = mappedValues.values.map { it.inPercent }
                 )
             }
         }
     }
 
     BreezyLineChart(
-        location,
-        modelProducer,
-        daily.date,
+        location = location,
+        modelProducer = modelProducer,
+        theDay = daily.date,
         maxY = 100.0,
-        endAxisValueFormatter = remember {
-            CartesianValueFormatter { _, value, _ ->
-                UnitUtils.formatPercent(context, value)
-            }
-        },
-        persistentListOf(
-            persistentMapOf(
-                100f to Color(213, 213, 205),
-                98f to Color(198, 201, 201),
-                95f to Color(171, 180, 179),
-                50f to Color(116, 116, 116),
-                10f to Color(132, 119, 70),
-                0f to Color(146, 130, 70)
+        endAxisValueFormatter = remember { { _, value, _ -> value.percent.formatPercent(context) } },
+        colors = remember {
+            persistentListOf(
+                persistentMapOf(
+                    100f to Color(213, 213, 205),
+                    98f to Color(198, 201, 201),
+                    95f to Color(171, 180, 179),
+                    50f to Color(116, 116, 116),
+                    10f to Color(132, 119, 70),
+                    0f to Color(146, 130, 70)
+                )
             )
-        ),
-        endAxisItemPlacer = remember {
-            VerticalAxis.ItemPlacer.step({ 20.0 }) // Every 20 %
         },
+        endAxisItemPlacer = remember { VerticalAxis.ItemPlacer.step({ 20.0 }) }, // Every 20 %
         markerVisibilityListener = markerVisibilityListener
     )
 }
@@ -333,6 +332,14 @@ fun CloudCoverScale(
     modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
+    val cloudCoverScaleThresholds = listOf(
+        0.0.percent,
+        CLOUD_COVER_SKC.percent,
+        CLOUD_COVER_FEW.percent,
+        CLOUD_COVER_SCT.percent,
+        CLOUD_COVER_BKN.percent,
+        CLOUD_COVER_OVC.percent
+    )
 
     Material3ExpressiveCardListItem(
         modifier = modifier,
@@ -363,11 +370,9 @@ fun CloudCoverScale(
                 )
             }
             cloudCoverScaleThresholds.dropLast(1).forEachIndexed { index, startingValue ->
-                val startingValueFormatted = UnitUtils.formatNumber(context, startingValue, precision = 1)
+                val startingValueFormatted = startingValue.formatValue(context)
                 val endingValueFormatted = cloudCoverScaleThresholds.getOrElse(index + 1) { null }
-                    ?.let {
-                        " – ${UnitUtils.formatNumber(context, it, precision = 1)}"
-                    }
+                    ?.let { " – ${it.formatValue(context)}" }
                     ?: "+"
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
@@ -377,7 +382,7 @@ fun CloudCoverScale(
                         .padding(top = dimensionResource(R.dimen.small_margin))
                 ) {
                     Text(
-                        text = getCloudCoverDescription(context, (startingValue + 0.1).roundToInt())!!,
+                        text = startingValue.getCloudCoverDescription(context)!!,
                         modifier = Modifier.weight(1.5f)
                     )
                     Text(

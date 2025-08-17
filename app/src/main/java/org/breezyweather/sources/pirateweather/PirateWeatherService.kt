@@ -63,6 +63,7 @@ import org.breezyweather.unit.distance.Distance.Companion.kilometers
 import org.breezyweather.unit.precipitation.Precipitation.Companion.centimeters
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
+import org.breezyweather.unit.ratio.Ratio.Companion.fraction
 import org.breezyweather.unit.speed.Speed.Companion.metersPerSecond
 import org.breezyweather.unit.temperature.Temperature.Companion.celsius
 import retrofit2.Retrofit
@@ -170,10 +171,10 @@ class PirateWeatherService @Inject constructor(
                 gusts = result.windGust?.metersPerSecond
             ),
             uV = UV(index = result.uvIndex),
-            relativeHumidity = result.humidity?.times(100),
+            relativeHumidity = result.humidity?.fraction,
             dewPoint = result.dewPoint?.celsius,
             pressure = result.pressure?.hectopascals,
-            cloudCover = result.cloudCover?.times(100)?.roundToInt(),
+            cloudCover = result.cloudCover?.fraction,
             visibility = result.visibility?.kilometers,
             dailyForecast = dailySummary,
             hourlyForecast = hourlySummary
@@ -205,10 +206,10 @@ class PirateWeatherService @Inject constructor(
                     )
                 ),
                 uV = UV(index = result.uvIndex),
-                relativeHumidity = DailyRelativeHumidity(average = result.humidity?.times(100)),
+                relativeHumidity = DailyRelativeHumidity(average = result.humidity?.fraction),
                 dewPoint = DailyDewPoint(average = result.dewPoint?.celsius),
                 pressure = DailyPressure(average = result.pressure?.hectopascals),
-                cloudCover = DailyCloudCover(average = result.cloudCover?.times(100)?.roundToInt()),
+                cloudCover = DailyCloudCover(average = result.cloudCover?.fraction),
                 visibility = DailyVisibility(average = result.visibility?.kilometers)
             )
         }
@@ -237,7 +238,7 @@ class PirateWeatherService @Inject constructor(
                     ice = result.iceAccumulation?.centimeters
                 ),
                 precipitationProbability = PrecipitationProbability(
-                    total = result.precipProbability?.times(100)
+                    total = result.precipProbability?.fraction
                 ),
                 wind = Wind(
                     degree = result.windBearing,
@@ -247,10 +248,10 @@ class PirateWeatherService @Inject constructor(
                 uV = UV(
                     index = result.uvIndex
                 ),
-                relativeHumidity = result.humidity?.times(100),
+                relativeHumidity = result.humidity?.fraction,
                 dewPoint = result.dewPoint?.celsius,
                 pressure = result.pressure?.hectopascals,
-                cloudCover = result.cloudCover?.times(100)?.roundToInt(),
+                cloudCover = result.cloudCover?.fraction,
                 visibility = result.visibility?.kilometers
             )
         }

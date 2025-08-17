@@ -169,7 +169,7 @@ value class Distance internal constructor(
      * No more than [unit.decimals.max] decimals will be shown, even if a larger number is requested.
      *
      * @return the value of distance in the specified [unit] followed by that unit abbreviated name:
-     * `pa`, `hpa`, `mb`, `atm`, `mmhg`, `inhg`.
+     * `m`, `km`, `mi`, `nmi`, `ft`.
      *
      * @throws IllegalArgumentException if [decimals] is less than zero.
      */
@@ -202,8 +202,6 @@ fun Long.toDistance(unit: DistanceUnit): Distance {
 
 /**
  * Returns a [Distance] equal to this [Double] number of the specified [unit].
- *
- * Depending on its magnitude, the value is rounded to an integer number of nanoseconds or milliseconds.
  *
  * @throws IllegalArgumentException if this `Double` value is `NaN`.
  */

@@ -26,6 +26,7 @@ import breezyweather.domain.location.model.Location
 import org.breezyweather.R
 import org.breezyweather.common.activities.BreezyActivity
 import org.breezyweather.common.extensions.formatMeasure
+import org.breezyweather.common.extensions.formatPercent
 import org.breezyweather.common.extensions.getCalendarMonth
 import org.breezyweather.common.extensions.getThemeColor
 import org.breezyweather.common.options.appearance.DetailScreen
@@ -84,7 +85,7 @@ class DailyTemperatureAdapter(
                         talkBackBuilder.append(activity.getString(org.breezyweather.unit.R.string.locale_separator))
                             .append(activity.getString(R.string.precipitation_probability))
                             .append(activity.getString(R.string.colon_separator))
-                            .append(UnitUtils.formatPercent(activity, p))
+                            .append(p.formatPercent(activity))
                     }
                 }
             }
@@ -104,7 +105,7 @@ class DailyTemperatureAdapter(
                         talkBackBuilder.append(activity.getString(org.breezyweather.unit.R.string.locale_separator))
                             .append(activity.getString(R.string.precipitation_probability))
                             .append(activity.getString(R.string.colon_separator))
-                            .append(UnitUtils.formatPercent(activity, p))
+                            .append(p.formatPercent(activity))
                     }
                 }
             }
@@ -112,15 +113,10 @@ class DailyTemperatureAdapter(
                 daily.day?.weatherCode?.let { ResourceHelper.getWeatherIcon(mResourceProvider, it, true) },
                 missingIconVisibility = View.INVISIBLE
             )
-            val daytimePrecipitationProbability = daily.day?.precipitationProbability?.total?.toFloat()
-            val nighttimePrecipitationProbability = daily.night?.precipitationProbability?.total?.toFloat()
-            var p: Float = max(
-                daytimePrecipitationProbability ?: 0f,
-                nighttimePrecipitationProbability ?: 0f
-            )
-            if (!mShowPrecipitationProbability) {
-                p = 0f
-            }
+            val daytimePrecipitationProbability = daily.day?.precipitationProbability?.total
+            val nighttimePrecipitationProbability = daily.night?.precipitationProbability?.total
+            val p = listOfNotNull(daytimePrecipitationProbability, nighttimePrecipitationProbability)
+                .takeIf { it.isNotEmpty() }?.maxBy { it.value }
             mPolylineAndHistogramView.setData(
                 buildTemperatureArrayForItem(mDaytimeTemperatures, position),
                 buildTemperatureArrayForItem(mNighttimeTemperatures, position),
@@ -136,12 +132,8 @@ class DailyTemperatureAdapter(
                 ),
                 mHighestTemperature,
                 mLowestTemperature,
-                if (p > 0) p else null,
-                if (p > 0) {
-                    UnitUtils.formatPercent(activity, p.toDouble())
-                } else {
-                    null
-                },
+                p?.takeIf { it.value > 0 && mShowPrecipitationProbability }?.inPercent?.toFloat(),
+                p?.takeIf { it.value > 0 && mShowPrecipitationProbability }?.formatPercent(activity, UnitWidth.NARROW),
                 100f,
                 0f
             )

@@ -42,6 +42,7 @@ import org.breezyweather.sources.veduris.json.VedurIsStationForecast
 import org.breezyweather.sources.veduris.json.VedurIsStationResult
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
+import org.breezyweather.unit.ratio.Ratio.Companion.percent
 import org.breezyweather.unit.speed.Speed.Companion.metersPerSecond
 import org.breezyweather.unit.temperature.Temperature.Companion.celsius
 import org.json.JSONObject
@@ -202,7 +203,7 @@ class VedurIsService @Inject constructor(
                         degree = it.windDirection,
                         speed = it.windSpeed?.metersPerSecond
                     ),
-                    relativeHumidity = if (it.humidity != 0.0) it.humidity else null
+                    relativeHumidity = it.humidity.takeIf { h -> h != 0.0 }?.percent
                 )
             )
         }
@@ -226,7 +227,7 @@ class VedurIsService @Inject constructor(
                             degree = it.windDirection,
                             speed = it.windSpeed?.metersPerSecond
                         ),
-                        relativeHumidity = if (it.humidity != 0.0) it.humidity else null
+                        relativeHumidity = it.humidity.takeIf { h -> h != 0.0 }?.percent
                     )
                 )
             }
@@ -277,10 +278,10 @@ class VedurIsService @Inject constructor(
                     speed = it.windSpeed?.metersPerSecond,
                     gusts = it.maxWindGust?.metersPerSecond
                 ),
-                relativeHumidity = if (it.humidity != 0.0) it.humidity else null,
+                relativeHumidity = it.humidity.takeIf { h -> h != 0.0 }?.percent,
                 dewPoint = it.dewPoint?.celsius,
                 pressure = it.pressure?.hectopascals,
-                cloudCover = it.cloudCover?.toInt()
+                cloudCover = it.cloudCover?.percent
             )
         } ?: CurrentWrapper()
     }

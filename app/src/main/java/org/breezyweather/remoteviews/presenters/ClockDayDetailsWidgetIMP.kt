@@ -29,6 +29,7 @@ import breezyweather.domain.weather.model.Weather
 import org.breezyweather.R
 import org.breezyweather.background.receiver.widget.WidgetClockDayDetailsProvider
 import org.breezyweather.common.extensions.formatMeasure
+import org.breezyweather.common.extensions.formatPercent
 import org.breezyweather.common.extensions.getFormattedMediumDayAndMonthInAdditionalCalendar
 import org.breezyweather.common.extensions.getShortWeekdayDayMonth
 import org.breezyweather.common.options.appearance.CalendarHelper
@@ -288,7 +289,7 @@ object ClockDayDetailsWidgetIMP : AbstractRemoteViewsPresenter() {
             weather.current?.relativeHumidity?.let {
                 context.getString(R.string.humidity) +
                     context.getString(R.string.colon_separator) +
-                    UnitUtils.formatPercent(context, it)
+                    it.formatPercent(context, UnitWidth.NARROW)
             }
         }
     }

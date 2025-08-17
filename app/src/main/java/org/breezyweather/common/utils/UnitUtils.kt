@@ -18,12 +18,6 @@ package org.breezyweather.common.utils
 
 import android.content.Context
 import android.content.res.Resources
-import android.icu.number.LocalizedNumberFormatter
-import android.icu.number.NumberFormatter
-import android.icu.number.Precision
-import android.icu.text.NumberFormat
-import android.icu.util.MeasureUnit
-import android.os.Build
 import android.text.SpannableString
 import android.text.Spanned
 import android.text.style.RelativeSizeSpan
@@ -116,62 +110,6 @@ object UnitUtils {
         )
     }
 
-    @Deprecated("Use Number.format() extension")
-    fun formatNumber(
-        context: Context,
-        valueWithoutUnit: Number,
-        precision: Int,
-        showSign: Boolean = false,
-    ): String {
-        return valueWithoutUnit.format(
-            decimals = precision,
-            locale = context.currentLocale,
-            showSign = showSign,
-            useNumberFormatter = SettingsManager.Companion.getInstance(context).useNumberFormatter,
-            useMeasureFormat = SettingsManager.Companion.getInstance(context).useMeasureFormat
-        )
-    }
-
-    /**
-     * Uses LocalizedNumberFormatter on Android SDK >= 30 (which is the recommended way)
-     * Uses NumberFormat on Android SDK >= 24
-     * Uses java.text.NumberFormat on Android SDK < 24
-     *
-     * @param context
-     * @param value between 0.0 and 100.0
-     * @param precision
-     */
-    fun formatPercent(
-        context: Context,
-        value: Double,
-        precision: Int = 0,
-    ): String {
-        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R &&
-            SettingsManager.Companion.getInstance(context).useNumberFormatter
-        ) {
-            (NumberFormatter.withLocale(context.currentLocale) as LocalizedNumberFormatter)
-                .precision(if (precision == 0) Precision.integer() else Precision.maxFraction(precision))
-                .unit(MeasureUnit.PERCENT)
-                .format(value)
-                .toString()
-        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            NumberFormat.getPercentInstance(context.currentLocale)
-                .apply { maximumFractionDigits = precision }
-                .format(if (value > 0) value.div(100.0) else 0)
-        } else {
-            java.text.NumberFormat.getPercentInstance(context.currentLocale)
-                .apply { maximumFractionDigits = precision }
-                .format(if (value > 0) value.div(100.0) else 0)
-        }
-    }
-
-    fun formatPercent(
-        context: Context,
-        value: Int,
-    ): String {
-        return formatPercent(context, value.toDouble(), 0)
-    }
-
     /**
      * Units will stay at the same size if it somehow fails to parse
      */
@@ -261,14 +199,6 @@ object UnitUtils {
                 }
             }
         }
-    }
-
-    fun validatePercent(percent: Double?): Double? {
-        return percent?.let { if (it in 0.0..100.0) it else null }
-    }
-
-    fun validatePercent(percent: Int?): Int? {
-        return percent?.let { if (it in 0..100) it else null }
     }
 
     private val ARABIC_DIGITS = charArrayOf('0', '1', '2', '3', '4', '5', '6', '7', '8', '9')

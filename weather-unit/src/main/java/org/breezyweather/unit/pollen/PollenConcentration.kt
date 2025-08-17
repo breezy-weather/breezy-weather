@@ -61,7 +61,7 @@ value class PollenConcentration internal constructor(
          * The following format is accepted:
          *
          * - The format of string returned by the default [PollenConcentration.toString] and `toString` in a specific unit,
-         *   e.g. `1013.25hpa` or `29.95inhg`.
+         *   e.g. `24pcum`.
          *
          * @throws IllegalArgumentException if the string doesn't represent a pollen concentration in any of the supported formats.
          */
@@ -78,7 +78,7 @@ value class PollenConcentration internal constructor(
          * The following formats is accepted:
          *
          * - The format of string returned by the default [PollenConcentration.toString] and `toString` in a specific unit,
-         *   e.g. `1013.25hpa` or `29.95inhg`.
+         *   e.g. `24pcum`.
          */
         fun parseOrNull(value: String): PollenConcentration? = try {
             parsePollenConcentration(value)
@@ -125,7 +125,7 @@ value class PollenConcentration internal constructor(
      * No more than [unit.decimals.max] decimals will be shown, even if a larger number is requested.
      *
      * @return the value of pollen concentration in the specified [unit] followed by that unit abbreviated name:
-     * `pa`, `hpa`, `mb`, `atm`, `mmhg`, `inhg`.
+     * `pcum`.
      *
      * @throws IllegalArgumentException if [decimals] is less than zero.
      */
@@ -150,8 +150,6 @@ fun Long.toPollenConcentration(unit: PollenConcentrationUnit): PollenConcentrati
 
 /**
  * Returns a [PollenConcentration] equal to this [Double] number of the specified [unit].
- *
- * Depending on its magnitude, the value is rounded to an integer number of nanoseconds or milliseconds.
  *
  * @throws IllegalArgumentException if this `Double` value is `NaN`.
  */

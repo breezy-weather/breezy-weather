@@ -19,19 +19,20 @@ package org.breezyweather.domain.weather.model
 import android.content.Context
 import breezyweather.domain.weather.model.DailyCloudCover
 import org.breezyweather.R
+import org.breezyweather.common.extensions.formatPercent
+import org.breezyweather.common.extensions.formatValue
 import org.breezyweather.common.extensions.getCloudCoverDescription
-import org.breezyweather.common.utils.UnitUtils
 
 fun DailyCloudCover.getRangeSummary(context: Context): String? {
     return if (min == null || max == null) {
         null
     } else if (min == max) {
-        UnitUtils.formatPercent(context, max!!)
+        max!!.formatPercent(context)
     } else {
         context.getString(
             R.string.cloud_cover_from_to_number,
-            UnitUtils.formatInt(context, min!!),
-            UnitUtils.formatPercent(context, max!!)
+            min!!.formatValue(context),
+            max!!.formatPercent(context)
         )
     }
 }
@@ -40,8 +41,8 @@ fun DailyCloudCover.getRangeDescriptionSummary(context: Context): String? {
     return if (min == null || max == null) {
         null
     } else {
-        val minDescription = getCloudCoverDescription(context, min)
-        val maxDescription = getCloudCoverDescription(context, max)
+        val minDescription = min!!.getCloudCoverDescription(context)
+        val maxDescription = max!!.getCloudCoverDescription(context)
 
         if (minDescription == maxDescription) {
             maxDescription

@@ -53,7 +53,6 @@ import breezyweather.domain.weather.model.PrecipitationDuration
 import breezyweather.domain.weather.model.PrecipitationProbability
 import com.patrykandpatrick.vico.core.cartesian.axis.VerticalAxis
 import com.patrykandpatrick.vico.core.cartesian.data.CartesianChartModelProducer
-import com.patrykandpatrick.vico.core.cartesian.data.CartesianValueFormatter
 import com.patrykandpatrick.vico.core.cartesian.data.columnSeries
 import com.patrykandpatrick.vico.core.cartesian.data.lineSeries
 import com.patrykandpatrick.vico.core.cartesian.marker.CartesianMarker
@@ -66,6 +65,7 @@ import kotlinx.collections.immutable.persistentMapOf
 import kotlinx.collections.immutable.toImmutableMap
 import org.breezyweather.R
 import org.breezyweather.common.extensions.formatMeasure
+import org.breezyweather.common.extensions.formatPercent
 import org.breezyweather.common.extensions.formatTime
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
@@ -81,6 +81,8 @@ import org.breezyweather.unit.formatting.UnitWidth
 import org.breezyweather.unit.precipitation.Precipitation
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.precipitation.toPrecipitation
+import org.breezyweather.unit.ratio.Ratio
+import org.breezyweather.unit.ratio.Ratio.Companion.percent
 import java.util.Date
 import kotlin.math.max
 import kotlin.time.Duration
@@ -128,7 +130,7 @@ fun DetailsPrecipitation(
             .associate { it.date.time to it.precipitationProbability!!.total!! }
             .toImmutableMap()
     }
-    var activeProbabilityItem: Pair<Date, Double>? by remember { mutableStateOf(null) }
+    var activeProbabilityItem: Pair<Date, Ratio>? by remember { mutableStateOf(null) }
     val probabilityMarkerVisibilityListener = remember {
         object : CartesianMarkerVisibilityListener {
             override fun onShown(marker: CartesianMarker, targets: List<CartesianMarker.Target>) {
@@ -366,47 +368,51 @@ internal fun PrecipitationChart(
     }
 
     BreezyBarChart(
-        location,
-        modelProducer,
-        daily.date,
-        maxY,
-        { _, value, _ -> value.toPrecipitation(precipitationUnit).formatMeasure(context, precipitationUnit) },
-        Fill(Color(60, 116, 160).toArgb()),
-        /*persistentMapOf(
-            50 to Fill(Color(168, 168, 168).toArgb()),
-            31 to Fill(Color(161, 59, 161).toArgb()),
-            20 to Fill(Color(161, 59, 59).toArgb()),
-            15 to Fill(Color(161, 161, 59).toArgb()),
-            10 to Fill(Color(130, 161, 59).toArgb()),
-            8 to Fill(Color(59, 161, 61).toArgb()),
-            6 to Fill(Color(59, 161, 161).toArgb()),
-            0.6 to Fill(Color(60, 116, 160).toArgb()),
-            0.0 to Fill(Color(111, 111, 111).toArgb())
-        )*/
-        trendHorizontalLines = buildMap {
-            put(
-                breezyweather.domain.weather.model.Precipitation.PRECIPITATION_HOURLY_HEAVY
-                    .millimeters.toDouble(precipitationUnit),
-                context.getString(R.string.precipitation_intensity_heavy)
-            )
-            if (maxY < breezyweather.domain.weather.model.Precipitation.PRECIPITATION_HOURLY_HEAVY.times(2.0)
-                    .millimeters.toDouble(precipitationUnit)
-            ) {
-                put(
-                    breezyweather.domain.weather.model.Precipitation.PRECIPITATION_HOURLY_MEDIUM
-                        .millimeters.toDouble(precipitationUnit),
-                    context.getString(R.string.precipitation_intensity_medium)
-                )
-                put(
-                    breezyweather.domain.weather.model.Precipitation.PRECIPITATION_HOURLY_LIGHT
-                        .millimeters.toDouble(precipitationUnit),
-                    context.getString(R.string.precipitation_intensity_light)
-                )
-            }
-        }.toImmutableMap(),
-        endAxisItemPlacer = remember {
-            VerticalAxis.ItemPlacer.step({ step })
+        location = location,
+        modelProducer = modelProducer,
+        theDay = daily.date,
+        maxY = maxY,
+        endAxisValueFormatter = remember {
+            { _, value, _ -> value.toPrecipitation(precipitationUnit).formatMeasure(context, precipitationUnit) }
         },
+        barColorFill = remember { Fill(Color(60, 116, 160).toArgb()) },
+        /*colors = remember {
+            persistentMapOf(
+                50 to Fill(Color(168, 168, 168).toArgb()),
+                31 to Fill(Color(161, 59, 161).toArgb()),
+                20 to Fill(Color(161, 59, 59).toArgb()),
+                15 to Fill(Color(161, 161, 59).toArgb()),
+                10 to Fill(Color(130, 161, 59).toArgb()),
+                8 to Fill(Color(59, 161, 61).toArgb()),
+                6 to Fill(Color(59, 161, 161).toArgb()),
+                0.6 to Fill(Color(60, 116, 160).toArgb()),
+                0.0 to Fill(Color(111, 111, 111).toArgb())
+            )
+        }*/
+        trendHorizontalLines = remember {
+            buildMap {
+                put(
+                    breezyweather.domain.weather.model.Precipitation.PRECIPITATION_HOURLY_HEAVY
+                        .millimeters.toDouble(precipitationUnit),
+                    context.getString(R.string.precipitation_intensity_heavy)
+                )
+                if (maxY < breezyweather.domain.weather.model.Precipitation.PRECIPITATION_HOURLY_HEAVY.times(2.0)
+                        .millimeters.toDouble(precipitationUnit)
+                ) {
+                    put(
+                        breezyweather.domain.weather.model.Precipitation.PRECIPITATION_HOURLY_MEDIUM
+                            .millimeters.toDouble(precipitationUnit),
+                        context.getString(R.string.precipitation_intensity_medium)
+                    )
+                    put(
+                        breezyweather.domain.weather.model.Precipitation.PRECIPITATION_HOURLY_LIGHT
+                            .millimeters.toDouble(precipitationUnit),
+                        context.getString(R.string.precipitation_intensity_light)
+                    )
+                }
+            }.toImmutableMap()
+        },
+        endAxisItemPlacer = remember { VerticalAxis.ItemPlacer.step({ step }) },
         markerVisibilityListener = markerVisibilityListener
     )
 }
@@ -503,7 +509,7 @@ fun DailyPrecipitationDetail(
 fun PrecipitationProbabilityHeader(
     location: Location,
     daily: Daily,
-    activeItem: Pair<Date, Double>?,
+    activeItem: Pair<Date, Ratio>?,
 ) {
     val context = LocalContext.current
 
@@ -523,7 +529,7 @@ fun PrecipitationProbabilityHeader(
 @Composable
 private fun PrecipitationProbabilityItem(
     header: @Composable () -> Unit,
-    precipitationProbability: Double?,
+    precipitationProbability: Ratio?,
     modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
@@ -536,11 +542,11 @@ private fun PrecipitationProbabilityItem(
         } else {
             TextFixedHeight(
                 text = "",
-                style = MaterialTheme.typography.displaySmall
+                style = MaterialTheme.typography.labelMedium
             )
         }
         TextFixedHeight(
-            text = precipitationProbability?.let { pp -> UnitUtils.formatPercent(context, pp) } ?: "",
+            text = precipitationProbability?.formatPercent(context) ?: "",
             style = MaterialTheme.typography.displaySmall
         )
     }
@@ -584,17 +590,13 @@ private fun PrecipitationProbabilitySummary(
 @Composable
 internal fun PrecipitationProbabilityChart(
     location: Location,
-    mappedValues: ImmutableMap<Long, Double>,
+    mappedValues: ImmutableMap<Long, Ratio>,
     daily: Daily,
     markerVisibilityListener: CartesianMarkerVisibilityListener,
 ) {
     val context = LocalContext.current
 
     val maxY = 100.0
-
-    val endAxisValueFormatter = CartesianValueFormatter { _, value, _ ->
-        UnitUtils.formatPercent(context, value)
-    }
 
     val modelProducer = remember { CartesianChartModelProducer() }
 
@@ -603,28 +605,28 @@ internal fun PrecipitationProbabilityChart(
             lineSeries {
                 series(
                     x = mappedValues.keys,
-                    y = mappedValues.values
+                    y = mappedValues.values.map { it.inPercent }
                 )
             }
         }
     }
 
     BreezyLineChart(
-        location,
-        modelProducer,
-        daily.date,
-        maxY,
-        endAxisValueFormatter,
-        persistentListOf(
-            persistentMapOf(
-                // TODO
-                100f to Color(60, 116, 160),
-                0f to Color(60, 116, 160)
+        location = location,
+        modelProducer = modelProducer,
+        theDay = daily.date,
+        maxY = maxY,
+        endAxisValueFormatter = remember { { _, value, _ -> value.percent.formatPercent(context) } },
+        colors = remember {
+            persistentListOf(
+                persistentMapOf(
+                    // TODO
+                    100f to Color(60, 116, 160),
+                    0f to Color(60, 116, 160)
+                )
             )
-        ),
-        endAxisItemPlacer = remember {
-            VerticalAxis.ItemPlacer.step({ 20.0 }) // Every 20 %
         },
+        endAxisItemPlacer = remember { VerticalAxis.ItemPlacer.step({ 20.0 }) }, // Every 20 %
         markerVisibilityListener = markerVisibilityListener
     )
 }
@@ -634,22 +636,22 @@ internal fun PrecipitationProbabilityDetails(
     daytimePrecProb: PrecipitationProbability?,
     nighttimePrecProb: PrecipitationProbability?,
 ) {
-    val daytimePrecProbItems = mutableListOf<Pair<Int, Double?>>()
-    val nighttimePrecProbItems = mutableListOf<Pair<Int, Double?>>()
+    val daytimePrecProbItems = mutableListOf<Pair<Int, Ratio?>>()
+    val nighttimePrecProbItems = mutableListOf<Pair<Int, Ratio?>>()
 
-    if ((daytimePrecProb?.rain ?: 0.0) > 0 || (nighttimePrecProb?.rain ?: 0.0) > 0) {
+    if ((daytimePrecProb?.rain?.value ?: 0) > 0 || (nighttimePrecProb?.rain?.value ?: 0) > 0) {
         daytimePrecProbItems.add(Pair(R.string.precipitation_rain, daytimePrecProb?.rain))
         nighttimePrecProbItems.add(Pair(R.string.precipitation_rain, nighttimePrecProb?.rain))
     }
-    if ((daytimePrecProb?.snow ?: 0.0) > 0 || (nighttimePrecProb?.snow ?: 0.0) > 0) {
+    if ((daytimePrecProb?.snow?.value ?: 0) > 0 || (nighttimePrecProb?.snow?.value ?: 0) > 0) {
         daytimePrecProbItems.add(Pair(R.string.precipitation_snow, daytimePrecProb?.snow))
         nighttimePrecProbItems.add(Pair(R.string.precipitation_snow, nighttimePrecProb?.snow))
     }
-    if ((daytimePrecProb?.ice ?: 0.0) > 0 || (nighttimePrecProb?.ice ?: 0.0) > 0) {
+    if ((daytimePrecProb?.ice?.value ?: 0) > 0 || (nighttimePrecProb?.ice?.value ?: 0) > 0) {
         daytimePrecProbItems.add(Pair(R.string.precipitation_ice, daytimePrecProb?.ice))
         nighttimePrecProbItems.add(Pair(R.string.precipitation_ice, nighttimePrecProb?.ice))
     }
-    if ((daytimePrecProb?.thunderstorm ?: 0.0) > 0 || (nighttimePrecProb?.thunderstorm ?: 0.0) > 0) {
+    if ((daytimePrecProb?.thunderstorm?.value ?: 0) > 0 || (nighttimePrecProb?.thunderstorm?.value ?: 0) > 0) {
         daytimePrecProbItems.add(Pair(R.string.precipitation_thunderstorm, daytimePrecProb?.thunderstorm))
         nighttimePrecProbItems.add(Pair(R.string.precipitation_thunderstorm, nighttimePrecProb?.thunderstorm))
     }
@@ -689,15 +691,14 @@ internal fun PrecipitationProbabilityDetails(
 
 @Composable
 internal fun DailyPrecipitationProbabilityDetail(
-    item: Pair<Int, Double?>,
+    item: Pair<Int, Ratio?>,
     modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
 
     DetailsItem(
         headlineText = stringResource(item.first),
-        supportingText = item.second?.let { pp -> UnitUtils.formatPercent(context, pp) }
-            ?: stringResource(R.string.null_data_text),
+        supportingText = item.second?.formatPercent(context) ?: stringResource(R.string.null_data_text),
         modifier = modifier
             .padding(top = dimensionResource(R.dimen.normal_margin))
             .semantics(mergeDescendants = true) {}
@@ -705,7 +706,7 @@ internal fun DailyPrecipitationProbabilityDetail(
                 item.second?.let { pp ->
                     contentDescription = context.getString(item.first) +
                         context.getString(R.string.colon_separator) +
-                        UnitUtils.formatPercent(context, pp)
+                        pp.formatPercent(context)
                 }
             }
     )

@@ -56,6 +56,7 @@ import org.breezyweather.common.utils.helpers.LogHelper
 import org.breezyweather.sources.RefreshHelper
 import org.breezyweather.sources.ims.json.ImsLocation
 import org.breezyweather.sources.ims.json.ImsWeatherData
+import org.breezyweather.unit.ratio.Ratio.Companion.percent
 import org.breezyweather.unit.speed.Speed.Companion.kilometersPerHour
 import org.breezyweather.unit.temperature.Temperature.Companion.celsius
 import retrofit2.Retrofit
@@ -227,7 +228,7 @@ class ImsService @Inject constructor(
                                 feelsLike = hourlyResult.value.windChill?.toDoubleOrNull()?.celsius
                             ),
                             precipitationProbability = PrecipitationProbability(
-                                total = hourlyResult.value.rainChance?.toDoubleOrNull()
+                                total = hourlyResult.value.rainChance?.toDoubleOrNull()?.percent
                             ),
                             wind = hourlyResult.value.windSpeed?.let { windSpeed ->
                                 Wind(
@@ -240,7 +241,7 @@ class ImsService @Inject constructor(
                             uV = hourlyResult.value.uvIndex?.toDoubleOrNull()?.let { uvi ->
                                 UV(uvi)
                             },
-                            relativeHumidity = hourlyResult.value.relativeHumidity?.toDoubleOrNull()
+                            relativeHumidity = hourlyResult.value.relativeHumidity?.toDoubleOrNull()?.percent
                         )
                     )
                 }
@@ -275,7 +276,7 @@ class ImsService @Inject constructor(
                 )
             },
             uV = data.analysis.uvIndex?.toDoubleOrNull()?.let { UV(it) },
-            relativeHumidity = data.analysis.relativeHumidity?.toDoubleOrNull(),
+            relativeHumidity = data.analysis.relativeHumidity?.toDoubleOrNull()?.percent,
             dewPoint = data.analysis.dewPointTemp?.toDoubleOrNull()?.celsius,
             dailyForecast = dailyForecast
         )

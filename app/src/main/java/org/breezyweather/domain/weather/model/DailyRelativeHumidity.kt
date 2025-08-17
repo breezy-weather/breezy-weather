@@ -19,18 +19,19 @@ package org.breezyweather.domain.weather.model
 import android.content.Context
 import breezyweather.domain.weather.model.DailyRelativeHumidity
 import org.breezyweather.R
-import org.breezyweather.common.utils.UnitUtils
+import org.breezyweather.common.extensions.formatPercent
+import org.breezyweather.common.extensions.formatValue
 
 fun DailyRelativeHumidity.getRangeSummary(context: Context): String? {
     return if (min == null || max == null) {
         null
     } else if (min == max) {
-        UnitUtils.formatPercent(context, max!!)
+        max!!.formatPercent(context)
     } else {
         context.getString(
             R.string.humidity_from_to_number,
-            UnitUtils.formatDouble(context, min!!),
-            UnitUtils.formatPercent(context, max!!)
+            min!!.formatValue(context),
+            max!!.formatPercent(context)
         )
     }
 }

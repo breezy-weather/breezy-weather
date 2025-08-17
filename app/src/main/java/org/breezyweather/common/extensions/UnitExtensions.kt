@@ -19,6 +19,7 @@ package org.breezyweather.common.extensions
 import android.content.Context
 import android.graphics.Color
 import androidx.annotation.ColorInt
+import androidx.core.content.ContextCompat
 import org.breezyweather.R
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.unit.distance.Distance
@@ -30,9 +31,10 @@ import org.breezyweather.unit.pollutant.PollutantConcentrationUnit
 import org.breezyweather.unit.precipitation.Precipitation
 import org.breezyweather.unit.precipitation.PrecipitationUnit
 import org.breezyweather.unit.pressure.Pressure
+import org.breezyweather.unit.ratio.Ratio
+import org.breezyweather.unit.ratio.RatioUnit
 import org.breezyweather.unit.speed.Speed
 import org.breezyweather.unit.temperature.Temperature
-import kotlin.math.roundToInt
 import kotlin.time.Duration
 import kotlin.time.DurationUnit
 
@@ -357,6 +359,41 @@ fun Duration.formatTime(
     )
 }
 
+/**
+ * Convenient format function with parameters filled for our app
+ */
+fun Ratio.formatPercent(
+    context: Context,
+    valueWidth: UnitWidth = UnitWidth.SHORT,
+): String {
+    val settings = SettingsManager.getInstance(context)
+    return format(
+        context = context,
+        unit = RatioUnit.PERCENT,
+        valueWidth = valueWidth,
+        locale = context.currentLocale,
+        useNumberFormatter = settings.useNumberFormatter,
+        useMeasureFormat = settings.useMeasureFormat
+    )
+}
+
+/**
+ * Convenient format function with parameters filled for our app
+ */
+fun Ratio.formatValue(
+    context: Context,
+    width: UnitWidth = UnitWidth.SHORT,
+): String {
+    val settings = SettingsManager.getInstance(context)
+    return formatValue(
+        unit = RatioUnit.PERCENT,
+        width = width,
+        locale = context.currentLocale,
+        useNumberFormatter = settings.useNumberFormatter,
+        useMeasureFormat = settings.useMeasureFormat
+    )
+}
+
 // We don't need any cloud cover unit, it's just a percent, but we need some helpers
 
 /**
@@ -368,35 +405,25 @@ const val CLOUD_COVER_SCT = 67.5 // 5 okta
 const val CLOUD_COVER_BKN = 87.5 // 7 okta
 const val CLOUD_COVER_OVC = 100.0 // 8 okta
 
-val cloudCoverScaleThresholds = listOf(
-    0.0,
-    CLOUD_COVER_SKC,
-    CLOUD_COVER_FEW,
-    CLOUD_COVER_SCT,
-    CLOUD_COVER_BKN,
-    CLOUD_COVER_OVC
-)
+fun Ratio.getCloudCoverColor(context: Context): Int {
+    return when (inPercent) {
+        in 0.0..<CLOUD_COVER_FEW -> ContextCompat.getColor(context, R.color.colorLevel_1)
+        in CLOUD_COVER_FEW..CLOUD_COVER_SCT -> ContextCompat.getColor(context, R.color.colorLevel_2)
+        in CLOUD_COVER_SCT..100.0 -> ContextCompat.getColor(context, R.color.colorLevel_3)
+        else -> Color.TRANSPARENT
+    }
+}
 
 /**
  * @param context
- * @param cloudCover in % (0-100)
  */
-fun getCloudCoverDescription(context: Context, cloudCover: Int?): String? {
-    if (cloudCover == null) return null
-    return when (cloudCover) {
-        in 0..<CLOUD_COVER_SKC.roundToInt() -> context.getString(R.string.common_weather_text_clear_sky)
-        in CLOUD_COVER_SKC.roundToInt()..<CLOUD_COVER_FEW.roundToInt() -> {
-            context.getString(R.string.common_weather_text_mostly_clear)
-        }
-        in CLOUD_COVER_FEW.roundToInt()..<CLOUD_COVER_SCT.roundToInt() -> {
-            context.getString(R.string.common_weather_text_partly_cloudy)
-        }
-        in CLOUD_COVER_SCT.roundToInt()..<CLOUD_COVER_BKN.roundToInt() -> {
-            context.getString(R.string.common_weather_text_mostly_cloudy)
-        }
-        in CLOUD_COVER_BKN.roundToInt()..CLOUD_COVER_OVC.roundToInt() -> {
-            context.getString(R.string.common_weather_text_cloudy)
-        }
+fun Ratio.getCloudCoverDescription(context: Context): String? {
+    return when (inPercent) {
+        in 0.0..<CLOUD_COVER_SKC -> context.getString(R.string.common_weather_text_clear_sky)
+        in CLOUD_COVER_SKC..<CLOUD_COVER_FEW -> context.getString(R.string.common_weather_text_mostly_clear)
+        in CLOUD_COVER_FEW..<CLOUD_COVER_SCT -> context.getString(R.string.common_weather_text_partly_cloudy)
+        in CLOUD_COVER_SCT..<CLOUD_COVER_BKN -> context.getString(R.string.common_weather_text_mostly_cloudy)
+        in CLOUD_COVER_BKN..CLOUD_COVER_OVC -> context.getString(R.string.common_weather_text_cloudy)
         else -> null
     }
 }

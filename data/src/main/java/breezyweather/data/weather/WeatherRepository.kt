@@ -165,7 +165,7 @@ class WeatherRepository(
                 relativeHumidity = weather.current?.relativeHumidity,
                 dewPoint = weather.current?.dewPoint,
                 pressure = weather.current?.pressure,
-                cloudCover = weather.current?.cloudCover?.toLong(),
+                cloudCover = weather.current?.cloudCover,
                 visibility = weather.current?.visibility,
                 ceiling = weather.current?.ceiling,
                 dailyForecast = weather.current?.dailyForecast,
@@ -311,9 +311,9 @@ class WeatherRepository(
                     pressureMin = daily.pressure?.min,
                     pressureMax = daily.pressure?.max,
 
-                    cloudCoverAverage = daily.cloudCover?.average?.toLong(),
-                    cloudCoverMin = daily.cloudCover?.min?.toLong(),
-                    cloudCoverMax = daily.cloudCover?.max?.toLong(),
+                    cloudCoverAverage = daily.cloudCover?.average,
+                    cloudCoverMin = daily.cloudCover?.min,
+                    cloudCoverMax = daily.cloudCover?.max,
 
                     visibilityAverage = daily.visibility?.average,
                     visibilityMin = daily.visibility?.min,
@@ -368,7 +368,7 @@ class WeatherRepository(
                     relativeHumidity = hourly.relativeHumidity,
                     dewPoint = hourly.dewPoint,
                     pressure = hourly.pressure,
-                    cloudCover = hourly.cloudCover?.toLong(),
+                    cloudCover = hourly.cloudCover,
                     visibility = hourly.visibility
                 )
             }

@@ -51,6 +51,7 @@ import org.breezyweather.sources.lhmt.json.LhmtLocationsResult
 import org.breezyweather.sources.lhmt.json.LhmtWeatherResult
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
+import org.breezyweather.unit.ratio.Ratio.Companion.percent
 import org.breezyweather.unit.speed.Speed.Companion.metersPerSecond
 import org.breezyweather.unit.temperature.Temperature.Companion.celsius
 import retrofit2.Retrofit
@@ -209,9 +210,9 @@ class LhmtService @Inject constructor(
                     speed = it.windSpeed?.metersPerSecond,
                     gusts = it.windGust?.metersPerSecond
                 ),
-                relativeHumidity = it.relativeHumidity,
+                relativeHumidity = it.relativeHumidity?.percent,
                 pressure = it.seaLevelPressure?.hectopascals,
-                cloudCover = it.cloudCover?.toInt()
+                cloudCover = it.cloudCover?.percent
             )
         }
     }
@@ -256,9 +257,9 @@ class LhmtService @Inject constructor(
                             speed = it.windSpeed?.metersPerSecond,
                             gusts = it.windGust?.metersPerSecond
                         ),
-                        relativeHumidity = it.relativeHumidity,
+                        relativeHumidity = it.relativeHumidity?.percent,
                         pressure = it.seaLevelPressure?.hectopascals,
-                        cloudCover = it.cloudCover?.toInt()
+                        cloudCover = it.cloudCover?.percent
                     )
                 )
             }

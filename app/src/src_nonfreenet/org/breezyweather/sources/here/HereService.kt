@@ -54,6 +54,7 @@ import org.breezyweather.sources.here.json.HereWeatherData
 import org.breezyweather.unit.distance.Distance.Companion.kilometers
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
+import org.breezyweather.unit.ratio.Ratio.Companion.percent
 import org.breezyweather.unit.speed.Speed.Companion.kilometersPerHour
 import org.breezyweather.unit.temperature.Temperature.Companion.celsius
 import retrofit2.Retrofit
@@ -181,7 +182,7 @@ class HereService @Inject constructor(
                 speed = result.windSpeed?.kilometersPerHour
             ),
             uV = UV(index = result.uvIndex?.toDouble()),
-            relativeHumidity = result.humidity?.toDouble(),
+            relativeHumidity = result.humidity?.toDoubleOrNull()?.percent,
             dewPoint = result.dewPoint?.celsius,
             pressure = result.barometerPressure?.hectopascals,
             visibility = result.visibility?.kilometers
@@ -251,14 +252,14 @@ class HereService @Inject constructor(
                     snow = result.snowFall?.millimeters
                 ),
                 precipitationProbability = PrecipitationProbability(
-                    total = result.precipitationProbability?.toDouble()
+                    total = result.precipitationProbability?.percent
                 ),
                 wind = Wind(
                     degree = result.windDirection,
                     speed = result.windSpeed?.kilometersPerHour
                 ),
                 uV = UV(index = result.uvIndex?.toDouble()),
-                relativeHumidity = result.humidity?.toDouble(),
+                relativeHumidity = result.humidity?.toDoubleOrNull()?.percent,
                 dewPoint = result.dewPoint?.celsius,
                 pressure = result.barometerPressure?.hectopascals,
                 visibility = result.visibility?.kilometers

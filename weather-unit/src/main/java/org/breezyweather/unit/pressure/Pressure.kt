@@ -228,8 +228,6 @@ fun Long.toPressure(unit: PressureUnit): Pressure {
 /**
  * Returns a [Pressure] equal to this [Double] number of the specified [unit].
  *
- * Depending on its magnitude, the value is rounded to an integer number of nanoseconds or milliseconds.
- *
  * @throws IllegalArgumentException if this `Double` value is `NaN`.
  */
 fun Double.toPressure(unit: PressureUnit): Pressure {

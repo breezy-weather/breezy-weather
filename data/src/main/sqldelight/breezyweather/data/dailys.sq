@@ -5,6 +5,7 @@ import org.breezyweather.unit.pollen.PollenConcentration;
 import org.breezyweather.unit.pollutant.PollutantConcentration;
 import org.breezyweather.unit.precipitation.Precipitation;
 import org.breezyweather.unit.pressure.Pressure;
+import org.breezyweather.unit.ratio.Ratio;
 import org.breezyweather.unit.speed.Speed;
 import org.breezyweather.unit.temperature.Temperature;
 
@@ -31,11 +32,11 @@ CREATE TABLE dailys(
     daytime_snow_precipitation INTEGER AS Precipitation,
     daytime_ice_precipitation INTEGER AS Precipitation,
 
-    daytime_total_precipitation_probability REAL,
-    daytime_thunderstorm_precipitation_probability REAL,
-    daytime_rain_precipitation_probability REAL,
-    daytime_snow_precipitation_probability REAL,
-    daytime_ice_precipitation_probability REAL,
+    daytime_total_precipitation_probability INTEGER AS Ratio,
+    daytime_thunderstorm_precipitation_probability INTEGER AS Ratio,
+    daytime_rain_precipitation_probability INTEGER AS Ratio,
+    daytime_snow_precipitation_probability INTEGER AS Ratio,
+    daytime_ice_precipitation_probability INTEGER AS Ratio,
 
     daytime_total_precipitation_duration INTEGER AS Duration,
     daytime_thunderstorm_precipitation_duration INTEGER AS Duration,
@@ -64,11 +65,11 @@ CREATE TABLE dailys(
     nighttime_snow_precipitation INTEGER AS Precipitation,
     nighttime_ice_precipitation INTEGER AS Precipitation,
 
-    nighttime_total_precipitation_probability REAL,
-    nighttime_thunderstorm_precipitation_probability REAL,
-    nighttime_rain_precipitation_probability REAL,
-    nighttime_snow_precipitation_probability REAL,
-    nighttime_ice_precipitation_probability REAL,
+    nighttime_total_precipitation_probability INTEGER AS Ratio,
+    nighttime_thunderstorm_precipitation_probability INTEGER AS Ratio,
+    nighttime_rain_precipitation_probability INTEGER AS Ratio,
+    nighttime_snow_precipitation_probability INTEGER AS Ratio,
+    nighttime_ice_precipitation_probability INTEGER AS Ratio,
 
     nighttime_total_precipitation_duration INTEGER AS Duration,
     nighttime_thunderstorm_precipitation_duration INTEGER AS Duration,
@@ -135,9 +136,9 @@ CREATE TABLE dailys(
     sunshine_duration INTEGER AS Duration,
 
     -- relative humidity
-    relative_humidity_average REAL,
-    relative_humidity_min REAL,
-    relative_humidity_max REAL,
+    relative_humidity_average INTEGER AS Ratio,
+    relative_humidity_min INTEGER AS Ratio,
+    relative_humidity_max INTEGER AS Ratio,
 
     -- dewpoint
     dewpoint_average INTEGER AS Temperature,
@@ -150,9 +151,9 @@ CREATE TABLE dailys(
     pressure_max INTEGER AS Pressure,
 
     -- cloud cover
-    cloud_cover_average INTEGER,
-    cloud_cover_min INTEGER,
-    cloud_cover_max INTEGER,
+    cloud_cover_average INTEGER AS Ratio,
+    cloud_cover_min INTEGER AS Ratio,
+    cloud_cover_max INTEGER AS Ratio,
 
     -- visibility
     visibility_average INTEGER AS Distance,

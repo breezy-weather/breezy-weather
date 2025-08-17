@@ -25,10 +25,10 @@ import breezyweather.domain.location.model.Location
 import org.breezyweather.R
 import org.breezyweather.common.activities.BreezyActivity
 import org.breezyweather.common.extensions.formatMeasure
+import org.breezyweather.common.extensions.formatPercent
 import org.breezyweather.common.extensions.getCalendarMonth
 import org.breezyweather.common.extensions.getThemeColor
 import org.breezyweather.common.options.appearance.DetailScreen
-import org.breezyweather.common.utils.UnitUtils
 import org.breezyweather.ui.common.widgets.trend.TrendRecyclerView
 import org.breezyweather.ui.common.widgets.trend.chart.PolylineAndHistogramView
 import org.breezyweather.ui.theme.ThemeManager
@@ -80,15 +80,12 @@ class HourlyTemperatureAdapter(
                 },
                 missingIconVisibility = View.INVISIBLE
             )
-            val precipitationProbability = hourly.precipitationProbability?.total
-            var p: Float = precipitationProbability?.toFloat() ?: 0f
-            if (!mShowPrecipitationProbability) {
-                p = 0f
-            } else if (hourly.precipitationProbability?.total != null) {
+            val p = hourly.precipitationProbability?.total
+            if (mShowPrecipitationProbability && hourly.precipitationProbability?.total != null) {
                 talkBackBuilder.append(activity.getString(org.breezyweather.unit.R.string.locale_separator))
                     .append(activity.getString(R.string.precipitation_probability))
                     .append(activity.getString(R.string.colon_separator))
-                    .append(UnitUtils.formatPercent(activity, p.toDouble()))
+                    .append(hourly.precipitationProbability!!.total!!.formatPercent(activity, UnitWidth.NARROW))
             }
             mPolylineAndHistogramView.setData(
                 buildTemperatureArrayForItem(mTemperatures, position),
@@ -101,12 +98,8 @@ class HourlyTemperatureAdapter(
                 null,
                 mHighestTemperature,
                 mLowestTemperature,
-                if (p > 0) p else null,
-                if (p > 0) {
-                    UnitUtils.formatPercent(activity, p.toDouble())
-                } else {
-                    null
-                },
+                p?.takeIf { it.value > 0 && mShowPrecipitationProbability }?.inPercent?.toFloat(),
+                p?.takeIf { it.value > 0 && mShowPrecipitationProbability }?.formatPercent(activity, UnitWidth.NARROW),
                 100f,
                 0f
             )

@@ -178,7 +178,7 @@
     <string name="pressure_inhg_nominative_short">%s inHg</string>
     <string name="pressure_inhg_nominative_long">@string/pressure_inhg_nominative_short</string>
 
-    <!-- Duration units TODO: In other languages -->
+    <!-- Duration units -->
 
     <!-- Days / Not used in Breezy Weather, so not translating -->
     <string name="duration_day_display_name_short" translatable="false">day</string>
@@ -229,5 +229,19 @@
     <string name="duration_ns_display_name_long" translatable="false">@string/duration_ns_display_name_short</string>
     <string name="duration_ns_nominative_short" translatable="false">%s ns</string>
     <string name="duration_ns_nominative_long" translatable="false">@string/duration_ns_nominative_short</string>
+
+    <!-- Ratio units -->
+
+    <!-- Permille -->
+    <string name="ratio_permille_display_name_short" translatable="false">‰</string>
+    <string name="ratio_permille_nominative_short" translatable="false">%s ‰</string>
+
+    <!-- Percent -->
+    <string name="ratio_percent_display_name_short" translatable="false">%</string>
+    <string name="ratio_percent_nominative_short" translatable="false">%s %</string>
+
+    <!-- Fragment -->
+    <string name="ratio_fraction_display_name_short" translatable="false">/</string>
+    <string name="ratio_fraction_nominative_short" translatable="false">%s</string>
 
 </resources>

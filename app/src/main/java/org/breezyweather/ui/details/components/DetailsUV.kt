@@ -40,7 +40,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -64,6 +63,7 @@ import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.persistentMapOf
 import kotlinx.collections.immutable.toImmutableMap
 import org.breezyweather.R
+import org.breezyweather.common.extensions.getColorResource
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.extensions.toDate
@@ -267,33 +267,37 @@ private fun UVChart(
     }
 
     BreezyLineChart(
-        location,
-        modelProducer,
-        daily.date,
-        maxY,
-        { _, value, _ -> UnitUtils.formatInt(context, value.roundToInt()) },
-        persistentListOf(
-            persistentMapOf(
-                19f to Color(255, 255, 255),
-                11f to colorResource(R.color.colorLevel_5),
-                10f to colorResource(R.color.colorLevel_4),
-                7f to colorResource(R.color.colorLevel_3),
-                5f to colorResource(R.color.colorLevel_2),
-                2f to colorResource(R.color.colorLevel_1),
-                0f to Color(110, 110, 110)
+        location = location,
+        modelProducer = modelProducer,
+        theDay = daily.date,
+        maxY = maxY,
+        endAxisValueFormatter = remember { { _, value, _ -> UnitUtils.formatInt(context, value.roundToInt()) } },
+        colors = remember {
+            persistentListOf(
+                persistentMapOf(
+                    19f to Color(255, 255, 255),
+                    11f to context.getColorResource(R.color.colorLevel_5),
+                    10f to context.getColorResource(R.color.colorLevel_4),
+                    7f to context.getColorResource(R.color.colorLevel_3),
+                    5f to context.getColorResource(R.color.colorLevel_2),
+                    2f to context.getColorResource(R.color.colorLevel_1),
+                    0f to Color(110, 110, 110)
+                )
             )
-        ),
-        topAxisValueFormatter = { _, value, _ ->
-            mappedValues.getOrElse(value.toLong()) { null }?.index?.roundToInt()
-                ?.let { UnitUtils.formatInt(context, it) }
-                ?: "-"
         },
-        trendHorizontalLines = persistentMapOf(
-            UV.UV_INDEX_MIDDLE to context.getString(R.string.uv_alert_level)
-        ),
-        endAxisItemPlacer = remember {
-            VerticalAxis.ItemPlacer.step({ 1.0 }) // Every rounded UVI
+        topAxisValueFormatter = remember(mappedValues) {
+            { _, value, _ ->
+                mappedValues.getOrElse(value.toLong()) { null }?.index?.roundToInt()
+                    ?.let { UnitUtils.formatInt(context, it) }
+                    ?: "-"
+            }
         },
+        trendHorizontalLines = remember {
+            persistentMapOf(
+                UV.UV_INDEX_MIDDLE to context.getString(R.string.uv_alert_level)
+            )
+        },
+        endAxisItemPlacer = remember { VerticalAxis.ItemPlacer.step({ 1.0 }) }, // Every rounded UVI
         markerVisibilityListener = markerVisibilityListener
     )
 }

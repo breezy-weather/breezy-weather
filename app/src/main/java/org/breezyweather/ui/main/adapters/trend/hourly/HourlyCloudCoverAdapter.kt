@@ -18,22 +18,26 @@ package org.breezyweather.ui.main.adapters.trend.hourly
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import breezyweather.domain.location.model.Location
 import org.breezyweather.R
 import org.breezyweather.common.activities.BreezyActivity
+import org.breezyweather.common.extensions.CLOUD_COVER_FEW
+import org.breezyweather.common.extensions.CLOUD_COVER_SCT
+import org.breezyweather.common.extensions.formatPercent
+import org.breezyweather.common.extensions.getCloudCoverColor
+import org.breezyweather.common.extensions.getCloudCoverDescription
 import org.breezyweather.common.extensions.getThemeColor
 import org.breezyweather.common.options.appearance.DetailScreen
-import org.breezyweather.common.utils.UnitUtils
-import org.breezyweather.domain.weather.model.CLOUD_COVER_CLEAR
-import org.breezyweather.domain.weather.model.CLOUD_COVER_PARTLY
-import org.breezyweather.domain.weather.model.getCloudCoverColor
 import org.breezyweather.ui.common.widgets.trend.TrendRecyclerView
 import org.breezyweather.ui.common.widgets.trend.chart.PolylineAndHistogramView
 import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.weatherView.WeatherViewController
+import org.breezyweather.unit.formatting.UnitWidth
+import org.breezyweather.unit.ratio.Ratio.Companion.percent
 
 /**
  * Hourly Cloud Cover adapter.
@@ -60,7 +64,7 @@ class HourlyCloudCoverAdapter(
             hourly.cloudCover?.let { cloudCover ->
                 talkBackBuilder
                     .append(activity.getString(org.breezyweather.unit.R.string.locale_separator))
-                    .append(UnitUtils.formatPercent(activity, cloudCover.toDouble()))
+                    .append(cloudCover.formatPercent(activity, UnitWidth.NARROW))
             }
             mPolylineAndHistogramView.setData(
                 null,
@@ -69,14 +73,14 @@ class HourlyCloudCoverAdapter(
                 null,
                 null,
                 null,
-                hourly.cloudCover?.toFloat() ?: 0f,
-                hourly.cloudCover?.let { UnitUtils.formatPercent(activity, it.toDouble()) },
+                hourly.cloudCover?.inPercent?.toFloat() ?: 0f,
+                hourly.cloudCover?.formatPercent(activity, UnitWidth.NARROW),
                 100f,
                 0f
             )
             mPolylineAndHistogramView.setLineColors(
-                hourly.getCloudCoverColor(activity),
-                hourly.getCloudCoverColor(activity),
+                hourly.cloudCover?.getCloudCoverColor(activity) ?: Color.TRANSPARENT,
+                hourly.cloudCover?.getCloudCoverColor(activity) ?: Color.TRANSPARENT,
                 activity.getThemeColor(com.google.android.material.R.attr.colorOutline)
             )
 
@@ -108,7 +112,7 @@ class HourlyCloudCoverAdapter(
 
     init {
         mHighestCloudCover = location.weather!!.nextHourlyForecast
-            .mapNotNull { it.cloudCover }
+            .mapNotNull { it.cloudCover?.inPercent }
             .maxOrNull()
             ?.toFloat() ?: 0f
     }
@@ -132,18 +136,18 @@ class HourlyCloudCoverAdapter(
         val keyLineList = mutableListOf<TrendRecyclerView.KeyLine>()
         keyLineList.add(
             TrendRecyclerView.KeyLine(
-                CLOUD_COVER_PARTLY.toFloat(),
-                UnitUtils.formatPercent(activity, CLOUD_COVER_PARTLY),
-                activity.getString(R.string.weather_kind_partly_cloudy),
+                CLOUD_COVER_FEW.toFloat(),
+                CLOUD_COVER_FEW.percent.formatPercent(activity),
+                CLOUD_COVER_FEW.percent.getCloudCoverDescription(activity),
                 TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
             )
         )
         keyLineList.add(
             TrendRecyclerView.KeyLine(
-                CLOUD_COVER_CLEAR.toFloat(),
-                UnitUtils.formatPercent(activity, CLOUD_COVER_CLEAR),
-                activity.getString(R.string.weather_kind_clear),
-                TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE
+                CLOUD_COVER_SCT.toFloat(),
+                CLOUD_COVER_SCT.percent.formatPercent(activity),
+                CLOUD_COVER_SCT.percent.getCloudCoverDescription(activity),
+                TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
             )
         )
         host.setData(keyLineList, 100f, 0f)

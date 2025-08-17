@@ -52,6 +52,7 @@ import org.breezyweather.sources.ipma.json.IpmaAlertResult
 import org.breezyweather.sources.ipma.json.IpmaDistrictResult
 import org.breezyweather.sources.ipma.json.IpmaForecastResult
 import org.breezyweather.sources.ipma.json.IpmaLocationResult
+import org.breezyweather.unit.ratio.Ratio.Companion.percent
 import org.breezyweather.unit.speed.Speed.Companion.kilometersPerHour
 import org.breezyweather.unit.temperature.Temperature.Companion.celsius
 import retrofit2.Retrofit
@@ -182,7 +183,7 @@ class IpmaService @Inject constructor(
                         TemperatureWrapper(temperature = tMax.celsius)
                     },
                     precipitationProbability = PrecipitationProbability(
-                        total = result.probabilidadePrecipita?.toDoubleOrNull()
+                        total = result.probabilidadePrecipita?.toDoubleOrNull()?.percent
                     ),
                     wind = Wind(
                         degree = getWindDegree(result.ddVento)
@@ -195,7 +196,7 @@ class IpmaService @Inject constructor(
                         ?.tMin?.toDoubleOrNull() // Get next day min temperature to have overnight temp
                         ?.let { tMin -> TemperatureWrapper(temperature = tMin.celsius) },
                     precipitationProbability = PrecipitationProbability(
-                        total = result.probabilidadePrecipita?.toDoubleOrNull()
+                        total = result.probabilidadePrecipita?.toDoubleOrNull()?.percent
                     ),
                     wind = Wind(
                         degree = getWindDegree(result.ddVento)
@@ -204,7 +205,7 @@ class IpmaService @Inject constructor(
                 uV = UV(
                     index = result.iUv?.toDoubleOrNull()
                 ),
-                relativeHumidity = result.hR?.toDoubleOrNull()?.let { hr -> DailyRelativeHumidity(average = hr) }
+                relativeHumidity = result.hR?.toDoubleOrNull()?.let { h -> DailyRelativeHumidity(average = h.percent) }
             )
         }
     }
@@ -232,13 +233,13 @@ class IpmaService @Inject constructor(
                         it.probabilidadePrecipita?.toDoubleOrNull()
                     } else {
                         lastPrecipitationProbability
-                    }
+                    }?.percent
                 ),
                 wind = Wind(
                     degree = getWindDegree(it.ddVento),
                     speed = it.ffVento?.toDoubleOrNull()?.kilometersPerHour
                 ),
-                relativeHumidity = it.hR?.toDoubleOrNull()
+                relativeHumidity = it.hR?.toDoubleOrNull()?.percent
             ).also { hourly ->
                 if (it.probabilidadePrecipita != "-99.0") {
                     lastPrecipitationProbability = it.probabilidadePrecipita?.toDoubleOrNull()

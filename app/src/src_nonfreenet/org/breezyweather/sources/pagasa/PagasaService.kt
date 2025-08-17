@@ -49,6 +49,7 @@ import org.breezyweather.sources.pagasa.json.PagasaHourlyResult
 import org.breezyweather.sources.pagasa.json.PagasaLocationResult
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
+import org.breezyweather.unit.ratio.Ratio.Companion.percent
 import org.breezyweather.unit.speed.Speed.Companion.kilometersPerHour
 import org.breezyweather.unit.speed.Speed.Companion.metersPerSecond
 import org.breezyweather.unit.temperature.Temperature.Companion.celsius
@@ -206,7 +207,7 @@ class PagasaService @Inject constructor(
                     degree = getWindDegree(it.windDirection),
                     speed = it.windSpeed?.substringBefore(" ")?.toDoubleOrNull()?.kilometersPerHour
                 ),
-                relativeHumidity = it.humidity?.substringBefore(" ")?.toDoubleOrNull(),
+                relativeHumidity = it.humidity?.substringBefore(" ")?.toDoubleOrNull()?.percent,
                 pressure = it.pressure?.toDoubleOrNull()?.hectopascals
             )
         }
@@ -264,7 +265,7 @@ class PagasaService @Inject constructor(
                                 degree = it.windDirection?.attributes?.deg?.toDoubleOrNull(),
                                 speed = it.windSpeed?.attributes?.mps?.toDoubleOrNull()?.metersPerSecond
                             ),
-                            relativeHumidity = it.relativeHumidity?.attributes?.value?.toDoubleOrNull()
+                            relativeHumidity = it.relativeHumidity?.attributes?.value?.toDoubleOrNull()?.percent
                         )
                     )
                 }

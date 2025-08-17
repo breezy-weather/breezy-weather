@@ -83,7 +83,7 @@ class GadgetbridgeService @Inject constructor() : BroadcastSource {
             currentTemp = current?.temperature?.temperature?.inKelvins?.roundToInt(),
             currentConditionCode = getWeatherCode(current?.weatherCode),
             currentCondition = current?.weatherText,
-            currentHumidity = current?.relativeHumidity?.roundToInt(),
+            currentHumidity = current?.relativeHumidity?.inPercent?.roundToInt(),
             windSpeed = current?.wind?.speed?.inKilometersPerHour?.toFloat(),
             windDirection = current?.wind?.degree?.roundToInt(),
             uvIndex = current?.uV?.index?.toFloat(),
@@ -94,11 +94,11 @@ class GadgetbridgeService @Inject constructor() : BroadcastSource {
             precipProbability = maxOfNullable(
                 today?.day?.precipitationProbability?.total,
                 today?.night?.precipitationProbability?.total
-            )?.roundToInt(),
+            )?.inPercent?.roundToInt(),
 
             dewPoint = current?.dewPoint?.inKelvins?.roundToInt(),
             pressure = current?.pressure?.inHectopascals?.toFloat(),
-            cloudCover = current?.cloudCover,
+            cloudCover = current?.cloudCover?.inPercent?.roundToInt(),
             visibility = current?.visibility?.inMeters?.toFloat(),
 
             sunRise = today?.sun?.riseDate?.time?.div(1000)?.toInt(),
@@ -125,14 +125,14 @@ class GadgetbridgeService @Inject constructor() : BroadcastSource {
                 conditionCode = getWeatherCode(day.day?.weatherCode),
                 maxTemp = day.day?.temperature?.temperature?.inKelvins?.roundToInt(),
                 minTemp = day.night?.temperature?.temperature?.inKelvins?.roundToInt(),
-                humidity = day.relativeHumidity?.average?.roundToInt(),
+                humidity = day.relativeHumidity?.average?.inPercent?.roundToInt(),
                 windSpeed = maxWind?.speed?.inKilometersPerHour?.toFloat(),
                 windDirection = maxWind?.degree?.roundToInt(),
                 uvIndex = day.uV?.index?.toFloat(),
                 precipProbability = maxOfNullable(
                     day.day?.precipitationProbability?.total,
                     day.night?.precipitationProbability?.total
-                )?.roundToInt(),
+                )?.inPercent?.roundToInt(),
 
                 sunRise = day.sun?.riseDate?.time?.div(1000)?.toInt(),
                 sunSet = day.sun?.setDate?.time?.div(1000)?.toInt(),
@@ -174,11 +174,11 @@ class GadgetbridgeService @Inject constructor() : BroadcastSource {
                 timestamp = hour.date.time.div(1000).toInt(),
                 temp = hour.temperature?.temperature?.inKelvins?.roundToInt(),
                 conditionCode = getWeatherCode(hour.weatherCode),
-                humidity = hour.relativeHumidity?.roundToInt(),
+                humidity = hour.relativeHumidity?.inPercent?.roundToInt(),
                 windSpeed = hour.wind?.speed?.inKilometersPerHour?.toFloat(),
                 windDirection = hour.wind?.degree?.roundToInt(),
                 uvIndex = hour.uV?.index?.toFloat(),
-                precipProbability = hour.precipitationProbability?.total?.roundToInt()
+                precipProbability = hour.precipitationProbability?.total?.inPercent?.roundToInt()
             )
         }
     }

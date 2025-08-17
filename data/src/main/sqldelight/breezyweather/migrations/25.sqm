@@ -1,0 +1,123 @@
+ALTER TABLE dailys
+DROP COLUMN daytime_total_precipitation_probability;
+
+ALTER TABLE dailys
+ADD COLUMN daytime_total_precipitation_probability INTEGER;
+
+ALTER TABLE dailys
+DROP COLUMN daytime_thunderstorm_precipitation_probability;
+
+ALTER TABLE dailys
+ADD COLUMN daytime_thunderstorm_precipitation_probability INTEGER;
+
+ALTER TABLE dailys
+DROP COLUMN daytime_rain_precipitation_probability;
+
+ALTER TABLE dailys
+ADD COLUMN daytime_rain_precipitation_probability INTEGER;
+
+ALTER TABLE dailys
+DROP COLUMN daytime_snow_precipitation_probability;
+
+ALTER TABLE dailys
+ADD COLUMN daytime_snow_precipitation_probability INTEGER;
+
+ALTER TABLE dailys
+DROP COLUMN daytime_ice_precipitation_probability;
+
+ALTER TABLE dailys
+ADD COLUMN daytime_ice_precipitation_probability INTEGER;
+
+
+ALTER TABLE dailys
+DROP COLUMN nighttime_total_precipitation_probability;
+
+ALTER TABLE dailys
+ADD COLUMN nighttime_total_precipitation_probability INTEGER;
+
+ALTER TABLE dailys
+DROP COLUMN nighttime_thunderstorm_precipitation_probability;
+
+ALTER TABLE dailys
+ADD COLUMN nighttime_thunderstorm_precipitation_probability INTEGER;
+
+ALTER TABLE dailys
+DROP COLUMN nighttime_rain_precipitation_probability;
+
+ALTER TABLE dailys
+ADD COLUMN nighttime_rain_precipitation_probability INTEGER;
+
+ALTER TABLE dailys
+DROP COLUMN nighttime_snow_precipitation_probability;
+
+ALTER TABLE dailys
+ADD COLUMN nighttime_snow_precipitation_probability INTEGER;
+
+ALTER TABLE dailys
+DROP COLUMN nighttime_ice_precipitation_probability;
+
+ALTER TABLE dailys
+ADD COLUMN nighttime_ice_precipitation_probability INTEGER;
+
+
+ALTER TABLE dailys
+DROP COLUMN relative_humidity_average;
+
+ALTER TABLE dailys
+ADD COLUMN relative_humidity_average INTEGER;
+
+ALTER TABLE dailys
+DROP COLUMN relative_humidity_min;
+
+ALTER TABLE dailys
+ADD COLUMN relative_humidity_min INTEGER;
+
+ALTER TABLE dailys
+DROP COLUMN relative_humidity_max;
+
+ALTER TABLE dailys
+ADD COLUMN relative_humidity_max INTEGER;
+
+
+ALTER TABLE hourlys
+DROP COLUMN total_precipitation_probability;
+
+ALTER TABLE hourlys
+ADD COLUMN total_precipitation_probability INTEGER;
+
+ALTER TABLE hourlys
+DROP COLUMN thunderstorm_precipitation_probability;
+
+ALTER TABLE hourlys
+ADD COLUMN thunderstorm_precipitation_probability INTEGER;
+
+ALTER TABLE hourlys
+DROP COLUMN rain_precipitation_probability;
+
+ALTER TABLE hourlys
+ADD COLUMN rain_precipitation_probability INTEGER;
+
+ALTER TABLE hourlys
+DROP COLUMN snow_precipitation_probability;
+
+ALTER TABLE hourlys
+ADD COLUMN snow_precipitation_probability INTEGER;
+
+ALTER TABLE hourlys
+DROP COLUMN ice_precipitation_probability;
+
+ALTER TABLE hourlys
+ADD COLUMN ice_precipitation_probability INTEGER;
+
+ALTER TABLE hourlys
+DROP COLUMN relative_humidity;
+
+ALTER TABLE hourlys
+ADD COLUMN relative_humidity INTEGER;
+
+
+ALTER TABLE weathers
+DROP COLUMN relative_humidity;
+
+ALTER TABLE weathers
+ADD COLUMN relative_humidity INTEGER;

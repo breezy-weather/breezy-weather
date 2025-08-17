@@ -51,6 +51,7 @@ import org.breezyweather.sources.metoffice.json.MetOfficeHourly
 import org.breezyweather.unit.distance.Distance.Companion.meters
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.pressure.Pressure.Companion.pascals
+import org.breezyweather.unit.ratio.Ratio.Companion.percent
 import org.breezyweather.unit.speed.Speed.Companion.metersPerSecond
 import org.breezyweather.unit.temperature.Temperature.Companion.celsius
 import retrofit2.Retrofit
@@ -135,10 +136,10 @@ class MetOfficeService @Inject constructor(
                         feelsLike = result.dayMaxFeelsLikeTemp?.celsius
                     ),
                     precipitationProbability = PrecipitationProbability(
-                        total = result.dayProbabilityOfPrecipitation?.toDouble(),
-                        rain = result.dayProbabilityOfRain?.toDouble(),
-                        snow = result.dayProbabilityOfSnow?.toDouble(),
-                        thunderstorm = result.dayProbabilityOfSferics?.toDouble()
+                        total = result.dayProbabilityOfPrecipitation?.percent,
+                        rain = result.dayProbabilityOfRain?.percent,
+                        snow = result.dayProbabilityOfSnow?.percent,
+                        thunderstorm = result.dayProbabilityOfSferics?.percent
                     )
                 ),
                 night = HalfDayWrapper(
@@ -149,10 +150,10 @@ class MetOfficeService @Inject constructor(
                         feelsLike = result.nightMinFeelsLikeTemp?.celsius
                     ),
                     precipitationProbability = PrecipitationProbability(
-                        total = result.nightProbabilityOfPrecipitation?.toDouble(),
-                        rain = result.nightProbabilityOfRain?.toDouble(),
-                        snow = result.nightProbabilityOfSnow?.toDouble(),
-                        thunderstorm = result.nightProbabilityOfSferics?.toDouble()
+                        total = result.nightProbabilityOfPrecipitation?.percent,
+                        rain = result.nightProbabilityOfRain?.percent,
+                        snow = result.nightProbabilityOfSnow?.percent,
+                        thunderstorm = result.nightProbabilityOfSferics?.percent
                     )
                 ),
                 uV = UV(index = result.maxUvIndex?.toDouble())
@@ -184,7 +185,7 @@ class MetOfficeService @Inject constructor(
                     snow = result.totalSnowAmount?.millimeters
                 ),
                 precipitationProbability = PrecipitationProbability(
-                    total = result.probOfPrecipitation?.toDouble()
+                    total = result.probOfPrecipitation?.percent
                 ),
                 wind = Wind(
                     degree = result.windDirectionFrom10m?.toDouble(),
@@ -194,7 +195,7 @@ class MetOfficeService @Inject constructor(
                 uV = UV(
                     index = result.uvIndex?.toDouble()
                 ),
-                relativeHumidity = result.screenRelativeHumidity,
+                relativeHumidity = result.screenRelativeHumidity?.percent,
                 dewPoint = result.screenDewPointTemperature?.celsius,
                 pressure = result.mslp?.toDouble()?.pascals,
                 visibility = result.visibility?.toDouble()?.meters

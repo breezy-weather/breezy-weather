@@ -107,6 +107,7 @@ import org.breezyweather.unit.precipitation.Precipitation
 import org.breezyweather.unit.precipitation.PrecipitationUnit
 import org.breezyweather.unit.pressure.Pressure
 import org.breezyweather.unit.pressure.PressureUnit
+import org.breezyweather.unit.ratio.Ratio
 import org.breezyweather.unit.speed.Speed
 import org.breezyweather.unit.speed.SpeedUnit
 import org.breezyweather.unit.temperature.Temperature
@@ -480,10 +481,7 @@ class WeatherContentProvider : ContentProvider() {
                 relativeHumidity = getPercentUnit(cur.relativeHumidity),
                 dewPoint = getTemperatureUnit(cur.dewPoint, temperatureUnit),
                 pressure = getPressureUnit(cur.pressure, pressureUnit),
-                cloudCover = getPercentUnit(
-                    cur.cloudCover?.toDouble(),
-                    getCloudCoverDescription(context!!, cur.cloudCover)
-                ),
+                cloudCover = getPercentUnit(cur.cloudCover, cur.cloudCover?.getCloudCoverDescription(context!!)),
                 visibility = getDistanceUnit(cur.visibility, distanceUnit),
                 ceiling = getDistanceUnit(cur.ceiling, distanceUnit)
             )
@@ -562,16 +560,16 @@ class WeatherContentProvider : ContentProvider() {
                 ),
                 cloudCover = BreezyDailyUnit(
                     avg = getPercentUnit(
-                        day.cloudCover?.average?.toDouble(),
-                        getCloudCoverDescription(context!!, day.cloudCover?.average)
+                        day.cloudCover?.average,
+                        day.cloudCover?.average?.getCloudCoverDescription(context!!)
                     ),
                     max = getPercentUnit(
-                        day.cloudCover?.max?.toDouble(),
-                        getCloudCoverDescription(context!!, day.cloudCover?.max)
+                        day.cloudCover?.max,
+                        day.cloudCover?.max?.getCloudCoverDescription(context!!)
                     ),
                     min = getPercentUnit(
-                        day.cloudCover?.min?.toDouble(),
-                        getCloudCoverDescription(context!!, day.cloudCover?.min)
+                        day.cloudCover?.min,
+                        day.cloudCover?.min?.getCloudCoverDescription(context!!)
                     ),
                     summary = null
                 ),
@@ -609,10 +607,7 @@ class WeatherContentProvider : ContentProvider() {
                 relativeHumidity = getPercentUnit(hour.relativeHumidity),
                 dewPoint = getTemperatureUnit(hour.dewPoint, temperatureUnit),
                 pressure = getPressureUnit(hour.pressure, pressureUnit),
-                cloudCover = getPercentUnit(
-                    hour.cloudCover?.toDouble(),
-                    getCloudCoverDescription(context!!, hour.cloudCover)
-                ),
+                cloudCover = getPercentUnit(hour.cloudCover, hour.cloudCover?.getCloudCoverDescription(context!!)),
                 visibility = getDistanceUnit(hour.visibility, distanceUnit)
             )
         }
@@ -870,12 +865,12 @@ class WeatherContentProvider : ContentProvider() {
     }
 
     private fun getPercentUnit(
-        percent: Double?,
+        percent: Ratio?,
         description: String? = null,
     ): BreezyUnit? {
         return percent?.let {
             BreezyUnit(
-                value = it.roundDecimals(1),
+                value = it.inPercent.roundDecimals(1),
                 unit = "percent",
                 description = description
             )

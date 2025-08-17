@@ -25,6 +25,7 @@ import breezyweather.domain.location.model.Location
 import org.breezyweather.R
 import org.breezyweather.common.activities.BreezyActivity
 import org.breezyweather.common.extensions.formatMeasure
+import org.breezyweather.common.extensions.formatPercent
 import org.breezyweather.common.extensions.getThemeColor
 import org.breezyweather.common.options.appearance.DetailScreen
 import org.breezyweather.common.utils.UnitUtils
@@ -66,7 +67,7 @@ class HourlyHumidityAdapter(
                 talkBackBuilder.append(activity.getString(org.breezyweather.unit.R.string.locale_separator))
                     .append(activity.getString(R.string.humidity))
                     .append(activity.getString(R.string.colon_separator))
-                    .append(UnitUtils.formatPercent(activity, it))
+                    .append(it.formatPercent(activity))
             }
             hourly.dewPoint?.let {
                 talkBackBuilder.append(activity.getString(org.breezyweather.unit.R.string.locale_separator))
@@ -91,8 +92,8 @@ class HourlyHumidityAdapter(
                 null,
                 mHighestDewPoint,
                 mLowestDewPoint,
-                hourly.relativeHumidity?.toFloat(),
-                hourly.relativeHumidity?.let { UnitUtils.formatPercent(activity, it) },
+                hourly.relativeHumidity?.inPercent?.toFloat(),
+                hourly.relativeHumidity?.formatPercent(activity, UnitWidth.NARROW),
                 100f,
                 0f
             )

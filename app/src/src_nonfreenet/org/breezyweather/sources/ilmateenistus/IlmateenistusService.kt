@@ -149,32 +149,26 @@ class IlmateenistusService @Inject constructor(
         context: Context,
         forecastResult: IlmateenistusForecastResult,
     ): List<HourlyWrapper> {
-        val hourlyList = mutableListOf<HourlyWrapper>()
         val formatter = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.ENGLISH)
         formatter.timeZone = TimeZone.getTimeZone("Europe/Tallinn")
-        forecastResult.forecast?.tabular?.time?.forEach {
-            if (it.attributes.from != null) {
-                hourlyList.add(
-                    HourlyWrapper(
-                        date = formatter.parse(it.attributes.from)!!,
-                        weatherText = getWeatherText(context, it.phenomen?.attributes?.className),
-                        weatherCode = getWeatherCode(it.phenomen?.attributes?.className),
-                        temperature = TemperatureWrapper(
-                            temperature = it.temperature?.attributes?.value?.toDoubleOrNull()?.celsius
-                        ),
-                        precipitation = Precipitation(
-                            total = it.precipitation?.attributes?.value?.toDoubleOrNull()?.millimeters
-                        ),
-                        wind = Wind(
-                            degree = it.windDirection?.attributes?.deg?.toDoubleOrNull(),
-                            speed = it.windSpeed?.attributes?.mps?.toDoubleOrNull()?.metersPerSecond
-                        ),
-                        pressure = it.pressure?.attributes?.value?.toDoubleOrNull()?.hectopascals
-                    )
-                )
-            }
-        }
-        return hourlyList
+        return forecastResult.forecast?.tabular?.time?.filter { it.attributes.from != null }?.map {
+            HourlyWrapper(
+                date = formatter.parse(it.attributes.from!!)!!,
+                weatherText = getWeatherText(context, it.phenomen?.attributes?.className),
+                weatherCode = getWeatherCode(it.phenomen?.attributes?.className),
+                temperature = TemperatureWrapper(
+                    temperature = it.temperature?.attributes?.value?.toDoubleOrNull()?.celsius
+                ),
+                precipitation = Precipitation(
+                    total = it.precipitation?.attributes?.value?.toDoubleOrNull()?.millimeters
+                ),
+                wind = Wind(
+                    degree = it.windDirection?.attributes?.deg?.toDoubleOrNull(),
+                    speed = it.windSpeed?.attributes?.mps?.toDoubleOrNull()?.metersPerSecond
+                ),
+                pressure = it.pressure?.attributes?.value?.toDoubleOrNull()?.hectopascals
+            )
+        } ?: emptyList()
     }
 
     private fun getWeatherText(

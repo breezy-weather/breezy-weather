@@ -33,6 +33,7 @@ import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Weather
 import org.breezyweather.R
 import org.breezyweather.common.extensions.formatMeasure
+import org.breezyweather.common.extensions.formatPercent
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.getFormattedMediumDayAndMonth
 import org.breezyweather.common.extensions.getFormattedMediumDayAndMonthInAdditionalCalendar
@@ -317,9 +318,8 @@ abstract class AbstractRemoteViewsPresenter {
                         ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "\$ch$",
-                    weather.current?.relativeHumidity?.let {
-                        UnitUtils.formatPercent(context, it)
-                    } ?: context.getString(R.string.null_data_text)
+                    weather.current?.relativeHumidity?.formatPercent(context, UnitWidth.NARROW)
+                        ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "\$cps$",
                     weather.current?.pressure?.formatMeasure(context)
@@ -466,14 +466,14 @@ abstract class AbstractRemoteViewsPresenter {
                     ) ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "$" + i + "dp$",
-                    weather.dailyForecastStartingToday.getOrNull(i)?.day?.precipitationProbability?.total?.let {
-                        UnitUtils.formatPercent(context, it)
-                    } ?: context.getString(R.string.null_data_text)
+                    weather.dailyForecastStartingToday.getOrNull(i)?.day?.precipitationProbability?.total
+                        ?.formatPercent(context, UnitWidth.NARROW)
+                        ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "$" + i + "np$",
-                    weather.dailyForecastStartingToday.getOrNull(i)?.night?.precipitationProbability?.total?.let {
-                        UnitUtils.formatPercent(context, it)
-                    } ?: context.getString(R.string.null_data_text)
+                    weather.dailyForecastStartingToday.getOrNull(i)?.night?.precipitationProbability?.total
+                        ?.formatPercent(context, UnitWidth.NARROW)
+                        ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "$" + i + "dwd$",
                     weather.dailyForecastStartingToday.getOrNull(i)?.day?.wind?.getShortDescription(context)

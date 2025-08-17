@@ -36,13 +36,13 @@ import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.unit.distance.Distance.Companion.meters
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
+import org.breezyweather.unit.ratio.Ratio.Companion.fraction
 import org.breezyweather.unit.speed.Speed.Companion.metersPerSecond
 import org.breezyweather.unit.temperature.Temperature.Companion.celsius
 import java.util.Calendar
 import java.util.Date
 import java.util.TimeZone
 import javax.inject.Inject
-import kotlin.math.roundToInt
 import kotlin.random.Random
 import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.minutes
@@ -146,7 +146,7 @@ class DebugService @Inject constructor() : WeatherSource {
             dewPoint = Math.random().times(10).plus(5).celsius,
             pressure = Math.random().times(100).plus(963).hectopascals,
             visibility = Math.random().times(50000).meters,
-            cloudCover = Math.random().times(100).roundToInt()
+            cloudCover = Math.random().fraction
         )
     }
 

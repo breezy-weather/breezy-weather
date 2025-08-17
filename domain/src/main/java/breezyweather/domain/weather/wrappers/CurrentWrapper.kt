@@ -22,6 +22,7 @@ import breezyweather.domain.weather.model.Wind
 import breezyweather.domain.weather.reference.WeatherCode
 import org.breezyweather.unit.distance.Distance
 import org.breezyweather.unit.pressure.Pressure
+import org.breezyweather.unit.ratio.Ratio
 import org.breezyweather.unit.temperature.Temperature
 
 /**
@@ -33,14 +34,14 @@ data class CurrentWrapper(
     val temperature: TemperatureWrapper? = null,
     val wind: Wind? = null,
     val uV: UV? = null,
-    val relativeHumidity: Double? = null,
+    val relativeHumidity: Ratio? = null,
     val dewPoint: Temperature? = null,
     /**
      * Pressure at sea level
      * Use Kotlin extensions to initialize this value, like 1013.25.hectopascals
      */
     val pressure: Pressure? = null,
-    val cloudCover: Int? = null,
+    val cloudCover: Ratio? = null,
     val visibility: Distance? = null,
     val ceiling: Distance? = null,
     val dailyForecast: String? = null,

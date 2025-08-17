@@ -105,7 +105,7 @@ value class Precipitation internal constructor(
          * The following format is accepted:
          *
          * - The format of string returned by the default [Precipitation.toString] and `toString` in a specific unit,
-         *   e.g. `50000m` or `30.5km`.
+         *   e.g. `5mm` or `1cm`.
          *
          * @throws IllegalArgumentException if the string doesn't represent a precipitation in any of the supported formats.
          */
@@ -122,7 +122,7 @@ value class Precipitation internal constructor(
          * The following formats is accepted:
          *
          * - The format of string returned by the default [Precipitation.toString] and `toString` in a specific unit,
-         *   e.g. `50000m` or `30.5km`.
+         *   e.g. `5mm` or `1cm`.
          */
         fun parseOrNull(value: String): Precipitation? = try {
             parsePrecipitation(value)
@@ -181,7 +181,7 @@ value class Precipitation internal constructor(
      * No more than [unit.decimals.max] decimals will be shown, even if a larger number is requested.
      *
      * @return the value of precipitation in the specified [unit] followed by that unit abbreviated name:
-     * `pa`, `hpa`, `mb`, `atm`, `mmhg`, `inhg`.
+     * `microm`, `mm`, `cm`, `in`, `lpsqm`.
      *
      * @throws IllegalArgumentException if [decimals] is less than zero.
      */
@@ -316,8 +316,6 @@ fun Long.toPrecipitation(unit: PrecipitationUnit): Precipitation {
 
 /**
  * Returns a [Precipitation] equal to this [Double] number of the specified [unit].
- *
- * Depending on its magnitude, the value is rounded to an integer number of nanoseconds or milliseconds.
  *
  * @throws IllegalArgumentException if this `Double` value is `NaN`.
  */

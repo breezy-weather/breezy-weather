@@ -98,6 +98,7 @@ import org.breezyweather.unit.precipitation.Precipitation.Companion.inches
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.precipitation.PrecipitationUnit
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
+import org.breezyweather.unit.ratio.Ratio.Companion.percent
 import org.breezyweather.unit.speed.Speed
 import org.breezyweather.unit.speed.Speed.Companion.kilometersPerHour
 import org.breezyweather.unit.speed.Speed.Companion.milesPerHour
@@ -432,10 +433,10 @@ class AccuService @Inject constructor(
                 gusts = currentResult.WindGust?.Speed?.Metric?.Value?.kilometersPerHour
             ),
             uV = UV(index = currentResult.UVIndex?.toDouble()),
-            relativeHumidity = currentResult.RelativeHumidity?.toDouble(),
+            relativeHumidity = currentResult.RelativeHumidity?.percent,
             dewPoint = currentResult.DewPoint?.Metric?.Value?.celsius,
             pressure = currentResult.Pressure?.Metric?.Value?.hectopascals,
-            cloudCover = currentResult.CloudCover,
+            cloudCover = currentResult.CloudCover?.percent,
             visibility = currentResult.Visibility?.Metric?.Value?.kilometers,
             ceiling = currentResult.Ceiling?.Metric?.Value?.meters,
             dailyForecast = dailyResult?.Headline?.Text,
@@ -465,11 +466,11 @@ class AccuService @Inject constructor(
                         ice = getQuantity(forecasts.Day?.Ice)
                     ),
                     precipitationProbability = PrecipitationProbability(
-                        total = forecasts.Day?.PrecipitationProbability?.toDouble(),
-                        thunderstorm = forecasts.Day?.ThunderstormProbability?.toDouble(),
-                        rain = forecasts.Day?.RainProbability?.toDouble(),
-                        snow = forecasts.Day?.SnowProbability?.toDouble(),
-                        ice = forecasts.Day?.IceProbability?.toDouble()
+                        total = forecasts.Day?.PrecipitationProbability?.percent,
+                        thunderstorm = forecasts.Day?.ThunderstormProbability?.percent,
+                        rain = forecasts.Day?.RainProbability?.percent,
+                        snow = forecasts.Day?.SnowProbability?.percent,
+                        ice = forecasts.Day?.IceProbability?.percent
                     ),
                     precipitationDuration = PrecipitationDuration(
                         total = forecasts.Day?.HoursOfPrecipitation?.hours,
@@ -498,11 +499,11 @@ class AccuService @Inject constructor(
                         ice = getQuantity(forecasts.Night?.Ice)
                     ),
                     precipitationProbability = PrecipitationProbability(
-                        total = forecasts.Night?.PrecipitationProbability?.toDouble(),
-                        thunderstorm = forecasts.Night?.ThunderstormProbability?.toDouble(),
-                        rain = forecasts.Night?.RainProbability?.toDouble(),
-                        snow = forecasts.Night?.SnowProbability?.toDouble(),
-                        ice = forecasts.Night?.IceProbability?.toDouble()
+                        total = forecasts.Night?.PrecipitationProbability?.percent,
+                        thunderstorm = forecasts.Night?.ThunderstormProbability?.percent,
+                        rain = forecasts.Night?.RainProbability?.percent,
+                        snow = forecasts.Night?.SnowProbability?.percent,
+                        ice = forecasts.Night?.IceProbability?.percent
                     ),
                     precipitationDuration = PrecipitationDuration(
                         total = forecasts.Night?.HoursOfPrecipitation?.hours,
@@ -588,11 +589,11 @@ class AccuService @Inject constructor(
                     ice = getQuantity(result.Ice)
                 ),
                 precipitationProbability = PrecipitationProbability(
-                    total = result.PrecipitationProbability?.toDouble(),
-                    thunderstorm = result.ThunderstormProbability?.toDouble(),
-                    rain = result.RainProbability?.toDouble(),
-                    snow = result.SnowProbability?.toDouble(),
-                    ice = result.IceProbability?.toDouble()
+                    total = result.PrecipitationProbability?.percent,
+                    thunderstorm = result.ThunderstormProbability?.percent,
+                    rain = result.RainProbability?.percent,
+                    snow = result.SnowProbability?.percent,
+                    ice = result.IceProbability?.percent
                 ),
                 wind = Wind(
                     degree = result.Wind?.Direction?.Degrees?.toDouble(),
@@ -600,9 +601,9 @@ class AccuService @Inject constructor(
                     gusts = getSpeedInMetersPerSecond(result.WindGust?.Speed)
                 ),
                 uV = UV(index = result.UVIndex?.toDouble()),
-                relativeHumidity = result.RelativeHumidity?.toDouble(),
+                relativeHumidity = result.RelativeHumidity?.percent,
                 dewPoint = getTemperature(result.DewPoint),
-                cloudCover = result.CloudCover,
+                cloudCover = result.CloudCover?.percent,
                 visibility = getDistance(result.Visibility)
             )
         }

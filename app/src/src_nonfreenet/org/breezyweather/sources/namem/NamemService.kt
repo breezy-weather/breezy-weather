@@ -62,6 +62,7 @@ import org.breezyweather.unit.pollutant.PollutantConcentration.Companion.microgr
 import org.breezyweather.unit.pollutant.PollutantConcentration.Companion.milligramsPerCubicMeter
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
+import org.breezyweather.unit.ratio.Ratio.Companion.percent
 import org.breezyweather.unit.speed.Speed.Companion.metersPerSecond
 import org.breezyweather.unit.temperature.Temperature.Companion.celsius
 import retrofit2.Retrofit
@@ -253,7 +254,7 @@ class NamemService @Inject constructor(
                 degree = current?.windDir,
                 speed = current?.windSpeed?.metersPerSecond
             ),
-            relativeHumidity = current?.ff,
+            relativeHumidity = current?.ff?.percent,
             pressure = current?.pslp?.hectopascals
         )
     }
@@ -330,7 +331,7 @@ class NamemService @Inject constructor(
                                 feelsLike = forecast.temNFeel?.celsius
                             ),
                             precipitationProbability = PrecipitationProbability(
-                                total = forecast.wwNPer
+                                total = forecast.wwNPer?.percent
                             ),
                             wind = Wind(
                                 speed = forecast.wndN?.metersPerSecond
@@ -350,7 +351,7 @@ class NamemService @Inject constructor(
                             feelsLike = forecast.temDFeel?.celsius
                         ),
                         precipitationProbability = PrecipitationProbability(
-                            total = forecast.wwDPer
+                            total = forecast.wwDPer?.percent
                         ),
                         wind = Wind(
                             speed = forecast.wndD?.metersPerSecond
@@ -365,7 +366,7 @@ class NamemService @Inject constructor(
                                 feelsLike = it.temNFeel?.celsius
                             ),
                             precipitationProbability = PrecipitationProbability(
-                                total = it.wwNPer
+                                total = it.wwNPer?.percent
                             ),
                             wind = Wind(
                                 speed = it.wndN?.metersPerSecond
@@ -394,7 +395,7 @@ class NamemService @Inject constructor(
                             total = it.pre?.toDoubleOrNull()?.millimeters
                         ),
                         precipitationProbability = PrecipitationProbability(
-                            total = it.preProb?.toDoubleOrNull()
+                            total = it.preProb?.toDoubleOrNull()?.percent
                         ),
                         wind = Wind(
                             speed = it.wnd?.toDoubleOrNull()?.metersPerSecond

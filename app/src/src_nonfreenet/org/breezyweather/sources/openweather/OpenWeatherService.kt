@@ -55,6 +55,8 @@ import org.breezyweather.unit.distance.Distance.Companion.meters
 import org.breezyweather.unit.pollutant.PollutantConcentration.Companion.microgramsPerCubicMeter
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
+import org.breezyweather.unit.ratio.Ratio.Companion.fraction
+import org.breezyweather.unit.ratio.Ratio.Companion.percent
 import org.breezyweather.unit.speed.Speed.Companion.metersPerSecond
 import org.breezyweather.unit.temperature.Temperature.Companion.celsius
 import retrofit2.Retrofit
@@ -187,10 +189,10 @@ class OpenWeatherService @Inject constructor(
                 speed = currentResult.wind?.speed?.metersPerSecond,
                 gusts = currentResult.wind?.gust?.metersPerSecond
             ),
-            relativeHumidity = currentResult.main?.humidity?.toDouble(),
+            relativeHumidity = currentResult.main?.humidity?.percent,
             pressure = currentResult.main?.pressure?.hectopascals,
-            cloudCover = currentResult.clouds?.all,
-            visibility = currentResult.visibility?.toDouble()?.meters
+            cloudCover = currentResult.clouds?.all?.percent,
+            visibility = currentResult.visibility?.meters
         )
     }
 
@@ -234,16 +236,16 @@ class OpenWeatherService @Inject constructor(
                     rain = result.rain?.cumul3h?.millimeters,
                     snow = result.snow?.cumul3h?.millimeters
                 ),
-                precipitationProbability = PrecipitationProbability(total = result.pop?.times(100.0)),
+                precipitationProbability = PrecipitationProbability(total = result.pop?.fraction),
                 wind = Wind(
                     degree = result.wind?.deg?.toDouble(),
                     speed = result.wind?.speed?.metersPerSecond,
                     gusts = result.wind?.gust?.metersPerSecond
                 ),
-                relativeHumidity = result.main?.humidity?.toDouble(),
+                relativeHumidity = result.main?.humidity?.percent,
                 pressure = result.main?.pressure?.hectopascals,
-                cloudCover = result.clouds?.all,
-                visibility = result.visibility?.toDouble()?.meters
+                cloudCover = result.clouds?.all?.percent,
+                visibility = result.visibility?.meters
             )
         }
     }

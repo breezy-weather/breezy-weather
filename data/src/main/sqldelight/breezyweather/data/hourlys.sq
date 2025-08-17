@@ -4,6 +4,7 @@ import org.breezyweather.unit.distance.Distance;
 import org.breezyweather.unit.pollutant.PollutantConcentration;
 import org.breezyweather.unit.precipitation.Precipitation;
 import org.breezyweather.unit.pressure.Pressure;
+import org.breezyweather.unit.ratio.Ratio;
 import org.breezyweather.unit.speed.Speed;
 import org.breezyweather.unit.temperature.Temperature;
 
@@ -29,11 +30,11 @@ CREATE TABLE hourlys(
     snow_precipitation INTEGER AS Precipitation,
     ice_precipitation INTEGER AS Precipitation,
 
-    total_precipitation_probability REAL,
-    thunderstorm_precipitation_probability REAL,
-    rain_precipitation_probability REAL,
-    snow_precipitation_probability REAL,
-    ice_precipitation_probability REAL,
+    total_precipitation_probability INTEGER AS Ratio,
+    thunderstorm_precipitation_probability INTEGER AS Ratio,
+    rain_precipitation_probability INTEGER AS Ratio,
+    snow_precipitation_probability INTEGER AS Ratio,
+    ice_precipitation_probability INTEGER AS Ratio,
 
     wind_degree REAL,
     wind_speed INTEGER AS Speed,
@@ -50,10 +51,10 @@ CREATE TABLE hourlys(
     uvIndex REAL,
 
     -- details
-    relative_humidity REAL,
+    relative_humidity INTEGER AS Ratio,
     dew_point INTEGER AS Temperature,
     pressure INTEGER AS Pressure,
-    cloud_cover INTEGER,
+    cloud_cover INTEGER AS Ratio,
     visibility INTEGER AS Distance,
 
     UNIQUE(location_formatted_id, date) ON CONFLICT REPLACE,

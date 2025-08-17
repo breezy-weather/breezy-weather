@@ -43,6 +43,7 @@ import org.breezyweather.sources.smhi.json.SmhiTimeSeries
 import org.breezyweather.unit.distance.Distance.Companion.kilometers
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
+import org.breezyweather.unit.ratio.Ratio.Companion.percent
 import org.breezyweather.unit.speed.Speed.Companion.metersPerSecond
 import org.breezyweather.unit.temperature.Temperature.Companion.celsius
 import retrofit2.Retrofit
@@ -153,14 +154,14 @@ class SmhiService @Inject constructor(
                     total = result.parameters.firstOrNull { it.name == "pmean" }?.values?.getOrNull(0)?.millimeters
                 ),
                 precipitationProbability = PrecipitationProbability(
-                    thunderstorm = result.parameters.firstOrNull { it.name == "tstm" }?.values?.getOrNull(0)
+                    thunderstorm = result.parameters.firstOrNull { it.name == "tstm" }?.values?.getOrNull(0)?.percent
                 ),
                 wind = Wind(
                     degree = result.parameters.firstOrNull { it.name == "wd" }?.values?.getOrNull(0),
                     speed = result.parameters.firstOrNull { it.name == "ws" }?.values?.getOrNull(0)?.metersPerSecond,
                     gusts = result.parameters.firstOrNull { it.name == "gust" }?.values?.getOrNull(0)?.metersPerSecond
                 ),
-                relativeHumidity = result.parameters.firstOrNull { it.name == "r" }?.values?.getOrNull(0),
+                relativeHumidity = result.parameters.firstOrNull { it.name == "r" }?.values?.getOrNull(0)?.percent,
                 pressure = result.parameters.firstOrNull { it.name == "msl" }?.values?.getOrNull(0)?.hectopascals,
                 visibility = result.parameters.firstOrNull { it.name == "vis" }?.values?.getOrNull(0)?.kilometers
             )

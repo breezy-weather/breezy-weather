@@ -75,6 +75,7 @@ import org.breezyweather.sources.mf.json.MfWarningsOverseasResult
 import org.breezyweather.sources.mf.json.MfWarningsResult
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
+import org.breezyweather.unit.ratio.Ratio.Companion.percent
 import org.breezyweather.unit.speed.Speed.Companion.metersPerSecond
 import org.breezyweather.unit.temperature.Temperature.Companion.celsius
 import retrofit2.Retrofit
@@ -450,8 +451,8 @@ class MfService @Inject constructor(
                     ),
                     uV = UV(index = dailyForecast.uvIndex?.toDouble()),
                     relativeHumidity = DailyRelativeHumidity(
-                        min = dailyForecast.relativeHumidityMin?.toDouble(),
-                        max = dailyForecast.relativeHumidityMax?.toDouble()
+                        min = dailyForecast.relativeHumidityMin?.percent,
+                        max = dailyForecast.relativeHumidityMax?.percent
                     )
                 )
             )
@@ -482,9 +483,9 @@ class MfService @Inject constructor(
                     speed = hourlyForecast.windSpeed?.metersPerSecond,
                     gusts = hourlyForecast.windSpeedGust?.metersPerSecond
                 ),
-                relativeHumidity = hourlyForecast.relativeHumidity?.toDouble(),
+                relativeHumidity = hourlyForecast.relativeHumidity?.percent,
                 pressure = hourlyForecast.pSea?.hectopascals,
-                cloudCover = hourlyForecast.totalCloudCover
+                cloudCover = hourlyForecast.totalCloudCover?.percent
             )
         }
     }
@@ -561,11 +562,13 @@ class MfService @Inject constructor(
             }
         }
         return PrecipitationProbability(
-            maxOf(rainProbability ?: 0.0, snowProbability ?: 0.0, iceProbability ?: 0.0),
+            maxOf(rainProbability ?: 0.0, snowProbability ?: 0.0, iceProbability ?: 0.0)
+                .takeIf { rainProbability != null || snowProbability != null || iceProbability != null }
+                ?.percent,
             null,
-            rainProbability,
-            snowProbability,
-            iceProbability
+            rainProbability?.percent,
+            snowProbability?.percent,
+            iceProbability?.percent
         )
     }
 

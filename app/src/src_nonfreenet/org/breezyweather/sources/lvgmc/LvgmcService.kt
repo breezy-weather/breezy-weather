@@ -57,6 +57,7 @@ import org.breezyweather.unit.pollutant.PollutantConcentration.Companion.microgr
 import org.breezyweather.unit.pollutant.PollutantConcentration.Companion.milligramsPerCubicMeter
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
+import org.breezyweather.unit.ratio.Ratio.Companion.percent
 import org.breezyweather.unit.speed.Speed.Companion.metersPerSecond
 import org.breezyweather.unit.temperature.Temperature.Companion.celsius
 import retrofit2.Retrofit
@@ -247,7 +248,7 @@ class LvgmcService @Inject constructor(
                     uV = UV(
                         index = it.uvIndex?.toDoubleOrNull()
                     ),
-                    relativeHumidity = it.relativeHumidity?.toDoubleOrNull(),
+                    relativeHumidity = it.relativeHumidity?.toDoubleOrNull()?.percent,
                     pressure = it.pressure?.toDoubleOrNull()?.hectopascals,
                     visibility = it.visibility?.toDoubleOrNull()?.meters
                 )
@@ -360,8 +361,8 @@ class LvgmcService @Inject constructor(
                         snow = it.snow?.toDoubleOrNull()?.millimeters
                     ),
                     precipitationProbability = PrecipitationProbability(
-                        total = it.precipitationProbability?.toDoubleOrNull(),
-                        thunderstorm = it.thunderstormProbability?.toDoubleOrNull()
+                        total = it.precipitationProbability?.toDoubleOrNull()?.percent,
+                        thunderstorm = it.thunderstormProbability?.toDoubleOrNull()?.percent
                     ),
                     wind = Wind(
                         degree = it.windDirection?.toDoubleOrNull(),
@@ -371,9 +372,9 @@ class LvgmcService @Inject constructor(
                     uV = UV(
                         index = it.uvIndex?.toDoubleOrNull()
                     ),
-                    relativeHumidity = it.relativeHumidity?.toDoubleOrNull(),
+                    relativeHumidity = it.relativeHumidity?.toDoubleOrNull()?.percent,
                     pressure = it.pressure?.toDoubleOrNull()?.hectopascals,
-                    cloudCover = it.cloudCover?.toIntOrNull()
+                    cloudCover = it.cloudCover?.toDoubleOrNull()?.percent
                 )
             }
     }

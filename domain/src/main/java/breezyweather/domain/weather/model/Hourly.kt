@@ -20,6 +20,7 @@ import breezyweather.domain.weather.reference.WeatherCode
 import breezyweather.domain.weather.wrappers.HourlyWrapper
 import org.breezyweather.unit.distance.Distance
 import org.breezyweather.unit.pressure.Pressure
+import org.breezyweather.unit.ratio.Ratio
 import java.io.Serializable
 import java.util.Date
 
@@ -37,14 +38,14 @@ data class Hourly(
     val wind: Wind? = null,
     val airQuality: AirQuality? = null,
     val uV: UV? = null,
-    val relativeHumidity: Double? = null,
+    val relativeHumidity: Ratio? = null,
     val dewPoint: org.breezyweather.unit.temperature.Temperature? = null,
     /**
      * Pressure at sea level
      * Use Kotlin extensions to initialize this value, like 1013.25.hectopascals
      */
     val pressure: Pressure? = null,
-    val cloudCover: Int? = null,
+    val cloudCover: Ratio? = null,
     val visibility: Distance? = null,
 ) : Serializable {
 

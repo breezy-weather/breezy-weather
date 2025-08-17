@@ -63,6 +63,8 @@ import org.breezyweather.sources.hko.json.HkoNormalsResult
 import org.breezyweather.sources.hko.json.HkoOneJsonResult
 import org.breezyweather.sources.hko.json.HkoWarningResult
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
+import org.breezyweather.unit.ratio.Ratio
+import org.breezyweather.unit.ratio.Ratio.Companion.percent
 import org.breezyweather.unit.speed.Speed.Companion.kilometersPerHour
 import org.breezyweather.unit.temperature.Temperature.Companion.celsius
 import org.json.JSONObject
@@ -337,7 +339,7 @@ class HkoService @Inject constructor(
             uV = UV(
                 index = oneJson.RHRREAD?.UVIndex?.toDoubleOrNull()
             ),
-            relativeHumidity = regionalWeather?.RH?.Value?.toDoubleOrNull(),
+            relativeHumidity = regionalWeather?.RH?.Value?.toDoubleOrNull()?.percent,
             pressure = regionalWeather?.Pressure?.Value?.toDoubleOrNull()?.hectopascals,
             dailyForecast = oneJson.F9D?.WeatherForecast?.getOrElse(0) { null }?.ForecastWeather
         )
@@ -496,7 +498,7 @@ class HkoService @Inject constructor(
                                 degree = value.ForecastWindDirection,
                                 speed = value.ForecastWindSpeed?.kilometersPerHour
                             ),
-                            relativeHumidity = value.ForecastRelativeHumidity
+                            relativeHumidity = value.ForecastRelativeHumidity?.percent
                         )
                     )
                 }
@@ -935,7 +937,7 @@ class HkoService @Inject constructor(
 
     private fun getPrecipitationProbability(
         probability: String?,
-    ): Double? {
+    ): Ratio? {
         return when (probability) {
             "<10%" -> 10.0
             "20%" -> 20.0
@@ -944,7 +946,7 @@ class HkoService @Inject constructor(
             "80%" -> 80.0
             ">90%" -> 90.0
             else -> null
-        }
+        }?.percent
     }
 
     private fun getAlertColor(

@@ -51,6 +51,7 @@ import org.breezyweather.sources.dmi.json.DmiWarningResult
 import org.breezyweather.unit.distance.Distance.Companion.meters
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
+import org.breezyweather.unit.ratio.Ratio.Companion.percent
 import org.breezyweather.unit.speed.Speed.Companion.metersPerSecond
 import org.breezyweather.unit.temperature.Temperature.Companion.celsius
 import retrofit2.Retrofit
@@ -214,7 +215,7 @@ class DmiService @Inject constructor(
                     speed = result.windSpeed?.metersPerSecond,
                     gusts = result.windGust?.metersPerSecond
                 ),
-                relativeHumidity = result.humidity,
+                relativeHumidity = result.humidity?.percent,
                 pressure = result.pressure?.hectopascals,
                 visibility = result.visibility?.meters
             )

@@ -16,21 +16,20 @@
 
 package breezyweather.domain.weather.model
 
+import org.breezyweather.unit.ratio.Ratio
 import java.io.Serializable
 
 /**
  * Precipitation duration.
- *
- * default unit : [ProbabilityUnit.PERCENT]
  */
 data class PrecipitationProbability(
-    val total: Double? = null,
-    val thunderstorm: Double? = null,
-    val rain: Double? = null,
-    val snow: Double? = null,
-    val ice: Double? = null,
+    val total: Ratio? = null,
+    val thunderstorm: Ratio? = null,
+    val rain: Ratio? = null,
+    val snow: Ratio? = null,
+    val ice: Ratio? = null,
 ) : Serializable {
 
     val isValid: Boolean
-        get() = total != null && total > 0
+        get() = total != null && total.value > 0
 }

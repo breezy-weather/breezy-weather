@@ -71,19 +71,17 @@ enum class DetailScreen(
                                 (it.uV?.index ?: 0.0) > 0.0
                             } == true
                         TAG_HUMIDITY -> location.weather?.dailyForecast?.any {
-                            (it.relativeHumidity?.min ?: 0.0) > 0.0 || (it.relativeHumidity?.max ?: 0.0) > 0.0
+                            it.relativeHumidity?.min != null || it.relativeHumidity?.max != null
                         } == true ||
                             location.weather?.hourlyForecast?.any {
-                                (it.relativeHumidity ?: 0.0) > 0.0 || (it.dewPoint ?: 0.0) != 0.0
+                                it.relativeHumidity != null || it.dewPoint != null
                             } == true
                         TAG_PRESSURE -> location.weather?.dailyForecast?.any { it.pressure?.average != null } == true ||
                             location.weather?.hourlyForecast?.any { it.pressure != null } == true
                         TAG_CLOUD_COVER -> location.weather?.dailyForecast?.any {
-                            (it.cloudCover?.min ?: 0) > 0 || (it.cloudCover?.max ?: 0) > 0
+                            it.cloudCover?.min != null || it.cloudCover?.max != null
                         } == true ||
-                            location.weather?.hourlyForecast?.any {
-                                (it.cloudCover ?: 0) > 0
-                            } == true
+                            location.weather?.hourlyForecast?.any { it.cloudCover != null } == true
                         TAG_VISIBILITY -> location.weather?.dailyForecast?.any {
                             it.visibility?.min != null || it.visibility?.max != null
                         } == true ||

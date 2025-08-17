@@ -36,9 +36,11 @@ import android.view.animation.DecelerateInterpolator
 import android.view.animation.Interpolator
 import android.view.animation.OvershootInterpolator
 import androidx.annotation.AttrRes
+import androidx.annotation.ColorRes
 import androidx.annotation.Px
 import androidx.annotation.Size
 import androidx.annotation.StyleRes
+import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.createBitmap
 import androidx.core.view.WindowInsetsControllerCompat
 import com.google.android.material.resources.TextAppearance
@@ -203,6 +205,10 @@ fun Context.getThemeColor(
     val typedValue = TypedValue()
     theme.resolveAttribute(id, typedValue, true)
     return typedValue.data
+}
+
+fun Context.getColorResource(@ColorRes id: Int): androidx.compose.ui.graphics.Color {
+    return androidx.compose.ui.graphics.Color(ResourcesCompat.getColor(resources, id, theme))
 }
 
 @Suppress("DEPRECATION")
