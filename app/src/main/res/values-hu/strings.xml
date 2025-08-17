@@ -775,4 +775,7 @@
     <string name="broadcast_source_breezy_weather_update_notifier">Frissítési értesítő a helyszínhez: %s</string>
     <string name="action_add_as_location">Hozzáadás helyszínként</string>
     <string name="settings_regional_preference">Régióbeállítás</string>
+    <string name="widget_live_wallpaper_animations_enable_warning1">A háttérkép-animációkról ismert, hogy többek között a következőket okozzák: magas akkumulátor-fogyasztás; az akkumulátor túlmelegedése; magas memóriafogyasztás; a rendszer érzékenységének romlása; az Android rendszer összeomlása.</string>
+    <string name="widget_live_wallpaper_animations_enable_warning2">Ha úgy dönt, hogy engedélyezi őket, teljes felelősséget vállal az esetlegesen felmerülő problémákért, és nem kap támogatást.</string>
+    <string name="widget_live_wallpaper_animations_enable_dangerous">VESZÉLYES</string>
 </resources>
