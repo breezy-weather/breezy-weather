@@ -211,6 +211,7 @@ val appTranslators = arrayOf(
     TranslatorItem(arrayOf("el"), "giwrgosmant", github = "giwrgosmant"),
     TranslatorItem(arrayOf("el"), "Steven Shehata", weblate = "Stidon"),
     TranslatorItem(arrayOf("el"), "Lefteris T.", github = "trlef19"),
+    TranslatorItem(arrayOf("el"), "Makis", github = "80-svg"),
     TranslatorItem(arrayOf("eo"), "phlostically", weblate = "phlostically"),
     TranslatorItem(arrayOf("eo"), "Oasis Tri", weblate = "Oasis3"),
     TranslatorItem(arrayOf("eo", "cs"), "Valentin Lluba", weblate = "circulate"),
