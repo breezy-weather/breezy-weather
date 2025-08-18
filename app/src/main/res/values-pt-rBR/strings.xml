@@ -146,7 +146,7 @@
     <string name="location_message_added">Localização adicionada com sucesso</string>
     <string name="location_message_deleted">Localização removida</string>
     <string name="location_message_list_cannot_be_empty">A lista de localizações não pode estar vazia</string>
-    <string name="location_search_placeholder">Pesquisar por uma localização…</string>
+    <string name="location_search_placeholder">Pesquise por uma localização…</string>
     <string name="location_current_not_found_yet">Localização atual ainda não encontrada…</string>
     <string name="settings_changes_apply_after_restart">As alterações terão efeito após reiniciar</string>
     <string name="notification_running_in_background">Funcionando em segundo plano para continuar atualizando</string>
@@ -761,8 +761,8 @@
     <string name="visibility_poor">Ruim</string>
     <string name="visibility_moderate">Moderada</string>
     <string name="visibility_good">Boa</string>
-    <string name="visibility_clear">Clara</string>
-    <string name="visibility_perfectly_clear">Perfeitamente clara</string>
+    <string name="visibility_clear">Limpo</string>
+    <string name="visibility_perfectly_clear">Perfeitamente limpo</string>
     <string name="cloud_cover_about">Sobre a nebulosidade</string>
     <string name="cloud_cover_about_description">A nebulosidade refere-se à porcentagem do céu coberta por nuvens, em média. A nebulosidade está correlacionada com a duração da luz solar.</string>
     <string name="data_sources">Fontes de dados</string>
@@ -834,4 +834,7 @@
     <string name="broadcast_source_breezy_weather_update_notifier">Notificante de atualização de localização do %s</string>
     <string name="action_add_as_location">Adicionar como localização</string>
     <string name="settings_regional_preference">Preferência regional</string>
+    <string name="widget_live_wallpaper_animations_enable_dangerous">PERIGOSO</string>
+    <string name="widget_live_wallpaper_animations_enable_warning1">Animações no plano de fundo são conhecidas por causar, entre outras coisas: alto consumo da bateria; superaquecimento da bateria; alto consumo da memória; responsividade degradada do sistema; congelamento do sistema Android.</string>
+    <string name="widget_live_wallpaper_animations_enable_warning2">Se decidir ativá-las, você tem responsabilidade total por qualquer problema que aparecer, e não será oferecido suporte.</string>
 </resources>
