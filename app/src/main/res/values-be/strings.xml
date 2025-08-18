@@ -359,7 +359,7 @@
     <string name="settings_notifications_forecast_tomorrow_title">Апавяшчэнне з прагнозам на наступны дзень</string>
     <string name="settings_notifications_forecast_time_tomorrow_title">Час апавяшчэння з прагнозам на наступны дзень</string>
     <string name="settings_modules">Віджэты і жывыя шпалеры</string>
-    <string name="settings_modules_summary">Шпалеры, налады выкарыстаных віджэтаў, віджэт у апавяшчэннях</string>
+    <string name="settings_modules_summary">Віджэты, шпалеры, віджэт у апавяшчэннях, перадача даных іншым праграмам</string>
     <string name="settings_modules_live_wallpaper_title">Жывыя шпалеры</string>
     <string name="settings_modules_live_wallpaper_summary">Усталюйце анімацыю надвор’я ў якасці шпалер</string>
     <string name="settings_modules_live_wallpaper_error">Не ўдалося запусціць сродак выбару шпалер. Вы па-ранейшаму можаце ўключыць шпалеры %s, выбраўшы Жывыя шпалеры ў меню выбару шпалер на галоўным экране.</string>
@@ -756,4 +756,15 @@
     <string name="message_incompatible_times_content">Змяніце крыніцу даных для прагнозу або для якасці паветра, каб час супадаў.</string>
     <string name="message_incompatible_times_title">Не супадае час прагнозаў</string>
     <string name="weather_source_recommended">Рэкамендавана</string>
+    <string name="humidity_from_to_number">%1$s–%2$s</string>
+    <string name="dew_point_from_to_number">%1$s–%2$s</string>
+    <string name="visibility_scale">Шкала бачнасці</string>
+    <string name="cloud_cover_from_to_number">%1$s–%2$s</string>
+    <string name="cloud_cover_from_to_description">%1$s – %2$s</string>
+    <string name="cloud_cover_scale">Шкала ацэнкі воблачнасці</string>
+    <string name="broadcast_source_breezy_weather_update_notifier">Апавяшчэнне пра абнаўленне месцазнаходжання %s</string>
+    <string name="action_add_as_location">Дадаць як месцазнаходжанне</string>
+    <string name="widget_live_wallpaper_animations_enable_dangerous">НЕБЯСПЕКА</string>
+    <string name="common_weather_text_mostly_cloudy">Пераважна воблачна</string>
+    <string name="settings_regional_preference">З рэгіянальных налад</string>
 </resources>
