@@ -857,4 +857,7 @@
     <string name="broadcast_source_breezy_weather_update_notifier">%s 位置更新通知</string>
     <string name="action_add_as_location">添加为位置</string>
     <string name="settings_regional_preference">地区偏好</string>
+    <string name="widget_live_wallpaper_animations_enable_dangerous">危险</string>
+    <string name="widget_live_wallpaper_animations_enable_warning1">壁纸动画已知会导致高电量消耗、电池过热、高内存消耗、系统响应变慢、Android 系统崩溃等在内的问题。</string>
+    <string name="widget_live_wallpaper_animations_enable_warning2">如果决定启用，您对任何可能引发的问题承担全部责任，且开发者不会提供支持。</string>
 </resources>
