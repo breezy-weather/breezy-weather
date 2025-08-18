@@ -11,11 +11,11 @@
     <!-- Temperature units -->
 
     <!-- Decidegree Celsius -->
-    <string name="temperature_dc_display_name_short">°C</string>
-    <string name="temperature_dc_display_name_long">@string/temperature_dc_display_name_short</string>
-    <string name="temperature_dc_nominative_narrow">%sd°</string>
-    <string name="temperature_dc_nominative_short">%sd°C</string>
-    <string name="temperature_dc_nominative_long">@string/temperature_dc_nominative_short</string>
+    <string name="temperature_dc_display_name_short" translatable="false">d°C</string>
+    <string name="temperature_dc_display_name_long" translatable="false">@string/temperature_dc_display_name_short</string>
+    <string name="temperature_dc_nominative_narrow" translatable="false">%sd°</string>
+    <string name="temperature_dc_nominative_short" translatable="false">%sd°C</string>
+    <string name="temperature_dc_nominative_long" translatable="false">@string/temperature_dc_nominative_short</string>
 
     <!-- Degree Celsius -->
     <string name="temperature_c_display_name_short">°C</string>
@@ -63,10 +63,6 @@
     <string name="length_m_display_name_long">@string/length_m_display_name_short</string>
     <string name="length_m_nominative_short">%s m</string>
     <string name="length_m_nominative_long">@string/length_m_nominative_short</string>
-    <string name="length_m2_per_short">%s/m²</string>
-    <string name="length_m2_per_long">@string/length_m2_per_short</string>
-    <string name="length_m3_per_short">%s/m³</string>
-    <string name="length_m3_per_long">@string/length_m3_per_short</string>
 
     <!-- Kilometer -->
     <string name="length_km_display_name_short">km</string>
@@ -98,6 +94,12 @@
     <string name="length_nmi_nominative_short">%s nmi</string>
     <string name="length_nmi_nominative_long">@string/length_nmi_nominative_short</string>
 
+    <!-- Area units -->
+
+    <!-- Square meter -->
+    <string name="area_m2_per_short">%s/m²</string>
+    <string name="area_m2_per_long">@string/area_m2_per_short</string>
+
     <!-- Speed units -->
 
     <!-- Knot -->
@@ -107,12 +109,16 @@
     <string name="speed_kn_nominative_long">@string/speed_kn_nominative_short</string>
 
     <!-- Beaufort scale -->
-    <string name="speed_bf_display_name_short">Bf</string>
+    <string name="speed_bf_display_name_short">Bft</string>
     <string name="speed_bf_display_name_long">@string/speed_bf_display_name_short</string>
     <string name="speed_bf_nominative_short">%s Bft</string>
     <string name="speed_bf_nominative_long">@string/speed_bf_nominative_short</string>
 
     <!-- Volume units -->
+
+    <!-- Cubic meter -->
+    <string name="volume_m3_per_short">%s/m³</string>
+    <string name="volume_m3_per_long">@string/volume_m3_per_short</string>
 
     <!-- Liter -->
     <string name="volume_l_display_name_short">l</string>

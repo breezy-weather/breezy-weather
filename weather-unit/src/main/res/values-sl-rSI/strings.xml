@@ -5,6 +5,28 @@
     <!-- Based on https://www.unicode.org/cldr/charts/47/summary/sl.html -->
     <!-- If you believe there is an error, please open a discussion -->
 
+    <!-- Area units -->
+
+    <!-- Square meter -->
+    <string name="area_m2_per_long">%s na kvadratni meter</string>
+
+    <!-- Speed units -->
+
+    <!-- Beaufort scale -->
+    <string name="speed_bf_display_name_short">Bf</string>
+    <string name="speed_bf_display_name_long">bofor</string>
+    <string name="speed_bf_nominative_short">%s Bf</string>
+    <string name="speed_bf_nominative_long">%s bofori</string>
+
+    <!-- Volume units -->
+
+    <!-- Cubic meter -->
+    <string name="volume_m3_per_long">%s na kubični meter</string>
+
+    <!-- Liter -->
+    <string name="volume_l_display_name_long">litri</string>
+    <string name="volume_l_nominative_long">%s litri</string>
+
     <!-- Pressure units -->
 
     <!-- Pascal -->

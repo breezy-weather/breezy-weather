@@ -114,8 +114,8 @@ enum class PrecipitationUnit(
             long = R.string.volume_l_nominative_long
         ),
         per = UnitTranslation(
-            short = R.string.length_m2_per_short,
-            long = R.string.length_m2_per_long
+            short = R.string.area_m2_per_short,
+            long = R.string.area_m2_per_long
         ),
         measureUnit = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) MeasureUnit.LITER else null,
         perMeasureUnit = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) MeasureUnit.SQUARE_METER else null,
@@ -140,6 +140,20 @@ enum class PrecipitationUnit(
         useNumberFormatter: Boolean,
         useMeasureFormat: Boolean,
     ): String {
+        // Translations missing for Esperanto in CLDR
+        if (locale.language.equals("eo", ignoreCase = true) && this == LITER_PER_SQUARE_METER) {
+            return formatWithAndroidTranslations(
+                context = context,
+                value = value,
+                valueWidth = valueWidth,
+                unitWidth = unitWidth,
+                locale = locale,
+                showSign = showSign,
+                useNumberFormatter = useNumberFormatter,
+                useMeasureFormat = useMeasureFormat
+            )
+        }
+
         val correctedLocale = locale.let {
             /**
              * Taiwan guidelines: https://www.bsmi.gov.tw/wSite/public/Attachment/f1736149048776.pdf

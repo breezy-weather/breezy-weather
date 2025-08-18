@@ -38,12 +38,12 @@ enum class PollenConcentrationUnit(
     PER_CUBIC_METER(
         "pcum",
         displayName = UnitTranslation(
-            short = R.string.length_m3_per_short,
-            long = R.string.length_m3_per_long
+            short = R.string.volume_m3_per_short,
+            long = R.string.volume_m3_per_long
         ),
         nominative = UnitTranslation(
-            short = R.string.length_m3_per_short,
-            long = R.string.length_m3_per_long
+            short = R.string.volume_m3_per_short,
+            long = R.string.volume_m3_per_long
         ),
         decimals = UnitDecimals(0)
     ),

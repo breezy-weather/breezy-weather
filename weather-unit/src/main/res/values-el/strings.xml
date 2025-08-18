@@ -5,6 +5,31 @@
     <!-- Based on https://www.unicode.org/cldr/charts/47/summary/el.html -->
     <!-- If you believe there is an error, please open a discussion -->
 
+    <!-- Area units -->
+
+    <!-- Square meter -->
+    <string name="area_m2_per_short">%s/τ.μ.</string>
+    <string name="area_m2_per_long">%s/τετραγωνικό μέτρο</string>
+
+    <!-- Speed units -->
+
+    <!-- Beaufort scale -->
+    <string name="speed_bf_display_name_short">μποφ.</string>
+    <string name="speed_bf_display_name_long">μποφόρ</string>
+    <string name="speed_bf_nominative_short">%s μποφ.</string>
+    <string name="speed_bf_nominative_long">%s μποφόρ</string>
+
+    <!-- Volume units -->
+
+    <!-- Cubic meter -->
+    <string name="volume_m3_per_long">%s ανά κυβικό μέτρο</string>
+
+    <!-- Liter -->
+    <string name="volume_l_display_name_short">λίτ.</string>
+    <string name="volume_l_display_name_long">λίτρα</string>
+    <string name="volume_l_nominative_short">%s λίτ.</string>
+    <string name="volume_l_nominative_long">%s λίτρα</string>
+
     <!-- Pressure units -->
 
     <!-- Pascal -->

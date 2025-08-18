@@ -5,6 +5,25 @@
     <!-- Based on https://www.unicode.org/cldr/charts/47/summary/oc.html -->
     <!-- If you believe there is an error, please open a discussion -->
 
+    <!-- Area units -->
+
+    <!-- Square meter -->
+    <string name="area_m2_per_long">%s per mètres cairats</string>
+
+    <!-- Speed units -->
+
+    <!-- Beaufort scale -->
+    <!-- No change -->
+
+    <!-- Volume units -->
+
+    <!-- Cubic meter -->
+    <string name="volume_m3_per_long">%s per mètres cubics</string>
+
+    <!-- Liter -->
+    <string name="volume_l_display_name_long">litres</string>
+    <string name="volume_l_nominative_long">%s litres</string>
+
     <!-- Pressure units -->
 
     <!-- Pascal -->

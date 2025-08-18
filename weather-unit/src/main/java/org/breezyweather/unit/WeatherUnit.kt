@@ -73,12 +73,24 @@ interface WeatherUnit {
     ): String {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P &&
             useMeasureFormat &&
-            measureUnit != null &&
-            perMeasureUnit == null
+            measureUnit != null
         ) {
-            return MeasureFormat
-                .getInstance(locale, width.measureFormatWidth)
-                .getUnitDisplayName(measureUnit)
+            if (perMeasureUnit == null) {
+                return MeasureFormat
+                    .getInstance(locale, width.measureFormatWidth)
+                    .getUnitDisplayName(measureUnit)
+            } else if (perMeasureUnit != null && per != null) {
+                return context.getString(
+                    when (width) {
+                        UnitWidth.SHORT -> per!!.short
+                        UnitWidth.LONG -> per!!.long
+                        UnitWidth.NARROW -> per!!.narrow
+                    },
+                    MeasureFormat
+                        .getInstance(locale, width.measureFormatWidth)
+                        .getUnitDisplayName(measureUnit)
+                )
+            }
         }
 
         val formattingWithoutPer = context.getString(

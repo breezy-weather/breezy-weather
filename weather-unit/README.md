@@ -3,7 +3,7 @@
 Android library to handle:
 
 - Unit conversion
-- Formatting in various languages, including on devices without ICU support or with missing CLDR data, with a simplified backport (no handling of plural and non-nominative rules)
+- Formatting in various languages, including on devices without ICU support or with missing CLDR data, with a simplified backport (no handling of plural and non-nominative rules, no regional translations for languages)
 
 Syntax inspired by [Kotlin duration](https://kotlinlang.org/docs/time-measurement.html#time-sources).
 
@@ -26,10 +26,12 @@ Android translations are only in English at the moment.
 
 | Unit               | `NumberFormatter` | `MeasureFormat` | Android translations |
 |--------------------|-------------------|-----------------|----------------------|
-| Decidegree Celsius | ❌                 | ❌               | ✅                    |
+| Decidegree Celsius | ❌                 | ❌               | ✅¹                   |
 | Degree Celsius     | Android >= 11     | Android 7 to 10 | Android < 7          |
 | Degree Fahrenheit  | Android >= 11     | Android 7 to 10 | Android < 7          |
 | Kelvin             | Android >= 11     | Android 7 to 10 | Android < 7          |
+
+* ¹ Only English translations are provided.
 
 Supports temperature deviations conversions (such as degree days).
 

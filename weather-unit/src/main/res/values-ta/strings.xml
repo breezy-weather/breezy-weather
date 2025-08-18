@@ -5,6 +5,32 @@
     <!-- Based on https://www.unicode.org/cldr/charts/47/summary/ta.html -->
     <!-- If you believe there is an error, please open a discussion -->
 
+    <!-- Area units -->
+
+    <!-- Square meter -->
+    <string name="area_m2_per_short">%s/மீ²</string>
+    <string name="area_m2_per_long">%s/சதுர மீட்டர்</string>
+
+    <!-- Speed units -->
+
+    <!-- Beaufort scale -->
+    <string name="speed_bf_display_name_short">பியூ.</string>
+    <string name="speed_bf_display_name_long">பியூஃபோர்ட்</string>
+    <string name="speed_bf_nominative_short">பியூ. %s</string>
+    <string name="speed_bf_nominative_long">பியூஃபோர்ட் %s</string>
+
+    <!-- Volume units -->
+
+    <!-- Cubic meter -->
+    <string name="volume_m3_per_short">%s/மீ³</string>
+    <string name="volume_m3_per_long">%s/கன மீட்டர்</string>
+
+    <!-- Liter -->
+    <string name="volume_l_display_name_short">லி.</string>
+    <string name="volume_l_display_name_long">லிட்டர்கள்</string>
+    <string name="volume_l_nominative_short">%s லி.</string>
+    <string name="volume_l_nominative_long">%s லிட்டர்கள்</string>
+
     <!-- Pressure units -->
 
     <!-- Pascal -->

@@ -167,6 +167,20 @@ enum class PressureUnit(
         useNumberFormatter: Boolean,
         useMeasureFormat: Boolean,
     ): String {
+        // Translations missing for Esperanto in CLDR
+        if (locale.language.equals("eo", ignoreCase = true)) {
+            return formatWithAndroidTranslations(
+                context = context,
+                value = value,
+                valueWidth = valueWidth,
+                unitWidth = unitWidth,
+                locale = locale,
+                showSign = showSign,
+                useNumberFormatter = useNumberFormatter,
+                useMeasureFormat = useMeasureFormat
+            )
+        }
+
         val correctedLocale = locale.let {
             /**
              * Taiwan guidelines: https://www.bsmi.gov.tw/wSite/public/Attachment/f1736149048776.pdf

@@ -5,6 +5,26 @@
     <!-- Based on https://www.unicode.org/cldr/charts/47/summary/bs.html -->
     <!-- If you believe there is an error, please open a discussion -->
 
+    <!-- Area units -->
+
+    <!-- Square meter -->
+    <string name="area_m2_per_long">%s po kvadratnom metru</string>
+
+    <!-- Speed units -->
+
+    <!-- Beaufort scale -->
+    <string name="speed_bf_display_name_long">Beafort</string>
+    <string name="speed_bf_nominative_long">Beafort %s</string>
+
+    <!-- Volume units -->
+
+    <!-- Cubic meter -->
+    <string name="volume_m3_per_long">%s po kubnom metru</string>
+
+    <!-- Liter -->
+    <string name="volume_l_display_name_long">litri</string>
+    <string name="volume_l_nominative_long">%s litara</string>
+
     <!-- Pressure units -->
 
     <!-- Pascal -->

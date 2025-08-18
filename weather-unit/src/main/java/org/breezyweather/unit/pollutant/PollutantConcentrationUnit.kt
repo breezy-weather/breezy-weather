@@ -31,8 +31,8 @@ enum class PollutantConcentrationUnit(
     override val displayName: UnitTranslation,
     override val nominative: UnitTranslation,
     override val per: UnitTranslation? = UnitTranslation(
-        short = R.string.length_m3_per_short,
-        long = R.string.length_m3_per_long
+        short = R.string.volume_m3_per_short,
+        long = R.string.volume_m3_per_long
     ),
     override val measureUnit: MeasureUnit?,
     override val perMeasureUnit: MeasureUnit? = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
@@ -94,6 +94,19 @@ enum class PollutantConcentrationUnit(
         useNumberFormatter: Boolean,
         useMeasureFormat: Boolean,
     ): String {
+        // Translations missing for Esperanto in CLDR
+        if (locale.language.equals("eo", ignoreCase = true)) {
+            return formatWithAndroidTranslations(
+                context = context,
+                value = value,
+                valueWidth = valueWidth,
+                unitWidth = unitWidth,
+                locale = locale,
+                showSign = showSign,
+                useNumberFormatter = useNumberFormatter,
+                useMeasureFormat = useMeasureFormat
+            )
+        }
         val correctedLocale = locale.let {
             /**
              * Taiwan guidelines: https://www.bsmi.gov.tw/wSite/public/Attachment/f1736149048776.pdf

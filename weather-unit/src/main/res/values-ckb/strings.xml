@@ -8,6 +8,25 @@
     <!-- Value separator -->
     <string name="locale_separator">،\u0020</string>
 
+    <!-- Area units -->
+
+    <!-- Square meter -->
+    <!-- No change -->
+
+    <!-- Speed units -->
+
+    <!-- Beaufort scale -->
+    <!-- No change -->
+
+    <!-- Volume units -->
+
+    <!-- Cubic meter -->
+    <!-- No change -->
+
+    <!-- Liter -->
+    <string name="volume_l_display_name_short">liter</string>
+
+
     <!-- Pressure units -->
 
     <!-- Pascal -->

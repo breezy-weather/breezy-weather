@@ -5,6 +5,30 @@
     <!-- Based on https://www.unicode.org/cldr/charts/47/summary/th.html -->
     <!-- If you believe there is an error, please open a discussion -->
 
+    <!-- Area units -->
+
+    <!-- Square meter -->
+    <string name="area_m2_per_short">%s/ตร.ม.</string>
+    <string name="area_m2_per_long">%s ต่อตารางเมตร</string>
+
+    <!-- Speed units -->
+
+    <!-- Beaufort scale -->
+    <string name="speed_bf_display_name_long">โบฟอร์ต</string>
+    <string name="speed_bf_nominative_long">โบฟอร์ต %s</string>
+
+    <!-- Volume units -->
+
+    <!-- Cubic meter -->
+    <string name="volume_m3_per_short">%s/ลบ.ม.</string>
+    <string name="volume_m3_per_long">%s ต่อลูกบาศก์เมตร</string>
+
+    <!-- Liter -->
+    <string name="volume_l_display_name_short">ล.</string>
+    <string name="volume_l_display_name_long">ลิตร</string>
+    <string name="volume_l_nominative_short">%s ล.</string>
+    <string name="volume_l_nominative_long">%s ลิตร</string>
+
     <!-- Pressure units -->
 
     <!-- Hectopascal is inconsistent with other *pascal units in this language, but well… -->

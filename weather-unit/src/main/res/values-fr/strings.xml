@@ -5,6 +5,99 @@
     <!-- Based on https://www.unicode.org/cldr/charts/47/summary/fr.html -->
     <!-- If you believe there is an error, please open a discussion -->
 
+    <!-- Temperature units -->
+
+    <!-- Decidegree Celsius -->
+    <string name="temperature_dc_display_name_short">decideg. C</string>
+    <string name="temperature_dc_display_name_long">decidegrés Celsius</string>
+    <string name="temperature_dc_nominative_long">%s decidegrés Celsius</string>
+
+    <!-- Degree Celsius -->
+    <string name="temperature_c_display_name_long">degrés Celsius</string>
+    <string name="temperature_c_nominative_long">%s degrés Celsius</string>
+
+    <!-- Degree Fahrenheit -->
+    <string name="temperature_f_display_name_long">degrés Fahrenheit</string>
+    <string name="temperature_f_nominative_long">%s degrés Fahrenheit</string>
+
+    <!-- Kelvin -->
+    <string name="temperature_k_display_name_long">kelvins</string>
+    <string name="temperature_k_nominative_long">%s kelvins</string>
+
+    <!-- Length units -->
+
+    <!-- Micrometer -->
+    <string name="length_microm_display_name_long">micromètres</string>
+    <string name="length_microm_nominative_long">%s micromètres</string>
+
+    <!-- Millimeter -->
+    <string name="length_mm_display_name_long">millimètres</string>
+    <string name="length_mm_nominative_long">%s millimètres</string>
+
+    <!-- Centimeter -->
+    <string name="length_cm_display_name_long">centimètres</string>
+    <string name="length_cm_nominative_long">%s centimètres</string>
+
+    <!-- Meter -->
+    <string name="length_m_display_name_long">mètres</string>
+    <string name="length_m_nominative_long">%s mètres</string>
+
+    <!-- Kilometer -->
+    <string name="length_km_display_name_long">kilomètres</string>
+    <string name="length_km_nominative_long">%s kilomètres</string>
+
+    <!-- Inch -->
+    <string name="length_in_display_name_long">pouces</string>
+    <string name="length_in_nominative_long">%s pouces</string>
+
+    <!-- Foot -->
+    <string name="length_ft_display_name_long">pieds</string>
+    <string name="length_ft_nominative_long">%s pieds</string>
+
+    <!-- Mile -->
+    <string name="length_mi_display_name_long">miles</string>
+    <string name="length_mi_nominative_long">%s miles</string>
+
+    <!-- Nautical mile -->
+    <string name="length_nmi_display_name_long">milles marins</string>
+    <string name="length_nmi_nominative_long">%s milles marins</string>
+
+    <!-- Area units -->
+
+    <!-- Square meter -->
+    <string name="area_m2_per_long">%s par mètre carré</string>
+
+    <!-- Speed units -->
+
+    <!-- Knot -->
+    <string name="speed_kn_display_name_long">nœuds</string>
+    <string name="speed_kn_nominative_long">%s nœuds</string>
+
+    <!-- Beaufort scale -->
+    <string name="speed_bf_display_name_short">Bf</string>
+    <string name="speed_bf_display_name_long">Beaufort</string>
+    <string name="speed_bf_nominative_short">%s Bf</string>
+    <string name="speed_bf_nominative_long">%s degrés Beaufort</string>
+
+    <!-- Volume units -->
+
+    <!-- Cubic meter -->
+    <string name="volume_m3_per_long">%s par mètre cube</string>
+
+    <!-- Liter -->
+    <string name="volume_l_display_name_long">litres</string>
+    <string name="volume_l_nominative_long">%s litres</string>
+
+    <!-- Weight units -->
+
+    <!-- Microgram -->
+    <string name="weight_microg_display_name_long">microgrammes</string>
+    <string name="weight_microg_nominative_long">%s microgrammes</string>
+
+    <!-- Milligram -->
+    <string name="weight_mg_display_name_long">milligrammes</string>
+    <string name="weight_mg_nominative_long">%s milligrammes</string>
+
     <!-- Pressure units -->
 
     <!-- Pascal -->

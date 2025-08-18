@@ -135,6 +135,21 @@ enum class TemperatureUnit(
         useNumberFormatter: Boolean,
         useMeasureFormat: Boolean,
     ): String {
+        // Translations missing for Esperanto in CLDR
+        // Always use %s° for narrow temperature formatting
+        if (locale.language.equals("eo", ignoreCase = true) || unitWidth == UnitWidth.NARROW) {
+            return formatWithAndroidTranslations(
+                context = context,
+                value = value,
+                valueWidth = valueWidth,
+                unitWidth = unitWidth,
+                locale = locale,
+                showSign = showSign,
+                useNumberFormatter = useNumberFormatter,
+                useMeasureFormat = useMeasureFormat
+            )
+        }
+
         val correctedLocale = locale.let {
             /**
              * Taiwan guidelines: https://www.bsmi.gov.tw/wSite/public/Attachment/f1736149048776.pdf
@@ -149,7 +164,6 @@ enum class TemperatureUnit(
                 it
             }
         }
-        val canUseIcu = unitWidth != UnitWidth.NARROW
         return super.format(
             context = context,
             value = value,
@@ -157,8 +171,8 @@ enum class TemperatureUnit(
             unitWidth = unitWidth,
             locale = correctedLocale,
             showSign = showSign,
-            useNumberFormatter = useNumberFormatter && canUseIcu,
-            useMeasureFormat = useNumberFormatter && canUseIcu
+            useNumberFormatter = useNumberFormatter,
+            useMeasureFormat = useNumberFormatter
         )
     }
 

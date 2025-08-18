@@ -8,6 +8,26 @@
     <!-- Value separator -->
     <string name="locale_separator">，</string>
 
+    <!-- Area units -->
+
+    <!-- Square meter -->
+    <string name="area_m2_per_long">%s/平方米</string>
+
+    <!-- Speed units -->
+
+    <!-- Beaufort scale -->
+    <string name="speed_bf_display_name_short">蒲福风级</string>
+    <string name="speed_bf_nominative_short">%s级</string>
+
+    <!-- Volume units -->
+
+    <!-- Cubic meter -->
+    <string name="volume_m3_per_long">%s/立方米</string>
+
+    <!-- Liter -->
+    <string name="volume_l_display_name_short">升</string>
+    <string name="volume_l_nominative_short">%s升</string>
+
     <!-- Pressure units -->
 
     <!-- Pascal -->

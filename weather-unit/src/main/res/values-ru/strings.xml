@@ -5,6 +5,32 @@
     <!-- Based on https://www.unicode.org/cldr/charts/47/summary/ru.html -->
     <!-- If you believe there is an error, please open a discussion -->
 
+    <!-- Area units -->
+
+    <!-- Square meter -->
+    <string name="area_m2_per_short">%s/м²</string>
+    <string name="area_m2_per_long">%s на квадратный метр</string>
+
+    <!-- Speed units -->
+
+    <!-- Beaufort scale -->
+    <string name="speed_bf_display_name_short">Бфт</string>
+    <string name="speed_bf_display_name_long">баллы Бофорта</string>
+    <string name="speed_bf_nominative_short">%s Бфт</string>
+    <string name="speed_bf_nominative_long">%s балла Бофорта</string>
+
+    <!-- Volume units -->
+
+    <!-- Cubic meter -->
+    <string name="volume_m3_per_short">%s/м³</string>
+    <string name="volume_m3_per_long">%s на кубический метр</string>
+
+    <!-- Liter -->
+    <string name="volume_l_display_name_short">л</string>
+    <string name="volume_l_display_name_long">литры</string>
+    <string name="volume_l_nominative_short">%s л</string>
+    <string name="volume_l_nominative_long">%s литра</string>
+
     <!-- Pressure units -->
 
     <!-- Pascal -->

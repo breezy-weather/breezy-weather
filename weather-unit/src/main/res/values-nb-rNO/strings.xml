@@ -5,6 +5,28 @@
     <!-- Based on https://www.unicode.org/cldr/charts/47/summary/nb.html -->
     <!-- If you believe there is an error, please open a discussion -->
 
+    <!-- Area units -->
+
+    <!-- Square meter -->
+    <string name="area_m2_per_long">%s per kvadratmeter</string>
+
+    <!-- Speed units -->
+
+    <!-- Beaufort scale -->
+    <string name="speed_bf_display_name_short">Bf</string>
+    <string name="speed_bf_display_name_long">beaufort</string>
+    <string name="speed_bf_nominative_short">Bf %s</string>
+    <string name="speed_bf_nominative_long">beaufort %s</string>
+
+    <!-- Volume units -->
+
+    <!-- Cubic meter -->
+    <string name="volume_m3_per_long">%s per kubikkmeter</string>
+
+    <!-- Liter -->
+    <string name="volume_l_display_name_long">liter</string>
+    <string name="volume_l_nominative_long">%s liter</string>
+
     <!-- Pressure units -->
 
     <!-- Pascal -->

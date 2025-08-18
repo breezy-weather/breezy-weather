@@ -8,6 +8,27 @@
     <!-- Value separator -->
     <string name="locale_separator">،\u0020</string>
 
+    <!-- Area units -->
+
+    <!-- Square meter -->
+    <string name="area_m2_per_long">%s در متر مربع</string>
+
+    <!-- Speed units -->
+
+    <!-- Beaufort scale -->
+    <string name="speed_bf_display_name_short">بوفورت</string>
+    <string name="speed_bf_nominative_short">%s بوفورت</string>
+
+    <!-- Volume units -->
+
+    <!-- Cubic meter -->
+    <string name="volume_m3_per_long">%s در متر مکعب</string>
+
+    <!-- Liter -->
+    <string name="volume_l_display_name_short">لیتر</string>
+    <string name="volume_l_nominative_short">%sL</string>
+    <string name="volume_l_nominative_long">%s لیتر</string>
+
     <!-- Pressure units -->
 
     <!-- Pascal -->

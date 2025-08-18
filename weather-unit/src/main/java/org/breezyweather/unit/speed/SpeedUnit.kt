@@ -234,27 +234,55 @@ enum class SpeedUnit(
         useNumberFormatter: Boolean,
         useMeasureFormat: Boolean,
     ): String {
-        val correctedLocale = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.BAKLAVA &&
-            this == BEAUFORT_SCALE &&
-            locale.language.equals("fr", ignoreCase = true)
+        // Translations missing in CLDR for some languages
+        // Beaufort:
+        // - eo, es, eu, ga: missing
+        // - ja: use 風力7 instead of “B 7”
+        // - Simplified Chinese: use 7級 rather than “B 7”
+        // - Traditional Chinese: use 7級 rather than the verbose “蒲福風級 7 級”
+        if ((this == KNOT && locale.language.equals("eo", ignoreCase = true)) ||
+            (
+                this == BEAUFORT_SCALE &&
+                    arrayOf("eo", "es", "eu", "ga", "ja", "zh").any {
+                        locale.language.equals(it, ignoreCase = true)
+                    }
+                )
         ) {
-            // fr_FR uses the incorrect unit (it should be "Bf"), replace with fr_CA
-            Locale.Builder().setLanguage("fr").setRegion("CA").build()
-        } else {
-            locale
+            return formatWithAndroidTranslations(
+                context = context,
+                value = value,
+                valueWidth = valueWidth,
+                unitWidth = unitWidth,
+                locale = locale,
+                showSign = showSign,
+                useNumberFormatter = useNumberFormatter,
+                useMeasureFormat = useMeasureFormat
+            )
         }
-        val canUseIcu = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.BAKLAVA && this == BEAUFORT_SCALE) {
-            if (locale.language.equals("zh", ignoreCase = true) &&
-                arrayOf("TW", "HK", "MO").any { c -> locale.country.equals(c, ignoreCase = true) }
-            ) {
-                false // use 7級 rather than the verbose “蒲福風級 7 級”
-            } else if (locale.language.equals("ja", ignoreCase = true)) {
-                false // use 風力7 instead of “B 7”
+
+        val correctedLocale = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.BAKLAVA && this == BEAUFORT_SCALE) {
+            if (locale.language.equals("fr", ignoreCase = true)) {
+                // fr uses the incorrect unit (it should be "%s Bf" instead of "%s Bft"), replace with fr_CA
+                Locale.Builder().setLanguage("fr").setRegion("CA").build()
+            } else if (locale.language.equals("de", ignoreCase = true)) {
+                // de uses the incorrect unit (it should be "%s Bft" instead of "B %s"), replace with de_CH
+                Locale.Builder().setLanguage("de").setRegion("CH").build()
             } else {
-                true
+                locale
             }
         } else {
-            true
+            /**
+             * Taiwan guidelines: https://www.bsmi.gov.tw/wSite/public/Attachment/f1736149048776.pdf
+             * Ongoing issue: https://unicode-org.atlassian.net/jira/software/c/projects/CLDR/issues/CLDR-10604
+             */
+            if (locale.language.equals("zh", ignoreCase = true) &&
+                arrayOf("TW", "HK", "MO").any { c -> locale.country.equals(c, ignoreCase = true) } &&
+                unitWidth != UnitWidth.LONG
+            ) {
+                Locale.Builder().setLanguage("en").setRegion("001").build()
+            } else {
+                locale
+            }
         }
         return super.format(
             context = context,
@@ -263,8 +291,8 @@ enum class SpeedUnit(
             unitWidth = unitWidth,
             locale = correctedLocale,
             showSign = showSign,
-            useNumberFormatter = useNumberFormatter && canUseIcu,
-            useMeasureFormat = useNumberFormatter && canUseIcu
+            useNumberFormatter = useNumberFormatter,
+            useMeasureFormat = useNumberFormatter
         )
     }
 
