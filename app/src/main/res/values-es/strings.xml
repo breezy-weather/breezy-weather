@@ -669,4 +669,8 @@
     <string name="action_allow">Permitir</string>
     <string name="action_open_in_other_app">Abrir en otra aplicación</string>
     <string name="action_open_in_other_app_description">Abrir esta ubicación en otra aplicación</string>
+    <string name="widget_live_wallpaper_animations_enable_warning2">Si decide habilitarlas, asume toda la responsabilidad por cualquier problema que pueda surgir y no se proporcionará asistencia técnica.</string>
+    <string name="widget_live_wallpaper_animations_enable_warning1">Las animaciones de fondo de pantalla son conocidas por causar, entre otras cosas: alto consumo de batería; sobrecalentamiento de la batería; alto consumo de memoria; disminución de la capacidad de respuesta del sistema; fallo del sistema Android.</string>
+    <string name="widget_live_wallpaper_animations_enable_dangerous">PELIGROSO</string>
+    <string name="settings_regional_preference">Preferencia regional</string>
 </resources>
