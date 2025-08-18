@@ -775,4 +775,7 @@
     <string name="content_provider_permission_label">Gegevens van Breezy Weather lezen</string>
     <string name="content_provider_permission_description">weerinformatie van Breezy Weather ophalen, inclusief de coördinaten van je locaties, zoals je huidige locatie als je deze hebt toegevoegd</string>
     <string name="common_weather_text_mostly_cloudy">Grotendeels bewolkt</string>
+    <string name="widget_live_wallpaper_animations_enable_dangerous">GEVAARLIJK</string>
+    <string name="widget_live_wallpaper_animations_enable_warning1">Achtergrondganimaties staan erom bekend onder meer de volgende problemen te veroorzaken: hoog batterijverbruik; oververhitting van de batterij; hoog geheugenverbruik; verminderde reactievermogen van het systeem; crash van het Android-systeem.</string>
+    <string name="widget_live_wallpaper_animations_enable_warning2">Als je besluit ze in te schakelen, dan neem je de volledige verantwoordelijkheid op je voor elk probleem dat zich kan voordoen en wordt er geen ondersteuning geboden.</string>
 </resources>
