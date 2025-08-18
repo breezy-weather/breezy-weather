@@ -783,6 +783,6 @@
     <string name="settings_regional_preference">Regionale Präferenz</string>
     <string name="broadcast_source_breezy_weather_update_notifier">%s Benachrichtigung über Ortsaktualisierung</string>
     <string name="widget_live_wallpaper_animations_enable_dangerous">GEFÄHRLICH</string>
-    <string name="widget_live_wallpaper_animations_enable_warning1">Es ist bekannt, dass Hintergrundanimationen unter anderem Folgendes verursachen: hohen Batterieverbrauch; Batterieüberhitzung; hoher Speicherverbrauch; verschlechterte Systemreaktionsfähigkeit; Android-Systemabsturz.</string>
+    <string name="widget_live_wallpaper_animations_enable_warning1">Hintergrundanimationen können unter anderem Folgendes verursachen: hohen Akkuverbrauch; Akkuüberhitzung; hohen Speicherverbrauch; verschlechterte Systemreaktionsfähigkeit; Android-Systemabsturz.</string>
     <string name="widget_live_wallpaper_animations_enable_warning2">Wenn du dich entscheidest, sie zu aktivieren, übernimmst du die volle Verantwortung für alle auftretenden Probleme und es wird keine Unterstützung bereitgestellt.</string>
 </resources>
