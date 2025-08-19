@@ -552,7 +552,7 @@
     <string name="settings_main_cards_fade_in_switch">บล็อกค่อยๆปรากฏขึ้น</string>
     <string name="settings_notifications">การแจ้งเตือน</string>
     <string name="settings_main_cards_other_element_animations_switch">ภาพเคลื่อนไหวในส่วนอื่น</string>
-    <string name="settings_modules_summary">ตั้งภาพพื้นหลัง, ตั้งค่าวิดเจ็ตที่ใช้, วิดเจ็ตแจ้งเตือน</string>
+    <string name="settings_modules_summary">วิดเจ็ต วิดเจ็ตการแจ้งเตือน ภาพพื้นหลัง การใช้ข้อมูลร่วมกันกับแอปอื่น ๆ</string>
     <string name="settings_notifications_forecast_tomorrow_title">การแจ้งเตือนการพยากรณ์วันต่อไป</string>
     <string name="settings_notifications_forecast_time_tomorrow_title">เวลาแจ้งเตือนการพยากรณ์วันต่อไป</string>
     <string name="settings_modules_week_icon_mode_title">ไอคอนที่ใช้แสดงในรูปแบบรายสัปดาห์</string>
@@ -808,4 +808,23 @@
     <string name="widget_custom_subtitle_alert_box_title">ข้อมูลช่วยเหลือข้อความขอบล่างแบบกำหนดเอง</string>
     <string name="settings_appearance_dark_mode_locations_day_night">โหมดมืดตามเวลากลางวัน/กลางคืน</string>
     <string name="settings_appearance_dark_mode_locations_dark">ใช้ธีมมืดเสมอเมื่อแอปอยู่ในโหมดมืด</string>
+    <string name="humidity_from_to_number">ร้อยละ %1$s ถึง %2$s</string>
+    <string name="dew_point_from_to_number">%1$s ถึง %2$s องศา</string>
+    <string name="visibility_scale">มาตราทัศนวิสัย</string>
+    <string name="cloud_cover_from_to_number">ร้อยละ %1$s ถึง %2$s</string>
+    <string name="cloud_cover_from_to_description">%1$sถึง%2$s</string>
+    <string name="cloud_cover_scale">มาตราส่วนเมฆบัง</string>
+    <string name="weather_source_recommended">แนะนำ</string>
+    <string name="broadcast_source_breezy_weather_update_notifier">การแจ้งเตือนการปรับสถานที่ให้เป็นปัจจุบันของ %s</string>
+    <string name="action_add_as_location">เพิ่มเป็นที่ตั้ง</string>
+    <string name="action_change">เปลี่ยน</string>
+    <string name="message_incompatible_times_title">เวลาพยากรณ์ดังกล่าวเข้ากันไม่ได้</string>
+    <string name="message_incompatible_times_content">กรุณาเปลี่ยนแหล่งข้อมูลการพยากรณ์หรือคุณภาพอากาศเพื่อให้เวลาตรงกัน</string>
+    <string name="widget_live_wallpaper_animations_enable_dangerous">อันตราย!</string>
+    <string name="widget_live_wallpaper_animations_enable_warning1">ภาพพื้นหลังแบบเคลื่อนไหวสามารถทำให้เกิดสิ่งเหล่านี้ได้: ใช้พลังงานแบตเตอรี่สูง แบตเตอรี่ร้อนเกินไป ใช้หน่วยความจำสูง ระบบตอบสนองช้าลง ระบบแอนดรอยด์ล้มเหลว และอื่น ๆ</string>
+    <string name="widget_live_wallpaper_animations_enable_warning2">หากคุณตัดสินใจที่จะเปิดใช้งาน ความรับผิดชอบต่อทุกปัญหาที่อาจเกิดขึ้นตกอยู่ที่คุณ และจะไม่มีการให้การสนับสนุนจากพวกเรา</string>
+    <string name="settings_regional_preference">ตามภูมิภาค</string>
+    <string name="content_provider_permission_label">อ่านข้อมูลของ Breezy Weather</string>
+    <string name="content_provider_permission_description">รับข้อมูลสภาพอากาศจาก Breezy Weather ซึ่งรวมไปถึงพิกัดของที่ตั้งที่คุณเพิ่มเอาไว้ อย่างที่ตั้งปัจจุบันของคุณหากคุณได้เพิ่มเอาไว้เป็นหนึ่งในที่ตั้ง</string>
+    <string name="common_weather_text_mostly_cloudy">เมฆคลุมเป็นส่วนใหญ่</string>
 </resources>
