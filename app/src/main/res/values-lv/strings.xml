@@ -771,4 +771,7 @@
     <string name="broadcast_source_breezy_weather_update_notifier">%s atrašanās vietas atjauninājumu paziņotājs</string>
     <string name="action_add_as_location">Pievienot kā atrašanās vietu</string>
     <string name="settings_regional_preference">Apgabala iestatījums</string>
+    <string name="widget_live_wallpaper_animations_enable_dangerous">BĪSTAMI</string>
+    <string name="widget_live_wallpaper_animations_enable_warning1">Ir zināms, ka ekrāntapešu animācijas var izraisīt (bet ne tikai): palielinātu akumulatora patēriņu; akumulatora pārkaršanu; palielinātu atmiņas patēriņu; pasliktinātu sistēmas atsaucību; Android sistēmas avarēšanu.</string>
+    <string name="widget_live_wallpaper_animations_enable_warning2">Ja izlem tās iespējot, Tu uzņemies pilnu atbildību par jebkuru sarežģījumu, kas var rasties, un netiks nodrošināts nekāds atbalsts.</string>
 </resources>
