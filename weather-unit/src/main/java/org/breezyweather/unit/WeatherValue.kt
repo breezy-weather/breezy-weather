@@ -46,7 +46,7 @@ interface WeatherValue<T : WeatherUnit> {
             decimals = unit.getPrecision(width),
             locale = locale,
             useNumberFormatter = useNumberFormatter,
-            useMeasureFormat = useMeasureFormat
+            useNumberFormat = useMeasureFormat
         )
     }
 

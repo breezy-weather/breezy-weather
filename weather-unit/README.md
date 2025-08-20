@@ -12,6 +12,7 @@ Some precision may be lost during conversions.
 Remains to do:
 
 - Add missing non-English Android translations (for the units we use in Breezy Weather)
+- Unit testing
 - Plus and minus operations
 - Parse from string
 

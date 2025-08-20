@@ -63,8 +63,6 @@ import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_HIGHEST
 import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
 import org.breezyweather.domain.settings.SourceConfigStore
 import org.breezyweather.domain.weather.index.PollutantIndex
-import org.breezyweather.sources.computeMeanSeaLevelPressure
-import org.breezyweather.sources.computePollutantInUgm3FromPpb
 import org.breezyweather.sources.cwa.json.CwaAirQualityResult
 import org.breezyweather.sources.cwa.json.CwaAlertResult
 import org.breezyweather.sources.cwa.json.CwaAssistantResult
@@ -77,6 +75,8 @@ import org.breezyweather.sources.nlsc.NlscService.Companion.MATSU_BBOX
 import org.breezyweather.sources.nlsc.NlscService.Companion.PENGHU_BBOX
 import org.breezyweather.sources.nlsc.NlscService.Companion.TAIWAN_BBOX
 import org.breezyweather.sources.nlsc.NlscService.Companion.WUQIU_BBOX
+import org.breezyweather.unit.computing.computeMeanSeaLevelPressure
+import org.breezyweather.unit.computing.computePollutantInUgm3FromPpb
 import org.breezyweather.unit.pollutant.PollutantConcentration.Companion.microgramsPerCubicMeter
 import org.breezyweather.unit.pressure.Pressure
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
@@ -506,25 +506,25 @@ class CwaService @Inject constructor(
                 pM25 = it.pm25?.toDoubleOrNull()?.microgramsPerCubicMeter,
                 pM10 = it.pm10?.toDoubleOrNull()?.microgramsPerCubicMeter,
                 sO2 = computePollutantInUgm3FromPpb(
-                    PollutantIndex.SO2,
+                    PollutantIndex.SO2.molecularMass,
                     it.so2?.toDoubleOrNull(),
                     temperature,
                     pressure
                 )?.microgramsPerCubicMeter,
                 nO2 = computePollutantInUgm3FromPpb(
-                    PollutantIndex.NO2,
+                    PollutantIndex.NO2.molecularMass,
                     it.no2?.toDoubleOrNull(),
                     temperature,
                     pressure
                 )?.microgramsPerCubicMeter,
                 o3 = computePollutantInUgm3FromPpb(
-                    PollutantIndex.O3,
+                    PollutantIndex.O3.molecularMass,
                     it.o3?.toDoubleOrNull(),
                     temperature,
                     pressure
                 )?.microgramsPerCubicMeter,
                 cO = computePollutantInUgm3FromPpb(
-                    PollutantIndex.CO,
+                    PollutantIndex.CO.molecularMass,
                     it.co?.toDoubleOrNull(),
                     temperature,
                     pressure

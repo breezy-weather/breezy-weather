@@ -59,7 +59,7 @@ fun Duration.formatValue(
         decimals = unit.getPrecision(width),
         locale = locale,
         useNumberFormatter = useNumberFormatter,
-        useMeasureFormat = useMeasureFormat
+        useNumberFormat = useMeasureFormat
     )
 }
 

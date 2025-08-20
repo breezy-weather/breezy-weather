@@ -93,7 +93,7 @@ enum class RatioUnit(
                 locale = locale,
                 showSign = showSign,
                 useNumberFormatter = useNumberFormatter,
-                useMeasureFormat = useMeasureFormat
+                useNumberFormat = useMeasureFormat
             )
         }
 

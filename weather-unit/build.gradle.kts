@@ -15,4 +15,7 @@ android {
 dependencies {
     implementation(libs.annotation.jvm)
     implementation(libs.core.ktx)
+
+    testImplementation(libs.bundles.test)
+    testRuntimeOnly(libs.junit.platform)
 }

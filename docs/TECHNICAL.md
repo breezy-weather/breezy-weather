@@ -30,7 +30,7 @@ You can omit any of the following properties to let the user configure their own
 *Instructions for members of the organization.*
 
 1) Test your debug build.
-2) Run tests `./gradlew testBasicReleaseUnitTest`.
+2) Run tests `./gradlew testBasicDebugUnitTest` and `./gradlew testDebugUnitTest`.
 3) Try to assemble a release `./gradlew assembleBasicRelease`.
 4) Update versionCode and versionName in `app/build.gradle`.
 5) Write changelog in `CHANGELOG.md`.

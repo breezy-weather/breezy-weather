@@ -35,7 +35,7 @@ fun Number.format(
     locale: Locale = Locale.getDefault(),
     showSign: Boolean = false,
     useNumberFormatter: Boolean = true,
-    useMeasureFormat: Boolean = true,
+    useNumberFormat: Boolean = true,
 ): String {
     return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R && useNumberFormatter) {
         (NumberFormatter.withLocale(locale) as LocalizedNumberFormatter)
@@ -43,7 +43,7 @@ fun Number.format(
             .sign(if (showSign) NumberFormatter.SignDisplay.ALWAYS else NumberFormatter.SignDisplay.AUTO)
             .format(this)
             .toString()
-    } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && useMeasureFormat && !showSign) {
+    } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && useNumberFormat && !showSign) {
         // showSign not supported by NumberFormat, skip
         NumberFormat.getNumberInstance(locale)
             .apply { maximumFractionDigits = decimals }

@@ -213,7 +213,7 @@ interface WeatherUnit {
                 locale = locale,
                 showSign = showSign,
                 useNumberFormatter = useNumberFormatter,
-                useMeasureFormat = useMeasureFormat
+                useNumberFormat = useMeasureFormat
             )
         )
 

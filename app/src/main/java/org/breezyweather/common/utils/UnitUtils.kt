@@ -91,7 +91,7 @@ object UnitUtils {
             locale = context.currentLocale,
             showSign = showSign,
             useNumberFormatter = SettingsManager.Companion.getInstance(context).useNumberFormatter,
-            useMeasureFormat = SettingsManager.Companion.getInstance(context).useMeasureFormat
+            useNumberFormat = SettingsManager.Companion.getInstance(context).useMeasureFormat
         )
     }
 
@@ -106,7 +106,7 @@ object UnitUtils {
             locale = context.currentLocale,
             showSign = showSign,
             useNumberFormatter = SettingsManager.Companion.getInstance(context).useNumberFormatter,
-            useMeasureFormat = SettingsManager.Companion.getInstance(context).useMeasureFormat
+            useNumberFormat = SettingsManager.Companion.getInstance(context).useMeasureFormat
         )
     }
 

@@ -51,7 +51,6 @@ import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_HIGHEST
 import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
 import org.breezyweather.common.utils.ISO8601Utils
-import org.breezyweather.sources.computeMeanSeaLevelPressure
 import org.breezyweather.sources.getWindDegree
 import org.breezyweather.sources.nws.json.NwsAlert
 import org.breezyweather.sources.nws.json.NwsAlertsResult
@@ -64,6 +63,7 @@ import org.breezyweather.sources.nws.json.NwsValueDoubleContainer
 import org.breezyweather.sources.nws.json.NwsValueIntContainer
 import org.breezyweather.sources.nws.json.NwsValueWeatherContainer
 import org.breezyweather.sources.nws.json.NwsValueWeatherValue
+import org.breezyweather.unit.computing.computeMeanSeaLevelPressure
 import org.breezyweather.unit.distance.Distance.Companion.meters
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals

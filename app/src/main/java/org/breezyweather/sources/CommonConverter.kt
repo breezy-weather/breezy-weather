@@ -45,9 +45,13 @@ import org.breezyweather.common.extensions.CLOUD_COVER_FEW
 import org.breezyweather.common.extensions.ensurePositive
 import org.breezyweather.common.extensions.getIsoFormattedDate
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
-import org.breezyweather.domain.weather.index.PollutantIndex
 import org.breezyweather.domain.weather.model.validate
 import org.breezyweather.ui.theme.weatherView.WeatherViewController
+import org.breezyweather.unit.computing.computeApparentTemperature
+import org.breezyweather.unit.computing.computeDewPoint
+import org.breezyweather.unit.computing.computeHumidex
+import org.breezyweather.unit.computing.computeRelativeHumidity
+import org.breezyweather.unit.computing.computeWindChillTemperature
 import org.breezyweather.unit.distance.Distance
 import org.breezyweather.unit.distance.Distance.Companion.meters
 import org.breezyweather.unit.duration.toValidDailyOrNull
@@ -58,14 +62,11 @@ import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.pressure.Pressure
 import org.breezyweather.unit.pressure.Pressure.Companion.pascals
 import org.breezyweather.unit.ratio.Ratio
-import org.breezyweather.unit.ratio.Ratio.Companion.fraction
 import org.breezyweather.unit.ratio.Ratio.Companion.percent
 import org.breezyweather.unit.ratio.Ratio.Companion.permille
 import org.breezyweather.unit.speed.Speed
-import org.breezyweather.unit.speed.Speed.Companion.kilometersPerHour
 import org.breezyweather.unit.speed.Speed.Companion.metersPerSecond
 import org.breezyweather.unit.temperature.Temperature
-import org.breezyweather.unit.temperature.Temperature.Companion.celsius
 import org.breezyweather.unit.temperature.Temperature.Companion.deciCelsius
 import org.shredzone.commons.suncalc.MoonIllumination
 import org.shredzone.commons.suncalc.MoonTimes
@@ -74,10 +75,6 @@ import java.util.Calendar
 import java.util.Date
 import java.util.TimeZone
 import kotlin.math.cos
-import kotlin.math.exp
-import kotlin.math.ln
-import kotlin.math.log10
-import kotlin.math.pow
 import kotlin.math.roundToInt
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.days
@@ -275,121 +272,6 @@ internal fun computeMissingHourlyData(
 }
 
 /**
- * Compute relative humidity from temperature and dew point
- * Uses Magnus approximation with Arden Buck best variable set
- * TODO: Unit test
- */
-private fun computeRelativeHumidity(
-    temperature: Temperature?,
-    dewPoint: Temperature?,
-): Ratio? {
-    if (temperature == null || dewPoint == null) return null
-
-    val b = if (temperature < 0.celsius) 17.966 else 17.368
-    val c = if (temperature < 0.celsius) 227.15 else 238.88 // °C
-
-    return (
-        exp((b * dewPoint.inCelsius).div(c + dewPoint.inCelsius)) /
-            exp((b * temperature.inCelsius).div(c + temperature.inCelsius))
-        ).fraction
-}
-
-/**
- * Compute dew point from temperature and relative humidity
- * Uses Magnus approximation with Arden Buck best variable set
- * TODO: Unit test
- *
- * @param temperature
- * @param relativeHumidity
- */
-private fun computeDewPoint(
-    temperature: Temperature?,
-    relativeHumidity: Ratio?,
-): Temperature? {
-    if (temperature == null || relativeHumidity == null) return null
-
-    val b = if (temperature < 0.celsius) 17.966 else 17.368
-    val c = if (temperature < 0.celsius) 227.15 else 238.88 // °C
-
-    val magnus = ln(relativeHumidity.inFraction) + (b * temperature.inCelsius) / (c + temperature.inCelsius)
-    return ((c * magnus) / (b - magnus)).celsius
-}
-
-/**
- * Compute apparent temperature from temperature, relative humidity, and wind speed
- * Uses Bureau of Meteorology Australia methodology
- * Source: http://www.bom.gov.au/info/thermal_stress/#atapproximation
- * TODO: Unit test
- *
- * @param temperature
- * @param relativeHumidity
- * @param windSpeed
- */
-internal fun computeApparentTemperature(
-    temperature: Temperature?,
-    relativeHumidity: Ratio?,
-    windSpeed: Speed?,
-): Temperature? {
-    if (temperature == null || relativeHumidity == null || windSpeed == null) return null
-
-    val e = relativeHumidity.inFraction * 6.105 * exp(17.27 * temperature.inCelsius / (237.7 + temperature.inCelsius))
-    return (temperature.inCelsius + 0.33 * e - 0.7 * windSpeed.inMetersPerSecond - 4.0).celsius
-}
-
-/**
- * Compute wind chill from temperature and wind speed
- * Uses Environment Canada methodology
- * Source: https://climate.weather.gc.ca/glossary_e.html#w
- * Only valid for (T ≤ 0 °C) or (T ≤ 10°C and WS ≥ 5 km/h)
- * TODO: Unit test
- *
- * @param temperature
- * @param windSpeed
- */
-internal fun computeWindChillTemperature(
-    temperature: Temperature?,
-    windSpeed: Speed?,
-): Temperature? {
-    if (temperature == null || windSpeed == null || temperature > 10.celsius) return null
-    return if (windSpeed >= 5.kilometersPerHour) {
-        (
-            13.12 +
-                (0.6215 * temperature.inCelsius) -
-                (11.37 * windSpeed.inKilometersPerHour.pow(0.16)) +
-                (0.3965 * temperature.inCelsius * windSpeed.inKilometersPerHour.pow(0.16))
-            ).celsius
-    } else if (temperature <= 0.celsius) {
-        (temperature.inCelsius + ((-1.59 + 0.1345 * temperature.inCelsius) / 5.0) * windSpeed.inKilometersPerHour)
-            .celsius
-    } else {
-        null
-    }
-}
-
-/**
- * Compute humidex from temperature and humidity
- * Based on formula from ECCC
- *
- * @param temperature
- * @param dewPoint
- */
-internal fun computeHumidex(
-    temperature: Temperature?,
-    dewPoint: Temperature?,
-): Temperature? {
-    if (temperature == null || dewPoint == null || temperature < 15.celsius) return null
-
-    return (
-        temperature.inCelsius +
-            0.5555.times(
-                6.11.times(
-                    exp(5417.7530.times(1.div(273.15) - 1.div(273.15 + dewPoint.inCelsius)))
-                ).minus(10)
-            )
-        ).celsius
-}
-
-/**
  * Convert cardinal points direction to a degree
  * Supports up to 3 characters cardinal points
  *
@@ -419,108 +301,6 @@ internal fun getWindDegree(
     "NNW", "NNO" -> 337.5
     "VR", "VAR" -> -1.0
     else -> null
-}
-
-/**
- * Compute mean sea level pressure (MSLP) from barometric pressure and altitude.
- * Optional elements can be provided for minor adjustments.
- * Source: https://integritext.net/DrKFS/correctiontosealevel.htm
- *
- * To compute barometric pressure from MSLP,
- * simply enter negative altitude.
- *
- * @param barometricPressure in hPa
- * @param altitude in meters
- * @param temperature in °C (optional)
- * @param humidity in % (optional)
- * @param latitude in ° (optional)
- */
-internal fun computeMeanSeaLevelPressure(
-    barometricPressure: Double?,
-    altitude: Double?,
-    temperature: Double? = null,
-    humidity: Double? = null,
-    latitude: Double? = null,
-): Double? {
-    // There is nothing to calculate if barometric pressure or altitude is null.
-    if (barometricPressure == null || altitude == null) {
-        return null
-    }
-
-    // Source: http://www.bom.gov.au/info/thermal_stress/#atapproximation
-    val waterVaporPressure = if (humidity != null && temperature != null) {
-        humidity / 100 * 6.105 * exp(17.27 * temperature / (237.7 + temperature))
-    } else {
-        0.0
-    }
-
-    // adjustment for temperature
-    val term1 = 1.0 + 0.0037 * (temperature ?: 0.0)
-
-    // adjustment for humidity
-    val term2 = 1.0 / (1.0 - 0.378 * waterVaporPressure / barometricPressure)
-
-    // adjustment for asphericity of the Earth
-    val term3 = 1.0 / (1.0 - 0.0026 * cos(2 * (latitude ?: 45.0) * Math.PI / 180))
-
-    // adjustment for variation of gravitational acceleration with height
-    val term4 = 1.0 + (altitude / 6367324)
-
-    return (10.0).pow(log10(barometricPressure) + altitude / (18400.0 * term1 * term2 * term3 * term4))
-}
-
-/**
- * Compute pollutant concentration in µg/m³ when given in ppb.
- * Can also be used for converting to mg/m³ from ppm.
- * Source: https://en.wikipedia.org/wiki/Useful_conversions_and_formulas_for_air_dispersion_modeling
- *
- * Basis for temperature and pressure assumptions:
- * https://www.ecfr.gov/current/title-40/chapter-I/subchapter-C/part-50/section-50.3
- *
- * @param pollutant one of NO2, O3, SO2 or CO
- * @param concentrationInPpb in ppb
- * @param temperature assumed 25 °C if omitted
- * @param barometricPressure assumed 1 atm = 1013.25 hPa if omitted
- */
-internal fun computePollutantInUgm3FromPpb(
-    pollutant: PollutantIndex,
-    concentrationInPpb: Double?,
-    temperature: Temperature? = null,
-    barometricPressure: Pressure? = null,
-): Double? {
-    if (concentrationInPpb == null) return null
-    if (pollutant.molecularMass == null) return null
-    return concentrationInPpb *
-        pollutant.molecularMass /
-        (8.31446261815324 / (barometricPressure?.inHectopascals ?: 1013.25) * 10) /
-        (273.15 + (temperature?.inCelsius ?: 25.0))
-}
-
-/**
- * Compute pollutant concentration in ppb from µg/m³
- * Can also be used for converting to ppm from mg/m³
- * Source: https://en.wikipedia.org/wiki/Useful_conversions_and_formulas_for_air_dispersion_modeling
- *
- * Basis for temperature and pressure assumptions:
- * https://www.ecfr.gov/current/title-40/chapter-I/subchapter-C/part-50/section-50.3
- *
- * @param pollutant one of NO2, O3, SO2 or CO
- * @param concentrationInUgm3 in µg/m³
- * @param temperature assumed 25 °C if omitted
- * @param barometricPressure assumed 1 atm = 1013.25 hPa if omitted
- */
-internal fun computePollutantInPpbFromUgm3(
-    pollutant: PollutantIndex,
-    concentrationInUgm3: Double?,
-    temperature: Temperature? = null,
-    barometricPressure: Pressure? = null,
-): Double? {
-    if (concentrationInUgm3 == null) return null
-    if (pollutant.molecularMass == null) return null
-    return concentrationInUgm3 /
-        pollutant.molecularMass *
-        (8.31446261815324 / (barometricPressure?.inHectopascals ?: 1013.25) * 10) *
-        (273.15 + (temperature?.inCelsius ?: 25.0))
 }
 
 /**
