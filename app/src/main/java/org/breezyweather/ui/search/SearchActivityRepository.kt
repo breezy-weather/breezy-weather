@@ -83,7 +83,7 @@ class SearchActivityRepository @Inject internal constructor(
             )
     }
 
-    suspend fun getLocationWithUnambiguousCountryCode(
+    suspend fun getLocationWithDisambiguatedCountryCode(
         location: Location,
         locationSearchSource: LocationSearchSource,
         context: Context,
@@ -93,7 +93,7 @@ class SearchActivityRepository @Inject internal constructor(
             } != false ||
             location.countryCode.equals("AN", ignoreCase = true)
         ) {
-            mRefreshHelper.getLocationWithUnambiguousCountryCode(location, context)
+            mRefreshHelper.getLocationWithDisambiguatedCountryCode(location, context)
         } else {
             location
         }

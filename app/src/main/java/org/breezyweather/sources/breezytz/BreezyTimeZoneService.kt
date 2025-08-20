@@ -47,41 +47,11 @@ class BreezyTimeZoneService @Inject constructor() : TimeZoneSource {
         // CASE 2 - Multiple timezones for the country
         if (timeZonesForCountry.isNotEmpty()) {
             // TODO: Do something
-            return Observable.just(TimeZone.getDefault())
+            return Observable.just(TimeZone.getTimeZone("GMT"))
         }
 
-        // OTHER CASES - Fallback to ocean zones
-        // Sign is intentionally inverted. See https://github.com/eggert/tz/blob/2025b/etcetera#L37-L43
-        return Observable.just(
-            when (location.longitude) {
-                in 172.5..180.0 -> TimeZone.getTimeZone("Etc/GMT-12")
-                in 157.5..172.5 -> TimeZone.getTimeZone("Etc/GMT-11")
-                in 142.5..157.5 -> TimeZone.getTimeZone("Etc/GMT-10")
-                in 127.5..142.5 -> TimeZone.getTimeZone("Etc/GMT-9")
-                in 112.5..127.5 -> TimeZone.getTimeZone("Etc/GMT-8")
-                in 97.5..112.5 -> TimeZone.getTimeZone("Etc/GMT-7")
-                in 82.5..97.5 -> TimeZone.getTimeZone("Etc/GMT-6")
-                in 67.5..82.5 -> TimeZone.getTimeZone("Etc/GMT-5")
-                in 52.5..67.5 -> TimeZone.getTimeZone("Etc/GMT-4")
-                in 37.5..52.5 -> TimeZone.getTimeZone("Etc/GMT-3")
-                in 22.5..37.5 -> TimeZone.getTimeZone("Etc/GMT-2")
-                in 7.5..22.5 -> TimeZone.getTimeZone("Etc/GMT-1")
-                in -7.5..7.5 -> TimeZone.getTimeZone("Etc/GMT")
-                in -22.5..-7.5 -> TimeZone.getTimeZone("Etc/GMT+1")
-                in -37.5..-22.5 -> TimeZone.getTimeZone("Etc/GMT+2")
-                in -52.5..-37.5 -> TimeZone.getTimeZone("Etc/GMT+3")
-                in -67.5..-52.5 -> TimeZone.getTimeZone("Etc/GMT+4")
-                in -82.5..-67.5 -> TimeZone.getTimeZone("Etc/GMT+5")
-                in -97.5..-82.5 -> TimeZone.getTimeZone("Etc/GMT+6")
-                in -112.5..-97.5 -> TimeZone.getTimeZone("Etc/GMT+7")
-                in -127.5..-112.5 -> TimeZone.getTimeZone("Etc/GMT+8")
-                in -142.5..-127.5 -> TimeZone.getTimeZone("Etc/GMT+9")
-                in -157.5..-142.5 -> TimeZone.getTimeZone("Etc/GMT+10")
-                in -172.5..-157.5 -> TimeZone.getTimeZone("Etc/GMT+11")
-                in -180.0..-172.5 -> TimeZone.getTimeZone("Etc/GMT+12")
-                else -> TimeZone.getDefault()
-            }
-        )
+        // OTHER CASES - Fails
+        return Observable.just(TimeZone.getTimeZone("GMT"))
     }
 
     private fun getTimeZonesForCountry(countryCode: String?): Array<String> {

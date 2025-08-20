@@ -111,7 +111,7 @@ class SearchViewModel @Inject constructor(
         viewModelScope.launchIO {
             _isLoading.value = true
             _selectedLocation.value = mRepository.getLocationWithAppliedPreference(
-                mRepository.getLocationWithUnambiguousCountryCode(location, locationSearchSource, getApplication()),
+                mRepository.getLocationWithDisambiguatedCountryCode(location, locationSearchSource, getApplication()),
                 getApplication()
             )
             _isLoading.value = false

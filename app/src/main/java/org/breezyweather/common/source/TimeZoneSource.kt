@@ -27,7 +27,8 @@ import java.util.TimeZone
 interface TimeZoneSource : Source {
 
     /**
-     * Returns a list of Breezy Weather Location results from a query
+     * Returns the timezone for this location
+     * Returns GMT if failed to find the timezone
      */
     fun requestTimezone(context: Context, location: Location): Observable<TimeZone>
 }
