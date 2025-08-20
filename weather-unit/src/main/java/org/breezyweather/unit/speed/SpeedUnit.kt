@@ -18,12 +18,14 @@ package org.breezyweather.unit.speed
 
 import android.content.Context
 import android.icu.util.MeasureUnit
-import android.os.Build
 import org.breezyweather.unit.R
 import org.breezyweather.unit.WeatherUnit
 import org.breezyweather.unit.formatting.UnitDecimals
 import org.breezyweather.unit.formatting.UnitTranslation
 import org.breezyweather.unit.formatting.UnitWidth
+import org.breezyweather.unit.supportsMeasureUnit
+import org.breezyweather.unit.supportsMeasureUnitBeaufort
+import org.breezyweather.unit.supportsMeasureUnitKnot
 import java.util.Locale
 
 enum class SpeedUnit(
@@ -53,8 +55,8 @@ enum class SpeedUnit(
             short = R.string.duration_sec_per_short,
             long = R.string.duration_sec_per_long
         ),
-        measureUnit = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) MeasureUnit.CENTIMETER else null,
-        perMeasureUnit = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) MeasureUnit.SECOND else null,
+        measureUnit = if (supportsMeasureUnit()) MeasureUnit.CENTIMETER else null,
+        perMeasureUnit = if (supportsMeasureUnit()) MeasureUnit.SECOND else null,
         convertFromReference = { valueInDefaultUnit -> valueInDefaultUnit },
         convertToReference = { valueInThisUnit -> valueInThisUnit },
         decimals = UnitDecimals(0),
@@ -74,7 +76,7 @@ enum class SpeedUnit(
             short = R.string.duration_sec_per_short,
             long = R.string.duration_sec_per_long
         ),
-        measureUnit = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) MeasureUnit.METER_PER_SECOND else null,
+        measureUnit = if (supportsMeasureUnit()) MeasureUnit.METER_PER_SECOND else null,
         perMeasureUnit = null, // Not supported on Android 7/7.1, so better use the all-in-one METER_PER_SECOND
         convertFromReference = { valueInDefaultUnit -> valueInDefaultUnit.div(100.0) },
         convertToReference = { valueInThisUnit -> valueInThisUnit.times(100.0) },
@@ -95,7 +97,7 @@ enum class SpeedUnit(
             short = R.string.duration_hr_per_short,
             long = R.string.duration_hr_per_long
         ),
-        measureUnit = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) MeasureUnit.KILOMETER_PER_HOUR else null,
+        measureUnit = if (supportsMeasureUnit()) MeasureUnit.KILOMETER_PER_HOUR else null,
         perMeasureUnit = null, // Not supported on Android 7/7.1, so better use the all-in-one KILOMETER_PER_HOUR
         convertFromReference = { valueInDefaultUnit -> valueInDefaultUnit.times(0.036) },
         convertToReference = { valueInThisUnit -> valueInThisUnit.div(0.036) },
@@ -116,7 +118,7 @@ enum class SpeedUnit(
             short = R.string.duration_hr_per_short,
             long = R.string.duration_hr_per_long
         ),
-        measureUnit = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) MeasureUnit.MILE_PER_HOUR else null,
+        measureUnit = if (supportsMeasureUnit()) MeasureUnit.MILE_PER_HOUR else null,
         perMeasureUnit = null, // Not supported on Android 7/7.1, so better use the all-in-one MILE_PER_HOUR
         convertFromReference = { valueInDefaultUnit -> valueInDefaultUnit.div(44.704) },
         convertToReference = { valueInThisUnit -> valueInThisUnit.times(44.704) },
@@ -133,7 +135,7 @@ enum class SpeedUnit(
             short = R.string.speed_kn_nominative_short,
             long = R.string.speed_kn_nominative_long
         ),
-        measureUnit = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) MeasureUnit.KNOT else null,
+        measureUnit = if (supportsMeasureUnitKnot()) MeasureUnit.KNOT else null,
         perMeasureUnit = null,
         convertFromReference = { valueInDefaultUnit -> valueInDefaultUnit.times(0.036).div(1.852) },
         convertToReference = { valueInThisUnit -> valueInThisUnit.times(1.852).div(0.036) },
@@ -154,8 +156,8 @@ enum class SpeedUnit(
             short = R.string.duration_sec_per_short,
             long = R.string.duration_sec_per_long
         ),
-        measureUnit = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) MeasureUnit.FOOT else null,
-        perMeasureUnit = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) MeasureUnit.SECOND else null,
+        measureUnit = if (supportsMeasureUnit()) MeasureUnit.FOOT else null,
+        perMeasureUnit = if (supportsMeasureUnit()) MeasureUnit.SECOND else null,
         convertFromReference = { valueInDefaultUnit -> valueInDefaultUnit.div(30.48) },
         convertToReference = { valueInThisUnit -> valueInThisUnit.times(30.48) },
         decimals = UnitDecimals(narrow = 0, short = 1, long = 2),
@@ -175,7 +177,7 @@ enum class SpeedUnit(
             short = R.string.speed_bf_nominative_short,
             long = R.string.speed_bf_nominative_long
         ),
-        measureUnit = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.BAKLAVA) MeasureUnit.BEAUFORT else null,
+        measureUnit = if (supportsMeasureUnitBeaufort()) MeasureUnit.BEAUFORT else null,
         perMeasureUnit = null,
         convertFromReference = { valueInDefaultUnit ->
             when (valueInDefaultUnit.toLong()) {
@@ -260,7 +262,7 @@ enum class SpeedUnit(
             )
         }
 
-        val correctedLocale = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.BAKLAVA && this == BEAUFORT_SCALE) {
+        val correctedLocale = if (supportsMeasureUnitBeaufort() && this == BEAUFORT_SCALE) {
             if (locale.language.equals("fr", ignoreCase = true)) {
                 // fr uses the incorrect unit (it should be "%s Bf" instead of "%s Bft"), replace with fr_CA
                 Locale.Builder().setLanguage("fr").setRegion("CA").build()

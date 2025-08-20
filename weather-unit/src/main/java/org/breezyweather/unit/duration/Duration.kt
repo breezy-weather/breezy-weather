@@ -28,6 +28,8 @@ import org.breezyweather.unit.formatting.UnitWidth
 import org.breezyweather.unit.formatting.format
 import org.breezyweather.unit.formatting.formatWithMeasureFormat
 import org.breezyweather.unit.formatting.formatWithNumberFormatter
+import org.breezyweather.unit.supportsMeasureFormat
+import org.breezyweather.unit.supportsNumberFormatter
 import java.util.Locale
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.hours
@@ -84,10 +86,10 @@ fun Duration.format(
     useNumberFormatter: Boolean = true,
     useMeasureFormat: Boolean = true,
 ): String {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && (useNumberFormatter || useMeasureFormat)) {
+    if (supportsMeasureFormat() && (useNumberFormatter || useMeasureFormat)) {
         // LogHelper.log(msg = "Formatting with ICU ${enum.id}: ${enum.measureUnit} per ${enum.perMeasureUnit}")
 
-        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R &&
+        return if (supportsNumberFormatter() &&
             useNumberFormatter &&
             unit == smallestUnit // NumberFormatter only supports one unit at a time
         ) {

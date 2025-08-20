@@ -26,6 +26,8 @@ import android.icu.util.MeasureUnit
 import android.icu.util.TimeUnit
 import android.os.Build
 import androidx.annotation.RequiresApi
+import org.breezyweather.unit.supportsMeasureFormatPerUnit
+import org.breezyweather.unit.supportsNumberFormatterUsage
 import java.text.FieldPosition
 import java.util.Locale
 
@@ -51,7 +53,7 @@ fun MeasureUnit.formatWithNumberFormatter(
         .perUnit(perUnit)
         .unitWidth(numberFormatterWidth)
         .apply {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (supportsNumberFormatterUsage()) {
                 usage(if (this is TimeUnit) "duration" else null)
             }
         }
@@ -72,7 +74,7 @@ fun MeasureUnit.formatWithMeasureFormat(
     precision: Int,
     measureFormatWidth: MeasureFormat.FormatWidth,
 ): String {
-    if (perUnit != null && Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+    if (perUnit != null && !supportsMeasureFormatPerUnit()) {
         throw UnsupportedOperationException()
     }
 

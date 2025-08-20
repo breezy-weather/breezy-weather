@@ -18,13 +18,13 @@ package org.breezyweather.unit.temperature
 
 import android.content.Context
 import android.icu.util.MeasureUnit
-import android.os.Build
 import androidx.core.text.util.LocalePreferences
 import org.breezyweather.unit.R
 import org.breezyweather.unit.WeatherUnit
 import org.breezyweather.unit.formatting.UnitDecimals
 import org.breezyweather.unit.formatting.UnitTranslation
 import org.breezyweather.unit.formatting.UnitWidth
+import org.breezyweather.unit.supportsMeasureUnit
 import java.util.Locale
 
 enum class TemperatureUnit(
@@ -72,7 +72,7 @@ enum class TemperatureUnit(
             short = R.string.temperature_c_nominative_short,
             long = R.string.temperature_c_nominative_long
         ),
-        measureUnit = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) MeasureUnit.CELSIUS else null,
+        measureUnit = if (supportsMeasureUnit()) MeasureUnit.CELSIUS else null,
         convertFromReference = { valueInDefaultUnit -> valueInDefaultUnit.div(10.0) },
         convertToReference = { valueInThisUnit -> valueInThisUnit.times(10.0) },
         convertDeviationFromReference = { valueInDefaultUnit -> valueInDefaultUnit.div(10.0) },
@@ -91,7 +91,7 @@ enum class TemperatureUnit(
             short = R.string.temperature_f_nominative_short,
             long = R.string.temperature_f_nominative_long
         ),
-        measureUnit = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) MeasureUnit.FAHRENHEIT else null,
+        measureUnit = if (supportsMeasureUnit()) MeasureUnit.FAHRENHEIT else null,
         convertFromReference = { valueInDefaultUnit -> 9.0.div(5.0).times(valueInDefaultUnit.div(10.0)) + 32 },
         convertToReference = { valueInThisUnit -> 5.0.div(9.0).times(valueInThisUnit - 32.0).times(10.0) },
         convertDeviationFromReference = { valueInDefaultUnit -> 9.0.div(5.0).times(valueInDefaultUnit.div(10.0)) },
@@ -110,12 +110,12 @@ enum class TemperatureUnit(
             short = R.string.temperature_k_nominative_short,
             long = R.string.temperature_k_nominative_long
         ),
-        measureUnit = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) MeasureUnit.KELVIN else null,
+        measureUnit = if (supportsMeasureUnit()) MeasureUnit.KELVIN else null,
         convertFromReference = { valueInDefaultUnit -> 273.15 + valueInDefaultUnit.div(10.0) },
         convertToReference = { valueInThisUnit -> (valueInThisUnit - 273.15).times(10.0) },
         convertDeviationFromReference = { valueInDefaultUnit -> valueInDefaultUnit.div(10.0) },
         convertDeviationToReference = { valueInThisUnit -> valueInThisUnit.times(10.0) },
-        decimals = UnitDecimals(narrow = 0, short = 1, long = 1),
+        decimals = UnitDecimals(narrow = 0, short = 1, long = 2),
         chartStep = 5.0
     ),
     ;

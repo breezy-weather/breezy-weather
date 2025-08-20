@@ -19,7 +19,6 @@ package org.breezyweather.unit.ratio
 import android.content.Context
 import android.icu.text.NumberFormat
 import android.icu.util.MeasureUnit
-import android.os.Build
 import org.breezyweather.unit.R
 import org.breezyweather.unit.WeatherUnit
 import org.breezyweather.unit.formatting.UnitDecimals
@@ -27,6 +26,10 @@ import org.breezyweather.unit.formatting.UnitTranslation
 import org.breezyweather.unit.formatting.UnitWidth
 import org.breezyweather.unit.formatting.format
 import org.breezyweather.unit.formatting.formatWithNumberFormatter
+import org.breezyweather.unit.supportsMeasureUnitPercent
+import org.breezyweather.unit.supportsMeasureUnitPermille
+import org.breezyweather.unit.supportsNumberFormat
+import org.breezyweather.unit.supportsNumberFormatter
 import java.util.Locale
 
 enum class RatioUnit(
@@ -46,7 +49,7 @@ enum class RatioUnit(
         id = "permille",
         displayName = UnitTranslation(R.string.ratio_permille_display_name_short),
         nominative = UnitTranslation(R.string.ratio_permille_nominative_short),
-        measureUnit = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) MeasureUnit.PERMILLE else null,
+        measureUnit = if (supportsMeasureUnitPermille()) MeasureUnit.PERMILLE else null,
         convertFromReference = { valueInDefaultUnit -> valueInDefaultUnit },
         convertToReference = { valueInThisUnit -> valueInThisUnit },
         decimals = UnitDecimals(0),
@@ -56,7 +59,7 @@ enum class RatioUnit(
         id = "percent",
         displayName = UnitTranslation(R.string.ratio_percent_display_name_short),
         nominative = UnitTranslation(R.string.ratio_percent_nominative_short),
-        measureUnit = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) MeasureUnit.PERCENT else null,
+        measureUnit = if (supportsMeasureUnitPercent()) MeasureUnit.PERCENT else null,
         convertFromReference = { valueInDefaultUnit -> valueInDefaultUnit.div(10.0) },
         convertToReference = { valueInThisUnit -> valueInThisUnit.times(10.0) },
         decimals = UnitDecimals(narrow = 0, short = 1, long = 1),
@@ -97,7 +100,7 @@ enum class RatioUnit(
             )
         }
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R && useNumberFormatter) {
+        if (supportsNumberFormatter() && useNumberFormatter) {
             return measureUnit!!.formatWithNumberFormatter(
                 locale = locale,
                 value = value,
@@ -109,7 +112,7 @@ enum class RatioUnit(
         }
 
         if (this == PERCENT && !showSign) {
-            return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            return if (supportsNumberFormat()) {
                 NumberFormat.getPercentInstance(locale)
                     .apply { maximumFractionDigits = getPrecision(valueWidth) }
                     .format(if (value.toDouble() > 0) value.toDouble().div(100.0) else 0)

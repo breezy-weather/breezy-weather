@@ -22,63 +22,31 @@ import org.junit.jupiter.api.Test
 import java.util.Locale
 
 /**
- * TODO: Currently, NumberFormatter and NumberFormat never works, as SDK is always 0
+ * TODO: Add instrumented tests for NumberFormatter and NumberFormat
  * TODO: Thousand separator tests
  */
 class NumberFormattingTest {
     @Test
-    fun `Format double with decimals and French-style number formatting, using NumberFormatter`() = runTest {
-        formatDoubleWithDecimalsAndFrenchLocale(useNumberFormatter = true, useNumberFormat = false)
-    }
-
-    @Test
-    fun `Format double with decimals and French-style number formatting, using NumberFormat`() = runTest {
-        formatDoubleWithDecimalsAndFrenchLocale(useNumberFormatter = false, useNumberFormat = true)
-    }
-
-    @Test
-    fun `Format double with decimals and French-style number formatting, using DecimalFormat`() = runTest {
-        formatDoubleWithDecimalsAndFrenchLocale(useNumberFormatter = false, useNumberFormat = false)
-    }
-
-    fun formatDoubleWithDecimalsAndFrenchLocale(
-        useNumberFormatter: Boolean,
-        useNumberFormat: Boolean,
-    ) {
+    fun `Format double with decimals and French-style number formatting`() = runTest {
         7.00646.format(
             decimals = 2,
-            locale = Locale.Builder().setLanguage("fr").setRegion("FR").build(),
-            showSign = false,
-            useNumberFormatter = useNumberFormatter,
-            useNumberFormat = useNumberFormat
+            locale = Locale.Builder().setLanguage("fr").setRegion("FR").build()
         ) shouldBe "7,01"
         14.34234.format(
             decimals = 2,
-            locale = Locale.Builder().setLanguage("fr").setRegion("FR").build(),
-            showSign = false,
-            useNumberFormatter = useNumberFormatter,
-            useNumberFormat = useNumberFormat
+            locale = Locale.Builder().setLanguage("fr").setRegion("FR").build()
         ) shouldBe "14,34"
         14.34834.format(
             decimals = 2,
-            locale = Locale.Builder().setLanguage("fr").setRegion("FR").build(),
-            showSign = false,
-            useNumberFormatter = useNumberFormatter,
-            useNumberFormat = useNumberFormat
+            locale = Locale.Builder().setLanguage("fr").setRegion("FR").build()
         ) shouldBe "14,35"
         14.34834.format(
             decimals = 3,
-            locale = Locale.Builder().setLanguage("fr").setRegion("FR").build(),
-            showSign = false,
-            useNumberFormatter = useNumberFormatter,
-            useNumberFormat = useNumberFormat
+            locale = Locale.Builder().setLanguage("fr").setRegion("FR").build()
         ) shouldBe "14,348"
         14.34864.format(
             decimals = 3,
-            locale = Locale.Builder().setLanguage("fr").setRegion("FR").build(),
-            showSign = false,
-            useNumberFormatter = useNumberFormatter,
-            useNumberFormat = useNumberFormat
+            locale = Locale.Builder().setLanguage("fr").setRegion("FR").build()
         ) shouldBe "14,349"
     }
 
@@ -86,24 +54,7 @@ class NumberFormattingTest {
     fun `Format double without values ending with a 0`() = runTest {
         7.00246.format(
             decimals = 2,
-            locale = Locale.Builder().setLanguage("en").setRegion("US").build(),
-            showSign = false,
-            useNumberFormatter = true,
-            useNumberFormat = false
-        ) shouldBe "7"
-        7.00246.format(
-            decimals = 2,
-            locale = Locale.Builder().setLanguage("en").setRegion("US").build(),
-            showSign = false,
-            useNumberFormatter = false,
-            useNumberFormat = true
-        ) shouldBe "7"
-        7.00246.format(
-            decimals = 2,
-            locale = Locale.Builder().setLanguage("en").setRegion("US").build(),
-            showSign = false,
-            useNumberFormatter = false,
-            useNumberFormat = false
+            locale = Locale.Builder().setLanguage("en").setRegion("US").build()
         ) shouldBe "7"
     }
 
@@ -111,24 +62,7 @@ class NumberFormattingTest {
     fun `Format int`() = runTest {
         14.format(
             decimals = 0,
-            locale = Locale.Builder().setLanguage("en").setRegion("US").build(),
-            showSign = false,
-            useNumberFormatter = true,
-            useNumberFormat = false
-        ) shouldBe "14"
-        14.format(
-            decimals = 0,
-            locale = Locale.Builder().setLanguage("en").setRegion("US").build(),
-            showSign = false,
-            useNumberFormatter = false,
-            useNumberFormat = true
-        ) shouldBe "14"
-        14.format(
-            decimals = 0,
-            locale = Locale.Builder().setLanguage("en").setRegion("US").build(),
-            showSign = false,
-            useNumberFormatter = false,
-            useNumberFormat = false
+            locale = Locale.Builder().setLanguage("en").setRegion("US").build()
         ) shouldBe "14"
     }
 
@@ -137,23 +71,7 @@ class NumberFormattingTest {
         7.3.format(
             decimals = 1,
             locale = Locale.Builder().setLanguage("en").setRegion("US").build(),
-            showSign = true,
-            useNumberFormatter = true,
-            useNumberFormat = false
-        ) shouldBe "+7.3"
-        7.3.format(
-            decimals = 1,
-            locale = Locale.Builder().setLanguage("en").setRegion("US").build(),
-            showSign = true,
-            useNumberFormatter = false,
-            useNumberFormat = true
-        ) shouldBe "+7.3"
-        7.3.format(
-            decimals = 1,
-            locale = Locale.Builder().setLanguage("en").setRegion("US").build(),
-            showSign = true,
-            useNumberFormatter = false,
-            useNumberFormat = false
+            showSign = true
         ) shouldBe "+7.3"
     }
 }

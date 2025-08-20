@@ -18,12 +18,12 @@ package org.breezyweather.unit.precipitation
 
 import android.content.Context
 import android.icu.util.MeasureUnit
-import android.os.Build
 import org.breezyweather.unit.R
 import org.breezyweather.unit.WeatherUnit
 import org.breezyweather.unit.formatting.UnitDecimals
 import org.breezyweather.unit.formatting.UnitTranslation
 import org.breezyweather.unit.formatting.UnitWidth
+import org.breezyweather.unit.supportsMeasureUnit
 import java.util.Locale
 
 enum class PrecipitationUnit(
@@ -49,7 +49,7 @@ enum class PrecipitationUnit(
             short = R.string.length_microm_nominative_short,
             long = R.string.length_microm_nominative_long
         ),
-        measureUnit = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) MeasureUnit.MICROMETER else null,
+        measureUnit = if (supportsMeasureUnit()) MeasureUnit.MICROMETER else null,
         convertFromReference = { valueInDefaultUnit -> valueInDefaultUnit },
         convertToReference = { valueInThisUnit -> valueInThisUnit },
         decimals = UnitDecimals(short = 0, long = 1), // Used only by PM2.5 formatting
@@ -65,7 +65,7 @@ enum class PrecipitationUnit(
             short = R.string.length_mm_nominative_short,
             long = R.string.length_mm_nominative_long
         ),
-        measureUnit = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) MeasureUnit.MILLIMETER else null,
+        measureUnit = if (supportsMeasureUnit()) MeasureUnit.MILLIMETER else null,
         convertFromReference = { valueInDefaultUnit -> valueInDefaultUnit.div(1000.0) },
         convertToReference = { valueInThisUnit -> valueInThisUnit.times(1000.0) },
         decimals = UnitDecimals(narrow = 0, short = 1, long = 2),
@@ -81,7 +81,7 @@ enum class PrecipitationUnit(
             short = R.string.length_cm_nominative_short,
             long = R.string.length_cm_nominative_long
         ),
-        measureUnit = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) MeasureUnit.CENTIMETER else null,
+        measureUnit = if (supportsMeasureUnit()) MeasureUnit.CENTIMETER else null,
         convertFromReference = { valueInDefaultUnit -> valueInDefaultUnit.div(10000.0) },
         convertToReference = { valueInThisUnit -> valueInThisUnit.times(10000.0) },
         decimals = UnitDecimals(narrow = 1, short = 2, long = 3),
@@ -97,7 +97,7 @@ enum class PrecipitationUnit(
             short = R.string.length_in_nominative_short,
             long = R.string.length_in_nominative_long
         ),
-        measureUnit = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) MeasureUnit.INCH else null,
+        measureUnit = if (supportsMeasureUnit()) MeasureUnit.INCH else null,
         convertFromReference = { valueInDefaultUnit -> valueInDefaultUnit.div(25400.0) },
         convertToReference = { valueInThisUnit -> valueInThisUnit.times(25400.0) },
         decimals = UnitDecimals(narrow = 1, short = 2, long = 3),
@@ -117,8 +117,8 @@ enum class PrecipitationUnit(
             short = R.string.area_m2_per_short,
             long = R.string.area_m2_per_long
         ),
-        measureUnit = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) MeasureUnit.LITER else null,
-        perMeasureUnit = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) MeasureUnit.SQUARE_METER else null,
+        measureUnit = if (supportsMeasureUnit()) MeasureUnit.LITER else null,
+        perMeasureUnit = if (supportsMeasureUnit()) MeasureUnit.SQUARE_METER else null,
         convertFromReference = { valueInDefaultUnit -> valueInDefaultUnit.div(1000.0) },
         convertToReference = { valueInThisUnit -> valueInThisUnit.times(1000.0) },
         decimals = UnitDecimals(narrow = 0, short = 1, long = 2),

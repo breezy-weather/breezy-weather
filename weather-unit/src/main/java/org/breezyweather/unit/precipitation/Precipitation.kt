@@ -2,7 +2,6 @@ package org.breezyweather.unit.precipitation
 
 import android.content.Context
 import android.icu.util.MeasureUnit
-import android.os.Build
 import org.breezyweather.unit.R
 import org.breezyweather.unit.WeatherValue
 import org.breezyweather.unit.formatting.UnitDecimals.Companion.formatToExactDecimals
@@ -13,6 +12,8 @@ import org.breezyweather.unit.precipitation.Precipitation.Companion.centimeters
 import org.breezyweather.unit.precipitation.Precipitation.Companion.inches
 import org.breezyweather.unit.precipitation.Precipitation.Companion.litersPerSquareMeter
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
+import org.breezyweather.unit.supportsMeasureFormatPerUnit
+import org.breezyweather.unit.supportsNumberFormatter
 import java.util.Locale
 import kotlin.math.roundToLong
 
@@ -219,7 +220,7 @@ value class Precipitation internal constructor(
     ): String {
         if (unit.measureUnit != null &&
             unit.perMeasureUnit == null && // Liter per square meter would have 2 “per”, so not supported!
-            Build.VERSION.SDK_INT >= Build.VERSION_CODES.O &&
+            supportsMeasureFormatPerUnit() &&
             (useNumberFormatter || useMeasureFormat)
         ) {
             val convertedValue = toDouble(unit)
@@ -240,7 +241,7 @@ value class Precipitation internal constructor(
                 }
             }
 
-            return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R && useNumberFormatter) {
+            return if (supportsNumberFormatter() && useNumberFormatter) {
                 unit.measureUnit.formatWithNumberFormatter(
                     locale = correctedLocale,
                     value = convertedValue,

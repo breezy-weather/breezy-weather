@@ -8,7 +8,6 @@
     <!-- Temperature units -->
 
     <!-- Decidegree Celsius -->
-    <string name="temperature_dc_display_name_short">decideg. C</string>
     <string name="temperature_dc_display_name_long">decidegrés Celsius</string>
     <string name="temperature_dc_nominative_long">%s decidegrés Celsius</string>
 

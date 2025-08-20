@@ -18,7 +18,8 @@ package org.breezyweather.unit.formatting
 
 import android.icu.number.NumberFormatter
 import android.icu.text.MeasureFormat
-import android.os.Build
+import org.breezyweather.unit.supportsMeasureFormat
+import org.breezyweather.unit.supportsNumberFormatter
 
 enum class UnitWidth(
     val id: String,
@@ -27,17 +28,17 @@ enum class UnitWidth(
 ) {
     NARROW(
         "narrow",
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) MeasureFormat.FormatWidth.NARROW else null,
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) NumberFormatter.UnitWidth.NARROW else null
+        if (supportsMeasureFormat()) MeasureFormat.FormatWidth.NARROW else null,
+        if (supportsNumberFormatter()) NumberFormatter.UnitWidth.NARROW else null
     ),
     SHORT(
         "short",
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) MeasureFormat.FormatWidth.SHORT else null,
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) NumberFormatter.UnitWidth.SHORT else null
+        if (supportsMeasureFormat()) MeasureFormat.FormatWidth.SHORT else null,
+        if (supportsNumberFormatter()) NumberFormatter.UnitWidth.SHORT else null
     ),
     LONG(
         "full",
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) MeasureFormat.FormatWidth.WIDE else null,
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) NumberFormatter.UnitWidth.FULL_NAME else null
+        if (supportsMeasureFormat()) MeasureFormat.FormatWidth.WIDE else null,
+        if (supportsNumberFormatter()) NumberFormatter.UnitWidth.FULL_NAME else null
     ),
 }
