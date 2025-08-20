@@ -16,16 +16,8 @@
 
 package org.breezyweather
 
-import android.content.Context
-import io.kotest.matchers.shouldBe
-import io.mockk.every
-import io.mockk.mockk
-import io.mockk.mockkStatic
 import kotlinx.coroutines.test.runTest
-import org.breezyweather.common.extensions.currentLocale
-import org.breezyweather.common.utils.UnitUtils
 import org.junit.jupiter.api.Test
-import java.util.Locale
 
 class MatchTest {
 
@@ -33,17 +25,5 @@ class MatchTest {
     fun split() = runTest {
         val text = "dadasd dsad   dad"
         println(text.split("-".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray().contentToString())
-    }
-
-    @Test
-    fun formatFloat() = runTest {
-        mockkStatic(Context::currentLocale)
-
-        val context = mockk<Context>().apply {
-            every { currentLocale } returns Locale.Builder().setLanguage("fr").setRegion("FR").build()
-        }
-
-        UnitUtils.formatDouble(context, 7.00646, 2) shouldBe "7,01"
-        UnitUtils.formatDouble(context, 7.00246, 2) shouldBe "7"
     }
 }

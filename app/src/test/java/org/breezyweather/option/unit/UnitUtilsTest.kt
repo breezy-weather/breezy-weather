@@ -16,45 +16,54 @@
 
 package org.breezyweather.option.unit
 
-import android.content.Context
 import io.kotest.matchers.shouldBe
-import io.mockk.every
-import io.mockk.mockk
-import io.mockk.mockkStatic
 import kotlinx.coroutines.test.runTest
-import org.breezyweather.common.extensions.currentLocale
-import org.breezyweather.common.utils.UnitUtils
+import org.breezyweather.unit.formatting.format
 import org.junit.jupiter.api.Test
 import java.util.Locale
 
 /**
- * TODO: Move to unit lib and test against Number.format() instead
+ * TODO: Move to unit lib
  * TODO: Add sign testing
  */
 class UnitUtilsTest {
     @Test
-    fun formatFloat() = runTest {
-        mockkStatic(Context::currentLocale)
-
-        val context = mockk<Context>().apply {
-            every { currentLocale } returns Locale.Builder().setLanguage("fr").setRegion("FR").build()
-        }
-
-        UnitUtils.formatDouble(context, 14.34234) shouldBe "14,34"
-        UnitUtils.formatDouble(context, 14.34834) shouldBe "14,35"
-        UnitUtils.formatDouble(context, 14.34834, 3) shouldBe "14,348"
-        UnitUtils.formatDouble(context, 14.34864, 3) shouldBe "14,349"
+    fun formatDouble() = runTest {
+        7.00646.format(
+            decimals = 2,
+            locale = Locale.Builder().setLanguage("fr").setRegion("FR").build()
+        ) shouldBe "7,01"
+        7.00246.format(
+            decimals = 2,
+            locale = Locale.Builder().setLanguage("fr").setRegion("FR").build()
+        ) shouldBe "7"
+        14.34234.format(
+            decimals = 2,
+            locale = Locale.Builder().setLanguage("fr").setRegion("FR").build()
+        ) shouldBe "14,34"
+        14.34834.format(
+            decimals = 2,
+            locale = Locale.Builder().setLanguage("fr").setRegion("FR").build()
+        ) shouldBe "14,35"
+        14.34834.format(
+            decimals = 3,
+            locale = Locale.Builder().setLanguage("fr").setRegion("FR").build()
+        ) shouldBe "14,348"
+        14.34864.format(
+            decimals = 3,
+            locale = Locale.Builder().setLanguage("fr").setRegion("FR").build()
+        ) shouldBe "14,349"
     }
 
     @Test
     fun formatInt() = runTest {
-        mockkStatic(Context::currentLocale)
-
-        val context = mockk<Context>().apply {
-            every { currentLocale } returns Locale.Builder().setLanguage("fr").setRegion("FR").build()
-        }
-
-        UnitUtils.formatInt(context, 14) shouldBe "14"
-        UnitUtils.formatInt(context, 16) shouldBe "16"
+        14.format(
+            decimals = 0,
+            locale = Locale.Builder().setLanguage("fr").setRegion("FR").build()
+        ) shouldBe "14"
+        16.format(
+            decimals = 0,
+            locale = Locale.Builder().setLanguage("fr").setRegion("FR").build()
+        ) shouldBe "16"
     }
 }
