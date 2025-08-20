@@ -220,7 +220,7 @@ class TemperatureTest {
     @Test
     fun `default temperature unit for country`() = runTest {
         mockkStatic(LocalePreferences::class)
-        every { LocalePreferences.getTemperatureUnit() } returns ""
+        every { LocalePreferences.getTemperatureUnit() } returns LocalePreferences.TemperatureUnit.DEFAULT
         TemperatureUnit.getDefaultUnit(
             Locale.Builder().setLanguage("en").setRegion("US").build()
         ) shouldBe TemperatureUnit.FAHRENHEIT
