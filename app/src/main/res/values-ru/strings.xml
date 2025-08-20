@@ -777,4 +777,8 @@
     <string name="content_provider_permission_label">Читать данные Breezy Weather</string>
     <string name="content_provider_permission_description">получите информацию о погоде от Breezy Weather, включая координаты ваших местоположений, такие как ваше текущее местоположение, если вы его добавили</string>
     <string name="common_weather_text_mostly_cloudy">Преимущественно облачно</string>
+    <string name="widget_live_wallpaper_animations_enable_dangerous">ОПАСНО</string>
+    <string name="widget_live_wallpaper_animations_enable_warning1">Известно, что анимации обоев могут приводить, в том числе, к: большому расходу аккумулятора; его перегреву; высокому потреблению памяти; ухудшению отзывчивости системы; сбоям Android.</string>
+    <string name="widget_live_wallpaper_animations_enable_warning2">Если вы решите включить их, вы берёте на себя полную ответственность за любые возникающие проблемы, и поддержка предоставлена не будет.</string>
+    <string name="settings_regional_preference">Региональные настройки</string>
 </resources>
