@@ -13,22 +13,22 @@
     <!-- Decidegree Celsius -->
     <string name="temperature_dc_display_name_short" translatable="false">d°C</string>
     <string name="temperature_dc_display_name_long" translatable="false">@string/temperature_dc_display_name_short</string>
-    <string name="temperature_dc_nominative_narrow" translatable="false">%sd°</string>
-    <string name="temperature_dc_nominative_short" translatable="false">%sd°C</string>
+    <string name="temperature_dc_nominative_narrow" translatable="false">%s d°</string>
+    <string name="temperature_dc_nominative_short" translatable="false">%s d°C</string>
     <string name="temperature_dc_nominative_long" translatable="false">@string/temperature_dc_nominative_short</string>
 
     <!-- Degree Celsius -->
     <string name="temperature_c_display_name_short">°C</string>
     <string name="temperature_c_display_name_long">@string/temperature_c_display_name_short</string>
     <string name="temperature_c_nominative_narrow">%s°</string>
-    <string name="temperature_c_nominative_short">%s°C</string>
+    <string name="temperature_c_nominative_short">%s °C</string>
     <string name="temperature_c_nominative_long">@string/temperature_c_nominative_short</string>
 
     <!-- Degree Fahrenheit -->
     <string name="temperature_f_display_name_short">°F</string>
     <string name="temperature_f_display_name_long">@string/temperature_f_display_name_short</string>
     <string name="temperature_f_nominative_narrow">%s°</string>
-    <string name="temperature_f_nominative_short">%s°F</string>
+    <string name="temperature_f_nominative_short">%s °F</string>
     <string name="temperature_f_nominative_long">@string/temperature_f_nominative_short</string>
 
     <!-- Kelvin -->

@@ -5,6 +5,20 @@
     <!-- Based on https://www.unicode.org/cldr/charts/47/summary/sr.html -->
     <!-- If you believe there is an error, please open a discussion -->
 
+    <!-- Temperature units -->
+
+    <!-- Degree Celsius -->
+    <string name="temperature_c_display_name_long">степени Целзијуса</string>
+    <string name="temperature_c_nominative_long">%s степени Целзијуса</string>
+
+    <!-- Degree Fahrenheit -->
+    <string name="temperature_f_display_name_long">степени Фаренхајта</string>
+    <string name="temperature_f_nominative_long">%s степени Фаренхајта</string>
+
+    <!-- Kelvin -->
+    <string name="temperature_k_display_name_long">келвин</string>
+    <string name="temperature_k_nominative_long">%s келвина</string>
+
     <!-- Area units -->
 
     <!-- Square meter -->
@@ -26,6 +40,16 @@
     <!-- Liter -->
     <string name="volume_l_display_name_long">литри</string>
     <string name="volume_l_nominative_long">%s литра</string>
+
+    <!-- Weight units -->
+
+    <!-- Microgram -->
+    <string name="weight_microg_display_name_long">микрограми</string>
+    <string name="weight_microg_nominative_long">%s микрограма</string>
+
+    <!-- Milligram -->
+    <string name="weight_mg_display_name_long">милиграми</string>
+    <string name="weight_mg_nominative_long">%s милиграма</string>
 
     <!-- Pressure units -->
 

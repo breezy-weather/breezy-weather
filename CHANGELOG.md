@@ -67,10 +67,7 @@
 **Technical**
 - Current location process refactoring: coordinates, forced refresh when coordinates changed from more than 5 km
 - Address lookup process refactoring to prepare for future ability to add a location manually by coordinates
-- Unit conversion/formatting refactoring
-
-**Known issues**
-- Some units are no longer translated on Android < 7
+- Unit conversion/formatting refactoring. **Known temporary issue:** Some distance, speed and precipitation units are no longer translated on Android < 7
 
 
 # Version 6.0.4-alpha (2025-07-23)

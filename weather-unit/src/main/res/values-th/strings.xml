@@ -5,6 +5,20 @@
     <!-- Based on https://www.unicode.org/cldr/charts/47/summary/th.html -->
     <!-- If you believe there is an error, please open a discussion -->
 
+    <!-- Temperature units -->
+
+    <!-- Degree Celsius -->
+    <string name="temperature_c_display_name_long">องศาเซลเซียส</string>
+    <string name="temperature_c_nominative_long">%s องศาเซลเซียส</string>
+
+    <!-- Degree Fahrenheit -->
+    <string name="temperature_f_display_name_long">องศาฟาเรนไฮต์</string>
+    <string name="temperature_f_nominative_long">%s องศาฟาเรนไฮต์</string>
+
+    <!-- Kelvin -->
+    <string name="temperature_k_display_name_long">เคลวิน</string>
+    <string name="temperature_k_nominative_long">%s เคลวิน</string>
+
     <!-- Area units -->
 
     <!-- Square meter -->
@@ -28,6 +42,20 @@
     <string name="volume_l_display_name_long">ลิตร</string>
     <string name="volume_l_nominative_short">%s ล.</string>
     <string name="volume_l_nominative_long">%s ลิตร</string>
+
+    <!-- Weight units -->
+
+    <!-- Microgram -->
+    <string name="weight_microg_display_name_short">มคก.</string>
+    <string name="weight_microg_display_name_long">ไมโครกรัม</string>
+    <string name="weight_microg_nominative_short">%s มคก.</string>
+    <string name="weight_microg_nominative_long">%s ไมโครกรัม</string>
+
+    <!-- Milligram -->
+    <string name="weight_mg_display_name_short">มก.</string>
+    <string name="weight_mg_display_name_long">มิลลิกรัม</string>
+    <string name="weight_mg_nominative_short">%s มก.</string>
+    <string name="weight_mg_nominative_long">%s มิลลิกรัม</string>
 
     <!-- Pressure units -->
 

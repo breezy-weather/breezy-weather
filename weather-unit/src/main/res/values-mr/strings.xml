@@ -5,6 +5,24 @@
     <!-- Based on https://www.unicode.org/cldr/charts/47/summary/mr.html -->
     <!-- If you believe there is an error, please open a discussion -->
 
+    <!-- Temperature units -->
+
+    <!-- Degree Celsius -->
+    <string name="temperature_c_display_name_short">°से</string>
+    <string name="temperature_c_display_name_long">अंश सेल्सिअस</string>
+    <string name="temperature_c_nominative_short">%s°से</string>
+    <string name="temperature_c_nominative_long">%s अंश सेल्सिअस</string>
+
+    <!-- Degree Fahrenheit -->
+    <string name="temperature_f_display_name_short">°फॅ</string>
+    <string name="temperature_f_display_name_long">अंश फॅरनहाईट</string>
+    <string name="temperature_f_nominative_short">%s°फॅ</string>
+    <string name="temperature_f_nominative_long">%s अंश फॅरनहाईट</string>
+
+    <!-- Kelvin -->
+    <string name="temperature_k_display_name_long">केल्व्हिन</string>
+    <string name="temperature_k_nominative_long">%s केल्व्हिन</string>
+
     <!-- Area units -->
 
     <!-- Square meter -->
@@ -29,6 +47,18 @@
     <string name="volume_l_display_name_long">लीटर</string>
     <string name="volume_l_nominative_short">%s ली</string>
     <string name="volume_l_nominative_long">%s लीटर</string>
+
+    <!-- Weight units -->
+
+    <!-- Microgram -->
+    <string name="weight_microg_display_name_long">मायक्रोग्रॅम</string>
+    <string name="weight_microg_nominative_long">%s मायक्रोग्रॅम</string>
+
+    <!-- Milligram -->
+    <string name="weight_mg_display_name_short">मिग्रॅ</string>
+    <string name="weight_mg_display_name_long">मिलिग्रॅम</string>
+    <string name="weight_mg_nominative_short">%s मिमिग्रॅ</string>
+    <string name="weight_mg_nominative_long">%s मिलिग्रॅम</string>
 
     <!-- Pressure units -->
 

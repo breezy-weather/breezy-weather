@@ -8,6 +8,17 @@
     <!-- Value separator -->
     <string name="locale_separator">،\u0020</string>
 
+    <!-- Temperature units -->
+
+    <!-- Degree Celsius -->
+    <!-- No change -->
+
+    <!-- Degree Fahrenheit -->
+    <!-- No change -->
+
+    <!-- Kelvin -->
+    <!-- No change -->
+
     <!-- Area units -->
 
     <!-- Square meter -->
@@ -26,6 +37,13 @@
     <!-- Liter -->
     <string name="volume_l_display_name_short">liter</string>
 
+    <!-- Weight units -->
+
+    <!-- Microgram -->
+    <!-- No change -->
+
+    <!-- Milligram -->
+    <!-- No change -->
 
     <!-- Pressure units -->
 

@@ -135,9 +135,13 @@ enum class TemperatureUnit(
         useNumberFormatter: Boolean,
         useMeasureFormat: Boolean,
     ): String {
-        // Translations missing for Esperanto in CLDR
         // Always use %s° for narrow temperature formatting
-        if (locale.language.equals("eo", ignoreCase = true) || unitWidth == UnitWidth.NARROW) {
+        // Translations missing for Esperanto in CLDR
+        // Incorrect translations for Polish in CLDR (“st. C” is never used on Polish websites)
+        if (unitWidth == UnitWidth.NARROW ||
+            locale.language.equals("eo", ignoreCase = true) ||
+            (locale.language.equals("pl", ignoreCase = true) && unitWidth == UnitWidth.SHORT)
+        ) {
             return formatWithAndroidTranslations(
                 context = context,
                 value = value,

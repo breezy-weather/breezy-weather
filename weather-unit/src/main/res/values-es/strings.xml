@@ -5,6 +5,20 @@
     <!-- Based on https://www.unicode.org/cldr/charts/47/summary/es.html -->
     <!-- If you believe there is an error, please open a discussion -->
 
+    <!-- Temperature units -->
+
+    <!-- Degree Celsius -->
+    <string name="temperature_c_display_name_long">grados Celsius</string>
+    <string name="temperature_c_nominative_long">%s grados Celsius</string>
+
+    <!-- Degree Fahrenheit -->
+    <string name="temperature_f_display_name_long">grados Fahrenheit</string>
+    <string name="temperature_f_nominative_long">%s grados Fahrenheit</string>
+
+    <!-- Kelvin -->
+    <string name="temperature_k_display_name_long">kelvin</string>
+    <string name="temperature_k_nominative_long">%s kelvin</string>
+
     <!-- Area units -->
 
     <!-- Square meter -->
@@ -24,6 +38,16 @@
     <!-- Liter -->
     <string name="volume_l_display_name_long">litros</string>
     <string name="volume_l_nominative_long">%s litros</string>
+
+    <!-- Weight units -->
+
+    <!-- Microgram -->
+    <string name="weight_microg_display_name_long">microgramos</string>
+    <string name="weight_microg_nominative_long">%s microgramos</string>
+
+    <!-- Milligram -->
+    <string name="weight_mg_display_name_long">miligramos</string>
+    <string name="weight_mg_nominative_long">%s miligramos</string>
 
     <!-- Pressure units -->
 

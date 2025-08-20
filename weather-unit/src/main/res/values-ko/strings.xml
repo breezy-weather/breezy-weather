@@ -5,6 +5,23 @@
     <!-- Based on https://www.unicode.org/cldr/charts/47/summary/ko.html -->
     <!-- If you believe there is an error, please open a discussion -->
 
+    <!-- Temperature units -->
+
+    <!-- Degree Celsius -->
+    <string name="temperature_c_display_name_long">섭씨</string>
+    <string name="temperature_c_nominative_short">%s°C</string>
+    <string name="temperature_c_nominative_long">섭씨 %s도</string>
+
+    <!-- Degree Fahrenheit -->
+    <string name="temperature_f_display_name_long">화씨</string>
+    <string name="temperature_f_nominative_short">%s°F</string>
+    <string name="temperature_f_nominative_long">화씨 %s도</string>
+
+    <!-- Kelvin -->
+    <string name="temperature_k_display_name_long">켈빈</string>
+    <string name="temperature_k_nominative_short">%sK</string>
+    <string name="temperature_k_nominative_long">%s켈빈</string>
+
     <!-- Area units -->
 
     <!-- Square meter -->
@@ -25,6 +42,18 @@
     <string name="volume_l_display_name_long">리터</string>
     <string name="volume_l_nominative_short">%sL</string>
     <string name="volume_l_nominative_long">%s리터</string>
+
+    <!-- Weight units -->
+
+    <!-- Microgram -->
+    <string name="weight_microg_display_name_long">마이크로그램</string>
+    <string name="weight_microg_nominative_short">%sμg</string>
+    <string name="weight_microg_nominative_long">%s 마이크로그램</string>
+
+    <!-- Milligram -->
+    <string name="weight_mg_display_name_long">밀리그램</string>
+    <string name="weight_mg_nominative_short">%smg</string>
+    <string name="weight_mg_nominative_long">%s 밀리그램</string>
 
     <!-- Pressure units -->
 

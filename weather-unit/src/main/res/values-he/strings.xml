@@ -5,6 +5,20 @@
     <!-- Based on https://www.unicode.org/cldr/charts/47/summary/he.html -->
     <!-- If you believe there is an error, please open a discussion -->
 
+    <!-- Temperature units -->
+
+    <!-- Degree Celsius -->
+    <string name="temperature_c_display_name_long">מעלות צלזיוס</string>
+    <string name="temperature_c_nominative_long">%s מעלות צלזיוס</string>
+
+    <!-- Degree Fahrenheit -->
+    <string name="temperature_f_display_name_long">מעלות פרנהייט</string>
+    <string name="temperature_f_nominative_long">%s מעלות פרנהייט</string>
+
+    <!-- Kelvin -->
+    <string name="temperature_k_display_name_long">מעלות קלווין</string>
+    <string name="temperature_k_nominative_long">%s קלווין</string>
+
     <!-- Area units -->
 
     <!-- Square meter -->
@@ -26,6 +40,20 @@
     <string name="volume_l_display_name_short">ליטר</string>
     <string name="volume_l_nominative_short">%s ל׳</string>
     <string name="volume_l_nominative_long">%s ליטר</string>
+
+    <!-- Weight units -->
+
+    <!-- Microgram -->
+    <string name="weight_microg_display_name_short">מק״ג</string>
+    <string name="weight_microg_display_name_long">מיקרוגרם</string>
+    <string name="weight_microg_nominative_short">%s מק״ג</string>
+    <string name="weight_microg_nominative_long">%s מיקרוגרם</string>
+
+    <!-- Milligram -->
+    <string name="weight_mg_display_name_short">מ״ג</string>
+    <string name="weight_mg_display_name_long">מיליגרם</string>
+    <string name="weight_mg_nominative_short">%s מ״ג</string>
+    <string name="weight_mg_nominative_long">%s מיליגרם</string>
 
     <!-- Pressure units -->
 

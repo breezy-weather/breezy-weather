@@ -5,6 +5,20 @@
     <!-- Based on https://www.unicode.org/cldr/charts/47/summary/ga.html -->
     <!-- If you believe there is an error, please open a discussion -->
 
+    <!-- Temperature units -->
+
+    <!-- Degree Celsius -->
+    <string name="temperature_c_display_name_long">céimeanna Celsius</string>
+    <string name="temperature_c_nominative_long">%s céim Celsius</string>
+
+    <!-- Degree Fahrenheit -->
+    <string name="temperature_f_display_name_long">céimeanna Fahrenheit</string>
+    <string name="temperature_f_nominative_long">%s céim Fahrenheit</string>
+
+    <!-- Kelvin -->
+    <string name="temperature_k_display_name_long">céimeanna ceilvin</string>
+    <string name="temperature_k_nominative_long">%s céim ceilvin</string>
+
     <!-- Area units -->
 
     <!-- Square meter -->
@@ -24,6 +38,16 @@
     <!-- Liter -->
     <string name="volume_l_display_name_long">lítir</string>
     <string name="volume_l_nominative_long">%s lítear</string>
+
+    <!-- Weight units -->
+
+    <!-- Microgram -->
+    <string name="weight_microg_display_name_long">micreagraim</string>
+    <string name="weight_microg_nominative_long">%s micreagram</string>
+
+    <!-- Milligram -->
+    <string name="weight_mg_display_name_long">milleagraim</string>
+    <string name="weight_mg_nominative_long">%s milleagram</string>
 
     <!-- Pressure units -->
 

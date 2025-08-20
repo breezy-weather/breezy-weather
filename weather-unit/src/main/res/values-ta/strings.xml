@@ -5,6 +5,26 @@
     <!-- Based on https://www.unicode.org/cldr/charts/47/summary/ta.html -->
     <!-- If you believe there is an error, please open a discussion -->
 
+    <!-- Temperature units -->
+
+    <!-- Degree Celsius -->
+    <string name="temperature_c_display_name_short">°செ</string>
+    <string name="temperature_c_display_name_long">டிகிரி செல்சியஸ்</string>
+    <string name="temperature_c_nominative_short">%s°செ.</string>
+    <string name="temperature_c_nominative_long">%s டிகிரி செல்சியஸ்</string>
+
+    <!-- Degree Fahrenheit -->
+    <string name="temperature_f_display_name_short">°ஃபா</string>
+    <string name="temperature_f_display_name_long">டிகிரி ஃபாரன்ஹீட்</string>
+    <string name="temperature_f_nominative_short">%s°ஃபா.</string>
+    <string name="temperature_f_nominative_long">%s டிகிரி ஃபாரன்ஹீட்</string>
+
+    <!-- Kelvin -->
+    <string name="temperature_k_display_name_short">கெல்.</string>
+    <string name="temperature_k_display_name_long">கெல்வின்</string>
+    <string name="temperature_k_nominative_short">%s கெல்.</string>
+    <string name="temperature_k_nominative_long">%s கெல்வின்ஸ்</string>
+
     <!-- Area units -->
 
     <!-- Square meter -->
@@ -30,6 +50,20 @@
     <string name="volume_l_display_name_long">லிட்டர்கள்</string>
     <string name="volume_l_nominative_short">%s லி.</string>
     <string name="volume_l_nominative_long">%s லிட்டர்கள்</string>
+
+    <!-- Weight units -->
+
+    <!-- Microgram -->
+    <string name="weight_microg_display_name_short">μகி</string>
+    <string name="weight_microg_display_name_long">மைக்ரோ கிராம்கள்</string>
+    <string name="weight_microg_nominative_short">%s μகி</string>
+    <string name="weight_microg_nominative_long">%s மைக்ரோ கிராம்கள்</string>
+
+    <!-- Milligram -->
+    <string name="weight_mg_display_name_short">மி.கி.</string>
+    <string name="weight_mg_display_name_long">மில்லி கிராம்கள்</string>
+    <string name="weight_mg_nominative_short">%s மி.கி.</string>
+    <string name="weight_mg_nominative_long">%s மில்லி கிராம்கள்</string>
 
     <!-- Pressure units -->
 

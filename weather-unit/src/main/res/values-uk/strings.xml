@@ -5,6 +5,20 @@
     <!-- Based on https://www.unicode.org/cldr/charts/47/summary/uk.html -->
     <!-- If you believe there is an error, please open a discussion -->
 
+    <!-- Temperature units -->
+
+    <!-- Degree Celsius -->
+    <string name="temperature_c_display_name_long">градуси Цельсія</string>
+    <string name="temperature_c_nominative_long">%s градуси Цельсія</string>
+
+    <!-- Degree Fahrenheit -->
+    <string name="temperature_f_display_name_long">градуси Фаренгейта</string>
+    <string name="temperature_f_nominative_long">%s градуси Фаренгейта</string>
+
+    <!-- Kelvin -->
+    <string name="temperature_k_display_name_long">кельвіни</string>
+    <string name="temperature_k_nominative_long">%s кельвіни</string>
+
     <!-- Area units -->
 
     <!-- Square meter -->
@@ -30,6 +44,20 @@
     <string name="volume_l_display_name_long">літри</string>
     <string name="volume_l_nominative_short">%s л</string>
     <string name="volume_l_nominative_long">%s літри</string>
+
+    <!-- Weight units -->
+
+    <!-- Microgram -->
+    <string name="weight_microg_display_name_short">мкг</string>
+    <string name="weight_microg_display_name_long">мікрограми</string>
+    <string name="weight_microg_nominative_short">%s мкг</string>
+    <string name="weight_microg_nominative_long">%s мікрограми</string>
+
+    <!-- Milligram -->
+    <string name="weight_mg_display_name_short">мг</string>
+    <string name="weight_mg_display_name_long">міліграми</string>
+    <string name="weight_mg_nominative_short">%s мг</string>
+    <string name="weight_mg_nominative_long">%s міліграми</string>
 
     <!-- Pressure units -->
 

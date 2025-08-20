@@ -5,6 +5,20 @@
     <!-- Based on https://www.unicode.org/cldr/charts/47/summary/fa.html -->
     <!-- If you believe there is an error, please open a discussion -->
 
+    <!-- Temperature units -->
+
+    <!-- Degree Celsius -->
+    <string name="temperature_c_display_name_long">درجهٔ سلسیوس</string>
+    <string name="temperature_c_nominative_long">%s درجهٔ سلسیوس</string>
+
+    <!-- Degree Fahrenheit -->
+    <string name="temperature_f_display_name_long">درجهٔ فارنهایت</string>
+    <string name="temperature_f_nominative_long">%s درجهٔ فارنهایت</string>
+
+    <!-- Kelvin -->
+    <string name="temperature_k_display_name_long">درجهٔ کلوین</string>
+    <string name="temperature_k_nominative_long">%s درجهٔ کلوین</string>
+
     <!-- Value separator -->
     <string name="locale_separator">،\u0020</string>
 
@@ -28,6 +42,16 @@
     <string name="volume_l_display_name_short">لیتر</string>
     <string name="volume_l_nominative_short">%sL</string>
     <string name="volume_l_nominative_long">%s لیتر</string>
+
+    <!-- Weight units -->
+
+    <!-- Microgram -->
+    <string name="weight_microg_display_name_long">میکروگرم</string>
+    <string name="weight_microg_nominative_long">%s میکروگرم</string>
+
+    <!-- Milligram -->
+    <string name="weight_mg_display_name_long">میلی‌گرم</string>
+    <string name="weight_mg_nominative_long">%s میلی‌گرم</string>
 
     <!-- Pressure units -->
 
