@@ -6,8 +6,8 @@
     <string name="alert">সতর্কতা</string>
     <string name="daily_today_short">আজ</string>
     <string name="temperature">তাপমাত্রা</string>
-    <string name="temperature_feels_like">অনুভূত তাপমাত্রা</string>
-    <string name="temperature_feels_like_with_unit">অনুভূত তাপমাত্রা %s</string>
+    <string name="temperature_feels_like">মনে হচ্ছে যেন</string>
+    <string name="temperature_feels_like_with_unit">মনে হচ্ছে যেন %s</string>
     <string name="temperature_wind_chill">বাতাসের শৈত্যতা</string>
     <string name="temperature_average_short">গড়</string>
     <string name="app_name">আবহাওয়া</string>
@@ -29,7 +29,7 @@
     <string name="air_quality_level_4">অস্বাস্থ্যকর</string>
     <string name="air_quality_level_4_description">সংবেদনশীল গো‌ষ্ঠীর মানুষরা স্বা‌স্থ্যের ওপরে প্রভাবগুলি অবিলম্বে অনুভব করতে পারেন। সু‌স্থ মানুষরা দী‌র্ঘকাল সংস্পর্শে থাকলে শ্বাসকষ্ট ও গলায় অস্বস্তিতে ভুগতে পারেন। ঘরের বাইরের কাজকর্মকে সীমিত করুন।</string>
     <string name="air_quality_level_5_description">সংবেদনশীল গো‌ষ্ঠীর মানুষরা স্বা‌স্থ্যের ওপরে প্রভাবগুলি অবিলম্বে অনুভব করবেন এবং তাদের ঘরের বাইরের কাজকর্ম এড়িয়ে চলা উচিত। সু‌স্থ মানুষদের শ্বাসকষ্ট ও গলায় অস্বস্তিতে ভোগার সম্ভাবনা আছে; ঘরের ভিতরে থাকা এবং ঘরের বাইরের কাজকর্মগুলির সময়সূচি পরিবর্তন করার কথা বিবেচনা করুন।</string>
-    <string name="daily_tomorrow_short">আঃকাঃ</string>
+    <string name="daily_tomorrow_short">আ.কা.</string>
     <string name="temperature_normal_short">স্বাভাবিক</string>
     <string name="temperature_normals">স্বাভাবিক তাপমাত্রা</string>
     <string name="precipitation_probability">অধঃক্ষেপণের সম্ভাবনা</string>
@@ -48,10 +48,10 @@
     <string name="wind_direction_S_short">দক্ষিণ</string>
     <string name="wind_direction_SW_short">দক্ষিণ-পশ্চিম</string>
     <string name="wind_strength_0">শান্ত</string>
-    <string name="wind_strength_2">হালকা বাতাস</string>
+    <string name="wind_strength_2">হালকা হাওয়া</string>
     <string name="wind_strength_3">মৃদু হাওয়া</string>
     <string name="wind_strength_5">তাজা হাওয়া</string>
-    <string name="wind_strength_6">প্রবল বাতাস</string>
+    <string name="wind_strength_6">প্রবল হাওয়া</string>
     <string name="wind_strength_7">মাঝারি ঝড়</string>
     <string name="wind_strength_8">ঝড়</string>
     <string name="wind_strength_9">প্রবল ঝড়</string>
@@ -75,8 +75,8 @@
     <string name="wind_strength_1">হাল্কা বাতাস</string>
     <string name="wind_strength_4">মাঝারি হাওয়া</string>
     <string name="wind_strength_11">তীব্র ঝড়</string>
-    <string name="uv_index_short">অ. বে. সূচক</string>
-    <string name="daily_yesterday_short">গঃকাঃ</string>
+    <string name="uv_index_short">UV সূচক</string>
+    <string name="daily_yesterday_short">গ.কা.</string>
     <string name="alert_source">উৎস: %s</string>
     <string name="null_data_text">উপলভ্য নয়</string>
     <string name="temperature_degree_day_heating">হিটিং ডিগ্রি ডে</string>
@@ -85,7 +85,7 @@
     <string name="wind_direction_NE_short">উত্তর-পূর্ব</string>
     <string name="wind_direction_E_short">পূর্ব</string>
     <string name="temperature_degree_day">ডিগ্রি ডে</string>
-    <string name="air_quality_index">বায়ু গুণমাপ সূচক</string>
+    <string name="air_quality_index">বায়ুর গুণমাণ সূচক</string>
     <string name="air_quality_pm25_voice">পার্টিকুলেট পদার্থ ২.৫</string>
     <string name="air_quality_pm10_voice">পার্টিকুলেট পদার্থ ১০</string>
     <string name="air_quality_no2_full">নাইট্রোজেন ডাইঅক্সাইড (%s)</string>
@@ -120,7 +120,7 @@
     <string name="ephemeris_moonset_at">চাঁদের অস্ত %sটায়</string>
     <string name="pollen_castanea">Castanea</string>
     <string name="sunshine">সূর্যের আলো</string>
-    <string name="sunshine_duration">সূর্যের আলোর সময়কাল</string>
+    <string name="sunshine_duration">রোদ্দুরের সময়কাল</string>
     <string name="humidity">আর্দ্রতা</string>
     <string name="humidity_dew_point">আর্দ্রতা / শিশির বিন্দু</string>
     <string name="pressure">চাপ</string>
@@ -263,4 +263,11 @@
     <string name="temperature_normals_deviation_explanation_maximum">%s তে এই অঞ্চলের সর্বোচ্চ স্বাভাবিক তাপমাত্রার থেকে চ্যুতি</string>
     <string name="temperature_normals_deviation_explanation_minimum">%s তে এই অঞ্চলের সর্বনিম্ন স্বাভাবিক তাপমাত্রার থেকে চ্যুতি</string>
     <string name="wind_speed_about">হাওয়া ও প্রবল দমকা হাওয়ার গতি সম্পর্কে</string>
+    <string name="uv_index_about">UV সূচক সম্পর্কে</string>
+    <string name="uv_index_about_description">UV সূচক সূর্যের অতিবেগুনী রশ্মির শক্তি নির্দেশ করে। এর মান যত বেশী হবে, তত বেশী করে এবং দ্রুত হারে ত্বক পুড়ে যেতে পারে, ত্বকের ক্যান্সার এবং চোখের ক্ষতি হতে পারে।</string>
+    <string name="uv_index_scale">UV সূচকের মাপনী</string>
+    <string name="uv_index_time_to_burn">পুড়ে যাওয়ার সময়</string>
+    <string name="uv_index_time_to_burn_explanations">সঠিক পুড়ে যাওয়ার সময় নির্ভর করে ভূমি থেকে উচ্চতা, জল বা বরফের মত প্রতিফলক ভূমি, আপনার ত্বকের ধরণ এবং সানস্ক্রিনের ব্যবহারের ওপর।</string>
+    <string name="air_quality_index_short">বা.গু.সূ</string>
+    <string name="air_quality_index_about">বায়ুর গুণমান সূচকের সম্পর্কে</string>
 </resources>
