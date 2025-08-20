@@ -17,6 +17,7 @@
 - Main screen - Move refresh time out of app bar when scrolling
 - Main screen - Fix settings not applying immediately
 - Main screen - Fix shooting stars getting stuck in the corner in landscape
+- Details - Add a bottom margin at the end of each page, so that it doesn’t overlap with the floating button
 - Details - Don’t animate charts when “Other element animations” is disabled
 - Details - Air quality - Add individual charts for each pollutant
 - Details - Humidity/Dewpoint/Cloud cover - Show min/max of the day
@@ -66,10 +67,10 @@
 **Technical**
 - Current location process refactoring: coordinates, forced refresh when coordinates changed from more than 5 km
 - Address lookup process refactoring to prepare for future ability to add a location manually by coordinates
-- Pressure unit conversion/formatting refactoring
+- Unit conversion/formatting refactoring
 
 **Known issues**
-- Visibility: units are no longer be translated on Android < 7
+- Some units are no longer translated on Android < 7
 
 
 # Version 6.0.4-alpha (2025-07-23)

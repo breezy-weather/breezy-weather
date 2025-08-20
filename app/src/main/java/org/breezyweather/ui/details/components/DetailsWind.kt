@@ -83,7 +83,6 @@ import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.domain.weather.model.getDirection
 import org.breezyweather.ui.common.charts.BreezyLineChart
 import org.breezyweather.ui.common.widgets.Material3ExpressiveCardListItem
-import org.breezyweather.ui.settings.preference.bottomInsetItem
 import org.breezyweather.unit.formatting.UnitWidth
 import org.breezyweather.unit.speed.Speed.Companion.beaufort
 import org.breezyweather.unit.speed.Speed.Companion.metersPerSecond
@@ -168,7 +167,7 @@ fun DetailsWind(
         item {
             WindScale()
         }
-        bottomInsetItem()
+        bottomDetailsInset()
     }
 }
 

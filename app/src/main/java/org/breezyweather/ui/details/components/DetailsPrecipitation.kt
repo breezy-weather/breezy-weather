@@ -76,7 +76,6 @@ import org.breezyweather.common.utils.UnitUtils
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.ui.common.charts.BreezyBarChart
 import org.breezyweather.ui.common.charts.BreezyLineChart
-import org.breezyweather.ui.settings.preference.bottomInsetItem
 import org.breezyweather.unit.formatting.UnitWidth
 import org.breezyweather.unit.precipitation.Precipitation
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
@@ -242,7 +241,7 @@ fun DetailsPrecipitation(
                 )
             }
         }
-        bottomInsetItem()
+        bottomDetailsInset()
     }
 }
 

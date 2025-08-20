@@ -35,7 +35,6 @@ import org.breezyweather.domain.weather.model.getPollenWithMaxIndex
 import org.breezyweather.domain.weather.model.isIndexValid
 import org.breezyweather.ui.common.composables.PollenGrid
 import org.breezyweather.ui.common.widgets.Material3ExpressiveCardListItem
-import org.breezyweather.ui.settings.preference.bottomInsetItem
 
 /**
  * TODO: Save pollen hourly data, and display a hourly index chart of the pollen with the maximum index on that day
@@ -85,6 +84,6 @@ fun DetailsPollen(
                 )
             }
         }
-        bottomInsetItem()
+        bottomDetailsInset()
     }
 }

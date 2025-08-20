@@ -65,7 +65,6 @@ import org.breezyweather.domain.weather.model.getFullLabel
 import org.breezyweather.domain.weather.model.getRangeContentDescriptionSummary
 import org.breezyweather.domain.weather.model.getRangeSummary
 import org.breezyweather.ui.common.charts.BreezyLineChart
-import org.breezyweather.ui.settings.preference.bottomInsetItem
 import org.breezyweather.unit.formatting.UnitWidth
 import org.breezyweather.unit.ratio.Ratio
 import org.breezyweather.unit.ratio.Ratio.Companion.percent
@@ -211,7 +210,7 @@ fun DetailsHumidity(
                 )
             )
         }
-        bottomInsetItem()
+        bottomDetailsInset()
     }
 }
 

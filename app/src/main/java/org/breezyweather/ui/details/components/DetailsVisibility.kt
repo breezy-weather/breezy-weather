@@ -77,7 +77,6 @@ import org.breezyweather.domain.weather.model.getRangeDescriptionSummary
 import org.breezyweather.domain.weather.model.getRangeSummary
 import org.breezyweather.ui.common.charts.BreezyLineChart
 import org.breezyweather.ui.common.widgets.Material3ExpressiveCardListItem
-import org.breezyweather.ui.settings.preference.bottomInsetItem
 import org.breezyweather.unit.distance.Distance
 import org.breezyweather.unit.distance.Distance.Companion.meters
 import org.breezyweather.unit.distance.toDistance
@@ -161,7 +160,7 @@ fun DetailsVisibility(
         item {
             VisibilityScale()
         }
-        bottomInsetItem()
+        bottomDetailsInset()
     }
 }
 

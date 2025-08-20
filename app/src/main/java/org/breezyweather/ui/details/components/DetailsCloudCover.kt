@@ -77,7 +77,6 @@ import org.breezyweather.domain.weather.model.getRangeDescriptionSummary
 import org.breezyweather.domain.weather.model.getRangeSummary
 import org.breezyweather.ui.common.charts.BreezyLineChart
 import org.breezyweather.ui.common.widgets.Material3ExpressiveCardListItem
-import org.breezyweather.ui.settings.preference.bottomInsetItem
 import org.breezyweather.unit.formatting.UnitWidth
 import org.breezyweather.unit.ratio.Ratio
 import org.breezyweather.unit.ratio.Ratio.Companion.percent
@@ -178,7 +177,7 @@ fun DetailsCloudCover(
         item {
             CloudCoverScale()
         }
-        bottomInsetItem()
+        bottomDetailsInset()
     }
 }
 

@@ -64,7 +64,6 @@ import org.breezyweather.common.options.appearance.DetailScreen
 import org.breezyweather.common.utils.UnitUtils
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.ui.common.charts.BreezyLineChart
-import org.breezyweather.ui.settings.preference.bottomInsetItem
 import org.breezyweather.unit.formatting.UnitWidth
 import org.breezyweather.unit.pressure.Pressure
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
@@ -145,7 +144,7 @@ fun DetailsPressure(
                 stringResource(R.string.pressure_about_description2)
             )
         }
-        bottomInsetItem()
+        bottomDetailsInset()
     }
 }
 

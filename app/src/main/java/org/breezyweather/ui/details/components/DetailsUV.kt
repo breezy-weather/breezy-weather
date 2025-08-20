@@ -73,7 +73,6 @@ import org.breezyweather.domain.weather.model.getLevel
 import org.breezyweather.domain.weather.model.getUVColor
 import org.breezyweather.ui.common.charts.BreezyLineChart
 import org.breezyweather.ui.common.widgets.Material3ExpressiveCardListItem
-import org.breezyweather.ui.settings.preference.bottomInsetItem
 import java.util.Date
 import kotlin.math.max
 import kotlin.math.roundToInt
@@ -157,7 +156,7 @@ fun DetailsUV(
         item {
             UVScale()
         }
-        bottomInsetItem()
+        bottomDetailsInset()
     }
 }
 

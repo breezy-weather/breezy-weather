@@ -99,7 +99,6 @@ import org.breezyweather.domain.weather.model.getName
 import org.breezyweather.ui.common.charts.BreezyLineChart
 import org.breezyweather.ui.common.charts.SpecificVerticalAxisItemPlacer
 import org.breezyweather.ui.common.widgets.Material3ExpressiveCardListItem
-import org.breezyweather.ui.settings.preference.bottomInsetItem
 import org.breezyweather.unit.formatting.UnitWidth
 import java.util.Date
 import kotlin.math.max
@@ -336,7 +335,7 @@ fun DetailsAirQuality(
         item {
             AirQualityScale(selectedPollutant)
         }
-        bottomInsetItem()
+        bottomDetailsInset()
     }
 }
 

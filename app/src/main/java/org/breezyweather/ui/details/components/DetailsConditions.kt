@@ -100,7 +100,6 @@ import org.breezyweather.common.options.appearance.DetailScreen
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.ui.common.charts.BreezyLineChart
 import org.breezyweather.ui.common.widgets.AnimatableIconView
-import org.breezyweather.ui.settings.preference.bottomInsetItem
 import org.breezyweather.ui.theme.resource.ResourceHelper
 import org.breezyweather.ui.theme.resource.ResourcesProviderFactory
 import org.breezyweather.unit.formatting.UnitWidth
@@ -389,7 +388,7 @@ fun DetailsConditions(
                 )
             }
         }
-        bottomInsetItem()
+        bottomDetailsInset()
     }
 }
 

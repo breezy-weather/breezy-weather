@@ -67,7 +67,6 @@ import org.breezyweather.ui.common.charts.EphemerisChart
 import org.breezyweather.ui.common.widgets.Material3ExpressiveCardListItem
 import org.breezyweather.ui.common.widgets.astro.MoonPhaseView
 import org.breezyweather.ui.common.widgets.defaultCardListItemElevation
-import org.breezyweather.ui.settings.preference.bottomInsetItem
 import org.breezyweather.ui.theme.weatherView.materialWeatherView.MaterialWeatherThemeDelegate
 import org.breezyweather.ui.theme.weatherView.materialWeatherView.implementor.MeteorShowerImplementor
 import org.breezyweather.ui.theme.weatherView.materialWeatherView.implementor.SunImplementor
@@ -145,7 +144,7 @@ fun DetailsSunMoon(
                     stringResource(R.string.ephemeris_about_dusk)
             )
         }
-        bottomInsetItem()
+        bottomDetailsInset()
     }
 }
 
