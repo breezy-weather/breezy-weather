@@ -666,4 +666,9 @@
     <string name="ephemeris_about_dawn">Şafak, güneş doğmadan önceki ilk görünür günışığının zamanına denir.</string>
     <string name="ephemeris_about_dusk">Gün batımı, son görünür ışık kaybolmadan önceki alacakaranlığım en karanlık haline denir.</string>
     <string name="clock">Saat</string>
+    <string name="ephemeris_polar_day">Polar gün</string>
+    <string name="ephemeris_polar_night">Polar gece</string>
+    <string name="temperature_normals_deviation">Deviasyon</string>
+    <string name="temperature_normals_deviation_explanation_maximum">Bu konum için ortalama maksimum sıcaklık %s</string>
+    <string name="temperature_normals_deviation_explanation_minimum">Bu konum için ortalama minimum sıcaklık %s</string>
 </resources>
