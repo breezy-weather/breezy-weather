@@ -56,7 +56,7 @@
     <string name="wind_strength_8">ঝড়</string>
     <string name="wind_strength_9">প্রবল ঝড়</string>
     <string name="wind_strength_10">ঝড়</string>
-    <string name="wind_strength_12">হারিকেন</string>
+    <string name="wind_strength_12">হারিকেনের শক্তি</string>
     <string name="uv_index">UV সূচক</string>
     <string name="uv_index_0_2">কম</string>
     <string name="uv_index_3_5">পরিমিত</string>
@@ -143,7 +143,7 @@
     <string name="weather_source_accu_preference_days_1">১ দিন</string>
     <string name="air_quality_pm10">পা. প. ১০</string>
     <string name="air_quality_pm25">পা. প. ২.৫</string>
-    <string name="air_quality_o3_full">ভূমি স্তরে ওজোন (%s)</string>
+    <string name="air_quality_o3_full">নিম্ন স্তরের ওজোন (%s)</string>
     <string name="pollen_artemisia">Artemisia</string>
     <string name="pollen_betula">Betula</string>
     <string name="pollen_carpinus">Carpinus</string>
@@ -270,4 +270,26 @@
     <string name="uv_index_time_to_burn_explanations">সঠিক পুড়ে যাওয়ার সময় নির্ভর করে ভূমি থেকে উচ্চতা, জল বা বরফের মত প্রতিফলক ভূমি, আপনার ত্বকের ধরণ এবং সানস্ক্রিনের ব্যবহারের ওপর।</string>
     <string name="air_quality_index_short">বা.গু.সূ</string>
     <string name="air_quality_index_about">বায়ুর গুণমান সূচকের সম্পর্কে</string>
+    <string name="air_quality_no2_about">নাইট্রোজেন (%s)</string>
+    <string name="air_quality_co_about">কার্বন মনোঅক্সাইড (%s)</string>
+    <string name="air_quality_so2_about">সালফার ডাই-অক্সাইড (%s)</string>
+    <string name="air_quality_no2_index">বায়ুর মান সূচক মাত্রা (%s)</string>
+    <string name="air_quality_no2_sources">প্রধান উৎস হল জ্বালানি পোড়ানোর প্রক্রিয়া, উদাহরণস্বরূপ শিল্প ও পরিবহনে ব্যবহৃত জ্বালানি।</string>
+    <string name="air_quality_o3_index">বায়ুর মান সূচক মাত্রা (%s)</string>
+    <string name="air_quality_so2_index">বায়ুর মান সূচক মাত্রা (%s)</string>
+    <string name="air_quality_pm25_index">বায়ুর মান সূচক মাত্রা (%s)</string>
+    <string name="air_quality_so2_sources">প্রধান উৎস হল শিল্প, পরিবহন এবং বিদ্যুৎ কেন্দ্রগুলিতে সালফারযুক্ত জ্বালানির পোড়ানোর প্রক্রিয়া।</string>
+    <string name="air_quality_pm10_index">বায়ুর মান সূচক মাত্রা (%s)</string>
+    <string name="air_quality_pm_sources">প্রধান উৎস হল দহন প্রক্রিয়া সমূহ (যেমন বিদ্যুৎ কেন্দ্র, ঘরের ভেতরের গরম করার যন্ত্র, গাড়ির নিষ্কাশন, দাবানল), যান্ত্রিক প্রক্রিয়া (যেমন নির্মাণ, খনিজ ধুলো, কৃষি) এবং জৈবিক কণা (যেমন পরাগ, ছাঁচ, ব্যাকটেরিয়া, ভাইরাস)।</string>
+    <string name="air_quality_pm10_full">শ্বাস-প্রশ্বাসের মাধ্যমে গ্রহণযোগ্য কণা পদার্থের পরিমাণ (&lt;%s)</string>
+    <string name="air_quality_pm10_about">শ্বাস-প্রশ্বাসের মাধ্যমে গ্রহণযোগ্য কণা পদার্থের পরিমাণ (%s)</string>
+    <string name="wind_speed_about_description">নির্দিষ্ট সময়ের মধ্যে বাতাসের গতির গড় পরিমাপের মাধ্যমে বাতাসের গতি পরিমাপ করা হয়। দমকা হাওয়া হল হঠাৎ করে বাতাসের ঝাপটা যা সাধারণত ২০ সেকেন্ডেরও কম সময় স্থায়ী থাকে।</string>
+    <string name="wind_gusts_short">ধামকা</string>
+    <string name="wind_origin">%s থেকে</string>
+    <string name="wind_strength_scale">বিউফোর্ট স্কেল</string>
+    <string name="visibility_poor">কম</string>
+    <string name="visibility_from_to_number">%1$s হতে %2$s</string>
+    <string name="visibility_very_poor">অনেক কম</string>
+    <string name="visibility_clear">পরিস্কার</string>
+    <string name="visibility_about">দৃশ্যতা সম্পর্কে</string>
 </resources>
