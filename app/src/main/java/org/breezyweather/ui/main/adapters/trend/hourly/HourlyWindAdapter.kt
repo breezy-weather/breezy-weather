@@ -32,9 +32,9 @@ import org.breezyweather.common.extensions.formatValue
 import org.breezyweather.common.extensions.getBeaufortScaleStrength
 import org.breezyweather.common.extensions.getThemeColor
 import org.breezyweather.common.options.appearance.DetailScreen
+import org.breezyweather.domain.weather.model.drawableArrow
 import org.breezyweather.domain.weather.model.getColor
 import org.breezyweather.domain.weather.model.getContentDescription
-import org.breezyweather.ui.common.images.RotateDrawable
 import org.breezyweather.ui.common.widgets.trend.TrendRecyclerView
 import org.breezyweather.ui.common.widgets.trend.chart.PolylineAndHistogramView
 import org.breezyweather.unit.speed.Speed.Companion.beaufort
@@ -67,16 +67,8 @@ class HourlyWindAdapter(
                     .append(hourly.wind!!.getContentDescription(activity))
             }
             val windColor = hourly.wind?.getColor(activity) ?: Color.TRANSPARENT
-            val hourlyIcon = hourly.wind?.degree?.let { degree ->
-                if (degree == -1.0) {
-                    AppCompatResources.getDrawable(activity, R.drawable.ic_replay)
-                } else {
-                    RotateDrawable(
-                        AppCompatResources.getDrawable(activity, R.drawable.ic_navigation)
-                    ).apply {
-                        rotate(degree.toFloat() + 180f)
-                    }
-                }
+            val hourlyIcon = hourly.wind?.drawableArrow?.let {
+                AppCompatResources.getDrawable(activity, it)
             }
             hourlyIcon?.colorFilter = PorterDuffColorFilter(windColor, PorterDuff.Mode.SRC_ATOP)
             hourlyItem.setIconDrawable(hourlyIcon, missingIconVisibility = View.INVISIBLE)

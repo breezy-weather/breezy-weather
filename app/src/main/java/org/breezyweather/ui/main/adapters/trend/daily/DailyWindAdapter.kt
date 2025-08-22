@@ -32,9 +32,9 @@ import org.breezyweather.common.extensions.formatValue
 import org.breezyweather.common.extensions.getBeaufortScaleStrength
 import org.breezyweather.common.extensions.getThemeColor
 import org.breezyweather.common.options.appearance.DetailScreen
+import org.breezyweather.domain.weather.model.drawableArrow
 import org.breezyweather.domain.weather.model.getColor
 import org.breezyweather.domain.weather.model.getContentDescription
-import org.breezyweather.ui.common.images.RotateDrawable
 import org.breezyweather.ui.common.widgets.trend.TrendRecyclerView
 import org.breezyweather.ui.common.widgets.trend.chart.DoubleHistogramView
 import org.breezyweather.unit.speed.Speed.Companion.beaufort
@@ -69,16 +69,8 @@ class DailyWindAdapter(
                     .append(daily.day!!.wind!!.getContentDescription(activity))
             }
             val dayWindColor = daily.day?.wind?.getColor(activity) ?: Color.TRANSPARENT
-            val dayIcon = daily.day?.wind?.degree?.let { degree ->
-                if (degree == -1.0) {
-                    AppCompatResources.getDrawable(activity, R.drawable.ic_replay)
-                } else {
-                    RotateDrawable(
-                        AppCompatResources.getDrawable(activity, R.drawable.ic_navigation)
-                    ).apply {
-                        rotate(degree.toFloat() + 180f)
-                    }
-                }
+            val dayIcon = daily.day?.wind?.drawableArrow?.let {
+                AppCompatResources.getDrawable(activity, it)
             }
             dayIcon?.colorFilter = PorterDuffColorFilter(dayWindColor, PorterDuff.Mode.SRC_ATOP)
             dailyItem.setDayIconDrawable(dayIcon, missingIconVisibility = View.INVISIBLE)
@@ -107,16 +99,8 @@ class DailyWindAdapter(
                     .append(activity.getString(R.string.colon_separator))
                     .append(daily.night!!.wind!!.getContentDescription(activity))
             }
-            val nightIcon = daily.night?.wind?.degree?.let { degree ->
-                if (degree == -1.0) {
-                    AppCompatResources.getDrawable(activity, R.drawable.ic_replay)
-                } else {
-                    RotateDrawable(
-                        AppCompatResources.getDrawable(activity, R.drawable.ic_navigation)
-                    ).apply {
-                        rotate(degree.toFloat() + 180f)
-                    }
-                }
+            val nightIcon = daily.night?.wind?.drawableArrow?.let {
+                AppCompatResources.getDrawable(activity, it)
             }
             nightIcon?.colorFilter = PorterDuffColorFilter(nightWindColor, PorterDuff.Mode.SRC_ATOP)
             dailyItem.setNightIconDrawable(nightIcon, missingIconVisibility = View.INVISIBLE)
