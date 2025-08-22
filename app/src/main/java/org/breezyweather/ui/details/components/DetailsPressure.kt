@@ -16,8 +16,12 @@
 
 package org.breezyweather.ui.details.components
 
+import android.graphics.PorterDuff
+import android.graphics.PorterDuffColorFilter
+import android.text.Spannable
 import android.text.SpannableString
-import android.text.style.RelativeSizeSpan
+import android.text.style.ImageSpan
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
@@ -34,6 +38,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
@@ -233,6 +238,7 @@ private fun PressureChart(
             mappedValues.values.minOf { it.toDouble(pressureUnit) }
         ).roundDownToNearestMultiplier(chartStep)
     }
+    val iconColor = MaterialTheme.colorScheme.onSurface
 
     val modelProducer = remember { CartesianChartModelProducer() }
 
@@ -290,16 +296,31 @@ private fun PressureChart(
             if (currentIndex > 0) {
                 val previousValue = mappedValues.values.elementAt(currentIndex - 1)
                 val currentValue = mappedValues.values.elementAt(currentIndex)
-                val trend = with(currentValue.value - previousValue.value) {
+                val trendIcon = with(currentValue.value - previousValue.value) {
                     when {
                         // Take into account the trend if the difference is of at least 0.5
-                        this >= 0.5 -> "↑"
-                        this <= -0.5 -> "↓"
-                        else -> "="
+                        this >= 0.5 -> R.drawable.ic_arrow_upward_alt
+                        this <= -0.5 -> R.drawable.ic_arrow_downward_alt
+                        else -> R.drawable.ic_equal
                     }
                 }
-                SpannableString(trend).apply {
-                    setSpan(RelativeSizeSpan(2f), 0, trend.length, 0)
+                val ss = SpannableString("abc")
+                val d = AppCompatResources.getDrawable(context, trendIcon)
+                if (d != null) {
+                    d.setBounds(0, 0, 48, 48)
+                    d.colorFilter = PorterDuffColorFilter(
+                        iconColor.toArgb(),
+                        PorterDuff.Mode.SRC_ATOP
+                    )
+                    val span = ImageSpan(d, ImageSpan.ALIGN_BASELINE)
+                    ss.setSpan(span, 0, 3, Spannable.SPAN_INCLUSIVE_EXCLUSIVE)
+                    ss
+                } else {
+                    when (trendIcon) {
+                        R.drawable.ic_arrow_upward_alt -> "↑"
+                        R.drawable.ic_arrow_downward_alt -> "↓"
+                        else -> "="
+                    }
                 }
             } else {
                 "-"
