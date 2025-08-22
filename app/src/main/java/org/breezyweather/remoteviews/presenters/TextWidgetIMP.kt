@@ -36,11 +36,13 @@ import org.breezyweather.common.extensions.spToPx
 import org.breezyweather.common.source.PollenIndexSource
 import org.breezyweather.common.utils.UnitUtils
 import org.breezyweather.domain.location.model.isDaylight
+import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.domain.weather.model.getIndex
 import org.breezyweather.domain.weather.model.getName
 import org.breezyweather.domain.weather.model.getShortDescription
 import org.breezyweather.remoteviews.Widgets
 import org.breezyweather.unit.formatting.UnitWidth
+import org.breezyweather.unit.temperature.TemperatureUnit
 import java.util.Date
 import kotlin.math.roundToInt
 
@@ -83,6 +85,7 @@ object TextWidgetIMP : AbstractRemoteViewsPresenter() {
             if (alignEnd) R.layout.widget_text_end else R.layout.widget_text
         )
         val weather = location?.weather ?: return views
+        val temperatureUnit = SettingsManager.getInstance(context).getTemperatureUnit(context)
 
         val color = WidgetColor(
             context,
@@ -124,6 +127,7 @@ object TextWidgetIMP : AbstractRemoteViewsPresenter() {
                     R.id.widget_text_temperature,
                     weather.current?.temperature?.temperature?.formatMeasure(
                         context,
+                        temperatureUnit,
                         valueWidth = UnitWidth.NARROW,
                         unitWidth = UnitWidth.NARROW
                     )
@@ -139,6 +143,7 @@ object TextWidgetIMP : AbstractRemoteViewsPresenter() {
                     location,
                     weather,
                     subtitleData,
+                    temperatureUnit,
                     pollenIndexSource
                 )
             )
@@ -176,6 +181,7 @@ object TextWidgetIMP : AbstractRemoteViewsPresenter() {
         location: Location,
         weather: Weather,
         subtitleData: String?,
+        temperatureUnit: TemperatureUnit,
         pollenIndexSource: PollenIndexSource?,
     ): String? {
         return when (subtitleData) {
@@ -196,10 +202,10 @@ object TextWidgetIMP : AbstractRemoteViewsPresenter() {
             "feels_like" -> weather.current?.temperature?.feelsLikeTemperature?.let {
                 context.getString(
                     R.string.temperature_feels_like_with_unit,
-                    it.formatMeasure(context, unitWidth = UnitWidth.NARROW)
+                    it.formatMeasure(context, temperatureUnit, unitWidth = UnitWidth.NARROW)
                 )
             }
-            else -> getCustomSubtitle(context, subtitleData, location, weather, pollenIndexSource)
+            else -> getCustomSubtitle(context, subtitleData, location, weather, temperatureUnit, pollenIndexSource)
         }
     }
 

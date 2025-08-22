@@ -68,7 +68,9 @@ object MultiCityWidgetIMP : AbstractRemoteViewsPresenter() {
         textSize: Int,
     ): RemoteViews {
         val provider = ResourcesProviderFactory.newInstance
-        val minimalIcon = SettingsManager.getInstance(context).isWidgetUsingMonochromeIcons
+        val settings = SettingsManager.getInstance(context)
+        val temperatureUnit = settings.getTemperatureUnit(context)
+        val minimalIcon = settings.isWidgetUsingMonochromeIcons
         val color = WidgetColor(context, cardStyle!!, textColor!!, locationList.firstOrNull()?.isDaylight ?: true)
         val views = RemoteViews(
             context.packageName,
@@ -131,7 +133,7 @@ object MultiCityWidgetIMP : AbstractRemoteViewsPresenter() {
                 }
                 views.setTextViewText(
                     cityId[3],
-                    location.weather?.today?.getTrendTemperature(context)
+                    location.weather?.today?.getTrendTemperature(context, temperatureUnit)
                 )
                 setOnClickPendingIntent(context, views, location, cityId[0], i)
             } ?: views.setViewVisibility(cityId[0], View.GONE)

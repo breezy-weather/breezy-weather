@@ -56,16 +56,17 @@ class HourlyTrendAdapter(
 
     fun bindData(location: Location) {
         val provider = ResourcesProviderFactory.newInstance
+        val tempUnit = SettingsManager.getInstance(activity).getTemperatureUnit(activity)
 
         adapters = SettingsManager.getInstance(activity).hourlyTrendDisplayList.map {
             when (it) {
-                HourlyTrendDisplay.TAG_TEMPERATURE -> HourlyTemperatureAdapter(activity, location, provider)
+                HourlyTrendDisplay.TAG_TEMPERATURE -> HourlyTemperatureAdapter(activity, location, provider, tempUnit)
                 HourlyTrendDisplay.TAG_AIR_QUALITY -> HourlyAirQualityAdapter(activity, location)
                 HourlyTrendDisplay.TAG_WIND -> HourlyWindAdapter(activity, location)
                 HourlyTrendDisplay.TAG_UV_INDEX -> HourlyUVAdapter(activity, location)
                 HourlyTrendDisplay.TAG_PRECIPITATION -> HourlyPrecipitationAdapter(activity, location, provider)
-                HourlyTrendDisplay.TAG_FEELS_LIKE -> HourlyFeelsLikeAdapter(activity, location, provider)
-                HourlyTrendDisplay.TAG_HUMIDITY -> HourlyHumidityAdapter(activity, location, provider)
+                HourlyTrendDisplay.TAG_FEELS_LIKE -> HourlyFeelsLikeAdapter(activity, location, provider, tempUnit)
+                HourlyTrendDisplay.TAG_HUMIDITY -> HourlyHumidityAdapter(activity, location, provider, tempUnit)
                 HourlyTrendDisplay.TAG_PRESSURE -> HourlyPressureAdapter(activity, location, provider)
                 HourlyTrendDisplay.TAG_CLOUD_COVER -> HourlyCloudCoverAdapter(activity, location)
                 HourlyTrendDisplay.TAG_VISIBILITY -> HourlyVisibilityAdapter(activity, location, provider)

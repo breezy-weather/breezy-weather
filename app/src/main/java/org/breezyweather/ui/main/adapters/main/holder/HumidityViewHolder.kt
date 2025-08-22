@@ -28,6 +28,7 @@ import org.breezyweather.common.extensions.formatMeasure
 import org.breezyweather.common.extensions.formatPercent
 import org.breezyweather.common.options.appearance.DetailScreen
 import org.breezyweather.common.utils.helpers.IntentHelper
+import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
 import org.breezyweather.unit.formatting.UnitWidth
 
@@ -71,6 +72,7 @@ class HumidityViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
             }
             dewPointValueView.text = current.dewPoint?.formatMeasure(
                 context,
+                SettingsManager.getInstance(context).getTemperatureUnit(context),
                 valueWidth = UnitWidth.NARROW,
                 unitWidth = UnitWidth.NARROW
             )

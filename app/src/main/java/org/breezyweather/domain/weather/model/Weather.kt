@@ -27,6 +27,7 @@ import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.unit.formatting.UnitWidth
 import org.breezyweather.unit.temperature.Temperature
+import org.breezyweather.unit.temperature.TemperatureUnit
 import java.util.Calendar
 import java.util.Date
 
@@ -90,7 +91,11 @@ fun Weather.getMinutelyDescription(context: Context, location: Location): String
     }
 }
 
-fun Weather.getTemperatureRangeSummary(context: Context, location: Location): Pair<String, String>? {
+fun Weather.getTemperatureRangeSummary(
+    context: Context,
+    location: Location,
+    temperatureUnit: TemperatureUnit,
+): Pair<String, String>? {
     if (today == null) return null
 
     val cal = Date().toCalendarWithTimeZone(location.timeZone)
@@ -122,12 +127,12 @@ fun Weather.getTemperatureRangeSummary(context: Context, location: Location): Pa
         halfDayTemperatureRange.add(
             context.getString(if (isDayFirst) R.string.daytime_short else R.string.nighttime_short) +
                 context.getString(R.string.colon_separator) +
-                it.formatMeasure(context, valueWidth = UnitWidth.NARROW, unitWidth = UnitWidth.NARROW)
+                it.formatMeasure(context, temperatureUnit, valueWidth = UnitWidth.NARROW, unitWidth = UnitWidth.NARROW)
         )
         halfDayTemperatureRangeVoice.add(
             context.getString(if (isDayFirst) R.string.daytime_short else R.string.nighttime_short) +
                 context.getString(R.string.colon_separator) +
-                it.formatMeasure(context, valueWidth = UnitWidth.NARROW, unitWidth = UnitWidth.LONG)
+                it.formatMeasure(context, temperatureUnit, valueWidth = UnitWidth.NARROW, unitWidth = UnitWidth.LONG)
         )
     }
 
@@ -135,12 +140,12 @@ fun Weather.getTemperatureRangeSummary(context: Context, location: Location): Pa
         halfDayTemperatureRange.add(
             context.getString(if (isDayFirst) R.string.nighttime_short else R.string.daytime_short) +
                 context.getString(R.string.colon_separator) +
-                it.formatMeasure(context, valueWidth = UnitWidth.NARROW, unitWidth = UnitWidth.NARROW)
+                it.formatMeasure(context, temperatureUnit, valueWidth = UnitWidth.NARROW, unitWidth = UnitWidth.NARROW)
         )
         halfDayTemperatureRangeVoice.add(
             context.getString(if (isDayFirst) R.string.nighttime_short else R.string.daytime_short) +
                 context.getString(R.string.colon_separator) +
-                it.formatMeasure(context, valueWidth = UnitWidth.NARROW, unitWidth = UnitWidth.LONG)
+                it.formatMeasure(context, temperatureUnit, valueWidth = UnitWidth.NARROW, unitWidth = UnitWidth.LONG)
         )
     }
 

@@ -34,6 +34,7 @@ import org.breezyweather.ui.theme.resource.ResourceHelper
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
 import org.breezyweather.ui.theme.weatherView.WeatherViewController
 import org.breezyweather.unit.formatting.UnitWidth
+import org.breezyweather.unit.temperature.TemperatureUnit
 import kotlin.math.max
 
 /**
@@ -43,6 +44,7 @@ class HourlyFeelsLikeAdapter(
     activity: BreezyActivity,
     location: Location,
     provider: ResourceProvider,
+    private val temperatureUnit: TemperatureUnit,
 ) : AbsHourlyTrendAdapter(activity, location) {
     private val mResourceProvider: ResourceProvider = provider
     private val mTemperatures: Array<Float?>
@@ -63,7 +65,7 @@ class HourlyFeelsLikeAdapter(
             val hourly = weather.nextHourlyForecast[position]
             hourly.temperature?.feelsLikeTemperature?.let {
                 talkBackBuilder.append(activity.getString(org.breezyweather.unit.R.string.locale_separator))
-                    .append(it.formatMeasure(activity, unitWidth = UnitWidth.LONG))
+                    .append(it.formatMeasure(activity, temperatureUnit, unitWidth = UnitWidth.LONG))
             }
             hourlyItem.setIconDrawable(
                 hourly.weatherCode?.let {
@@ -75,7 +77,12 @@ class HourlyFeelsLikeAdapter(
                 buildTemperatureArrayForItem(mTemperatures, position),
                 null,
                 (hourly.temperature?.feelsLikeTemperature ?: hourly.temperature?.temperature)
-                    ?.formatMeasure(activity, valueWidth = UnitWidth.NARROW, unitWidth = UnitWidth.NARROW),
+                    ?.formatMeasure(
+                        activity,
+                        temperatureUnit,
+                        valueWidth = UnitWidth.NARROW,
+                        unitWidth = UnitWidth.NARROW
+                    ),
                 null,
                 mHighestTemperature,
                 mLowestTemperature,

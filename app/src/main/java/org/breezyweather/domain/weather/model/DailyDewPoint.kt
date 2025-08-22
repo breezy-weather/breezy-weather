@@ -22,31 +22,32 @@ import org.breezyweather.R
 import org.breezyweather.common.extensions.formatMeasure
 import org.breezyweather.common.extensions.formatValue
 import org.breezyweather.unit.formatting.UnitWidth
+import org.breezyweather.unit.temperature.TemperatureUnit
 
-fun DailyDewPoint.getRangeSummary(context: Context): String? {
+fun DailyDewPoint.getRangeSummary(context: Context, temperatureUnit: TemperatureUnit): String? {
     return if (min == null || max == null) {
         null
     } else if (min == max) {
-        max!!.formatMeasure(context, unitWidth = UnitWidth.NARROW)
+        max!!.formatMeasure(context, temperatureUnit, unitWidth = UnitWidth.NARROW)
     } else {
         context.getString(
             R.string.dew_point_from_to_number,
-            min!!.formatValue(context),
-            max!!.formatMeasure(context, unitWidth = UnitWidth.NARROW)
+            min!!.formatValue(context, temperatureUnit),
+            max!!.formatMeasure(context, temperatureUnit, unitWidth = UnitWidth.NARROW)
         )
     }
 }
 
-fun DailyDewPoint.getRangeContentDescriptionSummary(context: Context): String? {
+fun DailyDewPoint.getRangeContentDescriptionSummary(context: Context, temperatureUnit: TemperatureUnit): String? {
     return if (min == null || max == null) {
         null
     } else if (min == max) {
-        max!!.formatMeasure(context, unitWidth = UnitWidth.LONG)
+        max!!.formatMeasure(context, temperatureUnit, unitWidth = UnitWidth.LONG)
     } else {
         context.getString(
             R.string.dew_point_from_to_number,
-            min!!.formatValue(context),
-            max!!.formatMeasure(context, unitWidth = UnitWidth.LONG)
+            min!!.formatValue(context, temperatureUnit),
+            max!!.formatMeasure(context, temperatureUnit, unitWidth = UnitWidth.LONG)
         )
     }
 }

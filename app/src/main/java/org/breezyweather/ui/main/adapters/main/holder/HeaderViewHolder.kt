@@ -79,7 +79,7 @@ class HeaderViewHolder(parent: ViewGroup) : AbstractMainViewHolder(
             refreshTimeText.visibility = View.GONE
         }
 
-        val mTemperatureUnit = SettingsManager.getInstance(context).getTemperatureUnit(context)
+        val temperatureUnit = SettingsManager.getInstance(context).getTemperatureUnit(context)
         location.weather?.current?.let { current ->
             if (!current.weatherText.isNullOrEmpty()) {
                 mWeatherText.visibility = View.VISIBLE
@@ -89,32 +89,41 @@ class HeaderViewHolder(parent: ViewGroup) : AbstractMainViewHolder(
             }
             current.temperature?.temperature?.let {
                 mTemperatureContainer.visibility = View.VISIBLE
-                mTemperatureContainer.contentDescription = it.formatMeasure(context, unitWidth = UnitWidth.LONG)
+                mTemperatureContainer.contentDescription = it.formatMeasure(
+                    context,
+                    temperatureUnit,
+                    unitWidth = UnitWidth.LONG
+                )
                 mTemperatureFrom = mTemperatureTo
-                mTemperatureTo = it.toDouble(mTemperatureUnit).roundToInt()
+                mTemperatureTo = it.toDouble(temperatureUnit).roundToInt()
                 mTemperature.isAnimEnabled = itemAnimationEnabled
                 // no longer than 2 seconds.
                 mTemperature.duration = max(2000.0, abs(mTemperatureTo - mTemperatureFrom) * 20.0).toLong()
-                mTemperatureUnitView.text = mTemperatureUnit.getNominativeUnit(context)
+                mTemperatureUnitView.text = temperatureUnit.getNominativeUnit(context)
             } ?: run {
                 mTemperatureContainer.visibility = View.GONE
             }
             current.temperature?.feelsLikeTemperature?.let { feelsLike ->
-                if (current.temperature!!.temperature?.toDouble(mTemperatureUnit)?.roundToInt() !=
-                    feelsLike.toDouble(mTemperatureUnit).roundToInt()
+                if (current.temperature!!.temperature?.toDouble(temperatureUnit)?.roundToInt() !=
+                    feelsLike.toDouble(temperatureUnit).roundToInt()
                 ) {
                     mFeelsLike.visibility = View.VISIBLE
                     mFeelsLike.text = context.getString(
                         R.string.temperature_feels_like_with_unit,
                         feelsLike.formatMeasure(
                             context,
+                            temperatureUnit,
                             valueWidth = UnitWidth.NARROW,
                             unitWidth = UnitWidth.NARROW
                         )
                     )
                     mFeelsLike.contentDescription = context.getString(R.string.temperature_feels_like) +
                         context.getString(R.string.colon_separator) +
-                        feelsLike.formatMeasure(context, unitWidth = UnitWidth.LONG)
+                        feelsLike.formatMeasure(
+                            context,
+                            temperatureUnit,
+                            unitWidth = UnitWidth.LONG
+                        )
                 } else {
                     mFeelsLike.visibility = View.GONE
                 }
@@ -123,7 +132,7 @@ class HeaderViewHolder(parent: ViewGroup) : AbstractMainViewHolder(
             }
         }
 
-        location.weather!!.getTemperatureRangeSummary(context, location)?.let {
+        location.weather!!.getTemperatureRangeSummary(context, location, temperatureUnit)?.let {
             mTemperatureRange.visibility = View.VISIBLE
             mTemperatureRange.text = it.first
             mTemperatureRange.contentDescription = it.second

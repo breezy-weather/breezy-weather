@@ -185,6 +185,8 @@ enum class TemperatureUnit(
          * Resolve in the following order:
          * - System regional preference
          * - Current locale region preference
+         *
+         * Known issue: [LocalePreferences].[getTemperatureUnit()] is terribly slow, so avoid calling this often
          */
         fun getDefaultUnit(
             locale: Locale = Locale.getDefault(),

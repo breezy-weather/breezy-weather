@@ -72,6 +72,7 @@ import org.breezyweather.unit.ratio.Ratio
 import org.breezyweather.unit.ratio.Ratio.Companion.percent
 import org.breezyweather.unit.temperature.Temperature
 import org.breezyweather.unit.temperature.Temperature.Companion.celsius
+import org.breezyweather.unit.temperature.TemperatureUnit
 import org.breezyweather.unit.temperature.toTemperature
 import java.util.Date
 
@@ -85,6 +86,7 @@ fun DetailsHumidity(
     modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
+    val temperatureUnit = SettingsManager.getInstance(context).getTemperatureUnit(context)
     val mappedHumidityValues = remember(hourlyList) {
         hourlyList
             .filter { it.relativeHumidity != null }
@@ -184,14 +186,14 @@ fun DetailsHumidity(
             Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
         }
         item {
-            DewPointHeader(location, daily, activeDewPointItem, defaultDewPointValue)
+            DewPointHeader(location, daily, activeDewPointItem, defaultDewPointValue, temperatureUnit)
         }
         item {
             Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
         }
         if (mappedDewPointValues.size >= DetailScreen.CHART_MIN_COUNT) {
             item {
-                DewPointChart(location, mappedDewPointValues, daily, dewPointMarkerVisibilityListener)
+                DewPointChart(location, mappedDewPointValues, daily, temperatureUnit, dewPointMarkerVisibilityListener)
             }
         } else {
             item {
@@ -358,6 +360,7 @@ fun DewPointHeader(
     daily: Daily,
     activeItem: Pair<Date, Temperature>?,
     defaultValue: Pair<Date, Temperature>?,
+    temperatureUnit: TemperatureUnit,
 ) {
     val context = LocalContext.current
 
@@ -369,10 +372,11 @@ fun DewPointHeader(
                     style = MaterialTheme.typography.labelMedium
                 )
             },
-            dewPoint = activeItem.second
+            dewPoint = activeItem.second,
+            temperatureUnit = temperatureUnit
         )
     } else if (daily.dewPoint?.min != null && daily.dewPoint!!.max != null) {
-        DewPointSummary(location, daily)
+        DewPointSummary(location, daily, temperatureUnit)
     } else {
         DewPointItem(
             header = {
@@ -381,7 +385,8 @@ fun DewPointHeader(
                     style = MaterialTheme.typography.labelMedium
                 )
             },
-            dewPoint = defaultValue?.second
+            dewPoint = defaultValue?.second,
+            temperatureUnit = temperatureUnit
         )
     }
 }
@@ -390,6 +395,7 @@ fun DewPointHeader(
 private fun DewPointSummary(
     location: Location,
     daily: Daily,
+    temperatureUnit: TemperatureUnit,
     modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
@@ -402,11 +408,11 @@ private fun DewPointSummary(
             style = MaterialTheme.typography.labelMedium
         )
         TextFixedHeight(
-            text = daily.dewPoint?.getRangeSummary(context) ?: "",
+            text = daily.dewPoint?.getRangeSummary(context, temperatureUnit) ?: "",
             style = MaterialTheme.typography.displaySmall,
             modifier = Modifier
                 .clearAndSetSemantics {
-                    daily.dewPoint?.getRangeContentDescriptionSummary(context)?.let {
+                    daily.dewPoint?.getRangeContentDescriptionSummary(context, temperatureUnit)?.let {
                         contentDescription = it
                     }
                 }
@@ -418,6 +424,7 @@ private fun DewPointSummary(
 private fun DewPointItem(
     header: @Composable () -> Unit,
     dewPoint: Temperature?,
+    temperatureUnit: TemperatureUnit,
     modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
@@ -427,12 +434,12 @@ private fun DewPointItem(
     ) {
         header()
         TextFixedHeight(
-            text = dewPoint?.formatMeasure(context, unitWidth = UnitWidth.NARROW) ?: "",
+            text = dewPoint?.formatMeasure(context, temperatureUnit, unitWidth = UnitWidth.NARROW) ?: "",
             style = MaterialTheme.typography.displaySmall,
             modifier = Modifier
                 .clearAndSetSemantics {
                     dewPoint?.let {
-                        contentDescription = it.formatMeasure(context, unitWidth = UnitWidth.LONG)
+                        contentDescription = it.formatMeasure(context, temperatureUnit, unitWidth = UnitWidth.LONG)
                     }
                 }
         )
@@ -444,11 +451,11 @@ private fun DewPointChart(
     location: Location,
     mappedValues: ImmutableMap<Long, Temperature>,
     daily: Daily,
+    temperatureUnit: TemperatureUnit,
     markerVisibilityListener: CartesianMarkerVisibilityListener,
 ) {
     val context = LocalContext.current
 
-    val temperatureUnit = SettingsManager.getInstance(context).getTemperatureUnit(context)
     val step = temperatureUnit.chartStep
     val maxY = remember(mappedValues) {
         mappedValues.values.max().toDouble(temperatureUnit).roundUpToNearestMultiplier(step)
@@ -480,7 +487,7 @@ private fun DewPointChart(
         },
         endAxisValueFormatter = { _, value, _ ->
             value.toTemperature(temperatureUnit)
-                .formatMeasure(context, valueWidth = UnitWidth.NARROW, unitWidth = UnitWidth.NARROW)
+                .formatMeasure(context, temperatureUnit, valueWidth = UnitWidth.NARROW, unitWidth = UnitWidth.NARROW)
         },
         colors = remember {
             persistentListOf(
@@ -505,6 +512,7 @@ private fun DewPointChart(
         topAxisValueFormatter = { _, value, _ ->
             mappedValues.getOrElse(value.toLong()) { null }?.formatMeasure(
                 context,
+                temperatureUnit,
                 valueWidth = UnitWidth.NARROW,
                 unitWidth = UnitWidth.NARROW
             ) ?: "-"

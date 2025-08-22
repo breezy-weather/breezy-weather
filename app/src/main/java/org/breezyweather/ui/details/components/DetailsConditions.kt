@@ -109,6 +109,7 @@ import org.breezyweather.unit.ratio.Ratio
 import org.breezyweather.unit.temperature.Temperature
 import org.breezyweather.unit.temperature.Temperature.Companion.celsius
 import org.breezyweather.unit.temperature.Temperature.Companion.deciCelsius
+import org.breezyweather.unit.temperature.TemperatureUnit
 import org.breezyweather.unit.temperature.toTemperature
 import java.util.Date
 import kotlin.math.max
@@ -125,6 +126,9 @@ fun DetailsConditions(
     modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
+    val temperatureUnit = remember {
+        SettingsManager.getInstance(context).getTemperatureUnit(context)
+    }
     val mappedValues = remember(hourlyList, selectedChart) {
         hourlyList
             .filter {
@@ -197,7 +201,14 @@ fun DetailsConditions(
         )
     ) {
         item {
-            TemperatureHeader(location, daily, activeItem, selectedChart != DetailScreen.TAG_FEELS_LIKE, normals)
+            TemperatureHeader(
+                location,
+                daily,
+                activeItem,
+                selectedChart != DetailScreen.TAG_FEELS_LIKE,
+                normals,
+                temperatureUnit
+            )
         }
         item {
             Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
@@ -210,6 +221,7 @@ fun DetailsConditions(
                     selectedChart != DetailScreen.TAG_FEELS_LIKE,
                     normals,
                     daily,
+                    temperatureUnit,
                     markerVisibilityListener
                 )
             }
@@ -267,7 +279,6 @@ fun DetailsConditions(
         }
         // TODO: Make a better design for degree day
         if (daily.degreeDay?.isValid == true) {
-            val temperatureUnit = SettingsManager.getInstance(context).getTemperatureUnit(context)
             item {
                 Spacer(modifier = Modifier.height(dimensionResource(R.dimen.small_margin)))
             }
@@ -286,7 +297,7 @@ fun DetailsConditions(
                             headlineText = stringResource(R.string.temperature_degree_day_heating),
                             supportingText = daily.degreeDay!!.heating!!.toDoubleDeviation(temperatureUnit)
                                 .toTemperature(temperatureUnit)
-                                .formatMeasure(context),
+                                .formatMeasure(context, temperatureUnit),
                             icon = R.drawable.ic_mode_heat,
                             modifier = Modifier
                                 .semantics(mergeDescendants = true) {}
@@ -295,7 +306,7 @@ fun DetailsConditions(
                                         context.getString(R.string.colon_separator) +
                                         daily.degreeDay!!.heating!!.toDoubleDeviation(temperatureUnit)
                                             .toTemperature(temperatureUnit)
-                                            .formatMeasure(context, unitWidth = UnitWidth.LONG)
+                                            .formatMeasure(context, temperatureUnit, unitWidth = UnitWidth.LONG)
                                 }
                                 .clickable {
                                     coroutineScope.launch {
@@ -321,7 +332,7 @@ fun DetailsConditions(
                             headlineText = stringResource(R.string.temperature_degree_day_cooling),
                             supportingText = daily.degreeDay!!.cooling!!.toDoubleDeviation(temperatureUnit)
                                 .toTemperature(temperatureUnit)
-                                .formatMeasure(context),
+                                .formatMeasure(context, temperatureUnit),
                             icon = R.drawable.ic_mode_cool,
                             modifier = Modifier
                                 .semantics(mergeDescendants = true) {}
@@ -330,7 +341,7 @@ fun DetailsConditions(
                                         context.getString(R.string.colon_separator) +
                                         daily.degreeDay!!.heating!!.toDoubleDeviation(temperatureUnit)
                                             .toTemperature(temperatureUnit)
-                                            .formatMeasure(context, unitWidth = UnitWidth.LONG)
+                                            .formatMeasure(context, temperatureUnit, unitWidth = UnitWidth.LONG)
                                 }
                                 .clickable {
                                     coroutineScope.launch {
@@ -401,6 +412,7 @@ fun TemperatureHeader(
     activeItem: Pair<Date, Hourly>?,
     showRealTemp: Boolean,
     normals: Normals?,
+    temperatureUnit: TemperatureUnit,
 ) {
     val context = LocalContext.current
 
@@ -420,13 +432,15 @@ fun TemperatureHeader(
             animated = false, // Doesn't redraw otherwise
             normals = null,
             monthFormatted = "",
-            keepSpaceForSubtext = normals?.daytimeTemperature != null || normals?.nighttimeTemperature != null
+            keepSpaceForSubtext = normals?.daytimeTemperature != null || normals?.nighttimeTemperature != null,
+            temperatureUnit = temperatureUnit
         )
     } ?: WeatherConditionSummary(
         daily,
         showRealTemp,
         normals,
-        daily.date.getCalendarMonth(location).getDisplayName(context.currentLocale)
+        daily.date.getCalendarMonth(location).getDisplayName(context.currentLocale),
+        temperatureUnit
     )
 }
 
@@ -477,6 +491,7 @@ private fun WeatherConditionSummary(
     showRealTemp: Boolean,
     normals: Normals?,
     monthFormatted: String,
+    temperatureUnit: TemperatureUnit,
 ) {
     Row(
         horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.normal_margin)),
@@ -500,7 +515,8 @@ private fun WeatherConditionSummary(
                     animated = true,
                     normals = normals,
                     monthFormatted = monthFormatted,
-                    keepSpaceForSubtext = normals?.daytimeTemperature != null || normals?.nighttimeTemperature != null
+                    keepSpaceForSubtext = normals?.daytimeTemperature != null || normals?.nighttimeTemperature != null,
+                    temperatureUnit = temperatureUnit
                 )
             }
         }
@@ -521,7 +537,8 @@ private fun WeatherConditionSummary(
                     animated = true,
                     normals = normals,
                     monthFormatted = monthFormatted,
-                    keepSpaceForSubtext = normals?.daytimeTemperature != null || normals?.nighttimeTemperature != null
+                    keepSpaceForSubtext = normals?.daytimeTemperature != null || normals?.nighttimeTemperature != null,
+                    temperatureUnit = temperatureUnit
                 )
             }
         }
@@ -540,6 +557,7 @@ private fun WeatherConditionItem(
     normals: Normals?,
     monthFormatted: String,
     keepSpaceForSubtext: Boolean,
+    temperatureUnit: TemperatureUnit,
     modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
@@ -552,12 +570,16 @@ private fun WeatherConditionItem(
             Column {
                 (if (showRealTemp) temperature?.temperature else temperature?.feelsLikeTemperature).let { temp ->
                     TextFixedHeight(
-                        text = temp?.formatMeasure(context, unitWidth = UnitWidth.NARROW) ?: "",
+                        text = temp?.formatMeasure(context, temperatureUnit, unitWidth = UnitWidth.NARROW) ?: "",
                         style = MaterialTheme.typography.displaySmall,
                         modifier = Modifier
                             .clearAndSetSemantics {
                                 temp?.let {
-                                    contentDescription = it.formatMeasure(context, unitWidth = UnitWidth.LONG)
+                                    contentDescription = it.formatMeasure(
+                                        context,
+                                        temperatureUnit,
+                                        unitWidth = UnitWidth.LONG
+                                    )
                                 }
                             }
                     )
@@ -567,7 +589,7 @@ private fun WeatherConditionItem(
                         text = temperature?.temperature?.let {
                             stringResource(R.string.temperature_real) +
                                 stringResource(R.string.colon_separator) +
-                                it.formatMeasure(context)
+                                it.formatMeasure(context, temperatureUnit)
                         } ?: "",
                         style = MaterialTheme.typography.labelLarge,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
@@ -576,7 +598,11 @@ private fun WeatherConditionItem(
                                 if (temperature?.temperature != null) {
                                     contentDescription = context.getString(R.string.temperature_real) +
                                         context.getString(R.string.colon_separator) +
-                                        temperature.temperature!!.formatMeasure(context, unitWidth = UnitWidth.LONG)
+                                        temperature.temperature!!.formatMeasure(
+                                            context,
+                                            temperatureUnit,
+                                            unitWidth = UnitWidth.LONG
+                                        )
                                 }
                             }
                     )
@@ -586,7 +612,8 @@ private fun WeatherConditionItem(
                         normals,
                         monthFormatted,
                         isDaytime,
-                        keepSpaceForSubtext
+                        keepSpaceForSubtext,
+                        temperatureUnit
                     )
                 }
             }
@@ -609,6 +636,7 @@ fun NormalsDepartureLabel(
     monthFormatted: String,
     isDaytime: Boolean,
     keepSpaceForSubtext: Boolean,
+    temperatureUnit: TemperatureUnit,
     modifier: Modifier = Modifier,
 ) {
     val normal = if (isDaytime) normals?.daytimeTemperature else normals?.nighttimeTemperature
@@ -617,7 +645,6 @@ fun NormalsDepartureLabel(
         val context = LocalContext.current
         val tooltipState = rememberTooltipState(isPersistent = true)
         val coroutineScope = rememberCoroutineScope()
-        val temperatureUnit = SettingsManager.getInstance(context).getTemperatureUnit(context)
         val departure = remember(halfDayTemperature, normal) {
             halfDayTemperature.toDouble(temperatureUnit) - normal.toDouble(temperatureUnit)
         }
@@ -661,6 +688,7 @@ fun NormalsDepartureLabel(
                         "" +
                         departure.toTemperature(temperatureUnit).formatMeasure(
                             context,
+                            temperatureUnit,
                             unitWidth = UnitWidth.NARROW,
                             showSign = true
                         ),
@@ -739,12 +767,12 @@ private fun TemperatureChart(
     showRealTemp: Boolean,
     normals: Normals?,
     daily: Daily,
+    temperatureUnit: TemperatureUnit,
     markerVisibilityListener: CartesianMarkerVisibilityListener,
 ) {
     val context = LocalContext.current
 
     val provider = ResourcesProviderFactory.newInstance
-    val temperatureUnit = SettingsManager.getInstance(context).getTemperatureUnit(context)
     val step = temperatureUnit.chartStep
     val minY = remember(mappedValues, showRealTemp, normals) {
         if (showRealTemp) {
@@ -812,7 +840,7 @@ private fun TemperatureChart(
         },
         endAxisValueFormatter = { _, value, _ ->
             value.toTemperature(temperatureUnit)
-                .formatMeasure(context, valueWidth = UnitWidth.NARROW, unitWidth = UnitWidth.NARROW)
+                .formatMeasure(context, temperatureUnit, valueWidth = UnitWidth.NARROW, unitWidth = UnitWidth.NARROW)
         },
         colors = remember {
             persistentListOf(

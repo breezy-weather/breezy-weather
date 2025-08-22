@@ -38,7 +38,6 @@ import org.breezyweather.common.extensions.formatPercent
 import org.breezyweather.common.extensions.getCalendarMonth
 import org.breezyweather.common.extensions.getFormattedShortDayAndMonth
 import org.breezyweather.common.extensions.getTabletListAdaptiveWidth
-import org.breezyweather.common.utils.UnitUtils
 import org.breezyweather.common.utils.helpers.AsyncHelper
 import org.breezyweather.domain.location.model.isDaylight
 import org.breezyweather.domain.settings.SettingsManager
@@ -103,6 +102,7 @@ object DailyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
         var highestTemperature: Float? = null
         var lowestTemperature: Float? = null
         val minimalIcon = SettingsManager.getInstance(context).isWidgetUsingMonochromeIcons
+        val temperatureUnit = SettingsManager.getInstance(context).getTemperatureUnit(context)
         val lightTheme = color.isLightThemed
 
         // TODO: Redundant with DailyTemperatureAdapter
@@ -182,6 +182,7 @@ object DailyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
                     ),
                     highestTemperature,
                     lowestTemperature,
+                    temperatureUnit,
                     true
                 )
                 trendParent.setColor(lightTheme)
@@ -227,11 +228,13 @@ object DailyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
                     buildTemperatureArrayForItem(nighttimeTemperatures, i),
                     daily.day?.temperature?.temperature?.formatMeasure(
                         context,
+                        temperatureUnit,
                         valueWidth = UnitWidth.NARROW,
                         unitWidth = UnitWidth.NARROW
                     ),
                     daily.night?.temperature?.temperature?.formatMeasure(
                         context,
+                        temperatureUnit,
                         valueWidth = UnitWidth.NARROW,
                         unitWidth = UnitWidth.NARROW
                     ),

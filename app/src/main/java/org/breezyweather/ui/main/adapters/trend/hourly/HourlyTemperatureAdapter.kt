@@ -36,6 +36,7 @@ import org.breezyweather.ui.theme.resource.ResourceHelper
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
 import org.breezyweather.ui.theme.weatherView.WeatherViewController
 import org.breezyweather.unit.formatting.UnitWidth
+import org.breezyweather.unit.temperature.TemperatureUnit
 import java.util.Date
 import kotlin.math.max
 
@@ -46,13 +47,13 @@ class HourlyTemperatureAdapter(
     activity: BreezyActivity,
     location: Location,
     provider: ResourceProvider,
-    showPrecipitationProbability: Boolean = true,
+    private val temperatureUnit: TemperatureUnit,
+    private val showPrecipitationProbability: Boolean = true,
 ) : AbsHourlyTrendAdapter(activity, location) {
     private val mResourceProvider: ResourceProvider = provider
     private val mTemperatures: Array<Float?>
     private var mHighestTemperature: Float? = null
     private var mLowestTemperature: Float? = null
-    private val mShowPrecipitationProbability: Boolean
 
     inner class ViewHolder(itemView: View) : AbsHourlyTrendAdapter.ViewHolder(itemView) {
         private val mPolylineAndHistogramView = PolylineAndHistogramView(itemView.context)
@@ -68,7 +69,7 @@ class HourlyTemperatureAdapter(
             val hourly = weather.nextHourlyForecast[position]
             hourly.temperature?.temperature?.let {
                 talkBackBuilder.append(activity.getString(org.breezyweather.unit.R.string.locale_separator))
-                    .append(it.formatMeasure(activity, unitWidth = UnitWidth.LONG))
+                    .append(it.formatMeasure(activity, temperatureUnit, unitWidth = UnitWidth.LONG))
             }
             if (!hourly.weatherText.isNullOrEmpty()) {
                 talkBackBuilder.append(activity.getString(org.breezyweather.unit.R.string.locale_separator))
@@ -81,7 +82,7 @@ class HourlyTemperatureAdapter(
                 missingIconVisibility = View.INVISIBLE
             )
             val p = hourly.precipitationProbability?.total
-            if (mShowPrecipitationProbability && hourly.precipitationProbability?.total != null) {
+            if (showPrecipitationProbability && hourly.precipitationProbability?.total != null) {
                 talkBackBuilder.append(activity.getString(org.breezyweather.unit.R.string.locale_separator))
                     .append(activity.getString(R.string.precipitation_probability))
                     .append(activity.getString(R.string.colon_separator))
@@ -92,14 +93,15 @@ class HourlyTemperatureAdapter(
                 null,
                 hourly.temperature?.temperature?.formatMeasure(
                     activity,
+                    temperatureUnit,
                     valueWidth = UnitWidth.NARROW,
                     unitWidth = UnitWidth.NARROW
                 ),
                 null,
                 mHighestTemperature,
                 mLowestTemperature,
-                p?.takeIf { it.value > 0 && mShowPrecipitationProbability }?.inPercent?.toFloat(),
-                p?.takeIf { it.value > 0 && mShowPrecipitationProbability }?.formatPercent(activity, UnitWidth.NARROW),
+                p?.takeIf { it.value > 0 && showPrecipitationProbability }?.inPercent?.toFloat(),
+                p?.takeIf { it.value > 0 && showPrecipitationProbability }?.formatPercent(activity, UnitWidth.NARROW),
                 100f,
                 0f
             )
@@ -189,7 +191,6 @@ class HourlyTemperatureAdapter(
                     }
                 }
             }
-        mShowPrecipitationProbability = showPrecipitationProbability
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -219,6 +220,7 @@ class HourlyTemperatureAdapter(
                     normals.daytimeTemperature!!.value.toFloat(),
                     normals.daytimeTemperature!!.formatMeasure(
                         activity,
+                        temperatureUnit,
                         valueWidth = UnitWidth.NARROW,
                         unitWidth = UnitWidth.NARROW
                     ),
@@ -231,6 +233,7 @@ class HourlyTemperatureAdapter(
                     normals.nighttimeTemperature!!.value.toFloat(),
                     normals.nighttimeTemperature!!.formatMeasure(
                         activity,
+                        temperatureUnit,
                         valueWidth = UnitWidth.NARROW,
                         unitWidth = UnitWidth.NARROW
                     ),

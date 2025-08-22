@@ -52,16 +52,17 @@ class DailyTrendAdapter(
 
     fun bindData(location: Location) {
         val provider = ResourcesProviderFactory.newInstance
+        val tempUnit = SettingsManager.getInstance(activity).getTemperatureUnit(activity)
 
         adapters = SettingsManager.getInstance(activity).dailyTrendDisplayList.map {
             when (it) {
-                DailyTrendDisplay.TAG_TEMPERATURE -> DailyTemperatureAdapter(activity, location, provider)
+                DailyTrendDisplay.TAG_TEMPERATURE -> DailyTemperatureAdapter(activity, location, provider, tempUnit)
                 DailyTrendDisplay.TAG_AIR_QUALITY -> DailyAirQualityAdapter(activity, location)
                 DailyTrendDisplay.TAG_WIND -> DailyWindAdapter(activity, location)
                 DailyTrendDisplay.TAG_UV_INDEX -> DailyUVAdapter(activity, location)
                 DailyTrendDisplay.TAG_PRECIPITATION -> DailyPrecipitationAdapter(activity, location, provider)
                 DailyTrendDisplay.TAG_SUNSHINE -> DailySunshineAdapter(activity, location)
-                DailyTrendDisplay.TAG_FEELS_LIKE -> DailyFeelsLikeAdapter(activity, location, provider)
+                DailyTrendDisplay.TAG_FEELS_LIKE -> DailyFeelsLikeAdapter(activity, location, provider, tempUnit)
             }
         }.filter {
             it.isValid(location)

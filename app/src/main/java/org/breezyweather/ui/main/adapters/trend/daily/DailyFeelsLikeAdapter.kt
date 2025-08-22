@@ -35,6 +35,7 @@ import org.breezyweather.ui.theme.resource.ResourceHelper
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
 import org.breezyweather.ui.theme.weatherView.WeatherViewController
 import org.breezyweather.unit.formatting.UnitWidth
+import org.breezyweather.unit.temperature.TemperatureUnit
 import kotlin.math.max
 
 /**
@@ -44,6 +45,7 @@ class DailyFeelsLikeAdapter(
     activity: BreezyActivity,
     location: Location,
     provider: ResourceProvider,
+    private val temperatureUnit: TemperatureUnit,
 ) : AbsDailyTrendAdapter(activity, location) {
     private val mResourceProvider: ResourceProvider = provider
     private val mDaytimeTemperatures: Array<Float?>
@@ -68,7 +70,7 @@ class DailyFeelsLikeAdapter(
                     .append(activity.getString(R.string.daytime))
                     .append(activity.getString(R.string.colon_separator))
                 day.temperature?.feelsLikeTemperature?.let {
-                    talkBackBuilder.append(it.formatMeasure(activity, unitWidth = UnitWidth.LONG))
+                    talkBackBuilder.append(it.formatMeasure(activity, temperatureUnit, unitWidth = UnitWidth.LONG))
                 }
             }
             daily.night?.let { night ->
@@ -76,7 +78,7 @@ class DailyFeelsLikeAdapter(
                     .append(activity.getString(R.string.nighttime))
                     .append(activity.getString(R.string.colon_separator))
                 night.temperature?.feelsLikeTemperature?.let {
-                    talkBackBuilder.append(it.formatMeasure(activity, unitWidth = UnitWidth.LONG))
+                    talkBackBuilder.append(it.formatMeasure(activity, temperatureUnit, unitWidth = UnitWidth.LONG))
                 }
             }
             dailyItem.setDayIconDrawable(
@@ -89,12 +91,14 @@ class DailyFeelsLikeAdapter(
                 (daily.day?.temperature?.feelsLikeTemperature ?: daily.day?.temperature?.temperature)
                     ?.formatMeasure(
                         activity,
+                        temperatureUnit,
                         valueWidth = UnitWidth.NARROW,
                         unitWidth = UnitWidth.NARROW
                     ),
                 (daily.night?.temperature?.feelsLikeTemperature ?: daily.night?.temperature?.temperature)
                     ?.formatMeasure(
                         activity,
+                        temperatureUnit,
                         valueWidth = UnitWidth.NARROW,
                         unitWidth = UnitWidth.NARROW
                     ),

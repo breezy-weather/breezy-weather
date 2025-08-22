@@ -86,6 +86,7 @@ object ClockDayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
         val provider = ResourcesProviderFactory.newInstance
         val dayTime = location.isDaylight
         val settings = SettingsManager.getInstance(context)
+        val temperatureUnit = settings.getTemperatureUnit(context)
         val weekIconMode = settings.widgetWeekIconMode
         val minimalIcon = settings.isWidgetUsingMonochromeIcons
 
@@ -158,7 +159,7 @@ object ClockDayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
         builder.append(location.getPlace(context))
         weather.current?.temperature?.temperature?.let {
             builder.append(" ").append(
-                it.formatMeasure(context, unitWidth = UnitWidth.NARROW)
+                it.formatMeasure(context, temperatureUnit, unitWidth = UnitWidth.NARROW)
             )
         }
         views.setTextViewText(R.id.widget_clock_day_week_subtitle, builder.toString())
@@ -204,7 +205,7 @@ object ClockDayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
             } ?: views.setTextViewText(dailyId[0], null)
             views.setTextViewText(
                 dailyId[1],
-                weather.dailyForecastStartingToday.getOrNull(i)?.getTrendTemperature(context)
+                weather.dailyForecastStartingToday.getOrNull(i)?.getTrendTemperature(context, temperatureUnit)
             )
             if (weekIconDaytime) {
                 weather.dailyForecastStartingToday.getOrNull(i)?.day?.weatherCode?.let {

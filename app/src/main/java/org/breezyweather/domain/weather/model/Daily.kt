@@ -26,6 +26,7 @@ import org.breezyweather.common.extensions.formatMeasure
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.getLongWeekdayDayMonth
 import org.breezyweather.common.extensions.getWeek
+import org.breezyweather.unit.temperature.TemperatureUnit
 import java.util.Calendar
 import kotlin.time.Duration.Companion.days
 
@@ -96,18 +97,20 @@ fun Daily.isToday(location: Location): Boolean {
         current[Calendar.DAY_OF_YEAR] == thisDay[Calendar.DAY_OF_YEAR]
 }
 
-fun Daily.getTrendTemperature(context: Context): String? {
+fun Daily.getTrendTemperature(context: Context, temperatureUnit: TemperatureUnit): String? {
     if (day?.temperature?.temperature == null || night?.temperature?.temperature == null) {
         return null
     }
     return day!!.temperature!!.temperature!!.formatMeasure(
         context,
+        temperatureUnit,
         valueWidth = org.breezyweather.unit.formatting.UnitWidth.NARROW,
         unitWidth = org.breezyweather.unit.formatting.UnitWidth.NARROW
     ) +
         "/" +
         night!!.temperature!!.temperature!!.formatMeasure(
             context,
+            temperatureUnit,
             valueWidth = org.breezyweather.unit.formatting.UnitWidth.NARROW,
             unitWidth = org.breezyweather.unit.formatting.UnitWidth.NARROW
         )

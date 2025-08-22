@@ -40,6 +40,7 @@ import org.breezyweather.ui.theme.resource.providers.DefaultResourceProvider
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
 import org.breezyweather.unit.formatting.UnitWidth
 import org.breezyweather.unit.temperature.Temperature
+import org.breezyweather.unit.temperature.TemperatureUnit
 
 object ResourceHelper {
     fun getWeatherIcon(
@@ -165,9 +166,10 @@ object ResourceHelper {
         return provider.moonDrawable
     }
 
-    fun createTempBitmap(context: Context, temp: Temperature): Bitmap {
+    fun createTempBitmap(context: Context, temp: Temperature, temperatureUnit: TemperatureUnit): Bitmap {
         val temperatureFormatted = temp.formatMeasure(
             context,
+            temperatureUnit,
             valueWidth = UnitWidth.NARROW,
             unitWidth = UnitWidth.NARROW
         )

@@ -32,6 +32,7 @@ import org.breezyweather.common.extensions.getHour
 import org.breezyweather.common.options.NotificationTextColor
 import org.breezyweather.domain.location.model.getPlace
 import org.breezyweather.domain.location.model.isDaylight
+import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.domain.weather.model.getName
 import org.breezyweather.domain.weather.model.getShortDescription
 import org.breezyweather.domain.weather.model.getWeek
@@ -133,6 +134,7 @@ private fun buildRemoteViews(
     val dayTime = location.isDaylight
 
     val provider = ResourcesProviderFactory.newInstance
+    val temperatureUnit = SettingsManager.getInstance(context).getTemperatureUnit(context)
 
     views.setTextViewText(
         R.id.widget_material_you_forecast_city,
@@ -159,6 +161,7 @@ private fun buildRemoteViews(
             R.id.widget_material_you_forecast_currentTemperature,
             weather.current?.temperature?.temperature?.formatMeasure(
                 context,
+                temperatureUnit,
                 valueWidth = UnitWidth.NARROW,
                 unitWidth = UnitWidth.NARROW
             )
@@ -167,6 +170,7 @@ private fun buildRemoteViews(
             R.id.widget_material_you_forecast_daytimeTemperature,
             weather.today?.day?.temperature?.temperature?.formatMeasure(
                 context,
+                temperatureUnit,
                 valueWidth = UnitWidth.NARROW,
                 unitWidth = UnitWidth.NARROW
             )
@@ -175,6 +179,7 @@ private fun buildRemoteViews(
             R.id.widget_material_you_forecast_nighttimeTemperature,
             weather.today?.night?.temperature?.temperature?.formatMeasure(
                 context,
+                temperatureUnit,
                 valueWidth = UnitWidth.NARROW,
                 unitWidth = UnitWidth.NARROW
             )
@@ -253,6 +258,7 @@ private fun buildRemoteViews(
             hourlyId[2],
             weather.nextHourlyForecast.getOrNull(i)?.temperature?.temperature?.formatMeasure(
                 context,
+                temperatureUnit,
                 valueWidth = UnitWidth.NARROW,
                 unitWidth = UnitWidth.NARROW
             )
@@ -333,6 +339,7 @@ private fun buildRemoteViews(
             dailyId[2],
             weather.dailyForecastStartingToday.getOrNull(i)?.day?.temperature?.temperature?.formatMeasure(
                 context,
+                temperatureUnit,
                 valueWidth = UnitWidth.NARROW,
                 unitWidth = UnitWidth.NARROW
             )
@@ -341,6 +348,7 @@ private fun buildRemoteViews(
             dailyId[3],
             weather.dailyForecastStartingToday.getOrNull(i)?.night?.temperature?.temperature?.formatMeasure(
                 context,
+                temperatureUnit,
                 valueWidth = UnitWidth.NARROW,
                 unitWidth = UnitWidth.NARROW
             )

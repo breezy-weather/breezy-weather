@@ -51,8 +51,10 @@ object NativeWidgetNotificationIMP : AbstractRemoteViewsPresenter() {
     ) {
         val current = location.weather?.current ?: return
         val provider = ResourcesProviderFactory.newInstance
+        val settings = SettingsManager.getInstance(context)
+        val temperatureUnit = settings.getTemperatureUnit(context)
 
-        val tempFeelsLikeOrAir = if (SettingsManager.getInstance(context).isWidgetNotificationUsingFeelsLike) {
+        val tempFeelsLikeOrAir = if (settings.isWidgetNotificationUsingFeelsLike) {
             current.temperature?.feelsLikeTemperature ?: current.temperature?.temperature
         } else {
             current.temperature?.temperature
@@ -75,7 +77,7 @@ object NativeWidgetNotificationIMP : AbstractRemoteViewsPresenter() {
 
         val contentTitle = StringBuilder()
         if (!tempIcon && tempFeelsLikeOrAir != null) {
-            contentTitle.append(tempFeelsLikeOrAir.formatMeasure(context))
+            contentTitle.append(tempFeelsLikeOrAir.formatMeasure(context, temperatureUnit))
         }
         if (!current.weatherText.isNullOrEmpty()) {
             if (contentTitle.toString().isNotEmpty()) contentTitle.append(" – ")
@@ -88,7 +90,7 @@ object NativeWidgetNotificationIMP : AbstractRemoteViewsPresenter() {
             if (temperature != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 setSmallIcon(
                     IconCompat.createWithBitmap(
-                        ResourceHelper.createTempBitmap(context, temperature)
+                        ResourceHelper.createTempBitmap(context, temperature, temperatureUnit)
                     )
                 )
             } else {

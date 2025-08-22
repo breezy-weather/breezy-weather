@@ -43,6 +43,7 @@ import org.breezyweather.ui.theme.resource.ResourceHelper
 import org.breezyweather.ui.theme.resource.ResourcesProviderFactory
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
 import org.breezyweather.unit.formatting.UnitWidth
+import org.breezyweather.unit.temperature.TemperatureUnit
 import java.util.Date
 
 object MultiCityWidgetNotificationIMP : AbstractRemoteViewsPresenter() {
@@ -55,9 +56,12 @@ object MultiCityWidgetNotificationIMP : AbstractRemoteViewsPresenter() {
     ) {
         val current = locationList.getOrNull(0)?.weather?.current ?: return
         val provider = ResourcesProviderFactory.newInstance
+        val settings = SettingsManager.getInstance(context)
+        val temperatureUnit = settings.getTemperatureUnit(context)
+        val isWidgetNotificationUsingFeelsLike = settings.isWidgetNotificationUsingFeelsLike
 
         val temperature = if (tempIcon) {
-            if (SettingsManager.getInstance(context).isWidgetNotificationUsingFeelsLike) {
+            if (isWidgetNotificationUsingFeelsLike) {
                 current.temperature?.feelsLikeTemperature ?: current.temperature?.temperature
             } else {
                 current.temperature?.temperature
@@ -71,7 +75,7 @@ object MultiCityWidgetNotificationIMP : AbstractRemoteViewsPresenter() {
             if (temperature != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 setSmallIcon(
                     IconCompat.createWithBitmap(
-                        ResourceHelper.createTempBitmap(context, temperature)
+                        ResourceHelper.createTempBitmap(context, temperature, temperatureUnit)
                     )
                 )
             } else {
@@ -85,7 +89,9 @@ object MultiCityWidgetNotificationIMP : AbstractRemoteViewsPresenter() {
                     RemoteViews(context.packageName, R.layout.notification_base),
                     provider,
                     locationList[0],
-                    dayTime
+                    temperatureUnit,
+                    dayTime,
+                    isWidgetNotificationUsingFeelsLike
                 )
             )
             setContentIntent(getWeatherPendingIntent(context, null, Notifications.ID_WIDGET))
@@ -95,7 +101,9 @@ object MultiCityWidgetNotificationIMP : AbstractRemoteViewsPresenter() {
                     RemoteViews(context.packageName, R.layout.notification_multi_city),
                     provider,
                     locationList,
-                    dayTime
+                    temperatureUnit,
+                    dayTime,
+                    isWidgetNotificationUsingFeelsLike
                 )
             )
             setOngoing(persistent)
@@ -111,7 +119,7 @@ object MultiCityWidgetNotificationIMP : AbstractRemoteViewsPresenter() {
                             notification,
                             ResourceHelper.getMinimalIcon(provider, weatherCode, dayTime)
                         )
-                } catch (ignore: Exception) {
+                } catch (_: Exception) {
                     // do nothing.
                 }
             }
@@ -125,11 +133,13 @@ object MultiCityWidgetNotificationIMP : AbstractRemoteViewsPresenter() {
         views: RemoteViews,
         provider: ResourceProvider,
         location: Location,
+        temperatureUnit: TemperatureUnit,
         dayTime: Boolean,
+        isWidgetNotificationUsingFeelsLike: Boolean,
     ): RemoteViews {
         val current = location.weather?.current ?: return views
 
-        val temperature = if (SettingsManager.getInstance(context).isWidgetNotificationUsingFeelsLike) {
+        val temperature = if (isWidgetNotificationUsingFeelsLike) {
             current.temperature?.feelsLikeTemperature ?: current.temperature?.temperature
         } else {
             current.temperature?.temperature
@@ -157,7 +167,12 @@ object MultiCityWidgetNotificationIMP : AbstractRemoteViewsPresenter() {
             temperature?.let {
                 setTextViewText(
                     R.id.notification_base_realtimeTemp,
-                    it.formatMeasure(context, valueWidth = UnitWidth.NARROW, unitWidth = UnitWidth.NARROW)
+                    it.formatMeasure(
+                        context,
+                        temperatureUnit,
+                        valueWidth = UnitWidth.NARROW,
+                        unitWidth = UnitWidth.NARROW
+                    )
                 )
             }
             if (current.airQuality?.isIndexValid == true) {
@@ -190,12 +205,22 @@ object MultiCityWidgetNotificationIMP : AbstractRemoteViewsPresenter() {
         viewsP: RemoteViews,
         provider: ResourceProvider,
         locationList: List<Location>,
+        temperatureUnit: TemperatureUnit,
         dayTime: Boolean,
+        isWidgetNotificationUsingFeelsLike: Boolean,
     ): RemoteViews {
         if (locationList.getOrNull(0)?.weather == null) return viewsP
 
         // today
-        val views = buildBaseView(context, viewsP, provider, locationList[0], dayTime)
+        val views = buildBaseView(
+            context,
+            viewsP,
+            provider,
+            locationList[0],
+            temperatureUnit,
+            dayTime,
+            isWidgetNotificationUsingFeelsLike
+        )
         val viewIds = arrayOf(
             Triple(
                 R.id.notification_multi_city_1,
@@ -238,7 +263,7 @@ object MultiCityWidgetNotificationIMP : AbstractRemoteViewsPresenter() {
                             )
                         )
                     }
-                    setTextViewText(viewId.third, getCityTitle(context, location))
+                    setTextViewText(viewId.third, getCityTitle(context, location, temperatureUnit))
                 }
             } ?: views.setViewVisibility(viewId.first, View.GONE)
         }
@@ -246,13 +271,13 @@ object MultiCityWidgetNotificationIMP : AbstractRemoteViewsPresenter() {
         return views
     }
 
-    private fun getCityTitle(context: Context, location: Location): String {
+    private fun getCityTitle(context: Context, location: Location, temperatureUnit: TemperatureUnit): String {
         val builder = StringBuilder(
             location.getPlace(context, true)
         )
         location.weather?.today?.let {
             builder.append(context.getString(org.breezyweather.unit.R.string.locale_separator))
-                .append(it.getTrendTemperature(context))
+                .append(it.getTrendTemperature(context, temperatureUnit))
         }
         return builder.toString()
     }

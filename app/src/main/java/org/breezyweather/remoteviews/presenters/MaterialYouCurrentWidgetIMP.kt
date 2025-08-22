@@ -29,6 +29,7 @@ import org.breezyweather.background.receiver.widget.WidgetMaterialYouCurrentProv
 import org.breezyweather.common.extensions.formatMeasure
 import org.breezyweather.common.options.NotificationTextColor
 import org.breezyweather.domain.location.model.isDaylight
+import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.remoteviews.Widgets
 import org.breezyweather.remoteviews.common.WidgetSize
 import org.breezyweather.remoteviews.common.WidgetSizeUtils
@@ -109,6 +110,7 @@ class MaterialYouCurrentWidgetIMP : AbstractRemoteViewsPresenter() {
             val weather = location?.weather ?: return views
 
             val provider = ResourcesProviderFactory.newInstance
+            val temperatureUnit = SettingsManager.getInstance(context).getTemperatureUnit(context)
 
             // current.
             weather.current?.weatherCode?.let {
@@ -170,6 +172,7 @@ class MaterialYouCurrentWidgetIMP : AbstractRemoteViewsPresenter() {
 
             val temperatureText = weather.current?.temperature?.temperature?.formatMeasure(
                 context,
+                temperatureUnit,
                 valueWidth = UnitWidth.NARROW,
                 unitWidth = UnitWidth.NARROW
             )

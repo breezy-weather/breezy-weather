@@ -47,6 +47,7 @@ import org.breezyweather.ui.theme.resource.ResourceHelper
 import org.breezyweather.ui.theme.resource.ResourcesProviderFactory
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
 import org.breezyweather.unit.formatting.UnitWidth
+import org.breezyweather.unit.temperature.TemperatureUnit
 import java.util.Date
 
 object WidgetNotificationIMP : AbstractRemoteViewsPresenter() {
@@ -61,9 +62,11 @@ object WidgetNotificationIMP : AbstractRemoteViewsPresenter() {
 
         // get sp & realTimeWeather.
         val settings = SettingsManager.getInstance(context)
+        val temperatureUnit = settings.getTemperatureUnit(context)
         val dayTime = location.isDaylight
         val tempIcon = settings.isWidgetNotificationTemperatureIconEnabled
         val persistent = settings.isWidgetNotificationPersistent
+        val isWidgetNotificationUsingFeelsLike = settings.isWidgetNotificationUsingFeelsLike
         if (settings.widgetNotificationStyle === NotificationStyle.NATIVE) {
             NativeWidgetNotificationIMP.buildNotificationAndSendIt(
                 context,
@@ -85,7 +88,7 @@ object WidgetNotificationIMP : AbstractRemoteViewsPresenter() {
         }
 
         val temperature = if (tempIcon) {
-            if (SettingsManager.getInstance(context).isWidgetNotificationUsingFeelsLike) {
+            if (isWidgetNotificationUsingFeelsLike) {
                 current.temperature?.feelsLikeTemperature ?: current.temperature?.temperature
             } else {
                 current.temperature?.temperature
@@ -100,7 +103,7 @@ object WidgetNotificationIMP : AbstractRemoteViewsPresenter() {
             if (temperature != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 setSmallIcon(
                     IconCompat.createWithBitmap(
-                        ResourceHelper.createTempBitmap(context, temperature)
+                        ResourceHelper.createTempBitmap(context, temperature, temperatureUnit)
                     )
                 )
             } else {
@@ -114,7 +117,9 @@ object WidgetNotificationIMP : AbstractRemoteViewsPresenter() {
                     RemoteViews(context.packageName, R.layout.notification_base),
                     provider,
                     location,
-                    dayTime
+                    temperatureUnit,
+                    dayTime,
+                    isWidgetNotificationUsingFeelsLike
                 )
             )
             setContentIntent(getWeatherPendingIntent(context, null, Notifications.ID_WIDGET))
@@ -125,7 +130,9 @@ object WidgetNotificationIMP : AbstractRemoteViewsPresenter() {
                     settings.widgetNotificationStyle === NotificationStyle.DAILY,
                     provider,
                     location,
-                    dayTime
+                    temperatureUnit,
+                    dayTime,
+                    isWidgetNotificationUsingFeelsLike
                 )
             )
             setOngoing(persistent)
@@ -160,11 +167,13 @@ object WidgetNotificationIMP : AbstractRemoteViewsPresenter() {
         views: RemoteViews,
         provider: ResourceProvider,
         location: Location,
+        temperatureUnit: TemperatureUnit,
         dayTime: Boolean,
+        isWidgetNotificationUsingFeelsLike: Boolean,
     ): RemoteViews {
         val current = location.weather?.current ?: return views
 
-        val temperature = if (SettingsManager.getInstance(context).isWidgetNotificationUsingFeelsLike) {
+        val temperature = if (isWidgetNotificationUsingFeelsLike) {
             current.temperature?.feelsLikeTemperature ?: current.temperature?.temperature
         } else {
             current.temperature?.temperature
@@ -192,7 +201,12 @@ object WidgetNotificationIMP : AbstractRemoteViewsPresenter() {
             temperature?.let {
                 setTextViewText(
                     R.id.notification_base_realtimeTemp,
-                    it.formatMeasure(context, valueWidth = UnitWidth.NARROW, unitWidth = UnitWidth.NARROW)
+                    it.formatMeasure(
+                        context,
+                        temperatureUnit,
+                        valueWidth = UnitWidth.NARROW,
+                        unitWidth = UnitWidth.NARROW
+                    )
                 )
             }
             if (current.airQuality?.isIndexValid == true) {
@@ -226,12 +240,22 @@ object WidgetNotificationIMP : AbstractRemoteViewsPresenter() {
         daily: Boolean,
         provider: ResourceProvider,
         location: Location,
+        temperatureUnit: TemperatureUnit,
         dayTime: Boolean,
+        isWidgetNotificationUsingFeelsLike: Boolean,
     ): RemoteViews {
         val weather = location.weather ?: return viewsP
 
         // today
-        val views = buildBaseView(context, viewsP, provider, location, dayTime)
+        val views = buildBaseView(
+            context,
+            viewsP,
+            provider,
+            location,
+            temperatureUnit,
+            dayTime,
+            isWidgetNotificationUsingFeelsLike
+        )
         val viewIds = arrayOf(
             Triple(R.id.notification_big_week_1, R.id.notification_big_temp_1, R.id.notification_big_icon_1),
             Triple(R.id.notification_big_week_2, R.id.notification_big_temp_2, R.id.notification_big_icon_2),
@@ -258,7 +282,7 @@ object WidgetNotificationIMP : AbstractRemoteViewsPresenter() {
                         )
                         setTextViewText(
                             viewId.second,
-                            daily.getTrendTemperature(context)
+                            daily.getTrendTemperature(context, temperatureUnit)
                         )
                         if (weatherCode != null) {
                             setImageViewUri(
@@ -284,7 +308,12 @@ object WidgetNotificationIMP : AbstractRemoteViewsPresenter() {
                         hourly.temperature?.temperature?.let {
                             setTextViewText(
                                 viewId.second,
-                                it.formatMeasure(context, valueWidth = UnitWidth.NARROW, unitWidth = UnitWidth.NARROW)
+                                it.formatMeasure(
+                                    context,
+                                    temperatureUnit,
+                                    valueWidth = UnitWidth.NARROW,
+                                    unitWidth = UnitWidth.NARROW
+                                )
                             )
                         }
                         hourly.weatherCode?.let { weatherCode ->

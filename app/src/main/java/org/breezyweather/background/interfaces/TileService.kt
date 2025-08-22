@@ -32,6 +32,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.breezyweather.common.extensions.formatMeasure
 import org.breezyweather.domain.location.model.isDaylight
+import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.ui.main.MainActivity
 import org.breezyweather.ui.theme.resource.ResourceHelper
 import org.breezyweather.ui.theme.resource.ResourcesProviderFactory
@@ -109,7 +110,10 @@ class TileService : TileService(), CoroutineScope {
                             locationRefreshed.isDaylight
                         )
                     }
-                    tile.label = current.temperature?.temperature?.formatMeasure(context)
+                    tile.label = current.temperature?.temperature?.formatMeasure(
+                        context,
+                        SettingsManager.getInstance(context).getTemperatureUnit(context)
+                    )
                     state = Tile.STATE_INACTIVE
                 }
                 tile.updateTile()

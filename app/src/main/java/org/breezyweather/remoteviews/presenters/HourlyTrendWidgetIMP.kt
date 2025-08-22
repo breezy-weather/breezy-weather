@@ -101,7 +101,9 @@ object HourlyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
         val itemCount = min(5, weather.nextHourlyForecast.size)
         var highestTemperature: Float? = null
         var lowestTemperature: Float? = null
-        val minimalIcon = SettingsManager.getInstance(context).isWidgetUsingMonochromeIcons
+        val settings = SettingsManager.getInstance(context)
+        val temperatureUnit = settings.getTemperatureUnit(context)
+        val minimalIcon = settings.isWidgetUsingMonochromeIcons
         val lightTheme = color.isLightThemed
 
         // TODO: Redundant with HourlyTemperatureAdapter
@@ -156,6 +158,7 @@ object HourlyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
                     ),
                     highestTemperature,
                     lowestTemperature,
+                    temperatureUnit,
                     false
                 )
                 trendParent.setColor(lightTheme)
@@ -195,6 +198,7 @@ object HourlyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
                     null,
                     hourly.temperature?.temperature?.formatMeasure(
                         context,
+                        temperatureUnit,
                         valueWidth = UnitWidth.NARROW,
                         unitWidth = UnitWidth.NARROW
                     ),

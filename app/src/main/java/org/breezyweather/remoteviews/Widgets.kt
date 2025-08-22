@@ -21,6 +21,7 @@ import android.text.TextPaint
 import breezyweather.domain.weather.model.Weather
 import org.breezyweather.common.extensions.formatMeasure
 import org.breezyweather.unit.formatting.UnitWidth
+import org.breezyweather.unit.temperature.TemperatureUnit
 
 object Widgets {
 
@@ -102,17 +103,23 @@ object Widgets {
     const val MATERIAL_YOU_FORECAST_PENDING_INTENT_CODE_WEATHER = 131
     const val MATERIAL_YOU_CURRENT_PENDING_INTENT_CODE_WEATHER = 132
 
-    fun buildWidgetDayStyleText(context: Context, weather: Weather): Array<String> {
+    fun buildWidgetDayStyleText(context: Context, weather: Weather, temperatureUnit: TemperatureUnit): Array<String> {
         val texts = arrayOf(
             weather.current?.weatherText ?: "",
-            weather.current?.temperature?.temperature?.formatMeasure(context, unitWidth = UnitWidth.NARROW) ?: "",
+            weather.current?.temperature?.temperature?.formatMeasure(
+                context,
+                temperatureUnit,
+                unitWidth = UnitWidth.NARROW
+            ) ?: "",
             weather.today?.day?.temperature?.temperature?.formatMeasure(
                 context,
+                temperatureUnit,
                 valueWidth = UnitWidth.NARROW,
                 unitWidth = UnitWidth.NARROW
             ) ?: "",
             weather.today?.night?.temperature?.temperature?.formatMeasure(
                 context,
+                temperatureUnit,
                 valueWidth = UnitWidth.NARROW,
                 unitWidth = UnitWidth.NARROW
             ) ?: ""

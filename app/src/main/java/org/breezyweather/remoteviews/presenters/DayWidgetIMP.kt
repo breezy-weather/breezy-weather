@@ -48,6 +48,7 @@ import org.breezyweather.remoteviews.Widgets
 import org.breezyweather.ui.theme.resource.ResourceHelper
 import org.breezyweather.ui.theme.resource.ResourcesProviderFactory
 import org.breezyweather.unit.formatting.UnitWidth
+import org.breezyweather.unit.temperature.TemperatureUnit
 import java.util.Date
 import kotlin.math.abs
 import kotlin.math.roundToInt
@@ -84,6 +85,7 @@ object DayWidgetIMP : AbstractRemoteViewsPresenter() {
         pollenIndexSource: PollenIndexSource?,
     ): RemoteViews {
         val settings = SettingsManager.getInstance(context)
+        val temperatureUnit = settings.getTemperatureUnit(context)
         val minimalIcon = settings.isWidgetUsingMonochromeIcons
         val color = WidgetColor(
             context,
@@ -104,6 +106,7 @@ object DayWidgetIMP : AbstractRemoteViewsPresenter() {
             textSize,
             hideSubtitle,
             subtitleData,
+            temperatureUnit,
             pollenIndexSource
         )
         if (color.showCard) {
@@ -123,6 +126,7 @@ object DayWidgetIMP : AbstractRemoteViewsPresenter() {
         textSize: Int,
         hideSubtitle: Boolean,
         subtitleData: String?,
+        temperatureUnit: TemperatureUnit,
         pollenIndexSource: PollenIndexSource?,
     ): RemoteViews {
         val views = RemoteViews(
@@ -232,7 +236,7 @@ object DayWidgetIMP : AbstractRemoteViewsPresenter() {
         }
 
         if (viewStyle != "oreo" && viewStyle != "oreo_google_sans") {
-            views.setTextViewText(R.id.widget_day_title, getTitleText(context, location, viewStyle))
+            views.setTextViewText(R.id.widget_day_title, getTitleText(context, location, viewStyle, temperatureUnit))
         }
         if (viewStyle == "vertical") {
             weather.current?.temperature?.temperature?.let {
@@ -243,7 +247,7 @@ object DayWidgetIMP : AbstractRemoteViewsPresenter() {
                 views.setViewVisibility(R.id.widget_day_sign, View.GONE)
             }
         }
-        views.setTextViewText(R.id.widget_day_subtitle, getSubtitleText(context, weather, viewStyle))
+        views.setTextViewText(R.id.widget_day_subtitle, getSubtitleText(context, weather, viewStyle, temperatureUnit))
         if (viewStyle != "pixel") {
             views.setTextViewText(
                 R.id.widget_day_time,
@@ -253,6 +257,7 @@ object DayWidgetIMP : AbstractRemoteViewsPresenter() {
                     weather,
                     viewStyle,
                     subtitleData,
+                    temperatureUnit,
                     pollenIndexSource
                 )
             )
@@ -317,16 +322,17 @@ object DayWidgetIMP : AbstractRemoteViewsPresenter() {
         context: Context,
         location: Location,
         viewStyle: String?,
+        temperatureUnit: TemperatureUnit,
     ): String? {
         val weather = location.weather ?: return null
         return when (viewStyle) {
-            "rectangle" -> Widgets.buildWidgetDayStyleText(context, weather)[0]
+            "rectangle" -> Widgets.buildWidgetDayStyleText(context, weather, temperatureUnit)[0]
             "symmetry" -> {
                 val stringBuilder = StringBuilder()
                 stringBuilder.append(location.getPlace(context))
                 weather.current?.temperature?.temperature?.let {
                     stringBuilder.append("\n")
-                        .append(it.formatMeasure(context, unitWidth = UnitWidth.NARROW))
+                        .append(it.formatMeasure(context, temperatureUnit, unitWidth = UnitWidth.NARROW))
                 }
                 stringBuilder.toString()
             }
@@ -339,16 +345,18 @@ object DayWidgetIMP : AbstractRemoteViewsPresenter() {
                     if (stringBuilder.toString().isNotEmpty()) {
                         stringBuilder.append(" ")
                     }
-                    stringBuilder.append(it.formatMeasure(context, unitWidth = UnitWidth.NARROW))
+                    stringBuilder.append(it.formatMeasure(context, temperatureUnit, unitWidth = UnitWidth.NARROW))
                 }
                 stringBuilder.toString()
             }
             "nano", "pixel" -> weather.current?.temperature?.temperature?.formatMeasure(
                 context,
+                temperatureUnit,
                 unitWidth = UnitWidth.NARROW
             )
             "temp" -> weather.current?.temperature?.temperature?.formatMeasure(
                 context,
+                temperatureUnit,
                 valueWidth = UnitWidth.NARROW,
                 unitWidth = UnitWidth.NARROW
             )
@@ -364,10 +372,11 @@ object DayWidgetIMP : AbstractRemoteViewsPresenter() {
         context: Context,
         weather: Weather,
         viewStyle: String?,
+        temperatureUnit: TemperatureUnit,
     ): String? {
         return when (viewStyle) {
-            "rectangle" -> Widgets.buildWidgetDayStyleText(context, weather)[1]
-            "tile" -> weather.today?.getTrendTemperature(context)
+            "rectangle" -> Widgets.buildWidgetDayStyleText(context, weather, temperatureUnit)[1]
+            "tile" -> weather.today?.getTrendTemperature(context, temperatureUnit)
             "symmetry", "vertical" -> weather.current?.let { current ->
                 val stringBuilder = StringBuilder()
                 if (!current.weatherText.isNullOrEmpty()) {
@@ -380,12 +389,13 @@ object DayWidgetIMP : AbstractRemoteViewsPresenter() {
                     if (stringBuilder.toString().isNotEmpty()) {
                         stringBuilder.append(" ")
                     }
-                    stringBuilder.append(weather.today!!.getTrendTemperature(context))
+                    stringBuilder.append(weather.today!!.getTrendTemperature(context, temperatureUnit))
                 }
                 stringBuilder.toString()
             }
             "oreo", "oreo_google_sans" -> weather.current?.temperature?.temperature?.formatMeasure(
                 context,
+                temperatureUnit,
                 unitWidth = UnitWidth.NARROW
             )
             else -> null
@@ -398,6 +408,7 @@ object DayWidgetIMP : AbstractRemoteViewsPresenter() {
         weather: Weather,
         viewStyle: String?,
         subtitleData: String?,
+        temperatureUnit: TemperatureUnit,
         pollenIndexSource: PollenIndexSource?,
     ): String? {
         return when (subtitleData) {
@@ -450,10 +461,10 @@ object DayWidgetIMP : AbstractRemoteViewsPresenter() {
             "feels_like" -> weather.current?.temperature?.feelsLikeTemperature?.let {
                 context.getString(
                     R.string.temperature_feels_like_with_unit,
-                    it.formatMeasure(context, unitWidth = UnitWidth.NARROW)
+                    it.formatMeasure(context, temperatureUnit, unitWidth = UnitWidth.NARROW)
                 )
             }
-            else -> getCustomSubtitle(context, subtitleData, location, weather, pollenIndexSource)
+            else -> getCustomSubtitle(context, subtitleData, location, weather, temperatureUnit, pollenIndexSource)
         }
     }
 

@@ -28,7 +28,6 @@ import org.breezyweather.common.extensions.formatMeasure
 import org.breezyweather.common.extensions.formatPercent
 import org.breezyweather.common.extensions.getThemeColor
 import org.breezyweather.common.options.appearance.DetailScreen
-import org.breezyweather.common.utils.UnitUtils
 import org.breezyweather.ui.common.widgets.trend.TrendRecyclerView
 import org.breezyweather.ui.common.widgets.trend.chart.PolylineAndHistogramView
 import org.breezyweather.ui.theme.ThemeManager
@@ -36,6 +35,7 @@ import org.breezyweather.ui.theme.resource.ResourceHelper
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
 import org.breezyweather.ui.theme.weatherView.WeatherViewController
 import org.breezyweather.unit.formatting.UnitWidth
+import org.breezyweather.unit.temperature.TemperatureUnit
 import kotlin.math.max
 
 /**
@@ -45,6 +45,7 @@ class HourlyHumidityAdapter(
     activity: BreezyActivity,
     location: Location,
     provider: ResourceProvider,
+    private val temperatureUnit: TemperatureUnit,
 ) : AbsHourlyTrendAdapter(activity, location) {
     private val mResourceProvider: ResourceProvider = provider
     private val mDewPoints: Array<Float?>
@@ -73,7 +74,7 @@ class HourlyHumidityAdapter(
                 talkBackBuilder.append(activity.getString(org.breezyweather.unit.R.string.locale_separator))
                     .append(activity.getString(R.string.dew_point))
                     .append(activity.getString(R.string.colon_separator))
-                    .append(it.formatMeasure(activity, unitWidth = UnitWidth.LONG))
+                    .append(it.formatMeasure(activity, temperatureUnit, unitWidth = UnitWidth.LONG))
             }
             hourlyItem.setIconDrawable(
                 hourly.weatherCode?.let {
@@ -86,6 +87,7 @@ class HourlyHumidityAdapter(
                 null,
                 hourly.dewPoint?.formatMeasure(
                     activity,
+                    temperatureUnit,
                     valueWidth = UnitWidth.NARROW,
                     unitWidth = UnitWidth.NARROW
                 ),

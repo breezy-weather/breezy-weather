@@ -35,6 +35,7 @@ import org.breezyweather.unit.ratio.Ratio
 import org.breezyweather.unit.ratio.RatioUnit
 import org.breezyweather.unit.speed.Speed
 import org.breezyweather.unit.temperature.Temperature
+import org.breezyweather.unit.temperature.TemperatureUnit
 import kotlin.time.Duration
 import kotlin.time.DurationUnit
 
@@ -46,9 +47,11 @@ import kotlin.time.DurationUnit
 
 /**
  * Convenient format function with parameters filled for our app
+ * Getting the default unit from Settings is terribly slow, so it must be send as parameter
  */
 fun Temperature.formatMeasure(
     context: Context,
+    unit: TemperatureUnit,
     valueWidth: UnitWidth = UnitWidth.SHORT,
     unitWidth: UnitWidth = UnitWidth.SHORT,
     showSign: Boolean = false,
@@ -56,7 +59,7 @@ fun Temperature.formatMeasure(
     val settings = SettingsManager.getInstance(context)
     return format(
         context = context,
-        unit = settings.getTemperatureUnit(context),
+        unit = unit,
         valueWidth = valueWidth,
         unitWidth = unitWidth,
         locale = context.currentLocale,
@@ -68,14 +71,16 @@ fun Temperature.formatMeasure(
 
 /**
  * Convenient format function with parameters filled for our app
+ * Getting the default unit from Settings is terribly slow, so it must be send as parameter
  */
 fun Temperature.formatValue(
     context: Context,
+    unit: TemperatureUnit,
     width: UnitWidth = UnitWidth.SHORT,
 ): String {
     val settings = SettingsManager.getInstance(context)
     return formatValue(
-        unit = settings.getTemperatureUnit(context),
+        unit = unit,
         width = width,
         locale = context.currentLocale,
         useNumberFormatter = settings.useNumberFormatter,

@@ -31,6 +31,7 @@ import org.breezyweather.common.extensions.formatMeasure
 import org.breezyweather.common.extensions.getTypefaceFromTextAppearance
 import org.breezyweather.unit.formatting.UnitWidth
 import org.breezyweather.unit.temperature.Temperature.Companion.deciCelsius
+import org.breezyweather.unit.temperature.TemperatureUnit
 
 /**
  * Trend linear layout.
@@ -48,6 +49,7 @@ class TrendLinearLayout @JvmOverloads constructor(
     private var mHistoryTempYs: Array<Float> = emptyArray()
     private var mHighestTemp: Float? = null
     private var mLowestTemp: Float? = null
+    private var temperatureUnit: TemperatureUnit = TemperatureUnit.CELSIUS
 
     private var mKeyLineVisibility: Boolean = false
 
@@ -108,6 +110,7 @@ class TrendLinearLayout @JvmOverloads constructor(
         canvas.drawText(
             mHistoryTemps[0].toDouble().deciCelsius.formatMeasure(
                 context,
+                temperatureUnit,
                 valueWidth = UnitWidth.NARROW,
                 unitWidth = UnitWidth.NARROW
             ),
@@ -118,6 +121,7 @@ class TrendLinearLayout @JvmOverloads constructor(
         canvas.drawText(
             mHistoryTemps[1].toDouble().deciCelsius.formatMeasure(
                 context,
+                temperatureUnit,
                 valueWidth = UnitWidth.NARROW,
                 unitWidth = UnitWidth.NARROW
             ),
@@ -160,11 +164,13 @@ class TrendLinearLayout @JvmOverloads constructor(
         historyTemps: Array<Float>,
         highestTemp: Float,
         lowestTemp: Float,
+        unit: TemperatureUnit,
         daily: Boolean,
     ) {
         mHistoryTemps = historyTemps
         mHighestTemp = highestTemp
         mLowestTemp = lowestTemp
+        temperatureUnit = unit
         if (daily) {
             trendItemHeight = context.dpToPx(WidgetItemView.TREND_VIEW_HEIGHT_DIP_2X.toFloat())
             bottomMargin = context.dpToPx(

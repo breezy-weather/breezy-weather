@@ -37,6 +37,7 @@ import org.breezyweather.remoteviews.presenters.AbstractRemoteViewsPresenter
 import org.breezyweather.ui.theme.resource.ResourceHelper
 import org.breezyweather.ui.theme.resource.ResourcesProviderFactory
 import org.breezyweather.unit.formatting.UnitWidth
+import org.breezyweather.unit.temperature.TemperatureUnit
 
 class ForecastNotificationNotifier(
     private val context: Context,
@@ -84,6 +85,7 @@ class ForecastNotificationNotifier(
         } else {
             daily.day?.weatherCode
         }
+        val temperatureUnit = SettingsManager.getInstance(context).getTemperatureUnit(context)
 
         val notification: Notification = with(completeNotificationBuilder) {
             priority = NotificationCompat.PRIORITY_MAX
@@ -103,14 +105,14 @@ class ForecastNotificationNotifier(
                 setLargeIcon(ResourceHelper.getWeatherIcon(provider, it, daytime).toBitmap())
             }
 
-            setContentTitle(getDayString(daily))
-            setContentText(getNightString(daily))
+            setContentTitle(getDayString(daily, temperatureUnit))
+            setContentText(getNightString(daily, temperatureUnit))
             setStyle(
                 NotificationCompat.BigTextStyle()
                     .bigText(
-                        getDayString(daily) +
+                        getDayString(daily, temperatureUnit) +
                             "\n\n" +
-                            getNightString(daily)
+                            getNightString(daily, temperatureUnit)
                     )
                     // do not show any title when expanding the notification
                     .setBigContentTitle("")
@@ -153,17 +155,25 @@ class ForecastNotificationNotifier(
         )
     }
 
-    private fun getDayString(daily: Daily) =
+    private fun getDayString(daily: Daily, temperatureUnit: TemperatureUnit) =
         context.getString(R.string.daytime) +
             context.getString(R.string.colon_separator) +
-            daily.day?.temperature?.temperature?.formatMeasure(context, valueWidth = UnitWidth.NARROW) +
+            daily.day?.temperature?.temperature?.formatMeasure(
+                context,
+                temperatureUnit,
+                valueWidth = UnitWidth.NARROW
+            ) +
             context.getString(R.string.dot_separator) +
             daily.day?.weatherText
 
-    private fun getNightString(daily: Daily) =
+    private fun getNightString(daily: Daily, temperatureUnit: TemperatureUnit) =
         context.getString(R.string.nighttime) +
             context.getString(R.string.colon_separator) +
-            daily.night?.temperature?.temperature?.formatMeasure(context, valueWidth = UnitWidth.NARROW) +
+            daily.night?.temperature?.temperature?.formatMeasure(
+                context,
+                temperatureUnit,
+                valueWidth = UnitWidth.NARROW
+            ) +
             context.getString(R.string.dot_separator) +
             daily.night?.weatherText
 }
