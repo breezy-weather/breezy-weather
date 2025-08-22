@@ -68,12 +68,15 @@ import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.isTraversalGroup
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Daily
 import breezyweather.domain.weather.model.Hourly
 import breezyweather.domain.weather.model.Normals
 import breezyweather.domain.weather.reference.WeatherCode
+import com.patrykandpatrick.vico.compose.cartesian.axis.fixed
+import com.patrykandpatrick.vico.core.cartesian.axis.BaseAxis
 import com.patrykandpatrick.vico.core.cartesian.axis.VerticalAxis
 import com.patrykandpatrick.vico.core.cartesian.data.CartesianChartModelProducer
 import com.patrykandpatrick.vico.core.cartesian.data.lineSeries
@@ -88,6 +91,7 @@ import kotlinx.collections.immutable.toImmutableMap
 import kotlinx.coroutines.launch
 import org.breezyweather.R
 import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.extensions.dpToPx
 import org.breezyweather.common.extensions.formatMeasure
 import org.breezyweather.common.extensions.getCalendarMonth
 import org.breezyweather.common.extensions.getFormattedTime
@@ -114,6 +118,7 @@ import org.breezyweather.unit.temperature.toTemperature
 import java.util.Date
 import kotlin.math.max
 import kotlin.math.min
+import kotlin.math.roundToInt
 
 @Composable
 fun DetailsConditions(
@@ -838,6 +843,7 @@ private fun TemperatureChart(
         topAxisItemPlacer = remember(mappedValues) {
             TimeTopAxisItemPlacer(mappedValues.keys.toImmutableList())
         },
+        topAxisSize = BaseAxis.Size.fixed(23.dp),
         endAxisValueFormatter = { _, value, _ ->
             value.toTemperature(temperatureUnit)
                 .formatMeasure(context, temperatureUnit, valueWidth = UnitWidth.NARROW, unitWidth = UnitWidth.NARROW)
@@ -870,7 +876,7 @@ private fun TemperatureChart(
                 hourly.weatherCode?.let {
                     val ss = SpannableString("abc")
                     val d = ResourceHelper.getWeatherIcon(provider, it, hourly.isDaylight)
-                    d.setBounds(0, 0, 64, 64)
+                    d.setBounds(0, 0, context.dpToPx(18f).roundToInt(), context.dpToPx(18f).roundToInt())
                     val span = ImageSpan(d, ImageSpan.ALIGN_BASELINE)
                     ss.setSpan(span, 0, 3, Spannable.SPAN_INCLUSIVE_EXCLUSIVE)
                     ss

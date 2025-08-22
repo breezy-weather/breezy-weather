@@ -45,9 +45,12 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.unit.dp
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Daily
 import breezyweather.domain.weather.model.Hourly
+import com.patrykandpatrick.vico.compose.cartesian.axis.fixed
+import com.patrykandpatrick.vico.core.cartesian.axis.BaseAxis
 import com.patrykandpatrick.vico.core.cartesian.axis.VerticalAxis
 import com.patrykandpatrick.vico.core.cartesian.data.CartesianChartModelProducer
 import com.patrykandpatrick.vico.core.cartesian.data.lineSeries
@@ -60,6 +63,7 @@ import kotlinx.collections.immutable.persistentMapOf
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.collections.immutable.toImmutableMap
 import org.breezyweather.R
+import org.breezyweather.common.extensions.dpToPx
 import org.breezyweather.common.extensions.formatMeasure
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
@@ -80,6 +84,7 @@ import org.breezyweather.unit.pressure.toPressure
 import java.util.Date
 import kotlin.math.max
 import kotlin.math.min
+import kotlin.math.roundToInt
 
 @Composable
 fun DetailsPressure(
@@ -261,6 +266,7 @@ private fun PressureChart(
         topAxisItemPlacer = remember(mappedValues) {
             TimeTopAxisItemPlacer(mappedValues.keys.toImmutableList())
         },
+        topAxisSize = BaseAxis.Size.fixed(23.dp),
         endAxisValueFormatter = { _, value, _ -> value.toPressure(pressureUnit).formatMeasure(context) },
         colors = remember {
             persistentListOf(
@@ -304,10 +310,10 @@ private fun PressureChart(
                         else -> R.drawable.ic_equal
                     }
                 }
-                val ss = SpannableString("abc")
                 val d = AppCompatResources.getDrawable(context, trendIcon)
                 if (d != null) {
-                    d.setBounds(0, 0, 48, 48)
+                    val ss = SpannableString("abc")
+                    d.setBounds(0, 0, context.dpToPx(18f).roundToInt(), context.dpToPx(18f).roundToInt())
                     d.colorFilter = PorterDuffColorFilter(
                         iconColor.toArgb(),
                         PorterDuff.Mode.SRC_ATOP

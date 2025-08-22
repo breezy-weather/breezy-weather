@@ -35,6 +35,7 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.unit.dp
 import breezyweather.domain.location.model.Location
 import com.patrykandpatrick.vico.compose.cartesian.CartesianChartHost
+import com.patrykandpatrick.vico.compose.cartesian.axis.auto
 import com.patrykandpatrick.vico.compose.cartesian.axis.rememberAxisGuidelineComponent
 import com.patrykandpatrick.vico.compose.cartesian.axis.rememberAxisLabelComponent
 import com.patrykandpatrick.vico.compose.cartesian.axis.rememberAxisLineComponent
@@ -55,6 +56,7 @@ import com.patrykandpatrick.vico.compose.common.fill
 import com.patrykandpatrick.vico.compose.common.insets
 import com.patrykandpatrick.vico.core.cartesian.CartesianDrawingContext
 import com.patrykandpatrick.vico.core.cartesian.axis.Axis
+import com.patrykandpatrick.vico.core.cartesian.axis.BaseAxis
 import com.patrykandpatrick.vico.core.cartesian.axis.HorizontalAxis
 import com.patrykandpatrick.vico.core.cartesian.axis.VerticalAxis
 import com.patrykandpatrick.vico.core.cartesian.data.CartesianChartModelProducer
@@ -112,6 +114,7 @@ fun BreezyLineChart(
             addExtremeLabelPadding = false
         )
     },
+    topAxisSize: BaseAxis.Size = BaseAxis.Size.auto(),
     endAxisItemPlacer: VerticalAxis.ItemPlacer = remember {
         VerticalAxis.ItemPlacer.step()
     },
@@ -214,7 +217,8 @@ fun BreezyLineChart(
                     valueFormatter = it,
                     tick = null,
                     guideline = null,
-                    itemPlacer = topAxisItemPlacer
+                    itemPlacer = topAxisItemPlacer,
+                    size = topAxisSize
                 )
             },
             decorations = if (isTrendHorizontalLinesEnabled) {

@@ -16,8 +16,12 @@
 
 package org.breezyweather.ui.details.components
 
+import android.graphics.PorterDuff
+import android.graphics.PorterDuffColorFilter
+import android.text.Spannable
 import android.text.SpannableString
-import android.text.style.RelativeSizeSpan
+import android.text.style.ImageSpan
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -41,6 +45,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
@@ -53,10 +58,13 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.dp
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Daily
 import breezyweather.domain.weather.model.Hourly
 import breezyweather.domain.weather.model.Wind
+import com.patrykandpatrick.vico.compose.cartesian.axis.fixed
+import com.patrykandpatrick.vico.core.cartesian.axis.BaseAxis
 import com.patrykandpatrick.vico.core.cartesian.axis.VerticalAxis
 import com.patrykandpatrick.vico.core.cartesian.data.CartesianChartModelProducer
 import com.patrykandpatrick.vico.core.cartesian.data.lineSeries
@@ -70,6 +78,7 @@ import kotlinx.collections.immutable.toImmutableList
 import kotlinx.collections.immutable.toImmutableMap
 import org.breezyweather.R
 import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.extensions.dpToPx
 import org.breezyweather.common.extensions.formatMeasure
 import org.breezyweather.common.extensions.getBeaufortScaleColor
 import org.breezyweather.common.extensions.getBeaufortScaleStrength
@@ -81,6 +90,7 @@ import org.breezyweather.common.extensions.toDate
 import org.breezyweather.common.options.appearance.DetailScreen
 import org.breezyweather.common.utils.UnitUtils
 import org.breezyweather.domain.settings.SettingsManager
+import org.breezyweather.domain.weather.model.drawableArrow
 import org.breezyweather.domain.weather.model.getDirection
 import org.breezyweather.ui.common.charts.BreezyLineChart
 import org.breezyweather.ui.common.charts.TimeTopAxisItemPlacer
@@ -92,6 +102,7 @@ import org.breezyweather.unit.speed.SpeedUnit
 import org.breezyweather.unit.speed.toSpeed
 import java.util.Date
 import kotlin.math.max
+import kotlin.math.roundToInt
 
 @Composable
 fun DetailsWind(
@@ -332,6 +343,7 @@ private fun WindChart(
             )
         ).metersPerSecond.toDouble(speedUnit).roundUpToNearestMultiplier(step)
     }
+    val iconColor = MaterialTheme.colorScheme.onSurface
 
     val modelProducer = remember { CartesianChartModelProducer() }
 
@@ -362,6 +374,7 @@ private fun WindChart(
         topAxisItemPlacer = remember(mappedValues) {
             TimeTopAxisItemPlacer(mappedValues.keys.toImmutableList())
         },
+        topAxisSize = BaseAxis.Size.fixed(23.dp),
         endAxisValueFormatter = { _, value, _ -> value.toSpeed(speedUnit).formatMeasure(context) },
         colors = remember {
             persistentListOf(
@@ -438,10 +451,26 @@ private fun WindChart(
             )
         },
         topAxisValueFormatter = { _, value, _ ->
-            val arrow = mappedValues.getOrElse(value.toLong()) { null }?.arrow ?: "-"
-            SpannableString(arrow).apply {
-                setSpan(RelativeSizeSpan(2f), 0, arrow.length, 0)
-            }
+            mappedValues.getOrElse(value.toLong()) { null }?.let { wind ->
+                if (wind.degree == null) {
+                    "-"
+                } else {
+                    val d = AppCompatResources.getDrawable(context, wind.drawableArrow!!)
+                    if (d != null) {
+                        val ss = SpannableString("abc")
+                        d.setBounds(0, 0, context.dpToPx(18f).roundToInt(), context.dpToPx(18f).roundToInt())
+                        d.colorFilter = PorterDuffColorFilter(
+                            iconColor.toArgb(),
+                            PorterDuff.Mode.SRC_ATOP
+                        )
+                        val span = ImageSpan(d, ImageSpan.ALIGN_BASELINE)
+                        ss.setSpan(span, 0, 3, Spannable.SPAN_INCLUSIVE_EXCLUSIVE)
+                        ss
+                    } else {
+                        wind.arrow ?: "-"
+                    }
+                }
+            } ?: "-"
         },
         trendHorizontalLines = buildMap {
             if (maxY > 7.beaufort.toDouble(speedUnit)) {

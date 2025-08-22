@@ -19,6 +19,7 @@ package org.breezyweather.domain.weather.model
 import android.content.Context
 import android.graphics.Color
 import androidx.annotation.ColorInt
+import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
 import breezyweather.domain.weather.model.Wind
 import org.breezyweather.R
@@ -82,6 +83,24 @@ fun Wind.getDirection(context: Context, short: Boolean = true): String? {
         else -> context.getString(R.string.wind_direction_variable)
     }
 }
+
+val Wind.drawableArrow: Int?
+    @DrawableRes
+    get() {
+        if (degree == null) return null
+        return when (degree!!) {
+            in 0.0..22.5 -> R.drawable.arrow_north
+            in 22.5..67.5 -> R.drawable.arrow_north_east
+            in 67.5..112.5 -> R.drawable.arrow_east
+            in 112.5..157.5 -> R.drawable.arrow_south_east
+            in 157.5..202.5 -> R.drawable.arrow_south
+            in 202.5..247.5 -> R.drawable.arrow_south_west
+            in 247.5..292.5 -> R.drawable.arrow_west
+            in 292.5..337.5 -> R.drawable.arrow_north_west
+            in 337.5..360.0 -> R.drawable.arrow_north
+            else -> R.drawable.ic_replay
+        }
+    }
 
 fun Wind.getStrength(context: Context): String? {
     return speed?.getBeaufortScaleStrength(context)
