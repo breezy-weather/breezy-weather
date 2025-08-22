@@ -455,7 +455,7 @@
     <string name="settings_notifications_forecast_tomorrow_title">次日天氣預報通知</string>
     <string name="settings_notifications_forecast_time_tomorrow_title">次日天氣預報通知時間</string>
     <string name="settings_modules">小工具與動態桌布</string>
-    <string name="settings_modules_summary">設定桌布、使用中的小工具、通知小工具</string>
+    <string name="settings_modules_summary">小工具、通知小工具、桌布、與其他應用程式共用資料</string>
     <string name="settings_modules_live_wallpaper_title">動態桌布</string>
     <string name="settings_modules_live_wallpaper_summary">將天氣動畫設定為桌布</string>
     <string name="settings_modules_live_wallpaper_error">無法啟動桌布選擇器。您仍然可以透過在主畫面的桌布選項中選擇「動態桌布」來啟用 %s 的桌布。</string>
@@ -845,4 +845,7 @@
     <string name="broadcast_source_breezy_weather_update_notifier">%s 位置更新通知</string>
     <string name="action_add_as_location">新增此位置</string>
     <string name="settings_regional_preference">地區偏好設定</string>
+    <string name="widget_live_wallpaper_animations_enable_dangerous">危險</string>
+    <string name="widget_live_wallpaper_animations_enable_warning1">已知桌布動畫會導致以下問題：電池高耗電、電池過熱、記憶體使用過高、系統反應遲緩、Android 系統當機等。</string>
+    <string name="widget_live_wallpaper_animations_enable_warning2">如果決定啟用桌布動畫，你要為任何可能發生的問題負責，開發者將不提供任何支援。</string>
 </resources>
