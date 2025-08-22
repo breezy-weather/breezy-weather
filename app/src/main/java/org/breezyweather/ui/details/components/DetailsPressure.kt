@@ -52,6 +52,7 @@ import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.ImmutableMap
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.persistentMapOf
+import kotlinx.collections.immutable.toImmutableList
 import kotlinx.collections.immutable.toImmutableMap
 import org.breezyweather.R
 import org.breezyweather.common.extensions.formatMeasure
@@ -64,6 +65,7 @@ import org.breezyweather.common.options.appearance.DetailScreen
 import org.breezyweather.common.utils.UnitUtils
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.ui.common.charts.BreezyLineChart
+import org.breezyweather.ui.common.charts.TimeTopAxisItemPlacer
 import org.breezyweather.unit.formatting.UnitWidth
 import org.breezyweather.unit.pressure.Pressure
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
@@ -250,7 +252,10 @@ private fun PressureChart(
         modelProducer = modelProducer,
         theDay = daily.date,
         maxY = maxY,
-        endAxisValueFormatter = remember { { _, value, _ -> value.toPressure(pressureUnit).formatMeasure(context) } },
+        topAxisItemPlacer = remember(mappedValues) {
+            TimeTopAxisItemPlacer(mappedValues.keys.toImmutableList())
+        },
+        endAxisValueFormatter = { _, value, _ -> value.toPressure(pressureUnit).formatMeasure(context) },
         colors = remember {
             persistentListOf(
                 persistentMapOf(
@@ -273,35 +278,31 @@ private fun PressureChart(
                 )
             )
         },
-        trendHorizontalLines = remember {
-            persistentMapOf(
-                PressureUnit.NORMAL.pascals.toDouble(pressureUnit) to
-                    context.getString(R.string.temperature_normal_short)
-            )
-        },
+        trendHorizontalLines = persistentMapOf(
+            PressureUnit.NORMAL.pascals.toDouble(pressureUnit) to
+                context.getString(R.string.temperature_normal_short)
+        ),
         minY = minY,
-        topAxisValueFormatter = remember(mappedValues) {
-            { _, value, _ ->
-                val currentIndex = mappedValues.keys.indexOfFirst { it == value.toLong() }.let {
-                    if (it == 0) 1 else it
-                }
-                if (currentIndex > 0) {
-                    val previousValue = mappedValues.values.elementAt(currentIndex - 1)
-                    val currentValue = mappedValues.values.elementAt(currentIndex)
-                    val trend = with(currentValue.value - previousValue.value) {
-                        when {
-                            // Take into account the trend if the difference is of at least 0.5
-                            this >= 0.5 -> "↑"
-                            this <= -0.5 -> "↓"
-                            else -> "="
-                        }
+        topAxisValueFormatter = { _, value, _ ->
+            val currentIndex = mappedValues.keys.indexOfFirst { it == value.toLong() }.let {
+                if (it == 0) 1 else it
+            }
+            if (currentIndex > 0) {
+                val previousValue = mappedValues.values.elementAt(currentIndex - 1)
+                val currentValue = mappedValues.values.elementAt(currentIndex)
+                val trend = with(currentValue.value - previousValue.value) {
+                    when {
+                        // Take into account the trend if the difference is of at least 0.5
+                        this >= 0.5 -> "↑"
+                        this <= -0.5 -> "↓"
+                        else -> "="
                     }
-                    SpannableString(trend).apply {
-                        setSpan(RelativeSizeSpan(2f), 0, trend.length, 0)
-                    }
-                } else {
-                    "-"
                 }
+                SpannableString(trend).apply {
+                    setSpan(RelativeSizeSpan(2f), 0, trend.length, 0)
+                }
+            } else {
+                "-"
             }
         },
         endAxisItemPlacer = remember { VerticalAxis.ItemPlacer.step({ chartStep }) },

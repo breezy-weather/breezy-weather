@@ -57,6 +57,7 @@ import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.ImmutableMap
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.persistentMapOf
+import kotlinx.collections.immutable.toImmutableList
 import kotlinx.collections.immutable.toImmutableMap
 import org.breezyweather.R
 import org.breezyweather.common.extensions.CLOUD_COVER_BKN
@@ -76,6 +77,7 @@ import org.breezyweather.domain.weather.model.getFullLabel
 import org.breezyweather.domain.weather.model.getRangeDescriptionSummary
 import org.breezyweather.domain.weather.model.getRangeSummary
 import org.breezyweather.ui.common.charts.BreezyLineChart
+import org.breezyweather.ui.common.charts.TimeTopAxisItemPlacer
 import org.breezyweather.ui.common.widgets.Material3ExpressiveCardListItem
 import org.breezyweather.unit.formatting.UnitWidth
 import org.breezyweather.unit.ratio.Ratio
@@ -282,7 +284,7 @@ private fun CloudCoverChart(
         modelProducer = modelProducer,
         theDay = daily.date,
         maxY = 100.0,
-        endAxisValueFormatter = remember { { _, value, _ -> value.percent.formatPercent(context) } },
+        endAxisValueFormatter = { _, value, _ -> value.percent.formatPercent(context) },
         colors = remember {
             persistentListOf(
                 persistentMapOf(

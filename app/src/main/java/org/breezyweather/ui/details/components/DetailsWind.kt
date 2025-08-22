@@ -66,6 +66,7 @@ import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.ImmutableMap
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.persistentMapOf
+import kotlinx.collections.immutable.toImmutableList
 import kotlinx.collections.immutable.toImmutableMap
 import org.breezyweather.R
 import org.breezyweather.common.extensions.currentLocale
@@ -82,6 +83,7 @@ import org.breezyweather.common.utils.UnitUtils
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.domain.weather.model.getDirection
 import org.breezyweather.ui.common.charts.BreezyLineChart
+import org.breezyweather.ui.common.charts.TimeTopAxisItemPlacer
 import org.breezyweather.ui.common.widgets.Material3ExpressiveCardListItem
 import org.breezyweather.unit.formatting.UnitWidth
 import org.breezyweather.unit.speed.Speed.Companion.beaufort
@@ -357,7 +359,10 @@ private fun WindChart(
         modelProducer = modelProducer,
         theDay = daily.date,
         maxY = maxY,
-        endAxisValueFormatter = remember { { _, value, _ -> value.toSpeed(speedUnit).formatMeasure(context) } },
+        topAxisItemPlacer = remember(mappedValues) {
+            TimeTopAxisItemPlacer(mappedValues.keys.toImmutableList())
+        },
+        endAxisValueFormatter = { _, value, _ -> value.toSpeed(speedUnit).formatMeasure(context) },
         colors = remember {
             persistentListOf(
                 persistentMapOf(
@@ -432,25 +437,21 @@ private fun WindChart(
                 )
             )
         },
-        topAxisValueFormatter = remember(mappedValues) {
-            { _, value, _ ->
-                val arrow = mappedValues.getOrElse(value.toLong()) { null }?.arrow ?: "-"
-                SpannableString(arrow).apply {
-                    setSpan(RelativeSizeSpan(2f), 0, arrow.length, 0)
-                }
+        topAxisValueFormatter = { _, value, _ ->
+            val arrow = mappedValues.getOrElse(value.toLong()) { null }?.arrow ?: "-"
+            SpannableString(arrow).apply {
+                setSpan(RelativeSizeSpan(2f), 0, arrow.length, 0)
             }
         },
-        trendHorizontalLines = remember {
-            buildMap {
-                if (maxY > 7.beaufort.toDouble(speedUnit)) {
-                    put(7.beaufort.toDouble(speedUnit), 7.beaufort.getBeaufortScaleStrength(context)!!)
-                }
-                // TODO: Make this a const:
-                if (maxY < (7.beaufort.inMetersPerSecond + 5.0).metersPerSecond.toDouble(speedUnit)) {
-                    put(3.beaufort.toDouble(speedUnit), 3.beaufort.getBeaufortScaleStrength(context)!!)
-                }
-            }.toImmutableMap()
-        },
+        trendHorizontalLines = buildMap {
+            if (maxY > 7.beaufort.toDouble(speedUnit)) {
+                put(7.beaufort.toDouble(speedUnit), 7.beaufort.getBeaufortScaleStrength(context)!!)
+            }
+            // TODO: Make this a const:
+            if (maxY < (7.beaufort.inMetersPerSecond + 5.0).metersPerSecond.toDouble(speedUnit)) {
+                put(3.beaufort.toDouble(speedUnit), 3.beaufort.getBeaufortScaleStrength(context)!!)
+            }
+        }.toImmutableMap(),
         endAxisItemPlacer = remember { VerticalAxis.ItemPlacer.step({ step }) },
         markerVisibilityListener = markerVisibilityListener
     )

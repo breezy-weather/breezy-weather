@@ -61,6 +61,7 @@ import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.ImmutableMap
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.persistentMapOf
+import kotlinx.collections.immutable.toImmutableList
 import kotlinx.collections.immutable.toImmutableMap
 import org.breezyweather.R
 import org.breezyweather.common.extensions.getColorResource
@@ -72,6 +73,7 @@ import org.breezyweather.common.utils.UnitUtils
 import org.breezyweather.domain.weather.model.getLevel
 import org.breezyweather.domain.weather.model.getUVColor
 import org.breezyweather.ui.common.charts.BreezyLineChart
+import org.breezyweather.ui.common.charts.TimeTopAxisItemPlacer
 import org.breezyweather.ui.common.widgets.Material3ExpressiveCardListItem
 import java.util.Date
 import kotlin.math.max
@@ -270,7 +272,10 @@ private fun UVChart(
         modelProducer = modelProducer,
         theDay = daily.date,
         maxY = maxY,
-        endAxisValueFormatter = remember { { _, value, _ -> UnitUtils.formatInt(context, value.roundToInt()) } },
+        topAxisItemPlacer = remember(mappedValues) {
+            TimeTopAxisItemPlacer(mappedValues.keys.toImmutableList())
+        },
+        endAxisValueFormatter = { _, value, _ -> UnitUtils.formatInt(context, value.roundToInt()) },
         colors = remember {
             persistentListOf(
                 persistentMapOf(
@@ -284,18 +289,14 @@ private fun UVChart(
                 )
             )
         },
-        topAxisValueFormatter = remember(mappedValues) {
-            { _, value, _ ->
-                mappedValues.getOrElse(value.toLong()) { null }?.index?.roundToInt()
-                    ?.let { UnitUtils.formatInt(context, it) }
-                    ?: "-"
-            }
+        topAxisValueFormatter = { _, value, _ ->
+            mappedValues.getOrElse(value.toLong()) { null }?.index?.roundToInt()
+                ?.let { UnitUtils.formatInt(context, it) }
+                ?: "-"
         },
-        trendHorizontalLines = remember {
-            persistentMapOf(
-                UV.UV_INDEX_MIDDLE to context.getString(R.string.uv_alert_level)
-            )
-        },
+        trendHorizontalLines = persistentMapOf(
+            UV.UV_INDEX_MIDDLE to context.getString(R.string.uv_alert_level)
+        ),
         endAxisItemPlacer = remember { VerticalAxis.ItemPlacer.step({ 1.0 }) }, // Every rounded UVI
         markerVisibilityListener = markerVisibilityListener
     )

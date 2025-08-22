@@ -146,7 +146,7 @@ fun EphemerisChart(
                 tick = rememberAxisTickComponent(fill = fill(lineColor)),
                 guideline = rememberAxisGuidelineComponent(fill = fill(lineColor)),
                 itemPlacer = remember {
-                    TimeHorizontalAxisItemPlacer(location, startingDate.toDate())
+                    TimeHorizontalAxisItemPlacer(startingDate.toDate(), location.timeZone)
                 }
             )
         ),

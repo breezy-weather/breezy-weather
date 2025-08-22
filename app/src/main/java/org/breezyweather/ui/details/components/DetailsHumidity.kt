@@ -50,6 +50,7 @@ import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.ImmutableMap
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.persistentMapOf
+import kotlinx.collections.immutable.toImmutableList
 import kotlinx.collections.immutable.toImmutableMap
 import org.breezyweather.R
 import org.breezyweather.common.extensions.formatMeasure
@@ -65,6 +66,7 @@ import org.breezyweather.domain.weather.model.getFullLabel
 import org.breezyweather.domain.weather.model.getRangeContentDescriptionSummary
 import org.breezyweather.domain.weather.model.getRangeSummary
 import org.breezyweather.ui.common.charts.BreezyLineChart
+import org.breezyweather.ui.common.charts.TimeTopAxisItemPlacer
 import org.breezyweather.unit.formatting.UnitWidth
 import org.breezyweather.unit.ratio.Ratio
 import org.breezyweather.unit.ratio.Ratio.Companion.percent
@@ -318,7 +320,10 @@ private fun HumidityChart(
         modelProducer = modelProducer,
         theDay = daily.date,
         maxY = maxY,
-        endAxisValueFormatter = remember { { _, value, _ -> value.percent.formatPercent(context) } },
+        topAxisItemPlacer = remember(mappedValues) {
+            TimeTopAxisItemPlacer(mappedValues.keys.toImmutableList())
+        },
+        endAxisValueFormatter = { _, value, _ -> value.percent.formatPercent(context) },
         colors = remember {
             persistentListOf(
                 persistentMapOf(
@@ -339,10 +344,8 @@ private fun HumidityChart(
                 )
             )
         },
-        topAxisValueFormatter = remember(mappedValues) {
-            { _, value, _ ->
-                mappedValues.getOrElse(value.toLong()) { null }?.formatPercent(context, UnitWidth.NARROW) ?: "-"
-            }
+        topAxisValueFormatter = { _, value, _ ->
+            mappedValues.getOrElse(value.toLong()) { null }?.formatPercent(context, UnitWidth.NARROW) ?: "-"
         },
         endAxisItemPlacer = remember { VerticalAxis.ItemPlacer.step({ 20.0 }) }, // Every 20 %
         markerVisibilityListener = markerVisibilityListener
@@ -472,11 +475,12 @@ private fun DewPointChart(
         modelProducer = modelProducer,
         theDay = daily.date,
         maxY = maxY,
-        endAxisValueFormatter = remember {
-            { _, value, _ ->
-                value.toTemperature(temperatureUnit)
-                    .formatMeasure(context, valueWidth = UnitWidth.NARROW, unitWidth = UnitWidth.NARROW)
-            }
+        topAxisItemPlacer = remember(mappedValues) {
+            TimeTopAxisItemPlacer(mappedValues.keys.toImmutableList())
+        },
+        endAxisValueFormatter = { _, value, _ ->
+            value.toTemperature(temperatureUnit)
+                .formatMeasure(context, valueWidth = UnitWidth.NARROW, unitWidth = UnitWidth.NARROW)
         },
         colors = remember {
             persistentListOf(
@@ -498,14 +502,12 @@ private fun DewPointChart(
                 )
             )
         },
-        topAxisValueFormatter = remember(mappedValues) {
-            { _, value, _ ->
-                mappedValues.getOrElse(value.toLong()) { null }?.formatMeasure(
-                    context,
-                    valueWidth = UnitWidth.NARROW,
-                    unitWidth = UnitWidth.NARROW
-                ) ?: "-"
-            }
+        topAxisValueFormatter = { _, value, _ ->
+            mappedValues.getOrElse(value.toLong()) { null }?.formatMeasure(
+                context,
+                valueWidth = UnitWidth.NARROW,
+                unitWidth = UnitWidth.NARROW
+            ) ?: "-"
         },
         minY = minY,
         endAxisItemPlacer = remember { VerticalAxis.ItemPlacer.step({ step }) },

@@ -106,6 +106,12 @@ fun BreezyLineChart(
     colors: ImmutableList<ImmutableMap<Float, Color>>,
     modifier: Modifier = Modifier,
     topAxisValueFormatter: CartesianValueFormatter? = null,
+    topAxisItemPlacer: HorizontalAxis.ItemPlacer = remember {
+        HorizontalAxis.ItemPlacer.aligned(
+            shiftExtremeLines = false,
+            addExtremeLabelPadding = false
+        )
+    },
     endAxisItemPlacer: VerticalAxis.ItemPlacer = remember {
         VerticalAxis.ItemPlacer.step()
     },
@@ -145,7 +151,7 @@ fun BreezyLineChart(
                 color = Color(context.getThemeColor(com.google.android.material.R.attr.colorOnPrimary)),
                 background = rememberShapeComponent(
                     fill = Fill(context.getThemeColor(androidx.appcompat.R.attr.colorPrimary)),
-                    CorneredShape.Pill,
+                    shape = CorneredShape.Pill,
                     shadow = Shadow(
                         radiusDp = LABEL_BACKGROUND_SHADOW_RADIUS_DP,
                         yDp = LABEL_BACKGROUND_SHADOW_DY_DP
@@ -198,7 +204,7 @@ fun BreezyLineChart(
                 tick = rememberAxisTickComponent(fill = fill(lineColor)),
                 guideline = rememberAxisGuidelineComponent(fill = fill(lineColor)),
                 itemPlacer = remember {
-                    TimeHorizontalAxisItemPlacer(location, startingDate)
+                    TimeHorizontalAxisItemPlacer(startingDate, location.timeZone)
                 }
             ),
             topAxis = topAxisValueFormatter?.let {
@@ -208,8 +214,7 @@ fun BreezyLineChart(
                     valueFormatter = it,
                     tick = null,
                     guideline = null,
-                    // TODO: Don't add ticks at places where there is no data
-                    itemPlacer = HorizontalAxis.ItemPlacer.aligned()
+                    itemPlacer = topAxisItemPlacer
                 )
             },
             decorations = if (isTrendHorizontalLinesEnabled) {

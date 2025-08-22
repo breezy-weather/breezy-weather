@@ -371,8 +371,8 @@ internal fun PrecipitationChart(
         modelProducer = modelProducer,
         theDay = daily.date,
         maxY = maxY,
-        endAxisValueFormatter = remember {
-            { _, value, _ -> value.toPrecipitation(precipitationUnit).formatMeasure(context, precipitationUnit) }
+        endAxisValueFormatter = { _, value, _ ->
+            value.toPrecipitation(precipitationUnit).formatMeasure(context, precipitationUnit)
         },
         barColorFill = remember { Fill(Color(60, 116, 160).toArgb()) },
         /*colors = remember {
@@ -388,29 +388,27 @@ internal fun PrecipitationChart(
                 0.0 to Fill(Color(111, 111, 111).toArgb())
             )
         }*/
-        trendHorizontalLines = remember {
-            buildMap {
+        trendHorizontalLines = buildMap {
+            put(
+                breezyweather.domain.weather.model.Precipitation.PRECIPITATION_HOURLY_HEAVY
+                    .millimeters.toDouble(precipitationUnit),
+                context.getString(R.string.precipitation_intensity_heavy)
+            )
+            if (maxY < breezyweather.domain.weather.model.Precipitation.PRECIPITATION_HOURLY_HEAVY.times(2.0)
+                    .millimeters.toDouble(precipitationUnit)
+            ) {
                 put(
-                    breezyweather.domain.weather.model.Precipitation.PRECIPITATION_HOURLY_HEAVY
+                    breezyweather.domain.weather.model.Precipitation.PRECIPITATION_HOURLY_MEDIUM
                         .millimeters.toDouble(precipitationUnit),
-                    context.getString(R.string.precipitation_intensity_heavy)
+                    context.getString(R.string.precipitation_intensity_medium)
                 )
-                if (maxY < breezyweather.domain.weather.model.Precipitation.PRECIPITATION_HOURLY_HEAVY.times(2.0)
-                        .millimeters.toDouble(precipitationUnit)
-                ) {
-                    put(
-                        breezyweather.domain.weather.model.Precipitation.PRECIPITATION_HOURLY_MEDIUM
-                            .millimeters.toDouble(precipitationUnit),
-                        context.getString(R.string.precipitation_intensity_medium)
-                    )
-                    put(
-                        breezyweather.domain.weather.model.Precipitation.PRECIPITATION_HOURLY_LIGHT
-                            .millimeters.toDouble(precipitationUnit),
-                        context.getString(R.string.precipitation_intensity_light)
-                    )
-                }
-            }.toImmutableMap()
-        },
+                put(
+                    breezyweather.domain.weather.model.Precipitation.PRECIPITATION_HOURLY_LIGHT
+                        .millimeters.toDouble(precipitationUnit),
+                    context.getString(R.string.precipitation_intensity_light)
+                )
+            }
+        }.toImmutableMap(),
         endAxisItemPlacer = remember { VerticalAxis.ItemPlacer.step({ step }) },
         markerVisibilityListener = markerVisibilityListener
     )
@@ -615,7 +613,7 @@ internal fun PrecipitationProbabilityChart(
         modelProducer = modelProducer,
         theDay = daily.date,
         maxY = maxY,
-        endAxisValueFormatter = remember { { _, value, _ -> value.percent.formatPercent(context) } },
+        endAxisValueFormatter = { _, value, _ -> value.percent.formatPercent(context) },
         colors = remember {
             persistentListOf(
                 persistentMapOf(

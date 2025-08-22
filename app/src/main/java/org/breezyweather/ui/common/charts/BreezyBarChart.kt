@@ -187,7 +187,7 @@ fun BreezyBarChart(
                 tick = rememberAxisTickComponent(fill = fill(lineColor)),
                 guideline = rememberAxisGuidelineComponent(fill = fill(lineColor)),
                 itemPlacer = remember {
-                    TimeHorizontalAxisItemPlacer(location, startingDate)
+                    TimeHorizontalAxisItemPlacer(startingDate, location.timeZone)
                 }
             ),
             decorations = if (isTrendHorizontalLinesEnabled) {

@@ -98,6 +98,7 @@ import org.breezyweather.domain.weather.model.getIndex
 import org.breezyweather.domain.weather.model.getName
 import org.breezyweather.ui.common.charts.BreezyLineChart
 import org.breezyweather.ui.common.charts.SpecificVerticalAxisItemPlacer
+import org.breezyweather.ui.common.charts.TimeTopAxisItemPlacer
 import org.breezyweather.ui.common.widgets.Material3ExpressiveCardListItem
 import org.breezyweather.unit.formatting.UnitWidth
 import java.util.Date
@@ -480,6 +481,9 @@ private fun AirQualityChart(
         modelProducer = modelProducer,
         theDay = daily.date,
         maxY = maxY.toDouble(),
+        topAxisItemPlacer = remember(mappedValues) {
+            TimeTopAxisItemPlacer(mappedValues.keys.toImmutableList())
+        },
         endAxisValueFormatter = remember(selectedPollutant) {
             { _, value, _ ->
                 if (selectedPollutant == null) {
@@ -496,26 +500,22 @@ private fun AirQualityChart(
                 ).toMap().toImmutableMap()
             )
         },
-        trendHorizontalLines = remember(selectedPollutant) {
-            persistentMapOf(
-                (selectedPollutant?.let { it.thresholds[3] } ?: PollutantIndex.aqiThresholds[3]).toDouble() to
-                    resources.getStringArray(R.array.air_quality_levels)[3]
-            )
-        },
-        topAxisValueFormatter = remember(mappedValues) {
-            { _, value, _ ->
-                mappedValues.getOrElse(value.toLong()) { null }
-                    ?.let {
-                        UnitUtils.formatInt(
-                            context,
-                            if (selectedPollutant == null) {
-                                it.getIndex()!!
-                            } else {
-                                it.getConcentration(selectedPollutant)!!.roundToInt()
-                            }
-                        )
-                    } ?: "-"
-            }
+        trendHorizontalLines = persistentMapOf(
+            (selectedPollutant?.let { it.thresholds[3] } ?: PollutantIndex.aqiThresholds[3]).toDouble() to
+                resources.getStringArray(R.array.air_quality_levels)[3]
+        ),
+        topAxisValueFormatter = { _, value, _ ->
+            mappedValues.getOrElse(value.toLong()) { null }
+                ?.let {
+                    UnitUtils.formatInt(
+                        context,
+                        if (selectedPollutant == null) {
+                            it.getIndex()!!
+                        } else {
+                            it.getConcentration(selectedPollutant)!!.roundToInt()
+                        }
+                    )
+                } ?: "-"
         },
         endAxisItemPlacer = remember(selectedPollutant) {
             SpecificVerticalAxisItemPlacer(

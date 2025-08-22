@@ -83,6 +83,7 @@ import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.ImmutableMap
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.persistentMapOf
+import kotlinx.collections.immutable.toImmutableList
 import kotlinx.collections.immutable.toImmutableMap
 import kotlinx.coroutines.launch
 import org.breezyweather.R
@@ -99,6 +100,7 @@ import org.breezyweather.common.extensions.toDate
 import org.breezyweather.common.options.appearance.DetailScreen
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.ui.common.charts.BreezyLineChart
+import org.breezyweather.ui.common.charts.TimeTopAxisItemPlacer
 import org.breezyweather.ui.common.widgets.AnimatableIconView
 import org.breezyweather.ui.theme.resource.ResourceHelper
 import org.breezyweather.ui.theme.resource.ResourcesProviderFactory
@@ -805,11 +807,12 @@ private fun TemperatureChart(
         modelProducer = modelProducer,
         theDay = daily.date,
         maxY = maxY,
-        endAxisValueFormatter = remember {
-            { _, value, _ ->
-                value.toTemperature(temperatureUnit)
-                    .formatMeasure(context, valueWidth = UnitWidth.NARROW, unitWidth = UnitWidth.NARROW)
-            }
+        topAxisItemPlacer = remember(mappedValues) {
+            TimeTopAxisItemPlacer(mappedValues.keys.toImmutableList())
+        },
+        endAxisValueFormatter = { _, value, _ ->
+            value.toTemperature(temperatureUnit)
+                .formatMeasure(context, valueWidth = UnitWidth.NARROW, unitWidth = UnitWidth.NARROW)
         },
         colors = remember {
             persistentListOf(
@@ -834,38 +837,34 @@ private fun TemperatureChart(
                 )
             )
         },
-        topAxisValueFormatter = remember(mappedValues) {
-            { _, value, _ ->
-                mappedValues.getOrElse(value.toLong()) { null }?.let { hourly ->
-                    hourly.weatherCode?.let {
-                        val ss = SpannableString("abc")
-                        val d = ResourceHelper.getWeatherIcon(provider, it, hourly.isDaylight)
-                        d.setBounds(0, 0, 64, 64)
-                        val span = ImageSpan(d, ImageSpan.ALIGN_BASELINE)
-                        ss.setSpan(span, 0, 3, Spannable.SPAN_INCLUSIVE_EXCLUSIVE)
-                        ss
-                    }
-                } ?: "-"
-            }
-        },
-        trendHorizontalLines = remember {
-            buildMap {
-                normals?.let {
-                    it.daytimeTemperature?.let { normal ->
-                        put(
-                            normal.toDouble(temperatureUnit),
-                            context.getString(R.string.temperature_normal_short)
-                        )
-                    }
-                    it.nighttimeTemperature?.let { normal ->
-                        put(
-                            normal.toDouble(temperatureUnit),
-                            context.getString(R.string.temperature_normal_short)
-                        )
-                    }
+        topAxisValueFormatter = { _, value, _ ->
+            mappedValues.getOrElse(value.toLong()) { null }?.let { hourly ->
+                hourly.weatherCode?.let {
+                    val ss = SpannableString("abc")
+                    val d = ResourceHelper.getWeatherIcon(provider, it, hourly.isDaylight)
+                    d.setBounds(0, 0, 64, 64)
+                    val span = ImageSpan(d, ImageSpan.ALIGN_BASELINE)
+                    ss.setSpan(span, 0, 3, Spannable.SPAN_INCLUSIVE_EXCLUSIVE)
+                    ss
                 }
-            }.toImmutableMap()
+            } ?: "-"
         },
+        trendHorizontalLines = buildMap {
+            normals?.let {
+                it.daytimeTemperature?.let { normal ->
+                    put(
+                        normal.toDouble(temperatureUnit),
+                        context.getString(R.string.temperature_normal_short)
+                    )
+                }
+                it.nighttimeTemperature?.let { normal ->
+                    put(
+                        normal.toDouble(temperatureUnit),
+                        context.getString(R.string.temperature_normal_short)
+                    )
+                }
+            }
+        }.toImmutableMap(),
         minY = minY,
         endAxisItemPlacer = remember { VerticalAxis.ItemPlacer.step({ step }) },
         markerVisibilityListener = markerVisibilityListener

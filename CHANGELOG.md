@@ -24,6 +24,7 @@
 - Details - Pressure/Visibility - Fix sometimes wrong daily value
 - Details - Fallback to current value on Today screen when daily value is missing
 - Details - Add visibility and cloud cover scales
+- Details - Fix top X-axis sometimes showing “-” for some sources
 - Alerts - Add “Translate” and “Share” to text select actions
 - Nowcasting chart/Precipitation notification - Fix slightly wrong ending time of precipitation report
 - Settings - Improve the location-based dark mode preference to make it easier to understand
