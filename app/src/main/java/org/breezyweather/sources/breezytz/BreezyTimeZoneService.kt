@@ -18,8 +18,15 @@ package org.breezyweather.sources.breezytz
 
 import android.content.Context
 import breezyweather.domain.location.model.Location
+import com.google.maps.android.PolyUtil
+import com.google.maps.android.data.Feature
+import com.google.maps.android.data.geojson.GeoJsonMultiPolygon
+import com.google.maps.android.data.geojson.GeoJsonParser
+import com.google.maps.android.data.geojson.GeoJsonPolygon
 import io.reactivex.rxjava3.core.Observable
+import org.breezyweather.R
 import org.breezyweather.common.source.TimeZoneSource
+import org.json.JSONObject
 import java.util.TimeZone
 import javax.inject.Inject
 
@@ -32,6 +39,60 @@ class BreezyTimeZoneService @Inject constructor() : TimeZoneSource {
 
     override val id = "breezytz"
     override val name = "Breezy Time Zone"
+
+    private val timeZoneFiles by lazy {
+        // TODO: Antartica, Greenland, US Minor Outlying Islands
+        // TODO: Australia minor location splits, Canada minor location split (Labrador)
+        mapOf(
+            "AR" to R.raw.breezytz_ar,
+            "AU" to R.raw.breezytz_au,
+            "BR" to R.raw.breezytz_br,
+            "CA" to R.raw.breezytz_ca,
+            "CD" to R.raw.breezytz_cd,
+            "CL" to R.raw.breezytz_cl,
+            "CN" to R.raw.breezytz_cn,
+            "CY" to R.raw.breezytz_cy,
+            "EC" to R.raw.breezytz_ec,
+            "ES" to R.raw.breezytz_es,
+            "FM" to R.raw.breezytz_fm,
+            "ID" to R.raw.breezytz_id,
+            "KI" to R.raw.breezytz_ki,
+            "KZ" to R.raw.breezytz_kz,
+            "MN" to R.raw.breezytz_mn,
+            "MX" to R.raw.breezytz_mx,
+            "MY" to R.raw.breezytz_my,
+            "NZ" to R.raw.breezytz_nz,
+            "PF" to R.raw.breezytz_pf,
+            "PG" to R.raw.breezytz_pg,
+            "PS" to R.raw.breezytz_ps,
+            "PT" to R.raw.breezytz_pt,
+            "RU" to R.raw.breezytz_ru,
+            "UA" to R.raw.breezytz_ua,
+            "US" to R.raw.breezytz_us
+        )
+    }
+
+    private val defaultTimeZones by lazy {
+        mapOf(
+            "AR" to "America/Argentina/Buenos_Aires",
+            "CL" to "America/Santiago",
+            "CN" to "Asia/Shanghai",
+            "CY" to "Asia/Nicosia",
+            "DE" to "Europe/Berlin",
+            "EC" to "America/Guayaquil",
+            "ES" to "Europe/Madrid",
+            "GL" to "America/Nuuk",
+            "KZ" to "Asia/Almaty",
+            "MH" to "Pacific/Majuro",
+            "MN" to "Asia/Ulaanbaatar",
+            "MY" to "Asia/Kuala_Lumpur",
+            "NZ" to "Pacific/Auckland",
+            "PG" to "Pacific/Port_Moresby",
+            "PT" to "Europe/Lisbon",
+            "UA" to "Europe/Kyiv",
+            "UZ" to "Asia/Tashkent"
+        )
+    }
 
     override fun requestTimezone(
         context: Context,
@@ -46,12 +107,53 @@ class BreezyTimeZoneService @Inject constructor() : TimeZoneSource {
 
         // CASE 2 - Multiple timezones for the country
         if (timeZonesForCountry.isNotEmpty()) {
-            // TODO: Do something
+            // If we have defined geometry file for a country, looking for the matching time zone shape.
+            // TODO: Match against unambiguous subdivision codes (e.g. ISO 3166-2) first to save computation time.
+            if (location.countryCode?.uppercase() in timeZoneFiles.keys) {
+                val geoJsonParser: GeoJsonParser by lazy {
+                    val text = context.resources.openRawResource(timeZoneFiles[location.countryCode!!.uppercase()]!!)
+                        .bufferedReader().use { it.readText() }
+                    GeoJsonParser(JSONObject(text))
+                }
+                val matchingTimeZone = geoJsonParser.features.firstOrNull {
+                    isMatchingTimeZone(it, location)
+                }
+                if (matchingTimeZone != null) {
+                    return Observable.just(TimeZone.getTimeZone(matchingTimeZone.getProperty("timezone")))
+                }
+            }
+
+            // If there is no defined geometry or matching time zone shape,
+            // see if default time zone has been set for the country.
+            // This should be the case where multiple time zones are mere offshoots from the mainland
+            // which has one time zone: e.g. Chile, China, Ecuador, Portugal, Spain
+            if (location.countryCode?.uppercase() in defaultTimeZones) {
+                return Observable.just(TimeZone.getTimeZone(defaultTimeZones[location.countryCode!!.uppercase()]))
+            }
+
+            // If no matching geometry and no default, fail as "GMT"
             return Observable.just(TimeZone.getTimeZone("GMT"))
         }
 
         // OTHER CASES - Fails
         return Observable.just(TimeZone.getTimeZone("GMT"))
+    }
+
+    private fun isMatchingTimeZone(
+        feature: Feature,
+        location: Location,
+    ): Boolean {
+        return when (feature.geometry) {
+            is GeoJsonPolygon -> (feature.geometry as GeoJsonPolygon).coordinates.any { polygon ->
+                PolyUtil.containsLocation(location.latitude, location.longitude, polygon, true)
+            }
+            is GeoJsonMultiPolygon -> (feature.geometry as GeoJsonMultiPolygon).polygons.any {
+                it.coordinates.any { polygon ->
+                    PolyUtil.containsLocation(location.latitude, location.longitude, polygon, true)
+                }
+            }
+            else -> false
+        }
     }
 
     private fun getTimeZonesForCountry(countryCode: String?): Array<String> {
