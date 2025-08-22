@@ -127,9 +127,11 @@ class NominatimService @Inject constructor(
         address: NominatimAddress,
         countryCode: String,
     ): String? {
-        return when (countryCode) {
-            "FR" -> address.isoLvl4 // Keep the iso code "FR-XX" as the INSEE code is different
-            "US" -> address.isoLvl4?.replace("US-", "") // Valid, but "NY" is more common than "US-NY"
+        return when (countryCode.uppercase()) {
+            // Keep the iso code "FR-XX" as the INSEE code is different
+            "AR", "AU", "BR", "CA", "CD", "CL", "CN", "EC", "ES", "FM", "FR", "ID",
+            "KI", "KZ", "MN", "MX", "MY", "NZ", "PG", "PT", "RU", "UA", "US",
+            -> address.isoLvl4
             else -> null
         }
     }
@@ -138,7 +140,8 @@ class NominatimService @Inject constructor(
         address: NominatimAddress,
         countryCode: String,
     ): String? {
-        return when (countryCode) {
+        return when (countryCode.uppercase()) {
+            "CY" -> address.isoLvl5
             "FR" -> address.isoLvl6?.replace("FR-", "") // Conversion to INSEE code
                 ?.let {
                     when (it) {
@@ -186,8 +189,14 @@ class NominatimService @Inject constructor(
                                 equals("FR-986", ignoreCase = true) -> "WF"
                                 equals("FR-987", ignoreCase = true) -> "PF"
                                 equals("FR-988", ignoreCase = true) -> "NC"
+                                equals("FR-BL", ignoreCase = true) -> "BL"
                                 equals("FR-CP", ignoreCase = true) -> "CP" // Not official, but reserved
+                                equals("FR-NC", ignoreCase = true) -> "MF"
+                                equals("FR-NC", ignoreCase = true) -> "NC"
+                                equals("FR-PF", ignoreCase = true) -> "PF"
+                                equals("FR-PM", ignoreCase = true) -> "PM"
                                 equals("FR-TF", ignoreCase = true) -> "TF"
+                                equals("FR-WF", ignoreCase = true) -> "WF"
                                 else -> "FR"
                             }
                         }
