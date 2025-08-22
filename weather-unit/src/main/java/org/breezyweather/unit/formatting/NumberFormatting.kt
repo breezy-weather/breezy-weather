@@ -51,7 +51,7 @@ fun Number.format(
             .format(this)
             .toString()
     } else {
-        return DecimalFormat(if (showSign) "+0" else "0", DecimalFormatSymbols.getInstance(locale))
+        return DecimalFormat(if (showSign && toDouble() > 0) "+0" else "0", DecimalFormatSymbols.getInstance(locale))
             .apply { setMaximumFractionDigits(decimals) }
             .format(this)
     }

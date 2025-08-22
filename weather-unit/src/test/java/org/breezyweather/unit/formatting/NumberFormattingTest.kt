@@ -73,5 +73,10 @@ class NumberFormattingTest {
             locale = Locale.Builder().setLanguage("en").setRegion("US").build(),
             showSign = true
         ) shouldBe "+7.3"
+        (-7.3).format(
+            decimals = 1,
+            locale = Locale.Builder().setLanguage("en").setRegion("US").build(),
+            showSign = true
+        ) shouldBe "-7.3"
     }
 }
