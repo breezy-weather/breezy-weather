@@ -364,7 +364,7 @@
     <string name="settings_appearance_summary">語言、深色模式、圖示套件、單位</string>
     <string name="action_delete">刪除</string>
     <string name="action_share">分享</string>
-    <string name="settings_modules_summary">設定桌布、使用中的小工具、通知小工具</string>
+    <string name="settings_modules_summary">小工具、通知小工具、桌布、與其他應用程式共用資料</string>
     <string name="notification_channel_alerts">警特報</string>
     <string name="weather_message_invalid_location">位置無效，請刪除後再新增</string>
     <string name="wind_direction_SW_short">西南風</string>
@@ -854,4 +854,7 @@
     <string name="broadcast_source_breezy_weather_update_notifier">%s 位置更新通知</string>
     <string name="action_add_as_location">新增此位置</string>
     <string name="settings_regional_preference">地區偏好設定</string>
+    <string name="widget_live_wallpaper_animations_enable_dangerous">危險</string>
+    <string name="widget_live_wallpaper_animations_enable_warning1">已知桌布動畫會導致以下問題：電池高耗電、電池過熱、記憶體使用過高、系統反應遲緩、Android 系統當機等。</string>
+    <string name="widget_live_wallpaper_animations_enable_warning2">如果決定啟用桌布動畫，你要為任何可能發生的問題負責，開發者將不提供任何支援。</string>
 </resources>
