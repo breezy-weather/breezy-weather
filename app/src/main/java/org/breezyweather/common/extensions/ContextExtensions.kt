@@ -31,9 +31,12 @@ import android.os.PowerManager
 import android.provider.Settings
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
+import androidx.annotation.RawRes
 import androidx.core.content.ContextCompat
 import androidx.core.content.getSystemService
+import com.google.maps.android.data.geojson.GeoJsonParser
 import org.breezyweather.domain.settings.SettingsManager
+import org.json.JSONObject
 import java.io.File
 
 /**
@@ -97,6 +100,11 @@ fun Context.createFileInCacheDir(name: String): File {
     }
     file.createNewFile()
     return file
+}
+
+fun Context.parseRawGeoJson(@RawRes rawFile: Int): GeoJsonParser {
+    val text = resources.openRawResource(rawFile).bufferedReader().use { it.readText() }
+    return GeoJsonParser(JSONObject(text))
 }
 
 fun Context.openApplicationDetailsSettings() {

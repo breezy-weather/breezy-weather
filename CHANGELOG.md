@@ -1,8 +1,15 @@
-# Version 6.0.5-alpha (not yet released)
+# Version 6.1.x (not yet released)
+
+The following features are already available in the current branch, but will be removed before each v6.0.x release and restored after, during the testing phase.
 
 **New features**
-- Content provider: allows (with your permission) other apps to query your weather data. Currently not available in release builds during the testing phase. [Read the announcement](https://github.com/breezy-weather/breezy-weather/discussions/2089)
+- Content provider: allows (with your permission) other apps to query your weather data. [Read the announcement](https://github.com/breezy-weather/breezy-weather/discussions/2089)
 - New broadcast: you can use `org.breezyweather.ACTION_UPDATE_NOTIFIER` (or `org.breezyweather.debug.ACTION_UPDATE_NOTIFIER` with the debug build) to be notified of updated locations (most common use case is coupled with the content provider)
+
+
+# Version 6.0.5-alpha (not yet released)
+
+This version is still an experimental one, with a significant rewrite of the refresh process core, especially on current locations.
 
 **Removed features**
 - Mean daytime/nighttime temperatures as threshold lines. Use a normals source instead
@@ -69,6 +76,7 @@
 **Technical**
 - Current location process refactoring: coordinates, forced refresh when coordinates changed from more than 5 km
 - Address lookup process refactoring to prepare for future ability to add a location manually by coordinates
+- Experimental offline timezone deduction for address lookup sources missing the info or for Nominatim search service (@chunshek)
 - Unit conversion/formatting refactoring. **Known temporary issue:** Some distance, speed and precipitation units are no longer translated on Android < 7
 
 

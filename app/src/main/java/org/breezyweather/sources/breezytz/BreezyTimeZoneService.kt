@@ -23,120 +23,314 @@ import com.google.maps.android.data.Feature
 import com.google.maps.android.data.geojson.GeoJsonMultiPolygon
 import com.google.maps.android.data.geojson.GeoJsonParser
 import com.google.maps.android.data.geojson.GeoJsonPolygon
+import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.R
+import org.breezyweather.common.extensions.parseRawGeoJson
 import org.breezyweather.common.source.TimeZoneSource
-import org.json.JSONObject
 import java.util.TimeZone
 import javax.inject.Inject
 
 /**
  * Offline timezone service
  * Based on tzdb 2025b
- * TODO: Missing countries with multiple timezones. See #2093
+ * TODO:
+ *  AQ - Antartica
+ *  AU - Australia minor location splits
+ *  CA - Canada minor location split (Labrador)
+ *  GL - Greenland
+ *  TF - Crozet islands are on a different timezone
+ *  UM - US Minor Outlying Islands
  */
-class BreezyTimeZoneService @Inject constructor() : TimeZoneSource {
+class BreezyTimeZoneService @Inject constructor(
+    @ApplicationContext context: Context,
+) : TimeZoneSource {
 
     override val id = "breezytz"
     override val name = "Breezy Time Zone"
 
-    private val timeZoneFiles by lazy {
-        // TODO: Antartica, Greenland, US Minor Outlying Islands
-        // TODO: Australia minor location splits, Canada minor location split (Labrador)
-        mapOf(
-            "AR" to R.raw.breezytz_ar,
-            "AU" to R.raw.breezytz_au,
-            "BR" to R.raw.breezytz_br,
-            "CA" to R.raw.breezytz_ca,
-            "CD" to R.raw.breezytz_cd,
-            "CL" to R.raw.breezytz_cl,
-            "CN" to R.raw.breezytz_cn,
-            "CY" to R.raw.breezytz_cy,
-            "EC" to R.raw.breezytz_ec,
-            "ES" to R.raw.breezytz_es,
-            "FM" to R.raw.breezytz_fm,
-            "ID" to R.raw.breezytz_id,
-            "KI" to R.raw.breezytz_ki,
-            "KZ" to R.raw.breezytz_kz,
-            "MN" to R.raw.breezytz_mn,
-            "MX" to R.raw.breezytz_mx,
-            "MY" to R.raw.breezytz_my,
-            "NZ" to R.raw.breezytz_nz,
-            "PF" to R.raw.breezytz_pf,
-            "PG" to R.raw.breezytz_pg,
-            "PS" to R.raw.breezytz_ps,
-            "PT" to R.raw.breezytz_pt,
-            "RU" to R.raw.breezytz_ru,
-            "UA" to R.raw.breezytz_ua,
-            "US" to R.raw.breezytz_us
-        )
-    }
-
-    private val defaultTimeZones by lazy {
-        mapOf(
-            "AR" to "America/Argentina/Buenos_Aires",
-            "CL" to "America/Santiago",
-            "CN" to "Asia/Shanghai",
-            "CY" to "Asia/Nicosia",
-            "DE" to "Europe/Berlin",
-            "EC" to "America/Guayaquil",
-            "ES" to "Europe/Madrid",
-            "GL" to "America/Nuuk",
-            "KZ" to "Asia/Almaty",
-            "MH" to "Pacific/Majuro",
-            "MN" to "Asia/Ulaanbaatar",
-            "MY" to "Asia/Kuala_Lumpur",
-            "NZ" to "Pacific/Auckland",
-            "PG" to "Pacific/Port_Moresby",
-            "PT" to "Europe/Lisbon",
-            "UA" to "Europe/Kyiv",
-            "UZ" to "Asia/Tashkent"
-        )
-    }
+    private val arGeoJson: GeoJsonParser by lazy { context.parseRawGeoJson(R.raw.breezytz_ar) }
+    private val auGeoJson: GeoJsonParser by lazy { context.parseRawGeoJson(R.raw.breezytz_au) }
+    private val brGeoJson: GeoJsonParser by lazy { context.parseRawGeoJson(R.raw.breezytz_br) }
+    private val caGeoJson: GeoJsonParser by lazy { context.parseRawGeoJson(R.raw.breezytz_ca) }
+    private val cdGeoJson: GeoJsonParser by lazy { context.parseRawGeoJson(R.raw.breezytz_cd) }
+    private val clGeoJson: GeoJsonParser by lazy { context.parseRawGeoJson(R.raw.breezytz_cl) }
+    private val cnGeoJson: GeoJsonParser by lazy { context.parseRawGeoJson(R.raw.breezytz_cn) }
+    private val cyGeoJson: GeoJsonParser by lazy { context.parseRawGeoJson(R.raw.breezytz_cy) }
+    private val ecGeoJson: GeoJsonParser by lazy { context.parseRawGeoJson(R.raw.breezytz_ec) }
+    private val esGeoJson: GeoJsonParser by lazy { context.parseRawGeoJson(R.raw.breezytz_es) }
+    private val fmGeoJson: GeoJsonParser by lazy { context.parseRawGeoJson(R.raw.breezytz_fm) }
+    private val idGeoJson: GeoJsonParser by lazy { context.parseRawGeoJson(R.raw.breezytz_id) }
+    private val kiGeoJson: GeoJsonParser by lazy { context.parseRawGeoJson(R.raw.breezytz_ki) }
+    private val kzGeoJson: GeoJsonParser by lazy { context.parseRawGeoJson(R.raw.breezytz_kz) }
+    private val mnGeoJson: GeoJsonParser by lazy { context.parseRawGeoJson(R.raw.breezytz_mn) }
+    private val mxGeoJson: GeoJsonParser by lazy { context.parseRawGeoJson(R.raw.breezytz_mx) }
+    private val myGeoJson: GeoJsonParser by lazy { context.parseRawGeoJson(R.raw.breezytz_my) }
+    private val nzGeoJson: GeoJsonParser by lazy { context.parseRawGeoJson(R.raw.breezytz_nz) }
+    private val pfGeoJson: GeoJsonParser by lazy { context.parseRawGeoJson(R.raw.breezytz_pf) }
+    private val pgGeoJson: GeoJsonParser by lazy { context.parseRawGeoJson(R.raw.breezytz_pg) }
+    private val psGeoJson: GeoJsonParser by lazy { context.parseRawGeoJson(R.raw.breezytz_ps) }
+    private val ptGeoJson: GeoJsonParser by lazy { context.parseRawGeoJson(R.raw.breezytz_pt) }
+    private val ruGeoJson: GeoJsonParser by lazy { context.parseRawGeoJson(R.raw.breezytz_ru) }
+    private val uaGeoJson: GeoJsonParser by lazy { context.parseRawGeoJson(R.raw.breezytz_ua) }
+    private val usGeoJson: GeoJsonParser by lazy { context.parseRawGeoJson(R.raw.breezytz_us) }
 
     override fun requestTimezone(
         context: Context,
         location: Location,
     ): Observable<TimeZone> {
-        val timeZonesForCountry = getTimeZonesForCountry(location.countryCode)
-
-        // CASE 1 - Only one timezone for the country
-        if (timeZonesForCountry.size == 1) {
-            return Observable.just(TimeZone.getTimeZone(timeZonesForCountry[0]))
+        val timezone = when (location.countryCode?.uppercase()) {
+            "AD" -> "Europe/Andorra"
+            "AE" -> "Asia/Dubai"
+            "AF" -> "Asia/Kabul"
+            "AG" -> "America/Puerto_Rico"
+            "AI" -> "America/Puerto_Rico"
+            "AL" -> "Europe/Tirane"
+            "AM" -> "Asia/Yerevan"
+            "AO" -> "Africa/Lagos"
+            "AQ" -> getTimeZoneForMultiTimeZoneCountry(location)
+            "AR" -> getTimeZoneForMultiTimeZoneCountry(location, "America/Argentina/Buenos_Aires")
+            "AS" -> "Pacific/Pago_Pago"
+            "AT" -> "Europe/Vienna"
+            "AU" -> getTimeZoneForMultiTimeZoneCountry(location)
+            "AW" -> "America/Puerto_Rico"
+            "AX" -> "Europe/Helsinki"
+            "AZ" -> "Asia/Baku"
+            "BA" -> "Europe/Belgrade"
+            "BB" -> "America/Barbados"
+            "BD" -> "Asia/Dhaka"
+            "BE" -> "Europe/Brussels"
+            "BF" -> "Africa/Abidjan"
+            "BG" -> "Europe/Sofia"
+            "BH" -> "Asia/Qatar"
+            "BI" -> "Africa/Maputo"
+            "BJ" -> "Africa/Lagos"
+            "BL" -> "America/Puerto_Rico"
+            "BM" -> "Atlantic/Bermuda"
+            "BN" -> "Asia/Kuching"
+            "BO" -> "America/La_Paz"
+            "BQ" -> "America/Puerto_Rico"
+            "BR" -> getTimeZoneForMultiTimeZoneCountry(location)
+            "BS" -> "America/Toronto"
+            "BT" -> "Asia/Thimphu"
+            "BW" -> "Africa/Maputo"
+            "BY" -> "Europe/Minsk"
+            "BZ" -> "America/Belize"
+            "CA" -> getTimeZoneForMultiTimeZoneCountry(location)
+            "CC" -> "Asia/Yangon"
+            "CD" -> getTimeZoneForMultiTimeZoneCountry(location)
+            "CF" -> "Africa/Lagos"
+            "CG" -> "Africa/Lagos"
+            "CH" -> "Europe/Zurich"
+            "CI" -> "Africa/Abidjan"
+            "CK" -> "Pacific/Rarotonga"
+            "CL" -> getTimeZoneForMultiTimeZoneCountry(location, "America/Santiago")
+            "CM" -> "Africa/Lagos"
+            "CN" -> getTimeZoneForMultiTimeZoneCountry(location, "Asia/Shanghai")
+            "CO" -> "America/Bogota"
+            "CR" -> "America/Costa_Rica"
+            "CU" -> "America/Havana"
+            "CV" -> "Atlantic/Cape_Verde"
+            "CW" -> "America/Puerto_Rico"
+            "CX" -> "Asia/Bangkok"
+            "CY" -> getTimeZoneForMultiTimeZoneCountry(location, "Asia/Nicosia")
+            "CZ" -> "Europe/Prague"
+            "DE" -> "Europe/Berlin" // "Europe/Busingen" is identical
+            "DJ" -> "Africa/Nairobi"
+            "DK" -> "Europe/Berlin"
+            "DM" -> "America/Puerto_Rico"
+            "DO" -> "America/Santo_Domingo"
+            "DZ" -> "Africa/Algiers"
+            "EC" -> getTimeZoneForMultiTimeZoneCountry(location, "America/Guayaquil")
+            "EE" -> "Europe/Tallinn"
+            "EG" -> "Africa/Cairo"
+            "EH" -> "Africa/El_Aaiun"
+            "ER" -> "Africa/Nairobi"
+            "ES" -> getTimeZoneForMultiTimeZoneCountry(location, "Europe/Madrid")
+            "ET" -> "Africa/Nairobi"
+            "FI" -> "Europe/Helsinki"
+            "FJ" -> "Pacific/Fiji"
+            "FK" -> "Atlantic/Stanley"
+            "FM" -> getTimeZoneForMultiTimeZoneCountry(location)
+            "FO" -> "Atlantic/Faroe"
+            "FR" -> "Europe/Paris"
+            "GA" -> "Africa/Lagos"
+            "GB" -> "Europe/London"
+            "GD" -> "America/Puerto_Rico"
+            "GE" -> "Asia/Tbilisi"
+            "GF" -> "America/Cayenne"
+            "GG" -> "Europe/London"
+            "GH" -> "Africa/Abidjan"
+            "GI" -> "Europe/Gibraltar"
+            "GL" -> getTimeZoneForMultiTimeZoneCountry(location, "America/Nuuk")
+            "GM" -> "Africa/Abidjan"
+            "GN" -> "Africa/Abidjan"
+            "GP" -> "America/Puerto_Rico"
+            "GQ" -> "Africa/Lagos"
+            "GR" -> "Europe/Athens"
+            "GS" -> "Atlantic/South_Georgia"
+            "GT" -> "America/Guatemala"
+            "GU" -> "Pacific/Guam"
+            "GW" -> "Africa/Bissau"
+            "GY" -> "America/Guyana"
+            "HK" -> "Asia/Hong_Kong"
+            "HN" -> "America/Tegucigalpa"
+            "HR" -> "Europe/Belgrade"
+            "HT" -> "America/Port-au-Prince"
+            "HU" -> "Europe/Budapest"
+            "ID" -> getTimeZoneForMultiTimeZoneCountry(location)
+            "IE" -> "Europe/Dublin"
+            "IL" -> "Asia/Jerusalem"
+            "IM" -> "Europe/London"
+            "IN" -> "Asia/Kolkata"
+            "IO" -> "Indian/Chagos"
+            "IQ" -> "Asia/Baghdad"
+            "IR" -> "Asia/Tehran"
+            "IS" -> "Africa/Abidjan"
+            "IT" -> "Europe/Rome"
+            "JE" -> "Europe/London"
+            "JM" -> "America/Jamaica"
+            "JO" -> "Asia/Amman"
+            "JP" -> "Asia/Tokyo"
+            "KE" -> "Africa/Nairobi"
+            "KG" -> "Asia/Bishkek"
+            "KH" -> "Asia/Bangkok"
+            "KI" -> getTimeZoneForMultiTimeZoneCountry(location)
+            "KM" -> "Africa/Nairobi"
+            "KN" -> "America/Puerto_Rico"
+            "KP" -> "Asia/Pyongyang"
+            "KR" -> "Asia/Seoul"
+            "KW" -> "Asia/Riyadh"
+            "KY" -> "America/Panama"
+            "KZ" -> getTimeZoneForMultiTimeZoneCountry(location, "Asia/Almaty")
+            "LA" -> "Asia/Bangkok"
+            "LB" -> "Asia/Beirut"
+            "LC" -> "America/Puerto_Rico"
+            "LI" -> "Europe/Zurich"
+            "LK" -> "Asia/Colombo"
+            "LR" -> "Africa/Monrovia"
+            "LS" -> "Africa/Johannesburg"
+            "LT" -> "Europe/Vilnius"
+            "LU" -> "Europe/Brussels"
+            "LV" -> "Europe/Riga"
+            "LY" -> "Africa/Tripoli"
+            "MA" -> "Africa/Casablanca"
+            "MC" -> "Europe/Paris"
+            "MD" -> "Europe/Chisinau"
+            "ME" -> "Europe/Belgrade"
+            "MF" -> "America/Puerto_Rico"
+            "MG" -> "Africa/Nairobi"
+            "MH" -> "Pacific/Majuro" // Links to "Pacific/Tarawa", and "Pacific/Kwajalein" is identical
+            "MK" -> "Europe/Belgrade"
+            "ML" -> "Africa/Abidjan"
+            "MM" -> "Asia/Yangon"
+            "MN" -> getTimeZoneForMultiTimeZoneCountry(location, "Asia/Ulaanbaatar")
+            "MO" -> "Asia/Macau"
+            "MP" -> "Pacific/Guam"
+            "MQ" -> "America/Martinique"
+            "MR" -> "Africa/Abidjan"
+            "MS" -> "America/Puerto_Rico"
+            "MT" -> "Europe/Malta"
+            "MU" -> "Indian/Mauritius"
+            "MV" -> "Indian/Maldives"
+            "MW" -> "Africa/Maputo"
+            "MX" -> getTimeZoneForMultiTimeZoneCountry(location)
+            "MY" -> getTimeZoneForMultiTimeZoneCountry(location, "Asia/Kuala_Lumpur")
+            "MZ" -> "Africa/Maputo"
+            "NA" -> "Africa/Windhoek"
+            "NC" -> "Pacific/Noumea"
+            "NE" -> "Africa/Lagos"
+            "NF" -> "Pacific/Norfolk"
+            "NG" -> "Africa/Lagos"
+            "NI" -> "America/Managua"
+            "NL" -> "Europe/Brussels"
+            "NO" -> "Europe/Berlin"
+            "NP" -> "Asia/Kathmandu"
+            "NR" -> "Pacific/Nauru"
+            "NU" -> "Pacific/Niue"
+            "NZ" -> getTimeZoneForMultiTimeZoneCountry(location, "Pacific/Auckland")
+            "OM" -> "Asia/Dubai"
+            "PA" -> "America/Panama"
+            "PE" -> "America/Lima"
+            "PF" -> getTimeZoneForMultiTimeZoneCountry(location)
+            "PG" -> getTimeZoneForMultiTimeZoneCountry(location, "Pacific/Port_Moresby")
+            "PH" -> "Asia/Manila"
+            "PK" -> "Asia/Karachi"
+            "PL" -> "Europe/Warsaw"
+            "PM" -> "America/Miquelon"
+            "PN" -> "Pacific/Pitcairn"
+            "PR" -> "America/Puerto_Rico"
+            "PS" -> getTimeZoneForMultiTimeZoneCountry(location)
+            "PT" -> getTimeZoneForMultiTimeZoneCountry(location, "Europe/Lisbon")
+            "PW" -> "Pacific/Palau"
+            "PY" -> "America/Asuncion"
+            "QA" -> "Asia/Qatar"
+            "RE" -> "Asia/Dubai"
+            "RO" -> "Europe/Bucharest"
+            "RS" -> "Europe/Belgrade"
+            "RU" -> getTimeZoneForMultiTimeZoneCountry(location)
+            "RW" -> "Africa/Maputo"
+            "SA" -> "Asia/Riyadh"
+            "SB" -> "Pacific/Guadalcanal"
+            "SC" -> "Asia/Dubai"
+            "SD" -> "Africa/Khartoum"
+            "SE" -> "Europe/Berlin"
+            "SG" -> "Asia/Singapore"
+            "SH" -> "Africa/Abidjan"
+            "SI" -> "Europe/Belgrade"
+            "SJ" -> "Europe/Berlin"
+            "SK" -> "Europe/Prague"
+            "SL" -> "Africa/Abidjan"
+            "SM" -> "Europe/Rome"
+            "SN" -> "Africa/Abidjan"
+            "SO" -> "Africa/Nairobi"
+            "SR" -> "America/Paramaribo"
+            "SS" -> "Africa/Juba"
+            "ST" -> "Africa/Sao_Tome"
+            "SV" -> "America/El_Salvador"
+            "SX" -> "America/Puerto_Rico"
+            "SY" -> "Asia/Damascus"
+            "SZ" -> "Africa/Johannesburg"
+            "TC" -> "America/Grand_Turk"
+            "TD" -> "Africa/Ndjamena"
+            "TF" -> "GMT" // "Indian/Kerguelen" // Links to "Indian/Maldives". TODO: "Asia/Dubai" for Crozet islands
+            "TG" -> "Africa/Abidjan"
+            "TH" -> "Asia/Bangkok"
+            "TJ" -> "Asia/Dushanbe"
+            "TK" -> "Pacific/Fakaofo"
+            "TL" -> "Asia/Dili"
+            "TM" -> "Asia/Ashgabat"
+            "TN" -> "Africa/Tunis"
+            "TO" -> "Pacific/Tongatapu"
+            "TR" -> "Europe/Istanbul"
+            "TT" -> "America/Puerto_Rico"
+            "TV" -> "Pacific/Tarawa"
+            "TW" -> "Asia/Taipei"
+            "TZ" -> "Africa/Nairobi"
+            "UA" -> getTimeZoneForMultiTimeZoneCountry(location, "Europe/Kyiv")
+            "UG" -> "Africa/Nairobi"
+            "UM" -> "GMT" // TODO: arrayOf("Pacific/Johnston", "Pacific/Pago_Pago", "Pacific/Tarawa")
+            "US" -> getTimeZoneForMultiTimeZoneCountry(location)
+            "UY" -> "America/Montevideo"
+            "UZ" -> "Asia/Tashkent" // "Asia/Samarkand" follows the same timezone
+            "VA" -> "Europe/Rome"
+            "VC" -> "America/Puerto_Rico"
+            "VE" -> "America/Caracas"
+            "VG" -> "America/Puerto_Rico"
+            "VI" -> "America/Puerto_Rico"
+            "VN" -> "Asia/Ho_Chi_Minh" // "Asia/Bangkok" follows the same timezone
+            "VU" -> "Pacific/Efate"
+            "WF" -> "Pacific/Tarawa"
+            "WS" -> "Pacific/Apia"
+            "YE" -> "Asia/Riyadh"
+            "YT" -> "Africa/Nairobi"
+            "ZA" -> "Africa/Johannesburg"
+            "ZM" -> "Africa/Maputo"
+            "ZW" -> "Africa/Maputo"
+            else -> "GMT"
         }
 
-        // CASE 2 - Multiple timezones for the country
-        if (timeZonesForCountry.isNotEmpty()) {
-            // If we have defined geometry file for a country, looking for the matching time zone shape.
-            // TODO: Match against unambiguous subdivision codes (e.g. ISO 3166-2) first to save computation time.
-            if (location.countryCode?.uppercase() in timeZoneFiles.keys) {
-                val geoJsonParser: GeoJsonParser by lazy {
-                    val text = context.resources.openRawResource(timeZoneFiles[location.countryCode!!.uppercase()]!!)
-                        .bufferedReader().use { it.readText() }
-                    GeoJsonParser(JSONObject(text))
-                }
-                val matchingTimeZone = geoJsonParser.features.firstOrNull {
-                    isMatchingTimeZone(it, location)
-                }
-                if (matchingTimeZone != null) {
-                    return Observable.just(TimeZone.getTimeZone(matchingTimeZone.getProperty("timezone")))
-                }
-            }
-
-            // If there is no defined geometry or matching time zone shape,
-            // see if default time zone has been set for the country.
-            // This should be the case where multiple time zones are mere offshoots from the mainland
-            // which has one time zone: e.g. Chile, China, Ecuador, Portugal, Spain
-            if (location.countryCode?.uppercase() in defaultTimeZones) {
-                return Observable.just(TimeZone.getTimeZone(defaultTimeZones[location.countryCode!!.uppercase()]))
-            }
-
-            // If no matching geometry and no default, fail as "GMT"
-            return Observable.just(TimeZone.getTimeZone("GMT"))
-        }
-
-        // OTHER CASES - Fails
-        return Observable.just(TimeZone.getTimeZone("GMT"))
+        return Observable.just(TimeZone.getTimeZone(timezone))
     }
 
     private fun isMatchingTimeZone(
@@ -156,501 +350,55 @@ class BreezyTimeZoneService @Inject constructor() : TimeZoneSource {
         }
     }
 
-    private fun getTimeZonesForCountry(countryCode: String?): Array<String> {
-        if (countryCode.isNullOrEmpty()) {
-            return arrayOf()
+    /**
+     * @param location with a multi-timezone country code
+     * @param defaultTimeZone fallback timezone value when not found
+     */
+    private fun getTimeZoneForMultiTimeZoneCountry(
+        location: Location,
+        defaultTimeZone: String = "GMT",
+    ): String {
+        // If we have defined geometry file for a country, looking for the matching time zone shape.
+        // TODO: Match against unambiguous subdivision codes (e.g. ISO 3166-2) first to save computation time.
+
+        when (location.countryCode?.uppercase()) {
+            "AR" -> arGeoJson
+            "AU" -> auGeoJson
+            "BR" -> brGeoJson
+            "CA" -> caGeoJson
+            "CD" -> cdGeoJson
+            "CL" -> clGeoJson
+            "CN" -> cnGeoJson
+            "CY" -> cyGeoJson
+            "EC" -> ecGeoJson
+            "ES" -> esGeoJson
+            "FM" -> fmGeoJson
+            "ID" -> idGeoJson
+            "KI" -> kiGeoJson
+            "KZ" -> kzGeoJson
+            "MN" -> mnGeoJson
+            "MX" -> mxGeoJson
+            "MY" -> myGeoJson
+            "NZ" -> nzGeoJson
+            "PF" -> pfGeoJson
+            "PG" -> pgGeoJson
+            "PS" -> psGeoJson
+            "PT" -> ptGeoJson
+            "RU" -> ruGeoJson
+            "UA" -> uaGeoJson
+            "US" -> usGeoJson
+            else -> null
         }
-        return when (countryCode.uppercase()) {
-            "AD" -> arrayOf("Europe/Andorra")
-            "AE" -> arrayOf("Asia/Dubai")
-            "AF" -> arrayOf("Asia/Kabul")
-            "AG" -> arrayOf("America/Puerto_Rico")
-            "AI" -> arrayOf("America/Puerto_Rico")
-            "AL" -> arrayOf("Europe/Tirane")
-            "AM" -> arrayOf("Asia/Yerevan")
-            "AO" -> arrayOf("Africa/Lagos")
-            "AQ" -> arrayOf(
-                "Antarctica/Casey",
-                "Antarctica/Davis",
-                "Antarctica/Mawson",
-                "Antarctica/Palmer",
-                "Antarctica/Rothera",
-                "Antarctica/Troll",
-                "Antarctica/Vostok",
-                "Asia/Riyadh",
-                "Asia/Singapore",
-                "Pacific/Auckland",
-                "Pacific/Port_Moresby"
-            )
-            "AR" -> arrayOf(
-                "America/Argentina/Buenos_Aires",
-                "America/Argentina/Catamarca",
-                "America/Argentina/Cordoba",
-                "America/Argentina/Jujuy",
-                "America/Argentina/La_Rioja",
-                "America/Argentina/Mendoza",
-                "America/Argentina/Rio_Gallegos",
-                "America/Argentina/Salta",
-                "America/Argentina/San_Juan",
-                "America/Argentina/San_Luis",
-                "America/Argentina/Tucuman",
-                "America/Argentina/Ushuaia"
-            )
-            "AS" -> arrayOf("Pacific/Pago_Pago")
-            "AT" -> arrayOf("Europe/Vienna")
-            "AU" -> arrayOf(
-                "Antarctica/Macquarie",
-                "Asia/Tokyo",
-                "Australia/Adelaide",
-                "Australia/Brisbane",
-                "Australia/Broken_Hill",
-                "Australia/Darwin",
-                "Australia/Eucla",
-                "Australia/Hobart",
-                "Australia/Lindeman",
-                "Australia/Lord_Howe",
-                "Australia/Melbourne",
-                "Australia/Perth",
-                "Australia/Sydney"
-            )
-            "AW" -> arrayOf("America/Puerto_Rico")
-            "AX" -> arrayOf("Europe/Helsinki")
-            "AZ" -> arrayOf("Asia/Baku")
-            "BA" -> arrayOf("Europe/Belgrade")
-            "BB" -> arrayOf("America/Barbados")
-            "BD" -> arrayOf("Asia/Dhaka")
-            "BE" -> arrayOf("Europe/Brussels")
-            "BF" -> arrayOf("Africa/Abidjan")
-            "BG" -> arrayOf("Europe/Sofia")
-            "BH" -> arrayOf("Asia/Qatar")
-            "BI" -> arrayOf("Africa/Maputo")
-            "BJ" -> arrayOf("Africa/Lagos")
-            "BL" -> arrayOf("America/Puerto_Rico")
-            "BM" -> arrayOf("Atlantic/Bermuda")
-            "BN" -> arrayOf("Asia/Kuching")
-            "BO" -> arrayOf("America/La_Paz")
-            "BQ" -> arrayOf("America/Puerto_Rico")
-            "BR" -> arrayOf(
-                "America/Araguaina",
-                "America/Bahia",
-                "America/Belem",
-                "America/Boa_Vista",
-                "America/Campo_Grande",
-                "America/Cuiaba",
-                "America/Eirunepe",
-                "America/Fortaleza",
-                "America/Maceio",
-                "America/Manaus",
-                "America/Noronha",
-                "America/Porto_Velho",
-                "America/Recife",
-                "America/Rio_Branco",
-                "America/Santarem",
-                "America/Sao_Paulo"
-            )
-            "BS" -> arrayOf("America/Toronto")
-            "BT" -> arrayOf("Asia/Thimphu")
-            "BW" -> arrayOf("Africa/Maputo")
-            "BY" -> arrayOf("Europe/Minsk")
-            "BZ" -> arrayOf("America/Belize")
-            "CA" -> arrayOf(
-                "America/Cambridge_Bay",
-                "America/Dawson",
-                "America/Dawson_Creek",
-                "America/Edmonton",
-                "America/Fort_Nelson",
-                "America/Glace_Bay",
-                "America/Goose_Bay",
-                "America/Halifax",
-                "America/Inuvik",
-                "America/Iqaluit",
-                "America/Moncton",
-                "America/Panama",
-                "America/Phoenix",
-                "America/Puerto_Rico",
-                "America/Rankin_Inlet",
-                "America/Regina",
-                "America/Resolute",
-                "America/St_Johns",
-                "America/Swift_Current",
-                "America/Toronto",
-                "America/Vancouver",
-                "America/Whitehorse",
-                "America/Winnipeg"
-            )
-            "CC" -> arrayOf("Asia/Yangon")
-            "CD" -> arrayOf(
-                "Africa/Lagos",
-                "Africa/Maputo"
-            )
-            "CF" -> arrayOf("Africa/Lagos")
-            "CG" -> arrayOf("Africa/Lagos")
-            "CH" -> arrayOf("Europe/Zurich")
-            "CI" -> arrayOf("Africa/Abidjan")
-            "CK" -> arrayOf("Pacific/Rarotonga")
-            "CL" -> arrayOf(
-                "America/Coyhaique",
-                "America/Punta_Arenas",
-                "America/Santiago",
-                "Pacific/Easter"
-            )
-            "CM" -> arrayOf("Africa/Lagos")
-            "CN" -> arrayOf(
-                "Asia/Shanghai",
-                "Asia/Urumqi"
-            )
-            "CO" -> arrayOf("America/Bogota")
-            "CR" -> arrayOf("America/Costa_Rica")
-            "CU" -> arrayOf("America/Havana")
-            "CV" -> arrayOf("Atlantic/Cape_Verde")
-            "CW" -> arrayOf("America/Puerto_Rico")
-            "CX" -> arrayOf("Asia/Bangkok")
-            "CY" -> arrayOf(
-                "Asia/Famagusta",
-                "Asia/Nicosia"
-            )
-            "CZ" -> arrayOf("Europe/Prague")
-            "DE" -> arrayOf(
-                "Europe/Berlin",
-                "Europe/Zurich"
-            )
-            "DJ" -> arrayOf("Africa/Nairobi")
-            "DK" -> arrayOf("Europe/Berlin")
-            "DM" -> arrayOf("America/Puerto_Rico")
-            "DO" -> arrayOf("America/Santo_Domingo")
-            "DZ" -> arrayOf("Africa/Algiers")
-            "EC" -> arrayOf(
-                "America/Guayaquil",
-                "Pacific/Galapagos"
-            )
-            "EE" -> arrayOf("Europe/Tallinn")
-            "EG" -> arrayOf("Africa/Cairo")
-            "EH" -> arrayOf("Africa/El_Aaiun")
-            "ER" -> arrayOf("Africa/Nairobi")
-            "ES" -> arrayOf(
-                "Africa/Ceuta",
-                "Atlantic/Canary",
-                "Europe/Madrid"
-            )
-            "ET" -> arrayOf("Africa/Nairobi")
-            "FI" -> arrayOf("Europe/Helsinki")
-            "FJ" -> arrayOf("Pacific/Fiji")
-            "FK" -> arrayOf("Atlantic/Stanley")
-            "FM" -> arrayOf(
-                "Pacific/Guadalcanal",
-                "Pacific/Kosrae",
-                "Pacific/Port_Moresby"
-            )
-            "FO" -> arrayOf("Atlantic/Faroe")
-            "FR" -> arrayOf("Europe/Paris")
-            "GA" -> arrayOf("Africa/Lagos")
-            "GB" -> arrayOf("Europe/London")
-            "GD" -> arrayOf("America/Puerto_Rico")
-            "GE" -> arrayOf("Asia/Tbilisi")
-            "GF" -> arrayOf("America/Cayenne")
-            "GG" -> arrayOf("Europe/London")
-            "GH" -> arrayOf("Africa/Abidjan")
-            "GI" -> arrayOf("Europe/Gibraltar")
-            "GL" -> arrayOf(
-                "America/Danmarkshavn",
-                "America/Nuuk",
-                "America/Scoresbysund",
-                "America/Thule"
-            )
-            "GM" -> arrayOf("Africa/Abidjan")
-            "GN" -> arrayOf("Africa/Abidjan")
-            "GP" -> arrayOf("America/Puerto_Rico")
-            "GQ" -> arrayOf("Africa/Lagos")
-            "GR" -> arrayOf("Europe/Athens")
-            "GS" -> arrayOf("Atlantic/South_Georgia")
-            "GT" -> arrayOf("America/Guatemala")
-            "GU" -> arrayOf("Pacific/Guam")
-            "GW" -> arrayOf("Africa/Bissau")
-            "GY" -> arrayOf("America/Guyana")
-            "HK" -> arrayOf("Asia/Hong_Kong")
-            "HN" -> arrayOf("America/Tegucigalpa")
-            "HR" -> arrayOf("Europe/Belgrade")
-            "HT" -> arrayOf("America/Port-au-Prince")
-            "HU" -> arrayOf("Europe/Budapest")
-            "ID" -> arrayOf(
-                "Asia/Jakarta",
-                "Asia/Jayapura",
-                "Asia/Makassar",
-                "Asia/Pontianak"
-            )
-            "IE" -> arrayOf("Europe/Dublin")
-            "IL" -> arrayOf("Asia/Jerusalem")
-            "IM" -> arrayOf("Europe/London")
-            "IN" -> arrayOf("Asia/Kolkata")
-            "IO" -> arrayOf("Indian/Chagos")
-            "IQ" -> arrayOf("Asia/Baghdad")
-            "IR" -> arrayOf("Asia/Tehran")
-            "IS" -> arrayOf("Africa/Abidjan")
-            "IT" -> arrayOf("Europe/Rome")
-            "JE" -> arrayOf("Europe/London")
-            "JM" -> arrayOf("America/Jamaica")
-            "JO" -> arrayOf("Asia/Amman")
-            "JP" -> arrayOf("Asia/Tokyo")
-            "KE" -> arrayOf("Africa/Nairobi")
-            "KG" -> arrayOf("Asia/Bishkek")
-            "KH" -> arrayOf("Asia/Bangkok")
-            "KI" -> arrayOf(
-                "Pacific/Kanton",
-                "Pacific/Kiritimati",
-                "Pacific/Tarawa"
-            )
-            "KM" -> arrayOf("Africa/Nairobi")
-            "KN" -> arrayOf("America/Puerto_Rico")
-            "KP" -> arrayOf("Asia/Pyongyang")
-            "KR" -> arrayOf("Asia/Seoul")
-            "KW" -> arrayOf("Asia/Riyadh")
-            "KY" -> arrayOf("America/Panama")
-            "KZ" -> arrayOf(
-                "Asia/Almaty",
-                "Asia/Aqtau",
-                "Asia/Aqtobe",
-                "Asia/Atyrau",
-                "Asia/Oral",
-                "Asia/Qostanay",
-                "Asia/Qyzylorda"
-            )
-            "LA" -> arrayOf("Asia/Bangkok")
-            "LB" -> arrayOf("Asia/Beirut")
-            "LC" -> arrayOf("America/Puerto_Rico")
-            "LI" -> arrayOf("Europe/Zurich")
-            "LK" -> arrayOf("Asia/Colombo")
-            "LR" -> arrayOf("Africa/Monrovia")
-            "LS" -> arrayOf("Africa/Johannesburg")
-            "LT" -> arrayOf("Europe/Vilnius")
-            "LU" -> arrayOf("Europe/Brussels")
-            "LV" -> arrayOf("Europe/Riga")
-            "LY" -> arrayOf("Africa/Tripoli")
-            "MA" -> arrayOf("Africa/Casablanca")
-            "MC" -> arrayOf("Europe/Paris")
-            "MD" -> arrayOf("Europe/Chisinau")
-            "ME" -> arrayOf("Europe/Belgrade")
-            "MF" -> arrayOf("America/Puerto_Rico")
-            "MG" -> arrayOf("Africa/Nairobi")
-            "MH" -> arrayOf(
-                "Pacific/Kwajalein",
-                "Pacific/Tarawa"
-            )
-            "MK" -> arrayOf("Europe/Belgrade")
-            "ML" -> arrayOf("Africa/Abidjan")
-            "MM" -> arrayOf("Asia/Yangon")
-            "MN" -> arrayOf(
-                "Asia/Hovd",
-                "Asia/Ulaanbaatar"
-            )
-            "MO" -> arrayOf("Asia/Macau")
-            "MP" -> arrayOf("Pacific/Guam")
-            "MQ" -> arrayOf("America/Martinique")
-            "MR" -> arrayOf("Africa/Abidjan")
-            "MS" -> arrayOf("America/Puerto_Rico")
-            "MT" -> arrayOf("Europe/Malta")
-            "MU" -> arrayOf("Indian/Mauritius")
-            "MV" -> arrayOf("Indian/Maldives")
-            "MW" -> arrayOf("Africa/Maputo")
-            "MX" -> arrayOf(
-                "America/Bahia_Banderas",
-                "America/Cancun",
-                "America/Chihuahua",
-                "America/Ciudad_Juarez",
-                "America/Hermosillo",
-                "America/Matamoros",
-                "America/Mazatlan",
-                "America/Merida",
-                "America/Mexico_City",
-                "America/Monterrey",
-                "America/Ojinaga",
-                "America/Tijuana"
-            )
-            "MY" -> arrayOf(
-                "Asia/Kuching",
-                "Asia/Singapore"
-            )
-            "MZ" -> arrayOf("Africa/Maputo")
-            "NA" -> arrayOf("Africa/Windhoek")
-            "NC" -> arrayOf("Pacific/Noumea")
-            "NE" -> arrayOf("Africa/Lagos")
-            "NF" -> arrayOf("Pacific/Norfolk")
-            "NG" -> arrayOf("Africa/Lagos")
-            "NI" -> arrayOf("America/Managua")
-            "NL" -> arrayOf("Europe/Brussels")
-            "NO" -> arrayOf("Europe/Berlin")
-            "NP" -> arrayOf("Asia/Kathmandu")
-            "NR" -> arrayOf("Pacific/Nauru")
-            "NU" -> arrayOf("Pacific/Niue")
-            "NZ" -> arrayOf(
-                "Pacific/Auckland",
-                "Pacific/Chatham"
-            )
-            "OM" -> arrayOf("Asia/Dubai")
-            "PA" -> arrayOf("America/Panama")
-            "PE" -> arrayOf("America/Lima")
-            "PF" -> arrayOf(
-                "Pacific/Gambier",
-                "Pacific/Marquesas",
-                "Pacific/Tahiti"
-            )
-            "PG" -> arrayOf(
-                "Pacific/Bougainville",
-                "Pacific/Port_Moresby"
-            )
-            "PH" -> arrayOf("Asia/Manila")
-            "PK" -> arrayOf("Asia/Karachi")
-            "PL" -> arrayOf("Europe/Warsaw")
-            "PM" -> arrayOf("America/Miquelon")
-            "PN" -> arrayOf("Pacific/Pitcairn")
-            "PR" -> arrayOf("America/Puerto_Rico")
-            "PS" -> arrayOf(
-                "Asia/Gaza",
-                "Asia/Hebron"
-            )
-            "PT" -> arrayOf(
-                "Atlantic/Azores",
-                "Atlantic/Madeira",
-                "Europe/Lisbon"
-            )
-            "PW" -> arrayOf("Pacific/Palau")
-            "PY" -> arrayOf("America/Asuncion")
-            "QA" -> arrayOf("Asia/Qatar")
-            "RE" -> arrayOf("Asia/Dubai")
-            "RO" -> arrayOf("Europe/Bucharest")
-            "RS" -> arrayOf("Europe/Belgrade")
-            "RU" -> arrayOf(
-                "Asia/Anadyr",
-                "Asia/Barnaul",
-                "Asia/Chita",
-                "Asia/Irkutsk",
-                "Asia/Kamchatka",
-                "Asia/Khandyga",
-                "Asia/Krasnoyarsk",
-                "Asia/Magadan",
-                "Asia/Novokuznetsk",
-                "Asia/Novosibirsk",
-                "Asia/Omsk",
-                "Asia/Sakhalin",
-                "Asia/Srednekolymsk",
-                "Asia/Tomsk",
-                "Asia/Ust-Nera",
-                "Asia/Vladivostok",
-                "Asia/Yakutsk",
-                "Asia/Yekaterinburg",
-                "Europe/Astrakhan",
-                "Europe/Kaliningrad",
-                "Europe/Kirov",
-                "Europe/Moscow",
-                "Europe/Samara",
-                "Europe/Saratov",
-                "Europe/Simferopol",
-                "Europe/Ulyanovsk",
-                "Europe/Volgograd"
-            )
-            "RW" -> arrayOf("Africa/Maputo")
-            "SA" -> arrayOf("Asia/Riyadh")
-            "SB" -> arrayOf("Pacific/Guadalcanal")
-            "SC" -> arrayOf("Asia/Dubai")
-            "SD" -> arrayOf("Africa/Khartoum")
-            "SE" -> arrayOf("Europe/Berlin")
-            "SG" -> arrayOf("Asia/Singapore")
-            "SH" -> arrayOf("Africa/Abidjan")
-            "SI" -> arrayOf("Europe/Belgrade")
-            "SJ" -> arrayOf("Europe/Berlin")
-            "SK" -> arrayOf("Europe/Prague")
-            "SL" -> arrayOf("Africa/Abidjan")
-            "SM" -> arrayOf("Europe/Rome")
-            "SN" -> arrayOf("Africa/Abidjan")
-            "SO" -> arrayOf("Africa/Nairobi")
-            "SR" -> arrayOf("America/Paramaribo")
-            "SS" -> arrayOf("Africa/Juba")
-            "ST" -> arrayOf("Africa/Sao_Tome")
-            "SV" -> arrayOf("America/El_Salvador")
-            "SX" -> arrayOf("America/Puerto_Rico")
-            "SY" -> arrayOf("Asia/Damascus")
-            "SZ" -> arrayOf("Africa/Johannesburg")
-            "TC" -> arrayOf("America/Grand_Turk")
-            "TD" -> arrayOf("Africa/Ndjamena")
-            "TF" -> arrayOf(
-                "Asia/Dubai",
-                "Indian/Maldives"
-            )
-            "TG" -> arrayOf("Africa/Abidjan")
-            "TH" -> arrayOf("Asia/Bangkok")
-            "TJ" -> arrayOf("Asia/Dushanbe")
-            "TK" -> arrayOf("Pacific/Fakaofo")
-            "TL" -> arrayOf("Asia/Dili")
-            "TM" -> arrayOf("Asia/Ashgabat")
-            "TN" -> arrayOf("Africa/Tunis")
-            "TO" -> arrayOf("Pacific/Tongatapu")
-            "TR" -> arrayOf("Europe/Istanbul")
-            "TT" -> arrayOf("America/Puerto_Rico")
-            "TV" -> arrayOf("Pacific/Tarawa")
-            "TW" -> arrayOf("Asia/Taipei")
-            "TZ" -> arrayOf("Africa/Nairobi")
-            "UA" -> arrayOf(
-                "Europe/Kyiv",
-                "Europe/Simferopol"
-            )
-            "UG" -> arrayOf("Africa/Nairobi")
-            "UM" -> arrayOf(
-                "Pacific/Pago_Pago",
-                "Pacific/Tarawa"
-            )
-            "US" -> arrayOf(
-                "America/Adak",
-                "America/Anchorage",
-                "America/Boise",
-                "America/Chicago",
-                "America/Denver",
-                "America/Detroit",
-                "America/Indiana/Indianapolis",
-                "America/Indiana/Knox",
-                "America/Indiana/Marengo",
-                "America/Indiana/Petersburg",
-                "America/Indiana/Tell_City",
-                "America/Indiana/Vevay",
-                "America/Indiana/Vincennes",
-                "America/Indiana/Winamac",
-                "America/Juneau",
-                "America/Kentucky/Louisville",
-                "America/Kentucky/Monticello",
-                "America/Los_Angeles",
-                "America/Menominee",
-                "America/Metlakatla",
-                "America/New_York",
-                "America/Nome",
-                "America/North_Dakota/Beulah",
-                "America/North_Dakota/Center",
-                "America/North_Dakota/New_Salem",
-                "America/Phoenix",
-                "America/Sitka",
-                "America/Yakutat",
-                "Pacific/Honolulu"
-            )
-            "UY" -> arrayOf("America/Montevideo")
-            "UZ" -> arrayOf(
-                "Asia/Samarkand",
-                "Asia/Tashkent"
-            )
-            "VA" -> arrayOf("Europe/Rome")
-            "VC" -> arrayOf("America/Puerto_Rico")
-            "VE" -> arrayOf("America/Caracas")
-            "VG" -> arrayOf("America/Puerto_Rico")
-            "VI" -> arrayOf("America/Puerto_Rico")
-            "VN" -> arrayOf(
-                "Asia/Bangkok",
-                "Asia/Ho_Chi_Minh"
-            )
-            "VU" -> arrayOf("Pacific/Efate")
-            "WF" -> arrayOf("Pacific/Tarawa")
-            "WS" -> arrayOf("Pacific/Apia")
-            "YE" -> arrayOf("Asia/Riyadh")
-            "YT" -> arrayOf("Africa/Nairobi")
-            "ZA" -> arrayOf("Africa/Johannesburg")
-            "ZM" -> arrayOf("Africa/Maputo")
-            "ZW" -> arrayOf("Africa/Maputo")
-            else -> arrayOf()
-        }
+            ?.features
+            ?.firstOrNull { isMatchingTimeZone(it, location) }
+            ?.getProperty("timezone")
+            ?.let { return it }
+
+        // If there is no defined geometry or matching time zone shape,
+        // see if default time zone has been set for the country.
+        // This should be the case where multiple time zones are mere offshoots from the mainland
+        // which has one time zone: e.g. Chile, China, Ecuador, Portugal, Spain
+        // If no matching geometry and no default, fail as "GMT"
+        return defaultTimeZone
     }
 }

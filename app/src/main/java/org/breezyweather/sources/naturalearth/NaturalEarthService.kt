@@ -33,10 +33,10 @@ import org.breezyweather.R
 import org.breezyweather.common.extensions.codeForNaturalEarth
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.getCountryName
+import org.breezyweather.common.extensions.parseRawGeoJson
 import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.utils.helpers.LogHelper
 import org.breezyweather.sources.RefreshHelper
-import org.json.JSONObject
 import javax.inject.Inject
 
 /**
@@ -62,9 +62,7 @@ class NaturalEarthService @Inject constructor(
     override val name = "Natural Earth"
 
     private val geoJsonParser: GeoJsonParser by lazy {
-        val text = context.resources.openRawResource(R.raw.ne_50m_admin_0_countries)
-            .bufferedReader().use { it.readText() }
-        GeoJsonParser(JSONObject(text))
+        context.parseRawGeoJson(R.raw.ne_50m_admin_0_countries)
     }
 
     override val supportedFeatures = mapOf(
