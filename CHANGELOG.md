@@ -25,6 +25,7 @@
 - Details - Fallback to current value on Today screen when daily value is missing
 - Details - Add visibility and cloud cover scales
 - Details - Fix top X-axis sometimes showing “-” for some sources
+- Details - Charts are now slightly wider following the removal of start and end paddings by removing midnight labels
 - Alerts - Add “Translate” and “Share” to text select actions
 - Nowcasting chart/Precipitation notification - Fix slightly wrong ending time of precipitation report
 - Settings - Improve the location-based dark mode preference to make it easier to understand
