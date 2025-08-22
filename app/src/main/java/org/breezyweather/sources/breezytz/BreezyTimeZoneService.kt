@@ -322,6 +322,7 @@ class BreezyTimeZoneService @Inject constructor(
             "VU" -> "Pacific/Efate"
             "WF" -> "Pacific/Tarawa"
             "WS" -> "Pacific/Apia"
+            "XK" -> "Europe/Belgrade"
             "YE" -> "Asia/Riyadh"
             "YT" -> "Africa/Nairobi"
             "ZA" -> "Africa/Johannesburg"
@@ -358,10 +359,9 @@ class BreezyTimeZoneService @Inject constructor(
         location: Location,
         defaultTimeZone: String = "GMT",
     ): String {
-        // If we have defined geometry file for a country, looking for the matching time zone shape.
-        // TODO: Match against unambiguous subdivision codes (e.g. ISO 3166-2) first to save computation time.
+        // If we have defined geometry file for a country, look for the matching time zone shape.
 
-        when (location.countryCode?.uppercase()) {
+        val geojson = when (location.countryCode?.uppercase()) {
             "AR" -> arGeoJson
             "AU" -> auGeoJson
             "BR" -> brGeoJson
@@ -389,7 +389,27 @@ class BreezyTimeZoneService @Inject constructor(
             "US" -> usGeoJson
             else -> null
         }
-            ?.features
+
+        val features = geojson?.features?.filter { feature ->
+            val subdivisions = feature.getProperty("isoPart2")?.split(",") ?: emptyList()
+            location.admin1Code in subdivisions || location.admin2Code in subdivisions
+        }
+
+        // Found only one feature matching the ISO 3166-2 code: return the time zone directly
+        if (features?.size == 1) {
+            features.first().getProperty("timezone")?.let { return it }
+        }
+
+        // Found multiple features matching the ISO 3166-2 code: match location against only those features
+        if (!features.isNullOrEmpty()) {
+            features
+                .firstOrNull { isMatchingTimeZone(it, location) }
+                ?.getProperty("timezone")
+                ?.let { return it }
+        }
+
+        // Did not find any feature matching the ISO 3166-2 code: match location against all features
+        geojson?.features
             ?.firstOrNull { isMatchingTimeZone(it, location) }
             ?.getProperty("timezone")
             ?.let { return it }
