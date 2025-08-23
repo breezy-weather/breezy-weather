@@ -217,8 +217,7 @@ class WeatherContentProvider : ContentProvider() {
 
     private fun isAllowedPackage(): Boolean {
         // Can check callingPackage here
-        // Disabled in releases during the testing phase
-        return org.breezyweather.BreezyWeather.instance.debugMode
+        return true
     }
 
     private fun queryVersion(): Cursor {
