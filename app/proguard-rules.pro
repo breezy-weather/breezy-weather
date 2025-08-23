@@ -68,3 +68,6 @@
 
 # RestrictionBypass
 -keep class org.chickenhook.restrictionbypass.** { *; }
+
+# Jwt
+-keep class io.jsonwebtoken.impl.** { *; }
