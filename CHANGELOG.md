@@ -7,7 +7,7 @@ The following features are already available in the current branch, but will be 
 - New broadcast: you can use `org.breezyweather.ACTION_UPDATE_NOTIFIER` (or `org.breezyweather.debug.ACTION_UPDATE_NOTIFIER` with the debug build) to be notified of updated locations (most common use case is coupled with the content provider)
 
 
-# Version 6.0.5-alpha (not yet released)
+# Version 6.0.5-alpha (2025-08-23)
 
 This version is still an experimental one, with a significant rewrite of the refresh process core, especially on current locations. Weather data for all locations will be reset due to a major technical change in the database. A simple refresh will bring it back.
 
