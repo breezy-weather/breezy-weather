@@ -311,7 +311,7 @@
     <string name="settings_modules_monochrome_icons_title">Monochrome pictogrammen</string>
     <string name="settings_modules_notification_persistent_switch">Aanhoudend</string>
     <string name="settings_modules_notification_style_title">Stijl</string>
-    <string name="null_data_text">N.V.T.</string>
+    <string name="null_data_text">N.v.t.</string>
     <string name="settings_debug_dump_crash_logs_summary">Slaat foutenlogboeken op in een bestand om te delen met de ontwikkelaars</string>
     <string name="air_quality_level_3_description">De lucht is ernstig vervuild en daarom ongezond voor personen die daar overgevoelig voor zijn. Breng minder tijd door in de buitenlucht als je last hebt van symptomen als moeite met ademhalen of keelirritatie.</string>
     <string name="air_quality_level_6_description">Blootstelling aan de buitenlucht, al is het maar enkele minuten, kan bij iedereen de gezondheid ernstig beïnvloeden. Vermijd buitenactiviteiten.</string>
