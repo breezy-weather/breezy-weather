@@ -167,7 +167,7 @@ interface WeatherUnit {
                 )
             }
 
-            if (!showSign) {
+            if (!showSign && (perMeasureUnit == null || supportsMeasureFormatPerUnit())) {
                 return measureUnit!!.formatWithMeasureFormat(
                     locale = locale,
                     value = value,
