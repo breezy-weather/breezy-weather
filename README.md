@@ -188,7 +188,7 @@ For unit formatting, we use [Unicode data](https://www.unicode.org/cldr/charts/4
 * This License does not grant any rights in the trademarks, service marks, or logos of any Contributor.
 * Misrepresentation of the origin of that material is prohibited, and modified versions of such material must be marked in reasonable ways as different from the original version.
 
-Before creating a fork, check if the intent action `nodomain.freeyourgadget.gadgetbridge.ACTION_GENERIC_WEATHER` can cover your need (for example, you want to re-use our weather data in your own customized widget). It can be enabled from Settings > Widgets & Live Wallpaper > Data sharing. We also have [plans to expose the full weather data of Breezy Weather](https://github.com/breezy-weather/breezy-weather/issues/863).
+Before creating a fork, check if the intent action `nodomain.freeyourgadget.gadgetbridge.ACTION_GENERIC_WEATHER` can cover your need (for example, you want to re-use our weather data in your own customized widget). It can be enabled from Settings > Widgets & Live Wallpaper > Data sharing. You can also [help testing our `ContentProvider` exposing the full weather data of Breezy Weather](https://github.com/breezy-weather/breezy-weather/discussions/2089).
 
 Otherwise, remember to:
 
