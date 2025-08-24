@@ -17,6 +17,9 @@ The following features are already available in the current branch, but will be 
 **Weather sources**
 - [HERE] Removed following recent restrictions on free API
 
+**Translations**
+- Translations updated
+
 
 # Version 6.0.5-alpha (2025-08-23)
 
