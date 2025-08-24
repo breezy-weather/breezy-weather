@@ -10,6 +10,7 @@ The following features are already available in the current branch, but will be 
 # Version 6.0.6-alpha (not yet released)
 
 **Improvements and fixes**
+- Fix crash on startup on Android 5.0, 5.1 and 6.0
 - Fix crash on Android 7.0/7.1 when formatting some units
 
 **Weather sources**

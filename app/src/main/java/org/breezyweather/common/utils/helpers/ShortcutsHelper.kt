@@ -30,7 +30,7 @@ import org.breezyweather.ui.theme.resource.providers.ResourceProvider
 /**
  * Shortcuts manager.
  */
-@RequiresApi(api = Build.VERSION_CODES.N_MR1)
+@RequiresApi(Build.VERSION_CODES.N_MR1)
 object ShortcutsHelper {
 
     private fun drawableToBitmap(drawable: Drawable): Bitmap {
@@ -41,7 +41,7 @@ object ShortcutsHelper {
         return bitmap
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
+    @RequiresApi(Build.VERSION_CODES.O)
     fun getAdaptiveIcon(
         provider: ResourceProvider,
         code: WeatherCode,

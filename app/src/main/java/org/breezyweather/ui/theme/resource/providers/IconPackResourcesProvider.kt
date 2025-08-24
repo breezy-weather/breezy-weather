@@ -343,7 +343,7 @@ open class IconPackResourcesProvider(
         return mDefaultProvider.getMinimalXmlIcon(code, dayTime)
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun getMinimalIcon(code: WeatherCode?, dayTime: Boolean): Icon {
         try {
             if (mConfig.hasMinimalIcons) {

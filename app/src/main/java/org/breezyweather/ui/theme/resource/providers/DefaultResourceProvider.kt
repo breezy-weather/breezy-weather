@@ -179,7 +179,7 @@ class DefaultResourceProvider : ResourceProvider() {
         return getDrawable(getMiniXmlIconName(code, dayTime))!!
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun getMinimalIcon(code: WeatherCode?, dayTime: Boolean): Icon {
         return Objects.requireNonNull(
             Icon.createWithResource(

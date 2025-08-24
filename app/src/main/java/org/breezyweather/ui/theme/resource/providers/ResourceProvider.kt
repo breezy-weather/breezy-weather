@@ -50,7 +50,7 @@ abstract class ResourceProvider {
     abstract fun getWeatherAnimators(code: WeatherCode?, dayTime: Boolean): Array<Animator?>
 
     // minimal icon.
-    @RequiresApi(api = Build.VERSION_CODES.M)
+    @RequiresApi(Build.VERSION_CODES.M)
     abstract fun getMinimalIcon(code: WeatherCode?, dayTime: Boolean): Icon
     abstract fun getMinimalLightIcon(code: WeatherCode?, dayTime: Boolean): Drawable
     abstract fun getMinimalLightIconUri(code: WeatherCode?, dayTime: Boolean): Uri

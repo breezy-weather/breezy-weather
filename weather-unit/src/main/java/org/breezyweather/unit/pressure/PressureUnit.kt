@@ -19,12 +19,12 @@ package org.breezyweather.unit.pressure
 import android.content.Context
 import android.icu.util.MeasureUnit
 import android.os.Build
+import androidx.annotation.RequiresApi
 import org.breezyweather.unit.R
 import org.breezyweather.unit.WeatherUnit
 import org.breezyweather.unit.formatting.UnitDecimals
 import org.breezyweather.unit.formatting.UnitTranslation
 import org.breezyweather.unit.formatting.UnitWidth
-import org.breezyweather.unit.supportsMeasureUnit
 import org.breezyweather.unit.supportsMeasureUnitAtmosphere
 import java.util.Locale
 
@@ -33,8 +33,6 @@ enum class PressureUnit(
     override val displayName: UnitTranslation,
     override val nominative: UnitTranslation,
     override val per: UnitTranslation? = null,
-    override val measureUnit: MeasureUnit?,
-    override val perMeasureUnit: MeasureUnit? = null,
     val convertFromReference: (Double) -> Double,
     val convertToReference: (Double) -> Double,
     override val decimals: UnitDecimals,
@@ -51,7 +49,6 @@ enum class PressureUnit(
             short = R.string.pressure_pa_nominative_short,
             long = R.string.pressure_pa_nominative_long
         ),
-        measureUnit = null,
         convertFromReference = { valueInDefaultUnit -> valueInDefaultUnit },
         convertToReference = { valueInThisUnit -> valueInThisUnit },
         decimals = UnitDecimals(0),
@@ -67,7 +64,6 @@ enum class PressureUnit(
             short = R.string.pressure_hpa_nominative_short,
             long = R.string.pressure_hpa_nominative_long
         ),
-        measureUnit = if (supportsMeasureUnit()) MeasureUnit.HECTOPASCAL else null,
         convertFromReference = { valueInDefaultUnit -> valueInDefaultUnit.div(100.0) },
         convertToReference = { valueInThisUnit -> valueInThisUnit.times(100.0) },
         decimals = UnitDecimals(narrow = 0, short = 1, long = 2),
@@ -83,7 +79,6 @@ enum class PressureUnit(
             short = R.string.pressure_kpa_nominative_short,
             long = R.string.pressure_kpa_nominative_long
         ),
-        measureUnit = null,
         convertFromReference = { valueInDefaultUnit -> valueInDefaultUnit.div(1000.0) },
         convertToReference = { valueInThisUnit -> valueInThisUnit.times(1000.0) },
         decimals = UnitDecimals(narrow = 1, short = 2, long = 3),
@@ -99,7 +94,6 @@ enum class PressureUnit(
             short = R.string.pressure_mbar_nominative_short,
             long = R.string.pressure_mbar_nominative_long
         ),
-        measureUnit = if (supportsMeasureUnit()) MeasureUnit.MILLIBAR else null,
         convertFromReference = { valueInDefaultUnit -> valueInDefaultUnit.div(100.0) },
         convertToReference = { valueInThisUnit -> valueInThisUnit.times(100.0) },
         decimals = UnitDecimals(narrow = 0, short = 1, long = 2),
@@ -115,7 +109,6 @@ enum class PressureUnit(
             short = R.string.pressure_atm_nominative_short,
             long = R.string.pressure_atm_nominative_long
         ),
-        measureUnit = if (supportsMeasureUnitAtmosphere()) MeasureUnit.ATMOSPHERE else null,
         convertFromReference = { valueInDefaultUnit -> valueInDefaultUnit.div(101325.0) },
         convertToReference = { valueInThisUnit -> valueInThisUnit.times(101325.0) },
         decimals = UnitDecimals(narrow = 1, short = 2, long = 3),
@@ -131,7 +124,6 @@ enum class PressureUnit(
             short = R.string.pressure_mmhg_nominative_short,
             long = R.string.pressure_mmhg_nominative_long
         ),
-        measureUnit = if (supportsMeasureUnit()) MeasureUnit.MILLIMETER_OF_MERCURY else null,
         convertFromReference = { valueInDefaultUnit -> valueInDefaultUnit.times(760.0 / 101325.0) },
         convertToReference = { valueInThisUnit -> valueInThisUnit.times(101325.0 / 760.0) },
         decimals = UnitDecimals(narrow = 0, short = 1, long = 2),
@@ -147,13 +139,28 @@ enum class PressureUnit(
             short = R.string.pressure_inhg_nominative_short,
             long = R.string.pressure_inhg_nominative_long
         ),
-        measureUnit = if (supportsMeasureUnit()) MeasureUnit.INCH_HG else null,
         convertFromReference = { valueInDefaultUnit -> valueInDefaultUnit.times(760.0 / 101325.0).div(25.4) },
         convertToReference = { valueInThisUnit -> valueInThisUnit.times(25.4).times(101325.0 / 760.0) },
         decimals = UnitDecimals(narrow = 1, short = 2, long = 3),
         chartStep = 0.5
     ),
     ;
+
+    @RequiresApi(Build.VERSION_CODES.N)
+    override fun getMeasureUnit(): MeasureUnit? {
+        return when (this) {
+            PASCAL -> null
+            HECTOPASCAL -> MeasureUnit.HECTOPASCAL
+            KILOPASCAL -> null
+            MILLIBAR -> MeasureUnit.MILLIBAR
+            ATMOSPHERE -> if (supportsMeasureUnitAtmosphere()) MeasureUnit.ATMOSPHERE else null
+            MILLIMETER_OF_MERCURY -> MeasureUnit.MILLIMETER_OF_MERCURY
+            INCH_OF_MERCURY -> MeasureUnit.INCH_HG
+        }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.N)
+    override fun getPerMeasureUnit(): MeasureUnit? = null
 
     /**
      * Override to:

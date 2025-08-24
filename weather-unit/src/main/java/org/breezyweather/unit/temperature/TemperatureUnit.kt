@@ -18,13 +18,14 @@ package org.breezyweather.unit.temperature
 
 import android.content.Context
 import android.icu.util.MeasureUnit
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.core.text.util.LocalePreferences
 import org.breezyweather.unit.R
 import org.breezyweather.unit.WeatherUnit
 import org.breezyweather.unit.formatting.UnitDecimals
 import org.breezyweather.unit.formatting.UnitTranslation
 import org.breezyweather.unit.formatting.UnitWidth
-import org.breezyweather.unit.supportsMeasureUnit
 import java.util.Locale
 
 enum class TemperatureUnit(
@@ -32,8 +33,6 @@ enum class TemperatureUnit(
     override val displayName: UnitTranslation,
     override val nominative: UnitTranslation,
     override val per: UnitTranslation? = null,
-    override val measureUnit: MeasureUnit?,
-    override val perMeasureUnit: MeasureUnit? = null,
     val convertFromReference: (Double) -> Double,
     val convertToReference: (Double) -> Double,
     val convertDeviationFromReference: (Double) -> Double,
@@ -53,7 +52,6 @@ enum class TemperatureUnit(
             short = R.string.temperature_dc_nominative_short,
             long = R.string.temperature_dc_nominative_long
         ),
-        measureUnit = null,
         convertFromReference = { valueInDefaultUnit -> valueInDefaultUnit },
         convertToReference = { valueInThisUnit -> valueInThisUnit },
         convertDeviationFromReference = { valueInDefaultUnit -> valueInDefaultUnit },
@@ -72,7 +70,6 @@ enum class TemperatureUnit(
             short = R.string.temperature_c_nominative_short,
             long = R.string.temperature_c_nominative_long
         ),
-        measureUnit = if (supportsMeasureUnit()) MeasureUnit.CELSIUS else null,
         convertFromReference = { valueInDefaultUnit -> valueInDefaultUnit.div(10.0) },
         convertToReference = { valueInThisUnit -> valueInThisUnit.times(10.0) },
         convertDeviationFromReference = { valueInDefaultUnit -> valueInDefaultUnit.div(10.0) },
@@ -91,7 +88,6 @@ enum class TemperatureUnit(
             short = R.string.temperature_f_nominative_short,
             long = R.string.temperature_f_nominative_long
         ),
-        measureUnit = if (supportsMeasureUnit()) MeasureUnit.FAHRENHEIT else null,
         convertFromReference = { valueInDefaultUnit -> 9.0.div(5.0).times(valueInDefaultUnit.div(10.0)) + 32 },
         convertToReference = { valueInThisUnit -> 5.0.div(9.0).times(valueInThisUnit - 32.0).times(10.0) },
         convertDeviationFromReference = { valueInDefaultUnit -> 9.0.div(5.0).times(valueInDefaultUnit.div(10.0)) },
@@ -110,7 +106,6 @@ enum class TemperatureUnit(
             short = R.string.temperature_k_nominative_short,
             long = R.string.temperature_k_nominative_long
         ),
-        measureUnit = if (supportsMeasureUnit()) MeasureUnit.KELVIN else null,
         convertFromReference = { valueInDefaultUnit -> 273.15 + valueInDefaultUnit.div(10.0) },
         convertToReference = { valueInThisUnit -> (valueInThisUnit - 273.15).times(10.0) },
         convertDeviationFromReference = { valueInDefaultUnit -> valueInDefaultUnit.div(10.0) },
@@ -119,6 +114,19 @@ enum class TemperatureUnit(
         chartStep = 5.0
     ),
     ;
+
+    @RequiresApi(Build.VERSION_CODES.N)
+    override fun getMeasureUnit(): MeasureUnit? {
+        return when (this) {
+            DECI_CELSIUS -> null
+            CELSIUS -> MeasureUnit.CELSIUS
+            FAHRENHEIT -> MeasureUnit.FAHRENHEIT
+            KELVIN -> MeasureUnit.KELVIN
+        }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.N)
+    override fun getPerMeasureUnit(): MeasureUnit? = null
 
     /**
      * Override to:

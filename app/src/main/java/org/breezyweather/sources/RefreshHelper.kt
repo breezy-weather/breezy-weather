@@ -1250,7 +1250,7 @@ class RefreshHelper @Inject constructor(
         }
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N_MR1)
+    @RequiresApi(Build.VERSION_CODES.N_MR1)
     suspend fun refreshShortcuts(context: Context, locationList: List<Location>) {
         val shortcutManager = context.shortcutManager ?: return
         val provider = ResourcesProviderFactory.newInstance

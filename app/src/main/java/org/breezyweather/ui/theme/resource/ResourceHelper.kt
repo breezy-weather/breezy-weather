@@ -121,7 +121,7 @@ object ResourceHelper {
         return provider.getMinimalXmlIcon(code, daytime)
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
+    @RequiresApi(Build.VERSION_CODES.M)
     fun getMinimalIcon(
         provider: ResourceProvider,
         code: WeatherCode,

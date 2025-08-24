@@ -19,6 +19,8 @@ package org.breezyweather.unit
 import android.content.Context
 import android.icu.text.MeasureFormat
 import android.icu.util.MeasureUnit
+import android.os.Build
+import androidx.annotation.RequiresApi
 import org.breezyweather.unit.formatting.UnitDecimals
 import org.breezyweather.unit.formatting.UnitTranslation
 import org.breezyweather.unit.formatting.UnitWidth
@@ -51,12 +53,14 @@ interface WeatherUnit {
     /**
      * [MeasureUnit] used with ICU formatting for compatible Android devices
      */
-    val measureUnit: MeasureUnit?
+    @RequiresApi(Build.VERSION_CODES.N)
+    fun getMeasureUnit(): MeasureUnit?
 
     /**
      * [MeasureUnit] used with ICU formatting for compatible Android devices
      */
-    val perMeasureUnit: MeasureUnit?
+    @RequiresApi(Build.VERSION_CODES.N)
+    fun getPerMeasureUnit(): MeasureUnit?
 
     /**
      * How many decimals should be used when displaying a number in this unit
@@ -72,13 +76,13 @@ interface WeatherUnit {
     ): String {
         if (supportsUnitDisplayName() &&
             useMeasureFormat &&
-            measureUnit != null
+            getMeasureUnit() != null
         ) {
-            if (perMeasureUnit == null) {
+            if (getPerMeasureUnit() == null) {
                 return MeasureFormat
                     .getInstance(locale, width.measureFormatWidth)
-                    .getUnitDisplayName(measureUnit)
-            } else if (perMeasureUnit != null && per != null) {
+                    .getUnitDisplayName(getMeasureUnit())
+            } else if (getPerMeasureUnit() != null && per != null) {
                 return context.getString(
                     when (width) {
                         UnitWidth.SHORT -> per!!.short
@@ -87,7 +91,7 @@ interface WeatherUnit {
                     },
                     MeasureFormat
                         .getInstance(locale, width.measureFormatWidth)
-                        .getUnitDisplayName(measureUnit)
+                        .getUnitDisplayName(getMeasureUnit())
                 )
             }
         }
@@ -150,35 +154,33 @@ interface WeatherUnit {
         useNumberFormatter: Boolean = true,
         useMeasureFormat: Boolean = true,
     ): String {
-        if (measureUnit != null &&
-            (perMeasureUnit == null || supportsMeasureFormat()) &&
+        if (supportsMeasureFormat() &&
+            getMeasureUnit() != null &&
+            (getPerMeasureUnit() == null || supportsMeasureFormat()) &&
             (useNumberFormatter || useMeasureFormat)
         ) {
-            // LogHelper.log(msg = "Formatting with ICU ${enum.id}: ${enum.measureUnit} per ${enum.perMeasureUnit}")
-
             if (supportsNumberFormatter() && useNumberFormatter) {
-                return measureUnit!!.formatWithNumberFormatter(
+                return getMeasureUnit()!!.formatWithNumberFormatter(
                     locale = locale,
                     value = value,
-                    perUnit = perMeasureUnit,
+                    perUnit = getPerMeasureUnit(),
                     precision = getPrecision(valueWidth),
                     numberFormatterWidth = unitWidth.numberFormatterWidth!!,
                     showSign = showSign
                 )
             }
 
-            if (!showSign && (perMeasureUnit == null || supportsMeasureFormatPerUnit())) {
-                return measureUnit!!.formatWithMeasureFormat(
+            if (!showSign && (getPerMeasureUnit() == null || supportsMeasureFormatPerUnit())) {
+                return getMeasureUnit()!!.formatWithMeasureFormat(
                     locale = locale,
                     value = value,
-                    perUnit = perMeasureUnit,
+                    perUnit = getPerMeasureUnit(),
                     precision = getPrecision(valueWidth),
                     measureFormatWidth = unitWidth.measureFormatWidth!!
                 )
             }
         }
 
-        // LogHelper.log(msg = "Not formatting with ICU ${enum.id} in ${context.currentLocale}")
         return formatWithAndroidTranslations(
             context = context,
             value = value,

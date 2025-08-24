@@ -44,7 +44,7 @@ import kotlin.coroutines.CoroutineContext
  * TODO: Memory leak
  */
 @AndroidEntryPoint
-@RequiresApi(api = Build.VERSION_CODES.N)
+@RequiresApi(Build.VERSION_CODES.N)
 class TileService : TileService(), CoroutineScope {
 
     override val coroutineContext: CoroutineContext

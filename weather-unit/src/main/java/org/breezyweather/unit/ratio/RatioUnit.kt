@@ -19,6 +19,8 @@ package org.breezyweather.unit.ratio
 import android.content.Context
 import android.icu.text.NumberFormat
 import android.icu.util.MeasureUnit
+import android.os.Build
+import androidx.annotation.RequiresApi
 import org.breezyweather.unit.R
 import org.breezyweather.unit.WeatherUnit
 import org.breezyweather.unit.formatting.UnitDecimals
@@ -37,8 +39,6 @@ enum class RatioUnit(
     override val displayName: UnitTranslation,
     override val nominative: UnitTranslation,
     override val per: UnitTranslation? = null,
-    override val measureUnit: MeasureUnit?,
-    override val perMeasureUnit: MeasureUnit? = null,
     val convertFromReference: (Double) -> Double,
     val convertToReference: (Double) -> Double,
     override val decimals: UnitDecimals,
@@ -49,7 +49,6 @@ enum class RatioUnit(
         id = "permille",
         displayName = UnitTranslation(R.string.ratio_permille_display_name_short),
         nominative = UnitTranslation(R.string.ratio_permille_nominative_short),
-        measureUnit = if (supportsMeasureUnitPermille()) MeasureUnit.PERMILLE else null,
         convertFromReference = { valueInDefaultUnit -> valueInDefaultUnit },
         convertToReference = { valueInThisUnit -> valueInThisUnit },
         decimals = UnitDecimals(0),
@@ -59,7 +58,6 @@ enum class RatioUnit(
         id = "percent",
         displayName = UnitTranslation(R.string.ratio_percent_display_name_short),
         nominative = UnitTranslation(R.string.ratio_percent_nominative_short),
-        measureUnit = if (supportsMeasureUnitPercent()) MeasureUnit.PERCENT else null,
         convertFromReference = { valueInDefaultUnit -> valueInDefaultUnit.div(10.0) },
         convertToReference = { valueInThisUnit -> valueInThisUnit.times(10.0) },
         decimals = UnitDecimals(narrow = 0, short = 1, long = 1),
@@ -69,13 +67,24 @@ enum class RatioUnit(
         id = "fraction",
         displayName = UnitTranslation(R.string.ratio_fraction_display_name_short),
         nominative = UnitTranslation(R.string.ratio_fraction_nominative_short),
-        measureUnit = null,
         convertFromReference = { valueInDefaultUnit -> valueInDefaultUnit.div(1000.0) },
         convertToReference = { valueInThisUnit -> valueInThisUnit.times(1000.0) },
         decimals = UnitDecimals(narrow = 1, short = 2, long = 3),
         chartStep = 0.2
     ),
     ;
+
+    @RequiresApi(Build.VERSION_CODES.N)
+    override fun getMeasureUnit(): MeasureUnit? {
+        return when (this) {
+            PERMILLE -> if (supportsMeasureUnitPermille()) MeasureUnit.PERMILLE else null
+            PERCENT -> if (supportsMeasureUnitPercent()) MeasureUnit.PERCENT else null
+            FRACTION -> null
+        }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.N)
+    override fun getPerMeasureUnit(): MeasureUnit? = null
 
     /**
      * @param useMeasureFormat ignored, never supported
@@ -101,7 +110,7 @@ enum class RatioUnit(
         }
 
         if (supportsNumberFormatter() && useNumberFormatter) {
-            return measureUnit!!.formatWithNumberFormatter(
+            return getMeasureUnit()!!.formatWithNumberFormatter(
                 locale = locale,
                 value = value,
                 perUnit = null,

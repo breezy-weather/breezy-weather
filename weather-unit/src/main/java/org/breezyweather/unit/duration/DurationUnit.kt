@@ -29,7 +29,7 @@ import kotlin.time.DurationUnit
  * Extending it with what we need
  */
 
-@RequiresApi(api = Build.VERSION_CODES.N)
+@RequiresApi(Build.VERSION_CODES.N)
 fun DurationUnit.toMeasureUnit(): MeasureUnit = when (this) {
     DurationUnit.NANOSECONDS -> MeasureUnit.NANOSECOND
     DurationUnit.MICROSECONDS -> MeasureUnit.MICROSECOND

@@ -18,12 +18,18 @@ package org.breezyweather.unit.precipitation
 
 import android.content.Context
 import android.icu.util.MeasureUnit
+import android.os.Build
+import androidx.annotation.RequiresApi
 import org.breezyweather.unit.R
 import org.breezyweather.unit.WeatherUnit
 import org.breezyweather.unit.formatting.UnitDecimals
 import org.breezyweather.unit.formatting.UnitTranslation
 import org.breezyweather.unit.formatting.UnitWidth
-import org.breezyweather.unit.supportsMeasureUnit
+import org.breezyweather.unit.formatting.formatWithMeasureFormat
+import org.breezyweather.unit.formatting.formatWithNumberFormatter
+import org.breezyweather.unit.supportsMeasureFormat
+import org.breezyweather.unit.supportsMeasureFormatPerUnit
+import org.breezyweather.unit.supportsNumberFormatter
 import java.util.Locale
 
 enum class PrecipitationUnit(
@@ -31,8 +37,6 @@ enum class PrecipitationUnit(
     override val displayName: UnitTranslation,
     override val nominative: UnitTranslation,
     override val per: UnitTranslation? = null,
-    override val measureUnit: MeasureUnit?,
-    override val perMeasureUnit: MeasureUnit? = null,
     val convertFromReference: (Double) -> Double,
     val convertToReference: (Double) -> Double,
     override val decimals: UnitDecimals,
@@ -49,7 +53,6 @@ enum class PrecipitationUnit(
             short = R.string.length_microm_nominative_short,
             long = R.string.length_microm_nominative_long
         ),
-        measureUnit = if (supportsMeasureUnit()) MeasureUnit.MICROMETER else null,
         convertFromReference = { valueInDefaultUnit -> valueInDefaultUnit },
         convertToReference = { valueInThisUnit -> valueInThisUnit },
         decimals = UnitDecimals(short = 0, long = 1), // Used only by PM2.5 formatting
@@ -65,7 +68,6 @@ enum class PrecipitationUnit(
             short = R.string.length_mm_nominative_short,
             long = R.string.length_mm_nominative_long
         ),
-        measureUnit = if (supportsMeasureUnit()) MeasureUnit.MILLIMETER else null,
         convertFromReference = { valueInDefaultUnit -> valueInDefaultUnit.div(1000.0) },
         convertToReference = { valueInThisUnit -> valueInThisUnit.times(1000.0) },
         decimals = UnitDecimals(narrow = 0, short = 1, long = 2),
@@ -81,7 +83,6 @@ enum class PrecipitationUnit(
             short = R.string.length_cm_nominative_short,
             long = R.string.length_cm_nominative_long
         ),
-        measureUnit = if (supportsMeasureUnit()) MeasureUnit.CENTIMETER else null,
         convertFromReference = { valueInDefaultUnit -> valueInDefaultUnit.div(10000.0) },
         convertToReference = { valueInThisUnit -> valueInThisUnit.times(10000.0) },
         decimals = UnitDecimals(narrow = 1, short = 2, long = 3),
@@ -97,7 +98,6 @@ enum class PrecipitationUnit(
             short = R.string.length_in_nominative_short,
             long = R.string.length_in_nominative_long
         ),
-        measureUnit = if (supportsMeasureUnit()) MeasureUnit.INCH else null,
         convertFromReference = { valueInDefaultUnit -> valueInDefaultUnit.div(25400.0) },
         convertToReference = { valueInThisUnit -> valueInThisUnit.times(25400.0) },
         decimals = UnitDecimals(narrow = 1, short = 2, long = 3),
@@ -117,14 +117,31 @@ enum class PrecipitationUnit(
             short = R.string.area_m2_per_short,
             long = R.string.area_m2_per_long
         ),
-        measureUnit = if (supportsMeasureUnit()) MeasureUnit.LITER else null,
-        perMeasureUnit = if (supportsMeasureUnit()) MeasureUnit.SQUARE_METER else null,
         convertFromReference = { valueInDefaultUnit -> valueInDefaultUnit.div(1000.0) },
         convertToReference = { valueInThisUnit -> valueInThisUnit.times(1000.0) },
         decimals = UnitDecimals(narrow = 0, short = 1, long = 2),
         chartStep = 5.0
     ),
     ;
+
+    @RequiresApi(Build.VERSION_CODES.N)
+    override fun getMeasureUnit(): MeasureUnit? {
+        return when (this) {
+            MICROMETER -> MeasureUnit.MICROMETER
+            MILLIMETER -> MeasureUnit.MILLIMETER
+            CENTIMETER -> MeasureUnit.CENTIMETER
+            INCH -> MeasureUnit.INCH
+            LITER_PER_SQUARE_METER -> MeasureUnit.LITER
+        }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.N)
+    override fun getPerMeasureUnit(): MeasureUnit? {
+        return when (this) {
+            LITER_PER_SQUARE_METER -> MeasureUnit.SQUARE_METER
+            else -> null
+        }
+    }
 
     /**
      * Override to:
@@ -177,6 +194,100 @@ enum class PrecipitationUnit(
             showSign = showSign,
             useNumberFormatter = useNumberFormatter,
             useMeasureFormat = useNumberFormatter
+        )
+    }
+
+    /**
+     * Special case of formatting:
+     * mm/h instead of just mm
+     */
+    fun formatIntensity(
+        context: Context,
+        value: Number,
+        valueWidth: UnitWidth = UnitWidth.SHORT,
+        unitWidth: UnitWidth = UnitWidth.SHORT,
+        locale: Locale = Locale.getDefault(),
+        useNumberFormatter: Boolean = true,
+        useMeasureFormat: Boolean = true,
+    ): String {
+        if (supportsMeasureFormat() &&
+            getMeasureUnit() != null &&
+            getPerMeasureUnit() == null && // Liter per square meter would have 2 “per”, so not supported!
+            supportsMeasureFormatPerUnit() &&
+            (useNumberFormatter || useMeasureFormat)
+        ) {
+            val correctedLocale = locale.let {
+                /**
+                 * Use English units with Traditional Chinese
+                 *
+                 * Taiwan guidelines: https://www.bsmi.gov.tw/wSite/public/Attachment/f1736149048776.pdf
+                 * Ongoing issue: https://unicode-org.atlassian.net/jira/software/c/projects/CLDR/issues/CLDR-10604
+                 */
+                if (it.language.equals("zh", ignoreCase = true) &&
+                    arrayOf("TW", "HK", "MO").any { c -> it.country.equals(c, ignoreCase = true) } &&
+                    unitWidth != UnitWidth.LONG
+                ) {
+                    Locale.Builder().setLanguage("en").setRegion("001").build()
+                } else {
+                    it
+                }
+            }
+
+            return if (supportsNumberFormatter() && useNumberFormatter) {
+                getMeasureUnit()!!.formatWithNumberFormatter(
+                    locale = correctedLocale,
+                    value = value,
+                    perUnit = MeasureUnit.HOUR,
+                    precision = getPrecision(valueWidth),
+                    numberFormatterWidth = unitWidth.numberFormatterWidth!!
+                )
+            } else {
+                getMeasureUnit()!!.formatWithMeasureFormat(
+                    locale = correctedLocale,
+                    value = value,
+                    perUnit = MeasureUnit.HOUR,
+                    precision = getPrecision(valueWidth),
+                    measureFormatWidth = unitWidth.measureFormatWidth!!
+                )
+            }
+        }
+
+        // LogHelper.log(msg = "Not formatting with ICU ${enum.id} in ${context.currentLocale}")
+        return formatIntensityWithAndroidTranslations(
+            context = context,
+            value = value,
+            valueWidth = valueWidth,
+            unitWidth = unitWidth,
+            locale = locale,
+            useNumberFormatter = useNumberFormatter,
+            useMeasureFormat = useMeasureFormat
+        )
+    }
+
+    fun formatIntensityWithAndroidTranslations(
+        context: Context,
+        value: Number,
+        valueWidth: UnitWidth = UnitWidth.SHORT,
+        unitWidth: UnitWidth = UnitWidth.SHORT,
+        locale: Locale = Locale.getDefault(),
+        useNumberFormatter: Boolean = true,
+        useMeasureFormat: Boolean = true,
+    ): String {
+        return context.getString(
+            when (unitWidth) {
+                UnitWidth.SHORT -> R.string.duration_hr_per_short
+                UnitWidth.LONG -> R.string.duration_hr_per_long
+                UnitWidth.NARROW -> R.string.duration_hr_per_short
+            },
+            formatWithAndroidTranslations(
+                context = context,
+                value = value,
+                valueWidth = valueWidth,
+                unitWidth = unitWidth,
+                locale = locale,
+                useNumberFormatter = useNumberFormatter,
+                useMeasureFormat = useMeasureFormat
+            )
         )
     }
 

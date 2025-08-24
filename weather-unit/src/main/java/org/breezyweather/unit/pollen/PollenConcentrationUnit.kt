@@ -18,6 +18,8 @@ package org.breezyweather.unit.pollen
 
 import android.content.Context
 import android.icu.util.MeasureUnit
+import android.os.Build
+import androidx.annotation.RequiresApi
 import org.breezyweather.unit.R
 import org.breezyweather.unit.WeatherUnit
 import org.breezyweather.unit.formatting.UnitDecimals
@@ -30,8 +32,6 @@ enum class PollenConcentrationUnit(
     override val displayName: UnitTranslation,
     override val nominative: UnitTranslation,
     override val per: UnitTranslation? = null,
-    override val measureUnit: MeasureUnit? = null,
-    override val perMeasureUnit: MeasureUnit? = null,
     override val decimals: UnitDecimals,
 ) : WeatherUnit {
 
@@ -48,6 +48,12 @@ enum class PollenConcentrationUnit(
         decimals = UnitDecimals(0)
     ),
     ;
+
+    @RequiresApi(Build.VERSION_CODES.N)
+    override fun getMeasureUnit(): MeasureUnit? = null
+
+    @RequiresApi(Build.VERSION_CODES.N)
+    override fun getPerMeasureUnit(): MeasureUnit? = null
 
     override fun getDisplayName(
         context: Context,

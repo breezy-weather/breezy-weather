@@ -18,12 +18,13 @@ package org.breezyweather.unit.distance
 
 import android.content.Context
 import android.icu.util.MeasureUnit
+import android.os.Build
+import androidx.annotation.RequiresApi
 import org.breezyweather.unit.R
 import org.breezyweather.unit.WeatherUnit
 import org.breezyweather.unit.formatting.UnitDecimals
 import org.breezyweather.unit.formatting.UnitTranslation
 import org.breezyweather.unit.formatting.UnitWidth
-import org.breezyweather.unit.supportsMeasureUnit
 import java.util.Locale
 
 enum class DistanceUnit(
@@ -31,8 +32,6 @@ enum class DistanceUnit(
     override val displayName: UnitTranslation,
     override val nominative: UnitTranslation,
     override val per: UnitTranslation? = null,
-    override val measureUnit: MeasureUnit?,
-    override val perMeasureUnit: MeasureUnit? = null,
     val convertFromReference: (Double) -> Double,
     val convertToReference: (Double) -> Double,
     override val decimals: UnitDecimals,
@@ -49,7 +48,6 @@ enum class DistanceUnit(
             short = R.string.length_m_nominative_short,
             long = R.string.length_m_nominative_long
         ),
-        measureUnit = if (supportsMeasureUnit()) MeasureUnit.METER else null,
         convertFromReference = { valueInDefaultUnit -> valueInDefaultUnit },
         convertToReference = { valueInThisUnit -> valueInThisUnit },
         decimals = UnitDecimals(0),
@@ -65,7 +63,6 @@ enum class DistanceUnit(
             short = R.string.length_km_nominative_short,
             long = R.string.length_km_nominative_long
         ),
-        measureUnit = if (supportsMeasureUnit()) MeasureUnit.KILOMETER else null,
         convertFromReference = { valueInDefaultUnit -> valueInDefaultUnit.div(1000.0) },
         convertToReference = { valueInThisUnit -> valueInThisUnit.times(1000.0) },
         decimals = UnitDecimals(narrow = 0, short = 1, long = 2),
@@ -81,7 +78,6 @@ enum class DistanceUnit(
             short = R.string.length_mi_nominative_short,
             long = R.string.length_mi_nominative_long
         ),
-        measureUnit = if (supportsMeasureUnit()) MeasureUnit.MILE else null,
         convertFromReference = { valueInDefaultUnit -> valueInDefaultUnit.div(1609.344) },
         convertToReference = { valueInThisUnit -> valueInThisUnit.times(1609.344) },
         decimals = UnitDecimals(narrow = 0, short = 1, long = 2),
@@ -105,7 +101,6 @@ enum class DistanceUnit(
             short = R.string.length_nmi_nominative_short,
             long = R.string.length_nmi_nominative_long
         ),
-        measureUnit = if (supportsMeasureUnit()) MeasureUnit.NAUTICAL_MILE else null,
         convertFromReference = { valueInDefaultUnit -> valueInDefaultUnit.div(1852.0) },
         convertToReference = { valueInThisUnit -> valueInThisUnit.times(1852.0) },
         decimals = UnitDecimals(narrow = 0, short = 1, long = 2),
@@ -129,13 +124,26 @@ enum class DistanceUnit(
             short = R.string.length_ft_nominative_short,
             long = R.string.length_ft_nominative_long
         ),
-        measureUnit = if (supportsMeasureUnit()) MeasureUnit.FOOT else null,
         convertFromReference = { valueInDefaultUnit -> valueInDefaultUnit.times(3.28084) },
         convertToReference = { valueInThisUnit -> valueInThisUnit.div(3.28084) },
         decimals = UnitDecimals(0),
         chartStep = { maxY -> if (maxY < 150000) 25000.0 else 50000.0 }
     ),
     ;
+
+    @RequiresApi(Build.VERSION_CODES.N)
+    override fun getMeasureUnit(): MeasureUnit? {
+        return when (this) {
+            METER -> MeasureUnit.METER
+            KILOMETER -> MeasureUnit.KILOMETER
+            MILE -> MeasureUnit.MILE
+            NAUTICAL_MILE -> MeasureUnit.NAUTICAL_MILE
+            FOOT -> MeasureUnit.FOOT
+        }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.N)
+    override fun getPerMeasureUnit(): MeasureUnit? = null
 
     /**
      * Override to:

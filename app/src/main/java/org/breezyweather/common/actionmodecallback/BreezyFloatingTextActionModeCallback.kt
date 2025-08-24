@@ -24,7 +24,7 @@ import android.view.MenuItem
 import android.view.View
 import androidx.annotation.RequiresApi
 
-@RequiresApi(api = Build.VERSION_CODES.M)
+@RequiresApi(Build.VERSION_CODES.M)
 internal class BreezyFloatingTextActionModeCallback(
     private val callback: BreezyTextActionModeCallback,
 ) : ActionMode.Callback2() {

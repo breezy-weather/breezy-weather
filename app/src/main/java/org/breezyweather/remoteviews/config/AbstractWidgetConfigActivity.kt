@@ -677,7 +677,7 @@ abstract class AbstractWidgetConfigActivity : BreezyActivity() {
      * @return true : already got permissions.
      * false: request permissions.
      */
-    @RequiresApi(api = Build.VERSION_CODES.M)
+    @RequiresApi(Build.VERSION_CODES.M)
     private fun checkPermissions(requestCode: Int): Boolean {
         if (!hasPermission(Manifest.permission.READ_EXTERNAL_STORAGE)) {
             requestPermissions(arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), requestCode)

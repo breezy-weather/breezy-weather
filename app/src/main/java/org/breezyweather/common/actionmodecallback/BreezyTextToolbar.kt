@@ -155,9 +155,9 @@ internal class BreezyTextToolbar(
  * compiled. It is expected that this class will soft-fail verification, but the classes which use
  * this method will pass.
  */
-@RequiresApi(api = Build.VERSION_CODES.M)
+@RequiresApi(Build.VERSION_CODES.M)
 internal object TextToolbarHelperMethods {
-    @RequiresApi(api = Build.VERSION_CODES.M)
+    @RequiresApi(Build.VERSION_CODES.M)
     fun startActionMode(
         view: View,
         actionModeCallback: ActionMode.Callback,
@@ -166,7 +166,7 @@ internal object TextToolbarHelperMethods {
         return view.startActionMode(actionModeCallback, type)
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
+    @RequiresApi(Build.VERSION_CODES.M)
     fun invalidateContentRect(actionMode: ActionMode) {
         actionMode.invalidateContentRect()
     }

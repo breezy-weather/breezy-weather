@@ -18,12 +18,13 @@ package org.breezyweather.unit.pollutant
 
 import android.content.Context
 import android.icu.util.MeasureUnit
+import android.os.Build
+import androidx.annotation.RequiresApi
 import org.breezyweather.unit.R
 import org.breezyweather.unit.WeatherUnit
 import org.breezyweather.unit.formatting.UnitDecimals
 import org.breezyweather.unit.formatting.UnitTranslation
 import org.breezyweather.unit.formatting.UnitWidth
-import org.breezyweather.unit.supportsMeasureUnit
 import java.util.Locale
 
 enum class PollutantConcentrationUnit(
@@ -34,8 +35,6 @@ enum class PollutantConcentrationUnit(
         short = R.string.volume_m3_per_short,
         long = R.string.volume_m3_per_long
     ),
-    override val measureUnit: MeasureUnit?,
-    override val perMeasureUnit: MeasureUnit? = if (supportsMeasureUnit()) MeasureUnit.CUBIC_METER else null,
     val convertFromReference: (Double) -> Double,
     val convertToReference: (Double) -> Double,
     override val decimals: UnitDecimals,
@@ -52,7 +51,6 @@ enum class PollutantConcentrationUnit(
             short = R.string.weight_microg_nominative_short,
             long = R.string.weight_microg_nominative_long
         ),
-        measureUnit = if (supportsMeasureUnit()) MeasureUnit.MICROGRAM else null,
         convertFromReference = { valueInDefaultUnit -> valueInDefaultUnit },
         convertToReference = { valueInThisUnit -> valueInThisUnit },
         decimals = UnitDecimals(0),
@@ -68,13 +66,25 @@ enum class PollutantConcentrationUnit(
             short = R.string.weight_mg_nominative_short,
             long = R.string.weight_mg_nominative_long
         ),
-        measureUnit = if (supportsMeasureUnit()) MeasureUnit.MILLIGRAM else null,
         convertFromReference = { valueInDefaultUnit -> valueInDefaultUnit.div(1000.0) },
         convertToReference = { valueInThisUnit -> valueInThisUnit.times(1000.0) },
         decimals = UnitDecimals(short = 0, long = 1),
         chartStep = 15.0 // TODO
     ),
     ;
+
+    @RequiresApi(Build.VERSION_CODES.N)
+    override fun getMeasureUnit(): MeasureUnit? {
+        return when (this) {
+            MICROGRAM_PER_CUBIC_METER -> MeasureUnit.MICROGRAM
+            MILLIGRAM_PER_CUBIC_METER -> MeasureUnit.MILLIGRAM
+        }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.N)
+    override fun getPerMeasureUnit(): MeasureUnit? {
+        return MeasureUnit.CUBIC_METER
+    }
 
     /**
      * Override to:

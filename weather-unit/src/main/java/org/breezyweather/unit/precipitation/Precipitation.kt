@@ -1,19 +1,13 @@
 package org.breezyweather.unit.precipitation
 
 import android.content.Context
-import android.icu.util.MeasureUnit
-import org.breezyweather.unit.R
 import org.breezyweather.unit.WeatherValue
 import org.breezyweather.unit.formatting.UnitDecimals.Companion.formatToExactDecimals
 import org.breezyweather.unit.formatting.UnitWidth
-import org.breezyweather.unit.formatting.formatWithMeasureFormat
-import org.breezyweather.unit.formatting.formatWithNumberFormatter
 import org.breezyweather.unit.precipitation.Precipitation.Companion.centimeters
 import org.breezyweather.unit.precipitation.Precipitation.Companion.inches
 import org.breezyweather.unit.precipitation.Precipitation.Companion.litersPerSquareMeter
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
-import org.breezyweather.unit.supportsMeasureFormatPerUnit
-import org.breezyweather.unit.supportsNumberFormatter
 import java.util.Locale
 import kotlin.math.roundToLong
 
@@ -218,52 +212,9 @@ value class Precipitation internal constructor(
         useNumberFormatter: Boolean = true,
         useMeasureFormat: Boolean = true,
     ): String {
-        if (unit.measureUnit != null &&
-            unit.perMeasureUnit == null && // Liter per square meter would have 2 “per”, so not supported!
-            supportsMeasureFormatPerUnit() &&
-            (useNumberFormatter || useMeasureFormat)
-        ) {
-            val convertedValue = toDouble(unit)
-            val correctedLocale = locale.let {
-                /**
-                 * Use English units with Traditional Chinese
-                 *
-                 * Taiwan guidelines: https://www.bsmi.gov.tw/wSite/public/Attachment/f1736149048776.pdf
-                 * Ongoing issue: https://unicode-org.atlassian.net/jira/software/c/projects/CLDR/issues/CLDR-10604
-                 */
-                if (it.language.equals("zh", ignoreCase = true) &&
-                    arrayOf("TW", "HK", "MO").any { c -> it.country.equals(c, ignoreCase = true) } &&
-                    unitWidth != UnitWidth.LONG
-                ) {
-                    Locale.Builder().setLanguage("en").setRegion("001").build()
-                } else {
-                    it
-                }
-            }
-
-            return if (supportsNumberFormatter() && useNumberFormatter) {
-                unit.measureUnit.formatWithNumberFormatter(
-                    locale = correctedLocale,
-                    value = convertedValue,
-                    perUnit = MeasureUnit.HOUR,
-                    precision = unit.getPrecision(valueWidth),
-                    numberFormatterWidth = unitWidth.numberFormatterWidth!!
-                )
-            } else {
-                unit.measureUnit.formatWithMeasureFormat(
-                    locale = correctedLocale,
-                    value = convertedValue,
-                    perUnit = MeasureUnit.HOUR,
-                    precision = unit.getPrecision(valueWidth),
-                    measureFormatWidth = unitWidth.measureFormatWidth!!
-                )
-            }
-        }
-
-        // LogHelper.log(msg = "Not formatting with ICU ${enum.id} in ${context.currentLocale}")
-        return formatIntensityWithAndroidTranslations(
+        return unit.format(
             context = context,
-            unit = unit,
+            value = toDouble(unit),
             valueWidth = valueWidth,
             unitWidth = unitWidth,
             locale = locale,
@@ -281,23 +232,14 @@ value class Precipitation internal constructor(
         useNumberFormatter: Boolean = true,
         useMeasureFormat: Boolean = true,
     ): String {
-        val convertedValue = toDouble(unit)
-        return context.getString(
-            when (unitWidth) {
-                UnitWidth.SHORT -> R.string.duration_hr_per_short
-                UnitWidth.LONG -> R.string.duration_hr_per_long
-                UnitWidth.NARROW -> R.string.duration_hr_per_short
-            },
-            formatWithAndroidTranslations(
-                context = context,
-                unit = unit,
-                value = convertedValue,
-                valueWidth = valueWidth,
-                unitWidth = unitWidth,
-                locale = locale,
-                useNumberFormatter = useNumberFormatter,
-                useMeasureFormat = useMeasureFormat
-            )
+        return unit.formatWithAndroidTranslations(
+            context = context,
+            value = value,
+            valueWidth = valueWidth,
+            unitWidth = unitWidth,
+            locale = locale,
+            useNumberFormatter = useNumberFormatter,
+            useMeasureFormat = useMeasureFormat
         )
     }
 }

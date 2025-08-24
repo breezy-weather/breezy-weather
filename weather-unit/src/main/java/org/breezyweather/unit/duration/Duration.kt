@@ -139,7 +139,7 @@ fun Duration.format(
  * It is very simplified for our usage, as it only supports hours, minutes and seconds
  * It also doesn’t support decimals
  */
-@RequiresApi(api = Build.VERSION_CODES.N)
+@RequiresApi(Build.VERSION_CODES.N)
 private fun Duration.formatMultipleDurationsWithMeasureFormat(
     unit: DurationUnit,
     smallestUnit: DurationUnit,
