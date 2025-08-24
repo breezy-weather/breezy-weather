@@ -189,7 +189,8 @@ object WeekWidgetIMP : AbstractRemoteViewsPresenter() {
                 setTextViewTextSize(R.id.widget_week_temp_3, TypedValue.COMPLEX_UNIT_PX, contentSize)
                 setTextViewTextSize(R.id.widget_week_temp_4, TypedValue.COMPLEX_UNIT_PX, contentSize)
                 setTextViewTextSize(R.id.widget_week_temp_5, TypedValue.COMPLEX_UNIT_PX, contentSize)
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                    // Introduced in Android 9, but remotable view method only since Android 12
                     setInt(R.id.widget_week_temp_1, "setLineHeight", contentSize.roundToInt())
                     setInt(R.id.widget_week_temp_2, "setLineHeight", contentSize.roundToInt())
                     setInt(R.id.widget_week_temp_3, "setLineHeight", contentSize.roundToInt())

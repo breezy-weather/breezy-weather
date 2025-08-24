@@ -175,7 +175,8 @@ object MultiCityWidgetIMP : AbstractRemoteViewsPresenter() {
                     TypedValue.COMPLEX_UNIT_PX,
                     contentSize
                 )
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                    // Introduced in Android 9, but remotable view method only since Android 12
                     setInt(R.id.widget_multi_city_horizontal_title_1, "setLineHeight", titleSize.roundToInt())
                     setInt(R.id.widget_multi_city_horizontal_title_2, "setLineHeight", titleSize.roundToInt())
                     setInt(R.id.widget_multi_city_horizontal_title_3, "setLineHeight", titleSize.roundToInt())

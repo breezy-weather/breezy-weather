@@ -294,7 +294,8 @@ object DayWidgetIMP : AbstractRemoteViewsPresenter() {
                     TypedValue.COMPLEX_UNIT_PX,
                     getTimeSize(context, viewStyle).times(textSize).div(100f)
                 )
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                    // Introduced in Android 9, but remotable view method only since Android 12
                     setInt(
                         R.id.widget_day_title,
                         "setLineHeight",

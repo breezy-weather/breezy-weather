@@ -12,6 +12,7 @@ The following features are already available in the current branch, but will be 
 **Improvements and fixes**
 - Fix crash on startup on Android 5.0, 5.1 and 6.0
 - Fix crash on Android 7.0/7.1 when formatting some units
+- Widgets - Fix crash with font size set to something other than 100%
 
 **Weather sources**
 - [HERE] Removed following recent restrictions on free API
