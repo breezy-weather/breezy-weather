@@ -1,0 +1,2 @@
+Eldonaj notoj haveblas sur GitHub:
+https://github.com/breezy-weather/breezy-weather/releases
