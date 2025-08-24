@@ -27,6 +27,7 @@ import breezyweather.domain.weather.wrappers.WeatherWrapper
 import com.google.maps.android.model.LatLng
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
+import nl.adaptivity.xmlutil.util.CompactFragment
 import org.breezyweather.R
 import org.breezyweather.common.exceptions.InvalidOrIncompleteDataException
 import org.breezyweather.common.exceptions.WeatherException
@@ -125,11 +126,8 @@ class FpasService @Inject constructor(
                                     startDate = start,
                                     endDate = it.expires?.value,
                                     headline = title,
-                                    description = formatAlertText(
-                                        it.senderName?.value,
-                                        it.description?.value
-                                    ),
-                                    instruction = it.instruction?.value,
+                                    description = formatAlertText(it.senderName?.value, it.description?.value),
+                                    instruction = formatAlertText(it.senderName?.value, it.instruction?.value),
                                     source = it.senderName?.value,
                                     severity = severity,
                                     color = Alert.colorFromSeverity(severity)
@@ -154,23 +152,41 @@ class FpasService @Inject constructor(
     // apply formatting to alert text based on source
     private fun formatAlertText(
         source: String?,
-        text: String?,
-    ): String {
-        var result: String
-        if (text.isNullOrEmpty()) {
-            return ""
-        }
-        result = text
-        if (!source.isNullOrEmpty()) {
-            if (source.startsWith("NWS ", ignoreCase = true) ||
-                source.equals("National Weather Service", ignoreCase = true)
-            ) {
-                // Look for SINGLE line breaks surrounded by letters, numbers, and punctuation.
-                val regex = Regex("""([0-9A-Za-z.,]) *\n([0-9A-Za-z])""")
-                result = regex.replace(result, "$1 $2")
+        text: List<CompactFragment>?,
+    ): String? {
+        return text?.mapNotNull {
+            val contentString = it.contentString.trim()
+            if (!source.isNullOrEmpty()) {
+                with(source) {
+                    when {
+                        startsWith(
+                            "NWS ",
+                            ignoreCase = true
+                        ) || equals("National Weather Service", ignoreCase = true) -> {
+                            // NWS folds lines at 80 characters for legacy systems. We don't need that.
+                            // Look for SINGLE line breaks surrounded by letters, numbers, and punctuation
+                            // and replace those with single spaces.
+                            Regex("""([0-9A-Za-z.,]) *\n([0-9A-Za-z])""").replace(contentString, "$1 $2")
+                        }
+                        equals("中央氣象署") -> {
+                            // CWA extends <description> with metadata for Typhoon Warnings.
+                            // Do not display those.
+                            val regex = Regex("""^<section title="(.*)">(.*)</section>$""")
+                            with(contentString) {
+                                when {
+                                    startsWith("<typhoon-info>") -> null
+                                    matches(regex) -> regex.replace(contentString, "<h2>$1</h2>\n<p>$2</p>\n")
+                                    else -> contentString
+                                }
+                            }
+                        }
+                        else -> contentString
+                    }
+                }
+            } else {
+                contentString
             }
-        }
-        return result.trim()
+        }?.joinToString("\n")
     }
 
     // CONFIG

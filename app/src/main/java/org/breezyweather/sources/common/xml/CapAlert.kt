@@ -22,6 +22,7 @@ import com.google.maps.android.model.LatLng
 import kotlinx.serialization.Serializable
 import nl.adaptivity.xmlutil.serialization.XmlSerialName
 import nl.adaptivity.xmlutil.serialization.XmlValue
+import nl.adaptivity.xmlutil.util.CompactFragment
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.serializer.DateSerializer
 import java.util.Date
@@ -139,13 +140,13 @@ data class CapAlert(
         @Serializable
         @XmlSerialName("description", "", "cap")
         data class Description(
-            @XmlValue(true) val value: String? = null,
+            @XmlValue(true) val value: List<CompactFragment>? = null,
         )
 
         @Serializable
         @XmlSerialName("instruction", "", "cap")
         data class Instruction(
-            @XmlValue(true) val value: String? = null,
+            @XmlValue(true) val value: List<CompactFragment>? = null,
         )
 
         @Serializable
