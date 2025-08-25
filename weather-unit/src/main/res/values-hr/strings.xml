@@ -19,12 +19,56 @@
     <string name="temperature_k_display_name_long">kelvini</string>
     <string name="temperature_k_nominative_long">%s kelvina</string>
 
+    <!-- Length units -->
+
+    <!-- Micrometer -->
+    <string name="length_microm_display_name_long">mikrometri</string>
+    <string name="length_microm_nominative_long">%s mikrometra</string>
+
+    <!-- Millimeter -->
+    <string name="length_mm_display_name_long">milimetri</string>
+    <string name="length_mm_nominative_long">%s milimetra</string>
+
+    <!-- Centimeter -->
+    <string name="length_cm_display_name_long">centimetri</string>
+    <string name="length_cm_nominative_long">%s centimetra</string>
+
+    <!-- Meter -->
+    <string name="length_m_display_name_long">metri</string>
+    <string name="length_m_nominative_long">%s metra</string>
+
+    <!-- Kilometer -->
+    <string name="length_km_display_name_long">kilometri</string>
+    <string name="length_km_nominative_long">%s kilometra</string>
+
+    <!-- Inch -->
+    <string name="length_in_display_name_short">inči</string>
+    <string name="length_in_nominative_long">%s inča</string>
+
+    <!-- Foot -->
+    <string name="length_ft_display_name_long">stope</string>
+    <string name="length_ft_nominative_long">%s stope</string>
+
+    <!-- Mile -->
+    <string name="length_mi_display_name_long">milje</string>
+    <string name="length_mi_nominative_long">%s milje</string>
+
+    <!-- Nautical mile -->
+    <string name="length_nmi_display_name_long">nautičke milje</string>
+    <string name="length_nmi_nominative_long">%s nautičke milje</string>
+
     <!-- Area units -->
 
     <!-- Square meter -->
     <!-- No change -->
 
     <!-- Speed units -->
+
+    <!-- Knot -->
+    <string name="speed_kn_display_name_short">čv</string>
+    <string name="speed_kn_display_name_long">čvor</string>
+    <string name="speed_kn_nominative_short">%s čv</string>
+    <string name="speed_kn_nominative_long">%s čvora</string>
 
     <!-- Beaufort scale -->
     <string name="speed_bf_display_name_long">Beaufortova ljestvica</string>

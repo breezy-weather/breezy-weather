@@ -19,12 +19,54 @@
     <string name="temperature_k_display_name_long">келвин</string>
     <string name="temperature_k_nominative_long">%s келвина</string>
 
+    <!-- Length units -->
+
+    <!-- Micrometer -->
+    <string name="length_microm_display_name_long">микрометри</string>
+    <string name="length_microm_nominative_long">%s микрометра</string>
+
+    <!-- Millimeter -->
+    <string name="length_mm_display_name_long">милиметри</string>
+    <string name="length_mm_nominative_long">%s милиметра</string>
+
+    <!-- Centimeter -->
+    <string name="length_cm_display_name_long">центиметри</string>
+    <string name="length_cm_nominative_long">%s центиметра</string>
+
+    <!-- Meter -->
+    <string name="length_m_display_name_long">метри</string>
+    <string name="length_m_nominative_long">%s метра</string>
+
+    <!-- Kilometer -->
+    <string name="length_km_display_name_long">километри</string>
+    <string name="length_km_nominative_long">%s километра</string>
+
+    <!-- Inch -->
+    <string name="length_in_display_name_short">инчи</string>
+    <string name="length_in_nominative_short">%s инчи</string>
+
+    <!-- Foot -->
+    <string name="length_ft_display_name_long">стопе</string>
+    <string name="length_ft_nominative_long">%s стопе</string>
+
+    <!-- Mile -->
+    <string name="length_mi_display_name_long">миље</string>
+    <string name="length_mi_nominative_long">%s миље</string>
+
+    <!-- Nautical mile -->
+    <string name="length_nmi_display_name_long">наутичке миље</string>
+    <string name="length_nmi_nominative_long">%s наутичке миље</string>
+
     <!-- Area units -->
 
     <!-- Square meter -->
     <!-- No change -->
 
     <!-- Speed units -->
+
+    <!-- Knot -->
+    <string name="speed_kn_display_name_long">чвор</string>
+    <string name="speed_kn_nominative_long">%s чвора</string>
 
     <!-- Beaufort scale -->
     <string name="speed_bf_display_name_short">Bf</string>

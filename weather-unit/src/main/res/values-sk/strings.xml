@@ -19,12 +19,56 @@
     <string name="temperature_k_display_name_long">kelviny</string>
     <string name="temperature_k_nominative_long">%s kelviny</string>
 
+    <!-- Length units -->
+
+    <!-- Micrometer -->
+    <string name="length_microm_display_name_long">mikrometre</string>
+    <string name="length_microm_nominative_long">%s mikrometre</string>
+
+    <!-- Millimeter -->
+    <string name="length_mm_display_name_long">milimetre</string>
+    <string name="length_mm_nominative_long">%s milimetre</string>
+
+    <!-- Centimeter -->
+    <string name="length_cm_display_name_long">centimetre</string>
+    <string name="length_cm_nominative_long">%s centimetre</string>
+
+    <!-- Meter -->
+    <string name="length_m_display_name_long">metre</string>
+    <string name="length_m_nominative_long">%s metre</string>
+
+    <!-- Kilometer -->
+    <string name="length_km_display_name_long">kilometre</string>
+    <string name="length_km_nominative_long">%s kilometre</string>
+
+    <!-- Inch -->
+    <string name="length_in_display_name_long">palce</string>
+    <string name="length_in_nominative_long">%s palce</string>
+
+    <!-- Foot -->
+    <string name="length_ft_display_name_long">stopy</string>
+    <string name="length_ft_nominative_long">%s stopy</string>
+
+    <!-- Mile -->
+    <string name="length_mi_display_name_long">míle</string>
+    <string name="length_mi_nominative_long">%s míle</string>
+
+    <!-- Nautical mile -->
+    <string name="length_nmi_display_name_short">NM</string>
+    <string name="length_nmi_display_name_long">námorné míle</string>
+    <string name="length_nmi_nominative_short">%s NM</string>
+    <string name="length_nmi_nominative_long">%s námorné míle</string>
+
     <!-- Area units -->
 
     <!-- Square meter -->
     <string name="area_m2_per_long">%s na meter štvorcový</string>
 
     <!-- Speed units -->
+
+    <!-- Knot -->
+    <string name="speed_kn_display_name_long">uzly</string>
+    <string name="speed_kn_nominative_long">%s uzly</string>
 
     <!-- Beaufort scale -->
     <string name="speed_bf_display_name_long">stupeň Beaufortovej stupnice</string>

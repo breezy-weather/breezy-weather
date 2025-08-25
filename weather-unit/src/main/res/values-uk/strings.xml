@@ -19,6 +19,60 @@
     <string name="temperature_k_display_name_long">кельвіни</string>
     <string name="temperature_k_nominative_long">%s кельвіни</string>
 
+    <!-- Length units -->
+
+    <!-- Micrometer -->
+    <string name="length_microm_display_name_short">мкм</string>
+    <string name="length_microm_display_name_long">мікрометри</string>
+    <string name="length_microm_nominative_short">%s мкм</string>
+    <string name="length_microm_nominative_long">%s мікрометри</string>
+
+    <!-- Millimeter -->
+    <string name="length_mm_display_name_short">мм</string>
+    <string name="length_mm_display_name_long">міліметри</string>
+    <string name="length_mm_nominative_short">%s мм</string>
+    <string name="length_mm_nominative_long">%s міліметри</string>
+
+    <!-- Centimeter -->
+    <string name="length_cm_display_name_short">см</string>
+    <string name="length_cm_display_name_long">сантиметри</string>
+    <string name="length_cm_nominative_short">%s см</string>
+    <string name="length_cm_nominative_long">%s сантиметри</string>
+
+    <!-- Meter -->
+    <string name="length_m_display_name_short">м</string>
+    <string name="length_m_display_name_long">метри</string>
+    <string name="length_m_nominative_short">%s м</string>
+    <string name="length_m_nominative_long">%s метри</string>
+
+    <!-- Kilometer -->
+    <string name="length_km_display_name_short">км</string>
+    <string name="length_km_display_name_long">кілометри</string>
+    <string name="length_km_nominative_short">%s км</string>
+    <string name="length_km_nominative_long">%s кілометри</string>
+
+    <!-- Inch -->
+    <string name="length_in_display_name_short">дюйми</string>
+    <string name="length_in_nominative_short">%s дюйми</string>
+
+    <!-- Foot -->
+    <string name="length_ft_display_name_short">фт</string>
+    <string name="length_ft_display_name_long">фути</string>
+    <string name="length_ft_nominative_short">%s фт</string>
+    <string name="length_ft_nominative_long">%s фути</string>
+
+    <!-- Mile -->
+    <string name="length_mi_display_name_short">мл</string>
+    <string name="length_mi_display_name_long">милі</string>
+    <string name="length_mi_nominative_short">%s мл</string>
+    <string name="length_mi_nominative_long">%s милі</string>
+
+    <!-- Nautical mile -->
+    <string name="length_nmi_display_name_short">м. милі</string>
+    <string name="length_nmi_display_name_long">морські милі</string>
+    <string name="length_nmi_nominative_short">%s м. милі</string>
+    <string name="length_nmi_nominative_long">%s морські милі</string>
+
     <!-- Area units -->
 
     <!-- Square meter -->
@@ -26,6 +80,12 @@
     <string name="area_m2_per_long">%s на квадратний метр</string>
 
     <!-- Speed units -->
+
+    <!-- Knot -->
+    <string name="speed_kn_display_name_short">вуз.</string>
+    <string name="speed_kn_display_name_long">вузли</string>
+    <string name="speed_kn_nominative_short">%s вуз.</string>
+    <string name="speed_kn_nominative_long">%s вузли</string>
 
     <!-- Beaufort scale -->
     <string name="speed_bf_display_name_short">Бофорт</string>

@@ -28,6 +28,51 @@
     <string name="temperature_k_nominative_short">%s د كلفن</string>
     <string name="temperature_k_nominative_long">%s درجة كلفن</string>
 
+    <!-- Length units -->
+
+    <!-- Micrometer -->
+    <string name="length_microm_display_name_short">ميكرومتر</string>
+    <string name="length_microm_nominative_short">%s ميكرومتر</string>
+
+    <!-- Millimeter -->
+    <string name="length_mm_display_name_short">مم</string>
+    <string name="length_mm_display_name_long">مليمتر</string>
+    <string name="length_mm_nominative_short">%s مم</string>
+    <string name="length_mm_nominative_long">%s مليمتر</string>
+
+    <!-- Centimeter -->
+    <string name="length_cm_display_name_short">سم</string>
+    <string name="length_cm_display_name_long">سنتيمتر</string>
+    <string name="length_cm_nominative_short">%s سم</string>
+    <string name="length_cm_nominative_long">%s سنتيمتر</string>
+
+    <!-- Meter -->
+    <string name="length_m_display_name_short">م</string>
+    <string name="length_m_display_name_long">متر</string>
+    <string name="length_m_nominative_short">%s متر</string>
+
+    <!-- Kilometer -->
+    <string name="length_km_display_name_short">كم</string>
+    <string name="length_km_display_name_long">كيلومتر</string>
+    <string name="length_km_nominative_short">%s كم</string>
+    <string name="length_km_nominative_long">%s كيلومتر</string>
+
+    <!-- Inch -->
+    <string name="length_in_display_name_long">inches</string>
+    <string name="length_in_nominative_long">%s inches</string>
+
+    <!-- Foot -->
+    <string name="length_ft_display_name_short">قدم</string>
+    <string name="length_ft_nominative_short">%s قدم</string>
+
+    <!-- Mile -->
+    <string name="length_mi_display_name_short">ميل</string>
+    <string name="length_mi_nominative_short">%s ميل</string>
+
+    <!-- Nautical mile -->
+    <string name="length_nmi_display_name_short">ميل بحري</string>
+    <string name="length_nmi_nominative_long">%s ميل بحري</string>
+
     <!-- Area units -->
 
     <!-- Square meter -->
@@ -35,6 +80,10 @@
     <string name="area_m2_per_long">%s لكل متر مربع</string>
 
     <!-- Speed units -->
+
+    <!-- Knot -->
+    <string name="speed_kn_display_name_short">عقدة</string>
+    <string name="speed_kn_nominative_short">%s عقدة</string>
 
     <!-- Beaufort scale -->
     <string name="speed_bf_display_name_short">بوفورت</string>

@@ -19,12 +19,54 @@
     <string name="temperature_k_display_name_long">келвини</string>
     <string name="temperature_k_nominative_long">%s келвини</string>
 
+    <!-- Length units -->
+
+    <!-- Micrometer -->
+    <string name="length_microm_display_name_long">микрометри</string>
+    <string name="length_microm_nominative_long">%s микрометри</string>
+
+    <!-- Millimeter -->
+    <string name="length_mm_display_name_long">милиметри</string>
+    <string name="length_mm_nominative_long">%s милиметри</string>
+
+    <!-- Centimeter -->
+    <string name="length_cm_display_name_long">сантиметри</string>
+    <string name="length_cm_nominative_long">%s сантиметри</string>
+
+    <!-- Meter -->
+    <string name="length_m_display_name_long">метри</string>
+    <string name="length_m_nominative_long">%s метри</string>
+
+    <!-- Kilometer -->
+    <string name="length_km_display_name_long">километри</string>
+    <string name="length_km_nominative_long">%s километри</string>
+
+    <!-- Inch -->
+    <string name="length_in_display_name_long">инчи</string>
+    <string name="length_in_nominative_long">%s инчи</string>
+
+    <!-- Foot -->
+    <string name="length_ft_display_name_long">стапки</string>
+    <string name="length_ft_nominative_long">%s стапки</string>
+
+    <!-- Mile -->
+    <string name="length_mi_display_name_long">милји</string>
+    <string name="length_mi_nominative_long">%s милји</string>
+
+    <!-- Nautical mile -->
+    <string name="length_nmi_display_name_long">наутички милји</string>
+    <string name="length_nmi_nominative_long">%s наутички милји</string>
+
     <!-- Area units -->
 
     <!-- Square meter -->
     <string name="area_m2_per_long">%s по квадратен метар</string>
 
     <!-- Speed units -->
+
+    <!-- Knot -->
+    <string name="speed_kn_display_name_long">јазли</string>
+    <string name="speed_kn_nominative_long">%s јазли</string>
 
     <!-- Beaufort scale -->
     <string name="speed_bf_display_name_long">бофори</string>

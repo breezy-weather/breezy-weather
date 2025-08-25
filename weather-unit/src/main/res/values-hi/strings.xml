@@ -23,6 +23,55 @@
     <string name="temperature_k_display_name_long">केल्विन</string>
     <string name="temperature_k_nominative_long">%s केल्विन</string>
 
+    <!-- Length units -->
+
+    <!-- Micrometer -->
+    <string name="length_microm_display_name_short">μ मा॰मी॰</string>
+    <string name="length_microm_display_name_long">माइक्रोमीटर</string>
+    <string name="length_microm_nominative_short">%s μ मा॰मी॰</string>
+    <string name="length_microm_nominative_long">%s माइक्रोमीटर</string>
+
+    <!-- Millimeter -->
+    <string name="length_mm_display_name_short">मि॰मी॰</string>
+    <string name="length_mm_display_name_long">मिलीमीटर</string>
+    <string name="length_mm_nominative_short">%s मि॰मी॰</string>
+    <string name="length_mm_nominative_long">%s मिलीमीटर</string>
+
+    <!-- Centimeter -->
+    <string name="length_cm_display_name_short">सें॰मी॰</string>
+    <string name="length_cm_display_name_long">सेंटीमीटर</string>
+    <string name="length_cm_nominative_short">%s सें॰मी॰</string>
+    <string name="length_cm_nominative_long">%s सेंटीमीटर</string>
+
+    <!-- Meter -->
+    <string name="length_m_display_name_short">मीटर</string>
+    <string name="length_m_nominative_short">%s मी</string>
+    <string name="length_m_nominative_long">%s मीटर</string>
+
+    <!-- Kilometer -->
+    <string name="length_km_display_name_short">कि॰मी॰</string>
+    <string name="length_km_display_name_long">किलोमीटर</string>
+    <string name="length_km_nominative_short">%s कि॰मी॰</string>
+    <string name="length_km_nominative_long">%s किलोमीटर</string>
+
+    <!-- Inch -->
+    <string name="length_in_display_name_short">इंच</string>
+    <string name="length_in_nominative_short">%s इंच</string>
+
+    <!-- Foot -->
+    <string name="length_ft_display_name_short">फ़ीट</string>
+    <string name="length_ft_nominative_long">%s फ़ीट</string>
+
+    <!-- Mile -->
+    <string name="length_mi_display_name_short">मील</string>
+    <string name="length_mi_nominative_short">%s मील</string>
+
+    <!-- Nautical mile -->
+    <string name="length_nmi_display_name_short">नॉ॰ मी॰</string>
+    <string name="length_nmi_display_name_long">नॉटिकल मील</string>
+    <string name="length_nmi_nominative_short">%s नॉ॰ मी॰</string>
+    <string name="length_nmi_nominative_long">%s नॉटिकल मील</string>
+
     <!-- Area units -->
 
     <!-- Square meter -->
@@ -30,6 +79,10 @@
     <string name="area_m2_per_long">%s/वर्ग मीटर</string>
 
     <!-- Speed units -->
+
+    <!-- Knot -->
+    <string name="speed_kn_display_name_short">नॉट</string>
+    <string name="speed_kn_nominative_short">%s नॉट</string>
 
     <!-- Beaufort scale -->
     <string name="speed_bf_display_name_short">ब्यूफ़ोर्ट</string>

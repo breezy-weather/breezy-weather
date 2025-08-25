@@ -22,12 +22,64 @@
     <string name="temperature_k_nominative_short">%sK</string>
     <string name="temperature_k_nominative_long">%s켈빈</string>
 
+    <!-- Length units -->
+
+    <!-- Micrometer -->
+    <string name="length_microm_display_name_long">마이크로미터</string>
+    <string name="length_microm_nominative_short">%sμm</string>
+    <string name="length_microm_nominative_long">%s마이크로미터</string>
+
+    <!-- Millimeter -->
+    <string name="length_mm_display_name_long">밀리미터</string>
+    <string name="length_mm_nominative_short">%smm</string>
+    <string name="length_mm_nominative_long">%s밀리미터</string>
+
+    <!-- Centimeter -->
+    <string name="length_cm_display_name_long">센티미터</string>
+    <string name="length_cm_nominative_short">%scm</string>
+    <string name="length_cm_nominative_long">%s센티미터</string>
+
+    <!-- Meter -->
+    <string name="length_m_display_name_long">미터</string>
+    <string name="length_m_nominative_short">%sm</string>
+    <string name="length_m_nominative_long">%s미터</string>
+
+    <!-- Kilometer -->
+    <string name="length_km_display_name_long">킬로미터</string>
+    <string name="length_km_nominative_short">%skm</string>
+    <string name="length_km_nominative_long">%s킬로미터</string>
+
+    <!-- Inch -->
+    <string name="length_in_display_name_long">인치</string>
+    <string name="length_in_nominative_short">%sin</string>
+    <string name="length_in_nominative_long">%s인치</string>
+
+    <!-- Foot -->
+    <string name="length_ft_display_name_long">피트</string>
+    <string name="length_ft_nominative_short">%sft</string>
+    <string name="length_ft_nominative_long">%s피트</string>
+
+    <!-- Mile -->
+    <string name="length_mi_display_name_long">마일</string>
+    <string name="length_mi_nominative_short">%smi</string>
+    <string name="length_mi_nominative_long">%s마일</string>
+
+    <!-- Nautical mile -->
+    <string name="length_nmi_display_name_long">해리</string>
+    <string name="length_nmi_nominative_short">%snmi</string>
+    <string name="length_nmi_nominative_long">%s해리</string>
+
     <!-- Area units -->
 
     <!-- Square meter -->
     <string name="area_m2_per_long">제곱미터당 %s</string>
 
     <!-- Speed units -->
+
+    <!-- Knot -->
+    <string name="speed_kn_display_name_long">노트</string>
+    <string name="speed_kn_nominative_short">%skn</string>
+    <string name="speed_kn_nominative_long">%s노트</string>
 
     <!-- Beaufort scale -->
     <string name="speed_bf_display_name_long">보퍼트</string>

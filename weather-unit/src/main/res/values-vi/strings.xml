@@ -19,12 +19,54 @@
     <string name="temperature_k_display_name_long">độ K</string>
     <string name="temperature_k_nominative_long">%s độ K</string>
 
+    <!-- Length units -->
+
+    <!-- Micrometer -->
+    <string name="length_microm_display_name_long">micrômét</string>
+    <string name="length_microm_nominative_long">%s micrômét</string>
+
+    <!-- Millimeter -->
+    <string name="length_mm_display_name_long">milimét</string>
+    <string name="length_mm_nominative_long">%s milimét</string>
+
+    <!-- Centimeter -->
+    <string name="length_cm_display_name_long">xentimét</string>
+    <string name="length_cm_nominative_long">%s xentimét</string>
+
+    <!-- Meter -->
+    <string name="length_m_display_name_long">mét</string>
+    <string name="length_m_nominative_long">%s mét</string>
+
+    <!-- Kilometer -->
+    <string name="length_km_display_name_long">kilômét</string>
+    <string name="length_km_nominative_long">%s kilômét</string>
+
+    <!-- Inch -->
+    <string name="length_in_display_name_long">inch</string>
+    <string name="length_in_nominative_long">%s inch</string>
+
+    <!-- Foot -->
+    <string name="length_ft_display_name_long">feet</string>
+    <string name="length_ft_nominative_long">%s feet</string>
+
+    <!-- Mile -->
+    <string name="length_mi_display_name_short">dặm</string>
+    <string name="length_mi_nominative_short">%s dặm</string>
+
+    <!-- Nautical mile -->
+    <string name="length_nmi_display_name_long">hải lý</string>
+    <string name="length_nmi_nominative_long">%s hải lý</string>
+
     <!-- Area units -->
 
     <!-- Square meter -->
     <!-- No change -->
 
     <!-- Speed units -->
+
+    <!-- Knot -->
+    <string name="speed_kn_display_name_long">hải lý/giờ</string>
+    <string name="speed_kn_nominative_long">%s hải lý/giờ</string>
 
     <!-- Beaufort scale -->
     <string name="speed_bf_display_name_long">Beaufort</string>

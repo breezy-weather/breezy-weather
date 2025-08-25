@@ -19,12 +19,54 @@
     <string name="temperature_k_display_name_long">kelvin graduak</string>
     <string name="temperature_k_nominative_long">%s kelvin gradu</string>
 
+    <!-- Length units -->
+
+    <!-- Micrometer -->
+    <string name="length_microm_display_name_long">mikrometro</string>
+    <string name="length_microm_nominative_long">%s mikrometro</string>
+
+    <!-- Millimeter -->
+    <string name="length_mm_display_name_long">milimetro</string>
+    <string name="length_mm_nominative_long">%s milimetro</string>
+
+    <!-- Centimeter -->
+    <string name="length_cm_display_name_long">zentimetro</string>
+    <string name="length_cm_nominative_long">%s zentimetro</string>
+
+    <!-- Meter -->
+    <string name="length_m_display_name_long">metro</string>
+    <string name="length_m_nominative_long">%s metro</string>
+
+    <!-- Kilometer -->
+    <string name="length_km_display_name_long">kilometro</string>
+    <string name="length_km_nominative_long">%s kilometro</string>
+
+    <!-- Inch -->
+    <string name="length_in_display_name_long">hazbete</string>
+    <string name="length_in_nominative_long">%s hazbete</string>
+
+    <!-- Foot -->
+    <string name="length_ft_display_name_long">oin</string>
+    <string name="length_ft_nominative_long">%s oin</string>
+
+    <!-- Mile -->
+    <string name="length_mi_display_name_long">milia</string>
+    <string name="length_mi_nominative_long">%s milia</string>
+
+    <!-- Nautical mile -->
+    <string name="length_nmi_display_name_long">milia nautiko</string>
+    <string name="length_nmi_nominative_long">%s milia nautiko</string>
+
     <!-- Area units -->
 
     <!-- Square meter -->
     <string name="area_m2_per_long">%s metro karratu bakoitzeko</string>
 
     <!-- Speed units -->
+
+    <!-- Knot -->
+    <string name="speed_kn_display_name_long">korapilo</string>
+    <string name="speed_kn_nominative_long">%s korapilo</string>
 
     <!-- Beaufort scale -->
     <string name="speed_bf_display_name_short">BFT</string>

@@ -18,12 +18,62 @@
     <!-- Kelvin -->
     <!-- No change -->
 
+    <!-- Length units -->
+
+    <!-- Micrometer -->
+    <string name="length_microm_display_name_long">imikrumitren</string>
+    <string name="length_microm_nominative_long">%s n yimikrumitren</string>
+
+    <!-- Millimeter -->
+    <string name="length_mm_display_name_long">imilimitren</string>
+    <string name="length_mm_nominative_long">%s n yimilimitren</string>
+
+    <!-- Centimeter -->
+    <string name="length_cm_display_name_long">isantimitren</string>
+    <string name="length_cm_nominative_long">%s n yisantimitren</string>
+
+    <!-- Meter -->
+    <string name="length_m_display_name_long">lmitrat</string>
+    <string name="length_m_nominative_long">%s n lmitrat</string>
+
+    <!-- Kilometer -->
+    <string name="length_km_display_name_long">ikilumitren</string>
+    <string name="length_km_nominative_long">%s n yikilumitren</string>
+
+    <!-- Inch -->
+    <string name="length_in_display_name_short">db</string>
+    <string name="length_in_display_name_long">idebbuzen</string>
+    <string name="length_in_nominative_short">%s db</string>
+    <string name="length_in_nominative_long">%s n yidebbuzen</string>
+
+    <!-- Foot -->
+    <string name="length_ft_display_name_short">ḍr</string>
+    <string name="length_ft_display_name_long">iḍarren</string>
+    <string name="length_ft_nominative_short">%s ḍr</string>
+    <string name="length_ft_nominative_long">%s n iḍarren</string>
+
+    <!-- Mile -->
+    <string name="length_mi_display_name_long">imilen</string>
+    <string name="length_mi_nominative_long">%s n yimilen</string>
+
+    <!-- Nautical mile -->
+    <string name="length_nmi_display_name_short">miw</string>
+    <string name="length_nmi_display_name_long">imilen iwlalen</string>
+    <string name="length_nmi_nominative_short">%s miw</string>
+    <string name="length_nmi_nominative_long">%s n yimilen iwlalen</string>
+
     <!-- Area units -->
 
     <!-- Square meter -->
     <string name="area_m2_per_long">%s deg mitra uzmir-sin</string>
 
     <!-- Speed units -->
+
+    <!-- Knot -->
+    <string name="speed_kn_display_name_short">krs</string>
+    <string name="speed_kn_display_name_long">timukrisin</string>
+    <string name="speed_kn_nominative_short">%s krs</string>
+    <string name="speed_kn_nominative_long">%s n tmukrisin</string>
 
     <!-- Beaufort scale -->
     <!-- No change -->

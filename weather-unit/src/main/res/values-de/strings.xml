@@ -19,12 +19,56 @@
     <string name="temperature_k_display_name_long">Kelvin</string>
     <string name="temperature_k_nominative_long">%s Kelvin</string>
 
+    <!-- Length units -->
+
+    <!-- Micrometer -->
+    <string name="length_microm_display_name_long">Mikrometer</string>
+    <string name="length_microm_nominative_long">%s Mikrometer</string>
+
+    <!-- Millimeter -->
+    <string name="length_mm_display_name_long">Millimeter</string>
+    <string name="length_mm_nominative_long">%s Millimeter</string>
+
+    <!-- Centimeter -->
+    <string name="length_cm_display_name_long">Zentimeter</string>
+    <string name="length_cm_nominative_long">%s Zentimeter</string>
+
+    <!-- Meter -->
+    <string name="length_m_display_name_long">Meter</string>
+    <string name="length_m_nominative_long">%s Meter</string>
+
+    <!-- Kilometer -->
+    <string name="length_km_display_name_long">Kilometer</string>
+    <string name="length_km_nominative_long">%s Kilometer</string>
+
+    <!-- Inch -->
+    <string name="length_in_display_name_long">Zoll</string>
+    <string name="length_in_nominative_long">%s Zoll</string>
+
+    <!-- Foot -->
+    <string name="length_ft_display_name_long">Fuß</string>
+    <string name="length_ft_nominative_long">%s Fuß</string>
+
+    <!-- Mile -->
+    <string name="length_mi_display_name_long">Meilen</string>
+    <string name="length_mi_nominative_long">%s Meilen</string>
+
+    <!-- Nautical mile -->
+    <string name="length_nmi_display_name_short">sm</string>
+    <string name="length_nmi_display_name_long">Seemeilen</string>
+    <string name="length_nmi_nominative_short">%s sm</string>
+    <string name="length_nmi_nominative_long">%s Seemeilen</string>
+
     <!-- Area units -->
 
     <!-- Square meter -->
     <string name="area_m2_per_long">%s pro Quadratmeter</string>
 
     <!-- Speed units -->
+
+    <!-- Knot -->
+    <string name="speed_kn_display_name_long">Knoten</string>
+    <string name="speed_kn_nominative_long">%s Knoten</string>
 
     <!-- Beaufort scale -->
     <string name="speed_bf_display_name_long">Beaufort</string>

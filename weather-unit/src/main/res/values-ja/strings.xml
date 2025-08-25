@@ -22,12 +22,54 @@
     <string name="temperature_k_display_name_long">ケルビン</string>
     <string name="temperature_k_nominative_long">%s ケルビン</string>
 
+    <!-- Length units -->
+
+    <!-- Micrometer -->
+    <string name="length_microm_display_name_long">マイクロメートル</string>
+    <string name="length_microm_nominative_long">%s マイクロメートル</string>
+
+    <!-- Millimeter -->
+    <string name="length_mm_display_name_long">ミリメートル</string>
+    <string name="length_mm_nominative_long">%s ミリメートル</string>
+
+    <!-- Centimeter -->
+    <string name="length_cm_display_name_long">センチメートル</string>
+    <string name="length_cm_nominative_long">%s センチメートル</string>
+
+    <!-- Meter -->
+    <string name="length_m_display_name_long">メートル</string>
+    <string name="length_m_nominative_long">%s メートル</string>
+
+    <!-- Kilometer -->
+    <string name="length_km_display_name_long">キロメートル</string>
+    <string name="length_km_nominative_long">%s キロメートル</string>
+
+    <!-- Inch -->
+    <string name="length_in_display_name_short">インチ</string>
+    <string name="length_in_nominative_long">%s インチ</string>
+
+    <!-- Foot -->
+    <string name="length_ft_display_name_short">フィート</string>
+    <string name="length_ft_nominative_long">%s フィート</string>
+
+    <!-- Mile -->
+    <string name="length_mi_display_name_short">マイル</string>
+    <string name="length_mi_nominative_long">%s マイル</string>
+
+    <!-- Nautical mile -->
+    <string name="length_nmi_display_name_short">海里</string>
+    <string name="length_nmi_nominative_short">%s 海里</string>
+
     <!-- Area units -->
 
     <!-- Square meter -->
     <string name="area_m2_per_long">%s/平方メートル</string>
 
     <!-- Speed units -->
+
+    <!-- Knot -->
+    <string name="speed_kn_display_name_short">ノット</string>
+    <string name="speed_kn_nominative_long">%s ノット</string>
 
     <!-- Beaufort scale -->
     <string name="speed_bf_display_name_short">風力階級</string>

@@ -21,12 +21,58 @@
     <string name="temperature_k_display_name_long">kelvins</string>
     <string name="temperature_k_nominative_long">%s kelvins</string>
 
+    <!-- Length units -->
+
+    <!-- Micrometer -->
+    <string name="length_microm_display_name_long">micrômetros</string>
+    <string name="length_microm_nominative_long">%s micrômetros</string>
+
+    <!-- Millimeter -->
+    <string name="length_mm_display_name_long">milímetros</string>
+    <string name="length_mm_nominative_long">%s milímetros</string>
+
+    <!-- Centimeter -->
+    <string name="length_cm_display_name_long">centímetros</string>
+    <string name="length_cm_nominative_long">%s centímetros</string>
+
+    <!-- Meter -->
+    <string name="length_m_display_name_long">metros</string>
+    <string name="length_m_nominative_long">%s metros</string>
+
+    <!-- Kilometer -->
+    <string name="length_km_display_name_long">quilômetros</string>
+    <string name="length_km_nominative_long">%s quilômetros</string>
+
+    <!-- Inch -->
+    <string name="length_in_display_name_short">pol.</string>
+    <string name="length_in_display_name_long">polegadas</string>
+    <string name="length_in_nominative_short">%s pol.</string>
+    <string name="length_in_nominative_long">%s polegadas</string>
+
+    <!-- Foot -->
+    <string name="length_ft_display_name_short">pés</string>
+    <string name="length_ft_nominative_long">%s pés</string>
+
+    <!-- Mile -->
+    <string name="length_mi_display_name_long">milhas</string>
+    <string name="length_mi_nominative_long">%s milhas</string>
+
+    <!-- Nautical mile -->
+    <string name="length_nmi_display_name_short">mn</string>
+    <string name="length_nmi_display_name_long">milhas náuticas</string>
+    <string name="length_nmi_nominative_short">%s mn</string>
+    <string name="length_nmi_nominative_long">%s milhas náuticas</string>
+
     <!-- Area units -->
 
     <!-- Square meter -->
     <string name="area_m2_per_long">%s por metro quadrado</string>
 
     <!-- Speed units -->
+
+    <!-- Knot -->
+    <string name="speed_kn_display_name_short">nós</string>
+    <string name="speed_kn_nominative_short">%s nós</string>
 
     <!-- Beaufort scale -->
     <string name="speed_bf_display_name_long">Beaufort</string>

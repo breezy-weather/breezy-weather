@@ -19,12 +19,58 @@
     <string name="temperature_k_display_name_long">kelvinai</string>
     <string name="temperature_k_nominative_long">%s kelvinai</string>
 
+    <!-- Length units -->
+
+    <!-- Micrometer -->
+    <string name="length_microm_display_name_long">mikrometrai</string>
+    <string name="length_microm_nominative_long">%s mikrometrai</string>
+
+    <!-- Millimeter -->
+    <string name="length_mm_display_name_long">milimetrai</string>
+    <string name="length_mm_nominative_long">%s milimetrai</string>
+
+    <!-- Centimeter -->
+    <string name="length_cm_display_name_long">centimetrai</string>
+    <string name="length_cm_nominative_long">%s centimetrai</string>
+
+    <!-- Meter -->
+    <string name="length_m_display_name_long">metrai</string>
+    <string name="length_m_nominative_long">%s metrai</string>
+
+    <!-- Kilometer -->
+    <string name="length_km_display_name_long">kilometrai</string>
+    <string name="length_km_nominative_long">%s kilometrai</string>
+
+    <!-- Inch -->
+    <string name="length_in_display_name_long">coliai</string>
+    <string name="length_in_nominative_long">%s coliai</string>
+
+    <!-- Foot -->
+    <string name="length_ft_display_name_long">pėdos</string>
+    <string name="length_ft_nominative_long">%s pėdos</string>
+
+    <!-- Mile -->
+    <string name="length_mi_display_name_long">mylios</string>
+    <string name="length_mi_nominative_long">%s mylios</string>
+
+    <!-- Nautical mile -->
+    <string name="length_nmi_display_name_short">M</string>
+    <string name="length_nmi_display_name_long">jūrmylės</string>
+    <string name="length_nmi_nominative_short">%s M</string>
+    <string name="length_nmi_nominative_long">%s jūrmylės</string>
+
     <!-- Area units -->
 
     <!-- Square meter -->
     <!-- No change -->
 
     <!-- Speed units -->
+
+    <!-- Knot -->
+    <string name="speed_kn_display_name_short">KN</string>
+    <string name="speed_kn_display_name_long">mazgas</string>
+    <string name="speed_kn_nominative_short">%s KN</string>
+    <string name="speed_kn_nominative_long">%s mazgai</string>
 
     <!-- Beaufort scale -->
     <string name="speed_bf_display_name_long">Bofortas</string>

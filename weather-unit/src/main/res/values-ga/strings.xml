@@ -19,12 +19,59 @@
     <string name="temperature_k_display_name_long">céimeanna ceilvin</string>
     <string name="temperature_k_nominative_long">%s céim ceilvin</string>
 
+    <!-- Length units -->
+
+    <!-- Micrometer -->
+    <string name="length_microm_display_name_short">μméadair</string>
+    <string name="length_microm_display_name_long">micriméadair</string>
+    <string name="length_microm_nominative_long">%s micriméadar</string>
+
+    <!-- Millimeter -->
+    <string name="length_mm_display_name_long">milliméadair</string>
+    <string name="length_mm_nominative_long">%s milliméadar</string>
+
+    <!-- Centimeter -->
+    <string name="length_cm_display_name_long">ceintiméadair</string>
+    <string name="length_cm_nominative_long">%s ceintiméadar</string>
+
+    <!-- Meter -->
+    <string name="length_m_display_name_long">méadair</string>
+    <string name="length_m_nominative_long">%s méadar</string>
+
+    <!-- Kilometer -->
+    <string name="length_km_display_name_long">ciliméadair</string>
+    <string name="length_km_nominative_long">%s ciliméadar</string>
+
+    <!-- Inch -->
+    <string name="length_in_display_name_short">or.</string>
+    <string name="length_in_display_name_long">orlaí</string>
+    <string name="length_in_nominative_short">%s or.</string>
+    <string name="length_in_nominative_long">%s orlach</string>
+
+    <!-- Foot -->
+    <string name="length_ft_display_name_short">tr.</string>
+    <string name="length_ft_display_name_long">troithe</string>
+    <string name="length_ft_nominative_short">%s tr.</string>
+    <string name="length_ft_nominative_long">%s thr.</string>
+
+    <!-- Mile -->
+    <string name="length_mi_display_name_long">mílte</string>
+    <string name="length_mi_nominative_long">%s míle</string>
+
+    <!-- Nautical mile -->
+    <string name="length_nmi_display_name_short">muirmh.</string>
+    <string name="length_nmi_nominative_short">%s muirmh.</string>
+
     <!-- Area units -->
 
     <!-- Square meter -->
     <string name="area_m2_per_long">%s sa mhéadar cearnach</string>
 
     <!-- Speed units -->
+
+    <!-- Knot -->
+    <string name="speed_kn_display_name_long">mrml/u</string>
+    <string name="speed_kn_nominative_long">%s mrml/u</string>
 
     <!-- Beaufort scale -->
     <string name="speed_bf_display_name_long">Beaufort</string>

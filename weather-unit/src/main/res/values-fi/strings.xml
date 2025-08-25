@@ -19,12 +19,56 @@
     <string name="temperature_k_display_name_long">kelvinit</string>
     <string name="temperature_k_nominative_long">%s kelviniä</string>
 
+    <!-- Length units -->
+
+    <!-- Micrometer -->
+    <string name="length_microm_display_name_long">mikrometrit</string>
+    <string name="length_microm_nominative_long">%s mikrometriä</string>
+
+    <!-- Millimeter -->
+    <string name="length_mm_display_name_long">millimetrit</string>
+    <string name="length_mm_nominative_long">%s millimetriä</string>
+
+    <!-- Centimeter -->
+    <string name="length_cm_display_name_long">senttimetrit</string>
+    <string name="length_cm_nominative_long">%s senttimetriä</string>
+
+    <!-- Meter -->
+    <string name="length_m_display_name_long">metrit</string>
+    <string name="length_m_nominative_long">%s metriä</string>
+
+    <!-- Kilometer -->
+    <string name="length_km_display_name_long">kilometrit</string>
+    <string name="length_km_nominative_long">%s kilometriä</string>
+
+    <!-- Inch -->
+    <string name="length_in_display_name_long">tuumat</string>
+    <string name="length_in_nominative_long">%s tuumaa</string>
+
+    <!-- Foot -->
+    <string name="length_ft_display_name_long">jalat</string>
+    <string name="length_ft_nominative_long">%s jalkaa</string>
+
+    <!-- Mile -->
+    <string name="length_mi_display_name_long">mailit</string>
+    <string name="length_mi_nominative_long">%s mailia</string>
+
+    <!-- Nautical mile -->
+    <string name="length_nmi_display_name_short">mpk</string>
+    <string name="length_nmi_display_name_long">meripeninkulmat</string>
+    <string name="length_nmi_nominative_short">%s mpk</string>
+    <string name="length_nmi_nominative_long">%s meripeninkulmaa</string>
+
     <!-- Area units -->
 
     <!-- Square meter -->
     <string name="area_m2_per_long">%s / neliömetri</string>
 
     <!-- Speed units -->
+
+    <!-- Knot -->
+    <string name="speed_kn_display_name_long">solmut</string>
+    <string name="speed_kn_nominative_long">%s solmua</string>
 
     <!-- Beaufort scale -->
     <string name="speed_bf_display_name_long">bofori</string>

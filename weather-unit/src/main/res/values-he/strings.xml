@@ -19,6 +19,53 @@
     <string name="temperature_k_display_name_long">מעלות קלווין</string>
     <string name="temperature_k_nominative_long">%s קלווין</string>
 
+    <!-- Length units -->
+
+    <!-- Micrometer -->
+    <string name="length_microm_display_name_long">מיקרומטרים</string>
+    <string name="length_microm_nominative_long">%s מיקרומטרים</string>
+
+    <!-- Millimeter -->
+    <string name="length_mm_display_name_short">מ״מ</string>
+    <string name="length_mm_display_name_long">מילימטרים</string>
+    <string name="length_mm_nominative_short">%s מ״מ</string>
+    <string name="length_mm_nominative_long">%s מילימטרים</string>
+
+    <!-- Centimeter -->
+    <string name="length_cm_display_name_short">ס״מ</string>
+    <string name="length_cm_display_name_long">סנטימטרים</string>
+    <string name="length_cm_nominative_short">%s ס״מ</string>
+    <string name="length_cm_nominative_long">%s סנטימטרים</string>
+
+    <!-- Meter -->
+    <string name="length_m_display_name_short">מטרים</string>
+    <string name="length_m_nominative_short">%s מ׳</string>
+    <string name="length_m_nominative_long">%s מטרים</string>
+
+    <!-- Kilometer -->
+    <string name="length_km_display_name_short">ק״מ</string>
+    <string name="length_km_display_name_long">קילומטרים</string>
+    <string name="length_km_nominative_short">%s ק״מ</string>
+    <string name="length_km_nominative_long">%s קילומטרים</string>
+
+    <!-- Inch -->
+    <string name="length_in_display_name_short">אינץ׳</string>
+    <string name="length_in_nominative_long">%s אינץ׳</string>
+
+    <!-- Foot -->
+    <string name="length_ft_display_name_short">רגל</string>
+    <string name="length_ft_nominative_long">%s רגל</string>
+
+    <!-- Mile -->
+    <string name="length_mi_display_name_short">מייל</string>
+    <string name="length_mi_nominative_short">%s מייל</string>
+
+    <!-- Nautical mile -->
+    <string name="length_nmi_display_name_short">מ״י</string>
+    <string name="length_nmi_display_name_long">מייל ימי</string>
+    <string name="length_nmi_nominative_short">%s מ״י</string>
+    <string name="length_nmi_nominative_long">%s מייל ימי</string>
+
     <!-- Area units -->
 
     <!-- Square meter -->
@@ -26,6 +73,10 @@
     <string name="area_m2_per_long">%s למטר רבוע</string>
 
     <!-- Speed units -->
+
+    <!-- Knot -->
+    <string name="speed_kn_display_name_long">קשר</string>
+    <string name="speed_kn_nominative_long">%s קשר</string>
 
     <!-- Beaufort scale -->
     <string name="speed_bf_display_name_long">בופורט</string>

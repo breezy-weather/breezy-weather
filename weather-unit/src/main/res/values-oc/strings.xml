@@ -20,12 +20,50 @@
     <!-- Kelvin -->
     <!-- No change -->
 
+    <!-- Length units -->
+
+    <!-- Micrometer -->
+    <string name="length_microm_display_name_long">micromètres</string>
+    <string name="length_microm_nominative_long">%s micromètres</string>
+
+    <!-- Millimeter -->
+    <string name="length_mm_display_name_long">milimètres</string>
+    <string name="length_mm_nominative_long">%s milimètres</string>
+
+    <!-- Centimeter -->
+    <string name="length_cm_display_name_long">centimètres</string>
+    <string name="length_cm_nominative_long">%s centimètres</string>
+
+    <!-- Meter -->
+    <string name="length_m_display_name_long">mètres</string>
+    <string name="length_m_nominative_long">%s mètres</string>
+
+    <!-- Kilometer -->
+    <string name="length_km_display_name_long">quilomètres</string>
+    <string name="length_km_nominative_long">%s quilomètres</string>
+
+    <!-- Inch -->
+    <!-- No change -->
+
+    <!-- Foot -->
+    <!-- No change -->
+
+    <!-- Mile -->
+    <!-- No change -->
+
+    <!-- Nautical mile -->
+    <!-- No change -->
+
     <!-- Area units -->
 
     <!-- Square meter -->
     <string name="area_m2_per_long">%s per mètres cairats</string>
 
     <!-- Speed units -->
+
+    <!-- Knot -->
+    <string name="speed_kn_display_name_long">noses</string>
+    <string name="speed_kn_nominative_long">%s noses</string>
 
     <!-- Beaufort scale -->
     <!-- No change -->

@@ -9,7 +9,6 @@ Android library to handle:
 
 Remains to do:
 
-- Add missing non-English Android translations (for the units we use in Breezy Weather)
 - Complete unit testing
 - Plus and minus operations
 - Parse from string
@@ -41,8 +40,6 @@ Supported widths for Android translations:
 
 ## Distance
 
-Android translations are only in English, French and Esperanto at the moment.
-
 | Unit          | `NumberFormatter` | `MeasureFormat` | Android translations |
 |---------------|-------------------|-----------------|----------------------|
 | Meter         | Android >= 11     | Android 7 to 10 | Android < 7          |
@@ -59,8 +56,6 @@ Supported widths for Android translations:
 
 
 ## Speed
-
-Android translations are only in English, French and Esperanto at the moment.
 
 | Unit                  | `NumberFormatter` | `MeasureFormat` | Android translations |
 |-----------------------|-------------------|-----------------|----------------------|
@@ -83,8 +78,6 @@ Supported widths for Android translations:
 
 
 ## Precipitation
-
-Android translations are only in English, French and Esperanto at the moment.
 
 | Unit                   | `NumberFormatter` | `MeasureFormat` | Android translations |
 |------------------------|-------------------|-----------------|----------------------|

@@ -19,12 +19,59 @@
     <string name="temperature_k_display_name_long">kelvin</string>
     <string name="temperature_k_nominative_long">%s kelvin</string>
 
+    <!-- Length units -->
+
+    <!-- Micrometer -->
+    <string name="length_microm_display_name_long">míkrómetrar</string>
+    <string name="length_microm_nominative_long">%s míkrómetrar</string>
+
+    <!-- Millimeter -->
+    <string name="length_mm_display_name_long">millimetrar</string>
+    <string name="length_mm_nominative_long">%s millimetrar</string>
+
+    <!-- Centimeter -->
+    <string name="length_cm_display_name_long">sentimetrar</string>
+    <string name="length_cm_nominative_long">%s sentimetrar</string>
+
+    <!-- Meter -->
+    <string name="length_m_display_name_long">metrar</string>
+    <string name="length_m_nominative_long">%s metrar</string>
+
+    <!-- Kilometer -->
+    <string name="length_km_display_name_long">kílómetrar</string>
+    <string name="length_km_nominative_long">%s kílómetrar</string>
+
+    <!-- Inch -->
+    <string name="length_in_display_name_short">tommur</string>
+    <string name="length_in_nominative_short">%s t.</string>
+    <string name="length_in_nominative_long">%s tommur</string>
+
+    <!-- Foot -->
+    <string name="length_ft_display_name_short">fet</string>
+    <string name="length_ft_nominative_short">%s fet</string>
+
+    <!-- Mile -->
+    <string name="length_mi_display_name_short">mí</string>
+    <string name="length_mi_display_name_long">mílur</string>
+    <string name="length_mi_nominative_short">%s mí</string>
+    <string name="length_mi_nominative_long">%s mílur</string>
+
+    <!-- Nautical mile -->
+    <string name="length_nmi_display_name_short">sml</string>
+    <string name="length_nmi_display_name_long">sjómílur</string>
+    <string name="length_nmi_nominative_short">%s sml</string>
+    <string name="length_nmi_nominative_long">%s sjómílur</string>
+
     <!-- Area units -->
 
     <!-- Square meter -->
     <string name="area_m2_per_long">%s á fermetra</string>
 
     <!-- Speed units -->
+
+    <!-- Knot -->
+    <string name="speed_kn_display_name_long">hnútar</string>
+    <string name="speed_kn_nominative_long">%s hnútar</string>
 
     <!-- Beaufort scale -->
     <string name="speed_bf_display_name_long">Beaufort</string>

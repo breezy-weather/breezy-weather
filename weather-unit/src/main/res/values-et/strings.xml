@@ -19,12 +19,54 @@
     <string name="temperature_k_display_name_long">kelvinid</string>
     <string name="temperature_k_nominative_long">%s kelvinit</string>
 
+    <!-- Length units -->
+
+    <!-- Micrometer -->
+    <string name="length_microm_display_name_long">mikromeetrid</string>
+    <string name="length_microm_nominative_long">%s mikromeetrit</string>
+
+    <!-- Millimeter -->
+    <string name="length_mm_display_name_long">millimeetrid</string>
+    <string name="length_mm_nominative_long">%s millimeetrit</string>
+
+    <!-- Centimeter -->
+    <string name="length_cm_display_name_long">sentimeetrid</string>
+    <string name="length_cm_nominative_long">%s sentimeetrit</string>
+
+    <!-- Meter -->
+    <string name="length_m_display_name_long">meetrid</string>
+    <string name="length_m_nominative_long">%s meetrit</string>
+
+    <!-- Kilometer -->
+    <string name="length_km_display_name_long">kilomeetrid</string>
+    <string name="length_km_nominative_long">%s kilomeetrit</string>
+
+    <!-- Inch -->
+    <string name="length_in_display_name_long">tollid</string>
+    <string name="length_in_nominative_long">%s tolli</string>
+
+    <!-- Foot -->
+    <string name="length_ft_display_name_long">jalad</string>
+    <string name="length_ft_nominative_long">%s jalga</string>
+
+    <!-- Mile -->
+    <string name="length_mi_display_name_long">miilid</string>
+    <string name="length_mi_nominative_long">%s miili</string>
+
+    <!-- Nautical mile -->
+    <string name="length_nmi_display_name_long">meremiilid</string>
+    <string name="length_nmi_nominative_long">%s meremiili</string>
+
     <!-- Area units -->
 
     <!-- Square meter -->
     <string name="area_m2_per_long">%s ruutmeetri kohta</string>
 
     <!-- Speed units -->
+
+    <!-- Knot -->
+    <string name="speed_kn_display_name_long">sõlm</string>
+    <string name="speed_kn_nominative_long">%s sõlme</string>
 
     <!-- Beaufort scale -->
     <string name="speed_bf_display_name_long">Beaufort</string>
