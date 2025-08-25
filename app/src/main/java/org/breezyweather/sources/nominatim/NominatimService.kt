@@ -128,7 +128,6 @@ class NominatimService @Inject constructor(
         countryCode: String,
     ): String? {
         return when (countryCode.uppercase()) {
-            // Keep the iso code "FR-XX" as the INSEE code is different
             "AR", "AU", "BR", "CA", "CD", "CL", "CN", "EC", "ES", "FM", "FR", "ID",
             "KI", "KZ", "MN", "MX", "MY", "NZ", "PG", "PT", "RU", "UA", "US",
             -> address.isoLvl4
@@ -189,14 +188,8 @@ class NominatimService @Inject constructor(
                                 equals("FR-986", ignoreCase = true) -> "WF"
                                 equals("FR-987", ignoreCase = true) -> "PF"
                                 equals("FR-988", ignoreCase = true) -> "NC"
-                                equals("FR-BL", ignoreCase = true) -> "BL"
                                 equals("FR-CP", ignoreCase = true) -> "CP" // Not official, but reserved
-                                equals("FR-NC", ignoreCase = true) -> "MF"
-                                equals("FR-NC", ignoreCase = true) -> "NC"
-                                equals("FR-PF", ignoreCase = true) -> "PF"
-                                equals("FR-PM", ignoreCase = true) -> "PM"
                                 equals("FR-TF", ignoreCase = true) -> "TF"
-                                equals("FR-WF", ignoreCase = true) -> "WF"
                                 else -> "FR"
                             }
                         }
