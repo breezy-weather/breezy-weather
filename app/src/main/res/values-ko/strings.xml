@@ -417,7 +417,6 @@
     <string name="common_weather_text_rain_freezing_heavy">대폭우</string>
     <string name="common_weather_text_rain_heavy">많은 비</string>
     <string name="common_weather_text_rain_showers">소나기</string>
-    <string name="action_help_me_choose">선택 도움받기</string>
     <string name="weather_message_unsupported_feature">날씨 출처가 요구하신 부분을 지원하지 않습니다</string>
     <string name="precipitation_intensity_medium">보통 비</string>
     <string name="weather_message_too_frequent_refreshes">몇초 뒤 다시 시도해주세요.</string>

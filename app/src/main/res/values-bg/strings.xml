@@ -413,7 +413,6 @@
     <string name="temperature_degree_day_heating">Градус отопление на ден</string>
     <string name="temperature_degree_day_cooling">Градус охлаждане на ден</string>
     <string name="message_source_not_installed_error_title">Източникът вече не е наличен</string>
-    <string name="action_help_me_choose">Помогни ми да избера</string>
     <string name="settings_background_updates_worker_info_summary">Последно изпълнение: %s</string>
     <string name="pollen_betula">Бреза</string>
     <string name="pollen_artemisia">Пелин</string>

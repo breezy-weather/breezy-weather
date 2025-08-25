@@ -419,7 +419,6 @@
     <string name="temperature_degree_day_cooling">درجة الحرارة لتبريد منزلك</string>
     <string name="temperature_degree_day_heating">درجة الحرارة لتسخين منزلك</string>
     <string name="settings_background_updates_worker_info_summary">آخر تشغيل: %s</string>
-    <string name="action_help_me_choose">ساعدني في الاختيار</string>
     <string name="pollen_alnus">النغت</string>
     <string name="pollen_betula">البتولا</string>
     <string name="pollen_artemisia">عشبة النار</string>

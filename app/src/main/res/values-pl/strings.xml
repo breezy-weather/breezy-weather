@@ -362,7 +362,6 @@
     <string name="settings_location_access_background_title">Dostęp do lokalizacji w tle</string>
     <string name="weather_api_unauthorized_title">Brak autoryzacji dostępu do API</string>
     <string name="weather_message_invalid_location">Nieprawidłowa lokalizacja, proszę usuń ją i dodaj ponownie</string>
-    <string name="action_help_me_choose">Pomóż mi wybrać</string>
     <string name="dialog_permissions_location_background_content">Aby umożliwić aplikacji dostęp do informacji o lokalizacji w tle, abyśmy mogli zauważać zmiany lokalizacji i dostarczać Tobie prawidłowe dane pogodowe, ustaw dostęp do lokalizacji na „Zawsze zezwalaj”.</string>
     <string name="ephemeris_sunrise_at">Wschód słońca o %s</string>
     <string name="ephemeris_moonset_at">Zachód księżyca o %s</string>

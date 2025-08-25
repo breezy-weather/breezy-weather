@@ -244,7 +244,6 @@
     <string name="action_undo">Врати</string>
     <string name="action_set">Поставете</string>
     <string name="action_share">Споделете</string>
-    <string name="action_help_me_choose">Помогни ми да изберам</string>
     <string name="dialog_permissions_notification_title">Останете информирани</string>
     <string name="dialog_permissions_location_title">Пристапете до информациите за локацијата</string>
     <string name="message_network_unavailable">Мрежата е недостапна</string>

@@ -423,7 +423,6 @@
     <string name="temperature_degree_day_cooling">制冷度日</string>
     <string name="message_source_not_installed_error_title">数据源不再可用</string>
     <string name="weather_source_accu_preference_hours_240">240 小时</string>
-    <string name="action_help_me_choose">帮助我选择</string>
     <string name="pollen_alnus">桤木</string>
     <string name="pollen_betula">桦木</string>
     <string name="pollen_artemisia">艾蒿</string>

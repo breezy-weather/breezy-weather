@@ -389,7 +389,6 @@
     <string name="action_learn_more">Læs mere</string>
     <string name="action_share">Del</string>
     <string name="action_show_errors">Tryk for at se detaljer</string>
-    <string name="action_help_me_choose">Hjælp mig med at vælge</string>
     <string name="dialog_permissions_location_background_title">Tilgå placering i baggrunden</string>
     <string name="message_parsing_error_title">Tolkning af vejrdata fejlede</string>
     <string name="message_server_timeout">Forespørgsel udløb</string>

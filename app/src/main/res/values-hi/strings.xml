@@ -254,7 +254,6 @@
     <string name="dialog_permissions_notification_title">सूचित रहें</string>
     <string name="dialog_permissions_notification_content">मौसम चेतावनी के बारे में सूचनाएं सक्षम करने के लिए यहां दबाएं, या बाद में समायोजन में निर्णय लें।</string>
     <string name="action_show_errors">विवरण देखने के लिए टैप करें</string>
-    <string name="action_help_me_choose">मुझे चुनने में मदद करें</string>
     <string name="action_undo">पूर्ववत</string>
     <string name="action_set">तय करे</string>
     <string name="action_save">सहेजें</string>

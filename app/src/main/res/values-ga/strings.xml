@@ -194,7 +194,6 @@
     <string name="action_download">Íoslódáil</string>
     <string name="action_show_errors">Tapáil chun na sonraí a fheiceáil</string>
     <string name="action_show">Taispeáin</string>
-    <string name="action_help_me_choose">Cabhraigh liom a roghnú</string>
     <string name="dialog_app_update_check_title">Fan suas chun dáta</string>
     <string name="dialog_app_update_check_content">Tapáil anseo chun fógraí faoi nuashonruithe feidhmchláir a chumasú.</string>
     <string name="dialog_permissions_notification_title">Fan ar an eolas</string>

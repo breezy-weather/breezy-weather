@@ -272,7 +272,6 @@
     <string name="weather_source_accu_preference_hours_240">240 horas</string>
     <string name="location_message_search_failed">Búsqueda de ubicación fallida</string>
     <string name="action_undo">Deshacer</string>
-    <string name="action_help_me_choose">Ayúdame a elegir</string>
     <string name="widget_style_mini">Mini</string>
     <string name="widget_style_nano">Nano</string>
     <string name="widget_clock_font_analog">Análogo</string>

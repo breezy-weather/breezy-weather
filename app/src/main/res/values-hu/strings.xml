@@ -215,7 +215,6 @@
     <string name="settings_weather_source_portal">Portál</string>
     <string name="setting_weather_source_accu_days">Napok száma</string>
     <string name="locations">Helyszínek</string>
-    <string name="action_help_me_choose">Segítsen választani</string>
     <string name="settings_weather_sources">Időjárásforrások</string>
     <string name="settings_icon_packs_title">Ikonkészletek</string>
     <string name="settings_icon_packs_weather_icon_light">Világos ikon</string>

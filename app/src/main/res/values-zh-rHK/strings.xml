@@ -258,7 +258,6 @@
     <string name="action_share">分享</string>
     <string name="action_download">下載</string>
     <string name="action_show_errors">點選以查看詳細資料</string>
-    <string name="action_help_me_choose">幫我選擇</string>
     <string name="dialog_app_update_check_title">保持最新</string>
     <string name="dialog_app_update_check_content">點選這裡以啟用應用程式更新通知。</string>
     <string name="dialog_permissions_notification_title">即時獲得資訊</string>

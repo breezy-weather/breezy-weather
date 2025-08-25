@@ -261,7 +261,6 @@
     <string name="widget_style_symmetry">Simetrija</string>
     <string name="widget_style_pixel">Pixel</string>
     <string name="widget_style_vertical">Vertikalus</string>
-    <string name="action_help_me_choose">Padėkite man išsirinkti</string>
     <string name="dialog_permissions_location_background_content">Norėdami leisti fone atnaujinti orus pagal naujausią Android žinomą dabartinę buvimo vietą, turite nustatyti buvimo vietos leidimą į “Leisti visą laiką”. Jei to nepadarysite, orai bus atnaujinami pagal paskutines pirmame plane gautas koordinates, kurios gali būti pasenusios.</string>
     <string name="widget_custom_subtitle_keyword_ch_description">Dabartinis drėgnumas</string>
     <string name="dialog_permissions_location_content">Norėdami naudotis šia funkcija, turite suteikti programėlei leidimą pasiekti jūsų dabartinę buvimo vietą. Vieta bus dalijamasi tik su pasirinktais orų šaltiniais. Jei persigalvojote, galite atšaukti procesą ir pridėti fiksuotą vietą rankiniu būdu.</string>

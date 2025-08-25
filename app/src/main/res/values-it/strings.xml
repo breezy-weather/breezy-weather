@@ -404,7 +404,6 @@
     <string name="temperature_degree_day_cooling">Gradi giorno di raffreddamento</string>
     <string name="message_source_not_installed_error_title">Fonte non più disponibile</string>
     <string name="null_data_text">N.D.</string>
-    <string name="action_help_me_choose">Aiutami a scegliere</string>
     <string name="action_undo">Annulla</string>
     <string name="settings_source_api_key">Chiave API</string>
     <string name="message_server_timeout">Tempo per la richiesta scaduto</string>

@@ -379,7 +379,6 @@
     <string name="metno_weather_text_andthunder">%s ja ukkosta</string>
     <string name="location_message_permission_missing">Sijainnin käyttöoikeus puuttuu</string>
     <string name="common_weather_text_rain_heavy">Rankkasadetta</string>
-    <string name="action_help_me_choose">Auta valitsemaan</string>
     <string name="about_contact">Yhteydenotto</string>
     <string name="widget_style_pixel">Pixel</string>
     <string name="common_weather_text_snow_heavy">Rankkaa lumisadetta</string>

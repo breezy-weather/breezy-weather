@@ -417,7 +417,6 @@
     <string name="message_source_not_installed_error_title">Sursa nu mai este disponibilă</string>
     <string name="settings_background_updates_worker_info_summary">Rulat ultima dată: %s</string>
     <string name="action_delete">Șterge</string>
-    <string name="action_help_me_choose">Ajută-mă să aleg</string>
     <string name="air_quality_pm10">PM10</string>
     <string name="air_quality_o3_full">Ozonul la sol (%s)</string>
     <string name="pollen_olea">Măslin</string>

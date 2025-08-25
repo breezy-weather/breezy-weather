@@ -266,7 +266,6 @@
     <string name="weather_kind_hail">Hagel</string>
     <string name="sunshine_duration">Zonuren</string>
     <string name="action_back">Terug</string>
-    <string name="action_help_me_choose">Help mij kiezen</string>
     <string name="weather_source_accu_preference_days_1">1 dag</string>
     <string name="weather_source_accu_preference_days_5">5 dagen</string>
     <string name="weather_source_accu_preference_days_10">10 dagen</string>

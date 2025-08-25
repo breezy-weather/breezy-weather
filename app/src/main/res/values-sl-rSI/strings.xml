@@ -343,7 +343,6 @@
     <string name="action_show">Prikaži</string>
     <string name="action_enable">Omogoči</string>
     <string name="action_allow">Dovoli</string>
-    <string name="action_help_me_choose">Pomagaj mi izbrati</string>
     <string name="label_description">Opis</string>
     <string name="daily_summary">Dnevni povzetek</string>
     <string name="chart_no_daily_data">Za ta dan podatki niso na voljo.</string>

@@ -419,7 +419,6 @@
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Badai petir disertai sedikit hujan es</string>
     <string name="settings_notifications_forecast_today_title">Notifikasi prakiraan cuaca hari ini</string>
     <string name="weather_api_key_required_missing_title">Kunci API yang dibutuhkan belum ada</string>
-    <string name="action_help_me_choose">Bantu saya memilih</string>
     <string name="settings_location_access_switch_summaryOff">Mohon izinkan jika Anda ingin dapat menambahkan lokasi Anda saat ini saat ini sebagai lokasi.</string>
     <string name="dialog_permissions_notification_content">Ketuk di sini untuk mengaktifkan notifikasi peringatan cuaca, atau tentukan nanti dalam Setelan.</string>
     <string name="settings_modules_section_widgets_in_use">Gawit yang digunakan</string>

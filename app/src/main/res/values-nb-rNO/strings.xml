@@ -426,7 +426,6 @@
     <string name="message_parsing_error_title">Feilet å analysere værdata</string>
     <string name="message_source_not_installed_error_content_tip_1">Dette kan skje når du har lagt til lokasjonen i Standardversjonen av Breezy Weather, og seinere byttet til Free-networks only versjonen som støtter færre værkilder. Du kan forsøke å gå tilbake til Standardversjonen for å løse problemet.</string>
     <string name="action_close">Lukk</string>
-    <string name="action_help_me_choose">Hjelp meg å velge</string>
     <string name="message_source_not_installed_error_title">Kilden er ikke tilgjengelig lenger</string>
     <string name="dialog_permissions_notification_title">Hold deg oppdatert</string>
     <string name="action_show_errors">Trykk for detaljer</string>

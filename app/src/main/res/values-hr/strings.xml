@@ -67,7 +67,6 @@
     <string name="air_quality">Kvaliteta zraka</string>
     <string name="weather_api_key_required_missing_title">Nedostaje potreban API ključ</string>
     <string name="settings_background_updates_refresh_never">Nikada</string>
-    <string name="action_help_me_choose">Pomoć pri izboru</string>
     <string name="widget_custom_subtitle_keyword_xmr_description">Izlazak Mjeseca danas, sutra, …, 4 dana kasnije</string>
     <string name="settings_icon_packs_title">Paketi ikona</string>
     <string name="widget_day">Dnevno</string>

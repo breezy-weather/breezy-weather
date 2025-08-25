@@ -219,7 +219,6 @@
     <string name="location_results_by">Resultados da localização por %s</string>
     <string name="location_swipe_to_delete">Pode deslizar para a esquerda para eliminar este item</string>
     <string name="dialog_permissions_location_title">Aceder informações de localização</string>
-    <string name="action_help_me_choose">Ajude-me a escolher</string>
     <string name="widget_custom_subtitle_keyword_w_description">Semana</string>
     <string name="widget_custom_subtitle_keyword_xnp_description">Precip. da noite de hoje, amanhã, …, 4 dias depois (%)</string>
     <string name="settings_location_access_background_title">Acesso ao local em segundo plano</string>

@@ -562,7 +562,6 @@
     <string name="action_enable">Activer</string>
     <string name="action_allow">Autoriser</string>
     <string name="action_grant_permission">Appuyez pour accorder la permission.</string>
-    <string name="action_help_me_choose">Aidez-moi à choisir</string>
     <!-- Libellés -->
     <string name="label_description">Description</string>
     <string name="label_expanded">Développé</string>

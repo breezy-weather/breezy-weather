@@ -332,7 +332,6 @@
     <string name="action_back">Πίσω</string>
     <string name="action_save">Αποθήκευση</string>
     <string name="action_show_errors">Άγγιξε για να δεις λεπτομέρειες</string>
-    <string name="action_help_me_choose">Βοήθησέ με να επιλέξω</string>
     <string name="dialog_permissions_notification_title">Μείνε ενημερωμένος</string>
     <string name="dialog_permissions_notification_content">Πάτησε εδώ για να ενεργοποιήσεις τις ειδοποιήσεις σχετικά με προειδοποιήσεις καιρού ή αποφάσισε αργότερα στις Ρυθμίσεις.</string>
     <string name="dialog_permissions_location_title">Πληροφορίες πρόσβασης τοποθεσίας</string>

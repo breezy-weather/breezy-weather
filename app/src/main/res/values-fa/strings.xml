@@ -198,7 +198,6 @@
     <string name="action_save">ذخیره</string>
     <string name="action_help">کمک</string>
     <string name="action_learn_more">بیشتر بیاموزید</string>
-    <string name="action_help_me_choose">کمک در گزینش</string>
     <string name="message_network_unavailable">شبکه در دسترس نیست</string>
     <string name="widget_clock_day_vertical">ساعت + روزانه (عمودی)</string>
     <string name="widget_clock_day_week">ساعت + روزانه + هفته ها</string>

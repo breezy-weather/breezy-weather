@@ -285,7 +285,6 @@
     <string name="settings_notifications_forecast_today_title">Notificació per al pronòstic del dia</string>
     <string name="common_weather_text_rain_heavy">Pluja intensa</string>
     <string name="weather_api_key_required_missing_title">Falta la clau API requerida</string>
-    <string name="action_help_me_choose">Ajuda’m a triar</string>
     <string name="settings_icon_packs_title">Paquets d’icones</string>
     <string name="settings_icon_packs_check_details">Comprovar detalls</string>
     <string name="settings_location_access_switch_summaryOff">Permeteu-ho si voleu poder afegir la vostra ubicació actual com a ubicació.</string>

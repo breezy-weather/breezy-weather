@@ -482,7 +482,6 @@
     <string name="settings_weather_source_open_meteo_weather_models_best_match">Najlepšia zhoda</string>
     <string name="widget_refreshing">Obnovujem</string>
     <string name="dialog_permissions_notification_title">Ostaňte informovaný</string>
-    <string name="action_help_me_choose">Pomôžte mi vybrať</string>
     <string name="dialog_time_picker_toggle_text_input_voice">Prepnúť na textový vstup</string>
     <string name="settings_background_updates_worker_info_title">Informácie o procesoch</string>
     <string name="settings_location_access_switch_summaryOff">Prosím povoľte ak si chcete pridať vašu aktuálnu polohu ako lokáciu.</string>

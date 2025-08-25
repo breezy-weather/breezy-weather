@@ -420,7 +420,6 @@
     <string name="setting_weather_source_accu_days">Дни</string>
     <string name="settings_source_api_key">Ключ API</string>
     <string name="settings_background_updates_worker_info_summary">Последний запуск: %s</string>
-    <string name="action_help_me_choose">Помогите мне выбрать</string>
     <string name="pollen_level_0">Нет</string>
     <string name="pollen_level_4">Высокий</string>
     <string name="pollen_level_5">Очень высокий</string>

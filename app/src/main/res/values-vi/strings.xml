@@ -404,7 +404,6 @@
     <string name="widget_clock_font_sans_serif_black">Sans Serif Đen</string>
     <string name="widget_clock_font_sans_serif_light">Sans Serif Nhẹ</string>
     <string name="settings_background_updates_worker_info_summary">Lần chạy cuối cùng: %s</string>
-    <string name="action_help_me_choose">Giúp tôi chọn</string>
     <string name="settings_source_api_key">Khóa API</string>
     <string name="temperature_degree_day_cooling">Nhiệt độ nguội ban ngày</string>
     <string name="temperature_degree_day_heating">Nhiệt độ nóng ban ngày</string>

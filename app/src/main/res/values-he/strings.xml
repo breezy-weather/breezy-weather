@@ -203,7 +203,6 @@
     <string name="action_confirm">אשר</string>
     <string name="action_share">שתף</string>
     <string name="message_network_unavailable">רשת לא זמינה</string>
-    <string name="action_help_me_choose">עזור לי לבחור</string>
     <string name="dialog_permissions_notification_content">הקש כאן על מנת להפעיל התראות על מזג האוויר, או להחליט מאוחר יותר בהגדרות.</string>
     <string name="dialog_permissions_location_title">גישה למידע על מיקום</string>
     <string name="dialog_time_picker_select_time">בחר זמן</string>

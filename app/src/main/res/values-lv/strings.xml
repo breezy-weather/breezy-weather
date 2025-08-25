@@ -313,7 +313,6 @@
     <string name="action_share">Kopīgot</string>
     <string name="action_show_errors">Piesist, lai redzētu izvērstu informāciju</string>
     <string name="location_service_native">Vietējais API</string>
-    <string name="action_help_me_choose">Palīdziet man izvēlēties</string>
     <string name="action_location_list">Atrašanās vietu saraksts</string>
     <string name="action_search">Meklēt</string>
     <string name="action_add_new_location">Pievienot jaunu atrašanās vietu</string>

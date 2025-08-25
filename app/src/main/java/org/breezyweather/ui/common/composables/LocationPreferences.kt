@@ -885,8 +885,6 @@ fun SourceView(
     withState: Boolean = true,
     onValueChanged: (String) -> Unit,
 ) {
-    val dialogLinkOpenState = remember { mutableStateOf(false) }
-
     // TODO: Reduce redundancy
     if (card) {
         ListPreferenceViewWithCard(
@@ -901,19 +899,6 @@ fun SourceView(
             },
             onValueChanged = { sourceId ->
                 onValueChanged(sourceId)
-            },
-            dismissButton = {
-                TextButton(
-                    onClick = {
-                        dialogLinkOpenState.value = true
-                    }
-                ) {
-                    Text(
-                        text = stringResource(R.string.action_help_me_choose),
-                        color = MaterialTheme.colorScheme.primary,
-                        style = MaterialTheme.typography.labelLarge
-                    )
-                }
             },
             enabled = enabled,
             colors = colors,
@@ -935,29 +920,9 @@ fun SourceView(
             onValueChanged = { sourceId ->
                 onValueChanged(sourceId)
             },
-            dismissButton = {
-                TextButton(
-                    onClick = {
-                        dialogLinkOpenState.value = true
-                    }
-                ) {
-                    Text(
-                        text = stringResource(R.string.action_help_me_choose),
-                        color = MaterialTheme.colorScheme.primary,
-                        style = MaterialTheme.typography.labelLarge
-                    )
-                }
-            },
             enabled = enabled,
             colors = colors,
             withState = withState
-        )
-    }
-
-    if (dialogLinkOpenState.value) {
-        AlertDialogLink(
-            onClose = { dialogLinkOpenState.value = false },
-            linkToOpen = "https://github.com/breezy-weather/breezy-weather/blob/main/docs/SOURCES.md"
         )
     }
 }
@@ -977,7 +942,6 @@ fun SourceViewWithContinents(
     withState: Boolean = true,
     onValueChanged: (String) -> Unit,
 ) {
-    val dialogLinkOpenState = remember { mutableStateOf(false) }
     val context = LocalContext.current
 
     ListPreferenceWithGroupsView(
@@ -996,28 +960,8 @@ fun SourceViewWithContinents(
         onValueChanged = { sourceId ->
             onValueChanged(sourceId)
         },
-        dismissButton = {
-            TextButton(
-                onClick = {
-                    dialogLinkOpenState.value = true
-                }
-            ) {
-                Text(
-                    text = stringResource(R.string.action_help_me_choose),
-                    color = MaterialTheme.colorScheme.primary,
-                    style = MaterialTheme.typography.labelLarge
-                )
-            }
-        },
         enabled = enabled,
         colors = colors,
         withState = withState
     )
-
-    if (dialogLinkOpenState.value) {
-        AlertDialogLink(
-            onClose = { dialogLinkOpenState.value = false },
-            linkToOpen = "https://github.com/breezy-weather/breezy-weather/blob/main/docs/SOURCES.md"
-        )
-    }
 }

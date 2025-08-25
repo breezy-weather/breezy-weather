@@ -282,7 +282,6 @@
     <string name="settings_debug_summary">損毀記錄</string>
     <string name="settings_debug_dump_crash_logs_title">分享損毀記錄</string>
     <string name="notification_channel_widget">小工具</string>
-    <string name="action_help_me_choose">幫我選擇</string>
     <string name="message_source_not_installed_error_title">資料來源不再可用</string>
     <string name="widget_style_pixel">Pixel</string>
     <string name="settings_main_summary">區塊順序、顯示項目、動畫</string>

@@ -414,7 +414,6 @@
     <string name="settings_background_updates_battery_optimization_disabled">バッテリーの最適化はすでに無効になっています。</string>
     <string name="settings_debug_dump_crash_logs_summary">エラーログをファイルに保存して開発者と共有</string>
     <string name="settings_items_drag_to_sort">並べ替えるリスト項目をタップしてドラッグしてください</string>
-    <string name="action_help_me_choose">ヘルプ</string>
     <string name="weather_api_unauthorized_content">一部の情報源には、あなた自身のAPIキーを設定する必要があります。既に設定している場合は、キーを再確認してください。</string>
     <string name="weather_api_key_required_missing_content">この情報源を利用するには、APIキーを設定する必要があります。</string>
     <string name="location_results_by">位置情報：%s</string>

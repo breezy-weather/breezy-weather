@@ -90,7 +90,6 @@
     <string name="action_help">Довідка</string>
     <string name="action_learn_more">Докладніше</string>
     <string name="action_close">Закрити</string>
-    <string name="action_help_me_choose">Допоможіть мені вибрати</string>
     <string name="dialog_permissions_notification_title">Будьте в курсі</string>
     <string name="dialog_permissions_location_background_title">Доступ до місцеперебування у фоновому режимі</string>
     <string name="message_server_timeout">Час запиту вичерпано</string>

@@ -426,7 +426,6 @@
     <string name="message_source_not_installed_error_title">A fonte não está mais disponível</string>
     <string name="settings_background_updates_worker_info_summary">Última execução: %s</string>
     <string name="temperature_degree_day_cooling">Graus-dia de resfriamento</string>
-    <string name="action_help_me_choose">Ajude-me a escolher</string>
     <string name="settings_weather_source_portal">Canal</string>
     <string name="pollen_alnus">Amieiro</string>
     <string name="pollen_betula">Bétula</string>

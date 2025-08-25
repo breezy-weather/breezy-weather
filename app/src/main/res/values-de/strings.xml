@@ -410,7 +410,6 @@
     <string name="settings_source_api_key">API-Schlüssel</string>
     <string name="temperature_degree_day_heating">Heizgradtag</string>
     <string name="notification_update_error">%d Aktualisierung(en) fehlgeschlagen</string>
-    <string name="action_help_me_choose">Auswahlhilfe</string>
     <string name="settings_background_updates_worker_info_summary">Letzte Ausführung: %s</string>
     <string name="pollen_artemisia">Beifuß</string>
     <string name="pollen_alnus">Erle</string>

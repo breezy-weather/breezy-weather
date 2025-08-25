@@ -449,7 +449,6 @@
     <string name="common_weather_text_rain_freezing_heavy">Silný mrazivý déšť</string>
     <string name="common_weather_text_rain_snow_mixed">Směs deště a sněhu</string>
     <string name="settings_weather_source_portal">Portál</string>
-    <string name="action_help_me_choose">Pomozte mi vybrat</string>
     <string name="settings_source_api_key">Klíč API</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">Usazování mlhy</string>
     <string name="weather_message_unsupported_feature">Zdroj nepodporuje jednu z požadovaných funkcí</string>

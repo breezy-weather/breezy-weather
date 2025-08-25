@@ -323,7 +323,6 @@
     <string name="action_done">เรียบร้อย</string>
     <string name="action_save">บันทึก</string>
     <string name="action_grant_permission">แตะเพื่ออนุญาต</string>
-    <string name="action_help_me_choose">ช่วยฉันเลือก</string>
     <string name="dialog_app_update_check_content">แตะที่นี่เพื่อเปิดใช้งานการแจ้งเตือนเกี่ยวกับอัปเดตใหม่ๆของแอป</string>
     <string name="dialog_permissions_notification_title">รู้ทันข่าวสาร</string>
     <string name="dialog_app_update_check_title">ติดตามอัปเดต</string>

@@ -510,7 +510,6 @@
     <string name="action_allow">Allow</string>
     <string name="action_grant_permission">Tap to grant the permission.</string>
     <!-- Button shown in the weather selection dialog -->
-    <string name="action_help_me_choose">Help me choose</string>
     <!-- Labels -->
     <string name="label_description">Description</string>
     <string name="label_expanded">Expanded</string>

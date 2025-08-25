@@ -232,7 +232,6 @@
     <string name="action_share">Komunigi</string>
     <string name="action_show_errors">Tuŝeti por vidi detalojn</string>
     <!-- Button shown in the weather selection dialog -->
-    <string name="action_help_me_choose">Helpi min elekti</string>
     <!-- Miscellaneous messages -->
     <string name="message_network_unavailable">Reto nedisponebla</string>
     <string name="message_server_timeout">Tempolimo de peto</string>

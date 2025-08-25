@@ -340,7 +340,6 @@
     <string name="action_set">Postavi</string>
     <string name="action_help">Pomoć</string>
     <string name="action_show_errors">Dodirnite za detalje</string>
-    <string name="action_help_me_choose">Pomoć pri izboru</string>
     <string name="dialog_permissions_notification_title">Ostanite informisani</string>
     <string name="dialog_permissions_notification_content">Dodirnite ovdje da omogućite obavještenja o vremenskim upozorenjima ili kasnije odlučite u postavkama.</string>
     <string name="dialog_permissions_location_title">Pristup informacijama o lokaciji</string>

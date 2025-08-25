@@ -196,7 +196,6 @@
     <string name="action_learn_more">Gehiago ikasi</string>
     <string name="action_close">Itxi</string>
     <string name="action_share">Partekatu</string>
-    <string name="action_help_me_choose">Lagundu aukeratzen</string>
     <string name="dialog_permissions_notification_title">Informatuta egon</string>
     <string name="dialog_permissions_notification_content">Ukitu hemen eguraldi alertei buruzko jakinarazpenak aktibatzeko, edo erabaki gero Ezarpenetan.</string>
     <string name="widget_subtitle_data_wind">Haizea</string>

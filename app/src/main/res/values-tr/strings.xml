@@ -276,7 +276,6 @@
     <string name="action_delete">Sil</string>
     <string name="action_learn_more">Daha fazla bilgi</string>
     <string name="action_close">Kapat</string>
-    <string name="action_help_me_choose">Seçmem için bana yardım et</string>
     <string name="widget_label_subtitle_data">Alt başlık verisi</string>
     <string name="widget_style_temperature">Sıcaklık</string>
     <string name="widget_live_wallpaper_weather_kind">Hava Durumu</string>
