@@ -320,7 +320,7 @@
     <string name="settings_appearance_summary">Lingvo, malhela reĝimo, pakoj de piktogramoj, mezurunuoj</string>
     <string name="settings_appearance_language_title">Lingvo</string>
     <string name="settings_appearance_dark_mode_title">Malhela reĝimo</string>
-    <string name="settings_appearance_dark_mode_locations_title">Tago / Nokto reĝimo por lokoj</string>
+    <string name="settings_appearance_dark_mode_locations_title">Laŭloka malhela reĝimo</string>
     <string name="settings_appearance_icon_pack_title">Pako de piktogramoj</string>
     <string name="settings_icon_packs_title">Pakoj de piktogramoj</string>
     <string name="settings_icon_packs_check_details">Kontroli detalojn</string>
@@ -337,10 +337,10 @@
     <string name="settings_units_speed">Rapideca unuo</string>
     <string name="settings_units_pressure">Prema unuo</string>
     <string name="settings_main">Ĉefa ekrenao</string>
-    <string name="settings_main_summary">Ordo de kartoj, montritaj elementoj, efektoj</string>
+    <string name="settings_main_summary">Ordo de blokoj, montritaj elementoj, efektoj</string>
     <!-- Data is plural here -->
     <string name="settings_main_section_displayed_data">Montritaj datumoj</string>
-    <string name="settings_main_cards_title">Kartoj</string>
+    <string name="settings_main_cards_title">Blokoj</string>
     <string name="settings_main_daily_trends_title">Ĉiutagaj tendencoj</string>
     <string name="settings_main_hourly_trends_title">Ĉiuhoraj tendencoj</string>
     <!-- Also possible: ĉapo, paĝokapo -->
@@ -351,7 +351,7 @@
     <string name="settings_main_background_animation_enabled">Aktivigita</string>
     <string name="settings_main_background_animation_disabled">Malaktivigita</string>
     <string name="settings_main_gravity_sensor_switch">Gravita sentilo</string>
-    <string name="settings_main_cards_fade_in_switch">Maldissolvo de kartoj</string>
+    <string name="settings_main_cards_fade_in_switch">Maldissolvo de blokoj</string>
     <!-- Elements = temperature in header, AQI, sun &amp; moon arc, etc -->
     <string name="settings_main_cards_other_element_animations_switch">Efectoj de aliaj elementoj</string>
     <string name="settings_notifications">Sciigoj</string>
@@ -590,7 +590,7 @@
     <string name="widget_label_subtitle_data">Subtitolaj datenoj</string>
     <string name="widget_subtitle_data_time">Tempo de aktualigo</string>
     <string name="settings_location_access_switch_summaryOn">Permesata. Vi povas aldoni vian nunan lokon en la liston de lokoj.</string>
-    <string name="settings_modules_summary">Ŝanĝi fono, agordi uzatajn fenestraĵojn, sciiga fenestraĵo</string>
+    <string name="settings_modules_summary">Fenestraĵoj, atentiga fenestraĵo, tapeto, datena disdivido kun aliaj aplikaĵoj</string>
     <string name="location_message_permission_background_missing">Mankas permeso atingi lokon fone</string>
     <string name="dialog_permissions_notification_content">Tuŝeti ĉi tie por aktivigi sciigojn pri veteraj atentigoj, aŭ decidu malfrue en Agordoj.</string>
     <string name="weather_api_unauthorized_title">API aliro neaŭtoritata</string>
@@ -813,4 +813,10 @@
     <string name="settings_appearance_section_regional">Lingvo kaj regiono</string>
     <string name="settings_appearance_section_theme">Etoso</string>
     <string name="settings_appearance_dark_mode_locations_day_night">Sekvu tagon/nokton</string>
+    <string name="settings_appearance_dark_mode_locations_dark">Ĉiam malhela, kiam aplikaĵo estas en malhela reĝimo</string>
+    <string name="settings_regional_preference">Regiona prefero</string>
+    <string name="about_update_check_eol">Ĉi tiu Android versio ne plu estas subtenata</string>
+    <string name="content_provider_permission_label">Legu Breezy Weather datenojn</string>
+    <string name="content_provider_permission_description">akiri veterinformojn de Breezy Weather, enhavita koordinatoj de viaj lokoj, kiel ekzemple via nuna loko se vi aldonis ĝin</string>
+    <string name="common_weather_text_mostly_cloudy">Plejparte nuba</string>
 </resources>
