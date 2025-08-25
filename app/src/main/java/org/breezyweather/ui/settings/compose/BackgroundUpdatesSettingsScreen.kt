@@ -33,8 +33,12 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalUriHandler
@@ -42,8 +46,10 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringArrayResource
 import androidx.compose.ui.res.stringResource
 import androidx.core.net.toUri
+import kotlinx.coroutines.delay
 import org.breezyweather.R
 import org.breezyweather.background.weather.WeatherUpdateJob
+import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.formatTime
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.plus
@@ -68,6 +74,7 @@ import org.breezyweather.ui.settings.preference.sectionHeaderItem
 import org.breezyweather.ui.settings.preference.smallSeparatorItem
 import org.breezyweather.ui.settings.preference.switchPreferenceItem
 import org.breezyweather.unit.formatting.UnitWidth
+import org.breezyweather.unit.formatting.format
 import java.util.Date
 import kotlin.time.DurationUnit
 
@@ -131,6 +138,13 @@ fun BackgroundSettingsScreen(
                     }
                 )
                 if (dialogNeverRefreshOpenState.value) {
+                    var timeLeft by remember { mutableIntStateOf(10) }
+                    LaunchedEffect(key1 = timeLeft) {
+                        while (timeLeft > 0) {
+                            delay(1000L)
+                            --timeLeft
+                        }
+                    }
                     AlertDialog(
                         onDismissRequest = { dialogNeverRefreshOpenState.value = false },
                         text = {
@@ -168,11 +182,19 @@ fun BackgroundSettingsScreen(
                                         .getInstance(context)
                                         .updateInterval = UpdateInterval.INTERVAL_NEVER
                                     WeatherUpdateJob.setupTask(context)
-                                }
+                                },
+                                enabled = timeLeft == 0
                             ) {
                                 Text(
-                                    text = stringResource(R.string.action_continue),
-                                    color = MaterialTheme.colorScheme.primary,
+                                    text = if (timeLeft > 0) {
+                                        stringResource(
+                                            R.string.parenthesis,
+                                            stringResource(R.string.action_continue),
+                                            timeLeft.format(decimals = 0, locale = context.currentLocale)
+                                        )
+                                    } else {
+                                        stringResource(R.string.action_continue)
+                                    },
                                     style = MaterialTheme.typography.labelLarge
                                 )
                             }
