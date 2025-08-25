@@ -3,7 +3,7 @@
 Android library to handle:
 
 - Unit conversion, with syntax inspired by [Kotlin duration](https://kotlinlang.org/docs/time-measurement.html#time-sources).
-- Unit formatting in various languages, including on devices without ICU support or with missing CLDR data, with a simplified backport (no handling of plural and non-nominative rules, no regional translations for languages)
+- Unit formatting in various languages, including on devices without ICU support or with missing CLDR data, with a simplified backport (no handling of plural and non-nominative rules)
 - Number formatting
 - Computing of some common weather data (apparent temperature, dew point, etc)
 
