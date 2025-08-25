@@ -7,14 +7,14 @@ The following features are already available in the current branch, but will be 
 - New broadcast: you can use `org.breezyweather.ACTION_UPDATE_NOTIFIER` (or `org.breezyweather.debug.ACTION_UPDATE_NOTIFIER` with the debug build) to be notified of updated locations (most common use case is coupled with the content provider)
 
 
-# Version 6.0.7-beta (not yet released)
+# Version 6.0.7-beta (2025-08-26)
 
 **Translations**
 - Translations updated
 - Add missing distance, speed and precipitation unit translations on Android < 7
 
 
-# Version 6.0.6-alpha (not yet released)
+# Version 6.0.6-alpha (2025-08-24)
 
 **Improvements and fixes**
 - Fix crash on startup on Android 5.0, 5.1 and 6.0
