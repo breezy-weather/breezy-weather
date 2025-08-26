@@ -78,6 +78,7 @@ import org.breezyweather.sources.nlsc.NlscService.Companion.WUQIU_BBOX
 import org.breezyweather.unit.computing.computeMeanSeaLevelPressure
 import org.breezyweather.unit.computing.computePollutantInUgm3FromPpb
 import org.breezyweather.unit.pollutant.PollutantConcentration.Companion.microgramsPerCubicMeter
+import org.breezyweather.unit.pollutant.PollutantConcentration.Companion.milligramsPerCubicMeter
 import org.breezyweather.unit.pressure.Pressure
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
 import org.breezyweather.unit.ratio.Ratio.Companion.percent
@@ -523,12 +524,14 @@ class CwaService @Inject constructor(
                     temperature,
                     pressure
                 )?.microgramsPerCubicMeter,
+                // CWA API reports CO concentration in ppm (rather than ppb), and we save CO concentration in mg/m³.
+                // Both are off by a factor of 1000, so we reuse the function, but assign milligramsPerCubicMeter.
                 cO = computePollutantInUgm3FromPpb(
                     PollutantIndex.CO.molecularMass,
                     it.co?.toDoubleOrNull(),
                     temperature,
                     pressure
-                )?.microgramsPerCubicMeter
+                )?.milligramsPerCubicMeter
             )
         }
     }
