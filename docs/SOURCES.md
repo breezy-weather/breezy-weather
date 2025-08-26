@@ -55,6 +55,7 @@ Below, you can find details about the support and implementation status for feat
 | 🇬🇼 Guinea-Bissau                 | [ClimWeb](#climweb)                                     | Alerts                                                                               |
 | 🇭🇰 Hong Kong                     | [HKO](#hong-kong-observatory)                           | Forecast, Current, Alerts, Normals, Address                                          |
 | 🇭🇰 Hong Kong                     | [EPD](#environmental-protection-department)             | Air quality                                                                          |
+| 🇮🇸 Iceland                       | [Veðurstofa Íslands](#veðurstofa-íslands)               | Forecast, Current, Alerts, Address                                                   |
 | 🇮🇳 India                         | [IMD](#india-meteorological-department)                 | Forecast                                                                             |
 | 🇮🇩 Indonesia                     | [BMKG](#bmkg)                                           | Forecast, Current, Air quality, Alerts, Address                                      |
 | 🇮🇪 Ireland                       | [MET Éireann](#met-éireann)                             | Forecast, Alerts, Address                                                            |
@@ -1112,6 +1113,35 @@ For the United States, [Forecast Advisor](https://www.forecastadvisor.com/) has 
 | Precipitation             | ✅         | UV Index          | ❌         |
 | Precipitation Probability | ✅         | Sunshine Duration | ❌         |
 | Precipitation Duration    | ❌         | Cloud Cover       | ❌         |
+| Wind                      | ✅         | Visibility        | ✅         |
+| Pressure                  | ✅         | Ceiling           | ❌         |
+</details>
+
+### Veðurstofa Íslands
+**[Veðurstofa Íslands](https://gottvedur.is/)** is the official meteorological service of Iceland.
+
+| Feature                        | Detail                                                           |
+|--------------------------------|------------------------------------------------------------------|
+| 🗺️ **Coverage**               | 🇮🇸 Iceland                                                     |
+| 📆 **Daily forecast**          | Up to 7 days                                                     |
+| ⏱️ **Hourly forecast**         | Up to 7 days                                                     |
+| ▶️ **Current observation**     | Available: can complement another source as a **Current Source** |
+| 😶‍🌫️ **Air quality**         | Not available                                                    |
+| 🤧 **Pollen**                  | Not available                                                    |
+| ☔ **Precipitation nowcasting** | Not available                                                    |
+| ⚠️ **Alerts**                  | Available                                                        |
+| 📊 **Normals**                 | Not available                                                    |
+| 🧭 **Address lookup**          | Available                                                        |
+
+<details><summary><h4>Details of available data from Veðurstofa Íslands</h4></summary>
+
+| Data                      | Available | Data              | Available |
+|---------------------------|-----------|-------------------|-----------|
+| Weather Condition         | ✅         | Humidity          | ✅         |
+| Temperature               | ✅         | Dew Point         | ✅         |
+| Precipitation             | ✅         | UV Index          | ❌         |
+| Precipitation Probability | ❌         | Sunshine Duration | ❌         |
+| Precipitation Duration    | ❌         | Cloud Cover       | ✅         |
 | Wind                      | ✅         | Visibility        | ✅         |
 | Pressure                  | ✅         | Ceiling           | ❌         |
 </details>
