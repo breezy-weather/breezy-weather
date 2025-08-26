@@ -165,7 +165,7 @@ In general, a weather source can be considered for inclusion in the official rel
 | 🇬🇷 Greece                   | [EMY](http://www.emy.gr/)                             |                                                                                       |              |
 | 🇬🇬 Guernsey                 | [Met Office](https://www.metoffice.gov.uk/)           | ✅ included from v5.3.0                                                                |              |
 | 🇭🇺 Hungary                  | [HungaroMet](https://www.met.hu/)                     | ❌ [no hourly](https://github.com/breezy-weather/breezy-weather/issues/821)            | 2024-03-19   |
-| 🇮🇸 Iceland                  | [IMO](https://en.vedur.is/)                           | ❌ no geolocation, no JSON                                                             | 2024-11-30   |
+| 🇮🇸 Iceland                  | [IMO](https://en.vedur.is/)                           | ✅ included from v6.0.5                                                                | 2025-08-23   |
 | 🇮🇪 Ireland                  | [MET Éireann](https://www.met.ie/)                    | ✅ included from v5.0.0                                                                |              |
 | 🇮🇲 Isle of Man              | [Met Office](https://www.metoffice.gov.uk/)           | ✅ included from v5.3.0                                                                |              |
 | 🇮🇹 Italy                    | [Meteo AM](https://www.meteoam.it/)                   | ✅ Included from v5.2.6                                                                |              |
