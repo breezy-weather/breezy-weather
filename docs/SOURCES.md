@@ -14,7 +14,6 @@ Below, you can find details about the support and implementation status for feat
 | 🌐 Worldwide                       | [Android](#android)                                     | Address                                                                              |
 | 🌐 Worldwide                       | [GeoNames](#geonames) 🔐                                | Search                                                                               |
 | 🌐 Worldwide                       | [FOSS Public Alert Server](#foss-public-alert-server)   | Alerts                                                                               |
-| 🌐 Worldwide                       | [HERE](#here-destination-weather) 🔐                    | Forecast, Current, Alerts, Address                                                   |
 | 🌐 Worldwide                       | [NCEI](#national-centers-for-environmental-information) | Normals                                                                              |
 | 🌐 Worldwide                       | [Nominatim](#nominatim)                                 | Address                                                                              |
 | 🌐 Worldwide                       | [OpenWeather](#openweather) 🔓                          | Forecast, Current, Air quality                                                       |
@@ -244,39 +243,6 @@ For the United States, [Forecast Advisor](https://www.forecastadvisor.com/) has 
 | Precipitation Duration    | ❌         | Cloud Cover       | ✅           |
 | Wind                      | ✅         | Visibility        | ✅ (Current) |
 | Pressure                  | ✅         | Ceiling           | ❌           |
-</details>
-
-### HERE Destination Weather
-> 🚫 **This source will require the API key holder to provide Personal Identifiable Information after August 31, 2025.** It will no longer be eligible for inclusion in Breezy Weather, and will be removed from Breezy Weather after this date.
-
-> 🔐 **This source requires an API key.**
-
-**[HERE Destination Weather](https://www.here.com/get-started/marketplace-listings/here-destination-weather)** is operated by HERE Technologies, a Dutch mapping group that is majority-owned by a consortium of German automakers.
-
-| Feature                        | Detail                                                              |
-|--------------------------------|---------------------------------------------------------------------|
-| 🗺️ **Coverage**               | 🌐 Worldwide (some features may not be available for all locations) |
-| 📆 **Daily forecast**          | Up to 6 days                                                        |
-| ⏱️ **Hourly forecast**         | Up to 6 days                                                        |
-| ▶️ **Current observation**     | Available: can complement another source as a **Current Source**    |
-| 😶‍🌫️ **Air quality**         | Not available                                                       |
-| 🤧 **Pollen**                  | Not available                                                       |
-| ☔ **Precipitation nowcasting** | Not available                                                       |
-| ⚠️ **Alerts**                  | Not available                                                       |
-| 📊 **Normals**                 | Not available                                                       |
-| 🧭 **Address lookup**          | Available                                                           |
-
-<details><summary><h4>Details of available data from HERE</h4></summary>
-
-| Data                      | Available | Data              | Available |
-|---------------------------|-----------|-------------------|-----------|
-| Weather Condition         | ✅         | Humidity          | ✅         |
-| Temperature               | ✅         | Dew Point         | ✅         |
-| Precipitation             | ✅         | UV Index          | ✅         |
-| Precipitation Probability | ✅         | Sunshine Duration | ❌         |
-| Precipitation Duration    | ❌         | Cloud Cover       | ❌         |
-| Wind                      | ✅         | Visibility        | ✅         |
-| Pressure                  | ✅         | Ceiling           | ❌         |
 </details>
 
 ## National sources
@@ -1234,7 +1200,7 @@ These sources can be added as an **Alert** and **Temperature normals** source fo
 **[National Land Survey and Mapping Center](https://www.nlsc.gov.tw/)** (NLSC) can be added as an **Address lookup** source for Taiwan.
 
 ### Nominatim
-**[Nominatim](https://nominatim.org/)** can provide the address lookup feature, using OpenStreetMap data. This source doesn’t provide timezone support, so Breezy Weather will fallback to device’s timezone.
+**[Nominatim](https://nominatim.org/)** can provide the address lookup feature, using OpenStreetMap data.
 
 ### Recosanté
 > **April 2025 update:** Recosanté is temporarily not producing any data

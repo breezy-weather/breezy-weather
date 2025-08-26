@@ -13,6 +13,8 @@ The following features are already available in the current branch, but will be 
 - Translations updated
 - Add missing distance, speed and precipitation unit translations on Android < 7
 
+**Technical**
+- Added timezone deduction based on subdivision codes (@chunshek)
 
 # Version 6.0.6-alpha (2025-08-24)
 
