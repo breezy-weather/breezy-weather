@@ -24,7 +24,7 @@
     <string name="pressure">Légnyomás</string>
     <string name="visibility">Látótávolság</string>
     <string name="dew_point">Harmatpont</string>
-    <string name="cloud_cover">Felhőtakaró</string>
+    <string name="cloud_cover">Felhőborítottság</string>
     <string name="ceiling">Felhőalap</string>
     <string name="settings_icon_packs_get_more">Szerezzen be többet</string>
     <string name="action_refresh">Frissítés</string>
@@ -495,7 +495,7 @@
     <string name="pressure_short">Légnyomás</string>
     <string name="visibility_short">Látótávolság</string>
     <string name="humidity_short">Páratartalom</string>
-    <string name="cloud_cover_short">Felhőtakaró</string>
+    <string name="cloud_cover_short">Felhőborítottság</string>
     <string name="settings_weather_sources_default_source">Új helyszínek alapértelmezett forrása</string>
     <string name="settings_weather_source_unavailable">%s (nem elérhető)</string>
     <string name="settings_weather_source_freenet_disclaimer">További időjárási források állnak rendelkezésre az alkalmazás egyéb kiadási változataiból. További információkért koppintson ide.</string>
@@ -768,7 +768,7 @@
     <string name="cloud_cover_from_to_description">%1$s - %2$s</string>
     <string name="common_weather_text_mostly_cloudy">Többnyire felhős</string>
     <string name="visibility_scale">Látótávolság-skála</string>
-    <string name="cloud_cover_scale">Felhőtakaró-skála</string>
+    <string name="cloud_cover_scale">Felhőborítottsági skála</string>
     <string name="content_provider_permission_label">Breezy Weather adatainak elolvasása</string>
     <string name="content_provider_permission_description">időjárási információkat kaphat a Breezy Weather-től, beleértve a helyszínek koordinátáit, például a jelenlegi helyszínéhez tartozót, ha azt hozzáadta</string>
     <string name="broadcast_source_breezy_weather_update_notifier">Frissítési értesítő a helyszínhez: %s</string>
