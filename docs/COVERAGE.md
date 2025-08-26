@@ -318,6 +318,7 @@ In general, a weather source can be considered for inclusion in the official rel
 | Azure Maps         | ❌ [requires credit card](https://github.com/breezy-weather/breezy-weather/issues/265)      | 2023-08-04   |
 | EPA AirNow         | ❌ [no concentration](https://github.com/breezy-weather/breezy-weather/issues/929)          | 2024-04-12   |
 | Graphcast          | ❌ [no API server](https://github.com/breezy-weather/breezy-weather/issues/576)             | 2023-11-27   |
+| HERE               | ❌ [removed from v6.0.6](https://github.com/breezy-weather/breezy-weather/issues/1849)      | 2025-08-24   |
 | Microsoft Azure    | ❌ free tier requires credit card info                                                      |              |
 | Pollenrapporten    | ❌ [no geolocation](https://github.com/breezy-weather/breezy-weather/issues/758)            | 2024-03-08   |
 | QWeather           | ❌ [privacy concern](https://github.com/breezy-weather/breezy-weather/pull/574)             | 2024-04-11   |
