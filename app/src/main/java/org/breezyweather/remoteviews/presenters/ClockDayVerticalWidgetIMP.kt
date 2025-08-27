@@ -466,7 +466,14 @@ object ClockDayVerticalWidgetIMP : AbstractRemoteViewsPresenter() {
                 stringBuilder.append(location.getPlace(context))
                 weather.current?.temperature?.temperature?.let {
                     stringBuilder.append("\n")
-                        .append(it.formatMeasure(context, temperatureUnit, valueWidth = UnitWidth.NARROW, unitWidth = UnitWidth.NARROW))
+                        .append(
+                            it.formatMeasure(
+                                context,
+                                temperatureUnit,
+                                valueWidth = UnitWidth.NARROW,
+                                unitWidth = UnitWidth.NARROW
+                            )
+                        )
                 }
                 stringBuilder.toString()
             }
@@ -479,7 +486,14 @@ object ClockDayVerticalWidgetIMP : AbstractRemoteViewsPresenter() {
                     if (stringBuilder.isNotEmpty()) {
                         stringBuilder.append(" ")
                     }
-                    stringBuilder.append(it.formatMeasure(context, temperatureUnit, valueWidth = UnitWidth.NARROW, unitWidth = UnitWidth.NARROW))
+                    stringBuilder.append(
+                        it.formatMeasure(
+                            context,
+                            temperatureUnit,
+                            valueWidth = UnitWidth.NARROW,
+                            unitWidth = UnitWidth.NARROW
+                        )
+                    )
                 }
                 stringBuilder.toString()
             }

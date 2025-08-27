@@ -141,7 +141,7 @@ internal fun AlertScreen(
                                         .size(dimensionResource(R.dimen.material_icon_size))
                                         .aspectRatio(ratio = 1F)
                                         .clip(shape = MaterialShapes.Triangle.toShape())
-                                        .background(Color(alert.color)),
+                                        .background(Color(alert.color))
                                 ) {}
                                 Spacer(modifier = Modifier.width(dimensionResource(R.dimen.normal_margin)))
                                 Column {

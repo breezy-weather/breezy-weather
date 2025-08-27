@@ -185,7 +185,7 @@ class AlertViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
                                 .size(dimensionResource(R.dimen.material_icon_size))
                                 .aspectRatio(ratio = 1F)
                                 .clip(shape = MaterialShapes.Triangle.toShape())
-                                .background(Color(currentAlert.color)),
+                                .background(Color(currentAlert.color))
                         ) {}
                     }
                 )
