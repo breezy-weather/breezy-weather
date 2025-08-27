@@ -18,10 +18,8 @@ package org.breezyweather.ui.main.adapters.main.holder
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import breezyweather.domain.location.model.Location
-import breezyweather.domain.weather.reference.WeatherCode
 import org.breezyweather.R
 import org.breezyweather.common.activities.BreezyActivity
 import org.breezyweather.common.extensions.areBlocksSquished
@@ -30,7 +28,6 @@ import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.common.options.appearance.DetailScreen
 import org.breezyweather.common.utils.UnitUtils
 import org.breezyweather.common.utils.helpers.IntentHelper
-import org.breezyweather.ui.theme.resource.ResourceHelper
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
 import org.breezyweather.unit.formatting.UnitWidth
 import java.util.Calendar
@@ -41,7 +38,6 @@ class PrecipitationViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
 ) {
     private val precipitationValueView: TextView = itemView.findViewById(R.id.precipitation_value)
     private val precipitationAmountView: TextView = itemView.findViewById(R.id.precipitation_amount)
-    private val precipitationIconView: ImageView = itemView.findViewById(R.id.precipitation_icon)
 
     override fun onBindView(
         activity: BreezyActivity,
@@ -109,20 +105,6 @@ class PrecipitationViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
             } ?: run {
                 precipitationValueView.text = "-"
             }
-
-            precipitationIconView.setImageDrawable(
-                ResourceHelper.getWeatherIcon(
-                    provider,
-                    if ((precipitation?.rain?.value ?: 0) > 0 && (precipitation?.snow?.value ?: 0) > 0) {
-                        WeatherCode.SLEET
-                    } else if ((precipitation?.snow?.value ?: 0) > 0) {
-                        WeatherCode.SNOW
-                    } else {
-                        WeatherCode.RAIN
-                    },
-                    isDay
-                )
-            )
         }
 
         itemView.contentDescription = talkBackBuilder.toString()
