@@ -191,7 +191,7 @@ class NominatimService @Inject constructor(
                                 equals("FR-988", ignoreCase = true) -> "NC"
                                 equals("FR-BL", ignoreCase = true) -> "BL"
                                 equals("FR-CP", ignoreCase = true) -> "CP" // Not official, but reserved
-                                equals("FR-NC", ignoreCase = true) -> "MF"
+                                equals("FR-MF", ignoreCase = true) -> "MF"
                                 equals("FR-NC", ignoreCase = true) -> "NC"
                                 equals("FR-PF", ignoreCase = true) -> "PF"
                                 equals("FR-PM", ignoreCase = true) -> "PM"
