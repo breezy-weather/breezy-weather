@@ -162,7 +162,7 @@ object ClockDayDetailsWidgetIMP : AbstractRemoteViewsPresenter() {
         builder.append(location.getPlace(context))
         weather.current?.temperature?.temperature?.let {
             builder.append(" ").append(
-                it.formatMeasure(context, temperatureUnit, unitWidth = UnitWidth.NARROW)
+                it.formatMeasure(context, temperatureUnit, valueWidth = UnitWidth.NARROW, unitWidth = UnitWidth.NARROW)
             )
         }
         views.setTextViewText(R.id.widget_clock_day_subtitle, builder.toString())
@@ -179,7 +179,12 @@ object ClockDayDetailsWidgetIMP : AbstractRemoteViewsPresenter() {
                 R.id.widget_clock_day_feelsLikeTemp,
                 context.getString(
                     R.string.temperature_feels_like_with_unit,
-                    it.formatMeasure(context, temperatureUnit, unitWidth = UnitWidth.NARROW)
+                    it.formatMeasure(
+                        context,
+                        temperatureUnit,
+                        valueWidth = UnitWidth.NARROW,
+                        unitWidth = UnitWidth.NARROW
+                    )
                 )
             )
         } ?: run {

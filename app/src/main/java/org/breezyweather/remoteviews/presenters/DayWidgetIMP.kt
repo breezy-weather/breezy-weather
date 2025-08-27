@@ -333,7 +333,14 @@ object DayWidgetIMP : AbstractRemoteViewsPresenter() {
                 stringBuilder.append(location.getPlace(context))
                 weather.current?.temperature?.temperature?.let {
                     stringBuilder.append("\n")
-                        .append(it.formatMeasure(context, temperatureUnit, unitWidth = UnitWidth.NARROW))
+                        .append(
+                            it.formatMeasure(
+                                context,
+                                temperatureUnit,
+                                valueWidth = UnitWidth.NARROW,
+                                unitWidth = UnitWidth.NARROW
+                            )
+                        )
                 }
                 stringBuilder.toString()
             }
@@ -346,13 +353,21 @@ object DayWidgetIMP : AbstractRemoteViewsPresenter() {
                     if (stringBuilder.toString().isNotEmpty()) {
                         stringBuilder.append(" ")
                     }
-                    stringBuilder.append(it.formatMeasure(context, temperatureUnit, unitWidth = UnitWidth.NARROW))
+                    stringBuilder.append(
+                        it.formatMeasure(
+                            context,
+                            temperatureUnit,
+                            valueWidth = UnitWidth.NARROW,
+                            unitWidth = UnitWidth.NARROW
+                        )
+                    )
                 }
                 stringBuilder.toString()
             }
             "nano", "pixel" -> weather.current?.temperature?.temperature?.formatMeasure(
                 context,
                 temperatureUnit,
+                valueWidth = UnitWidth.NARROW,
                 unitWidth = UnitWidth.NARROW
             )
             "temp" -> weather.current?.temperature?.temperature?.formatMeasure(
@@ -397,6 +412,7 @@ object DayWidgetIMP : AbstractRemoteViewsPresenter() {
             "oreo", "oreo_google_sans" -> weather.current?.temperature?.temperature?.formatMeasure(
                 context,
                 temperatureUnit,
+                valueWidth = UnitWidth.NARROW,
                 unitWidth = UnitWidth.NARROW
             )
             else -> null
@@ -462,7 +478,12 @@ object DayWidgetIMP : AbstractRemoteViewsPresenter() {
             "feels_like" -> weather.current?.temperature?.feelsLikeTemperature?.let {
                 context.getString(
                     R.string.temperature_feels_like_with_unit,
-                    it.formatMeasure(context, temperatureUnit, unitWidth = UnitWidth.NARROW)
+                    it.formatMeasure(
+                        context,
+                        temperatureUnit,
+                        valueWidth = UnitWidth.NARROW,
+                        unitWidth = UnitWidth.NARROW
+                    )
                 )
             }
             else -> getCustomSubtitle(context, subtitleData, location, weather, temperatureUnit, pollenIndexSource)

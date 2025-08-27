@@ -280,6 +280,7 @@ abstract class AbstractRemoteViewsPresenter {
                     weather.current?.temperature?.temperature?.formatMeasure(
                         context,
                         temperatureUnit,
+                        valueWidth = UnitWidth.NARROW,
                         unitWidth = UnitWidth.NARROW
                     ) ?: context.getString(R.string.null_data_text)
                 ).replace(
@@ -295,6 +296,7 @@ abstract class AbstractRemoteViewsPresenter {
                     weather.current?.temperature?.feelsLikeTemperature?.formatMeasure(
                         context,
                         temperatureUnit,
+                        valueWidth = UnitWidth.NARROW,
                         unitWidth = UnitWidth.NARROW
                     ) ?: context.getString(R.string.null_data_text)
                 ).replace(
@@ -341,6 +343,7 @@ abstract class AbstractRemoteViewsPresenter {
                     weather.current?.dewPoint?.formatMeasure(
                         context,
                         temperatureUnit,
+                        valueWidth = UnitWidth.NARROW,
                         unitWidth = UnitWidth.NARROW
                     ) ?: context.getString(R.string.null_data_text)
                 ).replace("\$l$", location.getPlace(context))
@@ -456,6 +459,7 @@ abstract class AbstractRemoteViewsPresenter {
                     weather.dailyForecastStartingToday.getOrNull(i)?.day?.temperature?.temperature?.formatMeasure(
                         context,
                         temperatureUnit,
+                        valueWidth = UnitWidth.NARROW,
                         unitWidth = UnitWidth.NARROW
                     ) ?: context.getString(R.string.null_data_text)
                 ).replace(
@@ -463,6 +467,7 @@ abstract class AbstractRemoteViewsPresenter {
                     weather.dailyForecastStartingToday.getOrNull(i)?.night?.temperature?.temperature?.formatMeasure(
                         context,
                         temperatureUnit,
+                        valueWidth = UnitWidth.NARROW,
                         unitWidth = UnitWidth.NARROW
                     ) ?: context.getString(R.string.null_data_text)
                 ).replace(

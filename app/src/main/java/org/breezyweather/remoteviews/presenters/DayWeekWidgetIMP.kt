@@ -330,7 +330,14 @@ object DayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
                 stringBuilder.append(location.getPlace(context))
                 weather.current?.temperature?.temperature?.let {
                     stringBuilder.append("\n")
-                        .append(it.formatMeasure(context, temperatureUnit, unitWidth = UnitWidth.NARROW))
+                        .append(
+                            it.formatMeasure(
+                                context,
+                                temperatureUnit,
+                                valueWidth = UnitWidth.NARROW,
+                                unitWidth = UnitWidth.NARROW
+                            )
+                        )
                 }
                 stringBuilder.toString()
             }
@@ -343,7 +350,14 @@ object DayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
                     if (stringBuilder.isNotEmpty()) {
                         stringBuilder.append(" ")
                     }
-                    stringBuilder.append(it.formatMeasure(context, temperatureUnit, unitWidth = UnitWidth.NARROW))
+                    stringBuilder.append(
+                        it.formatMeasure(
+                            context,
+                            temperatureUnit,
+                            valueWidth = UnitWidth.NARROW,
+                            unitWidth = UnitWidth.NARROW
+                        )
+                    )
                 }
                 return stringBuilder.toString()
             }
@@ -439,7 +453,12 @@ object DayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
             "feels_like" -> weather.current?.temperature?.feelsLikeTemperature?.let {
                 context.getString(
                     R.string.temperature_feels_like_with_unit,
-                    it.formatMeasure(context, temperatureUnit, unitWidth = UnitWidth.NARROW)
+                    it.formatMeasure(
+                        context,
+                        temperatureUnit,
+                        valueWidth = UnitWidth.NARROW,
+                        unitWidth = UnitWidth.NARROW
+                    )
                 )
             }
             else -> getCustomSubtitle(context, subtitleData, location, weather, temperatureUnit, pollenIndexSource)

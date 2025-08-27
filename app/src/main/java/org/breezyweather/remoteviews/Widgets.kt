@@ -109,6 +109,7 @@ object Widgets {
             weather.current?.temperature?.temperature?.formatMeasure(
                 context,
                 temperatureUnit,
+                valueWidth = UnitWidth.NARROW,
                 unitWidth = UnitWidth.NARROW
             ) ?: "",
             weather.today?.day?.temperature?.temperature?.formatMeasure(

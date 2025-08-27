@@ -203,7 +203,12 @@ object TextWidgetIMP : AbstractRemoteViewsPresenter() {
             "feels_like" -> weather.current?.temperature?.feelsLikeTemperature?.let {
                 context.getString(
                     R.string.temperature_feels_like_with_unit,
-                    it.formatMeasure(context, temperatureUnit, unitWidth = UnitWidth.NARROW)
+                    it.formatMeasure(
+                        context,
+                        temperatureUnit,
+                        valueWidth = UnitWidth.NARROW,
+                        unitWidth = UnitWidth.NARROW
+                    )
                 )
             }
             else -> getCustomSubtitle(context, subtitleData, location, weather, temperatureUnit, pollenIndexSource)
