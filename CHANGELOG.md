@@ -10,7 +10,9 @@ The following features are already available in the current branch, but will be 
 # Version 6.0.8-beta (not yet released)
 
 **Improvements and fixes**
-- Minor changes to weather blocks to improve accessibility
+- Minor changes to weather blocks to improve accessibility (text size, color contrast, etc.)
+- Widgets - Round temperature values
+- Nowcasting block - Fix truncated start and end values
 
 **Translations**
 - Translations updated

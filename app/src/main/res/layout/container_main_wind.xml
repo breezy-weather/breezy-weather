@@ -95,17 +95,19 @@
                 android:id="@+id/wind_speed_value"
                 android:textAppearance="@style/Weather.TextAppearance.MainBlock.NumberDigit"
                 android:textColor="?attr/colorSurfaceInverse"
+                android:gravity="start|bottom"
                 android:paddingBottom="12dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:maxLines="1"
+                android:paddingVertical="4dp"
                 app:layout_constraintBottom_toTopOf="@+id/visibility_description"
                 app:layout_constraintEnd_toEndOf="@+id/block_end_guideline"
                 app:layout_constraintStart_toStartOf="@+id/block_start_guideline"
                 app:layout_constraintTop_toBottomOf="@+id/title" />
 
             <TextView
-                android:textAppearance="?attr/textAppearanceLabelMedium"
+                android:textAppearance="?attr/textAppearanceLabelLarge"
                 android:textColor="?attr/colorSurfaceInverse"
                 android:id="@+id/visibility_description"
                 android:layout_width="wrap_content"

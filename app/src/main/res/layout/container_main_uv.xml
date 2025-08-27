@@ -88,13 +88,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:maxLines="1"
+            android:paddingVertical="4dp"
             app:layout_constraintBottom_toTopOf="@+id/uv_index_level"
             app:layout_constraintEnd_toEndOf="@+id/block_end_guideline"
             app:layout_constraintStart_toStartOf="@+id/block_start_guideline"
             app:layout_constraintTop_toBottomOf="@+id/title" />
 
         <TextView
-            android:textAppearance="?attr/textAppearanceLabelMedium"
+            android:textAppearance="?attr/textAppearanceLabelLarge"
             android:textColor="?attr/colorSurfaceInverse"
             android:id="@+id/uv_index_level"
             android:layout_width="wrap_content"

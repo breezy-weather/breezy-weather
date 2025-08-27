@@ -110,7 +110,8 @@
                 app:layout_constraintBottom_toTopOf="@+id/aqi_level"
                 app:layout_constraintEnd_toEndOf="@+id/block_end_guideline"
                 app:layout_constraintStart_toStartOf="@+id/block_start_guideline"
-                app:layout_constraintTop_toBottomOf="@+id/title" />
+                app:layout_constraintTop_toBottomOf="@+id/title"
+                tools:text="79" />
 
             <TextView
                 android:id="@+id/aqi_level"
@@ -123,7 +124,8 @@
                 android:textAlignment="center"
                 app:layout_constraintBaseline_toBottomOf="@+id/block_bottom_guideline"
                 app:layout_constraintEnd_toEndOf="@+id/block_end_guideline"
-                app:layout_constraintStart_toStartOf="@+id/block_start_guideline" />
+                app:layout_constraintStart_toStartOf="@+id/block_start_guideline"
+                tools:text="Fair" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -17,7 +17,16 @@
 <resources>
 
     <style name="Weather.TextAppearance.MainBlock.NumberDigit" parent="@style/TextAppearance.Material3.DisplaySmall">
-        <item name="android:textSize">48sp</item>
-        <item name="android:lineHeight">48sp</item>
+        <item name="android:textSize">45sp</item>
+        <item name="android:lineHeight">52sp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+    <style name="Weather.TextAppearance.MainBlock.Clock" parent="@style/TextAppearance.Material3.DisplaySmall">
+        <item name="android:fontFamily">@font/robotoflex_family</item>
+        <item name="android:fontVariationSettings">"'wght' 700, 'XOPQ' 175, 'XTRA' 603"</item>
+        <item name="android:textSize">50sp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:letterSpacing">0</item>
     </style>
 </resources>

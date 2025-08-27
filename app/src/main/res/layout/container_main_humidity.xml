@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container_main_humidity"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -108,10 +109,12 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:textAlignment="viewStart"
+                android:paddingVertical="4dp"
                 app:layout_constraintBottom_toBottomOf="@+id/value_bottom_guideline"
                 app:layout_constraintStart_toStartOf="@+id/block_start_guideline"
                 app:layout_constraintTop_toBottomOf="@+id/title"
-                app:layout_constraintTop_toTopOf="@+id/value_top_guideline" />
+                app:layout_constraintTop_toTopOf="@+id/value_top_guideline"
+                tools:text="45 %" />
 
             <TextView
                 android:id="@+id/dew_point_value"
@@ -127,10 +130,11 @@
                 app:layout_constraintBottom_toTopOf="@+id/block_bottom_guideline"
                 app:layout_constraintDimensionRatio="1:1"
                 app:layout_constraintEnd_toStartOf="@+id/dew_point_title"
-                app:layout_constraintStart_toStartOf="@+id/block_start_guideline" />
+                app:layout_constraintStart_toStartOf="@+id/block_start_guideline"
+                tools:text="9°" />
 
             <TextView
-                android:textAppearance="?attr/textAppearanceLabelMedium"
+                android:textAppearance="?attr/textAppearanceLabelLarge"
                 android:textColor="?attr/colorOnTertiaryContainer"
                 android:gravity="start"
                 android:id="@+id/dew_point_title"
@@ -138,7 +142,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/dew_point"
                 android:textAlignment="viewStart"
-                android:paddingStart="5dp"
+                android:layout_marginStart="4dp"
                 app:layout_constraintBottom_toBottomOf="@+id/dew_point_value"
                 app:layout_constraintEnd_toEndOf="@+id/block_end_guideline"
                 app:layout_constraintStart_toEndOf="@+id/dew_point_value"

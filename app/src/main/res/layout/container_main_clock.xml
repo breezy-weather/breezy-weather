@@ -65,15 +65,14 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal|bottom"
                 android:textColor="?attr/colorPrimary"
-                android:textFontWeight="700"
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:includeFontPadding="false"
-                android:textSize="50sp"
                 android:autoSizeTextType="uniform"
                 android:autoSizeMinTextSize="50sp"
                 android:autoSizeMaxTextSize="130sp"
                 android:autoSizeStepGranularity="1sp"
+                android:textAppearance="@style/Weather.TextAppearance.MainBlock.Clock"
                 android:format12Hour="hh"
                 android:format24Hour="HH" />
 
@@ -84,15 +83,14 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal|top"
                 android:textColor="?attr/colorPrimary"
-                android:textFontWeight="700"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:textSize="50sp"
                 android:includeFontPadding="false"
                 android:autoSizeTextType="uniform"
                 android:autoSizeMinTextSize="50sp"
                 android:autoSizeMaxTextSize="130sp"
                 android:autoSizeStepGranularity="1sp"
+                android:textAppearance="@style/Weather.TextAppearance.MainBlock.Clock"
                 android:format12Hour="mm"
                 android:format24Hour="mm" />
 

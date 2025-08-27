@@ -37,8 +37,9 @@ import kotlin.time.Duration.Companion.milliseconds
 class TimeHorizontalAxisItemPlacer(
     theDay: Date,
     timeZone: TimeZone,
+    shiftExtremeLines: Boolean = false,
 ) : HorizontalAxis.ItemPlacer by HorizontalAxis.ItemPlacer.segmented(
-    shiftExtremeLines = false
+    shiftExtremeLines = shiftExtremeLines
 ) {
 
     private val measuredValues = buildList {
@@ -68,8 +69,9 @@ class TimeHorizontalAxisItemPlacer(
  */
 class TimeTopAxisItemPlacer(
     private val possibleValues: ImmutableList<Long>,
+    shiftExtremeLines: Boolean = false,
 ) : HorizontalAxis.ItemPlacer by HorizontalAxis.ItemPlacer.segmented(
-    shiftExtremeLines = false
+    shiftExtremeLines = shiftExtremeLines
 ) {
 
     override fun getLabelValues(
@@ -126,8 +128,11 @@ class TimeTopAxisItemPlacer(
  */
 class SpecificHorizontalAxisItemPlacer(
     private val measuredValues: List<Double>,
-) : HorizontalAxis.ItemPlacer by HorizontalAxis.ItemPlacer.segmented(
-    shiftExtremeLines = false
+    shiftExtremeLines: Boolean = false,
+    addExtremeLabelPadding: Boolean = false,
+) : HorizontalAxis.ItemPlacer by HorizontalAxis.ItemPlacer.aligned(
+    shiftExtremeLines = shiftExtremeLines,
+    addExtremeLabelPadding = addExtremeLabelPadding
 ) {
 
     override fun getLabelValues(

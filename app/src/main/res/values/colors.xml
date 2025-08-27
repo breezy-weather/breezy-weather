@@ -92,8 +92,8 @@
     <color name="colorWidgetTextShadow">#99000000</color>
 
     <!-- Alert card -->
-    <color name="alert_background">#fffad2cf</color>
-    <color name="alert_text">#ffb31412</color>
+    <color name="alert_background">#FFB4AB</color>
+    <color name="alert_text">#BA1A1A</color>
 
     <!-- material 3. -->
 
@@ -127,6 +127,6 @@
     <color name="md_theme_primaryInverse">#A8C7FF</color>
 
     <!-- Material You -->
-    <color name="sys_widget_background">#e0f3ff</color>
+    <color name="sys_widget_background">#DCE2F9</color>
 
 </resources>

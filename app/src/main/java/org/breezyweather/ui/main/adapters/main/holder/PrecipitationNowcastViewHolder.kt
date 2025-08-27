@@ -219,7 +219,11 @@ class PrecipitationNowcastViewHolder(parent: ViewGroup) : AbstractMainCardViewHo
                 valueFormatter = timeValueFormatter,
                 tick = LineComponent(fill = fill(lineColor)),
                 guideline = null,
-                itemPlacer = SpecificHorizontalAxisItemPlacer(timeWithTicks)
+                itemPlacer = SpecificHorizontalAxisItemPlacer(
+                    timeWithTicks,
+                    shiftExtremeLines = true,
+                    addExtremeLabelPadding = true
+                )
             ),
             decorations = if (isTrendHorizontalLinesEnabled) {
                 trendHorizontalLines.entries.map { line ->

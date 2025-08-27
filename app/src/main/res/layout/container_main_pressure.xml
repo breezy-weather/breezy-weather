@@ -81,7 +81,6 @@
 
             <TextView
                 android:id="@+id/title"
-                android:accessibilityHeading="true"
                 android:textAppearance="?attr/textAppearanceLabelLarge"
                 android:textColor="?attr/colorSurfaceInverse"
                 android:textSize="@dimen/title_text_size"
@@ -102,14 +101,16 @@
                 android:textAppearance="@style/Weather.TextAppearance.MainBlock.NumberDigit"
                 android:textColor="?attr/colorSurfaceInverse"
                 android:ellipsize="end"
-                android:layout_width="wrap_content"
+                android:gravity="center"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:maxLines="1"
+                android:paddingVertical="4dp"
                 app:layout_constraintBottom_toTopOf="@+id/pressure_unit"
-                app:layout_constraintEnd_toEndOf="@+id/block_end_guideline"
-                app:layout_constraintStart_toStartOf="@+id/block_start_guideline"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/title"
-                tools:text="1,015" />
+                tools:text="1,013.25" />
 
             <TextView
                 android:id="@+id/pressure_unit"

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="sys_widget_background">@android:color/system_secondary_container_light</color>
+</resources>
