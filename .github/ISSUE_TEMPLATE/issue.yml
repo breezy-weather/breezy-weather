@@ -93,7 +93,7 @@ body:
           required: true
         - label: I checked that my issue is not covered in the [Frequently Asked Questions](https://github.com/breezy-weather/breezy-weather/blob/main/HELP.md) document.
           required: true
-        - label: I have updated the app to **[version 6.0.7 or later](https://github.com/breezy-weather/breezy-weather/releases)** and I can reproduce the issue in this version.
+        - label: I have updated the app to **[version 6.0.8 or later](https://github.com/breezy-weather/breezy-weather/releases)** and I can reproduce the issue in this version.
           required: true
         - label: I wrote my request in English, and any screenshot I attached are also in English (language can be changed from Settings > Appearance), unless my issue only happens with a specific language. I can write in my native language under the English text, if necessary.
           required: true
