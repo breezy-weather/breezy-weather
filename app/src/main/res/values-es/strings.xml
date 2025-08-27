@@ -672,7 +672,7 @@
     <string name="widget_live_wallpaper_animations_enable_warning1">Las animaciones de fondo de pantalla son conocidas por causar, entre otras cosas: alto consumo de batería; sobrecalentamiento de la batería; alto consumo de memoria; disminución de la capacidad de respuesta del sistema; fallo del sistema Android.</string>
     <string name="widget_live_wallpaper_animations_enable_dangerous">PELIGROSO</string>
     <string name="settings_regional_preference">Preferencia regional</string>
-    <string name="air_quality_short">Calidad del aire</string>
+    <string name="air_quality_short">Calidad aire</string>
     <string name="ephemeris_sun">Sol</string>
     <string name="ephemeris_moon">Luna</string>
     <string name="ephemeris_about">Acerca de la hora de salida y puesta</string>
