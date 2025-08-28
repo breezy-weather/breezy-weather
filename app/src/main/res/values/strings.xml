@@ -767,6 +767,8 @@
     <string name="settings_appearance_language_title">Language</string>
     <string name="settings_appearance_calendar_title">Alternate calendar</string>
     <string name="settings_appearance_dark_mode_title">App dark mode</string>
+    <!-- %1$s = 22:00 / %2$s = 06:00 -->
+    <string name="settings_appearance_dark_mode_custom">Dark mode from %1$s to %2$s</string>
     <string name="settings_appearance_dark_mode_locations_title">Location-based dark mode</string>
     <!-- Literally means “Will be in light mode when sun is up and in dark mode when sun is down” -->
     <string name="settings_appearance_dark_mode_locations_day_night">Follow day/night</string>

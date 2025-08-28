@@ -7,7 +7,16 @@ The following features are already available in the current branch, but will be 
 - New broadcast: you can use `org.breezyweather.ACTION_UPDATE_NOTIFIER` (or `org.breezyweather.debug.ACTION_UPDATE_NOTIFIER` with the debug build) to be notified of updated locations (most common use case is coupled with the content provider)
 
 
-# Version 6.0.8-beta (not yet released)
+# Version 6.0.9-beta (not yet released)
+
+**Improvements and fixes**
+- Clarify which dark mode is currently used at system level in Appearance settings, which may help Xiaomi device owners detect a potential bug in the MIUI dark mode implementation
+
+**Translations**
+- Translations updated
+
+
+# Version 6.0.8-beta (2025-08-27)
 
 **Improvements and fixes**
 - Minor changes to weather blocks to improve accessibility (text size, color contrast, etc.)

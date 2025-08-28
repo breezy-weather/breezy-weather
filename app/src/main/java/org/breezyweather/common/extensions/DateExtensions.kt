@@ -25,6 +25,7 @@ import android.icu.util.ULocale
 import android.os.Build
 import android.text.format.DateFormat
 import android.text.format.DateUtils
+import androidx.annotation.RequiresApi
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.reference.Month
 import org.breezyweather.BreezyWeather
@@ -32,6 +33,8 @@ import org.breezyweather.common.options.appearance.CalendarHelper
 import org.breezyweather.common.utils.helpers.LogHelper
 import org.chickenhook.restrictionbypass.RestrictionBypass
 import java.lang.reflect.Method
+import java.time.LocalTime
+import java.time.format.DateTimeFormatter
 import java.util.Calendar
 import java.util.Date
 import java.util.Locale
@@ -114,6 +117,22 @@ fun Date.getFormattedTime(
         getFormattedDate("h:mm aa", location, context, withBestPattern = true)
     } else {
         getFormattedDate("HH:mm", location, context)
+    }
+}
+
+@RequiresApi(Build.VERSION_CODES.O)
+fun LocalTime.getFormattedTime(
+    locale: Locale = Locale.Builder().setLanguage("en").setRegion("001").build(),
+    twelveHour: Boolean,
+): String {
+    return if (twelveHour) {
+        format(
+            DateTimeFormatter.ofPattern(
+                DateTimePatternGenerator.getInstance(locale).getBestPattern("h:mm aa")
+            ).withLocale(locale)
+        )
+    } else {
+        format(DateTimeFormatter.ofPattern("HH:mm").withLocale(locale))
     }
 }
 
