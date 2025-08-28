@@ -214,7 +214,9 @@ If weather source has normals data, it will show two lines with maximum and mini
 
 Just like daily forecast, hourly is made of the same tabs called trends. Order of hourly trends can be changed in settings.
 
-For each trend, the hour of the week is shown on top of each column. If it is the first hour listed or if it midnight, the subtitle will be highlighted.
+For each trend, the hour is shown on top of each column. If it is the first hour listed or if it midnight, the subtitle will be highlighted.
+
+Only the next 24 hours are displayed at most.
 
 The number of columns shown at once depends on your display size and font scale.
 
