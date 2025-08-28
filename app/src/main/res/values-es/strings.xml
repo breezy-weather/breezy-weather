@@ -675,7 +675,7 @@
     <string name="ephemeris_moon">Luna</string>
     <string name="ephemeris_about">Sobre la hora de salida y puesta</string>
     <string name="ephemeris_about_rise">La hora de salida es cuando el sol o la luna aparecen por completo sobre el horizonte.</string>
-    <string name="ephemeris_about_set">La hora de puesta es cuando el sol o la luna desaparecen completamente bajo el horizonte.</string>
+    <string name="ephemeris_about_set">La hora de puesta es cuando el sol o la luna desaparecen por completo bajo el horizonte.</string>
     <string name="ephemeris_about_dawn">El amanecer es cuando aparece la primera luz visible del día antes de la salida del sol.</string>
     <string name="ephemeris_polar_day">Día polar</string>
     <string name="ephemeris_polar_night">Noche polar</string>
@@ -809,4 +809,5 @@
     <string name="content_provider_permission_label">Leer datos de Breezy Weather</string>
     <string name="content_provider_permission_description">obtener información meteorológica de Breezy Weather, incluidas las coordenadas de tus ubicaciones, como la ubicación actual si la has añadido</string>
     <string name="common_weather_text_mostly_cloudy">Muy nuboso</string>
+    <string name="settings_appearance_dark_mode_custom">Modo oscuro de %1$s a %2$s</string>
 </resources>
