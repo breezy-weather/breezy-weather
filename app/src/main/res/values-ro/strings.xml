@@ -668,4 +668,18 @@
     <string name="ephemeris_about">Despre ora răsăritului și apusului</string>
     <string name="ephemeris_about_rise">Timpul răsăritului este atunci când soarele sau luna apar pe deplin deasupra orizontului.</string>
     <string name="ephemeris_about_set">Timpul apusului este când soarele sau luna dispar complet sub orizont.</string>
+    <string name="ephemeris_about_dusk">Amurgul este cea mai întunecată etapă a amurgului înainte de a dispărea ultima lumină vizibilă.</string>
+    <string name="ephemeris_polar_day">Zi polară</string>
+    <string name="ephemeris_polar_night">Noapte polară</string>
+    <string name="clock">Ceas</string>
+    <string name="daily_summary">Rezumat zilnic</string>
+    <string name="chart_no_daily_data">Nu există date disponibile pentru această zi.</string>
+    <string name="chart_no_hourly_data">Nu există date pe oră disponibile.</string>
+    <string name="chart_not_enough_hourly_data">Nu sunt suficiente date pe oră disponibile pentru a afișa un grafic pentru această zi.</string>
+    <string name="chart_average">Medie</string>
+    <string name="chart_maximum_value">Valoarea maximă</string>
+    <string name="conditions">Condiții</string>
+    <string name="temperature_real">Real</string>
+    <string name="temperature_real_details">Temperatura reală.</string>
+    <string name="temperature_feels_like_details">Cum se simte temperatura, ca urmare a umidității, a vântului și/sau a luminii solare.</string>
 </resources>
