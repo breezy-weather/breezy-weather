@@ -771,4 +771,5 @@
     <string name="widget_live_wallpaper_animations_enable_dangerous">CONTÚIRTEACH</string>
     <string name="widget_live_wallpaper_animations_enable_warning1">Is eol go mbíonn na nithe seo a leanas mar thoradh ar bheochana páipéar balla: tomhaltas ard ceallraí; róthéamh ceallraí; tomhaltas ard cuimhne; freagrúlacht chórais lagaithe; tuairteáil chórais Android.</string>
     <string name="widget_live_wallpaper_animations_enable_warning2">Má shocraíonn tú iad a chumasú, glacann tú freagracht iomlán as aon fhadhb a d’fhéadfadh teacht chun cinn, agus ní chuirfear aon tacaíocht ar fáil.</string>
+    <string name="settings_appearance_dark_mode_custom">Mód dorcha ó %1$s go %2$s</string>
 </resources>
