@@ -771,4 +771,6 @@
     <string name="broadcast_source_breezy_weather_update_notifier">%s-avisering om uppdaterade platser</string>
     <string name="settings_regional_preference">Regionsförval</string>
     <string name="widget_live_wallpaper_animations_enable_dangerous">FARLIGT</string>
+    <string name="widget_live_wallpaper_animations_enable_warning1">Bakgrundsbildsanimationer är kända för att orsaka bland annat: hög batteriförbrukning, överhettning av batteriet, hög minnesförbrukning, försämrad systemrespons, Android-systemkrasch.</string>
+    <string name="widget_live_wallpaper_animations_enable_warning2">Om du väljer att aktivera dem, tar du fullt ansvar för eventuella problem som kan uppstå, och ingen support kommer att tillhandahållas.</string>
 </resources>
