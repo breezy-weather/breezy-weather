@@ -309,7 +309,7 @@
     <string name="settings_main_background_animation_disabled">Aus</string>
     <string name="settings_notifications">Benachrichtigungen</string>
     <string name="settings_main_cards_other_element_animations_switch">Animation weiterer Elemente</string>
-    <string name="settings_appearance_summary">Sprache, dunkler Modus, Symbolpaket, Einheiten</string>
+    <string name="settings_appearance_summary">Sprache, dunkles Design, Symbolpaket, Einheiten</string>
     <string name="settings_notifications_summary">Benachrichtigungen für Wetterwarnungen, Niederschlag oder Vorhersagen für den ersten Ort</string>
     <string name="settings_modules_notification_feels_like_switch">Gefühlte Temperatur verwenden</string>
     <string name="settings_main_section_displayed_data">Angezeigte Daten</string>
@@ -784,4 +784,5 @@
     <string name="widget_live_wallpaper_animations_enable_dangerous">GEFÄHRLICH</string>
     <string name="widget_live_wallpaper_animations_enable_warning1">Hintergrundanimationen können unter anderem Folgendes verursachen: hohen Akkuverbrauch; Akkuüberhitzung; hohen Speicherverbrauch; verschlechterte Systemreaktionsfähigkeit; Android-Systemabsturz.</string>
     <string name="widget_live_wallpaper_animations_enable_warning2">Wenn du dich entscheidest, sie zu aktivieren, übernimmst du die volle Verantwortung für alle auftretenden Probleme und es wird keine Unterstützung bereitgestellt.</string>
+    <string name="settings_appearance_dark_mode_custom">Dunkles Design von %1$s bis %2$s</string>
 </resources>
