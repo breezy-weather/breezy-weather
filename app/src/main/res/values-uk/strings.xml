@@ -771,4 +771,5 @@
     <string name="widget_live_wallpaper_animations_enable_dangerous">НЕБЕЗПЕЧНО</string>
     <string name="widget_live_wallpaper_animations_enable_warning1">Відомо, що анімовані шпалери можуть спричиняти, серед іншого: високе споживання заряду батареї; перегрів батареї; високе споживання пам’яті; зниження швидкості роботи системи; збої системи Android.</string>
     <string name="widget_live_wallpaper_animations_enable_warning2">Якщо ви вирішите їх увімкнути, ви берете на себе повну відповідальність за будь-які проблеми, які можуть виникнути, і підтримка вам не надаватиметься.</string>
+    <string name="settings_appearance_dark_mode_custom">Темний режим з %1$s до %2$s</string>
 </resources>
