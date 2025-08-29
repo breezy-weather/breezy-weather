@@ -175,7 +175,7 @@
     <!-- settings -->
     <string name="settings_modules_live_wallpaper_title">Imagine de fundal live</string>
     <string name="settings_location_service">Serviciu locație</string>
-    <string name="settings_appearance_dark_mode_title">Temă</string>
+    <string name="settings_appearance_dark_mode_title">Modul întunecat al aplicației</string>
     <string name="settings_appearance_icon_pack_title">Pachet de pictograme</string>
     <string name="settings_appearance">Aspect</string>
     <string name="settings_main_gravity_sensor_switch">Senzor de gravitație</string>
@@ -475,7 +475,7 @@
     <string name="settings_modules_broadcast_send_data_title">Trimite date meteo către %s</string>
     <string name="location_delete_location_dialog_message_no_name">Ești pe cale să ștergi această locație din lista ta de locații salvate.</string>
     <string name="location_search_change_source">Schimbă serviciul de căutare a locației</string>
-    <string name="settings_appearance_dark_mode_locations_title">Mod Luminos / Întunecat pentru locații</string>
+    <string name="settings_appearance_dark_mode_locations_title">Mod luminos / întunecat pe baza locației</string>
     <string name="message_parsing_error_content">Asigură-te că ai actualizat la cea mai recentă versiune a aplicației. Este posibil ca serverul să fie temporar indisponibil, în acest caz, te rog să încerci din nou mai târziu. Dacă problema persistă, descarcă un jurnal de incident (crash log) din setările de depanare și raportează problema pe GitHub.</string>
     <string name="settings_unavailable_no_background_updates">Indisponibil, întâi activează actualizările de fundal</string>
     <string name="common_weather_text_drizzle_moderate">Burniță Moderată</string>
@@ -777,4 +777,11 @@
     <string name="settings_appearance_section_theme">Temă</string>
     <string name="settings_appearance_dark_mode_locations_day_night">Respectă ziua/noaptea</string>
     <string name="settings_appearance_dark_mode_locations_dark">Întotdeauna întunecat când aplicația este în modul întunecat</string>
+    <string name="air_quality_level_5_harmless_exposure">&lt; câteva minute</string>
+    <string name="settings_appearance_dark_mode_custom">Mod întunecat de la %1$s la %2$s</string>
+    <string name="settings_regional_preference">Preferințe regionald</string>
+    <string name="about_update_check_eol">Această versiune Android nu mai este suportată</string>
+    <string name="content_provider_permission_label">Citiți datele Breazy Weather</string>
+    <string name="content_provider_permission_description">obțineți datele meteo de la Breezy Weather, inclusiv coordonatele locației dvs. , cum ar fi locația curentă dacă ați adăugat-o</string>
+    <string name="common_weather_text_mostly_cloudy">Predominant înnorat</string>
 </resources>
