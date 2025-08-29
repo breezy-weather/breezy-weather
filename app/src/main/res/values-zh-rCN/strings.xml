@@ -859,4 +859,5 @@
     <string name="widget_live_wallpaper_animations_enable_dangerous">危险</string>
     <string name="widget_live_wallpaper_animations_enable_warning1">壁纸动画已知会导致高电量消耗、电池过热、高内存消耗、系统响应变慢、Android 系统崩溃等在内的问题。</string>
     <string name="widget_live_wallpaper_animations_enable_warning2">如果决定启用，您对任何可能引发的问题承担全部责任，且开发者不会提供支持。</string>
+    <string name="settings_appearance_dark_mode_custom">从 %1$s 到 %2$s 为深色模式</string>
 </resources>
