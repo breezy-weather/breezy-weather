@@ -315,7 +315,7 @@
     <string name="location_swipe_to_delete">Puede deslizar hacia la izquierda para eliminar este elemento</string>
     <string name="widget_style_pixel">Píxel</string>
     <string name="widget_style_vertical">Vertical</string>
-    <string name="dialog_permissions_notification_content">Toca aquí para activar las notificaciones acerca de alertas meteorológicas o decide luego en la Configuración.</string>
+    <string name="dialog_permissions_notification_content">Toca aquí para activar las notificaciones sobre alertas meteorológicas o decide luego en la Configuración.</string>
     <string name="settings_location_access_background_title">Acceso al lugar en segundo plano</string>
     <string name="air_quality_no2_full">Dióxido de nitrógeno (%s)</string>
     <string name="action_continue">Continuar</string>
@@ -555,7 +555,7 @@
     <string name="settings_background_updates_refresh_never_warning1">Al desactivar las actualizaciones en segundo plano, dejarás de recibir notificaciones de alertas o precipitaciones. Los widgets no se actualizarán hasta que abras la aplicación.</string>
     <string name="settings_modules_broadcast_send_data_summary_empty">No se han encontrado paquetes compatibles</string>
     <string name="settings_background_updates_refresh_never_warning2">El proceso de actualización en segundo plano es ligero: sólo actualiza tu primera ubicación a la velocidad que elijas, y las ubicaciones secundarias sólo si las necesitas, una vez al día. Ahorra batería y no debería consumir más de %d MB de datos al mes.</string>
-    <string name="settings_background_updates_refresh_never_warning3">Considera la posibilidad de usar una frecuencia de actualización menor en lugar de desactivar las actualizaciones en segundo plano; de lo contrario, toca “Continuar” si aún deseas seguir adelante.</string>
+    <string name="settings_background_updates_refresh_never_warning3">Considera la posibilidad de usar una frecuencia de actualización menor en lugar de desactivar las actualizaciones en segundo plano, de lo contrario, toca “Continuar” si aún deseas continuar.</string>
     <string name="message_server_unavailable_title">Servidor no disponible</string>
     <string name="message_server_unavailable_content">Normalmente se trata de un error temporal. Si el error persiste, notifícalo abriendo una incidencia en GitHub.</string>
     <string name="action_edit_location">Editar este lugar</string>
