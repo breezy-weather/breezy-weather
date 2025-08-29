@@ -836,4 +836,5 @@
     <string name="widget_live_wallpaper_animations_enable_dangerous">PERIGOSO</string>
     <string name="widget_live_wallpaper_animations_enable_warning1">Animações no plano de fundo são conhecidas por causar, entre outras coisas: alto consumo da bateria; superaquecimento da bateria; alto consumo da memória; responsividade degradada do sistema; congelamento do sistema Android.</string>
     <string name="widget_live_wallpaper_animations_enable_warning2">Se decidir ativá-las, você tem responsabilidade total por qualquer problema que aparecer, e não será oferecido suporte.</string>
+    <string name="settings_appearance_dark_mode_custom">Modo escuro das %1$s até às %2$s</string>
 </resources>
