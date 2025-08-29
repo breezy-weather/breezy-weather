@@ -780,4 +780,5 @@
     <string name="widget_live_wallpaper_animations_enable_warning1">Известно, что анимации обоев могут приводить, в том числе, к: большому расходу аккумулятора; его перегреву; высокому потреблению памяти; ухудшению отзывчивости системы; сбоям Android.</string>
     <string name="widget_live_wallpaper_animations_enable_warning2">Если вы решите включить их, вы берёте на себя полную ответственность за любые возникающие проблемы, и поддержка предоставлена не будет.</string>
     <string name="settings_regional_preference">Региональные настройки</string>
+    <string name="settings_appearance_dark_mode_custom">Тёмный режим с %1$s до %2$s</string>
 </resources>
