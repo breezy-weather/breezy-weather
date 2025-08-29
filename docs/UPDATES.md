@@ -15,7 +15,7 @@ Info: Some weather sources need what we call "location parameters" before we can
 
 5. We group all features requested to the same source together to make a single request and we proceed this way if the data is no longer valid (see caching section below):
     - If needed, we update location parameters.
-    - Then, we ask the source to provide us refreshed data for the features it was selected for and that are no longer up-to-date. If it failed for any or all of the features, we attempt to restore previous saved data for the failed features.
+    - Then, we ask the source to provide us refreshed data for the features it was selected for and that are no longer up-to-date. If it failed for any or all of the features, we attempt to restore previous saved data for the failed features. For current data, we fallback to current hour forecast, unless it’s been less than 30 min (only starting from v6.0.9).
 6. We gather all data from all sources together and complete it with:
     - missing past data back to yesterday 00:00: this allows us to show you yesterday info when sources only support forecast and not past data
     - extrapolated missing data (such as wet bulb temperature, humidity from dew point OR dew point from humidity, weather codes from all known data, etc)

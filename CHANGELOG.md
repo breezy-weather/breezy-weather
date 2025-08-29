@@ -15,6 +15,9 @@ The following features are already available in the current branch, but will be 
 **Translations**
 - Translations updated
 
+**Technical**
+- Fallback to latest known current data rather than current hour forecast when last successful refresh was less than 30 min ago
+
 
 # Version 6.0.8-beta (2025-08-27)
 

@@ -781,7 +781,7 @@ class RefreshHelper @Inject constructor(
                         }
                     } else {
                         null
-                    }, // Doesn't fallback to old current, as we will use forecast instead later
+                    }, // Fallback will be handled later
                     airQuality = if (!location.airQualitySource.isNullOrEmpty()) {
                         if (errors.any {
                                 it.feature == SourceFeature.AIR_QUALITY &&
@@ -949,7 +949,13 @@ class RefreshHelper @Inject constructor(
                     normalsUpdateLongitude = normalsUpdateLongitude
                 ),
                 current = completeCurrentFromHourlyData(
-                    weatherWrapperCompleted.current,
+                    weatherWrapperCompleted.current
+                        ?: if (isUpdateStillValid(base.currentUpdateTime, wait = 30)) {
+                            // Allow to re-use current data if it was successfully refreshed less than 30 min ago
+                            location.weather?.current?.toCurrentWrapper()
+                        } else {
+                            null
+                        },
                     currentHour,
                     currentDay,
                     weatherWrapperCompleted.airQuality?.current
