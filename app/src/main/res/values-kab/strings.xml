@@ -114,4 +114,8 @@
     <string name="common_weather_text_partly_cloudy">Issegnew cwiṭ</string>
     <string name="ephemeris_sunset_at">Alluy n wass %s</string>
     <string name="common_weather_text_cloudy">Issegnew</string>
+    <string name="daytime">Deg ass</string>
+    <string name="daytime_short">Deg ass</string>
+    <string name="nighttime">Deg iḍ</string>
+    <string name="nighttime_short">Deg iḍ</string>
 </resources>
