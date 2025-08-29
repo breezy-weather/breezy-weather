@@ -784,4 +784,5 @@
     <string name="widget_live_wallpaper_animations_enable_dangerous">NIEBEZPIECZNY</string>
     <string name="widget_live_wallpaper_animations_enable_warning1">Animowane tapety mogą powodować, m.in.: wysokie zużycie baterii, przegrzewanie się urządzenia, wysokie zużycie pamięci, obniżoną responsywność systemu oraz awarie Androida.</string>
     <string name="widget_live_wallpaper_animations_enable_warning2">Jeśli zdecydujesz się je włączyć, przejmujesz pełną odpowiedzialność za wszelkie problemy, które mogą się pojawić, a wsparcie techniczne nie będzie świadczone.</string>
+    <string name="settings_appearance_dark_mode_custom">Tryb ciemny od %1$s do %2$s</string>
 </resources>
