@@ -218,7 +218,7 @@
     <string name="wind_direction_NW_short">NO</string>
     <string name="wind_direction_variable">Variable</string>
     <string name="uv_index_6_7">Alto</string>
-    <string name="alerts_to_follow">Próximas alertas, pulsa aquí para verlas.</string>
+    <string name="alerts_to_follow">Próximas alertas, toca para verlas.</string>
     <string name="precipitation_between_time">Precipitaciones de %1$s a %2$s</string>
     <string name="wind_direction_N_short">N</string>
     <string name="wind_direction_NE_short">NE</string>
@@ -257,7 +257,7 @@
     <string name="weather_source_accu_preference_days_15">15 días</string>
     <string name="weather_source_accu_preference_hours_120">120 horas</string>
     <string name="message_source_not_installed_error_title">La fuente ya no está disponible</string>
-    <string name="action_show_errors">Pulse para ver los detalles</string>
+    <string name="action_show_errors">Toca para ver los detalles</string>
     <string name="settings_location_access_switch_title">Acceso al lugar</string>
     <string name="settings_location_access_switch_summaryOn">Permitido, Puede añadir su lugar actual como un lugar.</string>
     <string name="location_message_reverse_geocoding_failed">La fuente meteorológica no pudo encontrar un lugar que coincida</string>
@@ -315,7 +315,7 @@
     <string name="location_swipe_to_delete">Puede deslizar hacia la izquierda para eliminar este elemento</string>
     <string name="widget_style_pixel">Píxel</string>
     <string name="widget_style_vertical">Vertical</string>
-    <string name="dialog_permissions_notification_content">Pulse aquí para activar las notificaciones acerca de alertas meteorológicas o decide luego en la Configuración.</string>
+    <string name="dialog_permissions_notification_content">Toca aquí para activar las notificaciones acerca de alertas meteorológicas o decide luego en la Configuración.</string>
     <string name="settings_location_access_background_title">Acceso al lugar en segundo plano</string>
     <string name="air_quality_no2_full">Dióxido de nitrógeno (%s)</string>
     <string name="action_continue">Continuar</string>
@@ -522,7 +522,7 @@
     <string name="settings_weather_source_unavailable">%s (no disponible)</string>
     <string name="weather_message_too_frequent_refreshes">Por favor, espere unos segundos antes de volver a intentarlo…</string>
     <string name="location_delete_location_dialog_message">Estás a punto de borrar “%s” de tu lista de lugares guardados.</string>
-    <string name="settings_weather_source_freenet_disclaimer">Hay más fuentes meteorológicas disponibles en otras versiones de la aplicación. Pulse aquí para obtener más información.</string>
+    <string name="settings_weather_source_freenet_disclaimer">Hay más fuentes meteorológicas disponibles en otras versiones de la aplicación. Toca aquí para obtener más información.</string>
     <string name="widget_custom_subtitle_keyword_xpis_description">Resumen del índice de polen de hoy, mañana, …, 4 días después</string>
     <string name="message_source_not_installed_error_content_tip_1">Esto puede ocurrir si has añadido tu ubicación en la versión estándar de la aplicación y luego has cambiado a la versión con fuentes de red libres. Volver a la versión estándar puede resolver este problema.</string>
     <string name="message_source_not_installed_error_content_tip_2">Cambie la fuente meteorológica de esta ubicación o elimínela y vuelva a añadirla.</string>
@@ -555,9 +555,9 @@
     <string name="settings_background_updates_refresh_never_warning1">Al desactivar las actualizaciones en segundo plano, dejarás de recibir notificaciones de alertas o precipitaciones. Los widgets no se actualizarán hasta que abras la aplicación.</string>
     <string name="settings_modules_broadcast_send_data_summary_empty">No se han encontrado paquetes compatibles</string>
     <string name="settings_background_updates_refresh_never_warning2">El proceso de actualización en segundo plano es ligero: sólo actualiza tu primera ubicación a la velocidad que elijas, y las ubicaciones secundarias sólo si las necesitas, una vez al día. Ahorra batería y no debería consumir más de %d MB de datos al mes.</string>
-    <string name="settings_background_updates_refresh_never_warning3">Considere la posibilidad de utilizar una frecuencia de actualización menor en lugar de desactivar las actualizaciones en segundo plano; de lo contrario, pulse “Continuar” si aún desea seguir adelante.</string>
+    <string name="settings_background_updates_refresh_never_warning3">Considera la posibilidad de usar una frecuencia de actualización menor en lugar de desactivar las actualizaciones en segundo plano; de lo contrario, toca “Continuar” si aún deseas seguir adelante.</string>
     <string name="message_server_unavailable_title">Servidor no disponible</string>
-    <string name="message_server_unavailable_content">Normalmente se trata de un error temporal. Si el error persiste, notifique una incidencia en GitHub.</string>
+    <string name="message_server_unavailable_content">Normalmente se trata de un error temporal. Si el error persiste, notifícalo abriendo una incidencia en GitHub.</string>
     <string name="action_edit_location">Editar este lugar</string>
     <string name="settings_global">Ajustes globales</string>
     <string name="precipitation_intensity_medium">Moderada</string>
@@ -571,7 +571,7 @@
     <string name="common_weather_text_sand_storm">Tormenta de arena</string>
     <string name="meteoam_weather_text_tornado_watersprout">Tornado o tromba marina</string>
     <string name="dialog_app_update_check_title">Mantente al día</string>
-    <string name="dialog_app_update_check_content">Pulsa aquí para habilitar las notificaciones sobre actualizaciones de la aplicación.</string>
+    <string name="dialog_app_update_check_content">Toca aquí para habilitar las notificaciones sobre actualizaciones de la aplicación.</string>
     <string name="settings_unavailable_no_animations">No disponible, activa primero las animaciones en los ajustes de Android</string>
     <string name="current_weather">Clima actual</string>
     <string name="common_weather_text_dry">Seco</string>
@@ -622,7 +622,7 @@
     <string name="weather_source_continent_oceania">Oceanía</string>
     <string name="weather_source_continent_south_america">América del sur</string>
     <string name="action_show">Mostrar</string>
-    <string name="dialog_refresh_error_details_content">Pulse sobre los mensajes de error con un signo de interrogación para obtener más ayuda.</string>
+    <string name="dialog_refresh_error_details_content">Toca sobre los mensajes de error con un signo de interrogación para obtener más ayuda.</string>
     <string name="message_multiple_refresh_errors">Se produjo un error durante la actualización</string>
     <string name="dialog_refresh_error_details_title">Refrescar errores</string>
     <string name="common_weather_text_squall">Chubasco</string>
@@ -766,7 +766,7 @@
     <string name="pressure_falling">Cayendo</string>
     <string name="pressure_about">Sobre la presión</string>
     <string name="pressure_about_description1">La presión atmosférica es la presión descendente ejercida por la atmósfera terrestre. Esta aplicación usa la presión media a nivel del mar para permitir una comparación sencilla de la persión entre lugares con diferentes altitudes.</string>
-    <string name="pressure_about_description2">Los cambios rápidos y significativos de presión se usan para predecir variaciones meteorológicas. Por ejemplo, una bajada de presión puede indicar que se acercan lluvia o nieve, y una subida de presión puede significar que el tiempo mejorará. Las presiones atmosféricas anormales pueden causar dolores de cabeza, dolor en las articulaciones, fatiga y otros efectos.</string>
+    <string name="pressure_about_description2">Los cambios rápidos y significativos en la presión se usan para predecir variaciones meteorológicas. Por ejemplo, una bajada de presión puede indicar que se acercan lluvia o nieve, y una subida de presión puede significar que el tiempo mejorará. Las presiones atmosféricas anormales pueden causar dolores de cabeza, dolor en las articulaciones, fatiga y otros efectos.</string>
     <string name="visibility_about">Sobre la visibilidad</string>
     <string name="visibility_about_description">Indica hasta qué distancia se pueden ver con claridad objetos como edificios y colinas. La visibilidad puede verse afectada por precipitaciones, niebla, polvo, humo o neblina.</string>
     <string name="visibility_from_to_number">%1$s a %2$s</string>
@@ -776,7 +776,7 @@
     <string name="visibility_moderate">Moderada</string>
     <string name="visibility_good">Buena</string>
     <string name="visibility_clear">Clara</string>
-    <string name="visibility_perfectly_clear">Perfectamente clara</string>
+    <string name="visibility_perfectly_clear">Muy clara</string>
     <string name="cloud_cover_about">Sobre la nubosidad</string>
     <string name="cloud_cover_about_description">La nubosidad se refiere al porcentaje del cielo promedio que está cubierto por nubes. La nubosidad está relacionada directamente con la duración de la insolación terrestre.</string>
     <string name="cloud_cover_from_to_number">%1$s a %2$s</string>
