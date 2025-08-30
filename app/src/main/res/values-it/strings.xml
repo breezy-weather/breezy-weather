@@ -683,4 +683,6 @@
     <string name="content_provider_permission_label">Leggere dati Breezy Weather</string>
     <string name="broadcast_source_breezy_weather_update_notifier">Notifica di aggiornamento posizione %s</string>
     <string name="action_add_as_location">Aggiungi come posizione</string>
+    <string name="settings_appearance_dark_mode_custom">Modalità scura dalle %1$s alle %2$s</string>
+    <string name="settings_appearance_dark_mode_locations_day_night">Segui giorno/notte</string>
 </resources>
