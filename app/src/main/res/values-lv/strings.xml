@@ -149,7 +149,7 @@
     <string name="settings_location">Atrašanās vieta</string>
     <string name="settings_location_access_precise_summaryOn">Iespējots. Lielākoties tiks izmantots ierīces tīkla nodrošinātājs, bet var tikt izmantots arī GPS kā papildu iespēja.</string>
     <string name="settings_location_access_precise_summaryOff">Jāiespējo “Izmantot precīzu atrašanās vietu”, ja rodas sarežģījumi ar atrašanās vietas noteikšanu.</string>
-    <string name="settings_appearance_dark_mode_locations_title">Uz atrašanās vietu balstīts tumšais izskats</string>
+    <string name="settings_appearance_dark_mode_locations_title">No atrašanās vietas atkarīgs tumšais izskats</string>
     <string name="settings_appearance_icon_pack_title">Ikonu pakotne</string>
     <string name="settings_icon_packs_title">Ikonu pakotnes</string>
     <string name="settings_appearance_dark_mode_title">Lietotnes tumšais izskats</string>
@@ -773,4 +773,5 @@
     <string name="widget_live_wallpaper_animations_enable_dangerous">BĪSTAMI</string>
     <string name="widget_live_wallpaper_animations_enable_warning1">Ir zināms, ka ekrāntapešu animācijas var izraisīt (bet ne tikai): palielinātu akumulatora patēriņu; akumulatora pārkaršanu; palielinātu atmiņas patēriņu; pasliktinātu sistēmas atsaucību; Android sistēmas avarēšanu.</string>
     <string name="widget_live_wallpaper_animations_enable_warning2">Ja izlem tās iespējot, Tu uzņemies pilnu atbildību par jebkuru sarežģījumu, kas var rasties, un netiks nodrošināts nekāds atbalsts.</string>
+    <string name="settings_appearance_dark_mode_custom">Tumšais izskats no %1$s līdz %2$s</string>
 </resources>
