@@ -504,7 +504,7 @@
     <string name="pressure_short">气压</string>
     <string name="settings_weather_sources_default_source">新位置的默认源</string>
     <string name="settings_weather_source_unavailable">%s（不可用）</string>
-    <string name="settings_weather_source_freenet_disclaimer">其他版本的 Breezy Weather 有更多天气数据源。轻按此处了解更多信息。</string>
+    <string name="settings_weather_source_freenet_disclaimer">托管在非自由网络服务上的气象数据源在这个版本的应用中不可用。轻按此处了解更多信息。</string>
     <string name="location_delete_location_dialog_title">是否要删除此位置？</string>
     <string name="location_delete_location_dialog_message">您即将从已储存的位置列表中删除“%s”。</string>
     <string name="location_delete_location_dialog_message_no_name">您即将从已储存的位置列表中删除这个位置。</string>
@@ -859,4 +859,7 @@
     <string name="widget_live_wallpaper_animations_enable_warning1">壁纸动画已知会导致高电量消耗、电池过热、高内存消耗、系统响应变慢、Android 系统崩溃等在内的问题。</string>
     <string name="widget_live_wallpaper_animations_enable_warning2">如果决定启用，您对任何可能引发的问题承担全部责任，且开发者不会提供支持。</string>
     <string name="settings_appearance_dark_mode_custom">从 %1$s 到 %2$s 为深色模式</string>
+    <string name="message_source_non_free_network_title">托管在非自由网络服务上的气象数据源在这个版本的应用中不可用</string>
+    <string name="message_source_non_free_network_content">用过标准版应用中托管在非自由网络上的气象数据源，之后切换到仅含托管在自由网络上的 FOSS 版本会发生这个问题。要解决它，请回到标准版或更改气象数据源。</string>
+    <string name="settings_weather_source_non_freenet">%s （非自由网络服务）</string>
 </resources>
