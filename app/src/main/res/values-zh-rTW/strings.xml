@@ -500,8 +500,8 @@
     <string name="location_message_already_exists">位置清單裡已有使用相同預報來源之位置。</string>
     <string name="location_search_no_results_advice">請確保您搜尋位置的拼字正確，而且位置不會過於細緻。您也可以嘗試別的位置搜尋來源，也許會得到不同結果。</string>
     <string name="settings_weather_sources_default_source">新位置的預設資料來源</string>
-    <string name="settings_weather_source_unavailable">%s（無法使用）</string>
-    <string name="settings_weather_source_freenet_disclaimer">本應用程式的其他版本提供更多天氣來源。點選這裡以瞭解更多。</string>
+    <string name="settings_weather_source_unavailable">%s (無法使用)</string>
+    <string name="settings_weather_source_freenet_disclaimer">您正在使用本應用程式的 Freenet 版本。如需使用非自由網路服務，請切換到 Standard 版本。</string>
     <string name="location_delete_location_dialog_title">刪除位置？</string>
     <string name="location_delete_location_dialog_message_no_name">您即將從已儲存的位置清單中刪除這個位置。</string>
     <string name="action_confirm">確認</string>
@@ -674,7 +674,7 @@
     <string name="action_show">顯示</string>
     <string name="common_weather_text_tornado">龍捲風</string>
     <string name="forecast">預報</string>
-    <string name="settings_weather_source_not_configured">%s（尚未設定）</string>
+    <string name="settings_weather_source_not_configured">%s (尚未設定)</string>
     <string name="settings_weather_source_current_position_disclaimer">您的位置首次更新後，可能會有更多天氣來源讓您選擇。</string>
     <string name="pollen_alternaria">鏈隔孢菌</string>
     <string name="pollen_atriplex">海濱藜</string>
@@ -856,4 +856,7 @@
     <string name="widget_live_wallpaper_animations_enable_warning1">已知桌布動畫會導致以下問題：電池高耗電、電池過熱、記憶體使用過高、系統反應遲緩、Android 系統當機等。</string>
     <string name="widget_live_wallpaper_animations_enable_warning2">如果決定啟用桌布動畫，你要為任何可能發生的問題負責，開發者將不提供任何支援。</string>
     <string name="settings_appearance_dark_mode_custom">從 %1$s 至 %2$s 啟用深色模式</string>
+    <string name="message_source_non_free_network_title">此天氣來源需要本應用程式的 Standard 版本</string>
+    <string name="message_source_non_free_network_content">您正使用本應用程式的 Freenet 版本，此版本只支援自由網路上的天氣來源。如想繼續使用本天氣來源，請切換回 Standard 版本；否則，請選用其他天氣來源。</string>
+    <string name="settings_weather_source_non_freenet">%s (非自由網路服務)</string>
 </resources>
