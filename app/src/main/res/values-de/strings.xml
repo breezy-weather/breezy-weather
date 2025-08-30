@@ -492,7 +492,7 @@
     <string name="ceiling_short">Wolkendecke</string>
     <string name="settings_weather_sources_default_source">Standardquelle für neue Orte</string>
     <string name="settings_weather_source_unavailable">%s (nicht verfügbar)</string>
-    <string name="settings_weather_source_freenet_disclaimer">Mehr Wetterquellen sind in den anderen Varianten der App verfügbar. Tippe hier, um mehr zu erfahren.</string>
+    <string name="settings_weather_source_freenet_disclaimer">Du benutzt die Freenet Version der App. Wechsel zur Standard-Version, wenn du nicht-freie Netzwerk-Services benutzen möchtest.</string>
     <string name="location_delete_location_dialog_message">Du bist dabei, „%s“ aus deiner Liste der gespeicherten Orte zu löschen.</string>
     <string name="location_delete_location_dialog_title">Ort löschen?</string>
     <string name="widget_label_hide_header">Kopfzeile ausblenden</string>
@@ -784,4 +784,7 @@
     <string name="widget_live_wallpaper_animations_enable_warning1">Hintergrundanimationen können unter anderem Folgendes verursachen: hohen Akkuverbrauch; Akkuüberhitzung; hohen Speicherverbrauch; verschlechterte Systemreaktionsfähigkeit; Android-Systemabsturz.</string>
     <string name="widget_live_wallpaper_animations_enable_warning2">Wenn du dich entscheidest, sie zu aktivieren, übernimmst du die volle Verantwortung für alle auftretenden Probleme und es wird keine Unterstützung bereitgestellt.</string>
     <string name="settings_appearance_dark_mode_custom">Dunkles Design von %1$s bis %2$s</string>
+    <string name="message_source_non_free_network_title">Diese Quelle erfordert die Standardversion der App</string>
+    <string name="message_source_non_free_network_content">Du verwendest die Freenet-Version der App, die nur Quellen unterstützt, die in einem freien Netzwerk gehostet werden. Um diese Quelle weiterhin zu verwenden, wechsel zurück zur Standardversion. Andernfalls wähle eine andere Quelle.</string>
+    <string name="settings_weather_source_non_freenet">%s (nicht-freier Netzwerkservice)</string>
 </resources>
