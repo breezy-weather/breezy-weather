@@ -354,8 +354,7 @@ class HomeFragment : MainModuleFragment() {
             binding.recyclerView.setOnTouchListener(null)
             return
         }
-
-
+        
         binding.recyclerView.setOnTouchListener(null)
 
         val listAnimationEnabled = SettingsManager
