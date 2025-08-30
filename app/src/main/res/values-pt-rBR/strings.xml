@@ -507,7 +507,7 @@
     <string name="cloud_cover_short">Nuvem</string>
     <string name="settings_weather_source_unavailable">%s (indisponível)</string>
     <string name="ceiling_short">Teto</string>
-    <string name="settings_weather_source_freenet_disclaimer">Mais fontes meteorológicas estão disponíveis em outras versões do app. Toque aqui para saber mais.</string>
+    <string name="settings_weather_source_freenet_disclaimer">Você está usando a versão Freenet do app. Troque para a versão Standard se quiser usar serviços de rede não livres.</string>
     <string name="visibility_short">Visibilidade</string>
     <string name="settings_weather_sources_default_source">Fonte padrão para novas localizações</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless_description">Combina todos os modelos meteorológicos deste provedor em uma previsão homogênea</string>
@@ -836,4 +836,7 @@
     <string name="widget_live_wallpaper_animations_enable_warning1">Animações no plano de fundo são conhecidas por causar, entre outras coisas: alto consumo da bateria; superaquecimento da bateria; alto consumo da memória; responsividade degradada do sistema; congelamento do sistema Android.</string>
     <string name="widget_live_wallpaper_animations_enable_warning2">Se decidir ativá-las, você tem responsabilidade total por qualquer problema que aparecer, e não será oferecido suporte.</string>
     <string name="settings_appearance_dark_mode_custom">Modo escuro das %1$s até às %2$s</string>
+    <string name="message_source_non_free_network_title">Esta fonte requer a versão Standard do app</string>
+    <string name="message_source_non_free_network_content">Você está usando a versão Freenet do app, que só suporta fontes hospedadas em redes livres. Para continuar usando esta fonte, volte para a versão Standard. Caso contrário, escolha uma fonte diferente.</string>
+    <string name="settings_weather_source_non_freenet">%s (serviço de rede não livre)</string>
 </resources>
