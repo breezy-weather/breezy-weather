@@ -261,7 +261,7 @@
     <string name="dialog_app_update_check_title">保持最新</string>
     <string name="dialog_app_update_check_content">點選這裡以啟用應用程式更新通知。</string>
     <string name="dialog_permissions_notification_title">即時獲得資訊</string>
-    <string name="dialog_permissions_notification_content">點選此處以啟用天氣警特報通知，或稍後在設定中做選擇。</string>
+    <string name="dialog_permissions_notification_content">點選此處以啟用天氣警告通知，或稍後在設定中做選擇。</string>
     <string name="dialog_permissions_location_content">要使用此功能，您需要授權應用程式存取您目前的位置。此位置僅會與選定的天氣來源分享。如果您改變主意，可以取消此過程並手動新增固定位置。</string>
     <string name="dialog_permissions_location_background_title">背景取得位置資訊</string>
     <string name="dialog_permissions_location_background_content">為了能按照 Android 所知的目前位置，在背景重新整理天氣資訊，請將位置權限設定為「始終允許」。否則，只能按照本裝置最近一次在前景存取的位置來重新整理天氣資料，而該位置到時可能已經過時。</string>
@@ -270,7 +270,7 @@
     <string name="dialog_time_picker_toggle_text_input_voice">切換到文字輸入</string>
     <string name="dialog_time_picker_toggle_touch_input_voice">切換到觸控輸入</string>
     <string name="message_invalid_incomplete_data">從伺服器收到的資料無效或不完整</string>
-    <string name="message_network_unavailable">網路不可用</string>
+    <string name="message_network_unavailable">網絡不可用</string>
     <string name="message_server_timeout">要求逾時</string>
     <string name="message_server_unavailable_title">伺服器無法使用</string>
     <string name="message_server_unavailable_content">這通常是暫時性的錯誤。如果錯誤持續，請在 GitHub 上報告問題。</string>
@@ -391,7 +391,7 @@
     <string name="settings_location_access_background_summaryOn">已啟用。應用程式能在背景更新您目前位置的天氣資料。</string>
     <string name="settings_location_access_precise_summaryOff">若您無法獲取位置，請啟用「使用精確位置」。</string>
     <string name="settings_location_access_background_summaryOff">請啟用「始終允許」，以便在背景更新您的目前位置。</string>
-    <string name="settings_location_access_precise_summaryOn">已啟用。大部分時間將優先使用本裝置的網路提供者，但也可使用 GPS 作後援。</string>
+    <string name="settings_location_access_precise_summaryOn">已啟用。大部分時間將優先使用本裝置的網絡提供者，但也可使用 GPS 作後援。</string>
     <string name="settings_global">全域設定</string>
     <string name="settings_per_location">位置喜好設定</string>
     <string name="settings_per_location_summary">此位置的附加自訂</string>
@@ -399,9 +399,9 @@
     <string name="settings_weather_sources">天氣資料來源</string>
     <string name="settings_weather_sources_summary">新位置的預設天氣來源、自訂 API 金鑰、其他來源設定</string>
     <string name="settings_weather_sources_default_source">新位置的預設資料來源</string>
-    <string name="settings_weather_source_unavailable">%s（無法使用）</string>
+    <string name="settings_weather_source_unavailable">%s (無法使用)</string>
     <string name="settings_weather_source_none">無</string>
-    <string name="settings_weather_source_freenet_disclaimer">本應用程式的其他版本提供更多天氣來源。點選這裡以瞭解更多。</string>
+    <string name="settings_weather_source_freenet_disclaimer">您正在使用本應用程式的 Freenet 版本。如需使用非自由網絡服務，請切換到 Standard 版本。</string>
     <string name="settings_weather_sources_per_location_summary">自訂此位置使用的天氣資料來源</string>
     <string name="settings_source_default_value">預設（未變更）</string>
     <string name="settings_source_api_key">API 金鑰</string>
@@ -664,7 +664,7 @@
     <string name="dialog_refresh_error_details_content">點選錯誤訊息旁邊的問號，以獲得詳細說明。</string>
     <string name="message_multiple_refresh_errors">更新過程中發生錯誤</string>
     <string name="common_weather_text_tornado">龍捲風</string>
-    <string name="settings_weather_source_not_configured">%s（尚未設定）</string>
+    <string name="settings_weather_source_not_configured">%s (尚未設定)</string>
     <string name="forecast">預測</string>
     <string name="settings_weather_source_current_position_disclaimer">您的位置首次更新後，可能會有更多天氣來源讓您選擇。</string>
     <string name="pollen_pinus">松樹</string>
@@ -847,4 +847,7 @@
     <string name="widget_live_wallpaper_animations_enable_warning1">已知桌布動畫會導致以下問題：電池高耗電、電池過熱、記憶體使用過高、系統反應遲緩、Android 系統當機等。</string>
     <string name="widget_live_wallpaper_animations_enable_warning2">如果決定啟用桌布動畫，你要為任何可能發生的問題負責，開發者將不提供任何支援。</string>
     <string name="settings_appearance_dark_mode_custom">從 %1$s 至 %2$s 啟用深色模式</string>
+    <string name="message_source_non_free_network_title">此天氣來源需要本應用程式的 Standard 版本</string>
+    <string name="message_source_non_free_network_content">您正使用本應用程式的 Freenet 版本，此版本只支援自由網絡上的天氣來源。如想繼續使用本天氣來源，請切換回 Standard 版本；否則，請選用其他天氣來源。</string>
+    <string name="settings_weather_source_non_freenet">%s (非自由網絡服務)</string>
 </resources>
