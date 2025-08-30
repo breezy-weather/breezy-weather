@@ -351,19 +351,10 @@ class HomeFragment : MainModuleFragment() {
         if (location?.weather == null) {
             adapter!!.setNullWeather()
             adapter!!.notifyDataSetChanged()
-            binding.recyclerView.setOnTouchListener { _, event ->
-                if (event.action == MotionEvent.ACTION_DOWN &&
-                    !binding.refreshLayout.isRefreshing
-                ) {
-                    viewModel.updateWithUpdatingChecking(
-                        triggeredByUser = true,
-                        checkPermissions = true
-                    )
-                }
-                false
-            }
+            binding.recyclerView.setOnTouchListener(null)
             return
         }
+
 
         binding.recyclerView.setOnTouchListener(null)
 
