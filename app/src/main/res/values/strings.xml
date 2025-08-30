@@ -546,7 +546,7 @@
     <string name="message_source_not_installed_error_title">Source no longer available</string>
     <string name="message_source_not_installed_error_content">Either change the weather sources for this location, or delete and re-add this location.</string>
     <string name="message_source_non_free_network_title">Source hosted on a non-free network service not available in this version of the app</string>
-    <string name="message_source_non_free_network_content">This occurs when you used a source hosted on a non-free network in the Standard version of the app and switched to the Freenet version with only sources hosted on free networks. Return to the Standard version, or change the source to resolve this issue.</string>
+    <string name="message_source_non_free_network_content">You’re using the Freenet version of the app, which only supports sources hosted on a free network. To keep using this source, switch back to the Standard version. Otherwise, choose a difference source.</string>
     <string name="message_tap_again_to_exit">Tap again to exit</string>
     <!-- Widgets -->
     <string name="widget_day">Daily</string>
