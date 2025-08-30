@@ -49,6 +49,4 @@ class EthioMetService @Inject constructor(
     override val normalsAttribution = weatherAttribution
 
     override val cityClimatePageId = "212"
-
-    override val testingLocations: List<Location> = emptyList()
 }

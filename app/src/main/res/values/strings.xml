@@ -544,9 +544,11 @@
     <string name="message_parsing_error_title">Failed to parse weather data</string>
     <string name="message_parsing_error_content">Make sure you updated to latest version of the app. Server may be temporarily unavailable, in that case, please try again later. If the problem persists, please dump a crash log from debug settings, and report an issue on GitHub.</string>
     <string name="message_source_not_installed_error_title">Source no longer available</string>
-    <!-- Free as in “libre -->
-    <string name="message_source_not_installed_error_content_tip_1">This can happen when you added your location in the Standard flavor of the app and then switched to the flavor with only libre network sources. Going back to the Standard flavor may solve this problem.</string>
+    <!-- TODO: Delete, no longer used -->
+    <string name="message_source_not_installed_error_content_tip_1" translatable="false">This can happen when you added your location in the Standard flavor of the app and then switched to the flavor with only libre network sources. Going back to the Standard flavor may solve this problem.</string>
     <string name="message_source_not_installed_error_content_tip_2">Either change the weather sources for this location, or delete and re-add this location.</string>
+    <string name="message_source_non_free_network_title">Source hosted on a non-free network service not available in this version of the app</string>
+    <string name="message_source_non_free_network_content">This occurs when you used a source hosted on a non-free network in the Standard version of the application and switched to the Freenet version with only sources hosted on free networks. Return to the Standard version, or change the source to resolve this issue.</string>
     <string name="message_tap_again_to_exit">Tap again to exit</string>
     <!-- Widgets -->
     <string name="widget_day">Daily</string>
@@ -699,10 +701,11 @@
     <string name="settings_weather_sources_summary">Default weather source for new locations, custom API keys, other source settings</string>
     <string name="settings_weather_sources_section_general" translatable="false">@string/settings_section_general</string>
     <string name="settings_weather_sources_default_source">Default source for new locations</string>
+    <string name="settings_weather_source_non_freenet">%s (non-free network service)</string>
     <string name="settings_weather_source_unavailable">%s (unavailable)</string>
     <string name="settings_weather_source_not_configured">%s (not configured)</string>
     <string name="settings_weather_source_none">None</string>
-    <string name="settings_weather_source_freenet_disclaimer">More weather sources are available from other flavors of the app. Tap here to learn more.</string>
+    <string name="settings_weather_source_freenet_disclaimer">Sources hosted on a non-free network service are not available in this version of the app. Tap here to learn more.</string>
     <string name="settings_weather_source_current_position_disclaimer">More weather sources may become available for your location after the first refresh.</string>
     <string name="settings_weather_sources_per_location_summary">Customize weather data sources used for this location</string>
     <string name="settings_source_default_value">Default (unchanged)</string>

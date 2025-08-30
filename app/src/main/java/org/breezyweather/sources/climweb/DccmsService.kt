@@ -49,6 +49,4 @@ class DccmsService @Inject constructor(
     override val normalsAttribution = weatherAttribution
 
     override val cityClimatePageId = "33"
-
-    override val testingLocations: List<Location> = emptyList()
 }

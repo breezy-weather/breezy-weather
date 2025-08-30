@@ -17,7 +17,6 @@
 package org.breezyweather.ui.main.dialogs
 
 import android.app.Activity
-import android.content.Context
 import android.view.LayoutInflater
 import androidx.annotation.StringRes
 import androidx.compose.material3.AlertDialog
@@ -27,8 +26,6 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.res.stringResource
-import androidx.core.content.ContextCompat.getString
-import org.breezyweather.BuildConfig
 import org.breezyweather.R
 import org.breezyweather.ui.main.MainActivity
 import org.breezyweather.ui.theme.ThemeManager
@@ -38,6 +35,7 @@ object SourceNoLongerAvailableHelpDialog {
     fun show(
         activity: Activity,
         @StringRes title: Int,
+        @StringRes content: Int,
     ) {
         val view = LayoutInflater
             .from(activity)
@@ -52,7 +50,6 @@ object SourceNoLongerAvailableHelpDialog {
         } else {
             null
         }
-        val helpText = buildHelpText(view.context)
 
         composeView.setContent {
             BreezyWeatherTheme(
@@ -93,7 +90,7 @@ object SourceNoLongerAvailableHelpDialog {
                         },
                         text = {
                             Text(
-                                helpText
+                                stringResource(content)
                             )
                         },
                         textContentColor = MaterialTheme.colorScheme.onSurfaceVariant,
@@ -101,17 +98,6 @@ object SourceNoLongerAvailableHelpDialog {
                     )
                 }
             }
-        }
-    }
-
-    private fun buildHelpText(context: Context): String {
-        return buildString {
-            @Suppress("KotlinConstantConditions")
-            if (BuildConfig.FLAVOR == "freenet") {
-                append(getString(context, R.string.message_source_not_installed_error_content_tip_1))
-                append("\n\n")
-            }
-            append(getString(context, R.string.message_source_not_installed_error_content_tip_2))
         }
     }
 }

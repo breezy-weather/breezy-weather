@@ -144,8 +144,6 @@ class EpdHkService @Inject constructor(
         )
     }
 
-    override val testingLocations: List<Location> = emptyList()
-
     companion object {
         private const val EPD_HK_BASE_URL = "https://www.aqhi.gov.hk/"
 

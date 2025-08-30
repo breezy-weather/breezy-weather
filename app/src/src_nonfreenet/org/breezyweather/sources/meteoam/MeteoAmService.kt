@@ -346,8 +346,6 @@ class MeteoAmService @Inject constructor(
         )
     }
 
-    override val testingLocations: List<Location> = emptyList()
-
     // This source is really inconsistent. Many missing, half correct, half “incorrect”
     override val knownAmbiguousCountryCodes: Array<String> = arrayOf(
         "AU", // Territories: NF

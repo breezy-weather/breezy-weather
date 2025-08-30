@@ -20,6 +20,8 @@ import android.content.Context
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -48,6 +50,7 @@ import org.breezyweather.BuildConfig
 import org.breezyweather.R
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.source.ConfigurableSource
+import org.breezyweather.common.source.NonFreeNetSource
 import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.common.source.getName
 import org.breezyweather.common.utils.helpers.IntentHelper
@@ -91,7 +94,12 @@ fun LocationPreference(
                 iconId = R.drawable.ic_location,
                 selectedKey = SettingsManager.getInstance(activity).locationSource,
                 sourceList = locationSources.map {
-                    Triple(it.id, it.getName(context), it !is ConfigurableSource || it.isConfigured)
+                    Triple(
+                        it.id,
+                        it.getName(context),
+                        (it !is ConfigurableSource || it.isConfigured) &&
+                            (BuildConfig.FLAVOR != "freenet" || it !is NonFreeNetSource)
+                    )
                 }.toImmutableList(),
                 colors = ListItemDefaults.colors(AlertDialogDefaults.containerColor)
             ) { sourceId ->
@@ -322,6 +330,7 @@ internal fun getCompatibleSources(
                         it.id,
                         it.getName(context, feature, location),
                         (it !is ConfigurableSource || it.isConfigured) &&
+                            (BuildConfig.FLAVOR != "freenet" || it !is NonFreeNetSource) &&
                             it.isFeatureSupportedForLocation(location, feature)
                     )
                 }
@@ -451,6 +460,9 @@ fun SecondarySourcesPreference(
                     }
                 }
                 if (location.isCurrentPosition && !location.isUsable) {
+                    if (BuildConfig.FLAVOR == "freenet") {
+                        Spacer(modifier = Modifier.height(dimensionResource(R.dimen.small_margin)))
+                    }
                     Material3ExpressiveCardListItem(
                         surface = MaterialTheme.colorScheme.secondaryContainer,
                         onSurface = MaterialTheme.colorScheme.onSecondaryContainer,

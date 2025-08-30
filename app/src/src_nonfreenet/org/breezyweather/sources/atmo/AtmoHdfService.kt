@@ -76,6 +76,4 @@ class AtmoHdfService @Inject constructor(
                 "80" // Somme
             ).any { location.admin2Code?.endsWith(it) == true }
     }
-
-    override val testingLocations: List<Location> = emptyList()
 }

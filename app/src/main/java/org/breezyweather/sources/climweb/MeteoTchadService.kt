@@ -56,6 +56,4 @@ class MeteoTchadService @Inject constructor(
     override val normalsAttribution = weatherAttribution
 
     override val cityClimatePageId = "65"
-
-    override val testingLocations: List<Location> = emptyList()
 }

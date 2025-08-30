@@ -71,9 +71,11 @@ import org.breezyweather.BuildConfig
 import org.breezyweather.R
 import org.breezyweather.common.activities.BreezyActivity
 import org.breezyweather.common.extensions.inputMethodManager
+import org.breezyweather.common.source.ConfigurableSource
+import org.breezyweather.common.source.NonFreeNetSource
+import org.breezyweather.common.source.getName
 import org.breezyweather.domain.location.model.getPlace
 import org.breezyweather.sources.SourceManager
-import org.breezyweather.sources.getConfiguredLocationSearchSources
 import org.breezyweather.sources.getLocationSearchSourceOrDefault
 import org.breezyweather.ui.common.composables.AlertDialogNoPadding
 import org.breezyweather.ui.common.composables.SecondarySourcesPreference
@@ -136,18 +138,14 @@ class SearchActivity : BreezyActivity() {
                             }
                         }
                     },
-                    floatingActionButton = if (BuildConfig.FLAVOR != "freenet") {
-                        {
-                            FloatingActionButton(
-                                onClick = { dialogLocationSearchSourceOpenState.value = true },
-                                containerColor = FloatingActionButtonDefaults.containerColor,
-                                elevation = FloatingActionButtonDefaults.bottomAppBarFabElevation()
-                            ) {
-                                Icon(Icons.Filled.Tune, stringResource(R.string.location_search_change_source))
-                            }
+                    floatingActionButton = {
+                        FloatingActionButton(
+                            onClick = { dialogLocationSearchSourceOpenState.value = true },
+                            containerColor = FloatingActionButtonDefaults.containerColor,
+                            elevation = FloatingActionButtonDefaults.bottomAppBarFabElevation()
+                        ) {
+                            Icon(Icons.Filled.Tune, stringResource(R.string.location_search_change_source))
                         }
-                    } else {
-                        null
                     }
                 )
             }
@@ -258,17 +256,22 @@ class SearchActivity : BreezyActivity() {
                     LazyColumn(
                         modifier = Modifier.fillMaxWidth()
                     ) {
-                        items(sourceManager.getConfiguredLocationSearchSources()) {
+                        items(sourceManager.getLocationSearchSources()) {
+                            val enabled = (it !is ConfigurableSource || it.isConfigured) &&
+                                (BuildConfig.FLAVOR != "freenet" || it !is NonFreeNetSource)
                             RadioButton(
                                 selected = locationSearchSource.id == it.id,
+                                enabled = enabled,
                                 onClick = {
-                                    dialogLocationSearchSourceOpenState.value = false
-                                    viewModel.setEnabledSource(it.id)
-                                    if (text.isNotEmpty()) {
-                                        viewModel.requestLocationList(text)
+                                    if (enabled) {
+                                        dialogLocationSearchSourceOpenState.value = false
+                                        viewModel.setEnabledSource(it.id)
+                                        if (text.isNotEmpty()) {
+                                            viewModel.requestLocationList(text)
+                                        }
                                     }
                                 },
-                                text = it.name
+                                text = it.getName(context)
                             )
                         }
                     }

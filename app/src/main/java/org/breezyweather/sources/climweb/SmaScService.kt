@@ -49,6 +49,4 @@ class SmaScService @Inject constructor(
     override val normalsAttribution = weatherAttribution
 
     override val cityClimatePageId = "305"
-
-    override val testingLocations: List<Location> = emptyList()
 }

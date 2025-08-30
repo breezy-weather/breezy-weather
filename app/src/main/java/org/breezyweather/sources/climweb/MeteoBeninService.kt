@@ -56,6 +56,4 @@ class MeteoBeninService @Inject constructor(
     override val normalsAttribution = weatherAttribution
 
     override val cityClimatePageId = "105"
-
-    override val testingLocations: List<Location> = emptyList()
 }

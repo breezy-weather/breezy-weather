@@ -485,8 +485,6 @@ class MetNoService @Inject constructor(
         }
     }
 
-    override val testingLocations: List<Location> = emptyList()
-
     companion object {
         private const val METNO_BASE_URL = "https://api.met.no/weatherapi/"
         private const val USER_AGENT =

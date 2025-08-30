@@ -31,6 +31,7 @@ import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.Source
 import org.breezyweather.common.source.TimeZoneSource
 import org.breezyweather.common.source.WeatherSource
+import org.breezyweather.sources.accu.AccuService
 import org.breezyweather.sources.android.AndroidLocationService
 import org.breezyweather.sources.breezytz.BreezyTimeZoneService
 import org.breezyweather.sources.breezyupdatenotifier.BreezyUpdateNotifierService
@@ -64,6 +65,7 @@ import javax.inject.Inject
 
 class SourceManager @Inject constructor(
     androidLocationService: AndroidLocationService,
+    accuService: AccuService,
     anamBfService: AnamBfService,
     anametService: AnametService,
     breezyTimeZoneService: BreezyTimeZoneService,
@@ -108,6 +110,7 @@ class SourceManager @Inject constructor(
 
     // Worldwide weather sources, excluding national sources with worldwide support
     private val worldwideWeatherSourceList = persistentListOf(
+        accuService,
         fpasService,
         openMeteoService,
         pirateWeatherService

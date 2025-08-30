@@ -67,6 +67,7 @@ import org.breezyweather.common.source.ConfigurableSource
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationParametersSource
 import org.breezyweather.common.source.LocationResult
+import org.breezyweather.common.source.NonFreeNetSource
 import org.breezyweather.common.source.RefreshError
 import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.WeatherResult
@@ -588,7 +589,15 @@ class RefreshHelper @Inject constructor(
                                         val featuresToUpdate = entry.value
                                             .filter {
                                                 // Remove sources that are not configured
-                                                if (service is ConfigurableSource && !service.isConfigured) {
+                                                if (BuildConfig.FLAVOR == "freenet" && service is NonFreeNetSource) {
+                                                    errors.add(
+                                                        RefreshError(
+                                                            RefreshErrorType.NON_FREE_NETWORK_SOURCE,
+                                                            entry.key
+                                                        )
+                                                    )
+                                                    false
+                                                } else if (service is ConfigurableSource && !service.isConfigured) {
                                                     errors.add(
                                                         RefreshError(
                                                             RefreshErrorType.API_KEY_REQUIRED_MISSING,
@@ -996,13 +1005,17 @@ class RefreshHelper @Inject constructor(
             return Observable.error(NoNetworkException())
         }
 
-        return searchService.requestLocationSearch(context, query).map { locationList ->
-            locationList.map {
-                it.copy(
-                    longitude = it.longitude?.roundDecimals(6),
-                    latitude = it.latitude?.roundDecimals(6)
-                )
+        return try {
+            searchService.requestLocationSearch(context, query).map { locationList ->
+                locationList.map {
+                    it.copy(
+                        longitude = it.longitude?.roundDecimals(6),
+                        latitude = it.latitude?.roundDecimals(6)
+                    )
+                }
             }
+        } catch (e: Throwable) {
+            return Observable.error(e)
         }
     }
 

@@ -293,8 +293,6 @@ class EkukService @Inject constructor(
         )
     }
 
-    override val testingLocations: List<Location> = emptyList()
-
     companion object {
         private const val EKUK_BASE_URL = "https://www.ohuseire.ee/"
         private const val EKUK_AIR_QUALITY_INDICATORS = "1,3,4,6,21,23"

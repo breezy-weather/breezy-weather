@@ -317,7 +317,7 @@ class SettingsActivity : BreezyActivity() {
                 WeatherSourcesSettingsScreen(
                     context = this@SettingsActivity,
                     onNavigateBack = { onBack() },
-                    configuredWorldwideSources = sourceManager
+                    worldwideSources = sourceManager
                         .getSupportedFeatureSources(SourceFeature.FORECAST, Location()),
                     configurableSources = sourceManager.getConfigurableSources()
                 )

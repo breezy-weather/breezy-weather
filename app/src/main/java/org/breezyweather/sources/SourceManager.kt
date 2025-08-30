@@ -26,6 +26,7 @@ import org.breezyweather.common.source.ConfigurableSource
 import org.breezyweather.common.source.FeatureSource
 import org.breezyweather.common.source.LocationSearchSource
 import org.breezyweather.common.source.LocationSource
+import org.breezyweather.common.source.NonFreeNetSource
 import org.breezyweather.common.source.PreferencesParametersSource
 import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.WeatherSource
@@ -132,7 +133,8 @@ fun SourceManager.getBestSourceForFeature(
         .filter {
             it.isFeatureSupportedForLocation(location, feature) &&
                 it.getFeaturePriorityForLocation(location, feature) > PRIORITY_NONE &&
-                (it !is ConfigurableSource || (it.isConfigured && !it.isRestricted))
+                (it !is ConfigurableSource || (it.isConfigured && !it.isRestricted)) &&
+                (BuildConfig.FLAVOR != "freenet" || it !is NonFreeNetSource)
         }
         .maxByOrNull { it.getFeaturePriorityForLocation(location, feature) }
 }
@@ -162,9 +164,13 @@ fun SourceManager.getDefaultSourceForFeature(
         }
         SourceFeature.POLLEN -> getWeatherSource("openmeteo")?.let {
             if (it.isFeatureSupportedForLocation(location, feature)) it else null
-        } ?: getWeatherSource("accu")?.let { if (it.isFeatureSupportedForLocation(location, feature)) it else null }
-        SourceFeature.ALERT -> getWeatherSource("accu")
-        SourceFeature.NORMALS -> if (!location.countryCode.equals("CN", ignoreCase = true)) {
+        } ?: getWeatherSource("accu")?.takeIf {
+            it.isFeatureSupportedForLocation(location, feature) && BuildConfig.FLAVOR != "freenet"
+        }
+        SourceFeature.ALERT -> if (BuildConfig.FLAVOR != "freenet") getWeatherSource("accu") else null
+        SourceFeature.NORMALS -> if (!location.countryCode.equals("CN", ignoreCase = true) &&
+            BuildConfig.FLAVOR != "freenet"
+        ) {
             getWeatherSource("accu")
         } else {
             null

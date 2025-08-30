@@ -86,8 +86,6 @@ class NceiService @Inject constructor(
         }
     }
 
-    override val testingLocations: List<Location> = emptyList()
-
     override fun requestWeather(
         context: Context,
         location: Location,

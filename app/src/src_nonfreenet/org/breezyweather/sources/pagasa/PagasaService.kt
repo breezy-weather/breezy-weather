@@ -396,8 +396,6 @@ class PagasaService @Inject constructor(
         )
     }
 
-    override val testingLocations: List<Location> = emptyList()
-
     companion object {
         private const val PAGASA_BASE_URL = "https://www.pagasa.dost.gov.ph/"
     }

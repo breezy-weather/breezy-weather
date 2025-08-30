@@ -195,11 +195,7 @@ class SettingsManager private constructor(
             config.edit().putString("location_service", value).apply()
             notifySettingsChanged()
         }
-        get() = if (BuildConfig.FLAVOR != "freenet") {
-            config.getString("location_service", null) ?: BuildConfig.DEFAULT_LOCATION_SOURCE
-        } else {
-            "native"
-        }
+        get() = config.getString("location_service", null) ?: BuildConfig.DEFAULT_LOCATION_SOURCE
 
     var defaultForecastSource: String
         set(value) {

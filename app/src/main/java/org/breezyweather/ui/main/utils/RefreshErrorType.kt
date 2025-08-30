@@ -33,6 +33,7 @@ import org.breezyweather.common.exceptions.LocationSearchException
 import org.breezyweather.common.exceptions.MissingPermissionLocationBackgroundException
 import org.breezyweather.common.exceptions.MissingPermissionLocationException
 import org.breezyweather.common.exceptions.NoNetworkException
+import org.breezyweather.common.exceptions.NonFreeNetSourceException
 import org.breezyweather.common.exceptions.OutdatedServerDataException
 import org.breezyweather.common.exceptions.ParsingException
 import org.breezyweather.common.exceptions.ReverseGeocodingException
@@ -133,7 +134,19 @@ enum class RefreshErrorType(
         showDialogAction = { activity ->
             SourceNoLongerAvailableHelpDialog.show(
                 activity,
-                R.string.message_source_not_installed_error_title
+                R.string.message_source_not_installed_error_title,
+                R.string.message_source_not_installed_error_content_tip_2
+            )
+        },
+        actionButtonMessage = R.string.action_change
+    ),
+    NON_FREE_NETWORK_SOURCE(
+        shortMessage = R.string.message_source_non_free_network_title,
+        showDialogAction = { activity ->
+            SourceNoLongerAvailableHelpDialog.show(
+                activity,
+                R.string.message_source_non_free_network_title,
+                R.string.message_source_non_free_network_content
             )
         },
         actionButtonMessage = R.string.action_change
@@ -241,6 +254,7 @@ enum class RefreshErrorType(
                     PARSING_ERROR
                 }
                 is SourceNotInstalledException -> SOURCE_NOT_INSTALLED
+                is NonFreeNetSourceException -> NON_FREE_NETWORK_SOURCE
                 is LocationSearchException -> LOCATION_SEARCH_FAILED
                 is InvalidOrIncompleteDataException -> INVALID_INCOMPLETE_DATA
                 is OutdatedServerDataException -> OUTDATED_SERVER_DATA

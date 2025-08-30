@@ -54,6 +54,7 @@ interface WeatherSource : FeatureSource {
      * Can be an emptyList(), although we recommend adding at least one
      */
     val testingLocations: List<Location>
+        get() = emptyList()
 
     /**
      * Returns weather converted to Breezy Weather Weather object

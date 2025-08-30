@@ -703,8 +703,6 @@ class SmgService @Inject constructor(
         )
     }
 
-    override val testingLocations: List<Location> = emptyList()
-
     companion object {
         private const val SMG_BASE_URL = "https://new-api.smg.gov.mo/"
         private const val SMG_CMS_URL = "https://cms.smg.gov.mo/"

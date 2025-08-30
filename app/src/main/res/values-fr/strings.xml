@@ -415,8 +415,9 @@
     <string name="message_parsing_error_title">Échec d’analyse des données météo</string>
     <string name="message_parsing_error_content">Assurez-vous d’avoir mis à jour vers la dernière version de l’application. Le serveur peut être temporairement indisponible, dans ce cas, réessayez plus tard. Si le problème persiste, merci de récupérer un journal d’incident à partir des paramètres de débogage, et signaler le problème sur GitHub.</string>
     <string name="message_source_not_installed_error_title">La source n’existe plus</string>
-    <string name="message_source_not_installed_error_content_tip_1">Cela peut se produire lorsque vous avez ajouté votre emplacement dans la version Standard de l’application et que vous êtes ensuite passé à la version avec uniquement des sources réseau libres et auto-hébergeables (freenet). Revenir à la version Standard peut permettre de résoudre ce problème.</string>
     <string name="message_source_not_installed_error_content_tip_2">Modifiez les sources météorologiques pour cet emplacement, ou supprimez et ajoutez à nouveau cet emplacement.</string>
+    <string name="message_source_non_free_network_title">Source hébergée sur un service réseau non libre non disponible dans cette version de l’appli</string>
+    <string name="message_source_non_free_network_content">Ce problème survient lorsque vous avez utilisé une source hébergée sur un réseau non libre dans la version Standard de l’application et que vous êtes passé à la version Freenet qui ne contient que des sources hébergées sur des réseaux libres. Pour résoudre ce problème, revenez à la version Standard ou modifiez la source.</string>
     <!-- $ = 15 minutes, may be adjusted in the future -->
 
     <!-- Example: Precipitation soon - New York -->
@@ -457,10 +458,11 @@
     <string name="settings_weather_sources">Sources météo</string>
     <string name="settings_weather_sources_summary">Source météo par défaut pour les nouveaux emplacements, clés API personnalisées, autres paramètres de source</string>
     <string name="settings_weather_sources_default_source">Source par défaut pour les nouveaux emplacements</string>
+    <string name="settings_weather_source_non_freenet">%s (service réseau non libre)</string>
     <string name="settings_weather_source_unavailable">%s (indisponible)</string>
     <string name="settings_weather_source_not_configured">%s (non configuré)</string>
     <string name="settings_weather_source_none">Aucune</string>
-    <string name="settings_weather_source_freenet_disclaimer">D’autres sources sont disponibles à partir d’autres versions de l’application. Appuyez ici pour en savoir plus.</string>
+    <string name="settings_weather_source_freenet_disclaimer">Les sources hébergées sur un service réseau non libre ne sont pas disponibles dans cette version de l’application. Appuyez ici pour en savoir plus.</string>
     <string name="settings_weather_source_current_position_disclaimer">D’autres sources pourraient devenir disponibles pour votre emplacement après une première mise à jour.</string>
     <string name="settings_weather_sources_per_location_summary">Personnalisez les sources de données météo utilisées pour cet emplacement</string>
     <string name="settings_weather_source_open_meteo_instance_forecast">Instance des prévisions</string>

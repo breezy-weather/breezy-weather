@@ -401,8 +401,6 @@ class PirateWeatherService @Inject constructor(
         )
     }
 
-    override val testingLocations: List<Location> = emptyList()
-
     companion object {
         private const val PIRATE_WEATHER_BASE_URL = "https://api.pirateweather.net/"
         private const val PIRATE_WEATHER_DEV_BASE_URL = "https://dev.pirateweather.net/"

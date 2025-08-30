@@ -40,6 +40,7 @@ import org.breezyweather.common.preference.ListPreference
 import org.breezyweather.common.source.ConfigurableSource
 import org.breezyweather.common.source.FeatureSource
 import org.breezyweather.common.source.LocationSource
+import org.breezyweather.common.source.NonFreeNetSource
 import org.breezyweather.common.source.getName
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.ui.common.composables.AlertDialogLink
@@ -67,7 +68,7 @@ import java.text.Collator
 fun WeatherSourcesSettingsScreen(
     context: Context,
     onNavigateBack: () -> Unit,
-    configuredWorldwideSources: ImmutableList<FeatureSource>,
+    worldwideSources: ImmutableList<FeatureSource>,
     configurableSources: ImmutableList<ConfigurableSource>,
     modifier: Modifier = Modifier,
 ) {
@@ -119,11 +120,11 @@ fun WeatherSourcesSettingsScreen(
 
             sectionHeaderItem(R.string.settings_weather_sources_section_general)
             listPreferenceItem(R.string.settings_weather_sources_default_source) { id ->
-                val configuredWorldwideSourcesAssociated = configuredWorldwideSources.associate { it.id to it.name }
+                val worldwideSourcesAssociated = worldwideSources.associate { it.id to it.name }
                 val defaultWeatherSource = SettingsManager.getInstance(context).defaultForecastSource
                 SourceView(
                     title = stringResource(id),
-                    selectedKey = if (configuredWorldwideSourcesAssociated.contains(defaultWeatherSource)) {
+                    selectedKey = if (worldwideSourcesAssociated.contains(defaultWeatherSource)) {
                         defaultWeatherSource
                     } else {
                         "auto"
@@ -131,8 +132,13 @@ fun WeatherSourcesSettingsScreen(
                     sourceList = buildList {
                         add(Triple("auto", stringResource(R.string.settings_automatic), true))
                         addAll(
-                            configuredWorldwideSources.map {
-                                Triple(it.id, it.getName(context), it !is ConfigurableSource || it.isConfigured)
+                            worldwideSources.map {
+                                Triple(
+                                    it.id,
+                                    it.getName(context),
+                                    (it !is ConfigurableSource || it.isConfigured) &&
+                                        (BuildConfig.FLAVOR != "freenet" || it !is NonFreeNetSource)
+                                )
                             }
                         )
                     }.toImmutableList(),

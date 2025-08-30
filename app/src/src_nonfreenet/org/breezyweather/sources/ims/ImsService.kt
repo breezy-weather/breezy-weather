@@ -476,8 +476,6 @@ class ImsService @Inject constructor(
             }
     }
 
-    override val testingLocations: List<Location> = emptyList()
-
     override val knownAmbiguousCountryCodes: Array<String> = arrayOf("IL")
 
     companion object {

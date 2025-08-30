@@ -93,6 +93,4 @@ class AtmoSudService @Inject constructor(
                 "84" // Vaucluse
             ).any { location.admin2Code?.endsWith(it) == true }
     }
-
-    override val testingLocations: List<Location> = emptyList()
 }

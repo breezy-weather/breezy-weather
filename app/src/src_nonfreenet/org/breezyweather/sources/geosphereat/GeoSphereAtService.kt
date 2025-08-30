@@ -448,8 +448,6 @@ class GeoSphereAtService @Inject constructor(
         }
     }
 
-    override val testingLocations: List<Location> = emptyList()
-
     companion object {
         private const val GEOSPHERE_AT_BASE_URL = "https://dataset.api.hub.geosphere.at/"
         private const val GEOSPHERE_AT_WARNINGS_BASE_URL = "https://warnungen.zamg.at/wsapp/api/"

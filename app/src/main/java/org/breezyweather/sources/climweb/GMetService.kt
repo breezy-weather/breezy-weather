@@ -49,6 +49,4 @@ class GMetService @Inject constructor(
     override val normalsAttribution = weatherAttribution
 
     override val cityClimatePageId = null
-
-    override val testingLocations: List<Location> = emptyList()
 }

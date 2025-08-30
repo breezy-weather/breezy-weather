@@ -49,6 +49,4 @@ class DmnNeService @Inject constructor(
     override val normalsAttribution = weatherAttribution
 
     override val cityClimatePageId = "51"
-
-    override val testingLocations: List<Location> = emptyList()
 }

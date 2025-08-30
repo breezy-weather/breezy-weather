@@ -1099,8 +1099,6 @@ class CwaService @Inject constructor(
     // Only supports its own country
     override val knownAmbiguousCountryCodes: Array<String>? = null
 
-    override val testingLocations: List<Location> = emptyList()
-
     companion object {
         private const val CWA_BASE_URL = "https://opendata.cwa.gov.tw/"
         private val LINE_FEED_SPACES = Regex("""\n\s*""")

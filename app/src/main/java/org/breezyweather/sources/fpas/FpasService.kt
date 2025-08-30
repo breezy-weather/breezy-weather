@@ -205,8 +205,6 @@ class FpasService @Inject constructor(
         )
     }
 
-    override val testingLocations: List<Location> = emptyList()
-
     companion object {
         private const val FPAS_BASE_URL = "https://alerts.kde.org/"
     }

@@ -1181,8 +1181,6 @@ class MfService @Inject constructor(
         )
     }
 
-    override val testingLocations: List<Location> = emptyList()
-
     /**
      * The main issue on this source is that there are not many nearest locations recognized, so the resolutions are
      *  wrong on small regions like:

@@ -366,8 +366,6 @@ class BrightSkyService @Inject constructor(
         )
     }
 
-    override val testingLocations: List<Location> = emptyList()
-
     companion object {
         private const val BRIGHT_SKY_BASE_URL = "https://api.brightsky.dev/"
     }

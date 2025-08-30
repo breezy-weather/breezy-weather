@@ -37,6 +37,7 @@ import org.breezyweather.common.preference.EditTextPreference
 import org.breezyweather.common.preference.ListPreference
 import org.breezyweather.common.source.ConfigurableSource
 import org.breezyweather.common.source.LocationSource
+import org.breezyweather.common.source.NonFreeNetSource
 import org.breezyweather.common.source.getName
 import org.breezyweather.common.utils.helpers.SnackbarHelper
 import org.breezyweather.domain.settings.SettingsManager
@@ -93,28 +94,27 @@ fun LocationSettingsScreen(
         PreferenceScreen(
             paddingValues = paddings.plus(PaddingValues(horizontal = dimensionResource(R.dimen.normal_margin)))
         ) {
-            if (BuildConfig.FLAVOR != "freenet") {
-                sectionHeaderItem(R.string.settings_location_section_general)
-                listPreferenceItem(R.string.settings_location_service) { id ->
-                    ListPreferenceViewWithCard(
-                        title = context.getString(id),
-                        selectedKey = SettingsManager.getInstance(context).locationSource,
-                        valueArray = locationSources.map { it.id }.toTypedArray(),
-                        nameArray = locationSources.map { it.getName(context) }.toTypedArray(),
-                        enableArray = locationSources.map {
-                            it !is ConfigurableSource || it.isConfigured
-                        }.toTypedArray(),
-                        summary = { _, value -> locationSources.firstOrNull { it.id == value }?.name },
-                        isFirst = true,
-                        isLast = true,
-                        onValueChanged = { sourceId ->
-                            SettingsManager.getInstance(context).locationSource = sourceId
-                        }
-                    )
-                }
-                sectionFooterItem(R.string.settings_location_section_general)
-                largeSeparatorItem()
+            sectionHeaderItem(R.string.settings_location_section_general)
+            listPreferenceItem(R.string.settings_location_service) { id ->
+                ListPreferenceViewWithCard(
+                    title = context.getString(id),
+                    selectedKey = SettingsManager.getInstance(context).locationSource,
+                    valueArray = locationSources.map { it.id }.toTypedArray(),
+                    nameArray = locationSources.map { it.getName(context) }.toTypedArray(),
+                    enableArray = locationSources.map {
+                        (it !is ConfigurableSource || it.isConfigured) &&
+                            (BuildConfig.FLAVOR != "freenet" || it !is NonFreeNetSource)
+                    }.toTypedArray(),
+                    summary = { _, value -> locationSources.firstOrNull { it.id == value }?.name },
+                    isFirst = true,
+                    isLast = true,
+                    onValueChanged = { sourceId ->
+                        SettingsManager.getInstance(context).locationSource = sourceId
+                    }
+                )
             }
+            sectionFooterItem(R.string.settings_location_section_general)
+            largeSeparatorItem()
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 sectionHeaderItem(R.string.location_service_native)

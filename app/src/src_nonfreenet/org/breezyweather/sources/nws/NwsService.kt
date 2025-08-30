@@ -1084,8 +1084,6 @@ class NwsService @Inject constructor(
         }
     }
 
-    override val testingLocations: List<Location> = emptyList()
-
     override val knownAmbiguousCountryCodes: Array<String> = emptyArray()
 
     companion object {

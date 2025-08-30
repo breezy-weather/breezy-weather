@@ -600,8 +600,6 @@ class LvgmcService @Inject constructor(
             "${longitude - 0.1} ${latitude - 0.1}))"
     }
 
-    override val testingLocations: List<Location> = emptyList()
-
     // Only supports its own country
     override val knownAmbiguousCountryCodes: Array<String>? = null
 

@@ -1116,8 +1116,6 @@ class HkoService @Inject constructor(
         return column.toString().padStart(2, '0') + row.toString().padStart(2, '0')
     }
 
-    override val testingLocations: List<Location> = emptyList()
-
     // Only supports its own country
     override val knownAmbiguousCountryCodes: Array<String>? = null
 

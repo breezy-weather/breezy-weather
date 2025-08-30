@@ -274,8 +274,6 @@ class AtmoFranceService @Inject constructor(
         )
     }
 
-    override val testingLocations: List<Location> = emptyList()
-
     companion object {
         private const val ATMO_FRANCE_BASE_URL = "https://admindata.atmo-france.org/openapi/"
         private const val DATA_GOUV_GEO_BASE_URL = "https://api-adresse.data.gouv.fr/"

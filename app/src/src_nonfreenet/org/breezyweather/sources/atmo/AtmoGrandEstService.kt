@@ -89,6 +89,4 @@ class AtmoGrandEstService @Inject constructor(
                 "88" // Vosges
             ).any { location.admin2Code?.endsWith(it) == true }
     }
-
-    override val testingLocations: List<Location> = emptyList()
 }

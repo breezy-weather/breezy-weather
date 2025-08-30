@@ -325,8 +325,6 @@ class DmiService @Inject constructor(
         }
     }
 
-    override val testingLocations: List<Location> = emptyList()
-
     // We have no way to distinguish the ones below
     override val knownAmbiguousCountryCodes: Array<String> = arrayOf(
         "FI", // Territories: AX

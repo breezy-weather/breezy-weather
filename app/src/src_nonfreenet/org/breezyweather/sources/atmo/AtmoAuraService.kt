@@ -98,6 +98,4 @@ class AtmoAuraService @Inject constructor(
                 "74" // Haute-Savoie
             ).any { location.admin2Code?.endsWith(it, ignoreCase = true) == true }
     }
-
-    override val testingLocations: List<Location> = emptyList()
 }
