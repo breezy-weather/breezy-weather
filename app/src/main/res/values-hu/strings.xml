@@ -778,6 +778,6 @@
     <string name="widget_live_wallpaper_animations_enable_dangerous">VESZÉLYES</string>
     <string name="settings_appearance_dark_mode_custom">Sötét mód bekapcsolása ettől: %1$s, eddig: %2$s</string>
     <string name="message_source_non_free_network_title">A forrás nem egy szabad hálózati szolgáltatáson található, amely ebben az alkalmazásverzióban nem érhető el</string>
-    <string name="message_source_non_free_network_content">Ez akkor fordul elő, ha az alkalmazás általános verziójában nem egy szabad hálózaton tárolt forrást használt, majd átváltott a szabad verzióra, amely csak szabad hálózatokon tárolt forrásokat tartalmaz. A probléma megoldásához térjen vissza az általános verzióra, vagy váltson másik forrásra.</string>
+    <string name="message_source_non_free_network_content">Az alkalmazás Freenet verzióját használja, amely csak a szabad hálózaton tárolt forrásokat támogatja. Ha továbbra is ezt a forrást szeretné használni, váltson vissza az általános verzióra. Ellenkező esetben válasszon egy másik forrást.</string>
     <string name="settings_weather_source_non_freenet">%s (nem szabad hálózati szolgáltatás)</string>
 </resources>
