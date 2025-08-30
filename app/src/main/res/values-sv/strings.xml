@@ -515,8 +515,7 @@
     <string name="pollen_salix">Vide</string>
     <string name="pollen_tilia">Lind</string>
     <string name="pollen_urticaceae">Nässla/grenig väggört</string>
-    <string name="message_source_not_installed_error_content_tip_1">Detta kan hända när du har lagt till din plats i standardvarianten av appen och sedan bytt till varianten med endast fria nätverkskällor. Att gå tillbaka till standardvarianten kan lösa detta problem.</string>
-    <string name="message_source_not_installed_error_content_tip_2">Ändra väderkällorna för denna plats, eller ta bort denna plats och lägg till den igen.</string>
+    <string name="message_source_not_installed_error_content">Ändra väderkällorna för denna plats, eller ta bort denna plats och lägg till den igen.</string>
     <string name="sunshine">Solsken</string>
     <string name="action_confirm">Bekräfta</string>
     <string name="alert_source">Källa: %s</string>

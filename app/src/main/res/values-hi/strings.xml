@@ -294,8 +294,7 @@
     <string name="dialog_permissions_location_title">स्थान की जानकारी ले</string>
     <string name="dialog_permissions_location_background_content">एंड्रायड द्वारा ज्ञात नवीनतम वर्तमान स्थान के लिए पृष्ठभूमि में मौसम को ताज़ा करने के लिए, आपको स्थान अनुमति को “हमेशा अनुमति दें” पर सेट करना होगा। यदि आप ऐसा नहीं करते हैं, तो मौसम अग्रभूमि में नवीनतम पुनर्प्राप्त निर्देशांक के आधार पर ताज़ा हो जाएगा, जो पुराना हो सकता है।</string>
     <string name="widget_multi_city">बहु नगरीय</string>
-    <string name="message_source_not_installed_error_content_tip_1">यह ऐसे समय पर हो सकता है जब आपने ऐप के स्टैंडर्ड फ्लेवर में अपना स्थान जोड़ा हो और फिर केवल मुक्त नेटवर्क स्रोतों वाले फ्लेवर पर स्विच किया हो। स्टैंडर्ड फ्लेवर पर वापस जाने से यह समस्या हल हो सकती है।</string>
-    <string name="message_source_not_installed_error_content_tip_2">या तो इस स्थान के लिए मौसम स्रोत बदलें या इस स्थान को हटा दें और पुनः जोड़ें।</string>
+    <string name="message_source_not_installed_error_content">या तो इस स्थान के लिए मौसम स्रोत बदलें या इस स्थान को हटा दें और पुनः जोड़ें।</string>
     <string name="widget_label_hide_header">शीर्षक छुपाएं</string>
     <string name="sunshine">धूप</string>
     <string name="dialog_permissions_location_content">इस सुविधा का उपयोग करने के लिए, आपको ऐप को अपने वर्तमान लोकेशन तक पहुँच की अनुमति देनी होगी। इसे केवल चयनित मौसम स्रोतों के साथ साझा किया जाएगा। यदि आपने अपना विचार बदल दिया है, तो आप प्रक्रिया को रद्द कर सकते हैं और मैन्युअल रूप से एक निश्चित स्थान जोड़ सकते हैं।</string>

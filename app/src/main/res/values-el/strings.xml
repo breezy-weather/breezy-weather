@@ -527,8 +527,7 @@
     <string name="message_server_unavailable_content">Πρόκειται για προσωρινό σφάλμα. Αν το σφάλμα παραμένει, παρακαλούμε ανέφερε το ζήτημα στο GitHub.</string>
     <string name="widget_custom_subtitle_keyword_xaqi_description">Δείκτης Ποιότητας Αέρα σήμερα, αύριο, …, 4 μέρες μετά</string>
     <string name="settings_background_updates_refresh_never_warning1">Απενεργοποιώντας τις ενημερώσεις παρασκηνίου, δε θα λαμβάνεις πλέον ενημερώσεις για ειδοποιήσεις ή υετό. Τα γραφικά στοιχεία δεν θα ανανεώνονται μέχρι να ανοίξεις την εφαρμογή.</string>
-    <string name="message_source_not_installed_error_content_tip_1">Αυτό συνέβη όταν πρόσθεσες την τοποθεσία σου στην Τυπική έκδοση του Breezy Weather και μετά άλλαξες στην έκδοση με μόνο libre πηγές δικτύου. Αν γυρίσεις ξανά στην Τυπική έκδοση, το πρόβλημα ίσως επιλυθεί.</string>
-    <string name="message_source_not_installed_error_content_tip_2">Είτε άλλαξε τις πηγές καιρού για αυτή τη τοποθεσία, είτε αφαίρεσέ τη και πρόσθεσέ τη ξανά.</string>
+    <string name="message_source_not_installed_error_content">Είτε άλλαξε τις πηγές καιρού για αυτή τη τοποθεσία, είτε αφαίρεσέ τη και πρόσθεσέ τη ξανά.</string>
     <string name="widget_label_hide_header">Απόκρυψη κεφαλίδας</string>
     <string name="widget_custom_subtitle_keyword_caqi_description">Τρέχων Δείκτης Ποιότητας Αέρα</string>
     <string name="widget_custom_subtitle_keyword_xpis_description">Σύνοψη δείκτη γύρης σήμερα, αύριο, …, 4 μέρες μετά</string>

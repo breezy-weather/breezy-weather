@@ -537,8 +537,7 @@
     <string name="sunshine">Sinar matahari</string>
     <string name="widget_custom_subtitle_keyword_xpis_description">Ikhtisar indeks serbuk sari hari ini, besok, …, tubin</string>
     <string name="about_open_link_message">Buka %s?</string>
-    <string name="message_source_not_installed_error_content_tip_1">Hal ini dapat terjadi ketika Anda menambahkan lokasi Anda dalam aplikasi varian Standar, kemudian beralih ke varian lain yang hanya menggunakan sumber jaringan bebas. Untung mengatasi masalah ini, Anda dapat kembali ke varian Standar.</string>
-    <string name="message_source_not_installed_error_content_tip_2">Ubah sumber cuaca lokasi ini, atau hapus dan tambahkan lokasi ini lagi.</string>
+    <string name="message_source_not_installed_error_content">Ubah sumber cuaca lokasi ini, atau hapus dan tambahkan lokasi ini lagi.</string>
     <string name="settings_per_location">Preferensi lokasi</string>
     <string name="settings_per_location_summary">Kustomisasi tambahan untuk lokasi ini</string>
     <string name="settings_weather_source_open_meteo_weather_models_best_match">Pencocokan terbaik</string>

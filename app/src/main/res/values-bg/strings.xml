@@ -524,8 +524,7 @@
     <string name="settings_weather_source_open_meteo_weather_models_seamless_description">Комбинира всички метеорологични модели от този доставчик в обобщена прогноза</string>
     <string name="about_open_link_message">Отвари %s?</string>
     <string name="settings_weather_source_open_meteo_weather_models_best_match_description">Съчетава най-добрите метеорологични модели за това местоположение</string>
-    <string name="message_source_not_installed_error_content_tip_1">Това може да се случи, когато сте добавили местоположението си в стандартния вариант на приложението и след това сте превключили към варианта само с безплатни мрежови източници. Връщането към стандартния вкус може да реши този проблем.</string>
-    <string name="message_source_not_installed_error_content_tip_2">Или променете метеорологичните източници за това местоположение, или изтрийте и добавете отново това местоположение.</string>
+    <string name="message_source_not_installed_error_content">Или променете метеорологичните източници за това местоположение, или изтрийте и добавете отново това местоположение.</string>
     <string name="widget_custom_subtitle_keyword_xpis_description">Обобщение на индексa за алергени за днес, утре, …, 4 дни по-късно</string>
     <string name="sunshine">Слънчева светлина</string>
     <string name="alert">Сигнал</string>

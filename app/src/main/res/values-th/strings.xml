@@ -171,7 +171,6 @@
     <string name="action_open_in_other_app_description">เปิดสถานที่นี้ในแอปอื่น</string>
     <string name="weather_source_continent_worldwide">ทั่วโลก</string>
     <string name="weather_source_continent_south_america">อเมริกาใต้</string>
-    <string name="message_source_not_installed_error_content_tip_1">คุณได้เพิ่มสถานที่ของคุณในแอปเวอร์ชันมาตรฐาน แต่เปลี่ยนมาใช้แอปเวอร์ชันที่ใช้เครือข่ายเสรีเท่านั้น คุณอาจแก้ไขปัญหานี้ได้ด้วยการกลับไปใช้แอปเวอร์ชันมาตรฐาน</string>
     <string name="widget_refreshing">กำลังรีเฟรชอยู่</string>
     <string name="widget_custom_subtitle_explanation">คุณสามารถป้อนค่าอะไรก็ได้ แต่กรุณาตรวจสอบความยาวของตัวอักษรให้เหมาะสม หากคุณต้องการใช้ข้อมูลสภาพอากาศ กรุณาระบุตัวแปรที่เกี่ยวข้องภายในเครื่องหมาย $\n\nเช่น “สภาพอากาศปัจจุบันคือ: $cw$” จะแสดงผลเป็น “สภาพอากาศปัจจุบันคือ: ท้องฟ้าแจ่มใส”</string>
     <string name="location_message_location_access_off">การเข้าถึงตำแหน่งถูกปิดอยู่</string>
@@ -355,7 +354,7 @@
     <string name="message_server_unavailable_title">ไม่พบเซิร์ฟเวอร์ที่ใช้งานได้</string>
     <string name="message_server_unavailable_content">โดยปกติจะเป็นข้อผิดพลาดชั่วคราว ถ้ายังมีปัญหานี้อยู่เรื่อยๆ กรุณารายงานให้เราทราบบน GitHub</string>
     <string name="message_source_not_installed_error_title">ใช้งานแหล่งข้อมูลนี้ไม่ได้แล้ว</string>
-    <string name="message_source_not_installed_error_content_tip_2">เปลี่ยนแหล่งข้อมูลสภาพอากาศของสถานที่นี้ หรือลบและเพิ่มสถานที่นี้ใหม่</string>
+    <string name="message_source_not_installed_error_content">เปลี่ยนแหล่งข้อมูลสภาพอากาศของสถานที่นี้ หรือลบและเพิ่มสถานที่นี้ใหม่</string>
     <string name="message_parsing_error_content">ตรวจสอบว่าคุณได้อัปเดตแอปเป็นเวอร์ชันล่าสุดแล้ว เซิร์ฟเวอร์อาจใช้งานไม่ได้ชั่วคราว กรุณาลองใหม่อีกครั้งในภายหลัง ถ้ายังมีปัญหานี้อยู่เรื่อยๆ กรุณารายงานปัญหาพร้อมแนบไฟล์บันทึกแอปล่มจากหน้าดีบักให้เราทราบที่ GitHub</string>
     <string name="widget_clock_day_horizontal">นาฬิกา + รายวัน (แบบแนวนอน)</string>
     <string name="widget_clock_day_details">นาฬิกา + รายวัน (รายละเอียด)</string>

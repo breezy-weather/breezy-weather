@@ -394,7 +394,7 @@
     <string name="widget_custom_subtitle_keyword_cv_description">Aktuálna viditeľnosť</string>
     <string name="message_server_unavailable_content">Toto je zvyčajne iba dočasná chyba. Ak však pretrváva dlhšie, nahláste ju prosím v platforme GitHub.</string>
     <string name="message_parsing_error_content">Uistite sa, že máte nainštalovanú najnovšiu verziu aplikácie. Server môže byť dočasne nedostupný, v tom prípade to skúste neskôr. Ak problém aj naďalej pretrváva, prosím uložte záznam o chybe v sekcii “Ladenie” v nastaveniach a nahláste chybu na platforme GitHub.</string>
-    <string name="message_source_not_installed_error_content_tip_2">Skúste zmeniť zdroj informácii o počasí pre toto miesto alebo ho odstráňte a znovu pridajte.</string>
+    <string name="message_source_not_installed_error_content">Skúste zmeniť zdroj informácii o počasí pre toto miesto alebo ho odstráňte a znovu pridajte.</string>
     <string name="widget_day">Denný</string>
     <string name="widget_day_week">Denný + Týždenný</string>
     <string name="settings_debug_dump_crash_logs_tap_to_open">Stačením otvoríte</string>
@@ -585,7 +585,6 @@
     <string name="pollen_picea">Smrek</string>
     <string name="pollen_pinus">Borovica</string>
     <string name="pollen_ulmus">Brest</string>
-    <string name="message_source_not_installed_error_content_tip_1">Toto môže nastať, ak ste svoju polohu pridali do štandardnej verzie aplikácie (Standard) a potom ste prešli na verziu obsahujúcu len slobodné zdroje (Freenet), ktorá podporuje menej zdrojov počasia. Tento problém pravdepodobne vyriešite prechodom späť na štandardnú verziu.</string>
     <string name="common_weather_text_tornado">Tornádo</string>
     <string name="common_weather_text_blowing_snow">Sneženie</string>
     <string name="common_weather_text_drifting_snow">Nánosy snehu</string>

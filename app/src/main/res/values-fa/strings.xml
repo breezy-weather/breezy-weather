@@ -518,8 +518,7 @@
     <string name="notification_channel_background_services">خدمات پس‌زمینه</string>
     <string name="notification_channel_crash_logs">گزارش خرابی</string>
     <string name="notification_running_in_background">در حال اجرا در پس‌زمینه برای به روز ماندن</string>
-    <string name="message_source_not_installed_error_content_tip_1">این می‌تواند زمانی رخ دهد که شما مکان خود را در نسخه‌ی استاندارد برنامه افزوده‌اید و سپس به نسخه‌ای با تنها منابع شبکه‌ی آزاد تغییر داده‌اید. بازگشت به نسخه‌ی استاندارد ممکن است این مشکل را حل کند.</string>
-    <string name="message_source_not_installed_error_content_tip_2">یا منابع آب‌وهوا را برای این مکان تغییر دهید یا این مکان را پاک کرده و دوباره بیافزایید.</string>
+    <string name="message_source_not_installed_error_content">یا منابع آب‌وهوا را برای این مکان تغییر دهید یا این مکان را پاک کرده و دوباره بیافزایید.</string>
     <string name="widget_custom_subtitle_keyword_xpis_description">خلاصه شاخص گرده امروز، فردا، …، 4 روز بعد</string>
     <string name="common_weather_text_rain_freezing">باران یخ زده</string>
     <string name="common_weather_text_rain_showers">رگبار کوتاه</string>

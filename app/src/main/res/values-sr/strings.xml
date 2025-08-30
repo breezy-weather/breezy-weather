@@ -506,7 +506,7 @@
     <string name="settings_weather_source_open_meteo_weather_models_best_match">Најбоље подударање</string>
     <string name="settings_weather_source_open_meteo_weather_models_best_match_description">Комбинује најбоље моделе времена за ову локацију</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless">Беспрекорно</string>
-    <string name="message_source_not_installed_error_content_tip_2">Или промените изворе времена за ову локацију, или избришите и поново додајте ову локацију.</string>
+    <string name="message_source_not_installed_error_content">Или промените изворе времена за ову локацију, или избришите и поново додајте ову локацију.</string>
     <string name="widget_custom_subtitle_keyword_xaqi_description">Индекс квалитета ваздуха данас, сутра, …, 4 дана касније</string>
     <string name="widget_custom_subtitle_keyword_xpis_description">Резиме индекса полена за данас, сутра, …, 4 дана касније</string>
     <string name="settings_per_location">Преференце за локацију</string>
@@ -529,7 +529,6 @@
     <string name="pollen_salix">Врба</string>
     <string name="pollen_tilia">Липа</string>
     <string name="pollen_urticaceae">Коприва</string>
-    <string name="message_source_not_installed_error_content_tip_1">Ово се може догодити када додате своју локацију у стандардну верзију апликације, а затим пређете на верзију са само слободним мрежним изворима. Повратак на стандардну верзију може решити овај проблем.</string>
     <string name="widget_custom_subtitle_keyword_caqi_description">Тренутни индекс квалитета ваздуха</string>
     <string name="about_open_link_message">Отворити %s?</string>
     <string name="sunshine">Сунчано</string>

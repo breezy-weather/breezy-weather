@@ -521,8 +521,7 @@
     <string name="settings_weather_source_open_meteo_weather_models_seamless_description">Аб’ядноўвае ўсе мадэлі надвор’я ад гэтага пастаўшчыка ў адзіны прагноз</string>
     <string name="settings_per_location">Параметры месца</string>
     <string name="settings_weather_source_open_meteo_weather_models">Мадэлі надвор’я</string>
-    <string name="message_source_not_installed_error_content_tip_1">Такое можа здарацца, калі вы дадалі сваё месцазнаходжанне ў стандартнай версіі Breezy Weather, а затым пераключыліся на версію толькі са свабоднымі крыніцамі даных. Праблему можа вырашыць вяртанне да стандартнай версіі.</string>
-    <string name="message_source_not_installed_error_content_tip_2">Або змяніце для гэтага месца крыніцу даных, або выдаліце месцазнаходжанне і дадайце яго зноў.</string>
+    <string name="message_source_not_installed_error_content">Або змяніце для гэтага месца крыніцу даных, або выдаліце месцазнаходжанне і дадайце яго зноў.</string>
     <string name="widget_custom_subtitle_keyword_xpis_description">Індэкс пылку на сёння, заўтра, …, праз 4 дні</string>
     <string name="about_open_link_message">Адкрыць %s?</string>
     <string name="sunshine">Сонечнасць</string>

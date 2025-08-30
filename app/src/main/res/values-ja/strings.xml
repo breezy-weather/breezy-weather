@@ -528,8 +528,7 @@
     <string name="pollen_populus">ポプラ</string>
     <string name="pollen_quercus">オーク</string>
     <string name="pollen_rumex">ギシギシ</string>
-    <string name="message_source_not_installed_error_content_tip_1">Breezy Weatherのスタンダードバージョンで場所を追加した後、フリーの情報源のみを使用するバージョンに切り替えたときにこの問題が発生する可能性があります。スタンダードバージョンに戻すと解決する場合があります。</string>
-    <string name="message_source_not_installed_error_content_tip_2">この場所の情報源を変更するか、この場所を削除して再度追加してください。</string>
+    <string name="message_source_not_installed_error_content">この場所の情報源を変更するか、この場所を削除して再度追加してください。</string>
     <string name="about_open_link_message">%sを開きますか？</string>
     <string name="sunshine">日照</string>
     <string name="pollen_salix">ヤナギ</string>

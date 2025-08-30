@@ -277,8 +277,7 @@
     <string name="message_parsing_error_title">無法剖析天氣資料</string>
     <string name="message_parsing_error_content">請確認您的應用程式已更新至最新版本。若伺服器暫時無法使用，請稍後再試。若問題持續，請從偵錯設定中導出錯誤記錄，並在 GitHub 上報告問題。</string>
     <string name="message_source_not_installed_error_title">資料來源不再可用</string>
-    <string name="message_source_not_installed_error_content_tip_1">當您在本應用程式的標準版本中新增位置後，再切換到僅使用自由網路來源的版本時，可能會出現這種情況。返回標準版本可能會解決此問題。</string>
-    <string name="message_source_not_installed_error_content_tip_2">請變更此位置的天氣來源，或刪除並重新新增此位置。</string>
+    <string name="message_source_not_installed_error_content">請變更此位置的天氣來源，或刪除並重新新增此位置。</string>
     <string name="message_tap_again_to_exit">再次點選以結束</string>
     <string name="widget_day">今日</string>
     <string name="widget_week">一週</string>

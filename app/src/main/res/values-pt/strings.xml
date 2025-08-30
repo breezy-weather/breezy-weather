@@ -537,8 +537,7 @@
     <string name="pollen_plantaginaceae">Tanchagem</string>
     <string name="pollen_platanus">Plátano</string>
     <string name="widget_custom_subtitle_keyword_caqi_description">Índice atual da qualidade do ar</string>
-    <string name="message_source_not_installed_error_content_tip_1">Isto pode acontecer quando adicionou a sua localização na versão padrão (standard) do app e e depois mudou para a versão com apenas fontes de rede livre (freenet). Voltar para a versão padrão pode resolver este problema.</string>
-    <string name="message_source_not_installed_error_content_tip_2">Altere a fonte meteorológica para este local ou remova-a e adicione-a novamente.</string>
+    <string name="message_source_not_installed_error_content">Altere a fonte meteorológica para este local ou remova-a e adicione-a novamente.</string>
     <string name="widget_label_hide_header">Ocultar cabeçalho</string>
     <string name="widget_custom_subtitle_keyword_xpis_description">Resumo do índice de Pollen de hoje, amanhã, …, 4 dias depois</string>
     <string name="sunshine">Sol</string>

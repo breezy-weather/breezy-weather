@@ -525,8 +525,7 @@
     <string name="about_open_link_message">%s açılsın mı?</string>
     <string name="sunshine">Güneşli</string>
     <string name="widget_custom_subtitle_keyword_xpis_description">Bugün, yarın, …, 4 gün sonrasının polen göstergesi özeti</string>
-    <string name="message_source_not_installed_error_content_tip_1">Bu durum, konumunuzu uygulamanın Standart sürümüne eklediğinizde ve ardından yalnızca libre ağ kaynaklarına sahip sürüme geçtiğinizde ortaya çıkabilir. Standart versiyona geri dönmek bu sorunu çözebilir.</string>
-    <string name="message_source_not_installed_error_content_tip_2">Bu konum için hava durumu kaynaklarını değiştirin ya da bu konumu silin ve yeniden ekleyin.</string>
+    <string name="message_source_not_installed_error_content">Bu konum için hava durumu kaynaklarını değiştirin ya da bu konumu silin ve yeniden ekleyin.</string>
     <string name="settings_per_location_summary">Bu konum için ek özelleştirmeler</string>
     <string name="settings_per_location">Konum tercihleri</string>
     <string name="settings_weather_source_open_meteo_weather_models">Hava durumu modelleri</string>

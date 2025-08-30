@@ -532,12 +532,11 @@
     <string name="widget_custom_subtitle_keyword_xaqi_description">Indeks kvalitete zraka danas, sutra, …, 4 dana kasnije</string>
     <string name="widget_custom_subtitle_keyword_xpis_description">Sažetak indeksa peludi danas, sutra, …, 4 dana kasnije</string>
     <string name="widget_custom_subtitle_keyword_caqi_description">Trenutačni indeks kvalitete zraka</string>
-    <string name="message_source_not_installed_error_content_tip_2">Ili promijenite izvore vremena za ovu lokaciju ili izbrišite i ponovo dodajte ovu lokaciju.</string>
+    <string name="message_source_not_installed_error_content">Ili promijenite izvore vremena za ovu lokaciju ili izbrišite i ponovo dodajte ovu lokaciju.</string>
     <string name="sunshine">Sunce</string>
     <string name="weather_message_too_frequent_refreshes">Pričekajte par sekundi prije ponovnog pokušaja…</string>
     <string name="location_delete_location_dialog_title">Izbrisati lokaciju?</string>
     <string name="location_delete_location_dialog_message">Izbrisat ćete „%s” s popisa spremljenih lokacija.</string>
-    <string name="message_source_not_installed_error_content_tip_1">To se može dogoditi kada dodate svoju lokaciju u standardnom stilu aplikacije, a zatim se prebacite na stil koji sadrži samo izvore besplatne mreže. Vraćanje na standardni stil bi mogao riješiti ovaj problem.</string>
     <string name="alert_source">Izvor: %s</string>
     <string name="dialog_time_picker_select_time">Odaberi vrijeme</string>
     <string name="dialog_time_picker_input_time">Unesi vrijeme</string>

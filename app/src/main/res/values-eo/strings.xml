@@ -599,7 +599,7 @@
     <string name="settings_location_access_background_summaryOff">Bonvolu ebligi “Permesi ĉiam” por ekhavi fonajn aktualigojn de vian nunan lokon.</string>
     <string name="location_delete_location_dialog_message">Vi estas forigonta “%s” el via listo de konservitaj lokoj.</string>
     <string name="location_delete_location_dialog_message_no_name">Vi estas forigonta ĉi tiun lokon el via listo de konservitaj lokoj.</string>
-    <string name="message_source_not_installed_error_content_tip_2">Aŭ ŝanĝu la veterfontojn por tiu loko, aŭ forigu kaj realdonu tiun lokon.</string>
+    <string name="message_source_not_installed_error_content">Aŭ ŝanĝu la veterfontojn por tiu loko, aŭ forigu kaj realdonu tiun lokon.</string>
     <string name="settings_per_location_summary">Aldonaj agordoj por tiu loko</string>
     <string name="settings_weather_sources_per_location_summary">Agordi veterdatenfontojn uzatajn por tiu loko</string>
     <string name="settings_notifications_app_updates_check">Sciigoj pri apon aktualigoj</string>
@@ -625,7 +625,6 @@
     <string name="location_swipe_to_delete">Vi povas ŝovi maldekstren por forigi ĉi tiun objekton</string>
     <string name="location_last_updated_x">Laste ĝisdatigita %s</string>
     <string name="action_show">Montri</string>
-    <string name="message_source_not_installed_error_content_tip_1">Tio povas okazi kiam vi aldonis vian lokon en la Norma versio de la aplikaĵo kaj poste ŝanĝis al la versio kun nur liberaj retfontoj. Reveno al Norma versio povas solvi tiun problemon.</string>
     <string name="location_custom_name">Propra nomo</string>
     <string name="message_parsing_error_content">Certigu, ke vi ĝisdatigis al la lasta versio de la aplikaĵo. Servilo povas esti dumtempe neatingebla, en tiu kazo, bonvolu provi denove poste. Se la problemo daŭras, bonvolu forĵeti kraŝregistron de sencimiga agordoj kaj raporti problemon en GitHub.</string>
     <string name="location_reverse_geocoding">Adreso serĉo</string>

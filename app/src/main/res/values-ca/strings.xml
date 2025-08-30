@@ -539,7 +539,7 @@
     <string name="settings_weather_source_freenet_disclaimer">Hi ha més fonts meteorològiques disponibles en altres versions de l’aplicació. Toqueu aquí per a més informació.</string>
     <string name="sunshine">Assolellat</string>
     <string name="dew_point_short">Punt de rosada</string>
-    <string name="message_source_not_installed_error_content_tip_2">Canvieu les fonts meteorològiques d’aquesta ubicació o suprimiu-la i torneu-la a afegir.</string>
+    <string name="message_source_not_installed_error_content">Canvieu les fonts meteorològiques d’aquesta ubicació o suprimiu-la i torneu-la a afegir.</string>
     <string name="widget_label_hide_header">Amaga la capçalera</string>
     <string name="settings_per_location_summary">Personalitzacions addicionals per a aquesta ubicació</string>
     <string name="settings_source_instance">Instància</string>
@@ -548,7 +548,6 @@
     <string name="settings_weather_source_open_meteo_weather_models_best_match_description">Combina els millors models meteorològics per a aquesta ubicació</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless_description">Combina tots els models meteorològics d’aquest proveïdor en una predicció perfecta</string>
     <string name="settings_invalid_syntax">Sintaxi no vàlida</string>
-    <string name="message_source_not_installed_error_content_tip_1">Això pot passar quan afegiu la vostra ubicació en la versió estàndard del Breezy Weather i després canvieu a fonts de xarxa lliures. Tornar a la versió estàndard pot resoldre aquest problema.</string>
     <string name="widget_label_hide_alternate_calendar">Amagar el calendari alternatiu</string>
     <string name="dialog_time_picker_toggle_text_input_voice">Canviar a entrada de text</string>
     <string name="message_server_unavailable_title">Servidor no disponible</string>

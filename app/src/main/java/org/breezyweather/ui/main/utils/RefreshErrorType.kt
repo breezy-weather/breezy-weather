@@ -135,7 +135,7 @@ enum class RefreshErrorType(
             SourceNoLongerAvailableHelpDialog.show(
                 activity,
                 R.string.message_source_not_installed_error_title,
-                R.string.message_source_not_installed_error_content_tip_2
+                R.string.message_source_not_installed_error_content
             )
         },
         actionButtonMessage = R.string.action_change

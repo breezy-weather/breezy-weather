@@ -114,8 +114,7 @@
     <string name="dialog_app_update_check_content">பயன்பாட்டு புதுப்பிப்புகள் பற்றிய அறிவிப்புகளை இயக்க இங்கே தட்டவும்.</string>
     <string name="message_parsing_error_title">வானிலை தரவுகளை அலசத் தவறிவிட்டது</string>
     <string name="message_source_not_installed_error_title">சான்று இனி கிடைக்காது</string>
-    <string name="message_source_not_installed_error_content_tip_1">பயன்பாட்டின் நிலையான சுவையில் உங்கள் இருப்பிடத்தை நீங்கள் சேர்த்து, பின்னர் லிப்ரே பிணையம் மூலங்களுடன் மட்டுமே சுவைக்கு மாறும்போது இது நிகழலாம். நிலையான சுவைக்கு திரும்பிச் செல்வது இந்த சிக்கலை தீர்க்கக்கூடும்.</string>
-    <string name="message_source_not_installed_error_content_tip_2">இந்த இருப்பிடத்திற்கான வானிலை மூலங்களை மாற்றவும் அல்லது இந்த இருப்பிடத்தை நீக்கவும் மீண்டும் சேர்க்கவும்.</string>
+    <string name="message_source_not_installed_error_content">இந்த இருப்பிடத்திற்கான வானிலை மூலங்களை மாற்றவும் அல்லது இந்த இருப்பிடத்தை நீக்கவும் மீண்டும் சேர்க்கவும்.</string>
     <string name="widget_day">நாள்தோறும்</string>
     <string name="widget_week">வாராந்திர</string>
     <string name="widget_day_week">நாள்தோறும் + வாராந்திர</string>

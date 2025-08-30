@@ -544,11 +544,9 @@
     <string name="message_parsing_error_title">Failed to parse weather data</string>
     <string name="message_parsing_error_content">Make sure you updated to latest version of the app. Server may be temporarily unavailable, in that case, please try again later. If the problem persists, please dump a crash log from debug settings, and report an issue on GitHub.</string>
     <string name="message_source_not_installed_error_title">Source no longer available</string>
-    <!-- TODO: Delete, no longer used -->
-    <string name="message_source_not_installed_error_content_tip_1" translatable="false">This can happen when you added your location in the Standard flavor of the app and then switched to the flavor with only libre network sources. Going back to the Standard flavor may solve this problem.</string>
-    <string name="message_source_not_installed_error_content_tip_2">Either change the weather sources for this location, or delete and re-add this location.</string>
+    <string name="message_source_not_installed_error_content">Either change the weather sources for this location, or delete and re-add this location.</string>
     <string name="message_source_non_free_network_title">Source hosted on a non-free network service not available in this version of the app</string>
-    <string name="message_source_non_free_network_content">This occurs when you used a source hosted on a non-free network in the Standard version of the application and switched to the Freenet version with only sources hosted on free networks. Return to the Standard version, or change the source to resolve this issue.</string>
+    <string name="message_source_non_free_network_content">This occurs when you used a source hosted on a non-free network in the Standard version of the app and switched to the Freenet version with only sources hosted on free networks. Return to the Standard version, or change the source to resolve this issue.</string>
     <string name="message_tap_again_to_exit">Tap again to exit</string>
     <!-- Widgets -->
     <string name="widget_day">Daily</string>

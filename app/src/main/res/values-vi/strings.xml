@@ -494,7 +494,6 @@
     <string name="settings_weather_sources_default_source">Nguồn mặc định cho vị trí mới</string>
     <string name="visibility_short">Tầm nhìn xa</string>
     <string name="pollen_castanea">Cây hạt dẻ</string>
-    <string name="message_source_not_installed_error_content_tip_1">Điều này có thể xảy ra khi bạn thêm vị trí của mình vào phiên bản Tiêu chuẩn của ứng dụng rồi chuyển sang phiên bản chỉ có nguồn mạng libre. Quay lại phiên bản Tiêu chuẩn có thể giải quyết được vấn đề này.</string>
     <string name="settings_invalid_syntax">Cú pháp không hợp lệ</string>
     <string name="alert">Báo động</string>
     <string name="widget_custom_subtitle_keyword_xpis_description">Tổng hợp chỉ số phấn hoa hôm nay, ngày mai,…, 4 ngày sau</string>
@@ -522,7 +521,7 @@
     <string name="pollen_cupressaceae_taxaceae">Cây bách</string>
     <string name="pollen_fraxinus">Cây tần bì</string>
     <string name="pollen_plantaginaceae">Cây mã đề</string>
-    <string name="message_source_not_installed_error_content_tip_2">Thay đổi nguồn thời tiết cho vị trí này, hoặc xóa và thêm lại vị trí này.</string>
+    <string name="message_source_not_installed_error_content">Thay đổi nguồn thời tiết cho vị trí này, hoặc xóa và thêm lại vị trí này.</string>
     <string name="settings_background_updates_refresh_never_warning2">Quá trình cập nhật nền rất nhẹ: nó chỉ làm mới vị trí đầu tiên của bạn theo tỷ lệ bạn đã chọn và chỉ làm mới các vị trí phụ nếu bạn cần chúng, mỗi ngày một lần. Nó tiết kiệm pin và không được tiêu thụ quá %d MB dữ liệu mỗi tháng.</string>
     <string name="settings_source_instance_invalid">Phải là URL https kết thúc bằng /</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless">Liền mạch</string>

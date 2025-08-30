@@ -556,8 +556,7 @@
     <string name="pollen_cupressaceae_taxaceae">Cyprys</string>
     <string name="pollen_fraxinus">Jesion</string>
     <string name="widget_custom_subtitle_keyword_xaqi_description">Indeks jakości powietrza na dziś, jutro, …, 4 dni później</string>
-    <string name="message_source_not_installed_error_content_tip_1">Może się tak zdarzyć, jeśli dodałeś swoją lokalizację w standardowej wersji Breezy Weather, a następnie przełączyłeś się na wersję tylko z wolnymi źródłami sieciowymi. Powrót do wersji standardowej może rozwiązać ten problem.</string>
-    <string name="message_source_not_installed_error_content_tip_2">Zmień źródła pogody dla tej lokalizacji lub usuń i ponownie dodaj tę lokalizację.</string>
+    <string name="message_source_not_installed_error_content">Zmień źródła pogody dla tej lokalizacji lub usuń i ponownie dodaj tę lokalizację.</string>
     <string name="widget_label_hide_header">Ukryj nagłówek</string>
     <string name="sunshine">Promienie słoneczne</string>
     <string name="location_delete_location_dialog_message_no_name">Zamierzasz usunąć tę lokalizację z listy zapisanych lokalizacji.</string>

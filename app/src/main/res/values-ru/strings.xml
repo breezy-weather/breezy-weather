@@ -531,8 +531,7 @@
     <string name="settings_weather_source_open_meteo_weather_models">Модели погоды</string>
     <string name="settings_weather_source_open_meteo_weather_models_best_match_description">Объединяет в себе лучшие модели погоды для этого местоположения</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless_description">Объединяет все модели погоды из этого источника в единый прогноз</string>
-    <string name="message_source_not_installed_error_content_tip_1">Это может произойти, если вы добавили свое местоположение в стандартную версию Breezy Weather, а затем переключились на версию только с libre-networks, в которой поддерживается меньше источников данных о погоде. Возврат к стандартной версии может решить эту проблему.</string>
-    <string name="message_source_not_installed_error_content_tip_2">Либо измените источники погоды для этого местоположения, либо удалите и добавьте это местоположение заново.</string>
+    <string name="message_source_not_installed_error_content">Либо измените источники погоды для этого местоположения, либо удалите и добавьте это местоположение заново.</string>
     <string name="widget_custom_subtitle_keyword_xpis_description">Сводка пыльцевого индекса на сегодня, завтра, …, 4 дня спустя</string>
     <string name="sunshine">Солнечно</string>
     <string name="alert">Оповещение</string>

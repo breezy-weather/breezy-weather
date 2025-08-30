@@ -526,8 +526,7 @@
     <string name="pollen_tilia">Tei</string>
     <string name="action_save">Salvează</string>
     <string name="location_search_no_results_advice">Asigură-te că numele căutat este scris corect și că nu este prea specific. Alternativ, poți încerca un alt serviciu de căutare a locației, care poate avea rezultate diferite.</string>
-    <string name="message_source_not_installed_error_content_tip_1">Acest lucru se poate întâmpla atunci când ați adăugat locația dvs. în varianta Standard a aplicației și apoi ați trecut la varianta cu numai surse de rețea libere. Revenirea la varianta Standard poate rezolva această problemă.</string>
-    <string name="message_source_not_installed_error_content_tip_2">Fie modifici furnizorul meteo pentru această locație, fie ștergi și reintroduci această locație.</string>
+    <string name="message_source_not_installed_error_content">Fie modifici furnizorul meteo pentru această locație, fie ștergi și reintroduci această locație.</string>
     <string name="widget_custom_subtitle_keyword_xpis_description">Polenul de Azi, Mâine, …, 4 zile mai târziu</string>
     <string name="about_open_link_message">Deschizi %s?</string>
     <string name="sunshine">Însorit</string>

@@ -517,7 +517,7 @@
     <string name="action_edit_location">Deze locatie bewerken</string>
     <string name="action_confirm">Bevestigen</string>
     <string name="message_server_unavailable_title">Server is onbereikbaar</string>
-    <string name="message_source_not_installed_error_content_tip_2">Wijzig de weerbronnen voor deze locatie of verwijder en voeg de locatie opnieuw toe.</string>
+    <string name="message_source_not_installed_error_content">Wijzig de weerbronnen voor deze locatie of verwijder en voeg de locatie opnieuw toe.</string>
     <string name="location_message_already_exists">Locatielijst bevat deze locatie met deze weersvoorspellingsbron al.</string>
     <string name="settings_weather_source_none">Geen</string>
     <string name="settings_weather_sources_default_source">Standaardbron voor nieuwe locaties</string>
@@ -536,7 +536,6 @@
     <string name="pollen_platanus">Plataan</string>
     <string name="settings_background_updates_refresh_never_warning3">Overweeg minder vaak te updaten, eerder dan achtergrondupdates volledig uit te zetten. Klik op “Verder” als je toch verder wilt gaan.</string>
     <string name="settings_background_updates_refresh_never_warning2">Het updateproces op de achtergrond is efficiënt: het vernieuwt alleen je eerste locatie met de door jou gekozen snelheid, en secundaire locaties alleen als je ze nodig hebt, één keer per dag. Het werkt batterijzuinig en verbruikt niet meer dan %d MB gegevens per maand.</string>
-    <string name="message_source_not_installed_error_content_tip_1">Dit kan gebeuren wanneer je je positie in de standaardversie van Breezy Weather hebt toegevoegd, en dan gewisseld bent naar de versie met enkel vrije netwerkbronnen. Opnieuw de standaardversie instellen kan mogelijk dit probleem verhelpen.</string>
     <string name="settings_weather_source_open_meteo_instance_forecast">Voorspellingsserver</string>
     <string name="settings_weather_source_open_meteo_instance_air_quality">Luchtkwaliteitsserver</string>
     <string name="settings_per_location">Locatievoorkeuren</string>

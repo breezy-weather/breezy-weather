@@ -517,8 +517,7 @@
     <string name="about_open_link_message">%s öffnen?</string>
     <string name="widget_custom_subtitle_keyword_xpis_description">Pollenindex-Übersicht für heute, morgen, …, 4 Tage später</string>
     <string name="sunshine">Sonnenschein</string>
-    <string name="message_source_not_installed_error_content_tip_1">Dies kann passieren, wenn du deinen Ort in der Standardvariante der App hinzugefügt hast und dann zur Variante mit nur freien Netzwerkquellen gewechselt bist. Eine Rückkehr zur Standardvariante könnte dieses Problem lösen.</string>
-    <string name="message_source_not_installed_error_content_tip_2">Ändere entweder die Wetterquelle für diesen Ort oder entferne ihn und füge ihn dann wieder hinzu.</string>
+    <string name="message_source_not_installed_error_content">Ändere entweder die Wetterquelle für diesen Ort oder entferne ihn und füge ihn dann wieder hinzu.</string>
     <string name="settings_per_location">Ortseinstellungen</string>
     <string name="settings_per_location_summary">Zusätzliche Anpassungen für diesen Ort</string>
     <string name="settings_weather_source_open_meteo_weather_models_best_match_description">Kombiniert die besten Wettermodelle für diesen Ort</string>

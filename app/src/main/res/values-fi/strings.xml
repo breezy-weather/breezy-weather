@@ -559,9 +559,8 @@
     <string name="widget_custom_subtitle_keyword_caqi_description">Tämänhetkinen ilmanlaatuindeksi</string>
     <string name="widget_custom_subtitle_keyword_xaqi_description">Ilmanlaatuindeksi tänään, huomenna, …, neljän päivän päästä</string>
     <string name="settings_weather_source_none">Ei määritelty</string>
-    <string name="message_source_not_installed_error_content_tip_2">Joko muuta tämän sijainnin säälähdettä, tai poista ja lisää se uudelleen.</string>
+    <string name="message_source_not_installed_error_content">Joko muuta tämän sijainnin säälähdettä, tai poista ja lisää se uudelleen.</string>
     <string name="widget_label_hide_header">Piilota otsikko</string>
-    <string name="message_source_not_installed_error_content_tip_1">Tämä voi tapahtua, jos olet lisännyt sijainnin sovelluksen vakioversiossa ja sen jälkeen siirtynyt only libre network sources -versioon. Palaaminen takaisin vakioversioon voi korjata ongelman.</string>
     <string name="widget_custom_subtitle_keyword_xpis_description">Siitepölyindeksin yhteenveto tänään, huomenna, …, 4:n päivän päästä</string>
     <string name="location_delete_location_dialog_message">Olet aikeissa poistaa “%s” tallennettujen sijaintijen listalta.</string>
     <string name="location_delete_location_dialog_message_no_name">Olet poistamassa tämän sijainnin tallennettujen sijaintien listalta.</string>

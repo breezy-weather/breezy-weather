@@ -529,8 +529,7 @@
     <string name="location_search_source">Fonte ricerca posizione</string>
     <string name="location_search_change_source">Cambia la fonte di ricerca della posizione</string>
     <string name="location_search_no_results_advice">Assicurati che la ricerca sia scritta correttamente e non sia troppo specifica. Altrimenti, è possibile provare un’altra fonte di ricerca della posizione che potrebbe dare risultati diversi.</string>
-    <string name="message_source_not_installed_error_content_tip_1">Questo può accadere se hai aggiunto la tua posizione nella versione standard di Breezy Weather e sei poi passato a quella con fonti meteorologiche libere. Il ritorno alla versione standard potrebbe risolvere il problema.</string>
-    <string name="message_source_not_installed_error_content_tip_2">Modifica le fonti meteo per questa posizione, o elimina e aggiungi nuovamente questa posizione.</string>
+    <string name="message_source_not_installed_error_content">Modifica le fonti meteo per questa posizione, o elimina e aggiungi nuovamente questa posizione.</string>
     <string name="sunshine">Sole</string>
     <string name="message_invalid_incomplete_data">Dati non validi o incompleti ricevuti dal server</string>
     <string name="dialog_time_picker_input_time">Inserisci ora</string>

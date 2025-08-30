@@ -228,7 +228,7 @@
     <string name="dialog_permissions_notification_content">Ilmateadete teavituste lubamiseks vajuta siia või sea see hiljem seadetes.</string>
     <string name="dialog_time_picker_select_time">Vali aeg</string>
     <string name="dialog_permissions_location_background_content">Selleks, et lubada Androidile teadaoleva kõige värskema praeguse asukoha taustal toimuvat ilmateate värskendamist, peate seadistama asukoha kasutamise õiguse väärtuseks „Luba kogu aeg“. Kui te seda ei tee, värskendatakse ilmateadet esiplaanil viimaste hangitud koordinaatide alusel, mis võivad olla vananenud.</string>
-    <string name="message_source_not_installed_error_content_tip_2">Muutke selle asukoha ilmastikuallikaid või kustutage ja lisage see asukoht uuesti.</string>
+    <string name="message_source_not_installed_error_content">Muutke selle asukoha ilmastikuallikaid või kustutage ja lisage see asukoht uuesti.</string>
     <string name="widget_day">Päevane</string>
     <string name="widget_subtitle_data_wind">Tuul</string>
     <string name="widget_live_wallpaper_day_night_type">Aeg</string>
@@ -397,7 +397,6 @@
     <string name="weather_kind_hail">Rahe</string>
     <string name="settings_weather_source_freenet_disclaimer">Breezy Weather’i muudest versioonidest on saadaval rohkem ilmateatellikad. Vajutage siia, et rohkem teada saada.</string>
     <string name="settings_notifications_alerts_title">Raskete ilmaolude hoiatused</string>
-    <string name="message_source_not_installed_error_content_tip_1">See võib juhtuda siis, kui lisasite oma asukoha Breezy Weather’i standardse versiooni ja seejärel lülitusite ainult vabavaraliste võrguallikatega versiooni. Probleemi võib lahendada tagasipöördumine tavalise versiooni juurde.</string>
     <string name="settings_appearance_dark_mode_locations_title">Päev / Öö režiim asukohtadele</string>
     <string name="settings_appearance_icon_pack_title">Ikoonipakk</string>
     <string name="settings_icon_packs_check_details">Vaata detaile</string>

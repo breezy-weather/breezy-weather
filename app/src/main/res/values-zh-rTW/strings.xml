@@ -523,8 +523,7 @@
     <string name="pollen_fraxinus">白蠟樹</string>
     <string name="pollen_rumex">酸模</string>
     <string name="pollen_urticaceae">蕁麻/牆草</string>
-    <string name="message_source_not_installed_error_content_tip_1">當您在本應用程式的標準版本中新增位置後，再切換到僅使用自由網路來源的版本時，可能會出現這種情況。返回標準版本可能會解決此問題。</string>
-    <string name="message_source_not_installed_error_content_tip_2">請變更此位置的天氣來源，或刪除並重新新增此位置。</string>
+    <string name="message_source_not_installed_error_content">請變更此位置的天氣來源，或刪除並重新新增此位置。</string>
     <string name="widget_custom_subtitle_keyword_xpis_description">今日、明日、…、4 天後的花粉指數摘要</string>
     <string name="sunshine">日照</string>
     <string name="about_open_link_message">開啟 %s 嗎？</string>

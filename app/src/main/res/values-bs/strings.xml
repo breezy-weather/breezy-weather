@@ -530,8 +530,7 @@
     <string name="message_invalid_incomplete_data">Od servera su dobijeni neispravni i nepotpuni podaci</string>
     <string name="message_server_unavailable_title">Server nedostupan</string>
     <string name="message_server_unavailable_content">Ovo je obično privremena greška. Ako se greška zadrži, molimo prijavite problem na GitHub-u.</string>
-    <string name="message_source_not_installed_error_content_tip_1">To se može dogoditi kada dodate svoju lokaciju u standardnom izdanju Breezy Weathera, a zatim se prebacite na Free-networks only koji ima manje podržanih izvora vremena. Vraćanje na standardnu verziju bi moglo riješiti ovaj problem.</string>
-    <string name="message_source_not_installed_error_content_tip_2">Ili promijenite izvore vremena za ovu lokaciju ili izbrišite i ponovo dodajte ovu lokaciju.</string>
+    <string name="message_source_not_installed_error_content">Ili promijenite izvore vremena za ovu lokaciju ili izbrišite i ponovo dodajte ovu lokaciju.</string>
     <string name="settings_notifications_app_updates_check">Obavještavaj me o ažuriranjima aplikacije</string>
     <string name="settings_per_location_summary">Dodatna prilagođavanja za ovu lokaciju</string>
     <string name="about_check_for_app_updates">Provjeri ima li novih ažuriranja</string>

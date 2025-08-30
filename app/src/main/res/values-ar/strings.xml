@@ -526,8 +526,7 @@
     <string name="sunshine">إضاءة الشمس</string>
     <string name="widget_custom_subtitle_keyword_xpis_description">مقتطف مؤشر حبوب اللقاح لليوم، الغد، …، بعد 4 أيام</string>
     <string name="about_open_link_message">فتح %s ؟</string>
-    <string name="message_source_not_installed_error_content_tip_1">يمكن أن يحدث هذا عند إضافة موقعك في الإصدار القياسي من التطبيق ثم التبديل إلى إصدار الشبكة الحرة فقط الذي يدعم مصادر طقس أقل. العودة إلى الإصدار القياسي قد تحل هذه المشكلة.</string>
-    <string name="message_source_not_installed_error_content_tip_2">قم إما بتغيير مصادر الطقس لهذا الموقع أو حذف هذا الموقع وإعادة إضافته.</string>
+    <string name="message_source_not_installed_error_content">قم إما بتغيير مصادر الطقس لهذا الموقع أو حذف هذا الموقع وإعادة إضافته.</string>
     <string name="settings_per_location">إعدادات الموقع</string>
     <string name="settings_per_location_summary">تخصيصات إضافية لهذا الموقع</string>
     <string name="settings_weather_source_open_meteo_weather_models">نماذج الطقس</string>

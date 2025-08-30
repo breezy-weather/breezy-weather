@@ -524,8 +524,7 @@
     <string name="location_delete_location_dialog_message">Estás a punto de borrar “%s” de tu lista de lugares guardados.</string>
     <string name="settings_weather_source_freenet_disclaimer">Hay más fuentes meteorológicas disponibles en otras versiones de la aplicación. Toca aquí para obtener más información.</string>
     <string name="widget_custom_subtitle_keyword_xpis_description">Resumen del índice de polen de hoy, mañana, …, 4 días después</string>
-    <string name="message_source_not_installed_error_content_tip_1">Esto puede ocurrir si has añadido tu ubicación en la versión estándar de la aplicación y luego has cambiado a la versión con fuentes de red libres. Volver a la versión estándar puede resolver este problema.</string>
-    <string name="message_source_not_installed_error_content_tip_2">Cambie la fuente meteorológica de esta ubicación o elimínela y vuelva a añadirla.</string>
+    <string name="message_source_not_installed_error_content">Cambie la fuente meteorológica de esta ubicación o elimínela y vuelva a añadirla.</string>
     <string name="about_open_link_message">¿Abrir %s?</string>
     <string name="settings_per_location">Ajustes de la ubicación</string>
     <string name="settings_per_location_summary">Ajustes adicionales para esta ubicación</string>

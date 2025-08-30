@@ -415,7 +415,7 @@
     <string name="message_parsing_error_title">Échec d’analyse des données météo</string>
     <string name="message_parsing_error_content">Assurez-vous d’avoir mis à jour vers la dernière version de l’application. Le serveur peut être temporairement indisponible, dans ce cas, réessayez plus tard. Si le problème persiste, merci de récupérer un journal d’incident à partir des paramètres de débogage, et signaler le problème sur GitHub.</string>
     <string name="message_source_not_installed_error_title">La source n’existe plus</string>
-    <string name="message_source_not_installed_error_content_tip_2">Modifiez les sources météorologiques pour cet emplacement, ou supprimez et ajoutez à nouveau cet emplacement.</string>
+    <string name="message_source_not_installed_error_content">Modifiez les sources météorologiques pour cet emplacement, ou supprimez et ajoutez à nouveau cet emplacement.</string>
     <string name="message_source_non_free_network_title">Source hébergée sur un service réseau non libre non disponible dans cette version de l’appli</string>
     <string name="message_source_non_free_network_content">Ce problème survient lorsque vous avez utilisé une source hébergée sur un réseau non libre dans la version Standard de l’application et que vous êtes passé à la version Freenet qui ne contient que des sources hébergées sur des réseaux libres. Pour résoudre ce problème, revenez à la version Standard ou modifiez la source.</string>
     <!-- $ = 15 minutes, may be adjusted in the future -->

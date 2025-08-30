@@ -388,7 +388,7 @@
     <string name="settings_color_day_night">יום / לילה</string>
     <string name="settings_color_night_always">תמיד לילה</string>
     <string name="settings_modules_notification_widget_title">ווידג\'ט התראות</string>
-    <string name="message_source_not_installed_error_content_tip_2">שנה את מקורות מזג האוויר עבור מיקום זה או מחק וצרף מחדש את המיקום הזה.</string>
+    <string name="message_source_not_installed_error_content">שנה את מקורות מזג האוויר עבור מיקום זה או מחק וצרף מחדש את המיקום הזה.</string>
     <string name="widget_clock_day_horizontal">שעון + יומי (סגנון אופקי)</string>
     <string name="widget_clock_day_details">שעון + יומי (פרטים)</string>
     <string name="widget_clock_day_week">שעון + יומי + שבועי</string>
@@ -515,7 +515,6 @@
     <string name="widget_clock_day_vertical">שעון + יומי (סגנון אנכי)</string>
     <string name="widget_custom_subtitle_keyword_xnw_description">מזג אוויר בשעות הלילה של היום, מחר, …, 4 ימים אחרי</string>
     <string name="message_parsing_error_content">ודא שעדכנת לגרסה האחרונה של האפליקציה. ייתכן שהשרת אינו זמין באופן זמני, במקרה זה, אנא נסה שוב מאוחר יותר. אם הבעיה נמשכת, אנא צור יומן קריסה מהגדרות ניפוי הבאגים ודווח על בעיה ב-GitHub.</string>
-    <string name="message_source_not_installed_error_content_tip_1">זה יכול לקרות כאשר הוספת את המיקום שלך בגרסא הסטנדרטית של Breezy Weather ולאחר מכן עברת לגרסא עם מקורות רשת חינמיים בלבד. חזרה לגרסא הסטנדרטית עשויה לפתור בעיה זו.</string>
     <string name="settings_location_access_precise_summaryOff">הפעל ”השתמש במיקום מדוייק“ אם יש בעיה להשיג מיקום.</string>
     <string name="settings_source_instance">שרת</string>
     <string name="settings_source_instance_geocoding">שרת קידוד גיאוגרפי</string>

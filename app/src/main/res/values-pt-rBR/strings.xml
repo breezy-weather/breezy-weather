@@ -537,8 +537,7 @@
     <string name="pollen_salix">Salgueiro</string>
     <string name="pollen_tilia">Tília</string>
     <string name="pollen_urticaceae">Urtiga</string>
-    <string name="message_source_not_installed_error_content_tip_1">Isto pode acontecer quando você adicionou sua localização na versão padrão (standard) do aplicativo e e depois mudou para a versão com apenas fontes de rede livre (freenet). Voltar para a versão padrão pode resolver esse problema.</string>
-    <string name="message_source_not_installed_error_content_tip_2">Altere as fontes meteorológicas para esta localização ou apague e adicione novamente a localização.</string>
+    <string name="message_source_not_installed_error_content">Altere as fontes meteorológicas para esta localização ou apague e adicione novamente a localização.</string>
     <string name="sunshine">Luz solar</string>
     <string name="weather_message_too_frequent_refreshes">Por favor, aguarde alguns segundos antes de tentar novamente…</string>
     <string name="action_confirm">Confirmar</string>

@@ -401,7 +401,7 @@
     <string name="widget_custom_subtitle_keyword_cv_description">Nåværende sikt</string>
     <string name="widget_custom_subtitle_keyword_cps_description">Nåværende trykk</string>
     <string name="widget_label_show_widget_card_alpha">Opasitet</string>
-    <string name="message_source_not_installed_error_content_tip_2">Bytt værkilder for denne lokasjonen, eller slett den og legg den til på nytt.</string>
+    <string name="message_source_not_installed_error_content">Bytt værkilder for denne lokasjonen, eller slett den og legg den til på nytt.</string>
     <string name="widget_custom_subtitle_keyword_caqi_description">Nåværende luftkvalitetsindeks</string>
     <string name="widget_label_hide_subtitle">Skjul undertekst</string>
     <string name="widget_refreshing">Oppdaterer</string>
@@ -424,7 +424,6 @@
     <string name="message_network_unavailable">Nettverk utilgjengelig</string>
     <string name="dialog_permissions_location_background_content">For at appen skal kunne hente posisjonen din i bakgrunnen, for å oppdage endringer i lokasjon og gi oppdatert værdata, må du endre posisjonstilgang i enhetsinnstillingene til «Tillat hele tiden».</string>
     <string name="message_parsing_error_title">Feilet å analysere værdata</string>
-    <string name="message_source_not_installed_error_content_tip_1">Dette kan skje når du har lagt til lokasjonen i Standardversjonen av Breezy Weather, og seinere byttet til Free-networks only versjonen som støtter færre værkilder. Du kan forsøke å gå tilbake til Standardversjonen for å løse problemet.</string>
     <string name="action_close">Lukk</string>
     <string name="message_source_not_installed_error_title">Kilden er ikke tilgjengelig lenger</string>
     <string name="dialog_permissions_notification_title">Hold deg oppdatert</string>
