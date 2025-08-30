@@ -34,6 +34,7 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
@@ -447,16 +448,31 @@ fun SecondarySourcesPreference(
                         onSurface = MaterialTheme.colorScheme.onSecondaryContainer,
                         isFirst = true,
                         isLast = true,
-                        modifier = Modifier
-                            .padding(horizontal = dimensionResource(R.dimen.small_margin))
-                            .clickable { dialogLinkOpenState.value = true }
+                        modifier = Modifier.padding(horizontal = dimensionResource(R.dimen.small_margin))
                     ) {
-                        Text(
-                            text = stringResource(R.string.settings_weather_source_freenet_disclaimer),
-                            color = MaterialTheme.colorScheme.onSecondaryContainer,
-                            style = MaterialTheme.typography.bodyMedium,
-                            modifier = Modifier.padding(dimensionResource(R.dimen.normal_margin))
-                        )
+                        Column(
+                            modifier = Modifier.padding(
+                                top = dimensionResource(R.dimen.normal_margin),
+                                start = dimensionResource(R.dimen.normal_margin),
+                                end = dimensionResource(R.dimen.normal_margin)
+                            )
+                        ) {
+                            Text(
+                                text = stringResource(R.string.settings_weather_source_freenet_disclaimer),
+                                color = MaterialTheme.colorScheme.onSecondaryContainer,
+                                style = MaterialTheme.typography.bodyMedium
+                            )
+                            TextButton(
+                                modifier = Modifier.align(Alignment.CenterHorizontally),
+                                onClick = {
+                                    dialogLinkOpenState.value = true
+                                }
+                            ) {
+                                Text(
+                                    text = stringResource(R.string.action_learn_more)
+                                )
+                            }
+                        }
                     }
                 }
                 if (location.isCurrentPosition && !location.isUsable) {

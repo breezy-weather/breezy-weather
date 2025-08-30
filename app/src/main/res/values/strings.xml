@@ -545,7 +545,7 @@
     <string name="message_parsing_error_content">Make sure you updated to latest version of the app. Server may be temporarily unavailable, in that case, please try again later. If the problem persists, please dump a crash log from debug settings, and report an issue on GitHub.</string>
     <string name="message_source_not_installed_error_title">Source no longer available</string>
     <string name="message_source_not_installed_error_content">Either change the weather sources for this location, or delete and re-add this location.</string>
-    <string name="message_source_non_free_network_title">Source hosted on a non-free network service not available in this version of the app</string>
+    <string name="message_source_non_free_network_title">This source requires the Standard version of the app</string>
     <string name="message_source_non_free_network_content">You’re using the Freenet version of the app, which only supports sources hosted on a free network. To keep using this source, switch back to the Standard version. Otherwise, choose a difference source.</string>
     <string name="message_tap_again_to_exit">Tap again to exit</string>
     <!-- Widgets -->
@@ -703,7 +703,7 @@
     <string name="settings_weather_source_unavailable">%s (unavailable)</string>
     <string name="settings_weather_source_not_configured">%s (not configured)</string>
     <string name="settings_weather_source_none">None</string>
-    <string name="settings_weather_source_freenet_disclaimer">Sources hosted on a non-free network service are not available in this version of the app. Tap here to learn more.</string>
+    <string name="settings_weather_source_freenet_disclaimer">You are using the Freenet version of the app. Switch to the Standard version if you want to use non-free network services.</string>
     <string name="settings_weather_source_current_position_disclaimer">More weather sources may become available for your location after the first refresh.</string>
     <string name="settings_weather_sources_per_location_summary">Customize weather data sources used for this location</string>
     <string name="settings_source_default_value">Default (unchanged)</string>

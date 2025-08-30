@@ -416,7 +416,7 @@
     <string name="message_parsing_error_content">Assurez-vous d’avoir mis à jour vers la dernière version de l’application. Le serveur peut être temporairement indisponible, dans ce cas, réessayez plus tard. Si le problème persiste, merci de récupérer un journal d’incident à partir des paramètres de débogage, et signaler le problème sur GitHub.</string>
     <string name="message_source_not_installed_error_title">La source n’existe plus</string>
     <string name="message_source_not_installed_error_content">Modifiez les sources météorologiques pour cet emplacement, ou supprimez et ajoutez à nouveau cet emplacement.</string>
-    <string name="message_source_non_free_network_title">Source hébergée sur un service réseau non libre non disponible dans cette version de l’appli</string>
+    <string name="message_source_non_free_network_title">Cette source nécessite la version Standard de l’appli</string>
     <string name="message_source_non_free_network_content">Vous utilisez la version Freenet de l’application, qui ne prend en charge que les sources hébergées sur un réseau libre. Pour continuer à utiliser cette source, repassez à la version Standard. Sinon, choisissez une autre source.</string>
     <!-- $ = 15 minutes, may be adjusted in the future -->
 
@@ -462,7 +462,7 @@
     <string name="settings_weather_source_unavailable">%s (indisponible)</string>
     <string name="settings_weather_source_not_configured">%s (non configuré)</string>
     <string name="settings_weather_source_none">Aucune</string>
-    <string name="settings_weather_source_freenet_disclaimer">Les sources hébergées sur un service réseau non libre ne sont pas disponibles dans cette version de l’application. Appuyez ici pour en savoir plus.</string>
+    <string name="settings_weather_source_freenet_disclaimer">Vous utilisez la version Freenet de l’application. Passez à la version Standard si vous souhaitez pouvoir utiliser des services réseau non libres.</string>
     <string name="settings_weather_source_current_position_disclaimer">D’autres sources pourraient devenir disponibles pour votre emplacement après une première mise à jour.</string>
     <string name="settings_weather_sources_per_location_summary">Personnalisez les sources de données météo utilisées pour cet emplacement</string>
     <string name="settings_weather_source_open_meteo_instance_forecast">Instance des prévisions</string>
