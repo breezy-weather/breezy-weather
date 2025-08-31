@@ -1,7 +1,7 @@
 # Old changelogs
 
-- Changelog for v5.x](docs/CHANGELOG_5.x.md)
-- Changelog for v4.x](docs/CHANGELOG_4.x.md)
+- [Changelog for v5.x](docs/CHANGELOG_5.x.md)
+- [Changelog for v4.x](docs/CHANGELOG_4.x.md)
 
 
 # Version 6.1.x (not yet released)
