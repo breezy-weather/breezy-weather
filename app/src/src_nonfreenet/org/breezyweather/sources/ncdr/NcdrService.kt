@@ -71,8 +71,15 @@ class NcdrService @Inject constructor(
             return Observable.error(InvalidLocationException())
         }
 
-        val alerts = mNcdrApi.getAlerts().execute().body() ?: return Observable.error(WeatherException())
-        val cwaAlerts = alerts.entries?.filter { it.author.name.value == "中央氣象署" } ?: return Observable.empty()
+        val alerts = mNcdrApi.getAlerts().execute().body()
+        if (alerts == null) {
+            return Observable.error(WeatherException())
+        }
+
+        val cwaAlerts = alerts.entries?.filter { it.author.name.value == "中央氣象署" }
+        if (cwaAlerts.isNullOrEmpty()) {
+            return Observable.just(WeatherWrapper())
+        }
 
         var someAlertsFailed = false
         return Observable.zip(
@@ -179,7 +186,7 @@ class NcdrService @Inject constructor(
                 // "countyCode" to locationCodes.countyCode.value,
                 // "townshipCode" to locationCodes.townshipCode.value,
                 // "villageCode" to locationCodes.villageCode.value,
-                "legacyTownshipCode" to getLegacyTownshipCode(locationCodes.townshipCode!!.value)
+                "legacyTownshipCode" to getLegacyTownshipCode(locationCodes.townshipCode.value)
             )
         }
     }
