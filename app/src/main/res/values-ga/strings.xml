@@ -328,7 +328,7 @@
     <string name="settings_weather_sources_default_source">Foinse réamhshocraithe do shuíomhanna nua</string>
     <string name="settings_weather_source_unavailable">%s (níl sé ar fáil)</string>
     <string name="settings_weather_source_none">Ceann ar bith</string>
-    <string name="settings_weather_source_freenet_disclaimer">Tá níos mó foinsí aimsire ar fáil ó bhlasanna eile den aip. Tapáil anseo chun níos mó a fhoghlaim.</string>
+    <string name="settings_weather_source_freenet_disclaimer">Tá tú ag úsáid leagan Freenet den aip. Athraigh go dtí an leagan Caighdeánach más mian leat seirbhísí líonra nach seirbhísí líonra saor in aisce iad a úsáid.</string>
     <string name="settings_weather_sources_per_location_summary">Saincheap foinsí sonraí aimsire a úsáidtear don suíomh seo</string>
     <string name="settings_source_default_value">Réamhshocrú (gan athrú)</string>
     <string name="settings_source_instance">Cuir i gcás</string>
@@ -771,4 +771,7 @@
     <string name="widget_live_wallpaper_animations_enable_warning1">Is eol go mbíonn na nithe seo a leanas mar thoradh ar bheochana páipéar balla: tomhaltas ard ceallraí; róthéamh ceallraí; tomhaltas ard cuimhne; freagrúlacht chórais lagaithe; tuairteáil chórais Android.</string>
     <string name="widget_live_wallpaper_animations_enable_warning2">Má shocraíonn tú iad a chumasú, glacann tú freagracht iomlán as aon fhadhb a d’fhéadfadh teacht chun cinn, agus ní chuirfear aon tacaíocht ar fáil.</string>
     <string name="settings_appearance_dark_mode_custom">Mód dorcha ó %1$s go %2$s</string>
+    <string name="message_source_non_free_network_title">Éilíonn an fhoinse seo an leagan Caighdeánach den aip</string>
+    <string name="message_source_non_free_network_content">Tá tú ag úsáid leagan Freenet den fheidhmchlár, nach dtacaíonn ach le foinsí atá á óstáil ar líonra saor in aisce. Chun leanúint ar aghaidh ag úsáid na foinse seo, aistrigh ar ais go dtí an leagan Caighdeánach. Seachas sin, roghnaigh foinse eile.</string>
+    <string name="settings_weather_source_non_freenet">%s (seirbhís líonra neamh-saor in aisce)</string>
 </resources>
