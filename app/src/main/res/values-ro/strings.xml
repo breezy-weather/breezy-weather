@@ -360,7 +360,7 @@
     <string name="settings_icon_packs_weather_icon_light">Pictogramă luminoasă</string>
     <string name="settings_units_summary">Temperatură, precipitații, distanță, viteză, presiune</string>
     <string name="settings_main">Ecran principal</string>
-    <string name="settings_main_summary">Ordinea cardurilor, articole afișate și animații</string>
+    <string name="settings_main_summary">Ordinea cardurilor, elementele afișate, animații</string>
     <string name="settings_main_cards_title">Carduri</string>
     <string name="settings_main_daily_trends_title">Tendințe zilnice</string>
     <string name="settings_main_hourly_trends_title">Tendințe orare</string>
@@ -379,7 +379,7 @@
     <string name="settings_background_updates_dont_kill_my_app_summary">Unii producători au restricții suplimentare pentru aplicații care distrug serviciile de fundal. Site-ul web “Don’t kill my app!” are informații despre cum să o remediați.</string>
     <string name="settings_main_section_displayed_data">Date afișate</string>
     <string name="settings_notifications_precipitations_title">Notificări ale precipitațiilor</string>
-    <string name="settings_modules_summary">Imaginea de fundal, widget-uri utilizate și widget-ul de notificare</string>
+    <string name="settings_modules_summary">Widget-uri, widget-ul de notificare, imaginea de fundal, partajarea datelor cu alte aplicații</string>
     <string name="settings_location">Localizare</string>
     <string name="settings_location_summary">Setări ale serviciilor de locație</string>
     <string name="settings_location_access_switch_summaryOn">Permis. Poți adăuga locația ta curentă ca locație.</string>
@@ -505,7 +505,7 @@
     <string name="widget_custom_subtitle_keyword_xaqi_description">Calitatea aerului de azi, mâine, …, 4 zile mai târziu</string>
     <string name="settings_weather_source_unavailable">%s (indisponibil)</string>
     <string name="settings_weather_source_none">Niciunul</string>
-    <string name="settings_weather_source_freenet_disclaimer">Mai multe surse meteo sunt disponibile în alte variante ale aplicației. Apasă aici pentru a afla mai multe.</string>
+    <string name="settings_weather_source_freenet_disclaimer">Folosiți versiunea Freenet a aplicației. Treceți pe versiunea Standard dacă doriți să utilizați servicii de rețea non-libere.</string>
     <string name="settings_main_threshold_lines_on_charts">Linii pe diagramă</string>
     <string name="notification_channel_crash_logs">Jurnal de incidente</string>
     <string name="common_weather_text_rain_light">Ploaie Ușoară</string>
@@ -781,6 +781,9 @@
     <string name="settings_regional_preference">Preferințe regionald</string>
     <string name="about_update_check_eol">Această versiune Android nu mai este suportată</string>
     <string name="content_provider_permission_label">Citiți datele Breazy Weather</string>
-    <string name="content_provider_permission_description">obțineți datele meteo de la Breezy Weather, inclusiv coordonatele locației dvs. , cum ar fi locația curentă dacă ați adăugat-o</string>
+    <string name="content_provider_permission_description">obțineți datele meteo de la Breezy Weather, inclusiv coordonatele locațiilor dvs. , cum ar fi locația curentă dacă ați adăugat-o</string>
     <string name="common_weather_text_mostly_cloudy">Predominant înnorat</string>
+    <string name="message_source_non_free_network_title">Această sursă necesită versiunea Standard a aplicației</string>
+    <string name="message_source_non_free_network_content">Folosiți versiunea Freenet a aplicației, care suportă doar surse găzduite pe o rețea liberă. Pentru a continua să folosiți această sursă, treceți înapoi pe versiunea Standard. Altfel, alegeți o sursă diferită.</string>
+    <string name="settings_weather_source_non_freenet">%s (serviciu de rețea non-liber)</string>
 </resources>
