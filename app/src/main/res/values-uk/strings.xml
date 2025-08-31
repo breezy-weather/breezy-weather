@@ -500,7 +500,7 @@
     <string name="widget_custom_subtitle_keyword_caqi_description">Поточний індекс якості повітря</string>
     <string name="widget_custom_subtitle_keyword_xaqi_description">Індекс якості повітря сьогодні, завтра, …, через 4 дні</string>
     <string name="settings_weather_source_unavailable">%s (недоступно)</string>
-    <string name="settings_weather_source_freenet_disclaimer">Джерела, розміщені на платній мережевій службі, недоступні в цій версії програми. Натисніть тут, щоб дізнатися більше.</string>
+    <string name="settings_weather_source_freenet_disclaimer">Ви використовуєте версію програми Freenet. Перейдіть на стандартну версію, якщо хочете користуватися платними мережевими сервісами.</string>
     <string name="pollen_castanea">Каштан</string>
     <string name="pollen_corylus">Ліщина</string>
     <string name="pollen_fraxinus">Ясен</string>
@@ -771,7 +771,7 @@
     <string name="widget_live_wallpaper_animations_enable_warning1">Відомо, що анімовані шпалери можуть спричиняти, серед іншого: високе споживання заряду батареї; перегрів батареї; високе споживання пам’яті; зниження швидкості роботи системи; збої системи Android.</string>
     <string name="widget_live_wallpaper_animations_enable_warning2">Якщо ви вирішите їх увімкнути, ви берете на себе повну відповідальність за будь-які проблеми, які можуть виникнути, і підтримка вам не надаватиметься.</string>
     <string name="settings_appearance_dark_mode_custom">Темний режим з %1$s до %2$s</string>
-    <string name="message_source_non_free_network_title">Джерело розміщено на платній мережевій службі, недоступній у цій версії програми</string>
-    <string name="message_source_non_free_network_content">Це відбувається, коли ви використовували джерело, розміщене в невільній мережі, у стандартній версії програми і перейшли на версію Freenet, де розміщені тільки джерела у вільних мережах. Поверніться до стандартної версії або змініть джерело, щоб вирішити цю проблему.</string>
+    <string name="message_source_non_free_network_title">Для цього джерела потрібна стандартна версія програми</string>
+    <string name="message_source_non_free_network_content">Ви використовуєте версію програми Freenet, яка підтримує лише джерела, розміщені у безкоштовній мережі. Щоб продовжувати використовувати це джерело, поверніться до стандартної версії. В іншому випадку виберіть інше джерело.</string>
     <string name="settings_weather_source_non_freenet">%s (платна мережева послуга)</string>
 </resources>
