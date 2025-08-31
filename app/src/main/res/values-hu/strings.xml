@@ -498,7 +498,7 @@
     <string name="cloud_cover_short">Felhőborítottság</string>
     <string name="settings_weather_sources_default_source">Új helyszínek alapértelmezett forrása</string>
     <string name="settings_weather_source_unavailable">%s (nem elérhető)</string>
-    <string name="settings_weather_source_freenet_disclaimer">A nem szabad hálózati szolgáltatáson tárolt források ebben az alkalmazásverzióban nem érhetők el. További információkért koppintson ide.</string>
+    <string name="settings_weather_source_freenet_disclaimer">Az alkalmazás Freenet verzióját használja. Ha nem szabad hálózati szolgáltatásokat szeretne használni, váltson át az általános verzióra.</string>
     <string name="weather_message_too_frequent_refreshes">Várjon néhány másodpercet mielőtt újrapróbálkozna…</string>
     <string name="location_delete_location_dialog_title">Eltávolítja ezt helyszínt?</string>
     <string name="location_delete_location_dialog_message">A(z) „%s” nevű helyszínt készül törölni a mentett helyszínek listájáról.</string>
@@ -777,7 +777,7 @@
     <string name="widget_live_wallpaper_animations_enable_warning2">Ha úgy dönt, hogy engedélyezi őket, teljes felelősséget vállal az esetlegesen felmerülő problémákért, és nem kap támogatást.</string>
     <string name="widget_live_wallpaper_animations_enable_dangerous">VESZÉLYES</string>
     <string name="settings_appearance_dark_mode_custom">Sötét mód bekapcsolása ettől: %1$s, eddig: %2$s</string>
-    <string name="message_source_non_free_network_title">A forrás nem egy szabad hálózati szolgáltatáson található, amely ebben az alkalmazásverzióban nem érhető el</string>
+    <string name="message_source_non_free_network_title">Ehhez a forráshoz az alkalmazás általános verziója szükséges</string>
     <string name="message_source_non_free_network_content">Az alkalmazás Freenet verzióját használja, amely csak a szabad hálózaton tárolt forrásokat támogatja. Ha továbbra is ezt a forrást szeretné használni, váltson vissza az általános verzióra. Ellenkező esetben válasszon egy másik forrást.</string>
     <string name="settings_weather_source_non_freenet">%s (nem szabad hálózati szolgáltatás)</string>
 </resources>
