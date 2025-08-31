@@ -56,7 +56,7 @@
     <string name="widget_custom_subtitle_explanation">Možete unijeti bilo što, ali molimo obratite pažnju na duljinu teksta. Ako želite citirati vremenske podatke, koristite $ za referenciranje na odgovarajuću ključnu riječ.
 \n
 \nNa primjer, „Trenutno vrijeme je: $cw$.” će se prikazati kao „Trenutno vrijeme je: Vedro.”.</string>
-    <string name="wind_strength_12">Orkan</string>
+    <string name="wind_strength_12">Orkanska snaga</string>
     <string name="widget_custom_subtitle_keyword_als_description">Upozorenja (kratko)</string>
     <string name="location_message_failed_to_locate">Neuspjelo pronalaženje trenutne lokacije</string>
     <string name="ephemeris_moon_phase_waxing_crescent">Rastući polumjesec</string>
@@ -150,7 +150,7 @@
     <string name="action_more">Vidi više</string>
     <string name="widget_label_clock_font">Font sata</string>
     <string name="settings_background_updates_dont_kill_my_app_title">Upute proizvođača</string>
-    <string name="settings_main_cards_title">Kartice</string>
+    <string name="settings_main_cards_title">Blokovi</string>
     <string name="air_quality_index">Indeks kvalitete zraka</string>
     <string name="widget_custom_subtitle_keyword_hd_description">Satni opis</string>
     <string name="settings_modules_notification_feels_like_switch">Koristi temperaturu osjeta</string>
@@ -168,7 +168,7 @@
     <string name="temperature_normals">Normalne temperature</string>
     <string name="pollen">Pelud</string>
     <string name="message_source_not_installed_error_title">Izvor više nije dostupan</string>
-    <string name="location_dialog_failed_to_locate_action_select_source">Odaberite lokacijsku uslugu</string>
+    <string name="location_dialog_failed_to_locate_action_select_source">Odaberite jednu drugu lokacijsku uslugu</string>
     <string name="widget_material_you_forecast">Material You – Prognoza</string>
     <string name="settings_location_access_background_summaryOff">Omogućite „Dozvoli uvijek” za pozadinska osvježenja za vašu trenutnu lokaciju.</string>
     <string name="pollen_level_4">Visoko</string>
@@ -212,7 +212,7 @@
     <string name="widget_custom_subtitle_keyword_cdp_description">Trenutačna točka kondenziranja</string>
     <string name="pollen_ambrosia">Ambrozija</string>
     <string name="ephemeris">Sunce i mjesec</string>
-    <string name="settings_main_summary">Redoslijed kartica, prikazane stavke, animacije</string>
+    <string name="settings_main_summary">Redoslijed blokova, prikazane stavke, animacije</string>
     <string name="widget_week">Tjedno</string>
     <string name="widget_custom_subtitle_keyword_xnp_description">Noćne oborine danas, sutra, …, 4 dana kasnije (%)</string>
     <string name="air_quality_level_3">Loše</string>
@@ -221,7 +221,7 @@
     <string name="settings_main_section_animations">Animacije</string>
     <string name="widget_custom_subtitle_keyword_w_description">Tjedan</string>
     <string name="air_quality_pm25">PM2.5</string>
-    <string name="settings_modules_summary">Postavi pozadinu, podesi korištene widgete, widget u obavijestima</string>
+    <string name="settings_modules_summary">Widgeti, widget za obavijesti, pozadina, dijeljenje podataka s drugim aplikacijama</string>
     <string name="widget_multi_city">Više gradova</string>
     <string name="action_show_errors">Dodirnite za detalje</string>
     <string name="widget_custom_subtitle_keyword_xss_description">Zalazak Sunca danas, sutra, …, 4 dana kasnije</string>
@@ -234,7 +234,7 @@
     <string name="settings_modules_broadcast_send_data_title">Pošaljite podatke za %s</string>
     <string name="pressure">Tlak</string>
     <string name="temperature_normal_short">Normalno</string>
-    <string name="settings_appearance_dark_mode_locations_title">Način Dan / Noć za lokacije</string>
+    <string name="settings_appearance_dark_mode_locations_title">Tamni način na osnovi lokacije</string>
     <string name="settings_main_daily_trends_title">Dnevni trendovi</string>
     <string name="settings_background_updates_worker_info_summary">Zadnje pokretanje: %s</string>
     <string name="location_swipe_to_delete">Kliznite lijevo za brisanje stavke</string>
@@ -261,7 +261,7 @@
     <string name="weather_source_accu_preference_hours_120">120 sati</string>
     <string name="settings_appearance_summary">Jezik, tamni način, paketi ikona, mjerne jedinice</string>
     <string name="settings_modules_section_notification_widget">Widget za obavijesti</string>
-    <string name="settings_appearance_dark_mode_title">Tamni način</string>
+    <string name="settings_appearance_dark_mode_title">Tamni način aplikacije</string>
     <string name="settings_background_updates_battery_optimization_disabled">Optimiranje baterije je već onemogućeno.</string>
     <string name="message_network_unavailable">Mreža nedostupna</string>
     <string name="precipitation_rain">Kiša</string>
@@ -311,7 +311,7 @@
     <string name="weather_api_limit_reached_content">Kako biste zaobišli ograničenje, dodajte svoj API ključ.</string>
     <string name="widget_custom_subtitle_keyword_cuv_description">Trenutni UV</string>
     <string name="settings_changes_apply_after_restart">Promijene će se primijeniti nakon ponovnog pokretanja</string>
-    <string name="widget_material_you_current">Material You – Trenutno</string>
+    <string name="widget_material_you_current">Material You – Aktualno</string>
     <string name="widget_custom_subtitle_keyword_cv_description">Trenutačna vidljivost</string>
     <string name="settings_location_access_background_summaryOn">Omogućeno. Aplikacija će moći osvježiti vremenske podatke za vašu trenutnu lokaciju u pozadini.</string>
     <string name="alerts">Upozorenja</string>
@@ -330,7 +330,7 @@
     <string name="settings_main_background_animation_disabled">Onemogućeno</string>
     <string name="precipitation_snow">Snijeg</string>
     <string name="settings_debug">Otklanjanje pogrešaka</string>
-    <string name="settings_main_cards_fade_in_switch">Nestajanje kartica</string>
+    <string name="settings_main_cards_fade_in_switch">Blokovi se pojavljuju</string>
     <string name="ephemeris_moonset_at">Zalazak mjeseca u %s</string>
     <string name="air_quality_level_4_description">Osjetljive skupine mogu odmah osjetiti zdravstvene učinke. Zdrave osobe možda će otežano disati i osjetiti iritaciju grla ako budu dulje izložene. Ograničite aktivnosti na otvorenom.</string>
     <string name="widget_style_nano">Nano</string>
@@ -375,7 +375,7 @@
     <string name="widget_custom_subtitle_keyword_xsr_description">Izlazak Sunca danas, sutra, …, 4 dana kasnije</string>
     <string name="temperature_average_short">Prosjek</string>
     <string name="widget_live_wallpaper_weather_kind">Vrijeme</string>
-    <string name="precipitation_between_time">Oborine između %1$s i %2$s</string>
+    <string name="precipitation_between_time">Oborine od %1$s do %2$s</string>
     <string name="settings_main_threshold_lines_on_charts">Linije praga na grafikonima</string>
     <string name="ephemeris_moon_phase_last_quarter">Zadnja četvrt</string>
     <string name="wind">Vjetar</string>
@@ -481,7 +481,7 @@
     <string name="notification_precipitation_stopping_desc">Očekuje se da će prestati u %s</string>
     <string name="notification_precipitation_stopping">Prestanak oborina</string>
     <string name="location_message_updated">Lokacija ažurirana</string>
-    <string name="location_message_already_exists">Lokacija s istim glavnim izvorom vremena već postoji.</string>
+    <string name="location_message_already_exists">Popis lokacija već sadrži ovu lokaciju s ovim izvorom prognoze.</string>
     <string name="location_search_source">Izvor pretraživanja</string>
     <string name="settings_weather_source_none">Nijedan</string>
     <string name="location_search_change_source">Promijenite izvor pretrage lokacije</string>
@@ -624,7 +624,7 @@
     <string name="chart_maximum_value">Najviša vrijednost</string>
     <string name="conditions">Prognoza</string>
     <string name="temperature_real">Stvarna temperatura</string>
-    <string name="temperature_real_details">Stvarna temperatura</string>
+    <string name="temperature_real_details">Stvarna temperatura.</string>
     <string name="temperature_feels_like_details">Osjećaj temperature kao posljedica vlage, vjetra i/ili sunčeve svjetlosti.</string>
     <string name="temperature_degree_day_heating_explanation">Razlika između vanjske temperature i referentne temperature ugode koja se koristi za procjenu potreba za energijom za grijanje</string>
     <string name="temperature_degree_day_cooling_explanation">Razlika između vanjske temperature i referentne temperature ugode koja se koristi za procjenu potreba za energijom za hlađenje</string>
@@ -645,16 +645,18 @@
     <string name="uv_index_scale">Skala UV indeksa</string>
     <string name="uv_index_time_to_burn">Vrijeme do opeklina</string>
     <string name="air_quality_index_short">IKZ</string>
-    <string name="air_quality_index_about">Indeks kvalitete zraka</string>
+    <string name="air_quality_index_about">O indeksu kvalitete zraka</string>
     <string name="air_quality_index_about_description_1">Indeks kvalitete zraka (IKZ) predstavlja skala osmišljena da pomaže u razumijevanju količine zagađenja zraka u određenom području i mogući ugroz za zdravlje.</string>
     <string name="pressure_about_description1">Atmosferski tlak je tlak Zemljine atmosfere prema dolje. Ova aplikacija upotrebljava srednji tlak na razini mora radi olakšavanja usporedbe tlaka sa mjestima s različitim nadmorskim visinama.</string>
     <string name="location_reverse_geocoding">Pretraga adrese</string>
     <string name="action_open_in_other_app">Otvaranje u drugoj aplikaciji</string>
     <string name="action_open_in_other_app_description">Otvori lokaciju u drugoj aplikaciji</string>
-    <string name="action_close_menu">Zatvaranje izbornika</string>
+    <string name="action_close_menu">Zatvori izbornik</string>
     <string name="action_enable">Omogući</string>
     <string name="action_allow">Dozvoli</string>
     <string name="label_description">Opis</string>
     <string name="message_outdated_server_data">Zastarjeli podaci primljeni s poslužitelja</string>
     <string name="message_server_insecure_title">Neuspjelo sigurno povezivanje</string>
+    <string name="settings_appearance_section_regional">Jezik i regija</string>
+    <string name="settings_appearance_section_theme">Tema</string>
 </resources>
