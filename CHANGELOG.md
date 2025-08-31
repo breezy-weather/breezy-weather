@@ -13,6 +13,7 @@ The following features are already available in the current branch, but will be 
 - Clarify which dark mode is currently used at system level in Appearance settings, which may help Xiaomi device owners detect a potential bug in the MIUI dark mode implementation
 - Freenet - Improve wording of messages about non-free network services
 - Freenet - Display the names of non-free network services in source lists to let the user know about the availability of other sources in the Standard flavor
+- Android 11+ - Fix unneeded zeros sometimes showing in fractions
 
 **Weather sources**
 - IP.SB / Baidu IP Location - Don’t require Android location to be on

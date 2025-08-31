@@ -40,7 +40,7 @@ fun Number.format(
 ): String {
     return if (supportsNumberFormatter() && useNumberFormatter) {
         (NumberFormatter.withLocale(locale) as LocalizedNumberFormatter)
-            .precision(Precision.fixedFraction(decimals))
+            .precision(Precision.maxFraction(decimals))
             .sign(if (showSign) NumberFormatter.SignDisplay.ALWAYS else NumberFormatter.SignDisplay.AUTO)
             .format(this)
             .toString()
