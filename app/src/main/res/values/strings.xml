@@ -1285,4 +1285,5 @@
     <string name="colon_separator" translatable="false">:\u0020</string>
     <string name="dot_separator" translatable="false">\u0020•\u0020</string>
     <string name="parenthesis" translatable="false">%1$s (%2$s)</string>
+    <string name="pull_down_to_refresh">Pull down to refresh</string>
 </resources>

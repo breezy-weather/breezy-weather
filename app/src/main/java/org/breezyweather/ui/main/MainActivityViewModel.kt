@@ -337,7 +337,6 @@ class MainActivityViewModel @Inject constructor(
             )
             return
         }
-
         _loading.value = true
 
         if (BuildConfig.FLAVOR != "freenet" && SettingsManager.getInstance(getApplication()).isAppUpdateCheckEnabled) {
