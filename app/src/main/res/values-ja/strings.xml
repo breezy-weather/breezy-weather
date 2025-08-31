@@ -737,4 +737,5 @@
     <string name="wind_speed_about_description">風速は、一定期間の風速を平均することによって測定される。突風とは、通常20秒以内に吹き荒れる突然の風のこと。</string>
     <string name="wind_origin">%sから</string>
     <string name="uv_index_about_description">紫外線指数（UVインデックス）は、太陽の紫外線の強さを測定する。紫外線指数が高いほど、日焼け、皮膚がん、眼障害をより早く、より大きく引き起こす可能性がある。</string>
+    <string name="nighttime_details">夕方から翌日の夜明けまでの期間</string>
 </resources>
