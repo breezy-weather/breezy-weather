@@ -860,6 +860,6 @@
     <string name="widget_live_wallpaper_animations_enable_warning2">如果决定启用，您对任何可能引发的问题承担全部责任，且开发者不会提供支持。</string>
     <string name="settings_appearance_dark_mode_custom">从 %1$s 到 %2$s 为深色模式</string>
     <string name="message_source_non_free_network_title">托管在非自由网络服务上的气象数据源在这个版本的应用中不可用</string>
-    <string name="message_source_non_free_network_content">您正在使用免费网络版应用，该版本仅支持托管在免费网络上的数据源。要继续使用此数据源，请切换回标准版，否则请选择其他数据源。</string>
+    <string name="message_source_non_free_network_content">用过标准版应用中托管在非自由网络上的气象数据源，之后切换到仅含托管在自由网络上的 FOSS 版本会发生这个问题。要解决它，请回到标准版或更改气象数据源。</string>
     <string name="settings_weather_source_non_freenet">%s （非自由网络服务）</string>
 </resources>
