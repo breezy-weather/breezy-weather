@@ -36,6 +36,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import breezyweather.domain.location.model.Location
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
 import org.breezyweather.R
 import org.breezyweather.common.activities.BreezyActivity
@@ -64,6 +65,8 @@ import org.breezyweather.ui.theme.resource.ResourcesProviderFactory
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
 import org.breezyweather.ui.theme.weatherView.WeatherView
 import org.breezyweather.ui.theme.weatherView.WeatherViewController
+import java.util.Date
+import kotlin.time.Duration.Companion.seconds
 
 class HomeFragment : MainModuleFragment() {
 
@@ -278,9 +281,12 @@ class HomeFragment : MainModuleFragment() {
                     if (it?.location != null) {
                         binding.toolbar.menu.findItem(R.id.action_edit).isVisible = true
                         binding.toolbar.menu.findItem(R.id.action_open_in_other_app).isVisible = true
+                        binding.emptyText!!.visibility = View.VISIBLE
+                    } else {
+                        binding.toolbar.menu.findItem(R.id.action_edit).isVisible = false
+                        binding.toolbar.menu.findItem(R.id.action_open_in_other_app).isVisible = false
+                        binding.emptyText!!.visibility = View.GONE
                     }
-
-                    // TODO: Dirty workaround to avoid recollecting on lifecycle resume
                     if (it?.location != lastCurrentLocation) {
                         updateViews(it?.location)
                         lastCurrentLocation = it?.location
