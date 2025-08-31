@@ -502,7 +502,7 @@
     <string name="location_delete_location_dialog_message_no_name">Je staat op het punt deze locatie uit de opgeslagen locaties te verwijderen.</string>
     <string name="location_search_no_results_advice">Zorg dat je zoekopdracht juist gespeld en niet te specifiek is. Je kan ook proberen een andere locatiezoekbron te gebruiken, die kan andere resultaten genereren.</string>
     <string name="widget_label_hide_header">Kop verbergen</string>
-    <string name="settings_weather_source_freenet_disclaimer">Meer weerbronnen zijn beschikbaar in andere smaken van de app. Tik hier voor meer informatie.</string>
+    <string name="settings_weather_source_freenet_disclaimer">Je gebruikt de Freenet-versie van de app. Schakel over naar de Standaardversie als je gebruik wil maken van betaalde netwerkservices.</string>
     <string name="notification_precipitation_starting_desc">Verwacht om %s</string>
     <string name="notification_precipitation_continuing_desc">Zal in ieder geval aanhouden tot %s</string>
     <string name="notification_precipitation_stopping_desc">Einde verwacht om %s</string>
@@ -777,4 +777,7 @@
     <string name="widget_live_wallpaper_animations_enable_warning1">Achtergrondganimaties staan erom bekend onder meer de volgende problemen te veroorzaken: hoog batterijverbruik; oververhitting van de batterij; hoog geheugenverbruik; verminderde reactievermogen van het systeem; crash van het Android-systeem.</string>
     <string name="widget_live_wallpaper_animations_enable_warning2">Als je besluit ze in te schakelen, dan neem je de volledige verantwoordelijkheid op je voor elk probleem dat zich kan voordoen en wordt er geen ondersteuning geboden.</string>
     <string name="settings_appearance_dark_mode_custom">Donkere modus van %1$s tot %2$s</string>
+    <string name="message_source_non_free_network_title">Deze bron vereist de standaardversie van de app</string>
+    <string name="message_source_non_free_network_content">Je gebruikt de Freenet-versie van de app, die alleen bronnen ondersteunt die op een gratis netwerk worden gehost. Schakel terug naar de standaardversie om deze bron te blijven gebruiken. Kies anders een andere bron.</string>
+    <string name="settings_weather_source_non_freenet">%s (betaalde netwerkservice)</string>
 </resources>
