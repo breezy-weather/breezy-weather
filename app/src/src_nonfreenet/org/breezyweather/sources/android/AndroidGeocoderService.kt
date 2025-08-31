@@ -18,27 +18,13 @@ package org.breezyweather.sources.android
 
 import android.content.Context
 import android.location.Geocoder
-import breezyweather.domain.location.model.Location
 import breezyweather.domain.location.model.LocationAddressInfo
-import breezyweather.domain.source.SourceFeature
 import io.reactivex.rxjava3.core.Observable
 import kotlinx.coroutines.rx3.rxObservable
 import org.breezyweather.common.extensions.currentLocale
-import org.breezyweather.common.source.ReverseGeocodingSource
 import javax.inject.Inject
 
-class AndroidGeocoderService @Inject constructor() : ReverseGeocodingSource {
-
-    override val id = "nativegeocoder"
-    override val name = "Android"
-
-    override val supportedFeatures = mapOf(
-        SourceFeature.REVERSE_GEOCODING to name
-    )
-
-    override fun isFeatureSupportedForLocation(location: Location, feature: SourceFeature): Boolean {
-        return Geocoder.isPresent()
-    }
+class AndroidGeocoderService @Inject constructor() : AndroidGeocoderServiceStub() {
 
     override fun requestNearestLocation(
         context: Context,
@@ -65,7 +51,4 @@ class AndroidGeocoderService @Inject constructor() : ReverseGeocodingSource {
             send(locationList)
         }
     }
-
-    // Each device can implement their own geocoder, so better be safe
-    override val knownAmbiguousCountryCodes: Array<String>? = null
 }

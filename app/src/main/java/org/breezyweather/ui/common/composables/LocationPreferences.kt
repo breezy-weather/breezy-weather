@@ -59,8 +59,6 @@ import org.breezyweather.common.utils.helpers.SnackbarHelper
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.domain.source.resourceName
 import org.breezyweather.sources.SourceManager
-import org.breezyweather.sources.getSupportedFeatureSources
-import org.breezyweather.sources.sourcesWithPreferencesScreen
 import org.breezyweather.ui.common.widgets.Material3ExpressiveCardListItem
 import org.breezyweather.ui.main.MainActivity
 import org.breezyweather.ui.settings.preference.composables.EditTextPreferenceView

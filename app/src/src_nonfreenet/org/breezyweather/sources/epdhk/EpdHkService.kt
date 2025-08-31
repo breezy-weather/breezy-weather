@@ -18,7 +18,6 @@ package org.breezyweather.sources.epdhk
 
 import android.content.Context
 import breezyweather.domain.location.model.Location
-import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.model.AirQuality
 import breezyweather.domain.weather.wrappers.AirQualityWrapper
@@ -28,11 +27,6 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
-import org.breezyweather.common.extensions.getCountryName
-import org.breezyweather.common.source.HttpSource
-import org.breezyweather.common.source.WeatherSource
-import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_HIGHEST
-import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
 import org.breezyweather.sources.epdhk.xml.EpdHkConcentrationsResult
 import org.breezyweather.unit.pollutant.PollutantConcentration.Companion.microgramsPerCubicMeter
 import retrofit2.Retrofit
@@ -44,19 +38,8 @@ import javax.inject.Named
 class EpdHkService @Inject constructor(
     @ApplicationContext context: Context,
     @Named("XmlClient") xmlClient: Retrofit.Builder,
-) : HttpSource(), WeatherSource {
-    override val id = "epdhk"
-    override val name by lazy {
-        with(context.currentLocale.code) {
-            when {
-                equals("zh-tw") || equals("zh-hk") || equals("zh-mo") -> "環境保護署"
-                startsWith("zh") -> "环境保护署"
-                else -> "EPD"
-            }
-        } +
-            " (${context.currentLocale.getCountryName("HK")})"
-    }
-    override val continent = SourceContinent.ASIA
+) : EpdHkServiceStub(context) {
+
     override val privacyPolicyUrl by lazy {
         with(context.currentLocale.code) {
             when {
@@ -75,38 +58,9 @@ class EpdHkService @Inject constructor(
             .create(EpdHkApi::class.java)
     }
 
-    private val weatherAttribution by lazy {
-        with(context.currentLocale.code) {
-            when {
-                equals("zh-tw") || equals("zh-hk") || equals("zh-mo") -> "環境保護署"
-                startsWith("zh") -> "环境保护署"
-                else -> "Environmental Protection Department"
-            }
-        }
-    }
     override val attributionLinks = mapOf(
         weatherAttribution to "https://www.aqhi.gov.hk/"
     )
-    override val supportedFeatures = mapOf(
-        SourceFeature.AIR_QUALITY to weatherAttribution
-    )
-
-    override fun isFeatureSupportedForLocation(
-        location: Location,
-        feature: SourceFeature,
-    ): Boolean {
-        return location.countryCode.equals("HK", ignoreCase = true)
-    }
-
-    override fun getFeaturePriorityForLocation(
-        location: Location,
-        feature: SourceFeature,
-    ): Int {
-        return when {
-            isFeatureSupportedForLocation(location, feature) -> PRIORITY_HIGHEST
-            else -> PRIORITY_NONE
-        }
-    }
 
     override fun requestWeather(
         context: Context,
@@ -146,27 +100,5 @@ class EpdHkService @Inject constructor(
 
     companion object {
         private const val EPD_HK_BASE_URL = "https://www.aqhi.gov.hk/"
-
-        // Source: https://data.gov.hk/en-data/dataset/hk-epd-aqmnteam-air-quality-monitoring-network-of-hong-kong
-        private val EPD_HK_STATIONS = mapOf(
-            "Central/Western" to LatLng(22.28489089, 114.14442071),
-            "Southern" to LatLng(22.24746092, 114.1601401),
-            "Eastern" to LatLng(22.28288555, 114.21937156),
-            "Kwun Tong" to LatLng(22.3096251, 114.23117417),
-            "Sham Shui Po" to LatLng(22.3302259, 114.15910913),
-            "Kwai Chung" to LatLng(22.35710398, 114.12960136),
-            "Tsuen Wan" to LatLng(22.37174191, 114.11453491),
-            "Tseung Kwan O" to LatLng(22.31764241, 114.25956137),
-            "Yuen Long" to LatLng(22.44515508, 114.02264888),
-            "Tuen Mun" to LatLng(22.39114326, 113.97672832),
-            "Tung Chung" to LatLng(22.28888887, 113.94365902),
-            "Tai Po" to LatLng(22.45095988, 114.16457022),
-            "Sha Tin" to LatLng(22.37628072, 114.18453161),
-            "North" to LatLng(22.49669723, 114.12824408),
-            "Tap Mun" to LatLng(22.47131669, 114.3607185),
-            "Causeway Bay" to LatLng(22.28013296, 114.18509009),
-            "Central" to LatLng(22.2818145, 114.15812743),
-            "Mong Kok" to LatLng(22.32261115, 114.16827176)
-        )
     }
 }

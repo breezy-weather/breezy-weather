@@ -16,12 +16,10 @@
 
 package org.breezyweather.sources.cwa
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.location.model.LocationAddressInfo
-import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.model.AirQuality
 import breezyweather.domain.weather.model.Alert
@@ -49,18 +47,9 @@ import org.breezyweather.R
 import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
-import org.breezyweather.common.extensions.getCountryName
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.common.preference.EditTextPreference
 import org.breezyweather.common.preference.Preference
-import org.breezyweather.common.source.ConfigurableSource
-import org.breezyweather.common.source.HttpSource
-import org.breezyweather.common.source.LocationParametersSource
-import org.breezyweather.common.source.ReverseGeocodingSource
-import org.breezyweather.common.source.WeatherSource
-import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_HIGH
-import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_HIGHEST
-import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
 import org.breezyweather.domain.settings.SourceConfigStore
 import org.breezyweather.domain.weather.index.PollutantIndex
 import org.breezyweather.sources.cwa.json.CwaAirQualityResult
@@ -70,11 +59,6 @@ import org.breezyweather.sources.cwa.json.CwaCurrentResult
 import org.breezyweather.sources.cwa.json.CwaForecastResult
 import org.breezyweather.sources.cwa.json.CwaLocationTown
 import org.breezyweather.sources.cwa.json.CwaNormalsResult
-import org.breezyweather.sources.nlsc.NlscService.Companion.KINMEN_BBOX
-import org.breezyweather.sources.nlsc.NlscService.Companion.MATSU_BBOX
-import org.breezyweather.sources.nlsc.NlscService.Companion.PENGHU_BBOX
-import org.breezyweather.sources.nlsc.NlscService.Companion.TAIWAN_BBOX
-import org.breezyweather.sources.nlsc.NlscService.Companion.WUQIU_BBOX
 import org.breezyweather.unit.computing.computeMeanSeaLevelPressure
 import org.breezyweather.unit.computing.computePollutantInUgm3FromPpb
 import org.breezyweather.unit.pollutant.PollutantConcentration.Companion.microgramsPerCubicMeter
@@ -99,19 +83,8 @@ import kotlin.time.Duration.Companion.hours
 class CwaService @Inject constructor(
     @ApplicationContext context: Context,
     @Named("JsonClient") client: Retrofit.Builder,
-) : HttpSource(), WeatherSource, ReverseGeocodingSource, LocationParametersSource, ConfigurableSource {
+) : CwaServiceStub(context) {
 
-    override val id = "cwa"
-    override val name by lazy {
-        with(context.currentLocale.code) {
-            when {
-                startsWith("zh") -> "中央氣象署"
-                else -> "CWA"
-            }
-        } +
-            " (${context.currentLocale.getCountryName("TW")})"
-    }
-    override val continent = SourceContinent.ASIA
     override val privacyPolicyUrl by lazy {
         with(context.currentLocale.code) {
             when {
@@ -127,73 +100,12 @@ class CwaService @Inject constructor(
             .build()
             .create(CwaApi::class.java)
     }
-
-    private val weatherAttribution by lazy {
-        with(context.currentLocale.code) {
-            when {
-                startsWith("zh") -> "中央氣象署"
-                else -> "Central Weather Administration"
-            }
-        }
-    }
-    private val airQualityAttribution by lazy {
-        with(context.currentLocale.code) {
-            when {
-                startsWith("zh") -> "環境部"
-                else -> "Ministry of Environment"
-            }
-        }
-    }
-    private val reverseGeocodingAttribution by lazy {
-        with(context.currentLocale.code) {
-            when {
-                startsWith("zh") -> "內政部國土測繪中心"
-                else -> "National Land Survey and Mapping Center"
-            }
-        }
-    }
-    override val supportedFeatures = mapOf(
-        SourceFeature.FORECAST to weatherAttribution,
-        SourceFeature.CURRENT to weatherAttribution,
-        SourceFeature.AIR_QUALITY to airQualityAttribution,
-        SourceFeature.ALERT to weatherAttribution,
-        SourceFeature.NORMALS to weatherAttribution,
-        SourceFeature.REVERSE_GEOCODING to weatherAttribution
-    )
     override val attributionLinks = mapOf(
         weatherAttribution to "https://www.cwa.gov.tw/",
         airQualityAttribution to "https://airtw.moenv.gov.tw/",
         reverseGeocodingAttribution to "https://www.nlsc.gov.tw/"
     )
 
-    override fun isFeatureSupportedForLocation(
-        location: Location,
-        feature: SourceFeature,
-    ): Boolean {
-        val latLng = LatLng(location.latitude, location.longitude)
-        return location.countryCode.equals("TW", ignoreCase = true) ||
-            TAIWAN_BBOX.contains(latLng) ||
-            PENGHU_BBOX.contains(latLng) ||
-            KINMEN_BBOX.contains(latLng) ||
-            WUQIU_BBOX.contains(latLng) ||
-            MATSU_BBOX.contains(latLng)
-    }
-
-    override fun getFeaturePriorityForLocation(
-        location: Location,
-        feature: SourceFeature,
-    ): Int {
-        return when {
-            isFeatureSupportedForLocation(location, feature) -> if (feature == SourceFeature.ALERT) {
-                PRIORITY_HIGH // This makes NCDR being used in priority
-            } else {
-                PRIORITY_HIGHEST
-            }
-            else -> PRIORITY_NONE
-        }
-    }
-
-    @SuppressLint("CheckResult")
     override fun requestWeather(
         context: Context,
         location: Location,
@@ -871,7 +783,7 @@ class CwaService @Inject constructor(
     }
 
     // Weather icon source:
-// https://opendata.cwa.gov.tw/opendatadoc/MFC/A0012-001.pdf
+    // https://opendata.cwa.gov.tw/opendatadoc/MFC/A0012-001.pdf
     private fun getWeatherCode(icon: String?): WeatherCode? {
         return if (icon == null) {
             null
@@ -1095,9 +1007,6 @@ class CwaService @Inject constructor(
             )
         )
     }
-
-    // Only supports its own country
-    override val knownAmbiguousCountryCodes: Array<String>? = null
 
     companion object {
         private const val CWA_BASE_URL = "https://opendata.cwa.gov.tw/"

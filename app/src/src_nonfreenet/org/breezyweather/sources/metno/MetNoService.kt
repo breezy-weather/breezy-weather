@@ -18,7 +18,6 @@ package org.breezyweather.sources.metno
 
 import android.content.Context
 import breezyweather.domain.location.model.Location
-import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.model.AirQuality
 import breezyweather.domain.weather.model.Alert
@@ -43,11 +42,6 @@ import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.getIsoFormattedDate
 import org.breezyweather.common.extensions.toDateNoHour
-import org.breezyweather.common.source.HttpSource
-import org.breezyweather.common.source.WeatherSource
-import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_HIGH
-import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_HIGHEST
-import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
 import org.breezyweather.sources.metno.json.MetNoAirQualityResult
 import org.breezyweather.sources.metno.json.MetNoAlertResult
 import org.breezyweather.sources.metno.json.MetNoForecastResult
@@ -69,18 +63,8 @@ import kotlin.time.Duration.Companion.minutes
 class MetNoService @Inject constructor(
     @ApplicationContext context: Context,
     @Named("JsonClient") client: Retrofit.Builder,
-) : HttpSource(), WeatherSource {
+) : MetNoServiceStub(context) {
 
-    override val id = "metno"
-    override val name by lazy {
-        with(context.currentLocale.code) {
-            when {
-                startsWith("no") -> "Meteorologisk institutt"
-                else -> "MET Norway"
-            }
-        }
-    }
-    override val continent = SourceContinent.WORLDWIDE // The only exception here. It's a source commonly used worldwide
     override val privacyPolicyUrl by lazy {
         with(context.currentLocale.code) {
             when {
@@ -97,62 +81,9 @@ class MetNoService @Inject constructor(
             .create(MetNoApi::class.java)
     }
 
-    private val weatherAttribution = "MET Norway (NLOD / CC BY 4.0)"
-    override val supportedFeatures = mapOf(
-        SourceFeature.FORECAST to weatherAttribution,
-        SourceFeature.CURRENT to weatherAttribution,
-        SourceFeature.MINUTELY to weatherAttribution,
-        SourceFeature.AIR_QUALITY to weatherAttribution,
-        SourceFeature.ALERT to weatherAttribution
-    )
     override val attributionLinks = mapOf(
         "MET Norway" to "https://www.met.no/"
     )
-
-    override fun isFeatureSupportedForLocation(
-        location: Location,
-        feature: SourceFeature,
-    ): Boolean {
-        return when (feature) {
-            // Nowcast only for Norway, Sweden, Finland and Denmark
-            // Covered area is slightly larger as per https://api.met.no/doc/nowcast/datamodel
-            // but safer to limit to guaranteed countries
-            SourceFeature.CURRENT, SourceFeature.MINUTELY -> !location.countryCode.isNullOrEmpty() &&
-                arrayOf("NO", "SE", "FI", "DK").any {
-                    it.equals(location.countryCode, ignoreCase = true)
-                }
-
-            // Air quality only for Norway
-            SourceFeature.AIR_QUALITY -> !location.countryCode.isNullOrEmpty() &&
-                location.countryCode.equals("NO", ignoreCase = true)
-
-            // Alerts only for Norway and Svalbard & Jan Mayen
-            SourceFeature.ALERT -> !location.countryCode.isNullOrEmpty() &&
-                arrayOf("NO", "SJ").any {
-                    it.equals(location.countryCode, ignoreCase = true)
-                }
-
-            SourceFeature.FORECAST -> true
-
-            else -> false
-        }
-    }
-
-    /**
-     * Highest priority for Norway
-     * High priority for Svalbard & Jan Mayen, Sweden, Finland, Denmark
-     */
-    override fun getFeaturePriorityForLocation(
-        location: Location,
-        feature: SourceFeature,
-    ): Int {
-        return when {
-            location.countryCode.equals("NO", ignoreCase = true) -> PRIORITY_HIGHEST
-            arrayOf("SJ", "SE", "FI", "DK").any { it.equals(location.countryCode, ignoreCase = true) } &&
-                isFeatureSupportedForLocation(location, feature) -> PRIORITY_HIGH
-            else -> PRIORITY_NONE
-        }
-    }
 
     override fun requestWeather(
         context: Context,

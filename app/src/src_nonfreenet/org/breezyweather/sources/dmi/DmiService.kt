@@ -20,7 +20,6 @@ import android.content.Context
 import android.graphics.Color
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.location.model.LocationAddressInfo
-import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.Precipitation
@@ -34,16 +33,8 @@ import breezyweather.domain.weather.wrappers.WeatherWrapper
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.common.exceptions.InvalidLocationException
-import org.breezyweather.common.extensions.currentLocale
-import org.breezyweather.common.extensions.getCountryName
 import org.breezyweather.common.extensions.getIsoFormattedDate
 import org.breezyweather.common.extensions.toDateNoHour
-import org.breezyweather.common.source.HttpSource
-import org.breezyweather.common.source.LocationParametersSource
-import org.breezyweather.common.source.ReverseGeocodingSource
-import org.breezyweather.common.source.WeatherSource
-import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_HIGHEST
-import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
 import org.breezyweather.sources.dmi.json.DmiResult
 import org.breezyweather.sources.dmi.json.DmiTimeserie
 import org.breezyweather.sources.dmi.json.DmiWarning
@@ -62,11 +53,8 @@ import javax.inject.Named
 class DmiService @Inject constructor(
     @ApplicationContext context: Context,
     @Named("JsonClient") client: Retrofit.Builder,
-) : HttpSource(), WeatherSource, ReverseGeocodingSource, LocationParametersSource {
+) : DmiServiceStub(context) {
 
-    override val id = "dmi"
-    override val name = "DMI (${context.currentLocale.getCountryName("DK")})"
-    override val continent = SourceContinent.EUROPE
     override val privacyPolicyUrl = "https://www.dmi.dk/om-hjemmesiden/privatliv/"
 
     private val mApi by lazy {
@@ -76,33 +64,9 @@ class DmiService @Inject constructor(
             .create(DmiApi::class.java)
     }
 
-    private val weatherAttribution = "DMI (Creative Commons CC BY)"
-    override val supportedFeatures = mapOf(
-        SourceFeature.FORECAST to weatherAttribution,
-        SourceFeature.ALERT to weatherAttribution,
-        SourceFeature.REVERSE_GEOCODING to weatherAttribution
-    )
     override val attributionLinks = mapOf(
         "DMI" to "https://www.dmi.dk/"
     )
-    override fun isFeatureSupportedForLocation(
-        location: Location,
-        feature: SourceFeature,
-    ): Boolean {
-        return feature != SourceFeature.ALERT ||
-            arrayOf("DK", "FO", "GL").any { it.equals(location.countryCode, ignoreCase = true) }
-    }
-
-    override fun getFeaturePriorityForLocation(
-        location: Location,
-        feature: SourceFeature,
-    ): Int {
-        return when {
-            // Always use the same criterias as alert
-            isFeatureSupportedForLocation(location, SourceFeature.ALERT) -> PRIORITY_HIGHEST
-            else -> PRIORITY_NONE
-        }
-    }
 
     override fun requestWeather(
         context: Context,
@@ -324,12 +288,6 @@ class DmiService @Inject constructor(
             mapOf("id" to it.id)
         }
     }
-
-    // We have no way to distinguish the ones below
-    override val knownAmbiguousCountryCodes: Array<String> = arrayOf(
-        "FI", // Territories: AX
-        "MA" // Claims: EH
-    )
 
     companion object {
         private const val DMI_BASE_URL = "https://www.dmi.dk/"

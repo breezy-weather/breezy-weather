@@ -17,24 +17,18 @@
 package org.breezyweather.sources.ipsb
 
 import android.content.Context
-import breezyweather.domain.source.SourceContinent
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.common.exceptions.InvalidOrIncompleteDataException
 import org.breezyweather.common.rxjava.SchedulerTransformer
-import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationPositionWrapper
-import org.breezyweather.common.source.LocationSource
 import retrofit2.Retrofit
 import javax.inject.Inject
 import javax.inject.Named
 
 class IpSbLocationService @Inject constructor(
     @Named("JsonClient") client: Retrofit.Builder,
-) : HttpSource(), LocationSource {
+) : IpSbLocationServiceStub() {
 
-    override val id = "ipsb"
-    override val name = "IP.SB"
-    override val continent = SourceContinent.WORLDWIDE
     override val privacyPolicyUrl = "https://ip.sb/privacy-policy/"
 
     private val mApi by lazy {
@@ -57,10 +51,6 @@ class IpSbLocationService @Inject constructor(
                 )
             }
     }
-
-    override fun hasPermissions(context: Context) = true
-
-    override val permissions: Array<String> = emptyArray()
 
     companion object {
         private const val IP_SB_BASE_URL = "https://api.ip.sb/"

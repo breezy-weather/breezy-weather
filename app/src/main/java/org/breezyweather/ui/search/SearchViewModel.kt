@@ -45,6 +45,8 @@ class SearchViewModel @Inject constructor(
         repository.lastSelectedLocationSearchSource
     )
     val locationSearchSource = _locationSearchSource.asStateFlow()
+    private val _dialogLocationSearchSourceOpenState: MutableStateFlow<Boolean> = MutableStateFlow(false)
+    val dialogLocationSearchSourceOpenState = _dialogLocationSearchSourceOpenState.asStateFlow()
     private val _selectedLocation: MutableStateFlow<Location?> = MutableStateFlow(null)
     val selectedLocation = _selectedLocation.asStateFlow()
     private val _dialogLocationSourcesOpenState: MutableStateFlow<Boolean> = MutableStateFlow(false)
@@ -117,6 +119,14 @@ class SearchViewModel @Inject constructor(
             _isLoading.value = false
             _dialogLocationSourcesOpenState.value = true
         }
+    }
+
+    fun openDialogLocationSearchSource() {
+        _dialogLocationSearchSourceOpenState.value = true
+    }
+
+    fun closeDialogLocationSearchSource() {
+        _dialogLocationSearchSourceOpenState.value = false
     }
 
     fun closeDialogLocationSources() {

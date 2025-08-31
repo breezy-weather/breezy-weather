@@ -22,7 +22,6 @@ import androidx.annotation.ColorInt
 import androidx.core.graphics.toColorInt
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.location.model.LocationAddressInfo
-import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.DailyRelativeHumidity
@@ -50,18 +49,10 @@ import org.breezyweather.R
 import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
-import org.breezyweather.common.extensions.getCountryName
 import org.breezyweather.common.extensions.plus
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.common.preference.EditTextPreference
 import org.breezyweather.common.preference.Preference
-import org.breezyweather.common.source.ConfigurableSource
-import org.breezyweather.common.source.HttpSource
-import org.breezyweather.common.source.LocationParametersSource
-import org.breezyweather.common.source.ReverseGeocodingSource
-import org.breezyweather.common.source.WeatherSource
-import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_HIGHEST
-import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
 import org.breezyweather.domain.settings.SourceConfigStore
 import org.breezyweather.sources.mf.json.MfCurrentResult
 import org.breezyweather.sources.mf.json.MfForecastDaily
@@ -97,18 +88,8 @@ import kotlin.time.Duration.Companion.minutes
 class MfService @Inject constructor(
     @ApplicationContext context: Context,
     @Named("JsonClient") client: Retrofit.Builder,
-) : HttpSource(), WeatherSource, ReverseGeocodingSource, LocationParametersSource, ConfigurableSource {
+) : MfServiceStub(context) {
 
-    override val id = "mf"
-    private val countryName = context.currentLocale.getCountryName("FR")
-    override val name = "Météo-France".let {
-        if (it.contains(countryName)) {
-            it
-        } else {
-            "$it ($countryName)"
-        }
-    }
-    override val continent = SourceContinent.EUROPE
     override val privacyPolicyUrl = "https://meteofrance.com/application-meteo-france-politique-de-confidentialite"
 
     private val mApi by lazy {
@@ -118,55 +99,9 @@ class MfService @Inject constructor(
             .create(MfApi::class.java)
     }
 
-    private val weatherAttribution = "Météo-France (Etalab)"
-    override val supportedFeatures = mapOf(
-        SourceFeature.FORECAST to weatherAttribution,
-        SourceFeature.CURRENT to weatherAttribution,
-        SourceFeature.MINUTELY to weatherAttribution,
-        SourceFeature.ALERT to weatherAttribution,
-        SourceFeature.NORMALS to weatherAttribution,
-        SourceFeature.REVERSE_GEOCODING to weatherAttribution
-    )
     override val attributionLinks = mapOf(
         "Météo-France" to "https://meteofrance.com/"
     )
-    override fun isFeatureSupportedForLocation(
-        location: Location,
-        feature: SourceFeature,
-    ): Boolean {
-        return when (feature) {
-            SourceFeature.CURRENT -> !location.countryCode.isNullOrEmpty() &&
-                location.countryCode.equals("FR", ignoreCase = true)
-            SourceFeature.MINUTELY -> !location.countryCode.isNullOrEmpty() &&
-                location.countryCode.equals("FR", ignoreCase = true)
-            SourceFeature.ALERT -> !location.countryCode.isNullOrEmpty() &&
-                arrayOf("FR", "AD", "BL", "GF", "GP", "MF", "MQ", "NC", "PF", "PM", "RE", "WF", "YT")
-                    .any { location.countryCode.equals(it, ignoreCase = true) }
-            SourceFeature.NORMALS -> !location.countryCode.isNullOrEmpty() &&
-                arrayOf("FR", "AD", "MC", "BL", "GF", "GP", "MF", "MQ", "NC", "PF", "PM", "RE", "WF", "YT")
-                    .any { location.countryCode.equals(it, ignoreCase = true) }
-            SourceFeature.FORECAST, SourceFeature.REVERSE_GEOCODING -> true // Main source available worldwide
-            else -> false
-        }
-    }
-
-    override fun getFeaturePriorityForLocation(
-        location: Location,
-        feature: SourceFeature,
-    ): Int {
-        return when {
-            isFeatureSupportedForLocation(
-                location,
-                // Since forecast and reverse geocoding are available worldwide, use the same criteria as normals
-                if (feature in arrayOf(SourceFeature.FORECAST, SourceFeature.REVERSE_GEOCODING)) {
-                    SourceFeature.NORMALS
-                } else {
-                    feature
-                }
-            ) -> PRIORITY_HIGHEST
-            else -> PRIORITY_NONE
-        }
-    }
 
     override fun requestWeather(
         context: Context,
@@ -1180,17 +1115,6 @@ class MfService @Inject constructor(
             )
         )
     }
-
-    /**
-     * The main issue on this source is that there are not many nearest locations recognized, so the resolutions are
-     *  wrong on small regions like:
-     * - Macau (nearest on China side, making "CN" ambiguous)
-     * - For others, we were able to deduce from the timezone (no idea why it didn't work for Macau)
-     *
-     * When the nearest point is more than 50 km away, the app rejects the result, so we are safe for non-recognized
-     *  uninhabited islands (if anyone actually need it)
-     */
-    override val knownAmbiguousCountryCodes: Array<String> = arrayOf("CN") // Territories: MO
 
     companion object {
         private const val MF_BASE_URL = "https://webservice.meteofrance.com/"

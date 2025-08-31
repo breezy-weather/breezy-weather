@@ -140,9 +140,9 @@ class RefreshHelper @Inject constructor(
                     errors.add(RefreshError(RefreshErrorType.ACCESS_BACKGROUND_LOCATION_PERMISSION_MISSING))
                 }
             }
-        }
-        if (!LocationManagerCompat.isLocationEnabled(context.locationManager)) {
-            errors.add(RefreshError(RefreshErrorType.LOCATION_ACCESS_OFF))
+            if (!LocationManagerCompat.isLocationEnabled(context.locationManager)) {
+                errors.add(RefreshError(RefreshErrorType.LOCATION_ACCESS_OFF))
+            }
         }
         if (errors.isNotEmpty()) {
             return errors

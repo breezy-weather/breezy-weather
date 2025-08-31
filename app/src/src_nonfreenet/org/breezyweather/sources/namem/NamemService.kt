@@ -19,7 +19,6 @@ package org.breezyweather.sources.namem
 import android.content.Context
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.location.model.LocationAddressInfo
-import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.model.AirQuality
 import breezyweather.domain.weather.model.Normals
@@ -41,16 +40,7 @@ import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody.Companion.toRequestBody
 import org.breezyweather.R
 import org.breezyweather.common.exceptions.InvalidLocationException
-import org.breezyweather.common.extensions.code
-import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.getCalendarMonth
-import org.breezyweather.common.extensions.getCountryName
-import org.breezyweather.common.source.HttpSource
-import org.breezyweather.common.source.LocationParametersSource
-import org.breezyweather.common.source.ReverseGeocodingSource
-import org.breezyweather.common.source.WeatherSource
-import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_HIGHEST
-import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
 import org.breezyweather.domain.weather.index.PollutantIndex
 import org.breezyweather.sources.namem.json.NamemAirQualityResult
 import org.breezyweather.sources.namem.json.NamemCurrentResult
@@ -73,18 +63,7 @@ import javax.inject.Named
 class NamemService @Inject constructor(
     @ApplicationContext context: Context,
     @Named("JsonClient") client: Retrofit.Builder,
-) : HttpSource(), WeatherSource, ReverseGeocodingSource, LocationParametersSource {
-
-    override val id = "namem"
-    override val name by lazy {
-        if (context.currentLocale.code.startsWith("mn")) {
-            "Цаг уур, орчны шинжилгээний газар"
-        } else {
-            "NAMEM (${context.currentLocale.getCountryName("MN")})"
-        }
-    }
-    override val continent = SourceContinent.ASIA
-    override val privacyPolicyUrl = ""
+) : NamemServiceStub(context) {
 
     private val mApi by lazy {
         client
@@ -93,41 +72,10 @@ class NamemService @Inject constructor(
             .create(NamemApi::class.java)
     }
 
-    private val weatherAttribution by lazy {
-        if (context.currentLocale.code.startsWith("mn")) {
-            "Цаг уур, орчны шинжилгээний газар"
-        } else {
-            "National Agency for Meteorology and Environmental Monitoring"
-        }
-    }
-    override val supportedFeatures = mapOf(
-        SourceFeature.FORECAST to weatherAttribution,
-        SourceFeature.CURRENT to weatherAttribution,
-        SourceFeature.AIR_QUALITY to weatherAttribution,
-        SourceFeature.NORMALS to weatherAttribution,
-        SourceFeature.REVERSE_GEOCODING to weatherAttribution
-    )
     override val attributionLinks
         get() = mapOf(
             weatherAttribution to NAMEM_BASE_URL
         )
-
-    override fun isFeatureSupportedForLocation(
-        location: Location,
-        feature: SourceFeature,
-    ): Boolean {
-        return location.countryCode.equals("MN", ignoreCase = true)
-    }
-
-    override fun getFeaturePriorityForLocation(
-        location: Location,
-        feature: SourceFeature,
-    ): Int {
-        return when {
-            isFeatureSupportedForLocation(location, feature) -> PRIORITY_HIGHEST
-            else -> PRIORITY_NONE
-        }
-    }
 
     override fun requestWeather(
         context: Context,
@@ -602,9 +550,6 @@ class NamemService @Inject constructor(
             "stationId" to nearestStation
         )
     }
-
-    // Only supports its own country
-    override val knownAmbiguousCountryCodes: Array<String>? = null
 
     companion object {
         private const val NAMEM_BASE_URL = "https://weather.gov.mn/"

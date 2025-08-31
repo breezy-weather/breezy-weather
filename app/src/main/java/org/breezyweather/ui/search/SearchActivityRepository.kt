@@ -32,7 +32,6 @@ import org.breezyweather.domain.settings.ConfigStore
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.sources.RefreshHelper
 import org.breezyweather.sources.SourceManager
-import org.breezyweather.sources.getWeatherSource
 import org.breezyweather.ui.main.utils.RefreshErrorType
 import javax.inject.Inject
 

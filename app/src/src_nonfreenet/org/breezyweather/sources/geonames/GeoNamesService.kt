@@ -18,7 +18,6 @@ package org.breezyweather.sources.geonames
 
 import android.content.Context
 import breezyweather.domain.location.model.LocationAddressInfo
-import breezyweather.domain.source.SourceContinent
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.BuildConfig
@@ -29,9 +28,6 @@ import org.breezyweather.common.extensions.codeForGeonames
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.preference.EditTextPreference
 import org.breezyweather.common.preference.Preference
-import org.breezyweather.common.source.ConfigurableSource
-import org.breezyweather.common.source.HttpSource
-import org.breezyweather.common.source.LocationSearchSource
 import org.breezyweather.domain.settings.SourceConfigStore
 import org.breezyweather.sources.geonames.json.GeoNamesLocation
 import retrofit2.Retrofit
@@ -41,14 +37,8 @@ import javax.inject.Named
 class GeoNamesService @Inject constructor(
     @ApplicationContext context: Context,
     @Named("JsonClient") client: Retrofit.Builder,
-) : HttpSource(), LocationSearchSource, ConfigurableSource {
+) : GeoNamesServiceStub() {
 
-    override val id = "geonames"
-    override val name = "GeoNames"
-    override val continent = SourceContinent.WORLDWIDE
-    override val privacyPolicyUrl = ""
-
-    override val locationSearchAttribution = "GeoNames (CC BY 4.0)"
     override val attributionLinks = mapOf(
         name to "https://www.geonames.org/"
     )
@@ -155,9 +145,6 @@ class GeoNamesService @Inject constructor(
             )
         )
     }
-
-    // No known ambiguous code
-    override val knownAmbiguousCountryCodes: Array<String> = emptyArray()
 
     companion object {
         private const val GEO_NAMES_BASE_URL = "https://secure.geonames.org/"

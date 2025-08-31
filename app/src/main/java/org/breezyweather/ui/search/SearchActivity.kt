@@ -56,8 +56,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
@@ -76,9 +78,10 @@ import org.breezyweather.common.source.NonFreeNetSource
 import org.breezyweather.common.source.getName
 import org.breezyweather.domain.location.model.getPlace
 import org.breezyweather.sources.SourceManager
-import org.breezyweather.sources.getLocationSearchSourceOrDefault
+import org.breezyweather.ui.common.composables.AlertDialogLink
 import org.breezyweather.ui.common.composables.AlertDialogNoPadding
 import org.breezyweather.ui.common.composables.SecondarySourcesPreference
+import org.breezyweather.ui.common.widgets.Material3ExpressiveCardListItem
 import org.breezyweather.ui.common.widgets.Material3Scaffold
 import org.breezyweather.ui.common.widgets.Material3SearchBarInputField
 import org.breezyweather.ui.settings.preference.composables.RadioButton
@@ -107,7 +110,8 @@ class SearchActivity : BreezyActivity() {
     @Composable
     private fun ContentView() {
         val context = LocalContext.current
-        val dialogLocationSearchSourceOpenState = rememberSaveable { mutableStateOf(false) }
+        val dialogLinkOpenState = remember { mutableStateOf(false) }
+        val dialogLocationSearchSourceOpenState = viewModel.dialogLocationSearchSourceOpenState.collectAsState()
         val dialogLocationSourcesOpenState = viewModel.dialogLocationSourcesOpenState.collectAsState()
         val selectedLocation = viewModel.selectedLocation.collectAsState()
         val isLoading = viewModel.isLoading.collectAsState()
@@ -140,7 +144,7 @@ class SearchActivity : BreezyActivity() {
                     },
                     floatingActionButton = {
                         FloatingActionButton(
-                            onClick = { dialogLocationSearchSourceOpenState.value = true },
+                            onClick = { viewModel.openDialogLocationSearchSource() },
                             containerColor = FloatingActionButtonDefaults.containerColor,
                             elevation = FloatingActionButtonDefaults.bottomAppBarFabElevation()
                         ) {
@@ -244,7 +248,7 @@ class SearchActivity : BreezyActivity() {
 
         if (dialogLocationSearchSourceOpenState.value) {
             AlertDialogNoPadding(
-                onDismissRequest = { dialogLocationSearchSourceOpenState.value = false },
+                onDismissRequest = { viewModel.closeDialogLocationSearchSource() },
                 title = {
                     Text(
                         text = stringResource(R.string.location_search_source),
@@ -256,6 +260,41 @@ class SearchActivity : BreezyActivity() {
                     LazyColumn(
                         modifier = Modifier.fillMaxWidth()
                     ) {
+                        item {
+                            if (BuildConfig.FLAVOR == "freenet") {
+                                Material3ExpressiveCardListItem(
+                                    surface = MaterialTheme.colorScheme.secondaryContainer,
+                                    onSurface = MaterialTheme.colorScheme.onSecondaryContainer,
+                                    isFirst = true,
+                                    isLast = true,
+                                    modifier = Modifier.padding(horizontal = dimensionResource(R.dimen.small_margin))
+                                ) {
+                                    Column(
+                                        modifier = Modifier.padding(
+                                            top = dimensionResource(R.dimen.normal_margin),
+                                            start = dimensionResource(R.dimen.normal_margin),
+                                            end = dimensionResource(R.dimen.normal_margin)
+                                        )
+                                    ) {
+                                        Text(
+                                            text = stringResource(R.string.settings_weather_source_freenet_disclaimer),
+                                            color = MaterialTheme.colorScheme.onSecondaryContainer,
+                                            style = MaterialTheme.typography.bodyMedium
+                                        )
+                                        TextButton(
+                                            modifier = Modifier.align(Alignment.CenterHorizontally),
+                                            onClick = {
+                                                dialogLinkOpenState.value = true
+                                            }
+                                        ) {
+                                            Text(
+                                                text = stringResource(R.string.action_learn_more)
+                                            )
+                                        }
+                                    }
+                                }
+                            }
+                        }
                         items(sourceManager.getLocationSearchSources()) {
                             val enabled = (it !is ConfigurableSource || it.isConfigured) &&
                                 (BuildConfig.FLAVOR != "freenet" || it !is NonFreeNetSource)
@@ -264,7 +303,7 @@ class SearchActivity : BreezyActivity() {
                                 enabled = enabled,
                                 onClick = {
                                     if (enabled) {
-                                        dialogLocationSearchSourceOpenState.value = false
+                                        viewModel.closeDialogLocationSearchSource()
                                         viewModel.setEnabledSource(it.id)
                                         if (text.isNotEmpty()) {
                                             viewModel.requestLocationList(text)
@@ -278,7 +317,7 @@ class SearchActivity : BreezyActivity() {
                 },
                 confirmButton = {
                     TextButton(
-                        onClick = { dialogLocationSearchSourceOpenState.value = false }
+                        onClick = { viewModel.closeDialogLocationSearchSource() }
                     ) {
                         Text(
                             text = stringResource(android.R.string.cancel),
@@ -287,6 +326,13 @@ class SearchActivity : BreezyActivity() {
                         )
                     }
                 }
+            )
+        }
+
+        if (dialogLinkOpenState.value) {
+            AlertDialogLink(
+                onClose = { dialogLinkOpenState.value = false },
+                linkToOpen = "https://github.com/breezy-weather/breezy-weather/blob/main/INSTALL.md"
             )
         }
     }
@@ -312,6 +358,10 @@ class SearchActivity : BreezyActivity() {
         currentFocus?.let {
             inputMethodManager.hideSoftInputFromWindow(it.windowToken, 0)
         }
+    }
+
+    fun openDialogLocationSearchSource() {
+        viewModel.openDialogLocationSearchSource()
     }
 
     companion object {

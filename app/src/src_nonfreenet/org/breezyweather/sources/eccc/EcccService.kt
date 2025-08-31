@@ -20,7 +20,6 @@ import android.content.Context
 import androidx.core.graphics.toColorInt
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.location.model.LocationAddressInfo
-import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.Normals
@@ -41,14 +40,8 @@ import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.getCalendarMonth
-import org.breezyweather.common.extensions.getCountryName
 import org.breezyweather.common.extensions.toDate
 import org.breezyweather.common.extensions.toTimezoneNoHour
-import org.breezyweather.common.source.HttpSource
-import org.breezyweather.common.source.ReverseGeocodingSource
-import org.breezyweather.common.source.WeatherSource
-import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_HIGHEST
-import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
 import org.breezyweather.sources.eccc.json.EcccAlert
 import org.breezyweather.sources.eccc.json.EcccDailyFcst
 import org.breezyweather.sources.eccc.json.EcccHourly
@@ -74,11 +67,8 @@ import kotlin.time.Duration.Companion.seconds
 class EcccService @Inject constructor(
     @ApplicationContext context: Context,
     @Named("JsonClient") client: Retrofit.Builder,
-) : HttpSource(), WeatherSource, ReverseGeocodingSource {
+) : EcccServiceStub(context) {
 
-    override val id = "eccc"
-    override val name = "ECCC (${context.currentLocale.getCountryName("CA")})"
-    override val continent = SourceContinent.NORTH_AMERICA
     override val privacyPolicyUrl by lazy {
         with(context.currentLocale.code) {
             when {
@@ -95,47 +85,11 @@ class EcccService @Inject constructor(
             .create(EcccApi::class.java)
     }
 
-    private val weatherAttribution by lazy {
-        with(context.currentLocale.code) {
-            when {
-                startsWith("fr") ->
-                    "Environnement et Changement Climatique Canada (Licence d’utilisation finale" +
-                        " pour les serveurs de données d’Environnement et Changement Climatique Canada)"
-                else ->
-                    "Environment and Climate Change Canada" +
-                        " (Environment and Climate Change Canada Data Servers End-use Licence)"
-            }
-        }
-    }
     override val attributionLinks
         get() = mapOf(
             "Environnement et Changement Climatique Canada" to "https://meteo.gc.ca/",
             "Environment and Climate Change Canada" to "https://weather.gc.ca/"
         )
-    override val supportedFeatures = mapOf(
-        SourceFeature.FORECAST to weatherAttribution,
-        SourceFeature.CURRENT to weatherAttribution,
-        SourceFeature.ALERT to weatherAttribution,
-        SourceFeature.NORMALS to weatherAttribution,
-        SourceFeature.REVERSE_GEOCODING to weatherAttribution
-    )
-
-    override fun isFeatureSupportedForLocation(
-        location: Location,
-        feature: SourceFeature,
-    ): Boolean {
-        return location.countryCode.equals("CA", ignoreCase = true)
-    }
-
-    override fun getFeaturePriorityForLocation(
-        location: Location,
-        feature: SourceFeature,
-    ): Int {
-        return when {
-            isFeatureSupportedForLocation(location, feature) -> PRIORITY_HIGHEST
-            else -> PRIORITY_NONE
-        }
-    }
 
     override fun requestWeather(
         context: Context,
@@ -415,9 +369,6 @@ class EcccService @Inject constructor(
             city = result.displayName
         )
     }
-
-    // Only supports its own country
-    override val knownAmbiguousCountryCodes: Array<String>? = null
 
     companion object {
         private const val ECCC_BASE_URL = "https://app.weather.gc.ca/"

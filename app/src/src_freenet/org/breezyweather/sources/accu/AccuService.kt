@@ -24,6 +24,7 @@ import breezyweather.domain.weather.wrappers.WeatherWrapper
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.common.exceptions.NonFreeNetSourceException
 import org.breezyweather.common.preference.Preference
+import org.breezyweather.sources.accu.preferences.AccuPortalPreference
 import javax.inject.Inject
 
 class AccuService @Inject constructor() : AccuServiceStub() {
@@ -52,8 +53,9 @@ class AccuService @Inject constructor() : AccuServiceStub() {
         throw NonFreeNetSourceException()
     }
 
+    override var portal = AccuPortalPreference.ENTERPRISE
+
     override val isConfigured = true
-    override val isRestricted = false
 
     override fun getPreferences(context: Context): List<Preference> = emptyList()
 

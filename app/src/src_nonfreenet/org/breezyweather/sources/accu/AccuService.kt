@@ -77,7 +77,6 @@ import org.breezyweather.sources.accu.json.AccuValue
 import org.breezyweather.sources.accu.preferences.AccuDaysPreference
 import org.breezyweather.sources.accu.preferences.AccuHoursPreference
 import org.breezyweather.sources.accu.preferences.AccuPortalPreference
-import org.breezyweather.sources.openmeteo.OpenMeteoService.Companion.COPERNICUS_POLLEN_BBOX
 import org.breezyweather.unit.distance.Distance
 import org.breezyweather.unit.distance.Distance.Companion.feet
 import org.breezyweather.unit.distance.Distance.Companion.kilometers
@@ -136,24 +135,6 @@ class AccuService @Inject constructor(
     @DrawableRes
     override fun getAttributionIcon(): Int {
         return R.drawable.accu_icon
-    }
-
-    override fun isFeatureSupportedForLocation(
-        location: Location,
-        feature: SourceFeature,
-    ): Boolean {
-        return when (feature) {
-            SourceFeature.POLLEN -> COPERNICUS_POLLEN_BBOX.contains(LatLng(location.latitude, location.longitude)) || (
-                location.countryCode.equals("US", ignoreCase = true) &&
-                    CONTIGUOUS_US_STATES_BBOX.contains(LatLng(location.latitude, location.longitude))
-                ) || (location.countryCode.equals("CA", ignoreCase = true))
-            else ->
-                portal == AccuPortalPreference.ENTERPRISE ||
-                    feature == SourceFeature.FORECAST ||
-                    feature == SourceFeature.CURRENT ||
-                    feature == SourceFeature.ALERT ||
-                    feature == SourceFeature.REVERSE_GEOCODING
-        }
     }
 
     override fun requestWeather(
@@ -866,7 +847,7 @@ class AccuService @Inject constructor(
         }
         get() = config.getString("apikey", null) ?: ""
 
-    private var portal: AccuPortalPreference
+    override var portal: AccuPortalPreference
         set(value) {
             config.edit().putString("portal", value.id).apply()
         }
@@ -907,8 +888,6 @@ class AccuService @Inject constructor(
 
     override val isConfigured
         get() = getApiKeyOrDefault().isNotEmpty()
-
-    override val isRestricted = false
 
     override fun getPreferences(context: Context): List<Preference> {
         return listOf(
@@ -1023,16 +1002,6 @@ class AccuService @Inject constructor(
     companion object {
         private const val ACCU_DEVELOPER_BASE_URL = "https://dataservice.accuweather.com/"
         private const val ACCU_ENTERPRISE_BASE_URL = "https://api.accuweather.com/"
-
-        // Accuweather's pollen forecast is only available in the 48 contiguous U.S. states + D.C., Canada,
-        // and European coverage area of Copernicus. We will limit Pollen Source to these areas.
-
-        // 48 contiguous states boundary taken from Natural Earth Data, extended by 1° in each direction.
-        // Source: https://www.naturalearthdata.com/
-        private val CONTIGUOUS_US_STATES_BBOX = LatLngBounds(
-            LatLng(23.542547919, -125.734607238),
-            LatLng(50.369494121, -65.977324999)
-        )
 
         // Extracted from: https://developer.accuweather.com/localizations-by-language
         // Leads to failure to refresh otherwise

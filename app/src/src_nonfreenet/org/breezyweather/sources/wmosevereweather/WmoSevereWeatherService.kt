@@ -30,8 +30,6 @@ import org.breezyweather.BreezyWeather
 import org.breezyweather.common.extensions.capitalize
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
-import org.breezyweather.common.source.HttpSource
-import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.sources.common.xml.CapAlert
 import org.breezyweather.sources.wmosevereweather.json.WmoSevereWeatherAlertResult
 import retrofit2.Retrofit
@@ -49,7 +47,7 @@ class WmoSevereWeatherService @Inject constructor(
     @ApplicationContext context: Context,
     @Named("JsonClient") jsonClient: Retrofit.Builder,
     @Named("XmlClient") xmlClient: Retrofit.Builder,
-) : HttpSource(), WeatherSource {
+) : WmoSevereWeatherServiceStub(context) {
 
     override val id = "wmosevereweather"
     override val name by lazy {

@@ -18,7 +18,6 @@ package org.breezyweather.sources.aemet
 
 import android.content.Context
 import breezyweather.domain.location.model.Location
-import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.model.DailyRelativeHumidity
 import breezyweather.domain.weather.model.Normals
@@ -44,14 +43,8 @@ import org.breezyweather.BuildConfig
 import org.breezyweather.R
 import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.exceptions.InvalidOrIncompleteDataException
-import org.breezyweather.common.extensions.currentLocale
-import org.breezyweather.common.extensions.getCountryName
 import org.breezyweather.common.preference.EditTextPreference
 import org.breezyweather.common.preference.Preference
-import org.breezyweather.common.source.ConfigurableSource
-import org.breezyweather.common.source.HttpSource
-import org.breezyweather.common.source.LocationParametersSource
-import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_HIGHEST
 import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
 import org.breezyweather.domain.settings.SourceConfigStore
@@ -78,11 +71,8 @@ import javax.inject.Named
 class AemetService @Inject constructor(
     @ApplicationContext context: Context,
     @Named("JsonClient") client: Retrofit.Builder,
-) : HttpSource(), WeatherSource, LocationParametersSource, ConfigurableSource {
+) : AemetServiceStub(context) {
 
-    override val id = "aemet"
-    override val name = "AEMET (${context.currentLocale.getCountryName("ES")})"
-    override val continent = SourceContinent.EUROPE
     override val privacyPolicyUrl = "https://www.aemet.es/es/nota_legal"
 
     private val mApi by lazy {
@@ -94,32 +84,9 @@ class AemetService @Inject constructor(
 
     private val okHttpClient = OkHttpClient()
 
-    private val weatherAttribution = "Agencia Estatal de Meteorología"
-    override val supportedFeatures = mapOf(
-        SourceFeature.FORECAST to weatherAttribution,
-        SourceFeature.CURRENT to weatherAttribution,
-        SourceFeature.NORMALS to weatherAttribution
-    )
     override val attributionLinks = mapOf(
         weatherAttribution to "https://www.aemet.es/"
     )
-
-    override fun isFeatureSupportedForLocation(
-        location: Location,
-        feature: SourceFeature,
-    ): Boolean {
-        return location.countryCode.equals("ES", ignoreCase = true)
-    }
-
-    override fun getFeaturePriorityForLocation(
-        location: Location,
-        feature: SourceFeature,
-    ): Int {
-        return when {
-            isFeatureSupportedForLocation(location, feature) -> PRIORITY_HIGHEST
-            else -> PRIORITY_NONE
-        }
-    }
 
     override fun requestWeather(
         context: Context,

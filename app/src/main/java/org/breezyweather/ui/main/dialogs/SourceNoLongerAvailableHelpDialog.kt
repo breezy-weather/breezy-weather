@@ -28,6 +28,7 @@ import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.res.stringResource
 import org.breezyweather.R
 import org.breezyweather.ui.main.MainActivity
+import org.breezyweather.ui.search.SearchActivity
 import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.compose.BreezyWeatherTheme
 
@@ -69,11 +70,15 @@ object SourceNoLongerAvailableHelpDialog {
                                 Text(stringResource(R.string.action_close))
                             }
                         },
-                        dismissButton = if (activity is MainActivity) {
+                        dismissButton = if (activity is MainActivity || activity is SearchActivity) {
                             {
                                 TextButton(
                                     onClick = {
-                                        activity.onEditIconClicked()
+                                        if (activity is MainActivity) {
+                                            activity.onEditIconClicked()
+                                        } else if (activity is SearchActivity) {
+                                            activity.openDialogLocationSearchSource()
+                                        }
                                         dialogOpenState.value = false
                                     }
                                 ) {

@@ -18,7 +18,6 @@ package org.breezyweather.sources.ekuk
 
 import android.content.Context
 import breezyweather.domain.location.model.Location
-import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.model.AirQuality
 import breezyweather.domain.weather.wrappers.AirQualityWrapper
@@ -26,14 +25,6 @@ import breezyweather.domain.weather.wrappers.WeatherWrapper
 import com.google.maps.android.model.LatLng
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
-import org.breezyweather.common.extensions.code
-import org.breezyweather.common.extensions.currentLocale
-import org.breezyweather.common.extensions.getCountryName
-import org.breezyweather.common.source.HttpSource
-import org.breezyweather.common.source.LocationParametersSource
-import org.breezyweather.common.source.WeatherSource
-import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_HIGHEST
-import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
 import org.breezyweather.sources.ekuk.json.EkukObservationsResult
 import org.breezyweather.sources.ekuk.json.EkukStationsResult
 import org.breezyweather.unit.pollutant.PollutantConcentration.Companion.microgramsPerCubicMeter
@@ -49,21 +40,7 @@ import javax.inject.Named
 class EkukService @Inject constructor(
     @ApplicationContext context: Context,
     @Named("JsonClient") client: Retrofit.Builder,
-) : HttpSource(), WeatherSource, LocationParametersSource {
-    override val id = "ekuk"
-    override val name = "EKUK (${context.currentLocale.getCountryName("EE")})"
-    override val continent = SourceContinent.EUROPE
-    override val privacyPolicyUrl = ""
-    private val weatherAttribution by lazy {
-        with(context.currentLocale.code) {
-            when {
-                startsWith("et") -> "Eesti Keskkonnauuringute Keskus"
-                startsWith("ru") -> "Эстонский центр экологических исследований"
-                startsWith("uk") -> "Естонський центр екологічних досліджень"
-                else -> "Estonian Environmental Research Center"
-            }
-        }
-    }
+) : EkukServiceStub(context) {
 
     private val mApi by lazy {
         client.baseUrl(EKUK_BASE_URL)
@@ -71,30 +48,9 @@ class EkukService @Inject constructor(
             .create(EkukApi::class.java)
     }
 
-    override val supportedFeatures = mapOf(
-        SourceFeature.AIR_QUALITY to weatherAttribution
-        // SourceFeature.POLLEN to weatherAttribution
-    )
     override val attributionLinks = mapOf(
         weatherAttribution to "https://www.ohuseire.ee/"
     )
-
-    override fun isFeatureSupportedForLocation(
-        location: Location,
-        feature: SourceFeature,
-    ): Boolean {
-        return location.countryCode.equals("EE", ignoreCase = true)
-    }
-
-    override fun getFeaturePriorityForLocation(
-        location: Location,
-        feature: SourceFeature,
-    ): Int {
-        return when {
-            isFeatureSupportedForLocation(location, feature) -> PRIORITY_HIGHEST
-            else -> PRIORITY_NONE
-        }
-    }
 
     override fun requestWeather(
         context: Context,

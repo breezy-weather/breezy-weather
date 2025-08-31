@@ -20,7 +20,6 @@ import android.content.Context
 import androidx.core.graphics.toColorInt
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.location.model.LocationAddressInfo
-import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.PrecipitationProbability
@@ -43,15 +42,8 @@ import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.exceptions.ReverseGeocodingException
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
-import org.breezyweather.common.extensions.getCountryName
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.common.extensions.toDateNoHour
-import org.breezyweather.common.source.HttpSource
-import org.breezyweather.common.source.LocationParametersSource
-import org.breezyweather.common.source.ReverseGeocodingSource
-import org.breezyweather.common.source.WeatherSource
-import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_HIGHEST
-import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
 import org.breezyweather.common.utils.helpers.LogHelper
 import org.breezyweather.sources.RefreshHelper
 import org.breezyweather.sources.ims.json.ImsLocation
@@ -71,19 +63,8 @@ import javax.inject.Named
 class ImsService @Inject constructor(
     @ApplicationContext context: Context,
     @Named("JsonClient") client: Retrofit.Builder,
-) : HttpSource(), WeatherSource, ReverseGeocodingSource, LocationParametersSource {
+) : ImsServiceStub(context) {
 
-    override val id = "ims"
-    override val name by lazy {
-        with(context.currentLocale.code) {
-            when {
-                startsWith("ar") -> "خدمة الأرصاد الجوية الإسرائيلية"
-                startsWith("he") || startsWith("iw") -> "השירות המטאורולוגי הישראלי"
-                else -> "IMS (${context.currentLocale.getCountryName("IL")})"
-            }
-        }
-    }
-    override val continent = SourceContinent.ASIA
     override val privacyPolicyUrl by lazy {
         with(context.currentLocale.code) {
             when {
@@ -100,43 +81,9 @@ class ImsService @Inject constructor(
             .create(ImsApi::class.java)
     }
 
-    private val weatherAttribution by lazy {
-        with(context.currentLocale.code) {
-            when {
-                startsWith("ar") -> "خدمة الأرصاد الجوية الإسرائيلية"
-                startsWith("he") || startsWith("iw") -> "השירות המטאורולוגי הישראלי"
-                else -> "Israel Meteorological Service"
-            }
-        }
-    }
-    override val supportedFeatures = mapOf(
-        SourceFeature.FORECAST to weatherAttribution,
-        SourceFeature.CURRENT to weatherAttribution,
-        SourceFeature.ALERT to weatherAttribution,
-        SourceFeature.REVERSE_GEOCODING to weatherAttribution
-    )
     override val attributionLinks = mapOf(
         weatherAttribution to "https://ims.gov.il/"
     )
-
-    override fun isFeatureSupportedForLocation(
-        location: Location,
-        feature: SourceFeature,
-    ): Boolean {
-        // Israel + West Bank + Gaza Strip
-        return location.countryCode.equals("IL", ignoreCase = true) ||
-            location.countryCode.equals("PS", ignoreCase = true)
-    }
-
-    override fun getFeaturePriorityForLocation(
-        location: Location,
-        feature: SourceFeature,
-    ): Int {
-        return when {
-            isFeatureSupportedForLocation(location, feature) -> PRIORITY_HIGHEST
-            else -> PRIORITY_NONE
-        }
-    }
 
     override fun requestWeather(
         context: Context,
@@ -475,8 +422,6 @@ class ImsService @Inject constructor(
                 mapOf("locationId" to nearestStation.lid)
             }
     }
-
-    override val knownAmbiguousCountryCodes: Array<String> = arrayOf("IL")
 
     companion object {
         private const val IMS_BASE_URL = "https://ims.gov.il/"

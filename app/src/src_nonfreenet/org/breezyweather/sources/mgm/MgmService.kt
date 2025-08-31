@@ -20,7 +20,6 @@ import android.content.Context
 import android.graphics.Color
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.location.model.LocationAddressInfo
-import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.Normals
@@ -37,15 +36,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.R
 import org.breezyweather.common.exceptions.InvalidLocationException
-import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.getCalendarMonth
-import org.breezyweather.common.extensions.getCountryName
-import org.breezyweather.common.source.HttpSource
-import org.breezyweather.common.source.LocationParametersSource
-import org.breezyweather.common.source.ReverseGeocodingSource
-import org.breezyweather.common.source.WeatherSource
-import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_HIGHEST
-import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
 import org.breezyweather.sources.mgm.json.MgmAlertResult
 import org.breezyweather.sources.mgm.json.MgmCurrentResult
 import org.breezyweather.sources.mgm.json.MgmDailyForecastResult
@@ -69,11 +60,8 @@ import javax.inject.Named
 class MgmService @Inject constructor(
     @ApplicationContext context: Context,
     @Named("JsonClient") client: Retrofit.Builder,
-) : HttpSource(), WeatherSource, ReverseGeocodingSource, LocationParametersSource {
+) : MgmServiceStub(context) {
 
-    override val id = "mgm"
-    override val name = "MGM (${context.currentLocale.getCountryName("TR")})"
-    override val continent = SourceContinent.ASIA
     override val privacyPolicyUrl = "https://www.mgm.gov.tr/site/gizlilik-politikasi.aspx"
 
     private val mApi by lazy {
@@ -83,34 +71,9 @@ class MgmService @Inject constructor(
             .create(MgmApi::class.java)
     }
 
-    private val weatherAttribution = "Meteoroloji Genel Müdürlüğü"
-    override val supportedFeatures = mapOf(
-        SourceFeature.FORECAST to weatherAttribution,
-        SourceFeature.CURRENT to weatherAttribution,
-        SourceFeature.ALERT to weatherAttribution,
-        SourceFeature.NORMALS to weatherAttribution,
-        SourceFeature.REVERSE_GEOCODING to weatherAttribution
-    )
     override val attributionLinks = mapOf(
         weatherAttribution to "https://www.mgm.gov.tr/"
     )
-
-    override fun isFeatureSupportedForLocation(
-        location: Location,
-        feature: SourceFeature,
-    ): Boolean {
-        return location.countryCode.equals("TR", ignoreCase = true)
-    }
-
-    override fun getFeaturePriorityForLocation(
-        location: Location,
-        feature: SourceFeature,
-    ): Int {
-        return when {
-            isFeatureSupportedForLocation(location, feature) -> PRIORITY_HIGHEST
-            else -> PRIORITY_NONE
-        }
-    }
 
     override fun requestWeather(
         context: Context,
@@ -617,9 +580,6 @@ class MgmService @Inject constructor(
             )
         }
     }
-
-    // Only supports its own country
-    override val knownAmbiguousCountryCodes: Array<String>? = null
 
     companion object {
         private const val MGM_BASE_URL = "https://servis.mgm.gov.tr/"

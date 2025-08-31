@@ -99,7 +99,6 @@ import org.breezyweather.domain.weather.model.getUVColor
 import org.breezyweather.domain.weather.model.validPollens
 import org.breezyweather.domain.weather.model.validPollutants
 import org.breezyweather.sources.SourceManager
-import org.breezyweather.sources.getFeatureSource
 import org.breezyweather.unit.distance.Distance
 import org.breezyweather.unit.distance.DistanceUnit
 import org.breezyweather.unit.pollen.PollenConcentrationUnit

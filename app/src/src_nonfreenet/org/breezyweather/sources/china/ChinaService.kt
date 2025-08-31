@@ -21,7 +21,6 @@ import android.graphics.Color
 import androidx.annotation.ColorInt
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.location.model.LocationAddressInfo
-import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.model.AirQuality
 import breezyweather.domain.weather.model.Alert
@@ -44,15 +43,7 @@ import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.exceptions.ReverseGeocodingException
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
-import org.breezyweather.common.extensions.getCountryName
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
-import org.breezyweather.common.source.HttpSource
-import org.breezyweather.common.source.LocationParametersSource
-import org.breezyweather.common.source.LocationSearchSource
-import org.breezyweather.common.source.ReverseGeocodingSource
-import org.breezyweather.common.source.WeatherSource
-import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_HIGHEST
-import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
 import org.breezyweather.sources.china.json.ChinaCurrent
 import org.breezyweather.sources.china.json.ChinaForecastDaily
 import org.breezyweather.sources.china.json.ChinaForecastHourly
@@ -78,11 +69,8 @@ import javax.inject.Named
 class ChinaService @Inject constructor(
     @ApplicationContext context: Context,
     @Named("JsonClient") client: Retrofit.Builder,
-) : HttpSource(), WeatherSource, LocationSearchSource, ReverseGeocodingSource, LocationParametersSource {
+) : ChinaServiceStub(context) {
 
-    override val id = "china"
-    override val name = context.currentLocale.getCountryName("CN")
-    override val continent = SourceContinent.ASIA
     override val privacyPolicyUrl by lazy {
         with(context.currentLocale.code) {
             when {
@@ -92,8 +80,6 @@ class ChinaService @Inject constructor(
         }
     }
 
-    override val locationSearchAttribution = "北京天气、彩云天气、中国环境监测总站"
-
     private val mApi by lazy {
         client
             .baseUrl(CHINA_WEATHER_BASE_URL)
@@ -101,36 +87,10 @@ class ChinaService @Inject constructor(
             .create(ChinaApi::class.java)
     }
 
-    private val weatherAttribution = "北京天气、彩云天气、中国环境监测总站"
-    override val supportedFeatures = mapOf(
-        SourceFeature.FORECAST to weatherAttribution,
-        SourceFeature.CURRENT to weatherAttribution,
-        SourceFeature.AIR_QUALITY to weatherAttribution,
-        SourceFeature.MINUTELY to weatherAttribution,
-        SourceFeature.ALERT to weatherAttribution,
-        SourceFeature.REVERSE_GEOCODING to name
-    )
     override val attributionLinks = mapOf(
         "彩云天气" to "https://caiyunapp.com/",
         "中国环境监测总站" to "https://www.cnemc.cn/"
     )
-
-    override fun isFeatureSupportedForLocation(
-        location: Location,
-        feature: SourceFeature,
-    ): Boolean {
-        return location.countryCode.equals("CN", ignoreCase = true)
-    }
-
-    override fun getFeaturePriorityForLocation(
-        location: Location,
-        feature: SourceFeature,
-    ): Int {
-        return when {
-            isFeatureSupportedForLocation(location, feature) -> PRIORITY_HIGHEST
-            else -> PRIORITY_NONE
-        }
-    }
 
     override fun requestWeather(
         context: Context,
@@ -626,9 +586,6 @@ class ChinaService @Inject constructor(
             }
         }
     }
-
-    // Only supports its own country
-    override val knownAmbiguousCountryCodes: Array<String>? = null
 
     companion object {
         private const val CHINA_WEATHER_BASE_URL = "https://weatherapi.market.xiaomi.com/wtr-v3/"

@@ -18,7 +18,6 @@ package org.breezyweather.sources.ncei
 
 import android.content.Context
 import breezyweather.domain.location.model.Location
-import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.model.Normals
 import breezyweather.domain.weather.reference.Month
@@ -29,11 +28,6 @@ import io.reactivex.rxjava3.core.Observable
 import kotlinx.serialization.json.Json
 import org.breezyweather.common.extensions.roundDownToNearestMultiplier
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
-import org.breezyweather.common.source.HttpSource
-import org.breezyweather.common.source.LocationParametersSource
-import org.breezyweather.common.source.WeatherSource
-import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_HIGHEST
-import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
 import org.breezyweather.sources.ncei.json.NceiDataResult
 import org.breezyweather.unit.temperature.Temperature.Companion.celsius
 import retrofit2.Retrofit
@@ -52,11 +46,8 @@ import kotlin.math.sqrt
 
 class NceiService @Inject constructor(
     @Named("JsonClient") client: Retrofit.Builder,
-) : HttpSource(), WeatherSource, LocationParametersSource {
+) : NceiServiceStub() {
 
-    override val id = "ncei"
-    override val name = "NCEI"
-    override val continent = SourceContinent.WORLDWIDE
     override val privacyPolicyUrl = "https://www.ncei.noaa.gov/privacy"
 
     private val mApi by lazy {
@@ -66,25 +57,9 @@ class NceiService @Inject constructor(
             .create(NceiApi::class.java)
     }
 
-    private val weatherAttribution = "National Centers for Environmental Information"
-    override val supportedFeatures = mapOf(
-        SourceFeature.NORMALS to weatherAttribution
-    )
     override val attributionLinks = mapOf(
         weatherAttribution to "https://www.ncei.noaa.gov/"
     )
-
-    override fun getFeaturePriorityForLocation(
-        location: Location,
-        feature: SourceFeature,
-    ): Int {
-        return when {
-            arrayOf("US", "PR", "VI", "MP", "GU").any {
-                location.countryCode.equals(it, ignoreCase = true)
-            } -> PRIORITY_HIGHEST
-            else -> PRIORITY_NONE
-        }
-    }
 
     override fun requestWeather(
         context: Context,

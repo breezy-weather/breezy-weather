@@ -19,7 +19,6 @@ package org.breezyweather.sources.pagasa
 import android.annotation.SuppressLint
 import android.content.Context
 import breezyweather.domain.location.model.Location
-import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.model.Precipitation
 import breezyweather.domain.weather.model.Wind
@@ -35,14 +34,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.R
 import org.breezyweather.common.exceptions.InvalidLocationException
-import org.breezyweather.common.extensions.currentLocale
-import org.breezyweather.common.extensions.getCountryName
 import org.breezyweather.common.extensions.getIsoFormattedDate
-import org.breezyweather.common.source.HttpSource
-import org.breezyweather.common.source.LocationParametersSource
-import org.breezyweather.common.source.WeatherSource
-import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_HIGHEST
-import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
 import org.breezyweather.sources.getWindDegree
 import org.breezyweather.sources.pagasa.json.PagasaCurrentResult
 import org.breezyweather.sources.pagasa.json.PagasaHourlyResult
@@ -65,12 +57,7 @@ import kotlin.time.Duration.Companion.hours
 class PagasaService @Inject constructor(
     @ApplicationContext context: Context,
     @Named("JsonClient") client: Retrofit.Builder,
-) : HttpSource(), WeatherSource, LocationParametersSource {
-
-    override val id = "pagasa"
-    override val name = "PAGASA (${context.currentLocale.getCountryName("PH")})"
-    override val continent = SourceContinent.ASIA
-    override val privacyPolicyUrl = ""
+) : PagasaServiceStub(context) {
 
     private val mApi by lazy {
         client
@@ -79,31 +66,9 @@ class PagasaService @Inject constructor(
             .create(PagasaApi::class.java)
     }
 
-    private val weatherAttribution = "Philippine Atmospheric, Geophysical and Astronomical Services Administration"
-    override val supportedFeatures = mapOf(
-        SourceFeature.FORECAST to weatherAttribution,
-        SourceFeature.CURRENT to weatherAttribution
-    )
     override val attributionLinks = mapOf(
         weatherAttribution to PAGASA_BASE_URL
     )
-
-    override fun isFeatureSupportedForLocation(
-        location: Location,
-        feature: SourceFeature,
-    ): Boolean {
-        return location.countryCode.equals("PH", ignoreCase = true)
-    }
-
-    override fun getFeaturePriorityForLocation(
-        location: Location,
-        feature: SourceFeature,
-    ): Int {
-        return when {
-            isFeatureSupportedForLocation(location, feature) -> PRIORITY_HIGHEST
-            else -> PRIORITY_NONE
-        }
-    }
 
     override fun requestWeather(
         context: Context,

@@ -20,7 +20,6 @@ import android.content.Context
 import android.graphics.Color
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.location.model.LocationAddressInfo
-import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.Precipitation
@@ -33,17 +32,8 @@ import breezyweather.domain.weather.wrappers.TemperatureWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
-import org.breezyweather.R
 import org.breezyweather.common.exceptions.InvalidLocationException
-import org.breezyweather.common.extensions.currentLocale
-import org.breezyweather.common.extensions.getCountryName
 import org.breezyweather.common.extensions.toDateNoHour
-import org.breezyweather.common.source.HttpSource
-import org.breezyweather.common.source.LocationParametersSource
-import org.breezyweather.common.source.ReverseGeocodingSource
-import org.breezyweather.common.source.WeatherSource
-import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_HIGHEST
-import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
 import org.breezyweather.sources.metie.json.MetIeHourly
 import org.breezyweather.sources.metie.json.MetIeLocationResult
 import org.breezyweather.sources.metie.json.MetIeWarning
@@ -66,18 +56,8 @@ import javax.inject.Named
 class MetIeService @Inject constructor(
     @ApplicationContext context: Context,
     @Named("JsonClient") client: Retrofit.Builder,
-) : HttpSource(), WeatherSource, ReverseGeocodingSource, LocationParametersSource {
+) : MetIeServiceStub(context) {
 
-    override val id = "metie"
-    private val countryName = context.currentLocale.getCountryName("IE")
-    override val name = "MET Éireann".let {
-        if (it.contains(countryName)) {
-            it
-        } else {
-            "$it ($countryName)"
-        }
-    }
-    override val continent = SourceContinent.EUROPE
     override val privacyPolicyUrl = "https://www.met.ie/about-us/privacy"
 
     private val mApi by lazy {
@@ -87,38 +67,11 @@ class MetIeService @Inject constructor(
             .create(MetIeApi::class.java)
     }
 
-    // Terms require: copyright + source + license (with link) + disclaimer + mention of modified data
-    private val weatherAttribution = "Copyright Met Éireann. Source met.ie. This data is published under a " +
-        "Commons Attribution 4.0 International (CC BY 4.0). Met Éireann does not accept any liability whatsoever " +
-        "for any error or omission in the data, their availability, or for any loss or damage arising from their " +
-        "use. ${context.getString(R.string.data_modified, context.getString(R.string.breezy_weather))}"
-    override val supportedFeatures = mapOf(
-        SourceFeature.FORECAST to weatherAttribution,
-        SourceFeature.ALERT to weatherAttribution,
-        SourceFeature.REVERSE_GEOCODING to weatherAttribution
-    )
     override val attributionLinks = mapOf(
         "Met Éireann" to "https://www.met.ie/",
         "met.ie" to "https://www.met.ie/",
         "Creative Commons Attribution 4.0 International (CC BY 4.0)" to "https://creativecommons.org/licenses/by/4.0/"
     )
-
-    override fun isFeatureSupportedForLocation(
-        location: Location,
-        feature: SourceFeature,
-    ): Boolean {
-        return location.countryCode.equals("IE", ignoreCase = true)
-    }
-
-    override fun getFeaturePriorityForLocation(
-        location: Location,
-        feature: SourceFeature,
-    ): Int {
-        return when {
-            isFeatureSupportedForLocation(location, feature) -> PRIORITY_HIGHEST
-            else -> PRIORITY_NONE
-        }
-    }
 
     override fun requestWeather(
         context: Context,
@@ -363,9 +316,6 @@ class MetIeService @Inject constructor(
             }
         }
     }
-
-    // Only supports its own country
-    override val knownAmbiguousCountryCodes: Array<String>? = null
 
     companion object {
         private const val MET_IE_BASE_URL = "https://prodapi.metweb.ie/"

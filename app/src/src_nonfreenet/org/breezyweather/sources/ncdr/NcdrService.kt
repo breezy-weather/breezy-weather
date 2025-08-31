@@ -19,7 +19,6 @@ package org.breezyweather.sources.ncdr
 import android.content.Context
 import android.graphics.Color
 import breezyweather.domain.location.model.Location
-import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.reference.AlertSeverity
@@ -30,21 +29,8 @@ import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.exceptions.InvalidOrIncompleteDataException
 import org.breezyweather.common.exceptions.WeatherException
-import org.breezyweather.common.extensions.code
-import org.breezyweather.common.extensions.currentLocale
-import org.breezyweather.common.extensions.getCountryName
-import org.breezyweather.common.source.HttpSource
-import org.breezyweather.common.source.LocationParametersSource
-import org.breezyweather.common.source.WeatherSource
-import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_HIGHEST
-import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
 import org.breezyweather.sources.common.xml.CapAlert
 import org.breezyweather.sources.nlsc.NlscApi
-import org.breezyweather.sources.nlsc.NlscService.Companion.KINMEN_BBOX
-import org.breezyweather.sources.nlsc.NlscService.Companion.MATSU_BBOX
-import org.breezyweather.sources.nlsc.NlscService.Companion.PENGHU_BBOX
-import org.breezyweather.sources.nlsc.NlscService.Companion.TAIWAN_BBOX
-import org.breezyweather.sources.nlsc.NlscService.Companion.WUQIU_BBOX
 import retrofit2.Retrofit
 import java.util.Objects
 import javax.inject.Inject
@@ -53,18 +39,8 @@ import javax.inject.Named
 class NcdrService @Inject constructor(
     @ApplicationContext context: Context,
     @Named("XmlClient") xmlClient: Retrofit.Builder,
-) : HttpSource(), WeatherSource, LocationParametersSource {
-    override val id = "ncdr"
-    override val name by lazy {
-        with(context.currentLocale.code) {
-            when {
-                startsWith("zh") -> "國家災害防救科技中心"
-                else -> "NCDR"
-            }
-        } +
-            " (${context.currentLocale.getCountryName("TW")})"
-    }
-    override val continent = SourceContinent.ASIA
+) : NcdrServiceStub(context) {
+
     override val privacyPolicyUrl = "https://ncdr.nat.gov.tw/Page?itemid=40&mid=7"
 
     private val mNcdrApi by lazy {
@@ -74,47 +50,16 @@ class NcdrService @Inject constructor(
             .create(NcdrApi::class.java)
     }
 
-    val mNlscApi by lazy {
+    private val mNlscApi by lazy {
         xmlClient
             .baseUrl(NLSC_BASE_URL)
             .build()
             .create(NlscApi::class.java)
     }
 
-    private val weatherAttribution by lazy {
-        with(context.currentLocale.code) {
-            when {
-                startsWith("zh") -> "國家災害防救科技中心"
-                else -> "National Science and Technology Center for Disaster Reduction"
-            }
-        }
-    }
-    override val supportedFeatures = mapOf(
-        SourceFeature.ALERT to weatherAttribution
-    )
     override val attributionLinks = mapOf(
         weatherAttribution to "https://ncdr.nat.gov.tw/"
     )
-
-    override fun isFeatureSupportedForLocation(location: Location, feature: SourceFeature): Boolean {
-        val latLng = LatLng(location.latitude, location.longitude)
-        return location.countryCode.equals("TW", ignoreCase = true) ||
-            TAIWAN_BBOX.contains(latLng) ||
-            PENGHU_BBOX.contains(latLng) ||
-            KINMEN_BBOX.contains(latLng) ||
-            WUQIU_BBOX.contains(latLng) ||
-            MATSU_BBOX.contains(latLng)
-    }
-
-    override fun getFeaturePriorityForLocation(
-        location: Location,
-        feature: SourceFeature,
-    ): Int {
-        return when {
-            isFeatureSupportedForLocation(location, feature) -> PRIORITY_HIGHEST
-            else -> PRIORITY_NONE
-        }
-    }
 
     override fun requestWeather(
         context: Context,

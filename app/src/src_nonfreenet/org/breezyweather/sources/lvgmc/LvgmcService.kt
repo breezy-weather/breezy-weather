@@ -19,7 +19,6 @@ package org.breezyweather.sources.lvgmc
 import android.content.Context
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.location.model.LocationAddressInfo
-import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.model.AirQuality
 import breezyweather.domain.weather.model.Precipitation
@@ -39,14 +38,6 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.R
 import org.breezyweather.common.exceptions.InvalidLocationException
-import org.breezyweather.common.extensions.currentLocale
-import org.breezyweather.common.extensions.getCountryName
-import org.breezyweather.common.source.HttpSource
-import org.breezyweather.common.source.LocationParametersSource
-import org.breezyweather.common.source.ReverseGeocodingSource
-import org.breezyweather.common.source.WeatherSource
-import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_HIGHEST
-import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
 import org.breezyweather.sources.lvgmc.json.LvgmcAirQualityLocationResult
 import org.breezyweather.sources.lvgmc.json.LvgmcAirQualityResult
 import org.breezyweather.sources.lvgmc.json.LvgmcCurrentLocation
@@ -72,11 +63,7 @@ import kotlin.time.Duration.Companion.hours
 class LvgmcService @Inject constructor(
     @ApplicationContext context: Context,
     @Named("JsonClient") client: Retrofit.Builder,
-) : HttpSource(), WeatherSource, ReverseGeocodingSource, LocationParametersSource {
-    override val id = "lvgmc"
-    override val name = "LVĢMC (${context.currentLocale.getCountryName("LV")})"
-    override val continent = SourceContinent.EUROPE
-    override val privacyPolicyUrl = ""
+) : LvgmcServiceStub(context) {
 
     private val mApi by lazy {
         client.baseUrl(LVGMC_BASE_URL)
@@ -84,33 +71,9 @@ class LvgmcService @Inject constructor(
             .create(LvgmcApi::class.java)
     }
 
-    private val weatherAttribution = "Latvijas Vides, ģeoloģijas un meteoroloģijas centrs"
-    override val supportedFeatures = mapOf(
-        SourceFeature.FORECAST to weatherAttribution,
-        SourceFeature.CURRENT to weatherAttribution,
-        SourceFeature.AIR_QUALITY to weatherAttribution,
-        SourceFeature.REVERSE_GEOCODING to weatherAttribution
-    )
     override val attributionLinks = mapOf(
         weatherAttribution to LVGMC_BASE_URL
     )
-
-    override fun isFeatureSupportedForLocation(
-        location: Location,
-        feature: SourceFeature,
-    ): Boolean {
-        return location.countryCode.equals("LV", ignoreCase = true)
-    }
-
-    override fun getFeaturePriorityForLocation(
-        location: Location,
-        feature: SourceFeature,
-    ): Int {
-        return when {
-            isFeatureSupportedForLocation(location, feature) -> PRIORITY_HIGHEST
-            else -> PRIORITY_NONE
-        }
-    }
 
     override fun requestWeather(
         context: Context,
@@ -599,9 +562,6 @@ class LvgmcService @Inject constructor(
             "${longitude - 0.1} ${latitude + 0.1}, " +
             "${longitude - 0.1} ${latitude - 0.1}))"
     }
-
-    // Only supports its own country
-    override val knownAmbiguousCountryCodes: Array<String>? = null
 
     companion object {
         private const val LVGMC_BASE_URL = "https://videscentrs.lvgmc.lv/"

@@ -3,7 +3,6 @@ package org.breezyweather.sources.veduris
 import android.content.Context
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.location.model.LocationAddressInfo
-import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.Precipitation
@@ -27,13 +26,6 @@ import org.breezyweather.R
 import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
-import org.breezyweather.common.extensions.getCountryName
-import org.breezyweather.common.source.HttpSource
-import org.breezyweather.common.source.LocationParametersSource
-import org.breezyweather.common.source.ReverseGeocodingSource
-import org.breezyweather.common.source.WeatherSource
-import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_HIGHEST
-import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
 import org.breezyweather.sources.veduris.json.VedurIsAlertRegionsResult
 import org.breezyweather.sources.veduris.json.VedurIsAlertResult
 import org.breezyweather.sources.veduris.json.VedurIsLatestObservation
@@ -60,23 +52,8 @@ import kotlin.math.min
 class VedurIsService @Inject constructor(
     @ApplicationContext context: Context,
     @Named("JsonClient") client: Retrofit.Builder,
-) : HttpSource(), WeatherSource, ReverseGeocodingSource, LocationParametersSource {
-    override val id = "veduris"
-    private val countryName = context.currentLocale.getCountryName("IS")
-    override val name by lazy {
-        if (context.currentLocale.code.startsWith("is")) {
-            "Veðurstofa Íslands"
-        } else {
-            "Icelandic Met Office"
-        }.let {
-            if (it.contains(countryName)) {
-                it
-            } else {
-                "$it ($countryName)"
-            }
-        }
-    }
-    override val continent = SourceContinent.EUROPE
+) : VedurIsServiceStub(context) {
+
     override val privacyPolicyUrl = "https://vedur.is/um-vi/vefurinn/personuvernd/"
 
     private val mApi by lazy {
@@ -86,39 +63,9 @@ class VedurIsService @Inject constructor(
             .create(VedurIsApi::class.java)
     }
 
-    private val weatherAttribution by lazy {
-        if (context.currentLocale.code.startsWith("is")) {
-            "Veðurstofa Íslands"
-        } else {
-            "Icelandic Met Office"
-        }
-    }
-    override val supportedFeatures = mapOf(
-        SourceFeature.FORECAST to weatherAttribution,
-        SourceFeature.CURRENT to weatherAttribution,
-        SourceFeature.ALERT to weatherAttribution,
-        SourceFeature.REVERSE_GEOCODING to weatherAttribution
-    )
     override val attributionLinks = mapOf(
         weatherAttribution to "https://gottvedur.is/"
     )
-
-    override fun isFeatureSupportedForLocation(
-        location: Location,
-        feature: SourceFeature,
-    ): Boolean {
-        return location.countryCode.equals("IS", ignoreCase = true)
-    }
-
-    override fun getFeaturePriorityForLocation(
-        location: Location,
-        feature: SourceFeature,
-    ): Int {
-        return when {
-            isFeatureSupportedForLocation(location, feature) -> PRIORITY_HIGHEST
-            else -> PRIORITY_NONE
-        }
-    }
 
     override fun requestWeather(
         context: Context,
@@ -536,9 +483,6 @@ class VedurIsService @Inject constructor(
             LatLng(north, east)
         )
     }
-
-    // Only supports its own country
-    override val knownAmbiguousCountryCodes: Array<String>? = null
 
     companion object {
         private const val VEDUR_IS_BASE_URL = "https://gottvedur.is/"

@@ -1,0 +1,75 @@
+/**
+ * This file is part of Breezy Weather.
+ *
+ * Breezy Weather is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as published by the
+ * Free Software Foundation, version 3 of the License.
+ *
+ * Breezy Weather is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+ * or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public
+ * License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package org.breezyweather.sources.atmo
+
+import android.content.Context
+import breezyweather.domain.location.model.Location
+import dagger.hilt.android.qualifiers.ApplicationContext
+import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.extensions.getCountryName
+import javax.inject.Inject
+
+/**
+ * ATMO GrandEst air quality service.
+ */
+class AtmoGrandEstService @Inject constructor(
+    @ApplicationContext injectedContext: Context,
+) : AtmoService() {
+
+    override val id = "atmograndest"
+    override val name = "ATMO GrandEst (${injectedContext.currentLocale.getCountryName("FR")})"
+    override val attribution = "ATMO GrandEst (licence ODbL)"
+
+    override fun isLocationInRegion(location: Location): Boolean {
+        return location.admin1 in arrayOf(
+            "Grand Est",
+            "GrandEst",
+            "Grand-Est"
+        ) ||
+            location.admin1Code in arrayOf("FR-GES", "GES", "44", "FR-6AE", "6AE") ||
+            location.admin2 in arrayOf(
+                "Ardennes", // 08
+                "Alsace", // 6AE
+                "Aube", // 08
+                "Marne", // 51
+                "Haute-Marne", // 52
+                "Haute Marne", // 52
+                "Meurthe-et-Moselle", // 54
+                "Meurthe et Moselle", // 54
+                "Meuse", // 55
+                "Moselle", // 57
+                "Bas-Rhin", // 67
+                "Bas Rhin", // 67
+                "Haut-Rhin", // 68
+                "Haut Rhin", // 68
+                "Vosges" // 88
+            ) ||
+            arrayOf(
+                "08", // Ardennes
+                "10", // Aube
+                "51", // Marne
+                "52", // Haute-Marne
+                "54", // Meurthe-et-Moselle
+                "55", // Meuse
+                "57", // Moselle
+                "6AE", // Alsace
+                "67", // Bas-Rhin
+                "68", // Haut-Rhin
+                "88" // Vosges
+            ).any { location.admin2Code?.endsWith(it) == true }
+    }
+}

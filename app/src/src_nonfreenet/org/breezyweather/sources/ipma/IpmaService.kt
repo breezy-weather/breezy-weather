@@ -19,7 +19,6 @@ package org.breezyweather.sources.ipma
 import android.content.Context
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.location.model.LocationAddressInfo
-import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.DailyRelativeHumidity
@@ -40,13 +39,6 @@ import org.breezyweather.R
 import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
-import org.breezyweather.common.extensions.getCountryName
-import org.breezyweather.common.source.HttpSource
-import org.breezyweather.common.source.LocationParametersSource
-import org.breezyweather.common.source.ReverseGeocodingSource
-import org.breezyweather.common.source.WeatherSource
-import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_HIGHEST
-import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
 import org.breezyweather.sources.getWindDegree
 import org.breezyweather.sources.ipma.json.IpmaAlertResult
 import org.breezyweather.sources.ipma.json.IpmaDistrictResult
@@ -64,11 +56,8 @@ import javax.inject.Named
 class IpmaService @Inject constructor(
     @ApplicationContext context: Context,
     @Named("JsonClient") client: Retrofit.Builder,
-) : HttpSource(), WeatherSource, ReverseGeocodingSource, LocationParametersSource {
+) : IpmaServiceStub(context) {
 
-    override val id = "ipma"
-    override val name = "IPMA (${context.currentLocale.getCountryName("PT")})"
-    override val continent = SourceContinent.EUROPE
     override val privacyPolicyUrl by lazy {
         if (context.currentLocale.code.startsWith("pt")) {
             "https://www.ipma.pt/pt/siteinfo/index.html"
@@ -84,32 +73,9 @@ class IpmaService @Inject constructor(
             .create(IpmaApi::class.java)
     }
 
-    private val weatherAttribution = "Instituto Português do Mar e da Atmosfera"
-    override val supportedFeatures = mapOf(
-        SourceFeature.FORECAST to weatherAttribution,
-        SourceFeature.ALERT to weatherAttribution,
-        SourceFeature.REVERSE_GEOCODING to weatherAttribution
-    )
     override val attributionLinks = mapOf(
         weatherAttribution to "https://www.ipma.pt/"
     )
-
-    override fun isFeatureSupportedForLocation(
-        location: Location,
-        feature: SourceFeature,
-    ): Boolean {
-        return location.countryCode.equals("PT", ignoreCase = true)
-    }
-
-    override fun getFeaturePriorityForLocation(
-        location: Location,
-        feature: SourceFeature,
-    ): Int {
-        return when {
-            isFeatureSupportedForLocation(location, feature) -> PRIORITY_HIGHEST
-            else -> PRIORITY_NONE
-        }
-    }
 
     override fun requestWeather(
         context: Context,
@@ -427,9 +393,6 @@ class IpmaService @Inject constructor(
         // No forecast location within 50km
         throw InvalidLocationException()
     }
-
-    // Only supports its own country
-    override val knownAmbiguousCountryCodes: Array<String>? = null
 
     companion object {
         private const val IPMA_BASE_URL = "https://api.ipma.pt/"

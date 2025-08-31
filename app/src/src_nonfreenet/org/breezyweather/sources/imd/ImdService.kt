@@ -18,7 +18,6 @@ package org.breezyweather.sources.imd
 
 import android.content.Context
 import breezyweather.domain.location.model.Location
-import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.model.Precipitation
 import breezyweather.domain.weather.model.Wind
@@ -30,13 +29,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
 import okhttp3.OkHttpClient
 import okhttp3.Request
-import org.breezyweather.common.extensions.currentLocale
-import org.breezyweather.common.extensions.getCountryName
 import org.breezyweather.common.extensions.getIsoFormattedDate
-import org.breezyweather.common.source.HttpSource
-import org.breezyweather.common.source.WeatherSource
-import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_HIGHEST
-import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
 import org.breezyweather.sources.imd.json.ImdWeatherResult
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.ratio.Ratio.Companion.percent
@@ -56,12 +49,7 @@ import kotlin.time.Duration.Companion.hours
 class ImdService @Inject constructor(
     @ApplicationContext context: Context,
     @Named("JsonClient") client: Retrofit.Builder,
-) : HttpSource(), WeatherSource {
-
-    override val id = "imd"
-    override val name = "IMD (${context.currentLocale.getCountryName("IN")})"
-    override val continent = SourceContinent.ASIA
-    override val privacyPolicyUrl = ""
+) : ImdServiceStub(context) {
 
     private val mApi by lazy {
         client
@@ -72,29 +60,9 @@ class ImdService @Inject constructor(
 
     private val okHttpClient = OkHttpClient()
 
-    override val supportedFeatures = mapOf(
-        SourceFeature.FORECAST to "India Meteorological Department"
-    )
     override val attributionLinks = mapOf(
         "India Meteorological Department" to "https://imd.gov.in/"
     )
-
-    override fun isFeatureSupportedForLocation(
-        location: Location,
-        feature: SourceFeature,
-    ): Boolean {
-        return location.countryCode.equals("IN", ignoreCase = true)
-    }
-
-    override fun getFeaturePriorityForLocation(
-        location: Location,
-        feature: SourceFeature,
-    ): Int {
-        return when {
-            isFeatureSupportedForLocation(location, feature) -> PRIORITY_HIGHEST
-            else -> PRIORITY_NONE
-        }
-    }
 
     override fun requestWeather(
         context: Context,

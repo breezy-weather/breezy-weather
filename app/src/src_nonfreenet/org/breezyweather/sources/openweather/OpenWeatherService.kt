@@ -18,7 +18,6 @@ package org.breezyweather.sources.openweather
 
 import android.content.Context
 import breezyweather.domain.location.model.Location
-import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.model.AirQuality
 import breezyweather.domain.weather.model.Precipitation
@@ -43,9 +42,6 @@ import org.breezyweather.common.extensions.toDate
 import org.breezyweather.common.extensions.toDateNoHour
 import org.breezyweather.common.preference.EditTextPreference
 import org.breezyweather.common.preference.Preference
-import org.breezyweather.common.source.ConfigurableSource
-import org.breezyweather.common.source.HttpSource
-import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.domain.settings.SourceConfigStore
 import org.breezyweather.sources.openweather.json.OpenWeatherAirPollution
 import org.breezyweather.sources.openweather.json.OpenWeatherAirPollutionResult
@@ -72,11 +68,8 @@ import kotlin.time.Duration.Companion.seconds
 class OpenWeatherService @Inject constructor(
     @ApplicationContext context: Context,
     @Named("JsonClient") client: Retrofit.Builder,
-) : HttpSource(), WeatherSource, ConfigurableSource {
+) : OpenWeatherServiceStub() {
 
-    override val id = "openweather"
-    override val name = "OpenWeather"
-    override val continent = SourceContinent.WORLDWIDE
     override val privacyPolicyUrl = "https://openweather.co.uk/privacy-policy"
 
     private val mApi by lazy {
@@ -86,11 +79,6 @@ class OpenWeatherService @Inject constructor(
             .create(OpenWeatherApi::class.java)
     }
 
-    override val supportedFeatures = mapOf(
-        SourceFeature.FORECAST to name,
-        SourceFeature.CURRENT to name,
-        SourceFeature.AIR_QUALITY to name
-    )
     override val attributionLinks = mapOf(
         name to "https://openweather.co.uk/"
     )

@@ -16,11 +16,9 @@
 
 package org.breezyweather.sources.meteoam
 
-import android.annotation.SuppressLint
 import android.content.Context
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.location.model.LocationAddressInfo
-import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.model.PrecipitationProbability
 import breezyweather.domain.weather.model.Wind
@@ -34,13 +32,6 @@ import breezyweather.domain.weather.wrappers.WeatherWrapper
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.R
-import org.breezyweather.common.extensions.currentLocale
-import org.breezyweather.common.extensions.getCountryName
-import org.breezyweather.common.source.HttpSource
-import org.breezyweather.common.source.ReverseGeocodingSource
-import org.breezyweather.common.source.WeatherSource
-import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_HIGHEST
-import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
 import org.breezyweather.sources.meteoam.json.MeteoAmForecastResult
 import org.breezyweather.sources.meteoam.json.MeteoAmForecastStats
 import org.breezyweather.sources.meteoam.json.MeteoAmObservationResult
@@ -58,11 +49,8 @@ import javax.inject.Named
 class MeteoAmService @Inject constructor(
     @ApplicationContext context: Context,
     @Named("JsonClient") client: Retrofit.Builder,
-) : HttpSource(), WeatherSource, ReverseGeocodingSource {
+) : MeteoAmServiceStub(context) {
 
-    override val id = "meteoam"
-    override val name = "Servizio Meteo AM (${context.currentLocale.getCountryName("IT")})"
-    override val continent = SourceContinent.EUROPE
     override val privacyPolicyUrl = "https://www.meteoam.it/it/privacy-policy"
 
     private val mApi by lazy {
@@ -72,31 +60,11 @@ class MeteoAmService @Inject constructor(
             .create(MeteoAmApi::class.java)
     }
 
-    // Required wording for third-party use taken from https://www.meteoam.it/it/condizioni-utilizzo
-    private val weatherAttribution = "Servizio Meteorologico dell’Aeronautica Militare. Informazioni elaborate " +
-        "utilizzando, tra l’altro, dati e prodotti del Servizio Meteorologico dell’Aeronautica Militare pubblicati " +
-        "sul sito www.meteoam.it"
-    override val supportedFeatures = mapOf(
-        SourceFeature.FORECAST to weatherAttribution,
-        SourceFeature.CURRENT to weatherAttribution,
-        SourceFeature.REVERSE_GEOCODING to weatherAttribution
-    )
     override val attributionLinks = mapOf(
         "Servizio Meteorologico dell’Aeronautica Militare" to "https://www.meteoam.it/",
         "www.meteoam.it" to "https://www.meteoam.it/"
     )
 
-    override fun getFeaturePriorityForLocation(
-        location: Location,
-        feature: SourceFeature,
-    ): Int {
-        return when {
-            arrayOf("IT", "SM", "VA").any { location.countryCode.equals(it, ignoreCase = true) } -> PRIORITY_HIGHEST
-            else -> PRIORITY_NONE
-        }
-    }
-
-    @SuppressLint("CheckResult")
     override fun requestWeather(
         context: Context,
         location: Location,
@@ -345,20 +313,6 @@ class MeteoAmService @Inject constructor(
             city = reverseLocation.city
         )
     }
-
-    // This source is really inconsistent. Many missing, half correct, half “incorrect”
-    override val knownAmbiguousCountryCodes: Array<String> = arrayOf(
-        "AU", // Territories: NF
-        "CN", // Territories: HK, MO
-        "ES", // Nearest location for GI
-        "FI", // Territories: AX
-        "FR", // Territories: GF, PF, TF (uninhabited), GP, MQ, YT, NC, RE, BL, MF, PM, WF, CP. Claims: AQ
-        "IL", // Claims: PS
-        "MA", // Claims: EH
-        "NL", // Territories: AW, BQ, CW, SX
-        "NO", // Territories: SJ
-        "US" // Territories: MP, VI
-    )
 
     companion object {
         private const val METEOAM_BASE_URL = "https://api.meteoam.it/"

@@ -20,7 +20,6 @@ import android.content.Context
 import android.graphics.Color
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.location.model.LocationAddressInfo
-import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.Precipitation
@@ -44,12 +43,6 @@ import org.breezyweather.common.exceptions.ParsingException
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.getCountryName
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
-import org.breezyweather.common.source.HttpSource
-import org.breezyweather.common.source.LocationParametersSource
-import org.breezyweather.common.source.ReverseGeocodingSource
-import org.breezyweather.common.source.WeatherSource
-import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_HIGHEST
-import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
 import org.breezyweather.common.utils.ISO8601Utils
 import org.breezyweather.sources.getWindDegree
 import org.breezyweather.sources.nws.json.NwsAlert
@@ -87,11 +80,8 @@ import kotlin.time.Duration.Companion.parseIsoString
 class NwsService @Inject constructor(
     @ApplicationContext context: Context,
     @Named("JsonClient") client: Retrofit.Builder,
-) : HttpSource(), WeatherSource, ReverseGeocodingSource, LocationParametersSource {
+) : NwsServiceStub(context) {
 
-    override val id = "nws"
-    override val name = "NWS (${context.currentLocale.getCountryName("US")})"
-    override val continent = SourceContinent.NORTH_AMERICA
     override val privacyPolicyUrl = "https://www.weather.gov/privacy"
 
     private val mApi by lazy {
@@ -101,49 +91,9 @@ class NwsService @Inject constructor(
             .create(NwsApi::class.java)
     }
 
-    private val weatherAttribution = "National Weather Service (NWS)"
-    override val supportedFeatures = mapOf(
-        SourceFeature.FORECAST to weatherAttribution,
-        SourceFeature.CURRENT to weatherAttribution,
-        SourceFeature.ALERT to weatherAttribution,
-        SourceFeature.REVERSE_GEOCODING to weatherAttribution
-    )
     override val attributionLinks = mapOf(
         weatherAttribution to "https://www.weather.gov/"
     )
-
-    private val supportedCountries = setOf(
-        "US",
-        "GU", // Guam
-        "MP", // Mariana Islands
-        "PR", // Puerto Rico
-        "VI" // St Thomas Islands
-        // The following codes no longer work as of 2025-08-16
-        // "FM", // Palikir - no longer works as of 2025-08-16
-        // "PW", // Melekeok - no longer works as of 2025-08-16
-        // "AS", // Pago Pago - no longer works as of 2025-08-16 - returns a result but no grid data
-        // "UM", "XB", "XH", "XQ", "XU", "XM", "QM", "XV", "XL", "QW" // Minor Outlying Islands
-        // Minor Outlying Islands are largely uninhabited, except for temporary U.S. military staff
-    )
-
-    override fun isFeatureSupportedForLocation(
-        location: Location,
-        feature: SourceFeature,
-    ): Boolean {
-        return supportedCountries.any {
-            location.countryCode.equals(it, ignoreCase = true)
-        }
-    }
-
-    override fun getFeaturePriorityForLocation(
-        location: Location,
-        feature: SourceFeature,
-    ): Int {
-        return when {
-            isFeatureSupportedForLocation(location, feature) -> PRIORITY_HIGHEST
-            else -> PRIORITY_NONE
-        }
-    }
 
     override fun requestWeather(
         context: Context,
@@ -1083,8 +1033,6 @@ class NwsService @Inject constructor(
             }
         }
     }
-
-    override val knownAmbiguousCountryCodes: Array<String> = emptyArray()
 
     companion object {
         // Number of hours after which a station data is considered outdated

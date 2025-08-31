@@ -18,7 +18,6 @@ package org.breezyweather.sources.atmo
 
 import android.content.Context
 import breezyweather.domain.location.model.Location
-import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.model.AirQuality
 import breezyweather.domain.weather.wrappers.AirQualityWrapper
@@ -29,11 +28,6 @@ import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.common.preference.EditTextPreference
 import org.breezyweather.common.preference.Preference
-import org.breezyweather.common.source.ConfigurableSource
-import org.breezyweather.common.source.HttpSource
-import org.breezyweather.common.source.WeatherSource
-import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_HIGHEST
-import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
 import org.breezyweather.domain.settings.SourceConfigStore
 import org.breezyweather.sources.atmo.json.AtmoPointResult
 import org.breezyweather.unit.pollutant.PollutantConcentration
@@ -45,14 +39,10 @@ import java.util.Date
 /**
  * ATMO services
  */
-abstract class AtmoService : HttpSource(), WeatherSource, ConfigurableSource {
+abstract class AtmoService : AtmoServiceStub() {
 
     protected abstract val context: Context
     protected abstract val jsonClient: Retrofit.Builder
-
-    protected abstract val attribution: String
-
-    override val continent = SourceContinent.EUROPE
 
     /**
      * E.g. https://api.atmo-aura.fr/air2go/v3/
@@ -71,31 +61,6 @@ abstract class AtmoService : HttpSource(), WeatherSource, ConfigurableSource {
      */
     protected abstract val apiKeyPreference: Int
     protected abstract val builtInApiKey: String
-
-    override val supportedFeatures
-        get() = mapOf(
-            SourceFeature.AIR_QUALITY to attribution
-        )
-    protected abstract fun isLocationInRegion(location: Location): Boolean
-    override fun isFeatureSupportedForLocation(
-        location: Location,
-        feature: SourceFeature,
-    ): Boolean {
-        return feature == SourceFeature.AIR_QUALITY &&
-            !location.countryCode.isNullOrEmpty() &&
-            location.countryCode.equals("FR", ignoreCase = true) &&
-            isLocationInRegion(location)
-    }
-
-    override fun getFeaturePriorityForLocation(
-        location: Location,
-        feature: SourceFeature,
-    ): Int {
-        return when {
-            isFeatureSupportedForLocation(location, feature) -> PRIORITY_HIGHEST
-            else -> PRIORITY_NONE
-        }
-    }
 
     override fun requestWeather(
         context: Context,

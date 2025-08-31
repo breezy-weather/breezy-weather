@@ -18,7 +18,6 @@ package org.breezyweather.sources.atmo
 
 import android.content.Context
 import breezyweather.domain.location.model.Location
-import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.model.Pollen
 import breezyweather.domain.weather.wrappers.PollenWrapper
@@ -32,12 +31,6 @@ import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.common.preference.EditTextPreference
 import org.breezyweather.common.preference.Preference
-import org.breezyweather.common.source.ConfigurableSource
-import org.breezyweather.common.source.HttpSource
-import org.breezyweather.common.source.LocationParametersSource
-import org.breezyweather.common.source.WeatherSource
-import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_HIGHEST
-import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
 import org.breezyweather.domain.settings.SourceConfigStore
 import org.breezyweather.sources.atmo.json.AtmoFrancePollenProperties
 import org.breezyweather.sources.atmo.json.AtmoFrancePollenResult
@@ -54,11 +47,8 @@ import javax.inject.Named
 class AtmoFranceService @Inject constructor(
     @ApplicationContext context: Context,
     @Named("JsonClient") jsonClient: Retrofit.Builder,
-) : HttpSource(), WeatherSource, LocationParametersSource, ConfigurableSource {
+) : AtmoFranceServiceStub() {
 
-    override val id = "atmofrance"
-    override val name = "Atmo France"
-    override val continent = SourceContinent.EUROPE
     override val privacyPolicyUrl = "https://www.atmo-france.org/article/politique-de-confidentialite"
 
     private val mApi by lazy {
@@ -73,35 +63,6 @@ class AtmoFranceService @Inject constructor(
             .baseUrl(DATA_GOUV_GEO_BASE_URL)
             .build()
             .create(GeoApi::class.java)
-    }
-
-    override val supportedFeatures
-        get() = mapOf(
-            SourceFeature.POLLEN to "Atmo France • data.gouv.fr (Etalab 2.0)"
-        )
-    override val attributionLinks
-        get() = mapOf(
-            "Atmo France" to "https://www.atmo-france.org/",
-            "data.gouv.fr" to "https://www.data.gouv.fr/"
-        )
-
-    override fun isFeatureSupportedForLocation(
-        location: Location,
-        feature: SourceFeature,
-    ): Boolean {
-        return feature == SourceFeature.POLLEN &&
-            !location.countryCode.isNullOrEmpty() &&
-            location.countryCode.equals("FR", ignoreCase = true)
-    }
-
-    override fun getFeaturePriorityForLocation(
-        location: Location,
-        feature: SourceFeature,
-    ): Int {
-        return when {
-            isFeatureSupportedForLocation(location, feature) -> PRIORITY_HIGHEST
-            else -> PRIORITY_NONE
-        }
     }
 
     override fun requestWeather(

@@ -18,7 +18,6 @@ package org.breezyweather.sources.metoffice
 
 import android.content.Context
 import breezyweather.domain.location.model.Location
-import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.model.Precipitation
 import breezyweather.domain.weather.model.PrecipitationProbability
@@ -35,15 +34,8 @@ import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.BuildConfig
 import org.breezyweather.R
 import org.breezyweather.common.exceptions.InvalidOrIncompleteDataException
-import org.breezyweather.common.extensions.currentLocale
-import org.breezyweather.common.extensions.getCountryName
 import org.breezyweather.common.preference.EditTextPreference
 import org.breezyweather.common.preference.Preference
-import org.breezyweather.common.source.ConfigurableSource
-import org.breezyweather.common.source.HttpSource
-import org.breezyweather.common.source.WeatherSource
-import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_HIGHEST
-import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
 import org.breezyweather.domain.settings.SourceConfigStore
 import org.breezyweather.sources.metoffice.json.MetOfficeDaily
 import org.breezyweather.sources.metoffice.json.MetOfficeForecast
@@ -61,11 +53,8 @@ import javax.inject.Named
 class MetOfficeService @Inject constructor(
     @ApplicationContext context: Context,
     @Named("JsonClient") client: Retrofit.Builder,
-) : HttpSource(), WeatherSource, ConfigurableSource {
+) : MetOfficeServiceStub(context) {
 
-    override val id = "metoffice"
-    override val name = "Met Office (${context.currentLocale.getCountryName("GB")})"
-    override val continent = SourceContinent.EUROPE
     override val privacyPolicyUrl = "https://www.metoffice.gov.uk/policies/privacy"
 
     private val mApi by lazy {
@@ -75,25 +64,9 @@ class MetOfficeService @Inject constructor(
             .create(MetOfficeApi::class.java)
     }
 
-    private val weatherAttribution = "Met Office"
-    override val supportedFeatures = mapOf(
-        SourceFeature.FORECAST to weatherAttribution
-    )
     override val attributionLinks = mapOf(
         weatherAttribution to "https://www.metoffice.gov.uk/"
     )
-
-    override fun getFeaturePriorityForLocation(
-        location: Location,
-        feature: SourceFeature,
-    ): Int {
-        return when {
-            arrayOf("GB", "GG", "IM", "JE", "GI", "FK").any {
-                location.countryCode.equals(it, ignoreCase = true)
-            } -> PRIORITY_HIGHEST
-            else -> PRIORITY_NONE
-        }
-    }
 
     override fun requestWeather(
         context: Context,

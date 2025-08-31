@@ -25,9 +25,6 @@ import com.google.maps.android.model.LatLng
 import org.breezyweather.R
 import org.breezyweather.domain.weather.model.getRiseProgress
 import org.breezyweather.sources.SourceManager
-import org.breezyweather.sources.getBestSourceForFeature
-import org.breezyweather.sources.getBestSourceForFeatureOrDefault
-import org.breezyweather.sources.getDefaultSourceForFeature
 
 fun Location.getPlace(context: Context, showCurrentPositionInPriority: Boolean = false): String {
     if (showCurrentPositionInPriority && isCurrentPosition) {

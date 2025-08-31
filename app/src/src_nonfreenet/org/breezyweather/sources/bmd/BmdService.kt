@@ -19,7 +19,6 @@ package org.breezyweather.sources.bmd
 import android.content.Context
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.location.model.LocationAddressInfo
-import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.model.DailyCloudCover
 import breezyweather.domain.weather.model.DailyRelativeHumidity
@@ -37,15 +36,6 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import org.breezyweather.R
 import org.breezyweather.common.exceptions.InvalidLocationException
-import org.breezyweather.common.extensions.code
-import org.breezyweather.common.extensions.currentLocale
-import org.breezyweather.common.extensions.getCountryName
-import org.breezyweather.common.source.HttpSource
-import org.breezyweather.common.source.LocationParametersSource
-import org.breezyweather.common.source.ReverseGeocodingSource
-import org.breezyweather.common.source.WeatherSource
-import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_HIGHEST
-import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
 import org.breezyweather.sources.bmd.json.BmdData
 import org.breezyweather.sources.bmd.json.BmdForecastResult
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
@@ -63,18 +53,7 @@ import javax.inject.Named
 class BmdService @Inject constructor(
     @ApplicationContext context: Context,
     @Named("JsonClient") client: Retrofit.Builder,
-) : HttpSource(), WeatherSource, ReverseGeocodingSource, LocationParametersSource {
-
-    override val id = "bmd"
-    override val name by lazy {
-        if (context.currentLocale.code.startsWith("bn")) {
-            "বাংলাদেশ আবহাওয়া অধিদপ্তর"
-        } else {
-            "BMD (${context.currentLocale.getCountryName("BD")})"
-        }
-    }
-    override val continent = SourceContinent.ASIA
-    override val privacyPolicyUrl = ""
+) : BmdServiceStub(context) {
 
     private val mApi by lazy {
         client
@@ -85,35 +64,9 @@ class BmdService @Inject constructor(
 
     private val okHttpClient = OkHttpClient()
 
-    private val weatherAttribution = if (context.currentLocale.code.startsWith("bn")) {
-        "বাংলাদেশ আবহাওয়া অধিদপ্তর"
-    } else {
-        "Bangladesh Meteorological Department"
-    }
     override val attributionLinks = mapOf(
         weatherAttribution to "https://www.bmd.gov.bd/"
     )
-    override val supportedFeatures = mapOf(
-        SourceFeature.FORECAST to weatherAttribution,
-        SourceFeature.REVERSE_GEOCODING to weatherAttribution
-    )
-
-    override fun isFeatureSupportedForLocation(
-        location: Location,
-        feature: SourceFeature,
-    ): Boolean {
-        return location.countryCode.equals("BD", ignoreCase = true)
-    }
-
-    override fun getFeaturePriorityForLocation(
-        location: Location,
-        feature: SourceFeature,
-    ): Int {
-        return when {
-            isFeatureSupportedForLocation(location, feature) -> PRIORITY_HIGHEST
-            else -> PRIORITY_NONE
-        }
-    }
 
     override fun requestWeather(
         context: Context,
@@ -457,9 +410,6 @@ class BmdService @Inject constructor(
             }
         }
     }
-
-    // Only supports its own country
-    override val knownAmbiguousCountryCodes: Array<String>? = null
 
     companion object {
         private const val BMD_API_BASE_URL = "https://api.bdservers.site/"

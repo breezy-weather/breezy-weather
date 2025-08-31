@@ -20,7 +20,6 @@ import android.content.Context
 import android.graphics.Color
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.location.model.LocationAddressInfo
-import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.Normals
@@ -51,13 +50,6 @@ import org.breezyweather.common.exceptions.WeatherException
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.getCalendarMonth
-import org.breezyweather.common.extensions.getCountryName
-import org.breezyweather.common.source.HttpSource
-import org.breezyweather.common.source.LocationParametersSource
-import org.breezyweather.common.source.ReverseGeocodingSource
-import org.breezyweather.common.source.WeatherSource
-import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_HIGHEST
-import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
 import org.breezyweather.sources.jma.json.JmaAlertResult
 import org.breezyweather.sources.jma.json.JmaAmedasResult
 import org.breezyweather.sources.jma.json.JmaAreasResult
@@ -89,16 +81,8 @@ class JmaService @Inject constructor(
     @ApplicationContext context: Context,
     @Named("JsonClient") client: Retrofit.Builder,
     private val okHttpClient: OkHttpClient,
-) : HttpSource(), WeatherSource, ReverseGeocodingSource, LocationParametersSource {
-    override val id = "jma"
-    override val name by lazy {
-        if (context.currentLocale.code.startsWith("ja")) {
-            "気象庁"
-        } else {
-            "JMA (${context.currentLocale.getCountryName("JP")})"
-        }
-    }
-    override val continent = SourceContinent.ASIA
+) : JmaServiceStub(context) {
+
     override val privacyPolicyUrl by lazy {
         if (context.currentLocale.code.startsWith("ja")) {
             "https://www.jma.go.jp/jma/kishou/info/coment.html"
@@ -114,40 +98,9 @@ class JmaService @Inject constructor(
             .create(JmaApi::class.java)
     }
 
-    private val weatherAttribution by lazy {
-        if (context.currentLocale.code.startsWith("ja")) {
-            "気象庁"
-        } else {
-            "Japan Meteorological Agency"
-        }
-    }
-    override val supportedFeatures = mapOf(
-        SourceFeature.FORECAST to weatherAttribution,
-        SourceFeature.CURRENT to weatherAttribution,
-        SourceFeature.ALERT to weatherAttribution,
-        SourceFeature.NORMALS to weatherAttribution,
-        SourceFeature.REVERSE_GEOCODING to weatherAttribution
-    )
     override val attributionLinks = mapOf(
         weatherAttribution to "https://www.jma.go.jp/"
     )
-
-    override fun isFeatureSupportedForLocation(
-        location: Location,
-        feature: SourceFeature,
-    ): Boolean {
-        return location.countryCode.equals("JP", ignoreCase = true)
-    }
-
-    override fun getFeaturePriorityForLocation(
-        location: Location,
-        feature: SourceFeature,
-    ): Int {
-        return when {
-            isFeatureSupportedForLocation(location, feature) -> PRIORITY_HIGHEST
-            else -> PRIORITY_NONE
-        }
-    }
 
     override fun requestWeather(
         context: Context,
@@ -1146,9 +1099,6 @@ class JmaService @Inject constructor(
             )
         }
     }
-
-    // Only supports its own country
-    override val knownAmbiguousCountryCodes: Array<String>? = null
 
     companion object {
         private const val JMA_BASE_URL = "https://www.jma.go.jp/"

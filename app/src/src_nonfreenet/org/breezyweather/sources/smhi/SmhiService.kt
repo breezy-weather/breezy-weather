@@ -18,7 +18,6 @@ package org.breezyweather.sources.smhi
 
 import android.content.Context
 import breezyweather.domain.location.model.Location
-import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.model.Precipitation
 import breezyweather.domain.weather.model.PrecipitationProbability
@@ -31,14 +30,8 @@ import breezyweather.domain.weather.wrappers.WeatherWrapper
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.common.exceptions.InvalidOrIncompleteDataException
-import org.breezyweather.common.extensions.currentLocale
-import org.breezyweather.common.extensions.getCountryName
 import org.breezyweather.common.extensions.getIsoFormattedDate
 import org.breezyweather.common.extensions.toDateNoHour
-import org.breezyweather.common.source.HttpSource
-import org.breezyweather.common.source.WeatherSource
-import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_HIGHEST
-import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
 import org.breezyweather.sources.smhi.json.SmhiTimeSeries
 import org.breezyweather.unit.distance.Distance.Companion.kilometers
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
@@ -54,11 +47,8 @@ import kotlin.math.roundToInt
 class SmhiService @Inject constructor(
     @ApplicationContext context: Context,
     @Named("JsonClient") client: Retrofit.Builder,
-) : HttpSource(), WeatherSource {
+) : SmhiServiceStub(context) {
 
-    override val id = "smhi"
-    override val name = "SMHI (${context.currentLocale.getCountryName("SE")})"
-    override val continent = SourceContinent.EUROPE
     override val privacyPolicyUrl =
         "https://www.smhi.se/omsmhi/hantering-av-personuppgifter/hantering-av-personuppgifter-1.135429"
 
@@ -69,29 +59,9 @@ class SmhiService @Inject constructor(
             .create(SmhiApi::class.java)
     }
 
-    override val supportedFeatures = mapOf(
-        SourceFeature.FORECAST to "SMHI (Creative commons Erkännande 4.0 SE)"
-    )
     override val attributionLinks = mapOf(
         "SMHI" to "https://www.smhi.se/"
     )
-
-    override fun isFeatureSupportedForLocation(
-        location: Location,
-        feature: SourceFeature,
-    ): Boolean {
-        return location.countryCode.equals("SE", ignoreCase = true)
-    }
-
-    override fun getFeaturePriorityForLocation(
-        location: Location,
-        feature: SourceFeature,
-    ): Int {
-        return when {
-            isFeatureSupportedForLocation(location, feature) -> PRIORITY_HIGHEST
-            else -> PRIORITY_NONE
-        }
-    }
 
     override fun requestWeather(
         context: Context,
