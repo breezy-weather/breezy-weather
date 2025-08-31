@@ -84,6 +84,7 @@ import org.breezyweather.ui.common.composables.SecondarySourcesPreference
 import org.breezyweather.ui.common.widgets.Material3ExpressiveCardListItem
 import org.breezyweather.ui.common.widgets.Material3Scaffold
 import org.breezyweather.ui.common.widgets.Material3SearchBarInputField
+import org.breezyweather.ui.settings.preference.LargeSeparatorItem
 import org.breezyweather.ui.settings.preference.composables.RadioButton
 import org.breezyweather.ui.theme.compose.BreezyWeatherTheme
 import javax.inject.Inject
@@ -260,8 +261,8 @@ class SearchActivity : BreezyActivity() {
                     LazyColumn(
                         modifier = Modifier.fillMaxWidth()
                     ) {
-                        item {
-                            if (BuildConfig.FLAVOR == "freenet") {
+                        if (BuildConfig.FLAVOR == "freenet") {
+                            item {
                                 Material3ExpressiveCardListItem(
                                     surface = MaterialTheme.colorScheme.secondaryContainer,
                                     onSurface = MaterialTheme.colorScheme.onSecondaryContainer,
@@ -293,6 +294,9 @@ class SearchActivity : BreezyActivity() {
                                         }
                                     }
                                 }
+                            }
+                            item {
+                                LargeSeparatorItem()
                             }
                         }
                         items(sourceManager.getLocationSearchSources()) {
