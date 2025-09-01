@@ -43,7 +43,7 @@
     <string name="about_contact">Kontakt</string>
     <string name="widget_style_pixel">Pixel</string>
     <string name="uv_index_8_10">Mycket högt</string>
-    <string name="daily_forecast">Daglig prognos</string>
+    <string name="daily_forecast">Dagsprognos</string>
     <string name="action_share">Dela</string>
     <string name="weather_kind_hail">Hagel</string>
     <string name="location_message_added">Plats tillagd</string>
@@ -77,7 +77,7 @@
     <string name="widget_custom_subtitle_keyword_ut_description">Uppdateringstid</string>
     <string name="air_quality_so2_voice">Svaveldioxid</string>
     <string name="widget_custom_subtitle_keyword_al_description">Varningar</string>
-    <string name="action_more">Se mer</string>
+    <string name="action_more">Mer</string>
     <string name="air_quality_index">Luftkvalitetsindex</string>
     <string name="air_quality_no2_full">Kvävedioxid (%s)</string>
     <string name="widget_custom_subtitle_keyword_lat_description">Latitud</string>
