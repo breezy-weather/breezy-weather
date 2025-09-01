@@ -80,6 +80,7 @@
     <string name="ceiling_short">Plafond</string>
     <string name="settings_icon_packs_get_more">Voir plus</string>
     <string name="action_refresh">Actualiser</string>
+    <string name="action_pull_down_to_refresh">Tirer vers le bas pour actualiser</string>
     <string name="action_restart">Redémarrer</string>
     <string name="action_more">Plus</string>
     <string name="action_edit">Modifier</string>

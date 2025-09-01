@@ -425,10 +425,23 @@ class HomeFragment : MainModuleFragment() {
         )
     }
 
-    private fun setRefreshing(b: Boolean) {
+    private fun setRefreshing(isRefreshing: Boolean) {
         binding.refreshLayout.post {
             if (isFragmentViewCreated) {
-                binding.refreshLayout.isRefreshing = b
+                binding.refreshLayout.isRefreshing = isRefreshing
+                binding.emptyText.visibility = if (isRefreshing) {
+                    View.GONE
+                } else {
+                    viewModel.currentLocation.value?.location.let { loc ->
+                        if (loc == null) {
+                            View.GONE
+                        } else if (loc.weather == null) {
+                            View.VISIBLE
+                        } else {
+                            View.GONE
+                        }
+                    }
+                }
             }
         }
     }

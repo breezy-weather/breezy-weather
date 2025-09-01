@@ -481,6 +481,7 @@
     <string name="action_about">About</string>
     <string name="action_dependencies" translatable="false">@string/about_dependencies</string>
     <string name="action_refresh">Refresh</string>
+    <string name="action_pull_down_to_refresh">Pull down to refresh</string>
     <string name="action_restart">Restart</string>
     <string name="action_more">More</string>
     <string name="action_edit">Edit</string>
@@ -509,7 +510,6 @@
     <string name="action_enable">Enable</string>
     <string name="action_allow">Allow</string>
     <string name="action_grant_permission">Tap to grant the permission.</string>
-    <string name="action_pull_down_to_refresh">Pull down to refresh</string>
     <!-- Button shown in the weather selection dialog -->
     <!-- Labels -->
     <string name="label_description">Description</string>
