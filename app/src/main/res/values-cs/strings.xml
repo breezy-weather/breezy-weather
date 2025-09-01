@@ -466,7 +466,7 @@
     <string name="temperature_normal_short">Normální</string>
     <string name="temperature_normals">Teplotní normy</string>
     <string name="message_source_not_installed_error_title">Zdroj již není k dispozici</string>
-    <string name="about_contribution_designer">Designer loga</string>
+    <string name="about_contribution_designer">Tvůrce loga</string>
     <string name="common_weather_text_rain_showers">Dešťové přeháňky</string>
     <string name="common_weather_text_drizzle_moderate">Mírné mrholení</string>
     <string name="common_weather_text_drizzle_heavy">Silné mrholení</string>
@@ -511,7 +511,7 @@
     <string name="ceiling_short">Strop</string>
     <string name="settings_weather_sources_default_source">Výchozí zdroj pro nová umístění</string>
     <string name="settings_weather_source_unavailable">%s (nedostupný)</string>
-    <string name="settings_weather_source_freenet_disclaimer">V této verzi aplikace nejsou dostupné zdroje provozované na nesvobodných síťových službách. Klepněte sem pro více informací.</string>
+    <string name="settings_weather_source_freenet_disclaimer">Používáte Svobodnou verzi aplikace. Přejděte na Standardní verzi, pokud chcete používat nesvobodné síťové služby.</string>
     <string name="location_delete_location_dialog_message_no_name">Chystáte se odstranit toto umístění z vašeho seznamu uložených umístění.</string>
     <string name="action_confirm">Potvrdit</string>
     <string name="weather_message_too_frequent_refreshes">Počkejte prosím několik vteřin před opětovným pokusem…</string>
@@ -788,8 +788,8 @@
     <string name="widget_live_wallpaper_animations_enable_dangerous">NEBEZPEČNÉ</string>
     <string name="widget_live_wallpaper_animations_enable_warning1">Animace pozadí mohou mimo jiné způsobit následující: zvýšenou spotřebu baterie; přehřívání baterie; zvýšenou spotřebu paměti; zhoršenou odezvu systému; pád systému Android.</string>
     <string name="widget_live_wallpaper_animations_enable_warning2">Pokud se rozhodnete je povolit, nesete plnou zodpovědnost za jakýkoli problém, který se může objevit. Nebude vám poskytnuta žádná podpora.</string>
-    <string name="message_source_non_free_network_title">Zdroj je provozován na nesvobodné síťové službě nedostupné v této verzi aplikace</string>
-    <string name="message_source_non_free_network_content">Toto nastane, když použijete zdroj provozovaný na nesvobodné síti ve standardní verzi aplikace a přejdete na její svobodnou verzi se zdroji provozovanými pouze na svobodných sítích. Pro vyřešení tohoto problému se vraťte na standardní verzi nebo změňte zdroj.</string>
+    <string name="message_source_non_free_network_title">Tento zdroj vyžaduje Standardní verzi aplikace</string>
+    <string name="message_source_non_free_network_content">Používáte Svobodnou verzi aplikace, která podporuje pouze zdroje hostované na svobodné síti. Abyste mohli dál používat tento zdroj, přejděte zpět na Standardní verzi. V opačném případě si vyberte jiný zdroj.</string>
     <string name="settings_weather_source_non_freenet">%s (nesvobodná síťová služba)</string>
     <string name="settings_appearance_dark_mode_custom">Tmavý režim od %1$s do %2$s</string>
 </resources>
