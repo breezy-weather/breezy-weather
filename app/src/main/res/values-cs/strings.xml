@@ -792,4 +792,5 @@
     <string name="message_source_non_free_network_content">Používáte Svobodnou verzi aplikace, která podporuje pouze zdroje hostované na svobodné síti. Abyste mohli dál používat tento zdroj, přejděte zpět na Standardní verzi. V opačném případě si vyberte jiný zdroj.</string>
     <string name="settings_weather_source_non_freenet">%s (nesvobodná síťová služba)</string>
     <string name="settings_appearance_dark_mode_custom">Tmavý režim od %1$s do %2$s</string>
+    <string name="action_pull_down_to_refresh">Tahem dolů obnovte</string>
 </resources>
