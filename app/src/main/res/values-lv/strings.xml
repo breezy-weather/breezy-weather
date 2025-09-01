@@ -540,7 +540,7 @@
     <string name="settings_per_location_summary">Papildu pielāgojumi šai atrašanās vietai</string>
     <string name="settings_unavailable_no_background_updates">Nav pieejams, vispirms jāiespējo fona atjauninājumi</string>
     <string name="settings_modules_broadcast_title">Datu kopīgošana</string>
-    <string name="settings_weather_source_freenet_disclaimer">Vairāk laikapstākļu avotu ir pieejami citos lietotnes laidienos. Piespiest šeit, lai uzzinātu vairāk.</string>
+    <string name="settings_weather_source_freenet_disclaimer">Tu izmanto lietotnes versiju ar brīvajiem tīkliem. Jāpārslēdzas uz parasto versiju, ja ir vēlēšanās izmantot nebrīvos tīkla pakalpojumus.</string>
     <string name="widget_label_show_widget_card_alpha">Necaurspīdīgums</string>
     <string name="widget_label_hide_header">Paslēpt galveni</string>
     <string name="message_server_unavailable_content">Tā parasti ir īslaicīga kļūda. Ja tā nepazūd, lūgums iesniegt nepilnības pieteikumu GitHub.</string>
@@ -773,4 +773,7 @@
     <string name="widget_live_wallpaper_animations_enable_warning1">Ir zināms, ka ekrāntapešu animācijas var izraisīt (bet ne tikai): palielinātu akumulatora patēriņu; akumulatora pārkaršanu; palielinātu atmiņas patēriņu; pasliktinātu sistēmas atsaucību; Android sistēmas avarēšanu.</string>
     <string name="widget_live_wallpaper_animations_enable_warning2">Ja izlem tās iespējot, Tu uzņemies pilnu atbildību par jebkuru sarežģījumu, kas var rasties, un netiks nodrošināts nekāds atbalsts.</string>
     <string name="settings_appearance_dark_mode_custom">Tumšais izskats no %1$s līdz %2$s</string>
+    <string name="settings_weather_source_non_freenet">%s (nebrīvs tīkla pakalpojums)</string>
+    <string name="message_source_non_free_network_content">Tu izmanto lietotnes versiju ar brīviem tīkliem, kas atbalsta avotus, kas ir mitināti brīvā tīklā. Lai turpinātu izmantot šo avotu, jāpārslēdzas uz parasto versiju. Pretējā gadījumā jāizvēlas cits avots.</string>
+    <string name="message_source_non_free_network_title">Šim avotam ir nepieciešama lietotnes parastā versija</string>
 </resources>
