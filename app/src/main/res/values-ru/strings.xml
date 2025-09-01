@@ -509,7 +509,7 @@
     <string name="widget_custom_subtitle_keyword_caqi_description">Текущий индекс качества воздуха</string>
     <string name="widget_custom_subtitle_keyword_xaqi_description">Индекс качества воздуха на сегодня, завтра, …, 4 дня спустя</string>
     <string name="settings_weather_source_unavailable">%s (недоступно)</string>
-    <string name="settings_weather_source_freenet_disclaimer">Дополнительные источники данных о погоде доступны в других версиях приложения. Нажмите здесь, чтобы узнать больше.</string>
+    <string name="settings_weather_source_freenet_disclaimer">Вы используете версию приложения Freenet. Переключитесь на версию Стандарт если вы желаете использовать не свободные источники.</string>
     <string name="pollen_castanea">Каштан</string>
     <string name="pollen_plantaginaceae">Подорожник</string>
     <string name="pollen_platanus">Платан</string>
@@ -780,4 +780,7 @@
     <string name="widget_live_wallpaper_animations_enable_warning2">Если вы решите включить их, вы берёте на себя полную ответственность за любые возникающие проблемы, и поддержка предоставлена не будет.</string>
     <string name="settings_regional_preference">Региональные настройки</string>
     <string name="settings_appearance_dark_mode_custom">Тёмный режим с %1$s до %2$s</string>
+    <string name="message_source_non_free_network_title">Этот источник требует Стандартную версию приложения</string>
+    <string name="message_source_non_free_network_content">Вы используете версию приложения Freenet, которая поддерживает только источники, размещенные в свободной сети. Чтобы продолжить использование этого источника, переключитесь обратно на версию Стандарт. В противном случае выберите другой источник.</string>
+    <string name="settings_weather_source_non_freenet">%s (не свободный сетевой сервис)</string>
 </resources>
