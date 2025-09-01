@@ -529,7 +529,7 @@
     <string name="settings_modules_broadcast_title">Sänd mina väderdata till andra appar</string>
     <string name="settings_per_location">Platsinställningar</string>
     <string name="settings_per_location_theme">Tema</string>
-    <string name="settings_weather_source_freenet_disclaimer">Fler väderkällor är tillgängliga i andra varianter av appen. Tryck här för att läsa mer.</string>
+    <string name="settings_weather_source_freenet_disclaimer">Du använder Freenet-versionen av appen. Byt till standardversionen om du vill använda icke-fria nätverkstjänster.</string>
     <string name="settings_weather_source_open_meteo_weather_models_best_match">Bästa matchning</string>
     <string name="settings_weather_source_open_meteo_weather_models_best_match_description">Kombinerar de bästa vädermodellerna för denna plats</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless">Sömlös</string>
@@ -693,9 +693,9 @@
     <string name="visibility_from_to_number">%1$s till %2$s</string>
     <string name="visibility_from_to_description">%1$s till %2$s</string>
     <string name="visibility_perfectly_clear">Helt klart</string>
-    <string name="visibility_clear">Mycket god</string>
-    <string name="visibility_good">God</string>
-    <string name="visibility_moderate">Måttlig</string>
+    <string name="visibility_clear">Mycket god sikt</string>
+    <string name="visibility_good">God sikt</string>
+    <string name="visibility_moderate">Måttlig sikt</string>
     <string name="visibility_poor">Disigt</string>
     <string name="visibility_very_poor">Mycket disigt</string>
     <string name="cloud_cover_about">Om molntäcke</string>
@@ -710,7 +710,7 @@
     <string name="chart_maximum_value">Maxvärde</string>
     <string name="settings_appearance_dark_mode_locations_day_night">Följ dag/natt</string>
     <string name="settings_appearance_dark_mode_locations_dark">Alltid mörkt när appen är i mörkt läge</string>
-    <string name="ephemeris_about_dusk">Den mörkaste fasen av skymningen innan det sista synliga ljuset försvinner.</string>
+    <string name="ephemeris_about_dusk">Skymningen är den mörkaste fasen av kvällningen, innan det sista synliga ljuset försvinner.</string>
     <string name="action_translate_no_app">Ingen översättningsapp hittades</string>
     <string name="action_translate">Översätt</string>
     <string name="action_share_no_app">Ingen app att dela till hittades</string>
@@ -773,4 +773,8 @@
     <string name="widget_live_wallpaper_animations_enable_warning1">Bakgrundsbildsanimationer är kända för att orsaka bland annat: hög batteriförbrukning, överhettning av batteriet, hög minnesförbrukning, försämrad systemrespons, Android-systemkrasch.</string>
     <string name="widget_live_wallpaper_animations_enable_warning2">Om du väljer att aktivera dem, tar du fullt ansvar för eventuella problem som kan uppstå, och ingen support kommer att tillhandahållas.</string>
     <string name="settings_appearance_dark_mode_custom">Mörkt läge från %1$s till %2$s</string>
+    <string name="action_pull_down_to_refresh">Dra nedåt för att uppdatera</string>
+    <string name="message_source_non_free_network_title">Denna källa kräver standardversionen av appen</string>
+    <string name="message_source_non_free_network_content">Du använder Freenet-versionen av appen, som endast stöder källor som finns på ett fritt nätverk. För att fortsätta att använda denna källa, byt tillbaka till standardversionen. Annars väljer du en annan källa.</string>
+    <string name="settings_weather_source_non_freenet">%s (icke-fri nätverkstjänst)</string>
 </resources>
