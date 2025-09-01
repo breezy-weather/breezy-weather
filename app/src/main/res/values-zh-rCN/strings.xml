@@ -727,7 +727,7 @@
     <string name="conditions">天气情况</string>
     <string name="temperature_real">实际温度</string>
     <string name="temperature_real_details">实际温度。</string>
-    <string name="temperature_feels_like_details">体感温度是指人体主观感受到的冷暖程度，受‌气温、湿度、风速和日照‌等多因素综合影响</string>
+    <string name="temperature_feels_like_details">体感温度是指人体主观感受到的冷暖程度，受湿度、风速和日照等多因素综合影响。</string>
     <string name="temperature_degree_day_heating_explanation">用于估算供暖能源需求的室外温度与参考舒适温度之差</string>
     <string name="temperature_degree_day_cooling_explanation">用于估算冷却能源需求的室外温度与参考舒适温度之差</string>
     <string name="wind_speed_about">关于风速和强风</string>
@@ -862,4 +862,5 @@
     <string name="message_source_non_free_network_title">托管在非自由网络服务上的气象数据源在这个版本的应用中不可用</string>
     <string name="message_source_non_free_network_content">用过标准版应用中托管在非自由网络上的气象数据源，之后切换到仅含托管在自由网络上的 FOSS 版本会发生这个问题。要解决它，请回到标准版或更改气象数据源。</string>
     <string name="settings_weather_source_non_freenet">%s （非自由网络服务）</string>
+    <string name="action_pull_down_to_refresh">下拉刷新</string>
 </resources>
