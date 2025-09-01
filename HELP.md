@@ -4,6 +4,7 @@
 - [Troubleshooting errors](#troubleshooting-errors)
 - [Weather updates](#weather-updates)
 - [Launcher](#launcher)
+- [Design](#design)
 
 ___
 
@@ -136,3 +137,37 @@ The rationale behind this is to offer a better user experience:
 This choice is aligned with Breezy Weather principles to make it easy to use as a new user. Many other apps make the same decision.
 
 For users with advanced needs not happy with this choice, we recommend using a launcher that allows customisation of app names.
+
+___
+
+## Design
+
+### I hate the new Material 3 Expressive design update
+
+As always when there is a major design change, there are early adopters who fully embrace the changes, and more conservative users, with the majority of users being in-between.
+
+If you’ve been using the new design only for a few days, we encourage to **give yourself a few more weeks**.
+
+Here is why:
+
+#### Research
+
+Material 3 Expressive is the **most studied design system** by Google, with 46 studies involving more than 18,000 participants.
+
+Top research takeaways include:
+1. Expressive designs are **preferred by people of all ages**, with a strong preference from users in the 18-34 age group.
+2. Expressive designs consistently score higher on user attributes like **playfulness**, **energy**, **creativity**, and **friendliness**, which give a positive perception of the app by users.
+3. Users are **more likely to switch to products that use M3 Expressive** components and techniques.
+4. Expressive designs are **easier to use**, with participants spotting key UI elements up to **four times faster** in expressive screens, among users with varying abilities.
+
+[Learn more about the Expressive research](https://design.google/library/expressive-material-design-google-research)
+
+Each new design made by Google is more studied, and always gradually adopted by apps (we almost never see the old Holo design in apps anymore).
+
+With clear design toolkit guidelines, Material 3 Expressive provides a **consistent developer and user experience** across the Android system and the other apps also adopting it.
+
+#### Alternative design options
+
+Regarding the ability to make an option to switch between the new and old design, it’s not possible, because there were significant technical changes during the migration to get rid of most of the technical debt, which allows for easier maintenance of the app.
+
+Maintaining more than 1 design has a high maintenance cost. We do provide some abilities to customize this design for flexibility, but for more significant changes, we provide the [ability to make 3rd party designs](https://github.com/breezy-weather/breezy-weather/discussions/2089), either by yourself or by commissioning someone. If you concretize it, we would be happy if you could share it in the [Show & Tell section](https://github.com/breezy-weather/breezy-weather/discussions/categories/show-and-tell)!
