@@ -20,6 +20,7 @@ The following features are already available in the current branch, but will be 
 
 **Weather sources**
 - ECCC - Technical changes
+- NCDR - Fix error when there is no alert (@chunshek)
 
 **Translations**
 - Translations updated
