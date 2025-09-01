@@ -6,6 +6,7 @@ First of all, address lookup is absolutely not required to get an accurate forec
 
 If it’s still an important matter to you, you can select an address lookup source in the location settings.
 
+___
 
 ## Troubleshooting errors
 
@@ -48,6 +49,7 @@ The forecast source you selected reports hourly forecast on the :00 time, while 
 
 This error may happen when a source is no longer provided by Breezy Weather. In that case, you will need to add a new location with another source, and delete this location. It can also happen when you switch from the standard flavor of Breezy Weather to `freenet` one which has less sources supported.
 
+
 ### “Secure connection failed”
 
 This can mean many things.
@@ -61,7 +63,7 @@ If this is happening will all sources, and presumably with other apps, in the wo
 
 If in doubt, [start a discussion to ask for help](https://github.com/breezy-weather/breezy-weather/discussions/new?category=general).
 
-
+___
 
 ## Sources
 
@@ -69,6 +71,7 @@ If in doubt, [start a discussion to ask for help](https://github.com/breezy-weat
 
 Just swipe from right to left on location list, or tap the pencil icon on top right.
 
+___
 
 ## Updates
 
