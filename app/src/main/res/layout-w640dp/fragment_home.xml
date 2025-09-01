@@ -60,6 +60,15 @@
 
                 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
+                <TextView
+                    android:id="@+id/emptyText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/action_pull_down_to_refresh"
+                    android:textAppearance="?attr/textAppearanceTitleLarge"
+                    android:layout_gravity="center"
+                    android:visibility="gone" />
+
             </org.breezyweather.ui.common.widgets.SwipeSwitchLayout>
 
             <org.breezyweather.ui.common.widgets.InkPageIndicator

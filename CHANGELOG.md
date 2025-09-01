@@ -15,6 +15,9 @@ The following features are already available in the current branch, but will be 
 
 # Version 6.0.10-rc (not yet released)
 
+**Improvements and fixes**
+- Add instructions to pull to refresh instead of leaving a blank screen when weather failed to load initially (@Amitesh-exp)
+
 **Weather sources**
 - ECCC - Technical changes
 

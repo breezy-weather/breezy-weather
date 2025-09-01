@@ -509,6 +509,7 @@
     <string name="action_enable">Enable</string>
     <string name="action_allow">Allow</string>
     <string name="action_grant_permission">Tap to grant the permission.</string>
+    <string name="action_pull_down_to_refresh">Pull down to refresh</string>
     <!-- Button shown in the weather selection dialog -->
     <!-- Labels -->
     <string name="label_description">Description</string>
@@ -1287,5 +1288,4 @@
     <string name="colon_separator" translatable="false">:\u0020</string>
     <string name="dot_separator" translatable="false">\u0020•\u0020</string>
     <string name="parenthesis" translatable="false">%1$s (%2$s)</string>
-    <string name="pull_down_to_refresh">Pull down to refresh</string>
 </resources>

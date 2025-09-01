@@ -36,7 +36,6 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import breezyweather.domain.location.model.Location
-import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
 import org.breezyweather.R
 import org.breezyweather.common.activities.BreezyActivity
@@ -65,8 +64,6 @@ import org.breezyweather.ui.theme.resource.ResourcesProviderFactory
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
 import org.breezyweather.ui.theme.weatherView.WeatherView
 import org.breezyweather.ui.theme.weatherView.WeatherViewController
-import java.util.Date
-import kotlin.time.Duration.Companion.seconds
 
 class HomeFragment : MainModuleFragment() {
 
@@ -281,11 +278,11 @@ class HomeFragment : MainModuleFragment() {
                     if (it?.location != null) {
                         binding.toolbar.menu.findItem(R.id.action_edit).isVisible = true
                         binding.toolbar.menu.findItem(R.id.action_open_in_other_app).isVisible = true
-                        binding.emptyText!!.visibility = View.VISIBLE
+                        binding.emptyText.visibility = if (it.location.weather != null) View.GONE else View.VISIBLE
                     } else {
                         binding.toolbar.menu.findItem(R.id.action_edit).isVisible = false
                         binding.toolbar.menu.findItem(R.id.action_open_in_other_app).isVisible = false
-                        binding.emptyText!!.visibility = View.GONE
+                        binding.emptyText.visibility = View.GONE
                     }
                     if (it?.location != lastCurrentLocation) {
                         updateViews(it?.location)
@@ -357,17 +354,6 @@ class HomeFragment : MainModuleFragment() {
         if (location?.weather == null) {
             adapter!!.setNullWeather()
             adapter!!.notifyDataSetChanged()
-            binding.recyclerView.setOnTouchListener { _, event ->
-                if (event.action == MotionEvent.ACTION_DOWN &&
-                    !binding.refreshLayout.isRefreshing
-                ) {
-                    viewModel.updateWithUpdatingChecking(
-                        triggeredByUser = true,
-                        checkPermissions = true
-                    )
-                }
-                false
-            }
             return
         }
 
