@@ -125,11 +125,8 @@ class FpasService @Inject constructor(
                                     startDate = start,
                                     endDate = it.expires?.value,
                                     headline = title,
-                                    description = formatAlertText(
-                                        it.senderName?.value,
-                                        it.description?.value
-                                    ),
-                                    instruction = it.instruction?.value,
+                                    description = it.formatAlertText(text = it.description?.value),
+                                    instruction = it.formatAlertText(text = it.instruction?.value),
                                     source = it.senderName?.value,
                                     severity = severity,
                                     color = Alert.colorFromSeverity(severity)
@@ -149,28 +146,6 @@ class FpasService @Inject constructor(
                 }
             )
         }
-    }
-
-    // apply formatting to alert text based on source
-    private fun formatAlertText(
-        source: String?,
-        text: String?,
-    ): String {
-        var result: String
-        if (text.isNullOrEmpty()) {
-            return ""
-        }
-        result = text
-        if (!source.isNullOrEmpty()) {
-            if (source.startsWith("NWS ", ignoreCase = true) ||
-                source.equals("National Weather Service", ignoreCase = true)
-            ) {
-                // Look for SINGLE line breaks surrounded by letters, numbers, and punctuation.
-                val regex = Regex("""([0-9A-Za-z.,]) *\n([0-9A-Za-z])""")
-                result = regex.replace(result, "$1 $2")
-            }
-        }
-        return result.trim()
     }
 
     // CONFIG
