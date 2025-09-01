@@ -1,10 +1,23 @@
 # Help / Frequently Asked Questions
 
-## App shows “Current location” instead of the address
+- [Locations](#locations)
+- [Troubleshooting errors](#troubleshooting-errors)
+- [Weather updates](#weather-updates)
+- [Launcher](#launcher)
+
+___
+
+## Locations
+
+### App shows “Current location” instead of the address
 
 First of all, address lookup is absolutely not required to get an accurate forecast, since it’s based on your longitude and latitude, not on your address, which is a totally different process.
 
 If it’s still an important matter to you, you can select an address lookup source in the location settings.
+
+### How can I change sources for a location?
+
+Just swipe from right to left on location list, or tap the pencil icon on top right.
 
 ___
 
@@ -65,15 +78,7 @@ If in doubt, [start a discussion to ask for help](https://github.com/breezy-weat
 
 ___
 
-## Sources
-
-### How can I change sources for a location?
-
-Just swipe from right to left on location list, or tap the pencil icon on top right.
-
-___
-
-## Updates
+## Weather updates
 
 ### Background updates are not working
 
@@ -116,6 +121,9 @@ If you still want shorter refreshes:
 - we ask for fair usage of API and resources. This app and these API are provided for free and shared by all users of Breezy Weather. Due to noticed abuse, we even had to implement additional caching methods to prevent these abuses and ensure API can still be used by everyone.
 - you can still force refresh from main screen by “swiping to refresh”.
 
+___
+
+## Launcher
 
 ### Why is the app not called “Breezy Weather” on my launcher?
 
