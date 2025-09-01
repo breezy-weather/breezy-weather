@@ -71,7 +71,7 @@
     <string name="hourly_forecast">Prognoza pe ore</string>
     <string name="air_quality">Calitatea aerului</string>
     <string name="pollen">Polen</string>
-    <string name="ephemeris">Soarele și Luna</string>
+    <string name="ephemeris">Soarele și luna</string>
     <string name="action_next">Înainte</string>
     <string name="action_done">Gata</string>
     <string name="settings_enabled">Activat</string>
@@ -360,12 +360,12 @@
     <string name="settings_icon_packs_weather_icon_light">Pictogramă luminoasă</string>
     <string name="settings_units_summary">Temperatură, precipitații, distanță, viteză, presiune</string>
     <string name="settings_main">Ecran principal</string>
-    <string name="settings_main_summary">Ordinea cardurilor, elementele afișate, animații</string>
-    <string name="settings_main_cards_title">Carduri</string>
+    <string name="settings_main_summary">Ordinea blocurilor, elementele afișate, animații</string>
+    <string name="settings_main_cards_title">Blocuri</string>
     <string name="settings_main_daily_trends_title">Tendințe zilnice</string>
     <string name="settings_main_hourly_trends_title">Tendințe orare</string>
     <string name="settings_main_section_options">Opțiuni</string>
-    <string name="settings_main_cards_fade_in_switch">Cardurile se estompează</string>
+    <string name="settings_main_cards_fade_in_switch">Blocurile se estompează</string>
     <string name="settings_main_cards_other_element_animations_switch">Alte elemente de animație</string>
     <string name="settings_notifications_summary">Notificări de alerte meteo, precipitații și prognoză pentru locația primară</string>
     <string name="settings_notifications_alerts_title">Notificări ale alertelor meteo severe</string>
@@ -665,8 +665,8 @@
     <string name="ephemeris_sun">Soare</string>
     <string name="ephemeris_moon">Lună</string>
     <string name="ephemeris_about">Despre ora răsăritului și apusului</string>
-    <string name="ephemeris_about_rise">Timpul răsăritului este atunci când soarele sau luna apar pe deplin deasupra orizontului.</string>
-    <string name="ephemeris_about_set">Timpul apusului este când soarele sau luna dispar complet sub orizont.</string>
+    <string name="ephemeris_about_rise">Ora răsăritului este atunci când soarele sau luna apar pe deplin deasupra orizontului.</string>
+    <string name="ephemeris_about_set">Ora apusului este atunci când soarele sau luna dispar complet sub orizont.</string>
     <string name="ephemeris_about_dusk">Amurgul este cea mai întunecată etapă a amurgului înainte de a dispărea ultima lumină vizibilă.</string>
     <string name="ephemeris_polar_day">Zi polară</string>
     <string name="ephemeris_polar_night">Noapte polară</string>
@@ -786,4 +786,5 @@
     <string name="message_source_non_free_network_title">Această sursă necesită versiunea Standard a aplicației</string>
     <string name="message_source_non_free_network_content">Folosiți versiunea Freenet a aplicației, care suportă doar surse găzduite pe o rețea liberă. Pentru a continua să folosiți această sursă, treceți înapoi pe versiunea Standard. Altfel, alegeți o sursă diferită.</string>
     <string name="settings_weather_source_non_freenet">%s (serviciu de rețea non-liber)</string>
+    <string name="action_pull_down_to_refresh">Trageți în jos pentru a reîmprospăta</string>
 </resources>
