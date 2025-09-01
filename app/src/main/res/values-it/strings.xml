@@ -684,4 +684,25 @@
     <string name="action_add_as_location">Aggiungi come posizione</string>
     <string name="settings_appearance_dark_mode_custom">Modalità scura dalle %1$s alle %2$s</string>
     <string name="settings_appearance_dark_mode_locations_day_night">Segui giorno/notte</string>
+    <string name="temperature_normals_deviation">Deviazione</string>
+    <string name="nighttime_short">Notte</string>
+    <string name="daytime_short">Giorno</string>
+    <string name="data_sources">Fonti dei dati</string>
+    <string name="settings_appearance_section_regional">Lingua e regione</string>
+    <string name="widget_live_wallpaper_animations_enable_dangerous">PERICOLOSO</string>
+    <string name="precipitation_total_night">Precipitazioni notturne</string>
+    <string name="precipitation_total_day">Precipitazioni diurne</string>
+    <string name="precipitation_rain_total_night">Pioggia notturna</string>
+    <string name="precipitation_rain_total_day">Pioggia diurna</string>
+    <string name="precipitation_snow_total_night">Neve notturna</string>
+    <string name="precipitation_snow_total_day">Neve diurna</string>
+    <string name="ephemeris_polar_night">Notte polare</string>
+    <string name="pollen_primary">Polline primario</string>
+    <string name="ephemeris_dawn_at">Alba alle %s</string>
+    <string name="dew_point_from_to_number">Da %1$s a %2$s</string>
+    <string name="wind_origin">Da %s</string>
+    <string name="humidity_from_to_number">Dal %1$s al %2$s</string>
+    <string name="cloud_cover_from_to_number">Dal %1$s al %2$s</string>
+    <string name="settings_appearance_section_theme">Tema</string>
+    <string name="visibility_from_to_number">Da %1$s a %2$s</string>
 </resources>
