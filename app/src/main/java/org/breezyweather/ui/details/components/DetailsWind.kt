@@ -523,7 +523,11 @@ fun WindScale(
                     modifier = Modifier.weight(1.5f)
                 )
                 Text(
-                    speedUnit.getDisplayName(context, context.currentLocale),
+                    speedUnit.getDisplayName(
+                        context,
+                        context.currentLocale,
+                        useMeasureFormat = SettingsManager.getInstance(context).useMeasureFormat
+                    ),
                     fontWeight = FontWeight.Bold,
                     textAlign = TextAlign.End,
                     modifier = Modifier.weight(1.5f)

@@ -90,6 +90,7 @@ import org.breezyweather.common.extensions.roundUpToNearestMultiplier
 import org.breezyweather.common.extensions.toDate
 import org.breezyweather.common.options.appearance.DetailScreen
 import org.breezyweather.common.utils.UnitUtils
+import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.domain.weather.index.PollutantIndex
 import org.breezyweather.domain.weather.model.getColor
 import org.breezyweather.domain.weather.model.getConcentration
@@ -751,7 +752,13 @@ fun AirQualityScale(
                 )
                 Text(
                     selectedPollutant?.let {
-                        PollutantIndex.getUnit(it).getDisplayName(context, context.currentLocale)
+                        PollutantIndex
+                            .getUnit(it)
+                            .getDisplayName(
+                                context,
+                                context.currentLocale,
+                                useMeasureFormat = SettingsManager.getInstance(context).useMeasureFormat
+                            )
                     } ?: stringResource(R.string.air_quality_index_short),
                     fontWeight = FontWeight.Bold,
                     textAlign = TextAlign.End,

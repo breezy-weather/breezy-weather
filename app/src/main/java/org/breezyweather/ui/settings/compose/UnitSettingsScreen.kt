@@ -50,6 +50,7 @@ fun UnitSettingsScreen(
     modifier: Modifier = Modifier,
 ) {
     val scrollBehavior = generateCollapsedScrollBehavior()
+    val useMeasureFormat = SettingsManager.getInstance(context).useMeasureFormat
 
     Material3Scaffold(
         modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
@@ -73,10 +74,10 @@ fun UnitSettingsScreen(
                         R.string.parenthesis,
                         stringResource(R.string.settings_regional_preference),
                         TemperatureUnit.getDefaultUnit(context.currentLocale)
-                            .getDisplayName(context, context.currentLocale, UnitWidth.LONG)
+                            .getDisplayName(context, context.currentLocale, UnitWidth.LONG, useMeasureFormat)
                     )
                 ) + allowedTemperatureUnits.map {
-                    it.getDisplayName(context, context.currentLocale, UnitWidth.LONG)
+                    it.getDisplayName(context, context.currentLocale, UnitWidth.LONG, useMeasureFormat)
                 }
                 ListPreferenceViewWithCard(
                     title = stringResource(id),
@@ -111,15 +112,25 @@ fun UnitSettingsScreen(
                         R.string.parenthesis,
                         stringResource(R.string.settings_regional_preference),
                         if (defaultUnit != snowfallUnit) {
-                            defaultUnit.getDisplayName(context, context.currentLocale, UnitWidth.LONG) +
+                            defaultUnit.getDisplayName(
+                                context,
+                                context.currentLocale,
+                                UnitWidth.LONG,
+                                useMeasureFormat
+                            ) +
                                 "/" +
-                                snowfallUnit.getDisplayName(context, context.currentLocale, UnitWidth.LONG)
+                                snowfallUnit.getDisplayName(
+                                    context,
+                                    context.currentLocale,
+                                    UnitWidth.LONG,
+                                    useMeasureFormat
+                                )
                         } else {
-                            defaultUnit.getDisplayName(context, context.currentLocale, UnitWidth.LONG)
+                            defaultUnit.getDisplayName(context, context.currentLocale, UnitWidth.LONG, useMeasureFormat)
                         }
                     )
                 ) + allowedPrecipitationUnits.map {
-                    it.getDisplayName(context, context.currentLocale, UnitWidth.LONG)
+                    it.getDisplayName(context, context.currentLocale, UnitWidth.LONG, useMeasureFormat)
                 }
                 ListPreferenceViewWithCard(
                     title = stringResource(id),
@@ -151,10 +162,10 @@ fun UnitSettingsScreen(
                         R.string.parenthesis,
                         stringResource(R.string.settings_regional_preference),
                         SpeedUnit.getDefaultUnit(context.currentLocale)
-                            .getDisplayName(context, context.currentLocale, UnitWidth.LONG)
+                            .getDisplayName(context, context.currentLocale, UnitWidth.LONG, useMeasureFormat)
                     )
                 ) + allowedSpeedUnits.map {
-                    it.getDisplayName(context, context.currentLocale, UnitWidth.LONG)
+                    it.getDisplayName(context, context.currentLocale, UnitWidth.LONG, useMeasureFormat)
                 }
                 ListPreferenceViewWithCard(
                     title = stringResource(id),
@@ -186,10 +197,10 @@ fun UnitSettingsScreen(
                         R.string.parenthesis,
                         stringResource(R.string.settings_regional_preference),
                         DistanceUnit.getDefaultUnit(context.currentLocale)
-                            .getDisplayName(context, context.currentLocale, UnitWidth.LONG)
+                            .getDisplayName(context, context.currentLocale, UnitWidth.LONG, useMeasureFormat)
                     )
                 ) + allowedDistanceUnits.map {
-                    it.getDisplayName(context, context.currentLocale, UnitWidth.LONG)
+                    it.getDisplayName(context, context.currentLocale, UnitWidth.LONG, useMeasureFormat)
                 }
                 ListPreferenceViewWithCard(
                     title = stringResource(id),
@@ -221,10 +232,10 @@ fun UnitSettingsScreen(
                         R.string.parenthesis,
                         stringResource(R.string.settings_regional_preference),
                         PressureUnit.getDefaultUnit(context.currentLocale)
-                            .getDisplayName(context, context.currentLocale, UnitWidth.LONG)
+                            .getDisplayName(context, context.currentLocale, UnitWidth.LONG, useMeasureFormat)
                     )
                 ) + allowedPressureUnits.map {
-                    it.getDisplayName(context, context.currentLocale, UnitWidth.LONG)
+                    it.getDisplayName(context, context.currentLocale, UnitWidth.LONG, useMeasureFormat)
                 }
                 ListPreferenceViewWithCard(
                     title = stringResource(id),

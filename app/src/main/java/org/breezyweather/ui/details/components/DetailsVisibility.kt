@@ -374,7 +374,11 @@ fun VisibilityScale(
                     modifier = Modifier.weight(1.5f)
                 )
                 Text(
-                    distanceUnit.getDisplayName(context, context.currentLocale),
+                    distanceUnit.getDisplayName(
+                        context,
+                        context.currentLocale,
+                        useMeasureFormat = SettingsManager.getInstance(context).useMeasureFormat
+                    ),
                     fontWeight = FontWeight.Bold,
                     textAlign = TextAlign.End,
                     modifier = Modifier.weight(1f)
