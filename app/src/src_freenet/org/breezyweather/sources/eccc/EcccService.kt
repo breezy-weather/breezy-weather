@@ -24,6 +24,7 @@ import breezyweather.domain.weather.wrappers.WeatherWrapper
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.common.exceptions.NonFreeNetSourceException
+import org.breezyweather.common.preference.Preference
 import javax.inject.Inject
 
 class EcccService @Inject constructor(
@@ -47,4 +48,9 @@ class EcccService @Inject constructor(
     ): Observable<List<LocationAddressInfo>> {
         throw NonFreeNetSourceException()
     }
+
+    override val isConfigured = true
+    override val isRestricted = false
+
+    override fun getPreferences(context: Context): List<Preference> = emptyList()
 }

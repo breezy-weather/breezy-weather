@@ -710,6 +710,7 @@
     <string name="settings_source_api_key">API key</string>
     <string name="settings_location_source_baidu_ip_api_key" translatable="false">@string/settings_source_api_key</string>
     <string name="settings_weather_source_accu_api_key" translatable="false">@string/settings_source_api_key</string>
+    <string name="settings_weather_source_eccc_api_key" translatable="false">@string/settings_source_api_key</string>
     <string name="settings_weather_source_open_weather_api_key" translatable="false">@string/settings_source_api_key</string>
     <string name="settings_weather_source_pirate_weather_api_key" translatable="false">@string/settings_source_api_key</string>
     <string name="settings_weather_source_here_api_key" translatable="false">@string/settings_source_api_key</string>

@@ -138,6 +138,11 @@ android {
         )
         it.buildConfigField(
             "String",
+            "ECCC_KEY",
+            "\"${properties.getProperty("breezy.eccc.key") ?: ""}\""
+        )
+        it.buildConfigField(
+            "String",
             "GEO_NAMES_KEY",
             "\"${properties.getProperty("breezy.geonames.key") ?: ""}\""
         )

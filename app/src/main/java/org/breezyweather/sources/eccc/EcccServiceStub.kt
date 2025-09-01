@@ -23,6 +23,7 @@ import breezyweather.domain.source.SourceFeature
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.getCountryName
+import org.breezyweather.common.source.ConfigurableSource
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.NonFreeNetSource
 import org.breezyweather.common.source.ReverseGeocodingSource
@@ -37,6 +38,7 @@ abstract class EcccServiceStub(context: Context) :
     HttpSource(),
     WeatherSource,
     ReverseGeocodingSource,
+    ConfigurableSource,
     NonFreeNetSource {
 
     override val id = "eccc"
