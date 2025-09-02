@@ -812,4 +812,5 @@
     <string name="settings_appearance_dark_mode_locations_day_night">時間に応じてカラーモードを変更</string>
     <string name="settings_appearance_dark_mode_locations_dark">アプリがダークモードの場合は常にダークに設定</string>
     <string name="content_provider_permission_label">Breezy Weatherのデータを読み込む</string>
+    <string name="content_provider_permission_description">Breezy Weatherの天気情報を入手。ここには現在地などの座標が含まれます</string>
 </resources>
