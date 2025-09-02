@@ -774,4 +774,5 @@
     <string name="message_source_non_free_network_title">Éilíonn an fhoinse seo an leagan Caighdeánach den aip</string>
     <string name="message_source_non_free_network_content">Tá tú ag úsáid leagan Freenet den fheidhmchlár, nach dtacaíonn ach le foinsí atá á óstáil ar líonra saor in aisce. Chun leanúint ar aghaidh ag úsáid na foinse seo, aistrigh ar ais go dtí an leagan Caighdeánach. Seachas sin, roghnaigh foinse eile.</string>
     <string name="settings_weather_source_non_freenet">%s (seirbhís líonra neamh-saor in aisce)</string>
+    <string name="action_pull_down_to_refresh">Tarraing síos chun athnuachan</string>
 </resources>
