@@ -71,7 +71,7 @@
     <string name="air_quality">空氣品質</string>
     <string name="pollen">花粉濃度</string>
     <string name="ephemeris">日月出沒</string>
-    <string name="action_next">下一步</string>
+    <string name="action_next">繼續</string>
     <string name="action_done">完成</string>
     <string name="settings_enabled">啟用</string>
     <string name="settings_disabled">停用</string>
