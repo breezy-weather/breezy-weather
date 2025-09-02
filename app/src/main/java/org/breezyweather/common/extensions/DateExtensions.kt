@@ -114,7 +114,7 @@ fun Date.getFormattedTime(
     twelveHour: Boolean,
 ): String {
     return if (twelveHour) {
-        getFormattedDate("h:mm aa", location, context, withBestPattern = true)
+        getFormattedDate("h:mm a", location, context, withBestPattern = true)
     } else {
         getFormattedDate("HH:mm", location, context)
     }
@@ -128,7 +128,7 @@ fun LocalTime.getFormattedTime(
     return if (twelveHour) {
         format(
             DateTimeFormatter.ofPattern(
-                DateTimePatternGenerator.getInstance(locale).getBestPattern("h:mm aa")
+                DateTimePatternGenerator.getInstance(locale).getBestPattern("h:mm a")
             ).withLocale(locale)
         )
     } else {
@@ -197,7 +197,7 @@ fun Date.getWeek(location: Location, context: Context?, full: Boolean = false): 
 
 fun Date.getHour(location: Location, context: Context): String {
     return getFormattedDate(
-        if (context.is12Hour) "h aa" else "H:mm",
+        if (context.is12Hour) "h a" else "H:mm",
         location,
         context,
         withBestPattern = context.is12Hour
