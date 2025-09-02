@@ -839,4 +839,5 @@
     <string name="message_source_non_free_network_title">Esta fonte requer a versão Standard do app</string>
     <string name="message_source_non_free_network_content">Você está usando a versão Freenet do app, que só suporta fontes hospedadas em redes livres. Para continuar usando esta fonte, volte para a versão Standard. Caso contrário, escolha uma fonte diferente.</string>
     <string name="settings_weather_source_non_freenet">%s (serviço de rede não livre)</string>
+    <string name="action_pull_down_to_refresh">Puxe para baixo para recarregar</string>
 </resources>
