@@ -376,7 +376,7 @@
     <string name="settings_main_summary">块顺序，显示的项目，动画</string>
     <string name="settings_main_section_displayed_data">显示的数据</string>
     <string name="settings_main_cards_other_element_animations_switch">其他动画</string>
-    <string name="settings_notifications_alerts_title">恶劣天气预警通知</string>
+    <string name="settings_notifications_alerts_title">极端天气预警通知</string>
     <string name="settings_notifications_forecast_today_title">每日预报通知</string>
     <string name="settings_notifications_forecast_tomorrow_title">明日预报通知</string>
     <string name="settings_notifications_summary">首个位置的天气预警、降水或预报的通知</string>
@@ -695,7 +695,7 @@
     <string name="location_custom_name">自定义名称</string>
     <string name="settings_modules_notification_permission_summary">需要该权限来显示通知小部件。%s</string>
     <string name="action_grant_permission">轻按授予权限。</string>
-    <string name="settings_notifications_permission_summary">需要该权限来发出警报、预报和应用更新的提醒。%s</string>
+    <string name="settings_notifications_permission_summary">需要该权限来发出预警、预报和应用更新的提醒。%s</string>
     <string name="settings_debug_notification_permission">需要该权限来发出崩溃记录和天气更新失败的提醒。%s</string>
     <string name="location_reverse_geocoding">位置查询</string>
     <string name="daily_yesterday">昨天</string>
