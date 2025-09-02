@@ -191,11 +191,13 @@ enum class DistanceUnit(
          * Copyright © 1991-Present Unicode, Inc.
          * License: Unicode License v3 https://www.unicode.org/license.txt
          * Source (simplified): https://github.com/unicode-org/cldr/blob/3f3967f3cbadc56bbb44a9aed20784e82ac64c67/common/supplemental/units.xml#L506-L512
+         * Changes:
+         * - Germany no longer uses METER as DWD uses KILOMETER
          */
         fun getDefaultUnit(
             locale: Locale = Locale.getDefault(),
         ) = when (locale.country) {
-            "DE", "NL" -> METER
+            "NL" -> METER
             "GB", "US" -> MILE
             else -> KILOMETER
         }

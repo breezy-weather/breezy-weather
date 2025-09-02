@@ -17,6 +17,7 @@ The following features are already available in the current branch, but will be 
 
 **Improvements and fixes**
 - Fix crash when entering Appearance settings using 12-hour format with scheduled dark mode
+- Change default distance unit for Germany to kilometer
 
 **Translations**
 - Translations updated
