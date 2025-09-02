@@ -783,4 +783,5 @@
     <string name="message_source_non_free_network_title">Этот источник требует Стандартную версию приложения</string>
     <string name="message_source_non_free_network_content">Вы используете версию приложения Freenet, которая поддерживает только источники, размещенные в свободной сети. Чтобы продолжить использование этого источника, переключитесь обратно на версию Стандарт. В противном случае выберите другой источник.</string>
     <string name="settings_weather_source_non_freenet">%s (не свободный сетевой сервис)</string>
+    <string name="action_pull_down_to_refresh">Потяните вниз, чтобы обновить</string>
 </resources>
