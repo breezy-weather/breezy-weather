@@ -85,8 +85,8 @@
     <!-- feedback. -->
     <string name="dialog_permissions_location_title">Acessar informações de localização</string>
     <string name="dialog_permissions_location_content">Para usar este recurso, você precisa conceder ao aplicativo a permissão para acessar sua localização atual. Ela será compartilhada apenas com as fontes meteorológicas selecionadas. Se você mudar de ideia, pode cancelar o processo e adicionar uma localização fixa manualmente.</string>
-    <string name="dialog_permissions_location_background_title">Acessar localização em segundo plano</string>
-    <string name="dialog_permissions_location_background_content">Para permitir que a atualização do clima em segundo plano seja feita com base na localização mais recente conhecida pelo Android, você precisa configurar a permissão de localização como “Permitir o tempo todo”. Se você não fizer isso, o clima será atualizado com base nas últimas coordenadas recuperadas em primeiro plano, que podem estar desatualizadas.</string>
+    <string name="dialog_permissions_location_background_title">Acessar em segundo plano a localização</string>
+    <string name="dialog_permissions_location_background_content">Para permitir que a atualização em segundo plano do clima seja feita com base na localização mais recente conhecida pelo Android, você precisa configurar a permissão de localização como “Permitir o tempo todo”. Se você não fizer isso, o clima será atualizado com base nas últimas coordenadas recuperadas em primeiro plano, que podem estar desatualizadas.</string>
     <string name="location_message_failed_to_locate">Falha ao encontrar a localização atual</string>
     <string name="weather_message_data_refresh_failed">Falha ao atualizar dados</string>
     <string name="location_dialog_failed_to_locate_action_select_source">Utilizar outro serviço de localização</string>
@@ -272,7 +272,7 @@
     <string name="weather_api_limit_reached_content">Para contornar o limite, adicione sua própria chave de API.</string>
     <string name="weather_api_key_required_missing_title">Chave de API necessária ausente</string>
     <string name="weather_api_key_required_missing_content">Para usar esta fonte, você precisa fornecer uma chave de API.</string>
-    <string name="location_message_permission_background_missing">Permissão de acesso à localização em segundo plano ausente</string>
+    <string name="location_message_permission_background_missing">A permissão de acesso em segundo plano à localização está ausente</string>
     <string name="action_more">Ver mais</string>
     <string name="widget_subtitle_data_aqi">Qualidade do ar</string>
     <string name="common_weather_text_clear_sky">Céu limpo</string>
@@ -330,9 +330,9 @@
     <string name="settings_location_access_permission_already_granted">Permissão já concedida</string>
     <string name="settings_background_updates_worker_info_title">Informações do processo</string>
     <string name="settings_location_access_switch_summaryOn">Permitido. Você pode adicionar sua localização atual à lista.</string>
-    <string name="settings_location_access_background_title">Acesso à localização em segundo plano</string>
+    <string name="settings_location_access_background_title">Acesso em segundo plano à localização</string>
     <string name="settings_location_access_precise_summaryOn">Ativado. O provedor de rede do dispositivo será usado com prioridade e na maioria das vezes, mas o GPS também pode ser usado como alternativa.</string>
-    <string name="settings_location_access_background_summaryOn">Ativado. O app poderá atualizar os dados meteorológicos da sua localização atual em segundo plano.</string>
+    <string name="settings_location_access_background_summaryOn">Ativado. O app poderá atualizar em segundo plano os dados meteorológicos da sua localização atual.</string>
     <string name="settings_weather_sources_summary">Fonte meteorológica padrão para novas localizações, chaves de API personalizadas e outras configurações de fonte</string>
     <string name="settings_main_section_displayed_data">Dados exibidos</string>
     <string name="settings_modules_notification_persistent_switch">Persistente</string>
