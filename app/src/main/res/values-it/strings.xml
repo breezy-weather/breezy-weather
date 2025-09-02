@@ -698,7 +698,7 @@
     <string name="precipitation_snow_total_day">Neve diurna</string>
     <string name="ephemeris_polar_night">Notte polare</string>
     <string name="pollen_primary">Polline primario</string>
-    <string name="ephemeris_dawn_at">Alba alle %s</string>
+    <string name="ephemeris_dawn_at">Crepuscolo mattutino alle %s</string>
     <string name="dew_point_from_to_number">Da %1$s a %2$s</string>
     <string name="wind_origin">Da %s</string>
     <string name="humidity_from_to_number">Dal %1$s al %2$s</string>
@@ -761,4 +761,11 @@
     <string name="ephemeris_about_dusk">Il crepuscolo è la fase più oscura del crepuscolo prima che l\'ultima luce visibile sparisca.</string>
     <string name="uv_index_time_to_burn">Tempo di scottatura</string>
     <string name="uv_index_time_to_burn_explanations">Il tempo esatto alla scottatura dipende dall\'altitudine, di elementi riflettenti sul suolo come acqua o neve, il tipo di pelle e l\'uso di crema solare.</string>
+    <string name="ephemeris_dusk_at">Crepuscolo serale alle %s</string>
+    <string name="nighttime_details">Inizia la sera e si protrae fino all\'aurora del giorno successivo</string>
+    <string name="air_quality_so2_sources">Le fonti principali sono i processi di combustione di combustibili contenenti zolfo nell\'industria, nei trasporti e nelle centrali elettriche.</string>
+    <string name="air_quality_no2_sources">Le fonti principali sono i processi di combustione dei combustibili, come quelli utilizzati nell\'industria e nei trasporti.</string>
+    <string name="air_quality_index_about_description_1">L\'indice di qualità dell\'aria (AQI) è una scala pensata per aiutarti a capire quanto è inquinata l\'aria in una determinata area e i potenziali rischi per la tua salute.</string>
+    <string name="air_quality_pm_sources">Le fonti principali sono i processi di combustione (ad esempio, centrali elettriche, riscaldamento interno, scarichi di automobili, incendi), i processi meccanici (ad esempio, edilizia, polveri minerali, agricoltura) e le particelle biologiche (ad esempio, pollini, muffe, batteri, virus).Air quality index (AQI) is a scale designed to help you understand how polluted the air is in a particular area, and the potential risks to your health.</string>
+    <string name="message_incompatible_times_content">Modifica la tua fonte di previsioni o di qualità dell\'aria in modo che gli orari coincidano.</string>
 </resources>
