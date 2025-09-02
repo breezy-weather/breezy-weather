@@ -18,7 +18,7 @@
     <string name="notification_channel_forecast">Prognoză</string>
     <string name="daytime">Ziua</string>
     <string name="nighttime">Noaptea</string>
-    <string name="temperature_feels_like">Se simte</string>
+    <string name="temperature_feels_like">Temperatură resimțită</string>
     <string name="temperature_feels_like_with_unit">Se simte %s</string>
     <string name="settings_follow_system">Automat</string>
     <string name="pressure">Presiune</string>
