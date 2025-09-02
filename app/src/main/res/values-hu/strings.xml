@@ -780,4 +780,5 @@
     <string name="message_source_non_free_network_title">Ehhez a forráshoz az alkalmazás általános verziója szükséges</string>
     <string name="message_source_non_free_network_content">Az alkalmazás Freenet verzióját használja, amely csak a szabad hálózaton tárolt forrásokat támogatja. Ha továbbra is ezt a forrást szeretné használni, váltson vissza az általános verzióra. Ellenkező esetben válasszon egy másik forrást.</string>
     <string name="settings_weather_source_non_freenet">%s (nem szabad hálózati szolgáltatás)</string>
+    <string name="action_pull_down_to_refresh">Húzza lefelé a frissítéshez</string>
 </resources>
