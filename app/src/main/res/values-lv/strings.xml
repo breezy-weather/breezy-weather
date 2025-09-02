@@ -776,4 +776,5 @@
     <string name="settings_weather_source_non_freenet">%s (nebrīvs tīkla pakalpojums)</string>
     <string name="message_source_non_free_network_content">Tu izmanto lietotnes versiju ar brīviem tīkliem, kas atbalsta avotus, kas ir mitināti brīvā tīklā. Lai turpinātu izmantot šo avotu, jāpārslēdzas uz parasto versiju. Pretējā gadījumā jāizvēlas cits avots.</string>
     <string name="message_source_non_free_network_title">Šim avotam ir nepieciešama lietotnes parastā versija</string>
+    <string name="action_pull_down_to_refresh">Pavilkt uz leju, lai atsvaidzinātu</string>
 </resources>
