@@ -638,4 +638,10 @@
     <string name="air_quality_level_4_harmless_exposure">&lt; 1 hodina</string>
     <string name="air_quality_level_5_harmless_exposure">&lt; pár minút</string>
     <string name="air_quality_level_6_harmless_exposure">&lt; 1 minúta</string>
+    <string name="air_quality_short">Ovzdušie</string>
+    <string name="ephemeris_sun">Slnko</string>
+    <string name="ephemeris_moon">Mesiac</string>
+    <string name="ephemeris_polar_day">Polárny deň</string>
+    <string name="ephemeris_polar_night">Polárna noc</string>
+    <string name="clock">Hodiny</string>
 </resources>
