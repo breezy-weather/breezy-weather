@@ -716,7 +716,7 @@
     <string name="ephemeris_moon">月</string>
     <string name="ephemeris_about">日の出・月の出、日の入り・月の入りの時刻について</string>
     <string name="ephemeris_about_rise">日の出・月の出の時刻とは、太陽または月が完全に地平線を超える時刻のことです。</string>
-    <string name="ephemeris_about_set">日の入り・月の入りの時刻とは、太陽または月が完全に水平線の下に降りる時刻のことです。</string>
+    <string name="ephemeris_about_set">日の入り・月の入りの時刻とは、太陽または月が完全に地平線の下に降りる時刻のことです。</string>
     <string name="ephemeris_about_dawn">夜明けとは、日の出の前に最初に日光が見えるときのことです。</string>
     <string name="ephemeris_about_dusk">夕暮れとは、目に見える最後の光が消える前の、薄明かりの最も暗い段階のことです。</string>
     <string name="ephemeris_polar_day">白夜</string>
@@ -741,7 +741,7 @@
     <string name="uv_index_time_to_burn">日焼けするまでの時間</string>
     <string name="uv_index_time_to_burn_explanations">日焼けするまでの正確な時間は、高度、水や雪のような反射効果のある地面の有無、肌質、日焼け止めの使用の有無によって異なります。</string>
     <string name="air_quality_index_about_description_2">このアプリでは、より意味のある分類と、各国間の汚染状況の比較を容易に行えるように、各国別の規制ではなく世界保健機関（WHO）の勧告に基づく階級を採用しています。</string>
-    <string name="air_quality_index_harmless_exposure">影響のない暴露時間</string>
+    <string name="air_quality_index_harmless_exposure">悪影響が生じるまでの暴露時間</string>
     <string name="air_quality_pollutant_primary">一次汚染物質</string>
     <string name="air_quality_pm25_full">微小粒子状物質（%s以下）</string>
     <string name="air_quality_pm25_about">微小粒子状物質（%s）について</string>
@@ -799,7 +799,7 @@
     <string name="cloud_cover_from_to_description">%1$sから%2$s</string>
     <string name="action_add_as_location">場所に追加</string>
     <string name="action_pull_down_to_refresh">下にスクロールして更新</string>
-    <string name="message_incompatible_times_title">予測の時間に互換性がありません</string>
+    <string name="message_incompatible_times_title">予報の時間に互換性がありません</string>
     <string name="message_incompatible_times_content">予報または大気の質に関する情報源を変更して、時間を合わせてください。</string>
     <string name="message_source_non_free_network_title">この情報源を設定するには、標準バージョンのアプリを使う必要があります</string>
     <string name="message_source_non_free_network_content">Freenetバージョンのアプリを使用しています。このアプリは、自由なネットワークで管理されている情報源のみをサポートしています。この情報源を使い続ける場合は、標準バージョンのアプリに戻ってください。それ以外の場合は、別の情報源を選択してください。</string>
