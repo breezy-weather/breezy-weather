@@ -408,7 +408,7 @@
     <string name="settings_main_background_animation_disabled">停用</string>
     <string name="settings_main_cards_fade_in_switch">區塊淡入</string>
     <string name="settings_notifications_summary">首要位置的天氣警特報、降水或預報通知</string>
-    <string name="settings_notifications_alerts_title">劇烈天氣警特報通知</string>
+    <string name="settings_notifications_alerts_title">嚴重天氣警特報通知</string>
     <string name="settings_notifications_forecast_today_title">當日天氣預報通知</string>
     <string name="settings_notifications_precipitations_title">降水通知</string>
     <string name="action_location_list">位置清單</string>
