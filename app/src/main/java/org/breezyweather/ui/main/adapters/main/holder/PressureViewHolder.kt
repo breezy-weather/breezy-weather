@@ -16,12 +16,8 @@
 
 package org.breezyweather.ui.main.adapters.main.holder
 
-import android.animation.AnimatorSet
-import android.animation.FloatEvaluator
-import android.animation.ValueAnimator
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.view.animation.DecelerateInterpolator
 import android.widget.TextView
 import androidx.core.graphics.ColorUtils
 import breezyweather.domain.location.model.Location
@@ -36,7 +32,6 @@ import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.ui.common.widgets.ArcProgress
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
 import org.breezyweather.unit.formatting.UnitWidth
-import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
 
 class PressureViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
     LayoutInflater.from(parent.context).inflate(R.layout.container_main_pressure, parent, false)
@@ -46,7 +41,6 @@ class PressureViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
     private val pressureProgress: ArcProgress = itemView.findViewById(R.id.pressure_progress)
     private var mPressure = 963f
     private var mEnable = false
-    private var mAttachAnimatorSet: AnimatorSet? = null
 
     override fun onBindView(
         activity: BreezyActivity,
@@ -62,16 +56,9 @@ class PressureViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
             val pressureUnit = SettingsManager.getInstance(context).getPressureUnit(context)
             mPressure = it.inHectopascals.toFloat()
             mEnable = true
-            if (itemAnimationEnabled) {
-                pressureProgress.apply {
-                    progress = 0f
-                    pressureValueView.text = 0.0.hectopascals.formatValue(context)
-                }
-            } else {
-                pressureProgress.apply {
-                    progress = mPressure.minus(963f)
-                    pressureValueView.text = it.formatValue(context)
-                }
+            pressureProgress.apply {
+                progress = mPressure.minus(963f)
+                pressureValueView.text = it.formatValue(context)
             }
             val pressureColor = context.getThemeColor(androidx.appcompat.R.attr.colorPrimary)
             pressureProgress.apply {
@@ -94,34 +81,5 @@ class PressureViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
                 DetailScreen.TAG_PRESSURE
             )
         }
-    }
-
-    override fun onEnterScreen() {
-        if (itemAnimationEnabled && mEnable) {
-            mLocation!!.weather!!.current?.pressure?.let {
-                val pressureNumber = ValueAnimator.ofObject(FloatEvaluator(), 0, mPressure.minus(963f))
-                pressureNumber.addUpdateListener { animation: ValueAnimator ->
-                    pressureProgress.apply {
-                        progress = (animation.animatedValue as Float)
-                    }
-                    pressureValueView.text = pressureProgress.progress.plus(963.0).hectopascals
-                        .formatValue(context)
-                }
-                mAttachAnimatorSet = AnimatorSet().apply {
-                    playTogether(pressureNumber)
-                    interpolator = DecelerateInterpolator()
-                    duration = (1500 + (mPressure - 963).coerceAtLeast(1.0f) / 100 * 1500).toLong()
-                    start()
-                }
-            }
-        }
-    }
-
-    override fun onRecycleView() {
-        super.onRecycleView()
-        mAttachAnimatorSet?.let {
-            if (it.isRunning) it.cancel()
-        }
-        mAttachAnimatorSet = null
     }
 }
