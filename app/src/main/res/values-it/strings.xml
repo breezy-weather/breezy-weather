@@ -752,9 +752,13 @@
     <string name="action_configure_item">Configurare %s</string>
     <string name="action_share_no_app">Nessuna app con cui condividere trovata</string>
     <string name="data_modified">Questo materiale è stato modificato dall\'originale da %s principalmente per calcolare o estrapolare i dati mancanti.</string>
-    <string name="action_pull_down_to_refresh">Trascinare verso il basso per aggiornare</string>
+    <string name="action_pull_down_to_refresh">Trascina verso il basso per aggiornare</string>
     <string name="temperature_normals_deviation_explanation_maximum">Deviazione dalla temperatura massima media di %s per questa località</string>
     <string name="temperature_normals_deviation_explanation_minimum">Deviazione dalla temperatura minima media di %s per questa località</string>
     <string name="message_incompatible_times_title">Tempi di previsione incompatibili</string>
     <string name="settings_appearance_dark_mode_locations_dark">Sempre scuro quando l’app è in modalità scura</string>
+    <string name="ephemeris_about_dawn">L\'aurora è quando la prima luce visibile del giorno appare prima dell\'alba.</string>
+    <string name="ephemeris_about_dusk">Il crepuscolo è la fase più oscura del crepuscolo prima che l\'ultima luce visibile sparisca.</string>
+    <string name="uv_index_time_to_burn">Tempo di scottatura</string>
+    <string name="uv_index_time_to_burn_explanations">Il tempo esatto alla scottatura dipende dall\'altitudine, di elementi riflettenti sul suolo come acqua o neve, il tipo di pelle e l\'uso di crema solare.</string>
 </resources>
