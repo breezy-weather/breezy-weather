@@ -13,7 +13,7 @@ The following features are already available in the current branch, but will be 
 - New broadcast: you can use `org.breezyweather.ACTION_UPDATE_NOTIFIER` (or `org.breezyweather.debug.ACTION_UPDATE_NOTIFIER` with the debug build) to be notified of updated locations (most common use case is coupled with the content provider)
 
 
-# Version 6.0.11-rc (not yet released)
+# Version 6.0.11-rc (2025-09-03)
 
 **Improvements and fixes**
 - Fix crash when entering Appearance settings using 12-hour format with scheduled dark mode
