@@ -406,7 +406,7 @@ fun Ratio.formatValue(
  */
 const val CLOUD_COVER_SKC = 12.5 // 1 okta
 const val CLOUD_COVER_FEW = 37.5 // 3 okta
-const val CLOUD_COVER_SCT = 67.5 // 5 okta
+const val CLOUD_COVER_SCT = 62.5 // 5 okta
 const val CLOUD_COVER_BKN = 87.5 // 7 okta
 const val CLOUD_COVER_OVC = 100.0 // 8 okta
 
