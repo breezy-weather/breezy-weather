@@ -542,11 +542,11 @@
             android:foregroundServiceType="dataSync|shortService"
             tools:node="merge" />
 
-        <!--<provider
+        <provider
             android:name=".background.provider.WeatherContentProvider"
             android:authorities="${applicationId}.provider.weather"
             android:exported="true"
-            android:readPermission="${applicationId}.READ_PROVIDER" />-->
+            android:readPermission="${applicationId}.READ_PROVIDER" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
