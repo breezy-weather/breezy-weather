@@ -336,7 +336,7 @@ enum class SpeedUnit(
         fun getDefaultUnit(
             locale: Locale = Locale.getDefault(),
         ) = when (locale.country) {
-            "CN", "DK", "FI", "JP", "KR", "NO", "PL", "RU", "SE" -> METER_PER_SECOND
+            "CN", "DK", "FI", "JP", "KR", "NO", "NL", "PL", "RU", "SE" -> METER_PER_SECOND
             "GB", "US" -> MILE_PER_HOUR
             else -> KILOMETER_PER_HOUR
         }
