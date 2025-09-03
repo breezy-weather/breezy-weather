@@ -741,7 +741,7 @@
     <string name="uv_index_time_to_burn">日焼けするまでの時間</string>
     <string name="uv_index_time_to_burn_explanations">日焼けするまでの正確な時間は、高度、水や雪のような反射効果のある地面の有無、肌質、日焼け止めの使用の有無によって異なります。</string>
     <string name="air_quality_index_about_description_2">このアプリでは、より意味のある分類と、各国間の汚染状況の比較を容易に行えるように、各国別の規制ではなく世界保健機関（WHO）の勧告に基づく階級を採用しています。</string>
-    <string name="air_quality_index_harmless_exposure">悪影響が生じるまでの暴露時間</string>
+    <string name="air_quality_index_harmless_exposure">悪影響までの暴露時間</string>
     <string name="air_quality_pollutant_primary">一次汚染物質</string>
     <string name="air_quality_pm25_full">微小粒子状物質（%s以下）</string>
     <string name="air_quality_pm25_about">微小粒子状物質（%s）について</string>
