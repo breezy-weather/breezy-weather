@@ -669,4 +669,5 @@
     <string name="temperature_normals_deviation">Deviasyon</string>
     <string name="temperature_normals_deviation_explanation_maximum">Bu konum için ortalama maksimum sıcaklık %s</string>
     <string name="temperature_normals_deviation_explanation_minimum">Bu konum için ortalama minimum sıcaklık %s</string>
+    <string name="temperature_real">Gerçek</string>
 </resources>
