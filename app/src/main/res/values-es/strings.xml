@@ -19,7 +19,7 @@
     <string name="daytime">Día</string>
     <string name="nighttime">Noche</string>
     <string name="temperature_feels_like">Sensación térmica</string>
-    <string name="temperature_feels_like_with_unit">Sensación térmica %s</string>
+    <string name="temperature_feels_like_with_unit">Sensación térmica: %s</string>
     <string name="settings_follow_system">Seguir al sistema</string>
     <string name="pressure">Presión</string>
     <string name="visibility">Visibilidad</string>
@@ -203,7 +203,7 @@
     <string name="widget_subtitle_data_feels_like">Sensación térmica</string>
     <string name="widget_subtitle_data_custom">Personalizado</string>
     <!-- Weather kind -->
-    <string name="common_weather_text_partly_cloudy">Nuboso</string>
+    <string name="common_weather_text_partly_cloudy">Parcialmente nuboso</string>
     <string name="common_weather_text_cloudy">Cubierto</string>
     <string name="common_weather_text_rain">Lluvia</string>
     <string name="common_weather_text_snow">Nieve</string>
@@ -441,7 +441,7 @@
     <string name="common_weather_text_rain_snow_mixed_light">Lluvia ligera y nieve</string>
     <string name="settings_color_app">Seguir a la aplicación</string>
     <string name="common_weather_text_rain_snow_mixed_showers">Chubascos mixtos de lluvia y nieve</string>
-    <string name="common_weather_text_overcast">Nublado</string>
+    <string name="common_weather_text_overcast">Cubierto</string>
     <string name="about_contributors">Colaboradores</string>
     <string name="common_weather_text_rain_light">Lluvia fina</string>
     <string name="settings_modules_broadcast_send_data_title">Enviar los datos meteorológicos a %s</string>
@@ -522,7 +522,7 @@
     <string name="settings_weather_source_unavailable">%s (no disponible)</string>
     <string name="weather_message_too_frequent_refreshes">Por favor, espere unos segundos antes de volver a intentarlo…</string>
     <string name="location_delete_location_dialog_message">Estás a punto de borrar “%s” de tu lista de lugares guardados.</string>
-    <string name="settings_weather_source_freenet_disclaimer">Hay más fuentes meteorológicas disponibles en otras versiones de la aplicación. Toca aquí para obtener más información.</string>
+    <string name="settings_weather_source_freenet_disclaimer">Estás usando la versión Freenet de la aplicación. Cambia a la versión Standard si quieres usar servicios que no estén en redes no libres.</string>
     <string name="widget_custom_subtitle_keyword_xpis_description">Resumen del índice de polen de hoy, mañana, …, 4 días después</string>
     <string name="message_source_not_installed_error_content">Cambie la fuente meteorológica de esta ubicación o elimínela y vuelva a añadirla.</string>
     <string name="about_open_link_message">¿Abrir %s?</string>
@@ -777,7 +777,7 @@
     <string name="visibility_clear">Clara</string>
     <string name="visibility_perfectly_clear">Muy clara</string>
     <string name="cloud_cover_about">Sobre la nubosidad</string>
-    <string name="cloud_cover_about_description">La nubosidad se refiere al porcentaje del cielo promedio que está cubierto por nubes. La nubosidad está relacionada directamente con la duración de la insolación terrestre.</string>
+    <string name="cloud_cover_about_description">La nubosidad se refiere al porcentaje del cielo promedio que está cubierto por nubes. La nubosidad está directamente relacionada con la duración de la insolación terrestre.</string>
     <string name="cloud_cover_from_to_number">%1$s a %2$s</string>
     <string name="cloud_cover_from_to_description">%1$s a %2$s</string>
     <string name="data_sources">Fuentes de datos</string>
@@ -809,4 +809,8 @@
     <string name="content_provider_permission_description">obtener información meteorológica de Breezy Weather, incluidas las coordenadas de tus ubicaciones, como la ubicación actual si la has añadido</string>
     <string name="common_weather_text_mostly_cloudy">Muy nuboso</string>
     <string name="settings_appearance_dark_mode_custom">Modo oscuro de %1$s a %2$s</string>
+    <string name="action_pull_down_to_refresh">Desliza abajo para actualizar</string>
+    <string name="message_source_non_free_network_title">Esta fuente requiere la versión Standard de la aplicación</string>
+    <string name="message_source_non_free_network_content">Estás usando la versión Freenet de la app que solo admite fuentes alojadas en redes libres. Para seguir usando esta fuente cambia a la versión Standard. De lo contrario selecciona una fuente diferente.</string>
+    <string name="settings_weather_source_non_freenet">%s (servicio de red no libre)</string>
 </resources>
