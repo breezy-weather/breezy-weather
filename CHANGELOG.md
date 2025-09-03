@@ -21,6 +21,7 @@ The following features are already available in the current branch, but will be 
 - Remove animations in the pressure block as it caused flickering
 - Change default distance unit for Germany to kilometer, as per DWD usage
 - Change default speed unit for Netherlands to meter per second, as per KNMI usage
+- Fix threshold value for scattered cloud cover (@cloneofghosts)
 
 **Translations**
 - Translations updated
