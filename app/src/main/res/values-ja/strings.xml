@@ -88,8 +88,8 @@
     <string name="widget_label_view_style">UIスタイル</string>
     <string name="widget_label_show_widget_card">背景色</string>
     <string name="widget_label_show_widget_card_alpha">不透明度</string>
-    <string name="widget_label_hide_subtitle">サブタイトルを表示しない</string>
-    <string name="widget_label_subtitle_data">サブタイトルのデータ</string>
+    <string name="widget_label_hide_subtitle">下段を表示しない</string>
+    <string name="widget_label_subtitle_data">下段に表示するデータ</string>
     <string name="widget_label_text_color">文字の色</string>
     <string name="widget_label_text_size">文字の大きさ</string>
     <string name="widget_label_clock_font">時計のスタイル</string>
@@ -114,8 +114,8 @@
     <string name="widget_custom_subtitle_keyword_d_description">日付</string>
     <string name="widget_custom_subtitle_keyword_w_description">曜日</string>
     <string name="widget_custom_subtitle_keyword_ws_description">曜日（短）</string>
-    <string name="widget_custom_subtitle_keyword_dd_description">今日の説明文</string>
-    <string name="widget_custom_subtitle_keyword_hd_description">各時間の説明文</string>
+    <string name="widget_custom_subtitle_keyword_dd_description">説明文（日）</string>
+    <string name="widget_custom_subtitle_keyword_hd_description">説明文（時間）</string>
     <string name="widget_custom_subtitle_keyword_enter_description">改行</string>
     <string name="widget_custom_subtitle_keyword_xdw_description">今日, 明日, …, 4日後の日中の天気</string>
     <string name="widget_custom_subtitle_keyword_xnw_description">今日, 明日, …, 4日後の夜間の天気</string>
@@ -257,7 +257,7 @@
     <string name="settings_main">メイン画面</string>
     <string name="settings_main_hourly_trends_title">各時間の予報</string>
     <string name="settings_main_section_options">オプション</string>
-    <string name="settings_modules">ウィジェット・ライブ壁紙</string>
+    <string name="settings_modules">外部のモジュール</string>
     <string name="about_contribution_WangDaYeeeeee">オリジナルプロジェクト「Geometric Weather」の開発者</string>
     <string name="settings_units_summary">気温・降水量・距離・速度・気圧</string>
     <string name="settings_background_updates_worker_info_summary">最終実行：%s</string>
@@ -284,7 +284,7 @@
     <string name="about_dependencies">依存パッケージ</string>
     <string name="about_contribution_designer">ロゴのデザイナー</string>
     <string name="settings_modules_notification_widget_title">通知ウィジェット</string>
-    <string name="settings_modules_notification_style_title">形式</string>
+    <string name="settings_modules_notification_style_title">スタイル</string>
     <string name="settings_notifications_forecast_today_title">今日の予報</string>
     <string name="settings_modules_section_widgets_in_use">使用中のウィジェット</string>
     <string name="settings_notifications_forecast_time_today_title">今日の予報の通知時間</string>
@@ -420,7 +420,7 @@
     <string name="location_message_permission_missing">位置情報へのアクセス権限がありません</string>
     <string name="action_save">保存</string>
     <string name="action_share">共有</string>
-    <string name="settings_modules_notification_persistent_switch">永続的</string>
+    <string name="settings_modules_notification_persistent_switch">固定</string>
     <string name="weather_message_invalid_location">場所が不正です。削除して改めて追加してください</string>
     <string name="locations">場所</string>
     <string name="dialog_permissions_location_title">位置情報へのアクセス</string>
@@ -803,8 +803,8 @@
     <string name="message_incompatible_times_content">予報または大気の質に関する情報源を変更して、時間を合わせてください。</string>
     <string name="message_source_non_free_network_title">この情報源を設定するには、標準バージョンのアプリを使う必要があります</string>
     <string name="message_source_non_free_network_content">Freenetバージョンのアプリを使用しています。このアプリは、自由なネットワークで管理されている情報源のみをサポートしています。この情報源を使い続ける場合は、標準バージョンのアプリに戻ってください。それ以外の場合は、別の情報源を選択してください。</string>
-    <string name="widget_custom_subtitle_help_content_description">カスタムのサブタイトルのキーワードに関するヘルプを表示</string>
-    <string name="widget_custom_subtitle_alert_box_title">カスタムのサブタイトルのヘルプ</string>
+    <string name="widget_custom_subtitle_help_content_description">下段に表示するカスタムテキストのキーワードに関するヘルプを表示</string>
+    <string name="widget_custom_subtitle_alert_box_title">下段に表示するカスタムテキストのヘルプ</string>
     <string name="widget_live_wallpaper_animations_enable_warning1">壁紙のアプリケーションは、バッテリーの使用量の増加、過放電、メモリー使用量の増加、システムの反応速度の低下、Androidのクラッシュなどを起こすことが知られています。</string>
     <string name="widget_live_wallpaper_animations_enable_warning2">有効にする場合は、自己責任にてお願いします。サポートの提供は行いません。</string>
     <string name="settings_weather_source_non_freenet">%s（不自由なネットワークサービス）</string>
