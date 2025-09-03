@@ -194,6 +194,7 @@ class RefreshHelper @Inject constructor(
         }
 
         var needsCountryCodeRefresh = false
+        var needsSavingToDb = false
 
         val currentErrors = mutableListOf<RefreshError>()
 
@@ -202,6 +203,7 @@ class RefreshHelper @Inject constructor(
             val coordinatesChanged = location.latitude != currentLocationStore.lastKnownLatitude.toDouble() ||
                 location.longitude != currentLocationStore.lastKnownLongitude.toDouble()
             if (coordinatesChanged) {
+                needsSavingToDb = true
                 location.copy(
                     latitude = currentLocationStore.lastKnownLatitude.toDouble(),
                     longitude = currentLocationStore.lastKnownLongitude.toDouble(),
@@ -281,6 +283,7 @@ class RefreshHelper @Inject constructor(
                             it.countryCode.equals(cc, ignoreCase = true)
                         } != false ||
                             it.countryCode.equals("AN", ignoreCase = true)
+                        needsSavingToDb = true
                         it
                     }
                 }
@@ -311,7 +314,9 @@ class RefreshHelper @Inject constructor(
                         ).copy(
                             // We failed to refresh, so retry reverse geocoding next time
                             needsGeocodeRefresh = true
-                        )
+                        ).also {
+                            needsSavingToDb = true
+                        }
                     } catch (_: Throwable) {
                         /**
                          * Returns the original location
@@ -339,6 +344,7 @@ class RefreshHelper @Inject constructor(
 
         // STEP 3 - Validate ambiguous ISO 3166 codes
         val locationInfoFromDefaultSource = if (needsCountryCodeRefresh) {
+            needsSavingToDb = true
             getLocationWithDisambiguatedCountryCode(locationGeocoded, context)
         } else {
             locationGeocoded
@@ -346,6 +352,7 @@ class RefreshHelper @Inject constructor(
 
         // STEP 4 - Add timezone if missing
         val locationWithTimeZone = if (locationGeocoded.isTimeZoneInvalid) {
+            needsSavingToDb = true
             locationInfoFromDefaultSource.copy(
                 timeZone = getTimeZoneForLocation(context, locationGeocoded)
             )
@@ -354,7 +361,7 @@ class RefreshHelper @Inject constructor(
         }
 
         // STEP 5 - If there was any change, update in database
-        if (location != locationWithTimeZone) {
+        if (needsSavingToDb) {
             locationRepository.update(locationWithTimeZone)
         }
 
