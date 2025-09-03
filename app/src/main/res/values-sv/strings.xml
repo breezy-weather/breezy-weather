@@ -474,7 +474,7 @@
     <string name="settings_color_app">Följ appen</string>
     <string name="settings_modules_live_wallpaper_error">Det gick inte att starta bakgrundsväljaren. Du kan fortfarande aktivera %s-bakgrundsbild genom att välja “Live Wallpaper” i bakgrundsväljaren på startskärmen.</string>
     <string name="settings_unavailable_no_background_updates">Ej tillgängliga, aktivera bakgrundsuppdateringar först</string>
-    <string name="notification_precipitation_starting">Nederbörd snart</string>
+    <string name="notification_precipitation_starting">Nederbörd börjar snart</string>
     <string name="notification_precipitation_starting_desc">Förväntas börja vid %s</string>
     <string name="notification_precipitation_continuing">Nederbörd</string>
     <string name="notification_precipitation_stopping">Nederbörd upphör snart</string>
