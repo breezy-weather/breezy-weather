@@ -826,4 +826,5 @@
     <string name="content_provider_permission_description">รับข้อมูลสภาพอากาศจาก Breezy Weather ซึ่งรวมไปถึงพิกัดของที่ตั้งที่คุณเพิ่มเอาไว้ อย่างที่ตั้งปัจจุบันของคุณหากคุณได้เพิ่มเอาไว้เป็นหนึ่งในที่ตั้ง</string>
     <string name="common_weather_text_mostly_cloudy">เมฆคลุมเป็นส่วนใหญ่</string>
     <string name="settings_appearance_dark_mode_custom">โหมดมืดตั้งแต่ %1$s ถึง %2$s</string>
+    <string name="action_pull_down_to_refresh">ลากลงเพื่อรีเฟรช</string>
 </resources>
