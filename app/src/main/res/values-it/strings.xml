@@ -770,6 +770,5 @@
     <string name="message_incompatible_times_content">Modifica la tua fonte di previsioni o di qualità dell\'aria in modo che gli orari coincidano.</string>
     <string name="widget_live_wallpaper_animations_enable_warning2">Se si decide di abilitarli, ci si assume la piena responsabilità per qualsiasi problema che dovesse sorgere e non verrà fornito alcun supporto.</string>
     <string name="air_quality_index_about_description_2">La scala utilizzata in questa app si basa sulle raccomandazioni dell\'Organizzazione Mondiale della Sanità, piuttosto che sulle normative locali, per avere categorie significative e rendere più facile il confronto dei livelli di inquinamento tra i diversi Paesi.</string>
-    <string name="widget_live_wallpaper_animations_enable_warning1"></string>
     <string name="dew_point_about_description">Il punto di rugiada è il valore a cui la temperatura deve essere raffreddata per ottenere un\'umidità relativa del %s.</string>
 </resources>
