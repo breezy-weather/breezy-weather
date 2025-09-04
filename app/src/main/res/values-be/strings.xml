@@ -774,5 +774,5 @@
     <string name="settings_weather_source_non_freenet">%s (небясплатная сеткавая паслуга)</string>
     <string name="settings_appearance_dark_mode_custom">Цёмны рэжым з %1$s на %2$s</string>
     <string name="content_provider_permission_label">Чытаць дадзеныя Breezy Weather</string>
-    <string name="content_provider_permission_description">атрымліваць інфармацыю пра надвор\'е ад Breezy Weather, у тым ліку каардынаты вашых месцазнаходжанняў, напрыклад, ваша бягучае месцазнаходжанне, калі вы яго дадалі</string>
+    <string name="content_provider_permission_description">атрымліваць інфармацыю пра надвор’е ад Breezy Weather, у тым ліку каардынаты вашых месцазнаходжанняў, напрыклад, ваша бягучае месцазнаходжанне, калі вы яго дадалі</string>
 </resources>
