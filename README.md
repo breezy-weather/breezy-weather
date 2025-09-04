@@ -16,7 +16,7 @@
     <img alt="Jetpack Compose" src="https://img.shields.io/static/v1?style=for-the-badge&message=Jetpack+Compose&color=4285F4&logo=Jetpack+Compose&logoColor=FFFFFF&label=" />
   </a>
   <a href="https://m3.material.io/">
-    <img alt="Material You" src="https://custom-icon-badges.demolab.com/badge/m3%20expressive-lightblue?style=for-the-badge&logoColor=333&logo=material-you" />
+    <img alt="Material 3 Expressive" src="https://custom-icon-badges.demolab.com/badge/m3%20expressive-lightblue?style=for-the-badge&logoColor=333&logo=material-you" />
   </a>
   <br />
   <a href="https://github.com/breezy-weather/breezy-weather/blob/main/LICENSE">
