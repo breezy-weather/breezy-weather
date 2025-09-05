@@ -40,9 +40,9 @@
     <string name="precipitation_snow">Nieve</string>
     <string name="precipitation_ice">Hielo</string>
     <string name="wind_strength_0">En calma</string>
-    <string name="wind_strength_1">Aire ligero</string>
-    <string name="wind_strength_2">Brisa ligera</string>
-    <string name="wind_strength_3">Brisa suave</string>
+    <string name="wind_strength_1">Aire suave</string>
+    <string name="wind_strength_2">Brisa suave</string>
+    <string name="wind_strength_3">Brisa ligera</string>
     <string name="wind_strength_4">Brisa moderada</string>
     <string name="wind_strength_5">Brisa fresca</string>
     <string name="wind_strength_6">Brisa intensa</string>
@@ -52,7 +52,7 @@
     <string name="wind_strength_10">Tormenta</string>
     <string name="wind_strength_11">Tormenta violenta</string>
     <string name="wind_strength_12">Huracán</string>
-    <string name="precipitation_intensity_light">Rocío</string>
+    <string name="precipitation_intensity_light">Ligera</string>
     <string name="precipitation_intensity_heavy">Torrencial</string>
     <string name="ephemeris_moon_phase_new_moon">Luna nueva</string>
     <string name="ephemeris_moon_phase_waxing_crescent">Creciente</string>
@@ -376,7 +376,7 @@
     <string name="settings_notifications_precipitations_title">Notificaciones de las precipitaciones</string>
     <string name="settings_weather_sources_summary">Fuente meteorológica predeterminada para nuevas ubicaciones, claves API personalizadas, otros ajustes de fuente</string>
     <string name="settings_weather_sources">Fuentes meteorológicas</string>
-    <string name="settings_main_summary">Orden de los bloques, datos mostrados y animaciones</string>
+    <string name="settings_main_summary">Orden de los bloques, datos mostrados, animaciones</string>
     <string name="settings_source_api_key">Clave de la API</string>
     <string name="settings_icon_packs_check_details">Ver los detalles</string>
     <string name="settings_icon_packs_weather_adaptive_icon">Icono del tiempo</string>
@@ -481,9 +481,9 @@
     <string name="common_weather_text_drizzle_freezing_heavy">Llovizna helada fuerte</string>
     <string name="settings_unavailable_no_background_updates">No disponible, active primero las actualizaciones en segundo plano</string>
     <string name="notification_precipitation_starting">Precipitaciones en breve</string>
-    <string name="notification_precipitation_starting_desc">Se espera que comience en %s</string>
-    <string name="notification_precipitation_stopping">Pronto dejará de llover</string>
-    <string name="notification_precipitation_stopping_desc">Escampará a las %s</string>
+    <string name="notification_precipitation_starting_desc">Se prevé que comiencen a las %s</string>
+    <string name="notification_precipitation_stopping">Pronto pararán las precipitaciones</string>
+    <string name="notification_precipitation_stopping_desc">Se prevé que cesen a las %s</string>
     <string name="notification_precipitation_continuing">Precipitaciones</string>
     <string name="notification_precipitation_continuing_desc">Se espera que continúe hasta al menos %s</string>
     <string name="widget_custom_subtitle_keyword_at_description">Sensación térmica (°C/°F)</string>
@@ -686,7 +686,7 @@
     <string name="chart_maximum_value">Valor máximo</string>
     <string name="conditions">Condiciones</string>
     <string name="temperature_real">Real</string>
-    <string name="temperature_real_details">La temperatura real.</string>
+    <string name="temperature_real_details">Es la temperatura real.</string>
     <string name="temperature_feels_like_details">Es la sensación de temperatura percibida como resultado de la humedad, el viento y/o el sol.</string>
     <string name="temperature_degree_day_heating_explanation">Diferencia entre la temperatura exterior y una temperatura agradable de referencia usada para calcular requerimientos energéticos</string>
     <string name="temperature_degree_day_cooling_explanation">Diferencia entre la temperatura exterior y una temperatura agradable de referencia usada para calcular requerimientos energéticos de enfriamiento</string>
@@ -699,11 +699,11 @@
     <string name="precipitation_rain_total_night">Lluvia por la noche</string>
     <string name="precipitation_snow_total_day">Nieve en el día</string>
     <string name="precipitation_snow_total_night">Nieve por la noche</string>
-    <string name="wind_speed_about">Sobre la velocidad del viento y ráfagas</string>
+    <string name="wind_speed_about">Sobre el viento y las rachas</string>
     <string name="ephemeris_about_dusk">El anochecer es la etapa más oscura del crepúsculo antes de que desaparezca la última luz visible.</string>
     <string name="daily_summary">Resumen del día</string>
-    <string name="wind_speed_about_description">La velocidad del viento se calcula tomando el promedio de las velocidades durante un periodo de tiempo. Las ráfagas son aumentos repentinos de viento que suelen durar menos de 20 segundos.</string>
-    <string name="wind_gusts_short">Ráfagas</string>
+    <string name="wind_speed_about_description">La velocidad del viento se calcula tomando el promedio de las velocidades durante un periodo de tiempo. Las rachas son aumentos repentinos de viento que suelen durar menos de 20 segundos.</string>
+    <string name="wind_gusts_short">Rachas</string>
     <string name="wind_origin">Del %s</string>
     <string name="wind_strength_scale">Escala Beaufort</string>
     <string name="uv_index_about">Sobre el índice UV</string>
@@ -764,7 +764,7 @@
     <string name="pressure_steady">Estable</string>
     <string name="pressure_falling">Cayendo</string>
     <string name="pressure_about">Sobre la presión</string>
-    <string name="pressure_about_description1">La presión atmosférica es la presión descendente ejercida por la atmósfera terrestre. Esta aplicación usa la presión media a nivel del mar para permitir una comparación sencilla de la persión entre lugares con diferentes altitudes.</string>
+    <string name="pressure_about_description1">La presión atmosférica es la presión descendente ejercida por la atmósfera terrestre. Breezy Weather usa la presión media a nivel del mar (MSLP) para permitir una comparación sencilla de la persión entre lugares con diferentes altitudes.</string>
     <string name="pressure_about_description2">Los cambios rápidos y significativos en la presión se usan para predecir variaciones meteorológicas. Por ejemplo, una bajada de presión puede indicar que se acercan lluvia o nieve, y una subida de presión puede significar que el tiempo mejorará. Las presiones atmosféricas anormales pueden causar dolores de cabeza, dolor en las articulaciones, fatiga y otros efectos.</string>
     <string name="visibility_about">Sobre la visibilidad</string>
     <string name="visibility_about_description">Indica hasta qué distancia se pueden ver con claridad objetos como edificios y colinas. La visibilidad puede verse afectada por precipitaciones, niebla, polvo, humo o neblina.</string>
