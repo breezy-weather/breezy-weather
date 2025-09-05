@@ -756,7 +756,7 @@
     <string name="humidity_from_to_number">%1$sから%2$s</string>
     <string name="dew_point_about_description">露点とは、相対湿度が%sになるまで下がらなければならない温度のことです。</string>
     <string name="humidity_about_description">相対湿度は、一般的に単に「湿度」として知られており、特定の温度で空気が保持できる水蒸気の最大量に対する割合をパーセンテージで表したものです。</string>
-    <string name="pressure_about_description1">大気圧とは、地球の大気が及ぼす下方への圧力のことです。このアプリでは、標高の異なる地域の間で気圧を簡単に比較できるよう、海面更正気圧（MSLP）を使用しています。</string>
+    <string name="pressure_about_description1">大気圧とは、地球の大気が及ぼす下方への圧力のことです。このアプリでは、標高の異なる地域の間で気圧を簡単に比較できるよう、海面更正気圧を使用しています。</string>
     <string name="pressure_about_description2">気圧の著しい急激な変化は、天候の変化の予測に用いられます。例えば、気圧が下がれば降雨・降雪が近づいており、上がれば天候が回復していくことを指している可能性があります。また、大気圧が通常の状態から外れると、頭痛や関節痛、疲労感その他の不調が生じるおそれがあります。</string>
     <string name="visibility_about_description">視程は、建物や山などの物体が明瞭に見える最大の距離を示しています。降水や霧、塵、煙、あるいは霞により低下することがあります。</string>
     <string name="visibility_scale">視程階級</string>
