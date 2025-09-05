@@ -764,7 +764,7 @@
     <string name="pressure_steady">Estable</string>
     <string name="pressure_falling">Cayendo</string>
     <string name="pressure_about">Sobre la presión</string>
-    <string name="pressure_about_description1">La presión atmosférica es la presión descendente ejercida por la atmósfera terrestre. Breezy Weather usa la presión media a nivel del mar (MSLP) para permitir una comparación sencilla de la persión entre lugares con diferentes altitudes.</string>
+    <string name="pressure_about_description1">La presión atmosférica es la presión descendente ejercida por la atmósfera terrestre. Esta aplicación usa la presión media a nivel del mar para permitir una comparación sencilla de la persión entre lugares con diferentes altitudes.</string>
     <string name="pressure_about_description2">Los cambios rápidos y significativos en la presión se usan para predecir variaciones meteorológicas. Por ejemplo, una bajada de presión puede indicar que se acercan lluvia o nieve, y una subida de presión puede significar que el tiempo mejorará. Las presiones atmosféricas anormales pueden causar dolores de cabeza, dolor en las articulaciones, fatiga y otros efectos.</string>
     <string name="visibility_about">Sobre la visibilidad</string>
     <string name="visibility_about_description">Indica hasta qué distancia se pueden ver con claridad objetos como edificios y colinas. La visibilidad puede verse afectada por precipitaciones, niebla, polvo, humo o neblina.</string>
