@@ -44,7 +44,7 @@ class HourlyAirQualityAdapter(
     activity: BreezyActivity,
     location: Location,
 ) : AbsHourlyTrendAdapter(activity, location) {
-    private var mHighestIndex: Int = 0
+    private var mHighestIndex = PollutantIndex.aqiThresholds[4]
 
     inner class ViewHolder(itemView: View) : AbsHourlyTrendAdapter.ViewHolder(itemView) {
         private val mPolylineAndHistogramView = PolylineAndHistogramView(itemView.context)
@@ -106,9 +106,14 @@ class HourlyAirQualityAdapter(
     }
 
     init {
-        mHighestIndex = location.weather!!.nextHourlyForecast
+        location.weather!!.nextHourlyForecast
             .mapNotNull { it.airQuality?.getIndex() }
-            .maxOrNull() ?: 0
+            .maxOrNull()
+            ?.let {
+                if (it > mHighestIndex) {
+                    mHighestIndex = it
+                }
+            }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -125,7 +130,7 @@ class HourlyAirQualityAdapter(
     }
 
     override fun isValid(location: Location): Boolean {
-        return mHighestIndex > 0
+        return location.weather!!.nextHourlyForecast.any { it.airQuality?.getIndex() != null }
     }
 
     override fun getDisplayName(context: Context): String {

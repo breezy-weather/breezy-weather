@@ -13,6 +13,15 @@ The following features are already available in the current branch, but will be 
 - New broadcast: you can use `org.breezyweather.ACTION_UPDATE_NOTIFIER` (or `org.breezyweather.debug.ACTION_UPDATE_NOTIFIER` with the debug build) to be notified of updated locations (most common use case is coupled with the content provider)
 
 
+# Version 6.0.12-rc (not yet released)
+
+**Improvements and fixes**
+- Daily/hourly forecast - Ensure the maximum value is always at a minimum defined value to ensure data is put in perspective, and remove threshold lines that weren’t very useful and cluttering the interface (wind, precipitation, cloud cover)
+
+**Translations**
+- Translations updated
+
+
 # Version 6.0.11-rc (2025-09-03)
 
 **Improvements and fixes**

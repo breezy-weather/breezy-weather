@@ -44,7 +44,7 @@ class HourlyUVAdapter(
     activity: BreezyActivity,
     location: Location,
 ) : AbsHourlyTrendAdapter(activity, location) {
-    private var mHighestIndex: Float = 0f
+    private var mHighestIndex = UV.UV_INDEX_HIGH.toFloat()
 
     inner class ViewHolder(itemView: View) : AbsHourlyTrendAdapter.ViewHolder(itemView) {
         private val mPolylineAndHistogramView = PolylineAndHistogramView(itemView.context)
@@ -104,9 +104,14 @@ class HourlyUVAdapter(
     }
 
     init {
-        mHighestIndex = location.weather!!.nextHourlyForecast
+        location.weather!!.nextHourlyForecast
             .mapNotNull { it.uV?.index }
-            .maxOrNull()?.toFloat() ?: 0f
+            .maxOrNull()
+            ?.let {
+                if (it > mHighestIndex) {
+                    mHighestIndex = it.toFloat()
+                }
+            }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -120,7 +125,9 @@ class HourlyUVAdapter(
 
     override fun getItemCount() = location.weather!!.nextHourlyForecast.size
 
-    override fun isValid(location: Location) = mHighestIndex > 0
+    override fun isValid(location: Location) = location.weather!!.nextHourlyForecast.any {
+        it.uV?.index != null
+    }
 
     override fun getDisplayName(context: Context) = context.getString(R.string.tag_uv)
 

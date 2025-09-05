@@ -29,7 +29,6 @@ import breezyweather.domain.location.model.Location
 import org.breezyweather.R
 import org.breezyweather.common.activities.BreezyActivity
 import org.breezyweather.common.extensions.formatValue
-import org.breezyweather.common.extensions.getBeaufortScaleStrength
 import org.breezyweather.common.extensions.getThemeColor
 import org.breezyweather.common.options.appearance.DetailScreen
 import org.breezyweather.domain.weather.model.drawableArrow
@@ -37,7 +36,7 @@ import org.breezyweather.domain.weather.model.getColor
 import org.breezyweather.domain.weather.model.getContentDescription
 import org.breezyweather.ui.common.widgets.trend.TrendRecyclerView
 import org.breezyweather.ui.common.widgets.trend.chart.DoubleHistogramView
-import org.breezyweather.unit.speed.Speed.Companion.beaufort
+import org.breezyweather.unit.speed.Speed.Companion.metersPerSecond
 
 /**
  * Daily wind adapter.
@@ -46,7 +45,7 @@ class DailyWindAdapter(
     activity: BreezyActivity,
     location: Location,
 ) : AbsDailyTrendAdapter(activity, location) {
-    private var mHighestWindSpeed: Float = 0f
+    private var mHighestWindSpeed = 15.metersPerSecond.inCentimetersPerSecond.toFloat() // TODO: Make this a const
 
     inner class ViewHolder(itemView: View) : AbsDailyTrendAdapter.ViewHolder(itemView) {
         private val mDoubleHistogramView = DoubleHistogramView(itemView.context)
@@ -113,14 +112,18 @@ class DailyWindAdapter(
     }
 
     init {
-        mHighestWindSpeed = maxOf(
+        maxOf(
             location.weather!!.dailyForecast
                 .mapNotNull { it.day?.wind?.speed?.value }
                 .maxOrNull() ?: 0L,
             location.weather!!.dailyForecast
                 .mapNotNull { it.night?.wind?.speed?.value }
                 .maxOrNull() ?: 0L
-        ).toFloat()
+        ).let {
+            if (it > mHighestWindSpeed) {
+                mHighestWindSpeed = it.toFloat()
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -134,13 +137,15 @@ class DailyWindAdapter(
 
     override fun getItemCount() = location.weather!!.dailyForecast.size
 
-    override fun isValid(location: Location) = mHighestWindSpeed > 0
+    override fun isValid(location: Location) = location.weather!!.dailyForecast.any {
+        it.day?.precipitation?.total != null || it.night?.precipitation?.total != null
+    }
 
     override fun getDisplayName(context: Context) = context.getString(R.string.tag_wind)
 
     override fun bindBackgroundForHost(host: TrendRecyclerView) {
         val keyLineList = mutableListOf<TrendRecyclerView.KeyLine>()
-        keyLineList.add(
+        /*keyLineList.add(
             TrendRecyclerView.KeyLine(
                 4.beaufort.inCentimetersPerSecond.toFloat(),
                 4.beaufort.formatValue(activity),
@@ -171,7 +176,7 @@ class DailyWindAdapter(
                 8.beaufort.getBeaufortScaleStrength(activity),
                 TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE
             )
-        )
+        )*/
         host.setData(keyLineList, mHighestWindSpeed, -mHighestWindSpeed)
     }
 }

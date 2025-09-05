@@ -44,7 +44,7 @@ class DailyUVAdapter(
     activity: BreezyActivity,
     location: Location,
 ) : AbsDailyTrendAdapter(activity, location) {
-    private var mHighestIndex: Float = 0f
+    private var mHighestIndex = UV.UV_INDEX_HIGH.toFloat()
 
     inner class ViewHolder(itemView: View) : AbsDailyTrendAdapter.ViewHolder(itemView) {
         private val mPolylineAndHistogramView = PolylineAndHistogramView(itemView.context)
@@ -101,7 +101,14 @@ class DailyUVAdapter(
     }
 
     init {
-        mHighestIndex = (location.weather!!.dailyForecast.mapNotNull { it.uV?.index }.maxOrNull() ?: 0.0).toFloat()
+        location.weather!!.dailyForecast
+            .mapNotNull { it.uV?.index }
+            .maxOrNull()
+            ?.let {
+                if (it > mHighestIndex) {
+                    mHighestIndex = it.toFloat()
+                }
+            }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -115,7 +122,9 @@ class DailyUVAdapter(
 
     override fun getItemCount() = location.weather!!.dailyForecast.size
 
-    override fun isValid(location: Location) = mHighestIndex > 0
+    override fun isValid(location: Location) = location.weather!!.dailyForecast.any {
+        it.uV?.index != null
+    }
 
     override fun getDisplayName(context: Context) = context.getString(R.string.tag_uv)
 

@@ -44,7 +44,7 @@ class DailyAirQualityAdapter(
     activity: BreezyActivity,
     location: Location,
 ) : AbsDailyTrendAdapter(activity, location) {
-    private var mHighestIndex: Int = 0
+    private var mHighestIndex = PollutantIndex.aqiThresholds[4]
 
     inner class ViewHolder(itemView: View) : AbsDailyTrendAdapter.ViewHolder(itemView) {
         private val mPolylineAndHistogramView = PolylineAndHistogramView(itemView.context)
@@ -106,9 +106,14 @@ class DailyAirQualityAdapter(
     }
 
     init {
-        mHighestIndex = location.weather!!.dailyForecast
+        location.weather!!.dailyForecast
             .mapNotNull { it.airQuality?.getIndex() }
-            .maxOrNull() ?: 0
+            .maxOrNull()
+            ?.let {
+                if (it > mHighestIndex) {
+                    mHighestIndex = it
+                }
+            }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -122,7 +127,9 @@ class DailyAirQualityAdapter(
 
     override fun getItemCount() = location.weather!!.dailyForecast.size
 
-    override fun isValid(location: Location) = mHighestIndex > 0
+    override fun isValid(location: Location): Boolean {
+        return location.weather!!.dailyForecast.any { it.airQuality?.getIndex() != null }
+    }
 
     override fun getDisplayName(context: Context) = context.getString(R.string.tag_aqi)
 

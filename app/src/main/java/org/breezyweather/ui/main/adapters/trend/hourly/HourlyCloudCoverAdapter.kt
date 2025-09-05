@@ -25,11 +25,8 @@ import android.view.ViewGroup
 import breezyweather.domain.location.model.Location
 import org.breezyweather.R
 import org.breezyweather.common.activities.BreezyActivity
-import org.breezyweather.common.extensions.CLOUD_COVER_FEW
-import org.breezyweather.common.extensions.CLOUD_COVER_SCT
 import org.breezyweather.common.extensions.formatPercent
 import org.breezyweather.common.extensions.getCloudCoverColor
-import org.breezyweather.common.extensions.getCloudCoverDescription
 import org.breezyweather.common.extensions.getThemeColor
 import org.breezyweather.common.options.appearance.DetailScreen
 import org.breezyweather.ui.common.widgets.trend.TrendRecyclerView
@@ -37,7 +34,6 @@ import org.breezyweather.ui.common.widgets.trend.chart.PolylineAndHistogramView
 import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.weatherView.WeatherViewController
 import org.breezyweather.unit.formatting.UnitWidth
-import org.breezyweather.unit.ratio.Ratio.Companion.percent
 
 /**
  * Hourly Cloud Cover adapter.
@@ -46,7 +42,6 @@ class HourlyCloudCoverAdapter(
     activity: BreezyActivity,
     location: Location,
 ) : AbsHourlyTrendAdapter(activity, location) {
-    private var mHighestCloudCover: Float = 0f
 
     inner class ViewHolder(itemView: View) : AbsHourlyTrendAdapter.ViewHolder(itemView) {
         private val mPolylineAndHistogramView = PolylineAndHistogramView(itemView.context)
@@ -110,13 +105,6 @@ class HourlyCloudCoverAdapter(
         }
     }
 
-    init {
-        mHighestCloudCover = location.weather!!.nextHourlyForecast
-            .mapNotNull { it.cloudCover?.inPercent }
-            .maxOrNull()
-            ?.toFloat() ?: 0f
-    }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_trend_hourly, parent, false)
         return ViewHolder(view)
@@ -128,13 +116,15 @@ class HourlyCloudCoverAdapter(
 
     override fun getItemCount() = location.weather!!.nextHourlyForecast.size
 
-    override fun isValid(location: Location) = mHighestCloudCover > 0
+    override fun isValid(location: Location) = location.weather!!.nextHourlyForecast.any {
+        it.cloudCover != null
+    }
 
     override fun getDisplayName(context: Context) = context.getString(R.string.tag_cloud_cover)
 
     override fun bindBackgroundForHost(host: TrendRecyclerView) {
         val keyLineList = mutableListOf<TrendRecyclerView.KeyLine>()
-        keyLineList.add(
+        /*keyLineList.add(
             TrendRecyclerView.KeyLine(
                 CLOUD_COVER_FEW.toFloat(),
                 CLOUD_COVER_FEW.percent.formatPercent(activity),
@@ -149,7 +139,7 @@ class HourlyCloudCoverAdapter(
                 CLOUD_COVER_SCT.percent.getCloudCoverDescription(activity),
                 TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
             )
-        )
+        )*/
         host.setData(keyLineList, 100f, 0f)
     }
 }
