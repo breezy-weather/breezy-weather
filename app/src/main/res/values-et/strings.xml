@@ -189,7 +189,7 @@
     <string name="settings_appearance_summary">Keel, tume režiim, ikoonipakk, ühikud</string>
     <string name="settings_main_threshold_lines_on_charts">Piirjooned graafikutel</string>
     <string name="settings_main_background_animation_enabled">Sees</string>
-    <string name="settings_main_cards_title">Kaardid</string>
+    <string name="settings_main_cards_title">Plokid</string>
     <string name="settings_main_section_options">Valikud</string>
     <string name="settings_main_background_animation_disabled">Väljas</string>
     <string name="settings_main_gravity_sensor_switch">Güroskoop</string>
@@ -198,7 +198,7 @@
     <string name="settings_notifications_forecast_today_title">Teavitus päeva prognoosist</string>
     <string name="settings_notifications_forecast_tomorrow_title">Teavitus järgmise päeva prognoosist</string>
     <string name="settings_notifications_forecast_time_today_title">Päeva prognoosi teavituse aeg</string>
-    <string name="settings_modules_summary">Sea taustapilt, seadista kasutatud vidinaid, vidin teavituses</string>
+    <string name="settings_modules_summary">Vidinad, teavituste vidin, taustapilt, andmete jagamine muude rakendustega</string>
     <string name="settings_modules_live_wallpaper_error">Ei saanud käivitada taustapildi valijat. Saate siiski lubada %s taustapildi, valides oma koduekraani taustapildi valijast “Elus taustapilt”.</string>
     <string name="settings_modules_week_icon_mode_title">Nädalases vaates kuvatav ikoon</string>
     <string name="settings_modules_notification_feels_like_switch">Kasuta tundub kui temperatuuri</string>
@@ -235,7 +235,7 @@
     <string name="settings_section_general">Üldine</string>
     <string name="settings_background_updates">Tagataustal uuendused</string>
     <string name="settings_background_updates_summary">Värskendussagedus, Tõrkeotsing</string>
-    <string name="settings_background_updates_refresh_never_warning2">Taustapõhine uuendamisprotsess on seadmele kerge: see uuendab teie esimest asukohta ainult valitud kiirusega ja teisi asukohti ainult siis, kui teil on neid vaja, kord päevas. See on akutõhus ja ei tohiks ületada %d MB andmekulu kuus.</string>
+    <string name="settings_background_updates_refresh_never_warning2">Taustapõhine uuendamisprotsess on vähese ressursinõudlikkusega: see uuendab sinu esimest asukohta ainult valitud kiirusega ja teisi asukohti ainult siis, kui sul on neid vaja, kord päevas. See on akutõhus ja ei tohiks ületada %d MB andmekulu kuus.</string>
     <string name="settings_source_api_key">API võti</string>
     <string name="settings_appearance">Välimus</string>
     <string name="settings_modules">Vidinad ja elus taustapilt</string>
@@ -308,7 +308,7 @@
     <string name="settings_icon_packs_get_more">Saa juurde</string>
     <string name="settings_main_background_animation_title">Tausta animatsioon</string>
     <string name="settings_main_section_animations">Animatsioonid</string>
-    <string name="settings_main_cards_fade_in_switch">Kaardid tuhmuvad sisse</string>
+    <string name="settings_main_cards_fade_in_switch">Polkid tuhmuvad sisse</string>
     <string name="settings_notifications_precipitations_title">Teavitused sademetest</string>
     <string name="common_weather_text_overcast">Tihe pilvisus</string>
     <string name="common_weather_text_rain_snow_mixed">Lörts</string>
@@ -395,9 +395,9 @@
     <string name="common_weather_text_snow_grains">Lumeterad</string>
     <string name="common_weather_text_drizzle_freezing_heavy">Tugev külmuv tibutamine</string>
     <string name="weather_kind_hail">Rahe</string>
-    <string name="settings_weather_source_freenet_disclaimer">Breezy Weather’i muudest versioonidest on saadaval rohkem ilmateatellikad. Vajutage siia, et rohkem teada saada.</string>
+    <string name="settings_weather_source_freenet_disclaimer">Sa kasutad rakenduse versiooni Freeneti jaoks. Kui soovid kasutada mittevabu võrguteenuseid, siis võta kasutusele standardversioon.</string>
     <string name="settings_notifications_alerts_title">Raskete ilmaolude hoiatused</string>
-    <string name="settings_appearance_dark_mode_locations_title">Päev / Öö režiim asukohtadele</string>
+    <string name="settings_appearance_dark_mode_locations_title">Asukohapõhine tume kujundus</string>
     <string name="settings_appearance_icon_pack_title">Ikoonipakk</string>
     <string name="settings_icon_packs_check_details">Vaata detaile</string>
     <string name="settings_icon_packs_weather_adaptive_icon">Ilma ikoon</string>
@@ -405,13 +405,13 @@
     <string name="settings_source_instance_invalid">Peab olema / lõpuga URL</string>
     <string name="settings_source_instance_geocoding">Geokodeerimise server</string>
     <string name="settings_appearance_calendar_title">Vahelduv kalender</string>
-    <string name="settings_appearance_dark_mode_title">Tume režiim</string>
+    <string name="settings_appearance_dark_mode_title">Tume kujundus</string>
     <string name="settings_units">Ühikud</string>
     <string name="settings_units_summary">Temperatuur, sademed, vahemaa, kiirus, õhurõhk</string>
     <string name="settings_units_precipitation">Sademeteühik</string>
     <string name="settings_notifications_forecast_time_tomorrow_title">Järgmise päeva prognoosi teavituse aeg</string>
     <string name="settings_modules_section_widgets_in_use">Kasutusel vidinad</string>
-    <string name="settings_main_summary">Kaartide järjestus, kuvatud elemendid, animatsioonid</string>
+    <string name="settings_main_summary">Plokkide järjestus, kuvatud objektid, animatsioonid</string>
     <string name="settings_main_section_displayed_data">Näidatud andmed</string>
     <string name="settings_notifications">Teavitused</string>
     <string name="settings_modules_notification_widget_title">Vidin teavituses</string>
@@ -426,7 +426,7 @@
     <string name="notification_precipitation_continuing_desc">Eeldatavalt jätkub kuni vähemalt %s</string>
     <string name="notification_precipitation_stopping">Sademed lõppevad lähiajal</string>
     <string name="notification_precipitation_stopping_desc">Eeldatavalt lõppeb %s</string>
-    <string name="notification_style_native">Natiivne</string>
+    <string name="notification_style_native">Seadmeomane</string>
     <string name="notification_style_cities">Linnad</string>
     <string name="about_app">Rakendusest lähemalt</string>
     <string name="about_open_link_message">Ava %s?</string>
@@ -634,4 +634,6 @@
     <string name="ephemeris_polar_day">Polaarpäev</string>
     <string name="ephemeris_polar_night">Polaaröö</string>
     <string name="clock">Kell</string>
+    <string name="ephemeris_about">Teave päikese või kuu tõusu ja loojangu kohta</string>
+    <string name="settings_regional_preference">Kohalik eelistus</string>
 </resources>
