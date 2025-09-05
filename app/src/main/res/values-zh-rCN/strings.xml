@@ -79,7 +79,7 @@
     <string name="uv_index_3_5">中</string>
     <string name="uv_index_6_7">高</string>
     <string name="uv_index_8_10">很高</string>
-    <string name="uv_index_11">极高</string>
+    <string name="uv_index_11">极端</string>
     <string name="daily_forecast">每日预报</string>
     <string name="hourly_forecast">逐小时预报</string>
     <string name="air_quality">空气质量</string>
@@ -304,7 +304,7 @@
     <string name="widget_clock_font_sans_serif_black">无衬线体（粗）</string>
     <string name="about_contribution_WangDaYeeeeee">原始项目几何天气的开发者</string>
     <string name="settings_main_background_animation_disabled">禁用</string>
-    <string name="alerts_to_follow">天气预警提醒，点击查看详情。</string>
+    <string name="alerts_to_follow">气象预警提醒，点击查看详情。</string>
     <string name="action_add_new_location">添加一个新位置</string>
     <string name="widget_clock_font_sans_serif_light">无衬线体（细）</string>
     <string name="about_source_code">源代码</string>
@@ -547,7 +547,7 @@
     <string name="settings_per_location_theme">主题</string>
     <string name="settings_source_instance_invalid">必须是以 / 结尾的 https URL</string>
     <string name="settings_invalid_syntax">无效格式</string>
-    <string name="alert_source">源：%s</string>
+    <string name="alert_source">来源：%s</string>
     <string name="dialog_time_picker_select_time">选择时间</string>
     <string name="dialog_time_picker_input_time">输入时间</string>
     <string name="dialog_time_picker_toggle_text_input_voice">切换到文本输入</string>
