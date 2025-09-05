@@ -556,7 +556,7 @@
     <string name="settings_weather_source_open_meteo_weather_models_best_match_description">Combina i migliori modelli meteorologici per questa posizione</string>
     <string name="settings_source_instance_geocoding">Istanza di geocodifica</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless">Omogenea</string>
-    <string name="settings_weather_source_freenet_disclaimer">Ulteriori fonti meteorologiche sono disponibili in altre versioni dell’app. Tocca qui per saperne di più.</string>
+    <string name="settings_weather_source_freenet_disclaimer">Stai usando la versione Freenet dell’app. Passa alla versione Standard se vuoi usare servizi di rete non liberi.</string>
     <string name="settings_weather_sources_default_source">Fonte predefinita per nuove posizioni</string>
     <string name="settings_per_location_summary">Ulteriori personalizzazioni per questa posizione</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless_description">Combina tutti i modelli meteorologici di questo fornitore in una previsione omogenea</string>
@@ -747,9 +747,9 @@
     <string name="action_translate_no_app">Nessuna app di traduzione trovata</string>
     <string name="label_expanded">Espanso</string>
     <string name="label_collapsed">Compresso</string>
-    <string name="action_translate">Tradurre</string>
-    <string name="action_close_menu">Chiudere il menu</string>
-    <string name="action_configure_item">Configurare %s</string>
+    <string name="action_translate">Traduci</string>
+    <string name="action_close_menu">Chiudi il menu</string>
+    <string name="action_configure_item">Configura %s</string>
     <string name="action_share_no_app">Nessuna app con cui condividere trovata</string>
     <string name="data_modified">Questo materiale è stato modificato dall’originale da %s principalmente per calcolare o estrapolare i dati mancanti.</string>
     <string name="action_pull_down_to_refresh">Trascina verso il basso per aggiornare</string>
@@ -775,4 +775,9 @@
     <string name="humidity_about_description">L’umidita’ relativa, meglio conosciuta semplicemente come umidita’, e’ la percentuale di vapore acqueo presente nell’aria rispetto alla quantità massima che l’aria può trattenere ad una data temperatura.</string>
     <string name="pressure_about_description1">La pressione atmosferica è la pressione verso il basso esercitata dall’atmosfera terrestre. Questa app utilizza la pressione media al livello del mare per consentire un confronto più semplice della pressione da luoghi con altitudini diverse.</string>
     <string name="pressure_about_description2">Cambiamenti significativi e rapidi della pressione vengono utilizzati per prevedere i cambiamenti del tempo. Ad esempio, un calo della pressione può significare che è in arrivo pioggia o neve e l’aumento della pressione può significare che il tempo migliorerà. Una pressione atmosferica anomala può causare mal di testa, dolori articolari, affaticamento e altri effetti.</string>
+    <string name="widget_custom_subtitle_alert_box_title">Aiuto per i sottotitoli personalizzati</string>
+    <string name="widget_custom_subtitle_help_content_description">Mostra le parole chiave per i sottotitoli personalizzati come aiuto</string>
+    <string name="settings_weather_source_non_freenet">%s (servizio di rete non libero)</string>
+    <string name="message_source_non_free_network_content">Stai usando la versione Freenet dell’app, che supporta solo fonti ospitate su una rete libera. Per continuare a usare questa fonte, passa di nuovo alla versione Standard. Altrimenti, scegli un’altra fonte.</string>
+    <string name="action_toggle_data_type_menu">Alterna il menu di selezione del tipo di dati</string>
 </resources>
