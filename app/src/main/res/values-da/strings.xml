@@ -605,4 +605,12 @@
     <string name="air_quality_short">Luft kvalitet</string>
     <string name="ephemeris_sun">Sol</string>
     <string name="ephemeris_moon">Måne</string>
+    <string name="ephemeris_about">Om opgang og nedgang tider</string>
+    <string name="common_weather_text_hot">Varmt</string>
+    <string name="common_weather_text_warm">Varme</string>
+    <string name="common_weather_text_cool">Kølige</string>
+    <string name="common_weather_text_cold">Kold</string>
+    <string name="common_weather_text_dust">Støv</string>
+    <string name="common_weather_text_frost">Frost</string>
+    <string name="conditions">Vejrforhold</string>
 </resources>
