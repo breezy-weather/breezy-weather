@@ -354,7 +354,7 @@
     <string name="settings_modules">Приспособления и Живи тапети</string>
     <string name="settings_modules_live_wallpaper_title">Жив тапет</string>
     <string name="settings_modules_live_wallpaper_summary">Задай анимация за времето като тапет</string>
-    <string name="settings_modules_summary">Задаване на тапет, конфигуриране на използвани приспособления, приспособление за известия</string>
+    <string name="settings_modules_summary">Приспособления, приспособление за известия, тапет, споделяне на данни с други приложения</string>
     <string name="settings_modules_week_icon_mode_title">Икона за показване в седмични изгледи</string>
     <string name="settings_modules_monochrome_icons_title">Едноцветни икони</string>
     <string name="settings_item_delete">Изтрий този елемент</string>
@@ -541,7 +541,7 @@
     <string name="settings_background_updates_refresh_never_warning2">Процесът на фоново актуализиране е лек: той само опреснява първото ви местоположение с избраната от вас скорост, а вторичните местоположения само ако имате нужда от тях, веднъж на ден. Той е енергийно-ефективен и не трябва да надвишава %d MB консумация на данни на месец.</string>
     <string name="settings_background_updates_refresh_never_warning1">При изключване на фоновите актуализации, вече няма да получавате известия за предупреждения или валежи. Приспособленията няма да се опресняват, докато не отворите приложението.</string>
     <string name="settings_background_updates_refresh_never_warning3">Вместо да изключвате фоновите актуализации, може да използвате на по-рядка честота на опресняване, ако все още искате да продължите, докоснете “Продължи”.</string>
-    <string name="settings_weather_source_freenet_disclaimer">Достъпни са още източници на метеорологични данни от други варианти на приложението. Докоснете тук, за да научите повече.</string>
+    <string name="settings_weather_source_freenet_disclaimer">Използвате Freenet версията на приложението. Преминете към стандартната версия, ако искате да използвате мрежови услуги със затворен код.</string>
     <string name="action_edit_location">Редактирайте това местоположение</string>
     <string name="message_invalid_incomplete_data">Невалидни или непълни данни получени от сървъра</string>
     <string name="message_server_unavailable_title">Сървърът е недостъпен</string>
@@ -753,4 +753,28 @@
     <string name="action_translate_no_app">Не е намерено приложение за превод</string>
     <string name="settings_appearance_dark_mode_locations_day_night">Следвай дневен/нощен цикъл</string>
     <string name="settings_appearance_dark_mode_locations_dark">Винаги тъмно, когато приложението е в тъмен режим</string>
+    <string name="humidity_from_to_number">%1$s до %2$s</string>
+    <string name="dew_point_from_to_number">%1$s до %2$s</string>
+    <string name="visibility_scale">Скала на видимост</string>
+    <string name="cloud_cover_from_to_number">%1$s до %2$s</string>
+    <string name="cloud_cover_from_to_description">%1$s до %2$s</string>
+    <string name="cloud_cover_scale">Скала на облачната покривка</string>
+    <string name="weather_source_recommended">Препоръчан</string>
+    <string name="broadcast_source_breezy_weather_update_notifier">%s Известител за актуализации на местоположението</string>
+    <string name="action_add_as_location">Добави като местоположение</string>
+    <string name="action_pull_down_to_refresh">Дръпни надолу за обновление</string>
+    <string name="action_change">Промени</string>
+    <string name="message_incompatible_times_title">Несъвместими прогнозни времена</string>
+    <string name="message_incompatible_times_content">Променете прогнозата или източника за качеството на въздуха, така че часовете да съвпадат.</string>
+    <string name="message_source_non_free_network_title">Този източник изисква стандартната версия на приложението</string>
+    <string name="message_source_non_free_network_content">Използвате Freenet версията на приложението, която поддържа само източници, хоствани в безплатна мрежа. За да продължите да използвате този източник, върнете се към стандартната версия. В противен случай изберете друг източник.</string>
+    <string name="widget_live_wallpaper_animations_enable_dangerous">ОПАСНО</string>
+    <string name="widget_live_wallpaper_animations_enable_warning1">Известно е, че анимациите на тапетите причиняват, наред с други неща: висока консумация на батерия; прегряване на батерията; висока консумация на памет; влошена системна реакция; срив на Android системата.</string>
+    <string name="widget_live_wallpaper_animations_enable_warning2">Ако решите да ги активирате, вие поемате пълна отговорност за всеки проблем, който може да възникне, и няма да Ви бъде предоставена поддръжка.</string>
+    <string name="settings_weather_source_non_freenet">%s (мрежова услуга със затворен код)</string>
+    <string name="settings_appearance_dark_mode_custom">Тъмен режим от %1$s до %2$s</string>
+    <string name="settings_regional_preference">Регионални предпочитания</string>
+    <string name="content_provider_permission_label">Четене на данни от Breezy Weather</string>
+    <string name="content_provider_permission_description">получавайте информация за времето от Breezy Weather, включително координатите на вашите местоположения, като например текущото ви местоположение, ако сте го добавили</string>
+    <string name="common_weather_text_mostly_cloudy">Предимно облачно</string>
 </resources>
