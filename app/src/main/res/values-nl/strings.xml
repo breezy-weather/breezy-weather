@@ -729,7 +729,7 @@
     <string name="pressure_steady">Gelijkblijvend</string>
     <string name="pressure_falling">Dalend</string>
     <string name="pressure_about">Over druk</string>
-    <string name="pressure_about_description1">Atmosferische druk is de neerwaartse druk die wordt uitgeoefend door de atmosfeer van de aarde. Deze app maakt gebruik van de druk op gemiddelde zeespiegelniveau om de druk van plaatsen met verschillende hoogten gemakkelijker te kunnen vergelijken.</string>
+    <string name="pressure_about_description1">Atmosferische druk is de neerwaartse druk die wordt uitgeoefend door de atmosfeer van de aarde. Deze app maakt gebruik van de druk op gemiddeld zeeniveau om de druk van plaatsen met verschillende hoogten gemakkelijker te kunnen vergelijken.</string>
     <string name="pressure_about_description2">Significante, snelle drukveranderingen worden gebruikt om veranderingen in het weer te voorspellen. Een daling van de druk kan bijvoorbeeld betekenen dat er regen of sneeuw op komst is en stijgende druk kan betekenen dat het weer zal verbeteren. Abnormale atmosferische druk kan hoofdpijn, gewrichtspijn, vermoeidheid en andere effecten veroorzaken.</string>
     <string name="visibility_about">Over het zicht</string>
     <string name="visibility_about_description">Het zicht is een waarde voor de afstand waarop je duidelijk objecten zoals gebouwen en heuvels kunt zien. Het zicht kan worden aangetast door neerslag, mist, stof, rook of waas.</string>
