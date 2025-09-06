@@ -66,7 +66,6 @@ import org.breezyweather.common.extensions.launchUI
 import org.breezyweather.common.options.appearance.CalendarHelper
 import org.breezyweather.common.snackbar.Snackbar
 import org.breezyweather.common.snackbar.SnackbarManager
-import org.breezyweather.common.utils.UnitUtils
 import org.breezyweather.common.utils.helpers.SnackbarHelper
 import org.breezyweather.domain.settings.ConfigStore
 import org.breezyweather.unit.formatting.UnitWidth
@@ -195,9 +194,7 @@ abstract class AbstractWidgetConfigActivity : BreezyActivity() {
 
     private val onBackPressedCallback = object : OnBackPressedCallback(true) {
         override fun handleOnBackPressed() {
-            if (mBottomSheetBehavior!!.state == BottomSheetBehavior.STATE_EXPANDED) {
-                setBottomSheetState(true)
-            } else if (
+            if (
                 (System.currentTimeMillis() - mLastBackPressedTime) <
                 (Snackbar.ANIMATION_DURATION + Snackbar.ANIMATION_FADE_DURATION + SnackbarManager.LONG_DURATION_MS)
             ) {
