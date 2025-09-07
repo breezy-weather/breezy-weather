@@ -516,7 +516,7 @@
     <string name="settings_weather_source_unavailable">%s (nedostupno)</string>
     <string name="settings_weather_source_open_meteo_weather_models">Vremenski modeli</string>
     <string name="settings_weather_source_open_meteo_weather_models_best_match_description">Kombinira najbolje vremenske modele za ovu lokaciju</string>
-    <string name="settings_weather_source_freenet_disclaimer">Daljnji izvori vremena dostupni su od drugih vrsta aplikacije. Dodirni ovdje i saznaj više.</string>
+    <string name="settings_weather_source_freenet_disclaimer">Koristiiš Freenet verziju aplikacije. Prebaci se na Standardnu verziju ako želiš koristiti slobodne mrežne usluge.</string>
     <string name="action_confirm">Potvrdi</string>
     <string name="widget_label_hide_header">Sakrij zaglavlje</string>
     <string name="pollen_platanus">Platana</string>
@@ -617,13 +617,13 @@
     <string name="daily_today">Danas</string>
     <string name="daily_tomorrow">Sutra</string>
     <string name="daily_summary">Dnevni sažetak</string>
-    <string name="chart_no_daily_data">Nema dostupnih podataka za traženi datum.</string>
+    <string name="chart_no_daily_data">Nema dostupnih podataka za ovaj dan.</string>
     <string name="chart_no_hourly_data">Nema dostupnih podataka po satu.</string>
     <string name="chart_not_enough_hourly_data">Nema dovoljno podataka po satu za prikaz grafikona za ovaj dan.</string>
     <string name="chart_average">Prosjek</string>
     <string name="chart_maximum_value">Najviša vrijednost</string>
-    <string name="conditions">Prognoza</string>
-    <string name="temperature_real">Stvarna temperatura</string>
+    <string name="conditions">Uvjeti</string>
+    <string name="temperature_real">Stvarna</string>
     <string name="temperature_real_details">Stvarna temperatura.</string>
     <string name="temperature_feels_like_details">Osjećaj temperature kao posljedica vlage, vjetra i/ili sunčeve svjetlosti.</string>
     <string name="temperature_degree_day_heating_explanation">Razlika između vanjske temperature i referentne temperature ugode koja se koristi za procjenu potreba za energijom za grijanje</string>
@@ -659,4 +659,12 @@
     <string name="message_server_insecure_title">Neuspjelo sigurno povezivanje</string>
     <string name="settings_appearance_section_regional">Jezik i regija</string>
     <string name="settings_appearance_section_theme">Tema</string>
+    <string name="air_quality_short">Kvaliteta zraka</string>
+    <string name="ephemeris_sun">Sunce</string>
+    <string name="ephemeris_moon">Mjesec</string>
+    <string name="ephemeris_about_dawn">Zora je kada se prvo vidljivo svjetlo dana pojavi prije izlaska sunca.</string>
+    <string name="ephemeris_about_dusk">Sumrak je najtamnija faza zalaska sunca prije nego što nestane posljednje vidljivo svjetlo.</string>
+    <string name="ephemeris_polar_day">Polarni dan</string>
+    <string name="ephemeris_polar_night">Polarna noć</string>
+    <string name="clock">Sat</string>
 </resources>
