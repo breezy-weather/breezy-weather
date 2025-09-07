@@ -780,4 +780,5 @@
     <string name="settings_weather_source_non_freenet">%s (servizio di rete non libero)</string>
     <string name="message_source_non_free_network_content">Stai usando la versione Freenet dell’app, che supporta solo fonti ospitate su una rete libera. Per continuare a usare questa fonte, passa di nuovo alla versione Standard. Altrimenti, scegli un’altra fonte.</string>
     <string name="action_toggle_data_type_menu">Alterna il menu di selezione del tipo di dati</string>
+    <string name="widget_live_wallpaper_animations_enable_warning1">Gli sfondi animati possono causare, tra l’altro: consumo elevato della batteria; surriscaldamento della batteria; uso elevato della memoria; minore reattività del sistema; arresto anomalo del sistema Android.</string>
 </resources>
