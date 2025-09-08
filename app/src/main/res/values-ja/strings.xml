@@ -149,16 +149,16 @@
     <string name="action_preview">プレビュー</string>
     <string name="action_about">情報</string>
     <!-- widget -->
-    <string name="widget_day">今日</string>
-    <string name="widget_week">今週</string>
-    <string name="widget_day_week">今日 + 今週</string>
-    <string name="widget_clock_day_horizontal">時計 + 今日（水平）</string>
-    <string name="widget_clock_day_details">時計 + 今日（詳細）</string>
-    <string name="widget_clock_day_vertical">時計 + 今日（垂直）</string>
-    <string name="widget_clock_day_week">時計 + 今日 + 今週</string>
+    <string name="widget_day">日</string>
+    <string name="widget_week">週</string>
+    <string name="widget_day_week">日 + 週</string>
+    <string name="widget_clock_day_horizontal">時計 + 日（水平）</string>
+    <string name="widget_clock_day_details">時計 + 日（詳細）</string>
+    <string name="widget_clock_day_vertical">時計 + 日（垂直）</string>
+    <string name="widget_clock_day_week">時計 + 日 + 週</string>
     <string name="widget_text">テキスト</string>
-    <string name="widget_trend_daily">今日の傾向</string>
-    <string name="widget_trend_hourly">時間別の傾向</string>
+    <string name="widget_trend_daily">傾向（日）</string>
+    <string name="widget_trend_hourly">傾向（時間）</string>
     <string name="widget_multi_city">複数の都市</string>
     <string name="widget_refreshing">更新しています</string>
     <string name="widget_ellipsis">…</string>
@@ -255,7 +255,7 @@
     <string name="settings_background_updates_dont_kill_my_app_summary">一部のメーカーは、バックグラウンドでのアプリの動作を独自の設定で制限しています。対処方法についてはDon’t kill my app!のウェブサイトを確認してください。</string>
     <string name="settings_notifications">通知</string>
     <string name="settings_main">メイン画面</string>
-    <string name="settings_main_hourly_trends_title">各時間の予報</string>
+    <string name="settings_main_hourly_trends_title">傾向（時間）</string>
     <string name="settings_main_section_options">オプション</string>
     <string name="settings_modules">外部のモジュール</string>
     <string name="about_contribution_WangDaYeeeeee">オリジナルプロジェクト「Geometric Weather」の開発者</string>
@@ -274,7 +274,7 @@
     <string name="settings_background_updates_section_troubleshoot">トラブルシューティング</string>
     <string name="about_source_code">ソースコード</string>
     <string name="settings_main_cards_fade_in_switch">ブロックのフェードイン</string>
-    <string name="settings_main_daily_trends_title">今日の予報</string>
+    <string name="settings_main_daily_trends_title">傾向（日）</string>
     <string name="about_contributors">貢献者</string>
     <string name="settings_background_updates_dont_kill_my_app_title">端末メーカー別の説明</string>
     <string name="precipitation_nowcasting">今後数時間の降水予報</string>
