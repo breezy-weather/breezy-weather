@@ -781,4 +781,8 @@
     <string name="message_source_non_free_network_content">Stai usando la versione Freenet dell’app, che supporta solo fonti ospitate su una rete libera. Per continuare a usare questa fonte, passa di nuovo alla versione Standard. Altrimenti, scegli un’altra fonte.</string>
     <string name="action_toggle_data_type_menu">Alterna il menu di selezione del tipo di dati</string>
     <string name="widget_live_wallpaper_animations_enable_warning1">Gli sfondi animati possono causare, tra l’altro: consumo elevato della batteria; surriscaldamento della batteria; uso elevato della memoria; minore reattività del sistema; arresto anomalo del sistema Android.</string>
+    <string name="air_quality_co_sources">In genere ha origine dalla combustione incompleta di combustibili a base di carbonio, come quella che si verifica nei motori delle auto e nelle centrali elettriche.</string>
+    <string name="visibility_about_description">La visibilità indica la distanza a cui si possono vedere chiaramente oggetti come edifici e colline. La visibilità può essere influenzata da precipitazioni, nebbia, polvere, fumo o foschia.</string>
+    <string name="cloud_cover_about_description">La copertura nuvolosa si riferisce alla percentuale di cielo oscurata in media dalle nuvole. La copertura nuvolosa è correlata alla durata del soleggiamento.</string>
+    <string name="action_change">Cambiare</string>
 </resources>
