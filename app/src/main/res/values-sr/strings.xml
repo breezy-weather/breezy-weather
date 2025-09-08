@@ -497,7 +497,7 @@
     <string name="pressure_short">Притисак</string>
     <string name="dew_point_short">Тачка росе</string>
     <string name="settings_weather_source_unavailable">%s (недоступно)</string>
-    <string name="settings_weather_source_freenet_disclaimer">Више извора времена доступно је из других врста апликације. Додирните овде да бисте сазнали више.</string>
+    <string name="settings_weather_source_freenet_disclaimer">Користите Freenet верзију апликације. Пребаците се на Стандардну верзију, ако желите да користите неслободне мрежне услуге.</string>
     <string name="visibility_short">Видљивост</string>
     <string name="ceiling_short">Облачни плафон</string>
     <string name="settings_weather_sources_default_source">Подразумевани извор за нове локације</string>
@@ -774,4 +774,13 @@
     <string name="content_provider_permission_label">Прочитај податке о Breezy Weather-у</string>
     <string name="content_provider_permission_description">добијајте информације о времену од Breezy Weather-а, укључујући координате ваших локација, као што је ваша тренутна локација, ако сте је додали</string>
     <string name="common_weather_text_mostly_cloudy">Претежно облачно</string>
+    <string name="action_pull_down_to_refresh">Повуците надоле да бисте освежили</string>
+    <string name="message_source_non_free_network_title">Овај извор захтева Стандардну верзију апликације</string>
+    <string name="message_source_non_free_network_content">Користите Freenet верзију апликације, која подржава само изворе хостоване на бесплатној мрежи. Да бисте наставили да користите овај извор, вратите се на Стандардну верзију. У супротном, изаберите други извор.</string>
+    <string name="widget_live_wallpaper_animations_enable_dangerous">ОПАСНО</string>
+    <string name="widget_live_wallpaper_animations_enable_warning1">Познато је да анимације позадина, између осталог, узрокује: велику потрошњу батерије; прегревање батерије; велику потрошњу меморије; смањен одзив система; отказивање система Android.</string>
+    <string name="widget_live_wallpaper_animations_enable_warning2">Ако одлучите да их омогућите, преузимате пуну одговорност за сваки проблем који може настати и неће вам бити пружена никаква подршка.</string>
+    <string name="settings_weather_source_non_freenet">%s (неслободна мрежна услуга)</string>
+    <string name="settings_appearance_dark_mode_custom">Тамни режим од %1$s до %2$s</string>
+    <string name="settings_regional_preference">Регионалне преференције</string>
 </resources>
