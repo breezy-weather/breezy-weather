@@ -636,4 +636,8 @@
     <string name="clock">Kell</string>
     <string name="ephemeris_about">Teave päikese või kuu tõusu ja loojangu kohta</string>
     <string name="settings_regional_preference">Kohalik eelistus</string>
+    <string name="ephemeris_about_set">Loojanguks loetakse hetke, mil Päike või Kuu on täielikult silmapiiri taha kadunud.</string>
+    <string name="ephemeris_about_rise">Tõusuks loetakse hetke, mil Päike või Kuu on täielikult silmapiiri kohale ilmunud.</string>
+    <string name="ephemeris_about_dawn">Koiduks loetakse aega, mil enne päikesetõusu paistab taevas esimene nähtav valgus.</string>
+    <string name="ephemeris_about_dusk">Hämarikuks loetakse videviku kõige pimedamat aega, mis eelneb viimse nähtava valguse kadumisele.</string>
 </resources>
