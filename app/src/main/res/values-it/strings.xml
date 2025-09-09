@@ -266,7 +266,7 @@
     <string name="message_network_unavailable">Rete non disponibile</string>
     <string name="widget_style_nano">Nano</string>
     <string name="widget_style_pixel">Pixel</string>
-    <string name="widget_clock_font_analog">Analog</string>
+    <string name="widget_clock_font_analog">Analogico</string>
     <string name="uv_index_0_2">Basso</string>
     <string name="alerts_to_follow">Ci sono allerte da seguire, tocca qui per visualizzarle.</string>
     <string name="wind_direction_variable">Variabile</string>
@@ -360,7 +360,7 @@
     <string name="settings_modules_notification_persistent_switch">Persistente</string>
     <string name="settings_modules_notification_style_title">Stile</string>
     <string name="settings_debug">Debug</string>
-    <string name="settings_debug_summary">Crash logs</string>
+    <string name="settings_debug_summary">Log di crash</string>
     <string name="settings_debug_dump_crash_logs_title">Condividi crash logs</string>
     <string name="settings_debug_dump_crash_logs_summary">Salva i log degli errori in un file per la condivisione con gli sviluppatori</string>
     <string name="notification_channel_background_services">Servizi in background</string>
@@ -784,5 +784,5 @@
     <string name="air_quality_co_sources">In genere ha origine dalla combustione incompleta di combustibili a base di carbonio, come quella che si verifica nei motori delle auto e nelle centrali elettriche.</string>
     <string name="visibility_about_description">La visibilità indica la distanza a cui si possono vedere chiaramente oggetti come edifici e colline. La visibilità può essere influenzata da precipitazioni, nebbia, polvere, fumo o foschia.</string>
     <string name="cloud_cover_about_description">La copertura nuvolosa si riferisce alla percentuale di cielo oscurata in media dalle nuvole. La copertura nuvolosa è correlata alla durata del soleggiamento.</string>
-    <string name="action_change">Cambiare</string>
+    <string name="action_change">Cambia</string>
 </resources>
