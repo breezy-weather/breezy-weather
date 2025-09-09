@@ -753,7 +753,7 @@
     <string name="air_quality_pollutant_details">污染物详情</string>
     <string name="air_quality_health_information">健康信息</string>
     <string name="air_quality_pm25_full">细颗粒物（&lt; %s）</string>
-    <string name="air_quality_pm10_full">不可吸入颗粒物（&lt; %s）</string>
+    <string name="air_quality_pm10_full">可吸入颗粒物（&lt; %s）</string>
     <string name="air_quality_so2_sources">主要来源是工业、交通和电厂中含硫燃料的燃烧过程。</string>
     <string name="air_quality_no2_sources">主要来源是燃料燃烧过程，比如那些用在工业和交通业中的燃料。</string>
     <string name="pollen_primary">主要花粉</string>
@@ -777,7 +777,7 @@
     <string name="cloud_cover_about">关于云量</string>
     <string name="label_description">描述</string>
     <string name="air_quality_co_sources">通常源自碳基燃料的不完全燃烧，比如发生在汽车引擎和电厂中的那些。</string>
-    <string name="air_quality_pm_sources">主要来源是燃烧过程（电厂、室内加热、汽车排放、野火）、机械过程（施工、矿灰、农业）和生物微粒（花粉、模具、细菌、病毒）。</string>
+    <string name="air_quality_pm_sources">主要来源包括燃烧过程（电厂、室内加热、汽车排放尾气、野火）、机械过程（建筑施工、矿物粉尘、农业活动）和生物颗粒物（如花粉、霉菌、细菌、病毒）。</string>
     <string name="air_quality_o3_sources">臭氧是在大气中的氧气、氮氧化物、一氧化碳和有机化合物间的化学反应中创造的，存在于日光中。</string>
     <string name="uv_index_about_description">紫外线指数用于衡量太阳紫外线的辐射强度。该指数越高，对皮肤和眼睛的危害越大且发生速度越快，可能导致晒伤、皮肤癌和眼损伤。</string>
     <string name="air_quality_index_about_description_2">本应用采用的等级体系基于世界卫生组织建议，而非本地监管机构，这么做是为了拥有有意义的分类，便于比较不同国家/地区间的污染等级。</string>
@@ -829,7 +829,7 @@
     <string name="settings_appearance_dark_mode_locations_dark">应用处于深色模式下时始终是深色</string>
     <string name="air_quality_pm25_about">关于细颗粒物 (%s)</string>
     <string name="air_quality_pm25_index">%s 的空气质量指数</string>
-    <string name="air_quality_pm10_about">关于细颗粒物 (%s)</string>
+    <string name="air_quality_pm10_about">关于可吸入颗粒物 (%s)</string>
     <string name="air_quality_pm10_index">%s 的空气质量指数</string>
     <string name="air_quality_so2_about">关于二氧化硫 (%s)</string>
     <string name="air_quality_so2_index">%s 的空气质量指数</string>
