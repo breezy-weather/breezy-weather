@@ -782,7 +782,7 @@
     <string name="pressure_about_description2">氣壓迅速顯著變化，可用作預測天氣變化。例如：氣壓下降可能意味著即將下雨或下雪，而氣壓上升則意味著天氣會好轉。異常的氣壓可能導致頭痛、關節痛、疲倦和其他反應。</string>
     <string name="wind_strength_scale">蒲福風級</string>
     <string name="air_quality_level_2_harmless_exposure">&lt; 1 年</string>
-    <string name="air_quality_pm_sources">主要來自燃燒過程（如：發電廠、室內加熱、汽車排氣、野火）、機械過程（如：營造、礦物粉塵、農業）和生物微粒（如：花粉、黴菌、細菌、病毒）。</string>
+    <string name="air_quality_pm_sources">主要來自燃燒過程（如：發電廠、室內加熱、汽車排氣、野火）、機械過程（如：建設、礦物粉塵、農業）和生物微粒（如：花粉、黴菌、細菌、病毒）。</string>
     <string name="data_modified">本內容是由 %s 從原始資料修改而成，修改內容主要為計算或推斷遺漏資料。</string>
     <string name="data_sources">資料來源</string>
     <string name="visibility_very_poor">非常差</string>
