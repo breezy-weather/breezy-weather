@@ -653,8 +653,8 @@
     <string name="temperature_degree_day_heating_explanation">Välistemperatuuri ja kütteenergia vajaduse hindamiseks kasutatava mugavustemperatuuri erinevus</string>
     <string name="temperature_degree_day_cooling_explanation">Välistemperatuuri ja jahutusenergia vajaduse hindamiseks kasutatava mugavustemperatuuri erinevus</string>
     <string name="temperature_normals_deviation">Kõrvalekalle</string>
-    <string name="temperature_normals_deviation_explanation_maximum">Kõrvalekalle selle asukoha keskmisest maksimumtemperatuurist: (%)</string>
-    <string name="temperature_normals_deviation_explanation_minimum">Kõrvalekalle selle asukoha keskmisest miinimumtemperatuurist: (%)</string>
+    <string name="temperature_normals_deviation_explanation_maximum">Kõrvalekalle selle asukoha keskmisest maksimumtemperatuurist: (%s)</string>
+    <string name="temperature_normals_deviation_explanation_minimum">Kõrvalekalle selle asukoha keskmisest miinimumtemperatuurist: (%s)</string>
     <string name="precipitation_total_day">Päevased sademed</string>
     <string name="precipitation_total_night">Öised sademed</string>
     <string name="precipitation_rain_total_day">Päevane vihm</string>
@@ -775,4 +775,6 @@
     <string name="content_provider_permission_label">Loe Breezy Weather andmeid</string>
     <string name="content_provider_permission_description">Hangi ilmateave Breezy Weatherist, sh oma asukohtade koordinaadid, näiteks oma praeguse asukoha, kui oled selle lisanud</string>
     <string name="common_weather_text_mostly_cloudy">Peamiselt pilvine</string>
+    <string name="action_change">Muuda</string>
+    <string name="widget_custom_subtitle_alert_box_title">Abiteave kohandatud subtiitrite kohta</string>
 </resources>
