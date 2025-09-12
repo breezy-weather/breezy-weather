@@ -743,7 +743,7 @@
     <string name="daytime_short">Día</string>
     <string name="nighttime_short">Noche</string>
     <string name="humidity_about">Sobre la humedad relativa</string>
-    <string name="humidity_about_description">La humedad relativa, más conocida simplemente como humedad, es el porcentaje de vapor de agua presente en el aire en comparación con la cantidad máxima que el aire puede contener a una temperatura determinada.</string>
+    <string name="humidity_about_description">La humedad relativa o humedad es el porcentaje de vapor de agua presente en el aire en comparación con la cantidad máxima que puede contener a una temperatura determinada.</string>
     <string name="humidity_from_to_number">%1$s a %2$s</string>
     <string name="dew_point_about">Sobre el punto de rocío</string>
     <string name="dew_point_about_description">El punto de rocío es la temperatura a la que habría que enfriar el aire para alcanzar una humedad relativa del %s.</string>
