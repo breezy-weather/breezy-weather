@@ -656,7 +656,7 @@
     <string name="wind_speed_about_description">La velocità del vento è misurata mediando la velocità del vento per un periodo di tempo. Le raffiche sono improvvise esplosioni di vento che durano tipicamente sotto 20 secondi.</string>
     <string name="wind_gusts_short">Raffiche</string>
     <string name="wind_strength_scale">Scala Beaufort</string>
-    <string name="uv_index_about">Informazioni sull’indice UV</string>
+    <string name="uv_index_about">Sull’indice UV</string>
     <string name="uv_index_about_description">L’indice UV misura la forza della radiazione ultravioletta del sole. Più alto è, più grande e più veloce può causare scottature, cancro della pelle e danni agli occhi.</string>
     <string name="uv_index_scale">Scala dell’indice UV</string>
     <string name="air_quality_index_scale">Scala dell’indice di qualità dell’aria</string>
@@ -766,7 +766,7 @@
     <string name="air_quality_so2_sources">Le fonti principali sono i processi di combustione di combustibili contenenti zolfo nell’industria, nei trasporti e nelle centrali elettriche.</string>
     <string name="air_quality_no2_sources">Le fonti principali sono i processi di combustione dei combustibili, come quelli utilizzati nell’industria e nei trasporti.</string>
     <string name="air_quality_index_about_description_1">L’indice di qualità dell’aria (AQI) è una scala pensata per aiutarti a capire quanto è inquinata l’aria in una determinata area e i potenziali rischi per la tua salute.</string>
-    <string name="air_quality_pm_sources">Le fonti principali sono i processi di combustione (ad esempio, centrali elettriche, riscaldamento interno, scarichi di automobili, incendi), i processi meccanici (ad esempio, edilizia, polveri minerali, agricoltura) e le particelle biologiche (ad esempio, pollini, muffe, batteri, virus).Air quality index (AQI) is a scale designed to help you understand how polluted the air is in a particular area, and the potential risks to your health.</string>
+    <string name="air_quality_pm_sources">Le fonti principali sono i processi di combustione (ad esempio, centrali elettriche, riscaldamento interno, scarichi di automobili, incendi), i processi meccanici (ad esempio, edilizia, polveri minerali, agricoltura) e le particelle biologiche (ad esempio, pollini, muffe, batteri, virus).</string>
     <string name="message_incompatible_times_content">Modifica la tua fonte di previsioni o di qualità dell’aria in modo che gli orari coincidano.</string>
     <string name="widget_live_wallpaper_animations_enable_warning2">Se si decide di abilitarli, ci si assume la piena responsabilità per qualsiasi problema che dovesse sorgere e non verrà fornito alcun supporto.</string>
     <string name="air_quality_index_about_description_2">La scala utilizzata in questa app si basa sulle raccomandazioni dell’Organizzazione Mondiale della Sanità, piuttosto che sulle normative locali, per avere categorie significative e rendere più facile il confronto dei livelli di inquinamento tra i diversi paesi.</string>
