@@ -1,2 +1,2 @@
-发行说明请参考 GitHub：
+版本说明请参考 GitHub：
 https://github.com/breezy-weather/breezy-weather/releases

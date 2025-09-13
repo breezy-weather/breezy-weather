@@ -266,7 +266,7 @@
     <string name="message_network_unavailable">Rete non disponibile</string>
     <string name="widget_style_nano">Nano</string>
     <string name="widget_style_pixel">Pixel</string>
-    <string name="widget_clock_font_analog">Analog</string>
+    <string name="widget_clock_font_analog">Analogico</string>
     <string name="uv_index_0_2">Basso</string>
     <string name="alerts_to_follow">Ci sono allerte da seguire, tocca qui per visualizzarle.</string>
     <string name="wind_direction_variable">Variabile</string>
@@ -360,7 +360,7 @@
     <string name="settings_modules_notification_persistent_switch">Persistente</string>
     <string name="settings_modules_notification_style_title">Stile</string>
     <string name="settings_debug">Debug</string>
-    <string name="settings_debug_summary">Crash logs</string>
+    <string name="settings_debug_summary">Log di crash</string>
     <string name="settings_debug_dump_crash_logs_title">Condividi crash logs</string>
     <string name="settings_debug_dump_crash_logs_summary">Salva i log degli errori in un file per la condivisione con gli sviluppatori</string>
     <string name="notification_channel_background_services">Servizi in background</string>
@@ -656,7 +656,7 @@
     <string name="wind_speed_about_description">La velocità del vento è misurata mediando la velocità del vento per un periodo di tempo. Le raffiche sono improvvise esplosioni di vento che durano tipicamente sotto 20 secondi.</string>
     <string name="wind_gusts_short">Raffiche</string>
     <string name="wind_strength_scale">Scala Beaufort</string>
-    <string name="uv_index_about">Informazioni sull’indice UV</string>
+    <string name="uv_index_about">Sull’indice UV</string>
     <string name="uv_index_about_description">L’indice UV misura la forza della radiazione ultravioletta del sole. Più alto è, più grande e più veloce può causare scottature, cancro della pelle e danni agli occhi.</string>
     <string name="uv_index_scale">Scala dell’indice UV</string>
     <string name="air_quality_index_scale">Scala dell’indice di qualità dell’aria</string>
@@ -766,7 +766,7 @@
     <string name="air_quality_so2_sources">Le fonti principali sono i processi di combustione di combustibili contenenti zolfo nell’industria, nei trasporti e nelle centrali elettriche.</string>
     <string name="air_quality_no2_sources">Le fonti principali sono i processi di combustione dei combustibili, come quelli utilizzati nell’industria e nei trasporti.</string>
     <string name="air_quality_index_about_description_1">L’indice di qualità dell’aria (AQI) è una scala pensata per aiutarti a capire quanto è inquinata l’aria in una determinata area e i potenziali rischi per la tua salute.</string>
-    <string name="air_quality_pm_sources">Le fonti principali sono i processi di combustione (ad esempio, centrali elettriche, riscaldamento interno, scarichi di automobili, incendi), i processi meccanici (ad esempio, edilizia, polveri minerali, agricoltura) e le particelle biologiche (ad esempio, pollini, muffe, batteri, virus).Air quality index (AQI) is a scale designed to help you understand how polluted the air is in a particular area, and the potential risks to your health.</string>
+    <string name="air_quality_pm_sources">Le fonti principali sono i processi di combustione (ad esempio, centrali elettriche, riscaldamento interno, scarichi di automobili, incendi), i processi meccanici (ad esempio, edilizia, polveri minerali, agricoltura) e le particelle biologiche (ad esempio, pollini, muffe, batteri, virus).</string>
     <string name="message_incompatible_times_content">Modifica la tua fonte di previsioni o di qualità dell’aria in modo che gli orari coincidano.</string>
     <string name="widget_live_wallpaper_animations_enable_warning2">Se si decide di abilitarli, ci si assume la piena responsabilità per qualsiasi problema che dovesse sorgere e non verrà fornito alcun supporto.</string>
     <string name="air_quality_index_about_description_2">La scala utilizzata in questa app si basa sulle raccomandazioni dell’Organizzazione Mondiale della Sanità, piuttosto che sulle normative locali, per avere categorie significative e rendere più facile il confronto dei livelli di inquinamento tra i diversi paesi.</string>
@@ -780,4 +780,9 @@
     <string name="settings_weather_source_non_freenet">%s (servizio di rete non libero)</string>
     <string name="message_source_non_free_network_content">Stai usando la versione Freenet dell’app, che supporta solo fonti ospitate su una rete libera. Per continuare a usare questa fonte, passa di nuovo alla versione Standard. Altrimenti, scegli un’altra fonte.</string>
     <string name="action_toggle_data_type_menu">Alterna il menu di selezione del tipo di dati</string>
+    <string name="widget_live_wallpaper_animations_enable_warning1">Gli sfondi animati possono causare, tra l’altro: consumo elevato della batteria; surriscaldamento della batteria; uso elevato della memoria; minore reattività del sistema; arresto anomalo del sistema Android.</string>
+    <string name="air_quality_co_sources">In genere ha origine dalla combustione incompleta di combustibili a base di carbonio, come quella che si verifica nei motori delle auto e nelle centrali elettriche.</string>
+    <string name="visibility_about_description">La visibilità indica la distanza a cui si possono vedere chiaramente oggetti come edifici e colline. La visibilità può essere influenzata da precipitazioni, nebbia, polvere, fumo o foschia.</string>
+    <string name="cloud_cover_about_description">La copertura nuvolosa si riferisce alla percentuale di cielo oscurata in media dalle nuvole. La copertura nuvolosa è correlata alla durata del soleggiamento.</string>
+    <string name="action_change">Cambia</string>
 </resources>
