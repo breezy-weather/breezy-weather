@@ -1,0 +1,47 @@
+Breezy Weather es una aplicación meteorológica gratuita y de código abierto, con muchas funciones basada en Materia 3 Expressive, con visualizaciones bien pensadas, que admite pronósticos, condiciones meteorológicas en tiempo real, nowcasting, calidad del aire, polen, alertas, de más de 50 fuentes meteorológicas, como AEMET, Météo-France, Servizio Meteo AM, DMI, Met Office, MET Norway, AccuWeather, OpenWeather y Open‑Meteo.
+
+<b>Características</b>
+
+- Pronósticos diarios y horarios de hasta 16 días
+- Precipitación en la próxima hora
+- Condiciones meteorológicas en tiempo real
+- Información de calidad del aire, alérgenos y efemérides
+- Alertas de clima severo y precipitación
+- Compartir datos de forma opcional con otras apps (como Gadgetbridge)
+- Enfoque a la accesibilidad para lectores de pantalla y otros idiomas
+
+<b>Diseño</b>
+
+- Materia 3 Expressive
+- Gráficos detallados 24 horas
+- Modo oscuro automático
+- Paquetes de iconos personalizados
+- Gran selección de widgets
+- Fondo de pantalla animado
+
+<b>Fuentes</b>
+
+- En todas las variantes: Open‑Meteo, ANAM‑BF, Bright Sky (DWD), DCCMS, DMN, DWR, EMI, FOSS Public Alert Server, GMet, IGEBU, INM, Mali‑Météo, Météo Benin, Météo Tchad, Météo Togo, Mettelsat, MSD, Pirate Weather, Recosanté, SMA (Seychelles), SMA (Sudán), SSMS
+- No libre/autohospedable (no incluidas en versiones con sufijo _freenet): AccuWeather, AEMET, Atmo Auvergne‑Rhône‑Alpes, Atmo France, ATMO GrandEst, Atmo Hauts‑de‑France, AtmoSud, Baidu IP location, BMD, BMKG, CWA, DMI, ECCC, EKUK, EPD (Hong Kong), GeoNames, GeoSphere AT, HERE, HKO, Ilmateenistus, IMD, IMS, IP.SB, IPMA, LHMT, LVĢMC, JMA, MET Éireann, MET Norway, Met Office UK, Meteo AM, Météo‑France, MeteoLux, MGM, Fuentes mixtas de China, NAMEM, NCDR, NCEI, NLSC, NWS, OpenWeather, PAGASA, SMG, Veðurstofa Íslands, WMO Severe Weather
+
+<b>Permisos</b>
+
+Obligatorios:
+
+- Red (ACCESS_NETWORK_STATE, ACCESS_WIFI_STATE, INTERNET): obtener datos meteorológicos de las fuentes a través de Internet
+
+Opcionales:
+
+- Servicios en segundo plano (RECEIVE_BOOT_COMPLETED, WAKE_LOCK, SET_ALARM, FOREGROUND_SERVICE, FOREGROUND_SERVICE_DATA_SYNC, FOREGROUND_SERVICE_SPECIAL_USE): actualizaciones meteorológicas en segundo plano y notificaciones programadas de pronósticos
+- Ignorar optimizaciones de batería (REQUEST_IGNORE_BATTERY_OPTIMIZATIONS): ayuda a evitar que la app sea cerrada en algunos dispositivos
+- Enviar notificaciones (POST_NOTIFICATIONS): alertas, precipitación, pronóstico de hoy/mañana, widget‑notificación, progreso de actualizaciones en segundo plano, etc.
+- Ubicación (ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION, ACCESS_BACKGROUND_LOCATION): mostrar el clima en tu ubicación actual
+- Almacenamiento (READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE): permite configurar el fondo de pantalla animado y/o widgets en algunos dispositivos
+- Azulejo (EXPAND_STATUS_BAR): permite lanzar la app desde Configuración rápida
+- Idioma específico de la app (READ_APP_SPECIFIC_LOCALES): permite guardar un idioma específico para la app y leerlo después del reinicio en algunos dispositivos
+
+<b>Licencia</b>
+
+- GNU Lesser General Public License v3.0
+- This License does not grant any rights in the trademarks, service marks, or logos of any Contributor.
+- Misrepresentation of the origin of that material is prohibited, and modified versions of such material must be marked in reasonable ways as different from the original version.
