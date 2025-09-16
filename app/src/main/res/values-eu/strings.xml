@@ -601,4 +601,5 @@
     <string name="pressure_falling">Jaisten</string>
     <string name="pressure_about">Presioari buruz</string>
     <string name="pressure_rising">Igotzen</string>
+    <string name="air_quality_short">Airearen kalitatea</string>
 </resources>
