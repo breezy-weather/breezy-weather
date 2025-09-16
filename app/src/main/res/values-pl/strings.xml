@@ -39,7 +39,7 @@
     <string name="temperature_apparent">Temperatura odczuwalna</string>
     <string name="temperature_wind_chill">Chłód</string>
     <string name="temperature_degree_day">Stopień ogrzewania dobowego</string>
-    <string name="precipitation_thunderstorm">Burza</string>
+    <string name="precipitation_thunderstorm">Burza z piorunami</string>
     <string name="precipitation_rain">Deszcz</string>
     <string name="precipitation_snow">Śnieg</string>
     <string name="precipitation_ice">Lód</string>
@@ -201,7 +201,7 @@
     <string name="widget_subtitle_data_custom">Inny</string>
     <!-- Weather kind -->
     <string name="common_weather_text_partly_cloudy">Częściowe zachmurzenie</string>
-    <string name="common_weather_text_cloudy">Przewaga chmur</string>
+    <string name="common_weather_text_cloudy">Pochmurno</string>
     <string name="common_weather_text_rain">Deszcz</string>
     <string name="common_weather_text_snow">Śnieg</string>
     <string name="weather_kind_hail">Grad</string>
@@ -577,7 +577,7 @@
     <string name="common_weather_text_smoke">Dym</string>
     <string name="settings_unavailable_no_animations">Niedostępne, najpierw włącz animacje w ustawieniach Androida</string>
     <string name="current_weather">Aktualna pogoda</string>
-    <string name="common_weather_text_mist">Mgła</string>
+    <string name="common_weather_text_mist">Zamglenie</string>
     <string name="common_weather_text_dry">Suchy</string>
     <string name="common_weather_text_humid">Wilgotny</string>
     <string name="common_weather_text_hot">Gorący</string>
@@ -611,8 +611,8 @@
     <string name="pollen_picea">Świerk</string>
     <string name="pollen_pinus">Sosna</string>
     <string name="pollen_ulmus">Wiąz</string>
-    <string name="common_weather_text_blowing_snow">Śnieg podmuchowy</string>
-    <string name="common_weather_text_drifting_snow">Zawieje śnieżne</string>
+    <string name="common_weather_text_blowing_snow">Zawieja śnieżna</string>
+    <string name="common_weather_text_drifting_snow">Zamieć śnieżna</string>
     <string name="common_weather_text_glaze">Oblodzenie</string>
     <string name="action_grant_permission">Stuknij, aby udzielić pozwolenia.</string>
     <string name="settings_notifications_permission">Wymagane pozwolenie na powiadomienie</string>
