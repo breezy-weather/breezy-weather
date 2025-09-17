@@ -748,6 +748,7 @@
     <string name="settings_weather_source_msd_zw_instance" translatable="false">@string/settings_source_instance</string>
     <string name="settings_weather_source_pirate_weather_instance" translatable="false">@string/settings_source_instance</string>
     <string name="settings_weather_source_recosante_instance" translatable="false">@string/settings_source_instance</string>
+    <string name="settings_weather_source_knmi_instance" translatable="false">@string/settings_source_instance</string>
     <string name="settings_weather_source_recosante_instance_geocoding" translatable="false">@string/settings_source_instance_geocoding</string>
     <string name="settings_weather_source_sma_sc_instance" translatable="false">@string/settings_source_instance</string>
     <string name="settings_weather_source_sma_su_instance" translatable="false">@string/settings_source_instance</string>
