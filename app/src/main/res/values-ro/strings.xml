@@ -4,7 +4,7 @@
     <string name="app_name">Meteo</string>
     <!-- keyword. -->
     <string name="location_current">Locația curentă</string>
-    <string name="daily_today_short">Azi</string>
+    <string name="daily_today_short">Astăzi</string>
     <string name="notification_refreshed_at">Actualizat la</string>
     <string name="precipitation">Precipitații</string>
     <string name="precipitation_probability">Probabilitate de precipitații</string>
@@ -18,8 +18,8 @@
     <string name="notification_channel_forecast">Prognoză</string>
     <string name="daytime">Ziua</string>
     <string name="nighttime">Noaptea</string>
-    <string name="temperature_feels_like">Temperatură resimțită</string>
-    <string name="temperature_feels_like_with_unit">Se simte %s</string>
+    <string name="temperature_feels_like">Temperatura resimțită</string>
+    <string name="temperature_feels_like_with_unit">Se simte ca %s</string>
     <string name="settings_follow_system">Automat</string>
     <string name="pressure">Presiune</string>
     <string name="visibility">Vizibilitate</string>
@@ -615,7 +615,7 @@
     <string name="common_weather_text_frost">Îngheț</string>
     <string name="settings_debug_notification_permission">Necesar pentru a trimite notificări referitoare la log-urile de avarie și eșuări ale actualizărilor aplicației. %s</string>
     <string name="daily_yesterday">Ieri</string>
-    <string name="daily_today">Azi</string>
+    <string name="daily_today">Astăzi</string>
     <string name="daily_tomorrow">Mâine</string>
     <string name="wind_direction_N">Nord</string>
     <string name="wind_direction_NE">Nord-Est</string>
@@ -664,7 +664,7 @@
     <string name="air_quality_short">Calit. aerului</string>
     <string name="ephemeris_sun">Soare</string>
     <string name="ephemeris_moon">Lună</string>
-    <string name="ephemeris_about">Despre ora răsăritului și apusului</string>
+    <string name="ephemeris_about">Despre ora răsăritului și a apusului</string>
     <string name="ephemeris_about_rise">Ora răsăritului este atunci când soarele sau luna apar pe deplin deasupra orizontului.</string>
     <string name="ephemeris_about_set">Ora apusului este atunci când soarele sau luna dispar complet sub orizont.</string>
     <string name="ephemeris_about_dusk">Amurgul este cea mai întunecată etapă a amurgului înainte de a dispărea ultima lumină vizibilă.</string>
@@ -673,7 +673,7 @@
     <string name="clock">Ceas</string>
     <string name="daily_summary">Rezumat zilnic</string>
     <string name="chart_no_daily_data">Nu există date disponibile pentru această zi.</string>
-    <string name="chart_no_hourly_data">Nu există date pe oră disponibile.</string>
+    <string name="chart_no_hourly_data">Nu există date pe ore disponibile.</string>
     <string name="chart_not_enough_hourly_data">Nu sunt suficiente date pe oră disponibile pentru a afișa un grafic pentru această zi.</string>
     <string name="chart_average">Medie</string>
     <string name="chart_maximum_value">Valoarea maximă</string>
@@ -698,7 +698,7 @@
     <string name="wind_gusts_short">Rafale</string>
     <string name="wind_origin">De la %s</string>
     <string name="wind_strength_scale">Scala Beaufort</string>
-    <string name="uv_index_about">Despre indexul UV</string>
+    <string name="uv_index_about">Despre indicele UV</string>
     <string name="uv_index_about_description">Indicele UV măsoară intensitatea radiațiilor ultraviolete emise de soare. Cu cât este mai mare, cu atât este mai mare și mai rapid riscul de arsură solară, cancer de piele și afecțiuni ale ochilor.</string>
     <string name="uv_index_scale">Scara indicelui UV</string>
     <string name="uv_index_time_to_burn">Timp până la apariția arsurii</string>
@@ -718,7 +718,7 @@
     <string name="air_quality_pollutant_details">Detalii despre poluanți</string>
     <string name="air_quality_health_information">Informații despre sănătate</string>
     <string name="air_quality_pm25_full">Particule fine (&lt;%s)</string>
-    <string name="air_quality_pm25_about">Despre particulele fine %s</string>
+    <string name="air_quality_pm25_about">Despre particulele fine (%s)</string>
     <string name="air_quality_pm25_index">Scala indicelui calității aerului pentru %s</string>
     <string name="air_quality_pm10_full">Particule inhalabile (&lt; %s)</string>
     <string name="air_quality_pm10_about">Despre particulele inhalabile ( %s)</string>
