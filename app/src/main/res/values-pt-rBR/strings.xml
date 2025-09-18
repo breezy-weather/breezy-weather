@@ -18,7 +18,7 @@
     <string name="notification_channel_forecast">Previsão</string>
     <string name="daytime">De dia</string>
     <string name="nighttime">De noite</string>
-    <string name="temperature_feels_like">Sensação</string>
+    <string name="temperature_feels_like">Sensação térmica</string>
     <string name="temperature_feels_like_with_unit">Sensação de %s</string>
     <string name="settings_follow_system">Seguir o sistema</string>
     <string name="pressure">Pressão</string>
@@ -106,8 +106,8 @@
     <string name="widget_custom_subtitle_keyword_cw_description">Clima atual</string>
     <string name="widget_custom_subtitle_keyword_ct_description">Temperatura atual (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">Temperatura atual (°)</string>
-    <string name="widget_custom_subtitle_keyword_at_description">Sensação atual (°C/°F)</string>
-    <string name="widget_custom_subtitle_keyword_atd_description">Sensação atual (°)</string>
+    <string name="widget_custom_subtitle_keyword_at_description">Sensação térmica atual (°C/°F)</string>
+    <string name="widget_custom_subtitle_keyword_atd_description">Sensação térmica atual (°)</string>
     <string name="widget_custom_subtitle_keyword_cwd_description">Vento atual</string>
     <string name="widget_custom_subtitle_keyword_cuv_description">UV atual</string>
     <string name="widget_custom_subtitle_keyword_ch_description">Umidade atual</string>
@@ -702,7 +702,7 @@
     <string name="conditions">Condições</string>
     <string name="temperature_real_details">A temperatura real.</string>
     <string name="temperature_real">Real</string>
-    <string name="temperature_feels_like_details">Como é a sensação da temperatura, como resultado da umidade, do vento e a luz do sol.</string>
+    <string name="temperature_feels_like_details">Qual é a sensação da temperatura, como resultado da umidade, do vento e a luz do sol.</string>
     <string name="chart_no_daily_data">Não há dados disponíveis para este dia.</string>
     <string name="chart_not_enough_hourly_data">Não há dados horários suficientes para apresentar no gráfico deste dia.</string>
     <string name="temperature_degree_day_heating_explanation">A diferença entre a temperatura externa e uma temperatura confortável de referência usada para estimar requisitos de energia para aquecimento</string>
