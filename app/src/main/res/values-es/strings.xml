@@ -83,7 +83,7 @@
     <!-- feedback. -->
     <string name="location_message_failed_to_locate">No se pudo encontrar el lugar actual</string>
     <string name="weather_message_data_refresh_failed">La actualización de los datos ha fallado</string>
-    <string name="location_dialog_failed_to_locate_action_select_source">Usar otro servicio de localización</string>
+    <string name="location_dialog_failed_to_locate_action_select_source">Utilizar otro servicio de ubicación</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Añadir ubicación manualmente y eliminar “%s”</string>
     <string name="dialog_permissions_location_background_title">Acceso a la ubicación en segundo plano</string>
     <string name="dialog_permissions_location_background_content">Para permitir que la actualización del tiempo en segundo plano se realice para la ubicación actual más reciente conocida por Android, debe establecer el permiso de ubicación en “Permitir todo el tiempo”. Si no lo haces, el tiempo se actualizará en función de las últimas coordenadas recuperadas en primer plano, que pueden estar desfasadas.</string>
@@ -218,7 +218,7 @@
     <string name="wind_direction_NW_short">NO</string>
     <string name="wind_direction_variable">Variable</string>
     <string name="uv_index_6_7">Alto</string>
-    <string name="alerts_to_follow">Próximas alertas, toca para verlas.</string>
+    <string name="alerts_to_follow">Próximas alertas, pulse aquí para verlas.</string>
     <string name="precipitation_between_time">Precipitaciones de %1$s a %2$s</string>
     <string name="wind_direction_N_short">N</string>
     <string name="wind_direction_NE_short">NE</string>
@@ -570,7 +570,7 @@
     <string name="common_weather_text_sand_storm">Tormenta de arena</string>
     <string name="meteoam_weather_text_tornado_watersprout">Tornado o tromba marina</string>
     <string name="dialog_app_update_check_title">Mantente al día</string>
-    <string name="dialog_app_update_check_content">Toca para habilitar las notificaciones sobre actualizaciones de la aplicación.</string>
+    <string name="dialog_app_update_check_content">Toca para activar las notificaciones sobre actualizaciones de la aplicación.</string>
     <string name="settings_unavailable_no_animations">No disponible, activa primero las animaciones en los ajustes de Android</string>
     <string name="current_weather">Clima actual</string>
     <string name="common_weather_text_dry">Seco</string>
@@ -657,15 +657,15 @@
     <string name="pollen_juniperus">Enebro</string>
     <string name="action_grant_permission">Toca para dar el permiso.</string>
     <string name="settings_modules_notification_permission_summary">Necesario para mostrar el widget de notificación. %s</string>
-    <string name="common_weather_text_drifting_snow">Nieve a la deriva</string>
-    <string name="common_weather_text_glaze">Vidriado</string>
+    <string name="common_weather_text_drifting_snow">Ventisca de nieve</string>
+    <string name="common_weather_text_glaze">Hielo glaseado</string>
     <string name="message_server_insecure_title">Conexión segura incorrecta</string>
-    <string name="message_outdated_server_data">Recibir datos obsoletos del servidor</string>
+    <string name="message_outdated_server_data">La información recibida del servidor está desactualizada</string>
     <string name="action_enable">Activar</string>
     <string name="action_allow">Permitir</string>
     <string name="action_open_in_other_app">Abrir en otra aplicación</string>
     <string name="action_open_in_other_app_description">Abrir esta ubicación en otra aplicación</string>
-    <string name="widget_live_wallpaper_animations_enable_warning2">Si decide habilitarlas, asume toda la responsabilidad por cualquier problema que pueda surgir y no se proporcionará asistencia técnica.</string>
+    <string name="widget_live_wallpaper_animations_enable_warning2">Si decides activarlas, asumes toda la responsabilidad por cualquier problema que pueda surgir y no se proporcionará asistencia técnica.</string>
     <string name="widget_live_wallpaper_animations_enable_warning1">Las animaciones de fondo de pantalla son conocidas por causar, entre otras cosas: alto consumo de batería; sobrecalentamiento de la batería; alto consumo de memoria; disminución de la capacidad de respuesta del sistema; fallo del sistema Android.</string>
     <string name="widget_live_wallpaper_animations_enable_dangerous">PELIGROSO</string>
     <string name="settings_regional_preference">Preferencia regional</string>
@@ -701,7 +701,7 @@
     <string name="precipitation_snow_total_night">Nieve por la noche</string>
     <string name="wind_speed_about">Sobre el viento y las rachas</string>
     <string name="ephemeris_about_dusk">El anochecer es la etapa más oscura del crepúsculo antes de que desaparezca la última luz visible.</string>
-    <string name="daily_summary">Resumen diario</string>
+    <string name="daily_summary">Resumen del día</string>
     <string name="wind_speed_about_description">La velocidad del viento se calcula tomando el promedio de las velocidades durante un periodo de tiempo. Las rachas son aumentos repentinos de viento que suelen durar menos de 20 segundos.</string>
     <string name="wind_gusts_short">Rachas</string>
     <string name="wind_origin">Del %s</string>
