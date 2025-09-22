@@ -701,7 +701,7 @@
     <string name="precipitation_snow_total_night">Nieve por la noche</string>
     <string name="wind_speed_about">Sobre el viento y las rachas</string>
     <string name="ephemeris_about_dusk">El anochecer es la etapa más oscura del crepúsculo antes de que desaparezca la última luz visible.</string>
-    <string name="daily_summary">Resumen del día</string>
+    <string name="daily_summary">Resumen diario</string>
     <string name="wind_speed_about_description">La velocidad del viento se calcula tomando el promedio de las velocidades durante un periodo de tiempo. Las rachas son aumentos repentinos de viento que suelen durar menos de 20 segundos.</string>
     <string name="wind_gusts_short">Rachas</string>
     <string name="wind_origin">Del %s</string>
