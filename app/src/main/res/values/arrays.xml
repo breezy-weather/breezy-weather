@@ -460,4 +460,12 @@
         <item>@color/pollenRecosanteLevel_4</item>
         <item>@color/pollenRecosanteLevel_5</item>
     </integer-array>
+
+    <string-array name="pollen_levels_polleninfo">
+        <item>@string/pollen_level_0</item>
+        <item>@string/pollen_level_2</item>
+        <item>@string/pollen_level_3</item>
+        <item>@string/pollen_level_4</item>
+        <item>@string/pollen_level_5</item>
+    </string-array>
 </resources>
