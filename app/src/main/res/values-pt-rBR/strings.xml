@@ -416,7 +416,7 @@
     <string name="action_show_errors">Toque para ver os detalhes</string>
     <string name="settings_background_updates_refresh_skip_when_battery_low">Ignorar quando a bateria está fraca</string>
     <string name="message_parsing_error_title">Falha ao interpretar dados meteorológicos</string>
-    <string name="notification_update_error">%d atualização(ões) mal-sucedida(as)</string>
+    <string name="notification_update_error">%d falha na(s) atualização(ões)</string>
     <string name="message_server_timeout">Solicitação passou do tempo limite</string>
     <string name="message_parsing_error_content">Certifique-se de atualizar para a versão mais recente do app. O servidor pode estar temporariamente indisponível, nesse caso, tente novamente mais tarde. Se o problema persistir, faça um relatório de crash a partir das configurações de depuração e relate o problema no GitHub.</string>
     <string name="temperature_degree_day_heating">Graus-dia de aquecimento</string>
