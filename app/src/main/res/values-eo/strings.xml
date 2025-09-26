@@ -743,7 +743,7 @@
     <string name="settings_location_access_precise_summaryOn">Ebligita. La aparata reta provizanto estos uzita en prioritato kaj plejparto de la tempo, sed GPS ankaŭ povas esti uzita kiel rezervo.</string>
     <string name="settings_location_access_precise_summaryOff">Ebligu “Uzi precizan lokon” se vi havas problemon akiri lokon.</string>
     <string name="settings_weather_source_not_configured">%s (ne agordita)</string>
-    <string name="settings_weather_source_freenet_disclaimer">Pli veterfontoj estas haveblaj de aliaj versioj de la aplikaĵo. Tuŝetu ĉi tie por lerni pli.</string>
+    <string name="settings_weather_source_freenet_disclaimer">Vi uzas la Freenet version de la aplikaĵo. Ŝanĝi al la Norma versio se vi volas uzi ne-liberajn retservojn.</string>
     <string name="settings_weather_source_current_position_disclaimer">Pli da veterfontoj povas iĝi haveblaj por via loko post la unua refreŝigo.</string>
     <string name="settings_source_instance_geocoding">Geokoda servilo</string>
     <string name="settings_notifications_permission">Sciiga permeso postulata</string>
@@ -817,4 +817,9 @@
     <string name="content_provider_permission_label">Legu Breezy Weather datenojn</string>
     <string name="content_provider_permission_description">akiri veterinformojn de Breezy Weather, enhavita koordinatoj de viaj lokoj, kiel ekzemple via nuna loko se vi aldonis ĝin</string>
     <string name="common_weather_text_mostly_cloudy">Plejparte nuba</string>
+    <string name="action_pull_down_to_refresh">Subentiri por aktualigi</string>
+    <string name="message_source_non_free_network_title">Ĉi tiu fonto postulas la norman version de la aplikaĵo</string>
+    <string name="message_source_non_free_network_content">Vi uzas la Freenet version de la aplikaĵo, kiu nur subtenas fontojn gastigitajn sur libera reto. Por konservi uzi tiun fonton, ŝanĝi reen al la Norma versio. Alie, elektu alian fonton.</string>
+    <string name="settings_weather_source_non_freenet">%s (nelibera reta servo)</string>
+    <string name="settings_appearance_dark_mode_custom">Malhela reĝimo de %1$s ĝis %2$s</string>
 </resources>
