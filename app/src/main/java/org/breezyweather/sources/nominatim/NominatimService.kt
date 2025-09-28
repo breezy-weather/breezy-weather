@@ -17,16 +17,23 @@
 package org.breezyweather.sources.nominatim
 
 import android.content.Context
+import androidx.compose.ui.text.input.KeyboardType
 import breezyweather.domain.location.model.LocationAddressInfo
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
+import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.BuildConfig
+import org.breezyweather.R
 import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.preference.EditTextPreference
+import org.breezyweather.common.preference.Preference
+import org.breezyweather.common.source.ConfigurableSource
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationSearchSource
 import org.breezyweather.common.source.ReverseGeocodingSource
+import org.breezyweather.domain.settings.SourceConfigStore
 import org.breezyweather.sources.nominatim.json.NominatimAddress
 import org.breezyweather.sources.nominatim.json.NominatimLocationResult
 import retrofit2.Retrofit
@@ -40,8 +47,9 @@ import javax.inject.Named
  * Only supports reverse geocoding for current location, by falling back to device timezone
  */
 class NominatimService @Inject constructor(
+    @ApplicationContext context: Context,
     @Named("JsonClient") client: Retrofit.Builder,
-) : HttpSource(), LocationSearchSource, ReverseGeocodingSource {
+) : HttpSource(), LocationSearchSource, ReverseGeocodingSource, ConfigurableSource {
 
     override val id = "nominatim"
     override val name = "Nominatim"
@@ -60,7 +68,7 @@ class NominatimService @Inject constructor(
     )
     private val mApi by lazy {
         client
-            .baseUrl(NOMINATIM_BASE_URL)
+            .baseUrl(instance!!)
             .build()
             .create(NominatimApi::class.java)
     }
@@ -234,6 +242,38 @@ class NominatimService @Inject constructor(
                 }
             }
         }
+    }
+
+    // CONFIG
+    private val config = SourceConfigStore(context, id)
+    override val isConfigured = true
+    override val isRestricted = false
+    private var instance: String?
+        set(value) {
+            value?.let {
+                config.edit().putString("instance", it).apply()
+            } ?: config.edit().remove("instance").apply()
+        }
+        get() = config.getString("instance", null) ?: NOMINATIM_BASE_URL
+    override fun getPreferences(context: Context): List<Preference> {
+        return listOf(
+            EditTextPreference(
+                titleId = R.string.settings_weather_source_nominatim_instance,
+                summary = { _, content ->
+                    content.ifEmpty {
+                        NOMINATIM_BASE_URL
+                    }
+                },
+                content = if (instance != NOMINATIM_BASE_URL) instance else null,
+                placeholder = NOMINATIM_BASE_URL,
+                regex = EditTextPreference.URL_REGEX,
+                regexError = context.getString(R.string.settings_source_instance_invalid),
+                keyboardType = KeyboardType.Uri,
+                onValueChanged = {
+                    instance = if (it == NOMINATIM_BASE_URL) null else it.ifEmpty { null }
+                }
+            )
+        )
     }
 
     // We have no way to distinguish the ones below. Others were deduced with other info in the code above

@@ -18,6 +18,9 @@ The following features are already available in the current branch, but will be 
 **Improvements and fixes**
 - Daily/hourly forecast - Ensure the maximum value is always at a minimum defined value to ensure data is put in perspective, and remove threshold lines that weren’t very useful and cluttering the interface (wind, precipitation, cloud cover)
 
+**Weather sources**
+- Nominatim - Add missing preference to change server instance
+
 **Translations**
 - Translations updated
 
