@@ -482,7 +482,7 @@
     <string name="widget_subtitle_data_aqi">Õhukvaliteet</string>
     <string name="widget_subtitle_data_feels_like">Tundub kui temperatuur</string>
     <string name="action_restart">Taaskäivita</string>
-    <string name="action_show_errors">Klõpsa üksikasjade vaatamiseks</string>
+    <string name="action_show_errors">Vajuta üksikasjade vaatamiseks</string>
     <string name="location_service_native">Kohalik API</string>
     <string name="dialog_time_picker_input_time">Sisesta aeg</string>
     <string name="dialog_time_picker_toggle_text_input_voice">Lülita tekstisestusele</string>
