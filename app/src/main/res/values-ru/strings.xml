@@ -723,7 +723,7 @@
     <string name="settings_appearance_section_regional">Язык и регион</string>
     <string name="settings_appearance_section_theme">Тема</string>
     <string name="about_update_check_eol">Эта версия Android больше не поддерживается</string>
-    <string name="air_quality_short">Чистота воздуха</string>
+    <string name="air_quality_short">Кач-во воздуха</string>
     <string name="ephemeris_sun">Солнце</string>
     <string name="ephemeris_moon">Луна</string>
     <string name="ephemeris_polar_day">Полярный день</string>
