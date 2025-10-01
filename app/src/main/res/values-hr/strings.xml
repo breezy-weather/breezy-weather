@@ -62,7 +62,7 @@
     <string name="ephemeris_moon_phase_waxing_crescent">Rastući polumjesec</string>
     <string name="settings_section_general">Općenito</string>
     <string name="settings_notifications_forecast_today_title">Obavijest za dnevnu prognozu</string>
-    <string name="precipitation_nowcasting">Oborine iz minute u minutu</string>
+    <string name="precipitation_nowcasting">Kratkoročna prognoza oborina</string>
     <string name="daily_tomorrow_short">Sutra</string>
     <string name="air_quality">Kvaliteta zraka</string>
     <string name="weather_api_key_required_missing_title">Nedostaje potreban API ključ</string>
