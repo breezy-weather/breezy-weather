@@ -1,7 +1,6 @@
 buildscript {
     dependencies {
         classpath(libs.aboutLibraries.gradle)
-        classpath(libs.dagger.hilt.gradle)
         classpath(libs.sqldelight.gradle)
     }
 }
@@ -9,6 +8,7 @@ buildscript {
 plugins {
     alias(libs.plugins.kotlinKsp) apply false
     alias(libs.plugins.kotlinSerialization) apply false
+    alias(libs.plugins.metro) apply false
     alias(libs.plugins.aboutLibraries) apply false
     alias(libs.plugins.sqldelight) apply false
 }
