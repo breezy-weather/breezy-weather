@@ -50,7 +50,6 @@ import kotlinx.collections.immutable.ImmutableList
 import org.breezyweather.R
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.getThemeColor
-import org.breezyweather.common.extensions.handleNestedHorizontalDragGesture
 import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.extensions.isRtl
 import org.breezyweather.common.extensions.toDate
@@ -153,9 +152,9 @@ fun EphemerisChart(
         animateIn = SettingsManager.getInstance(context).isElementsAnimationEnabled,
         modelProducer = modelProducer,
         scrollState = rememberVicoScrollState(scrollEnabled = false),
+        consumeMoveEvents = true,
         modifier = modifier
             .height(max(LINE_CHART_HEIGHT_MIN_DP.toFloat(), context.windowHeightInDp.div(4)).dp)
-            .handleNestedHorizontalDragGesture(view)
     )
 }
 
