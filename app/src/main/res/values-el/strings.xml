@@ -467,7 +467,7 @@
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Καταιγίδα με ελαφριά χαλαζόπτωση</string>
     <string name="settings_modules_section_widgets_in_use">Γραφικά στοιχεία σε χρήση</string>
     <string name="settings_modules_notification_feels_like_switch">Χρήση αίσθησης ως θερμοκρασία</string>
-    <string name="settings_modules_summary">Ορισμός ταπετσαρίας, διαμόρφωση γραφικών στοιχείων που χρησιμοποιούνται, γραφικό στοιχείο ειδοποιήσεων</string>
+    <string name="settings_modules_summary">Γραφικά στοιχεία, γραφικό στοιχείο ειδοποιήσεων, ταπετσαρία και κοινή χρήση δεδομένων με άλλες εφαρμογές.</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">Εναπόθεση ομίχλης ριμών</string>
     <string name="settings_main_cards_other_element_animations_switch">Κινούμενα σχέδια άλλων στοιχείων</string>
     <string name="settings_notifications_summary">Ειδοποιήσεις για προειδοποιήσεις καιρού, υετός ή πρόγνωση για την πρώτη τοποθεσία</string>
@@ -550,7 +550,7 @@
     <string name="settings_weather_source_open_meteo_weather_models">Μοντέλα καιρού</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless">Απρόσκοπτη</string>
     <string name="settings_weather_source_open_meteo_weather_models_best_match_description">Συνδυάζει τα καλύτερα μοντέλα καιρού για αυτήν την τοποθεσία</string>
-    <string name="settings_weather_source_freenet_disclaimer">Περισσότερες πηγές καιρού είναι διαθέσιμες από άλλες εκδοχές της εφαρμογής. Πάτα εδώ για να μάθεις περισσότερα.</string>
+    <string name="settings_weather_source_freenet_disclaimer">Χρησιμοποιείτε την έκδοση Freenet της εφαρμογής. Αν θέλετε να χρησιμοποιήσετε μη ελεύθερες υπηρεσίες δικτύου, αλλάξτε στην Standard έκδοση.</string>
     <string name="settings_weather_source_open_meteo_weather_models_best_match">Καλύτερη αντιστοίχιση</string>
     <string name="settings_weather_sources_default_source">Προεπιλεγμένη πηγή για νέες τοποθεσίες</string>
     <string name="settings_weather_source_unavailable">%s (μη διαθέσιμη)</string>
@@ -766,4 +766,19 @@
     <string name="message_source_non_free_network_title">Αυτή η πηγή απαιτεί την Τυπική έκδοση της εφαρμογής</string>
     <string name="message_source_non_free_network_content">Χρησιμοποιείς την έκδοση Freenet της εφαρμογής, η οποία υποστηρίζει μόνο πηγές που φιλοξενούνται σε δωρεάν δίκτυο. Για να συνεχίσεις να χρησιμοποιείς αυτή την πηγή, επέστρεψε στην Τυπική έκδοση. Διαφορετικά, επέλεξε μια διαφορετική πηγή.</string>
     <string name="widget_live_wallpaper_animations_enable_dangerous">ΕΠΙΚΙΝΔΥΝΟ</string>
+    <string name="widget_custom_subtitle_help_content_description">Βοήθεια για λέξεις-κλειδιά υποτίτλων</string>
+    <string name="widget_custom_subtitle_alert_box_title">Βοήθεια για προσαρμοσμένους υπότιτλους</string>
+    <string name="widget_live_wallpaper_animations_enable_warning1">Οι κινούμενες ταπετσαρίες είναι γνωστό ότι προκαλούν, μεταξύ άλλων: υψηλή κατανάλωση μπαταρίας, υπερθέρμανση της μπαταρίας, υψηλή κατανάλωση μνήμης, μειωμένη ανταπόκριση του συστήματος και κατάρρευση του συστήματος Android.</string>
+    <string name="widget_live_wallpaper_animations_enable_warning2">Αν αποφασίσετε να τα ενεργοποιήσετε, αναλαμβάνετε πλήρως την ευθύνη για οποιοδήποτε πρόβλημα προκύψει και δεν θα παρέχεται υποστήριξη.</string>
+    <string name="settings_weather_source_non_freenet">Μη ελεύθερο δίκτυο σημαίνει ότι ο διακομιστής χρησιμοποιεί κλειστό λογισμικό - δεν έχει σχέση με τα χρήματα.</string>
+    <string name="settings_appearance_section_regional">Γλώσσα και περιοχή</string>
+    <string name="settings_appearance_section_theme">Θέμα</string>
+    <string name="settings_appearance_dark_mode_custom">Σκοτεινή λειτουργία %1$s to %2$s</string>
+    <string name="settings_appearance_dark_mode_locations_day_night">Με βάση την ημέρα ή τη νύχτα</string>
+    <string name="settings_appearance_dark_mode_locations_dark">Πάντα σκοτεινό όταν η εφαρμογή είναι σε σκοτεινή λειτουργία</string>
+    <string name="settings_regional_preference">Προτιμήσεις περιοχής</string>
+    <string name="about_update_check_eol">Αυτή η έκδοση του Android δεν υποστηρίζεται πλέον</string>
+    <string name="content_provider_permission_label">Πρόσβαση στα δεδομένα του Breezy Weather</string>
+    <string name="content_provider_permission_description">Λήψη πληροφοριών καιρού και τοποθεσίας από το Breezy Weather</string>
+    <string name="common_weather_text_mostly_cloudy">Κυρίως συννεφιασμένος</string>
 </resources>
