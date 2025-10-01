@@ -721,7 +721,7 @@
     <string name="pressure_steady">Püsiv</string>
     <string name="pressure_falling">Langev</string>
     <string name="pressure_about">Rõhu kohta</string>
-    <string name="pressure_about_description1">Atmosfäärirõhk on Maa atmosfääri allapoole avaldatav rõhk. See rakendus kasutab keskmise merepinna rõhku (MSLP), et hõlbustada erineva kõrgusega kohtade rõhu võrdlemist.</string>
+    <string name="pressure_about_description1">Atmosfäärirõhk on Maa atmosfääri allapoole avaldatav rõhk. See rakendus kasutab keskmise merepinna rõhku, et hõlbustada erineva kõrgusega kohtade rõhu võrdlemist.</string>
     <string name="uv_index_time_to_burn_explanations">Täpne põlemisaeg sõltub kõrgusest merepinnast, peegeldava pinnase, näiteks vee või lume olemasolust, nahatüübist ja päikesekaitsekreemi kasutamisest.</string>
     <string name="pressure_about_description2">Märkimisväärseid ja kiireid rõhumuutusi kasutatakse ilmamuutuste ennustamiseks. Näiteks rõhu langus võib tähendada, et oodata võib vihma või lund, ja rõhu tõus võib tähendada, et ilm paraneb. Ebanormaalne atmosfäärirõhk võib põhjustada muuhulgas peavalu, liigesevalu ja väsimust.</string>
     <string name="visibility_about">Nähtavuse kohta</string>
