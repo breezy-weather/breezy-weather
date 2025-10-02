@@ -764,6 +764,7 @@
     <string name="settings_weather_source_open_meteo_weather_models_seamless">Seamless</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless_description">Combines all weather models from this provider into a seamless prediction</string>
     <string name="settings_source_geonames_api_key" translatable="false">@string/settings_source_api_key</string>
+    <string name="settings_weather_source_polleninfo_api_key" translatable="false">@string/settings_source_api_key</string>"
     <string name="settings_appearance">Appearance</string>
     <string name="settings_appearance_summary">Language, dark mode, icon pack, units</string>
     <string name="settings_appearance_section_regional">Language and region</string>

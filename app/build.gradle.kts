@@ -176,6 +176,11 @@ android {
             "MET_OFFICE_KEY",
             "\"${properties.getProperty("breezy.metoffice.key") ?: ""}\""
         )
+        it.buildConfigField(
+            "String",
+            "POLLENINFO_KEY",
+            "\"${properties.getProperty("breezy.polleninfo.key") ?: ""}\""
+        )
     }
 
     flavorDimensions.add("default")
