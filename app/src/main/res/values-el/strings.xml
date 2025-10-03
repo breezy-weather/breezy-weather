@@ -467,7 +467,7 @@
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Καταιγίδα με ελαφριά χαλαζόπτωση</string>
     <string name="settings_modules_section_widgets_in_use">Γραφικά στοιχεία σε χρήση</string>
     <string name="settings_modules_notification_feels_like_switch">Χρήση αίσθησης ως θερμοκρασία</string>
-    <string name="settings_modules_summary">Γραφικά στοιχεία, γραφικό στοιχείο ειδοποιήσεων, ταπετσαρία και κοινή χρήση δεδομένων με άλλες εφαρμογές.</string>
+    <string name="settings_modules_summary">Γραφικά στοιχεία, widget ειδοποιήσεων, ταπετσαρία και κοινοποίηση δεδομένων με άλλες εφαρμογές</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">Εναπόθεση ομίχλης ριμών</string>
     <string name="settings_main_cards_other_element_animations_switch">Κινούμενα σχέδια άλλων στοιχείων</string>
     <string name="settings_notifications_summary">Ειδοποιήσεις για προειδοποιήσεις καιρού, υετός ή πρόγνωση για την πρώτη τοποθεσία</string>
