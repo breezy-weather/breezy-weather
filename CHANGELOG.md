@@ -18,6 +18,7 @@ The following features are already available in the current branch, but will be 
 **Improvements and fixes**
 - Daily/hourly forecast - Ensure the maximum value is always at a minimum defined value to ensure data is put in perspective, and remove threshold lines that weren’t very useful and cluttering the interface (wind, precipitation, cloud cover)
 - Make 24-hour charts and nowcasting charts less prone to swipe to next screen
+- Main screen - Fix moon icon disappearing past midnight
 
 **Weather sources**
 - Nominatim - Add missing preference to change server instance
