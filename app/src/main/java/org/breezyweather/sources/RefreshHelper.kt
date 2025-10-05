@@ -975,7 +975,12 @@ class RefreshHelper @Inject constructor(
                     currentHour,
                     currentDay,
                     weatherWrapperCompleted.airQuality?.current
-                        ?: weatherWrapperCompleted.airQuality?.hourlyForecast?.entries?.firstOrNull {
+                        ?: if (isUpdateStillValid(base.currentUpdateTime, wait = 30)) {
+                            // Allow to re-use current data if it was successfully refreshed less than 30 min ago
+                            location.weather?.current?.airQuality
+                        } else {
+                            null
+                        } ?: weatherWrapperCompleted.airQuality?.hourlyForecast?.entries?.firstOrNull {
                             it.key.time >= System.currentTimeMillis() - 1.hours.inWholeMilliseconds
                         }?.value, // Workaround for incompatibility with hourly forecast times
                     location
