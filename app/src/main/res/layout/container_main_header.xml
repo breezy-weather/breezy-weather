@@ -58,6 +58,7 @@
     <TextView
         android:id="@+id/container_main_header_weather_condition_description"
         android:textStyle="bold"
+        android:includeFontPadding="false"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/small_margin"
@@ -71,12 +72,12 @@
     <RelativeLayout
         android:id="@+id/container_main_header_temperature"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="-8dp">
+        android:layout_height="wrap_content">
 
         <org.breezyweather.ui.common.widgets.NumberAnimTextView
             android:id="@+id/container_main_header_temperature_value"
             android:layout_width="wrap_content"
+            android:layout_marginTop="-10dp"
             android:textSize="@dimen/main_title_text_size"
             android:includeFontPadding="false"
             android:singleLine="true"
@@ -92,7 +93,7 @@
 
         <TextView
             android:id="@+id/container_main_header_temperature_unit"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="5dp"
             android:textSize="50sp"
             android:textFontWeight="700"
             android:includeFontPadding="false"
@@ -115,7 +116,7 @@
         android:ellipsize="end"
         android:textFontWeight="300"
         android:layout_marginTop="-10dp"
-        android:layout_marginBottom="18dp"
+        android:layout_marginBottom="8dp"
         android:textAppearance="?attr/textAppearanceTitleLarge"
         android:textColor="?attr/colorSurfaceInverse"
         tools:text="Feels like 18°"
@@ -130,7 +131,6 @@
         android:maxLines="1"
         android:ellipsize="end"
         android:textFontWeight="300"
-        android:layout_marginTop="-10dp"
         android:textAppearance="?attr/textAppearanceTitleMedium"
         android:textColor="?attr/colorSurfaceInverse"
         tools:text="Day: 30° • Night: 14°"
