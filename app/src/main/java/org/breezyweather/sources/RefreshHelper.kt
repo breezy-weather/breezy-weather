@@ -981,8 +981,8 @@ class RefreshHelper @Inject constructor(
                         } else {
                             null
                         } ?: weatherWrapperCompleted.airQuality?.hourlyForecast?.entries?.firstOrNull {
-                            it.key.time >= System.currentTimeMillis() - 1.hours.inWholeMilliseconds
-                        }?.value, // Workaround for incompatibility with hourly forecast times
+                        it.key.time >= System.currentTimeMillis() - 1.hours.inWholeMilliseconds
+                    }?.value, // Workaround for incompatibility with hourly forecast times
                     location
                 ),
                 dailyForecast = dailyForecast,
