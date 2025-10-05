@@ -108,6 +108,7 @@ class AirQualityViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
     }
 
     override fun onEnterScreen() {
+        super.onEnterScreen()
         if (itemAnimationEnabled && mEnable) {
             mLocation!!.weather!!.validAirQuality?.let { airQuality ->
                 val aqiColor = airQuality.getColor(aqiProgress.context)

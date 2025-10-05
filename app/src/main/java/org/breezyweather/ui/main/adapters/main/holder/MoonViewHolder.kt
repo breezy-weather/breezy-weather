@@ -97,6 +97,7 @@ class MoonViewHolder(parent: ViewGroup) : AstroViewHolder(parent, isSun = false)
 
     @SuppressLint("Recycle")
     override fun onEnterScreen() {
+        super.onEnterScreen()
         if (itemAnimationEnabled && mWeather != null) {
             val timeNight = ValueAnimator.ofObject(LongEvaluator(), mStartTime, mCurrentTime)
             timeNight.addUpdateListener { animation: ValueAnimator ->

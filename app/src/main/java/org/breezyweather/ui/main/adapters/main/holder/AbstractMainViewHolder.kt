@@ -99,8 +99,10 @@ abstract class AbstractMainViewHolder(
         return MainModuleUtils.getEnterAnimator(itemView, pendingAnimatorList.size)
     }
 
+    @CallSuper
     open fun onEnterScreen() {
-        // do nothing.
+        // Ensure visibility
+        itemView.alpha = 1f
     }
 
     open fun onRecycleView() {
