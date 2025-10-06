@@ -500,7 +500,7 @@
     <string name="location_delete_location_dialog_title">Выдаліць месцазнаходжанне?</string>
     <string name="location_delete_location_dialog_message">Вы збіраецеся выдаліць «%s» са спісу захаваных месцаў.</string>
     <string name="widget_custom_subtitle_keyword_xaqi_description">Індэкс якасці паветра на сёння, заўтра, …, праз 4 дні</string>
-    <string name="settings_weather_source_freenet_disclaimer">Вы карыстаецеся версіяй праграмы Freenet. Пераключыцеся на стандартную версію, калі хочаце карыстацца платнымі сеткавымі сэрвісамі.</string>
+    <string name="settings_weather_source_freenet_disclaimer">Выкарыстоўваецца версія праграмы Freenet. Калі вы хочаце карыстацца несвабоднымі сеткавымі сэрвісамі, перайдзіце на стандартную версію.</string>
     <string name="pollen_castanea">Каштан</string>
     <string name="pollen_corylus">Ляшчына</string>
     <string name="pollen_cupressaceae_taxaceae">Кіпарыс</string>
@@ -766,13 +766,13 @@
     <string name="common_weather_text_mostly_cloudy">Пераважна воблачна</string>
     <string name="settings_regional_preference">З рэгіянальных налад</string>
     <string name="action_pull_down_to_refresh">Пацягніце ўніз, каб абнавіць</string>
-    <string name="action_toggle_data_type_menu">Паказаць/закрыць меню выбару тыпу дадзеных</string>
+    <string name="action_toggle_data_type_menu">Паказаць або схаваць меню выбару тыпу даных</string>
     <string name="message_source_non_free_network_title">Для гэтай крыніцы патрабуецца стандартная версія праграмы</string>
-    <string name="message_source_non_free_network_content">Вы карыстаецеся версіяй праграмы Freenet, якая падтрымлівае толькі крыніцы, размешчаныя ў бясплатнай сетцы. Каб працягваць карыстацца гэтай крыніцай, вярніцеся да стандартнай версіі. У адваротным выпадку абярыце іншую крыніцу.</string>
-    <string name="widget_live_wallpaper_animations_enable_warning1">Вядома, што анімацыя шпалер выклікае, сярод іншага: высокае спажыванне зарада батарэі; перагрэў батарэі; высокае спажыванне памяці; зніжэнне хуткасці рэакцыі сістэмы; збой сістэмы Android.</string>
-    <string name="widget_live_wallpaper_animations_enable_warning2">Калі вы вырашыце іх уключыць, вы бярэце на сябе поўную адказнасць за любыя праблемы, якія могуць узнікнуць, і падтрымка вам не будзе аказана.</string>
-    <string name="settings_weather_source_non_freenet">%s (небясплатная сеткавая паслуга)</string>
-    <string name="settings_appearance_dark_mode_custom">Цёмны рэжым з %1$s на %2$s</string>
-    <string name="content_provider_permission_label">Чытаць дадзеныя Breezy Weather</string>
-    <string name="content_provider_permission_description">атрымліваць інфармацыю пра надвор’е ад Breezy Weather, у тым ліку каардынаты вашых месцазнаходжанняў, напрыклад, ваша бягучае месцазнаходжанне, калі вы яго дадалі</string>
+    <string name="message_source_non_free_network_content">Выкарыстоўваецца версія праграмы Freenet, якая падтрымлівае толькі крыніцы, размешчаныя ў «свабодных» сетках. Каб выкарыстоўваць гэту крыніцу надалей, перайдзіце на стандартную версію. У адваротным выпадку выберыце іншую крыніцу.</string>
+    <string name="widget_live_wallpaper_animations_enable_warning1">Вядома, што анімаваныя шпалеры могуць прыводзіць да высокага расходу зараду, перагрэву батарэі, высокага спажывання памяці, зніжэння хуткасці рэакцыі сістэмы, сістэмных збояў Android.</string>
+    <string name="widget_live_wallpaper_animations_enable_warning2">Калі вы прымаеце рашэнне ўключыць іх, то бераце на сябе поўную адказнасць за любыя магчымыя праблемы, а таксама вам не будуць аказваць падтрымку.</string>
+    <string name="settings_weather_source_non_freenet">%s (несвабодны сеткавы сэрвіс)</string>
+    <string name="settings_appearance_dark_mode_custom">Цёмны рэжым з %1$s да %2$s</string>
+    <string name="content_provider_permission_label">Чытаць даныя Breezy Weather</string>
+    <string name="content_provider_permission_description">атрымліваць інфармацыю пра надвор’е ад Breezy Weather, у тым ліку каардынаты месцазнаходжанняў, уключаючы ваша бягучае месцазнаходжанне, калі яно дададзена</string>
 </resources>
