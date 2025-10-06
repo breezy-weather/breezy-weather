@@ -85,10 +85,7 @@ class PollenInfoService @Inject constructor(
         location: Location,
         feature: SourceFeature,
     ): Boolean {
-        return when (feature) {
-            SourceFeature.POLLEN -> SUPPORTED_COUNTRY_CODES.any { it.equals(location.countryCode, ignoreCase = true) }
-            else -> false
-        }
+        return SUPPORTED_COUNTRY_CODES.any { it.equals(location.countryCode, ignoreCase = true) }
     }
 
     override fun getFeaturePriorityForLocation(
@@ -228,7 +225,7 @@ class PollenInfoService @Inject constructor(
     override val isConfigured
         get() = getApiKeyOrDefault().isNotEmpty()
 
-    override val isRestricted = false
+    override val isRestricted = true
 
     override fun getPreferences(context: Context): List<Preference> {
         return listOf(
