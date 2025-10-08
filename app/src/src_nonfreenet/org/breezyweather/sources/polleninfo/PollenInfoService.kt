@@ -208,7 +208,7 @@ class PollenInfoService @Inject constructor(
     }
 
     override val pollenLabels = R.array.pollen_levels_polleninfo
-    override val pollenColors = R.array.pollen_level_colors
+    override val pollenColors = R.array.pollen_level_colors_polleninfo
 
     // CONFIG
 
