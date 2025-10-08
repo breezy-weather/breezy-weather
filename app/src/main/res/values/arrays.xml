@@ -478,4 +478,13 @@
         <item>@string/pollen_level_4</item>
         <item>@string/pollen_level_5</item>
     </string-array>
+
+    <integer-array name="pollen_level_colors_polleninfo">
+        <item>@color/pollenLevel_0</item>
+        <item>@color/pollenLevel_2</item>
+        <item>@color/pollenLevel_3</item>
+        <item>@color/pollenLevel_4</item>
+        <item>@color/pollenLevel_5</item>
+    </integer-array>
+
 </resources>
