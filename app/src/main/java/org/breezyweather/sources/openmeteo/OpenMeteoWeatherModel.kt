@@ -25,13 +25,14 @@ import org.breezyweather.common.utils.UnitUtils
  * List from:
  * https://open-meteo.com/en/docs/
  *
- * Up-to-date as of 2024-11-11
+ * Up-to-date as of 2025-10-10
  */
 enum class OpenMeteoWeatherModel(
     override val id: String,
 ) : BaseEnum {
     BEST_MATCH("best_match"),
 
+    ECMWF_IFS("ecmwf_ifs"),
     ECMWF_IFS025("ecmwf_ifs025"),
     ECMWF_AIFS025_SINGLE("ecmwf_aifs025_single"),
     CMA_GRAPES_GLOBAL("cma_grapes_global"),
@@ -41,6 +42,7 @@ enum class OpenMeteoWeatherModel(
     NCEP_GFS_GLOBAL("gfs_global"),
     NCEP_HRRR_US_CONUS("gfs_hrrr"),
     NCEP_NBM_US_CONUS("ncep_nbm_conus"),
+    NCEP_NAM_US_CONUS("ncep_nam_conus"),
     GFS_GRAPHCAST("gfs_graphcast025"),
 
     JMA_SEAMLESS("jma_seamless"),
@@ -82,6 +84,10 @@ enum class OpenMeteoWeatherModel(
     UKMO_SEAMLESS("ukmo_seamless"),
     UKMO_GLOBAL("ukmo_global_deterministic_10km"),
     UKMO_UK("ukmo_uk_deterministic_2km"),
+
+    METEOSWISS_ICON_SEAMLESS("meteoswiss_icon_seamless"),
+    METEOSWISS_ICON_CH1("meteoswiss_icon_ch1"),
+    METEOSWISS_ICON_CH2("meteoswiss_icon_ch2"),
     ;
 
     companion object {

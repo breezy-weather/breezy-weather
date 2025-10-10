@@ -279,6 +279,7 @@
     <!-- Open-Meteo models -->
     <string-array name="open_meteo_weather_models">
         <item>Best match</item>
+        <item>ECMWF IFS HRES 9 km</item>
         <item>ECMWF IFS 0.25°</item>
         <item>ECMWF AIFS 0.25° Single</item>
         <item>CMA GRAPES Global</item>
@@ -287,6 +288,7 @@
         <item>NCEP GFS Global 0.11° / 0.25°</item>
         <item>NCEP HRRR U.S. Conus</item>
         <item>NCEP NBM U.S. Conus</item>
+        <item>NCEP NAM U.S. Conus</item>
         <item>GFS GraphCast</item>
         <item>JMA Seamless</item>
         <item>JMA MSM</item>
@@ -318,9 +320,13 @@
         <item>UK Met Office Seamless</item>
         <item>UK Met Office Global 10 km</item>
         <item>UK Met Office UK 2 km</item>
+        <item>MeteoSwiss ICON Seamless</item>
+        <item>MeteoSwiss ICON CH1</item>
+        <item>MeteoSwiss ICON CH2</item>
     </string-array>
     <string-array name="open_meteo_weather_models_values">
         <item>best_match</item>
+        <item>ecmwf_ifs</item>
         <item>ecmwf_ifs025</item>
         <item>ecmwf_aifs025_single</item>
         <item>cma_grapes_global</item>
@@ -329,6 +335,7 @@
         <item>gfs_global</item>
         <item>gfs_hrrr</item>
         <item>ncep_nbm_conus</item>
+        <item>ncep_nam_conus</item>
         <item>gfs_graphcast025</item>
         <item>jma_seamless</item>
         <item>jma_msm</item>
@@ -360,6 +367,9 @@
         <item>ukmo_seamless</item>
         <item>ukmo_global_deterministic_10km</item>
         <item>ukmo_uk_deterministic_2km</item>
+        <item>meteoswiss_icon_seamless</item>
+        <item>meteoswiss_icon_ch1</item>
+        <item>meteoswiss_icon_ch2</item>
     </string-array>
 
     <!-- Beaufort scale levels -->
