@@ -122,9 +122,9 @@ class PollenInfoService @Inject constructor(
             urticaceae = contaminationList.firstOrNull { it.pollId == 15 }
                 ?.getContaminationForDay(dayNumber)?.pollenIndex,
             // TODO: Replace with Alternaria:
-            mold = contaminationList.firstOrNull { it.pollId == 23 }?.getContaminationForDay(dayNumber)?.pollenIndex,
+            mold = contaminationList.firstOrNull { it.pollId == 23 }?.getContaminationForDay(dayNumber)?.pollenIndex
             // TODO: Add rye (Secale)
-            // rye = contaminationList.firstOrNull { it.pollId == 291 }?.getContaminationForDay(dayNumber)?.pollenIndex,
+            // rye = contaminationList.firstOrNull { it.pollId == 291 }?.getContaminationForDay(dayNumber)?.pollenIndex
         )
     }
 
