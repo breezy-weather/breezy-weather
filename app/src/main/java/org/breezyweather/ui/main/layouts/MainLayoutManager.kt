@@ -26,6 +26,7 @@ class MainLayoutManager(
 ) : GridLayoutManager(context, spanCount, RecyclerView.VERTICAL, false) {
 
     private var mDataSetChanged = false
+    private val childHeightMap = mutableMapOf<Int, Int>()
 
     init {
         recycleChildrenOnDetach = true
@@ -49,6 +50,30 @@ class MainLayoutManager(
             mDataSetChanged = false
         }
         super.onLayoutChildren(recycler, state)
+    }
+
+    /**
+     * Source: https://stackoverflow.com/a/50925862
+     */
+    override fun onLayoutCompleted(state: RecyclerView.State?) {
+        super.onLayoutCompleted(state)
+        for (i in 0 until childCount) {
+            getChildAt(i)?.let {
+                childHeightMap[getPosition(it)] = it.height
+            }
+        }
+    }
+
+    override fun computeVerticalScrollOffset(state: RecyclerView.State): Int {
+        if (childCount == 0) {
+            return 0
+        }
+
+        return getChildAt(0)?.let { firstVisibleChild ->
+            (0 until getPosition(firstVisibleChild)).sumOf {
+                childHeightMap[it] ?: 0
+            } - firstVisibleChild.y.toInt()
+        } ?: 0
     }
 }
 /* ) : LinearLayoutManager(context, RecyclerView.VERTICAL, false) {
