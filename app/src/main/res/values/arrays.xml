@@ -471,20 +471,19 @@
         <item>@color/pollenRecosanteLevel_5</item>
     </integer-array>
 
-    <string-array name="pollen_levels_polleninfo">
+    <string-array name="pollen_polleninfo_levels">
         <item>@string/pollen_level_0</item>
         <item>@string/pollen_level_2</item>
         <item>@string/pollen_level_3</item>
         <item>@string/pollen_level_4</item>
         <item>@string/pollen_level_5</item>
     </string-array>
-
-    <integer-array name="pollen_level_colors_polleninfo">
-        <item>@color/pollenLevel_0</item>
-        <item>@color/pollenLevel_2</item>
-        <item>@color/pollenLevel_3</item>
-        <item>@color/pollenLevel_4</item>
-        <item>@color/pollenLevel_5</item>
+    <integer-array name="pollen_polleninfo_level_colors">
+        <item>@color/pollenPollenInfoLevel_0</item>
+        <item>@color/pollenPollenInfoLevel_1</item>
+        <item>@color/pollenPollenInfoLevel_2</item>
+        <item>@color/pollenPollenInfoLevel_3</item>
+        <item>@color/pollenPollenInfoLevel_4</item>
     </integer-array>
 
 </resources>

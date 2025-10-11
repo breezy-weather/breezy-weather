@@ -60,6 +60,12 @@
     <color name="pollenRecosanteLevel_4">#ee6344</color>
     <color name="pollenRecosanteLevel_5">#d94049</color>
 
+    <color name="pollenPollenInfoLevel_0">#e9e9e9</color>
+    <color name="pollenPollenInfoLevel_1">#6d9387</color>
+    <color name="pollenPollenInfoLevel_2">#eee240</color>
+    <color name="pollenPollenInfoLevel_3">#d77f2e</color>
+    <color name="pollenPollenInfoLevel_4">#a4604b</color>
+
     <!-- Start color of the weather_background_clear_day -->
     <color name="sunshine">#fdbc4c</color>
 

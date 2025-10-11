@@ -31,4 +31,13 @@ data class PollenContamination(
     @SerialName("contamination_2") val contamination2: Int,
     @SerialName("contamination_3") val contamination3: Int,
     @SerialName("contamination_4") val contamination4: Int,
-)
+) {
+    fun getContaminationForDay(day: Int): Int? =
+        when (day) {
+            1 -> contamination1
+            2 -> contamination2
+            3 -> contamination3
+            4 -> contamination4
+            else -> null
+        }
+}
