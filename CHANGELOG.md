@@ -20,6 +20,7 @@ The following features are already available in the current branch, but will be 
 - Make 24-hour charts and nowcasting charts less prone to swipe to next screen
 - Main screen - Fix moon icon disappearing past midnight
 - Main screen - Fix blocks not appearing after fade in animation was interrupted due to fast scrolling
+- Main screen - Fix animations re-appearing when scrolling (@min7-i)
 - Fix current air quality disappearing when refreshing too fast
 
 **Weather sources**
