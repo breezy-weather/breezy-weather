@@ -48,6 +48,15 @@ internal class AppUpdateNotifier(
         NotificationReceiver.dismissNotification(context, Notifications.ID_APP_UPDATER)
     }
 
+    fun promptOldAndroidVersion() {
+        with(notificationBuilder) {
+            setContentTitle(context.getString(R.string.about_update_check_eol))
+            setSmallIcon(android.R.drawable.stat_sys_download_done)
+            clearActions()
+        }
+        notificationBuilder.show()
+    }
+
     @SuppressLint("LaunchActivityFromNotification")
     fun promptUpdate(release: Release) {
         /*val updateIntent = NotificationReceiver.downloadAppUpdatePendingBroadcast(
