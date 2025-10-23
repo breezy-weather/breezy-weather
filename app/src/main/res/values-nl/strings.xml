@@ -11,7 +11,7 @@
     <string name="humidity">Luchtvochtigheid</string>
     <string name="humidity_dew_point">Luchtvochtigheid / Dauwpunt</string>
     <string name="uv_index">UV-index</string>
-    <string name="notification_channel_forecast">Voorspelling</string>
+    <string name="notification_channel_forecast">Verwachting</string>
     <string name="daytime">Overdag</string>
     <string name="nighttime">’s Nachts</string>
     <string name="temperature_feels_like">Voelt als</string>
@@ -30,8 +30,8 @@
     <string name="wind_strength_10">Zware storm</string>
     <string name="wind_strength_11">Zeer zware storm</string>
     <string name="wind_strength_12">Orkaan</string>
-    <string name="daily_forecast">Voorspelling voor de dag</string>
-    <string name="hourly_forecast">Voorspelling per uur</string>
+    <string name="daily_forecast">Verwachting voor de dag</string>
+    <string name="hourly_forecast">Verwachting per uur</string>
     <string name="air_quality">Luchtkwaliteit</string>
     <string name="ephemeris">Zon &amp; maan</string>
     <string name="action_next">Volgende</string>
@@ -73,7 +73,7 @@
     <!-- settings -->
     <string name="settings_main_gravity_sensor_switch">Zwaartekrachtsensor</string>
     <string name="settings_appearance_language_title">Taal</string>
-    <string name="settings_notifications_section_forecast">Voorspelling</string>
+    <string name="settings_notifications_section_forecast">Verwachting</string>
     <string name="settings_appearance_icon_pack_title">Pictogrammen</string>
     <string name="settings_modules_notification_temp_icon_switch">Temperatuur als statusbalkpictogram</string>
     <string name="settings_color_light">Licht</string>
@@ -254,7 +254,7 @@
     <string name="settings_background_updates_worker_info_summary">Laatste uitvoering: %s</string>
     <string name="settings_location_service">Locatieservice</string>
     <string name="settings_notifications">Meldingen</string>
-    <string name="settings_notifications_summary">Meldingen van weeralarmen, neerslag of voorspellingen voor de eerste locatie</string>
+    <string name="settings_notifications_summary">Meldingen van weeralarmen, neerslag of verwachtingen voor de eerste locatie</string>
     <string name="settings_modules">Externe modules</string>
     <string name="settings_modules_summary">Widgets, meldingenwidget, achtergrond, gegevens delen met andere apps</string>
     <string name="settings_modules_notification_feels_like_switch">Gevoelstemperatuur gebruiken</string>
@@ -290,7 +290,7 @@
     <string name="weather_source_accu_preference_hours_120">120 uur</string>
     <string name="location_swipe_to_delete">Veeg naar links om dit item te verwijderen</string>
     <string name="widget_trend_hourly">Trend per uur</string>
-    <string name="widget_material_you_forecast">Material You – Voorspelling</string>
+    <string name="widget_material_you_forecast">Material You – Verwachting</string>
     <string name="widget_material_you_current">Material You – Actueel</string>
     <string name="widget_label_text_size">Tekstgrootte</string>
     <string name="widget_subtitle_data_custom">Aangepast</string>
@@ -304,8 +304,8 @@
     <string name="widget_custom_subtitle_keyword_xmp_description">Maanfase van vandaag, morgen, …, 4 dagen later</string>
     <string name="settings_background_updates_battery_optimization_activity_not_found">Kan apparaatinstellingen niet openen.</string>
     <string name="settings_notifications_forecast_time_today_title">Meldtijd voor de dagvoorspelling</string>
-    <string name="settings_notifications_forecast_tomorrow_title">Melding voor voorspelling van de volgende dag</string>
-    <string name="settings_notifications_forecast_time_tomorrow_title">Meldtijd voor de voorspelling van de volgende dag</string>
+    <string name="settings_notifications_forecast_tomorrow_title">Melding voor verwachting van de volgende dag</string>
+    <string name="settings_notifications_forecast_time_tomorrow_title">Meldtijd voor de verwachting van de volgende dag</string>
     <string name="settings_modules_week_icon_mode_title">Pictogram om weer te geven in weekoverzichten</string>
     <string name="settings_modules_monochrome_icons_title">Monochrome pictogrammen</string>
     <string name="settings_modules_notification_persistent_switch">Aanhoudend</string>
@@ -549,7 +549,7 @@
     <string name="settings_source_instance_invalid">Moet een https-URL te zijn, eindigend met een /</string>
     <string name="settings_source_instance">Instantie</string>
     <string name="settings_source_instance_geocoding">Geocoderingsserver</string>
-    <string name="settings_weather_source_open_meteo_weather_models_seamless_description">Combineert alle weermodellen van deze provider in een naadloze voorspelling</string>
+    <string name="settings_weather_source_open_meteo_weather_models_seamless_description">Combineert alle modellen van deze provider tot een naadloze weersverwachting</string>
     <string name="dialog_app_update_check_content">Tik hier om meldingen over app-updates aan te zetten.</string>
     <string name="action_download">Download</string>
     <string name="dialog_app_update_check_title">Up-to-date blijven</string>
@@ -596,7 +596,7 @@
     <string name="dialog_refresh_error_details_title">Foutmeldingen vernieuwen</string>
     <string name="dialog_refresh_error_details_content">Tik op foutmeldingen met een vraagteken voor verdere hulp.</string>
     <string name="pollen_juniperus">Jeneverbes</string>
-    <string name="settings_notifications_permission_summary">Vereist voor meldingen over waarschuwingen, voorspellingen en app updates. %s</string>
+    <string name="settings_notifications_permission_summary">Vereist voor meldingen over waarschuwingen, verwachtingen en app updates. %s</string>
     <string name="common_weather_text_drifting_snow">Sneeuwjacht</string>
     <string name="pollen_atriplex">Melde</string>
     <string name="settings_modules_notification_permission_summary">Vereist om de meldingenwidget weer te geven. %s</string>
@@ -606,7 +606,7 @@
     <string name="location_has_active_alerts">Actuele waarschuwing</string>
     <string name="settings_weather_source_not_configured">%s (niet ingesteld)</string>
     <string name="location_custom_name">Aangepaste naam</string>
-    <string name="forecast">Voorspelling</string>
+    <string name="forecast">Verwachting</string>
     <string name="pollen_acer">Esdoorn</string>
     <string name="pollen_alternaria">Alternaria</string>
     <string name="pollen_picea">Spar</string>
@@ -662,7 +662,7 @@
     <string name="chart_not_enough_hourly_data">Er zijn niet genoeg gegevens per uur beschikbaar om een grafiek voor deze dag weer te geven.</string>
     <string name="chart_average">Gemiddelde</string>
     <string name="chart_maximum_value">Maximale waarde</string>
-    <string name="conditions">Omstandigheden</string>
+    <string name="conditions">Overzicht</string>
     <string name="temperature_real">Actueel</string>
     <string name="temperature_real_details">De actuele temperatuur.</string>
     <string name="temperature_feels_like_details">Hoe de temperatuur aanvoelt, als gevolg van vochtigheid, wind en/of zonlicht.</string>
