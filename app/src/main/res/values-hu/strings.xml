@@ -30,8 +30,8 @@
     <string name="action_refresh">Frissítés</string>
     <string name="action_restart">Újraindítás</string>
     <string name="action_edit">Szerkesztés</string>
-    <string name="daily_yesterday_short">T</string>
-    <string name="daily_tomorrow_short">H</string>
+    <string name="daily_yesterday_short">Teg</string>
+    <string name="daily_tomorrow_short">Hol</string>
     <string name="temperature_apparent">Hőérzet</string>
     <string name="temperature_wind_chill">Szélhűtés</string>
     <string name="temperature_degree_day">Foknap</string>
