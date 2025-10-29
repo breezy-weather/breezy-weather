@@ -628,7 +628,7 @@
     <string name="action_open_in_other_app">Адкрыць у іншай праграме</string>
     <string name="action_open_in_other_app_description">Адкрыць месца ў іншай праграме</string>
     <string name="uv_index_about">Пра УФ-індэкс</string>
-    <string name="uv_index_about_description">УФ-індэкс вымярае сілу ультрафіялетавага выпраменьвання сонца. Чым вышэй паказальнік, тым мацней ўздзеянне і хутчэй могуць ўзнікаць сонечныя апёкі, рак скуры і пашкоджанне вачэй.</string>
+    <string name="uv_index_about_description">УФ-індэкс вымярае сілу ўльтрафіялетавага выпраменьвання сонца. Чым вышэй паказальнік, тым мацней уздзеянне і хутчэй могуць узнікаць сонечныя апёкі, рак скуры і пашкоджанне вачэй.</string>
     <string name="uv_index_scale">Шкала УФ-індэкса</string>
     <string name="wind_strength_scale">Шкала Бофарта</string>
     <string name="wind_speed_about">Пра хуткасць і парывы ветру</string>
