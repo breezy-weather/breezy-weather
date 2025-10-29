@@ -30,7 +30,7 @@
     <string name="wind_strength_10">Zware storm</string>
     <string name="wind_strength_11">Zeer zware storm</string>
     <string name="wind_strength_12">Orkaan</string>
-    <string name="daily_forecast">Verwachting voor de dag</string>
+    <string name="daily_forecast">Dagelijkse verwachting</string>
     <string name="hourly_forecast">Verwachting per uur</string>
     <string name="air_quality">Luchtkwaliteit</string>
     <string name="ephemeris">Zon &amp; maan</string>
@@ -210,7 +210,7 @@
     <string name="action_share">Delen</string>
     <string name="widget_label_clock_font">Lettertype klok</string>
     <string name="widget_label_align_end">Rechts uitlijnen</string>
-    <string name="settings_main_hourly_trends_title">Uurtrends</string>
+    <string name="settings_main_hourly_trends_title">Trends per uur</string>
     <string name="settings_debug_dump_crash_logs_title">Crashlogs delen</string>
     <string name="precipitation_duration">Neerslagduur</string>
     <string name="precipitation_probability">Neerslagkans</string>
@@ -656,7 +656,7 @@
     <string name="ephemeris_polar_day">Pooldag</string>
     <string name="ephemeris_polar_night">Poolnacht</string>
     <string name="clock">Klok</string>
-    <string name="daily_summary">Dagoverzicht</string>
+    <string name="daily_summary">Dagelijks overzicht</string>
     <string name="chart_no_daily_data">Geen gegevens voor deze dag.</string>
     <string name="chart_no_hourly_data">Geen gegevens van uur tot uur.</string>
     <string name="chart_not_enough_hourly_data">Er zijn niet genoeg gegevens per uur beschikbaar om een grafiek voor deze dag weer te geven.</string>
