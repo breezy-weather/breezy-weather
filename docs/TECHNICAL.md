@@ -177,26 +177,15 @@ https://openweathermap.org/api
 
 ## Pirate Weather
 
-*Last checked: 2024-04-16*
+*Last checked: 2025-10-30*
 
 https://github.com/Pirate-Weather/pirateweather
 
-| Endpoint | Version | Notes                  |
-|----------|---------|------------------------|
-| Forecast | v1.5.6  | V2.0 is in pre-release |
+| Endpoint | Version  | Notes                  |
+|----------|----------|------------------------|
+| Forecast | v2.7.11  | V2.8 is in pre-release |
 
 We should check regularly for additional fields we could use. Latest version checked is written above, everything more recent requires to check changelog.
-
-
-## HERE
-
-*Last checked: 2024-02-13*
-
-| Endpoint            | Version    | Documentation                                                                                  |
-|---------------------|------------|------------------------------------------------------------------------------------------------|
-| Weather Destination | v3         | https://www.here.com/docs/bundle/here-destination-weather-api-v3-api-reference/page/index.html |
-| Geocode             | v1 (7.116) | https://www.here.com/docs/bundle/geocoding-and-search-api-v7-api-reference/page/index.html     |
-| Reverse geocode     | v1 (7.116) | https://www.here.com/docs/bundle/geocoding-and-search-api-v7-api-reference/page/index.html     |
 
 
 ## Météo-France
