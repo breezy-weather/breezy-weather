@@ -23,6 +23,7 @@ import breezyweather.domain.location.model.LocationAddressInfo
 import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.Precipitation
+import breezyweather.domain.weather.model.PrecipitationProbability
 import breezyweather.domain.weather.model.Wind
 import breezyweather.domain.weather.reference.AlertSeverity
 import breezyweather.domain.weather.reference.WeatherCode
@@ -32,9 +33,16 @@ import breezyweather.domain.weather.wrappers.TemperatureWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
+import org.breezyweather.BuildConfig
+import org.breezyweather.R
 import org.breezyweather.common.exceptions.InvalidLocationException
+import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.common.extensions.toDateNoHour
-import org.breezyweather.sources.metie.json.MetIeHourly
+import org.breezyweather.common.preference.EditTextPreference
+import org.breezyweather.common.preference.Preference
+import org.breezyweather.domain.settings.SourceConfigStore
+import org.breezyweather.sources.metie.json.MetIeForecastHourly
+import org.breezyweather.sources.metie.json.MetIeForecastResult
 import org.breezyweather.sources.metie.json.MetIeLocationResult
 import org.breezyweather.sources.metie.json.MetIeWarning
 import org.breezyweather.sources.metie.json.MetIeWarningResult
@@ -45,6 +53,8 @@ import org.breezyweather.unit.speed.Speed.Companion.kilometersPerHour
 import org.breezyweather.unit.temperature.Temperature.Companion.celsius
 import retrofit2.Retrofit
 import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Date
 import java.util.Locale
 import java.util.TimeZone
 import javax.inject.Inject
@@ -78,20 +88,46 @@ class MetIeService @Inject constructor(
         location: Location,
         requestedFeatures: List<SourceFeature>,
     ): Observable<WeatherWrapper> {
+        val apiKey = getApiKeyOrDefault()
         val failedFeatures = mutableMapOf<SourceFeature, Throwable>()
         val forecast = if (SourceFeature.FORECAST in requestedFeatures) {
-            mApi.getForecast(
-                location.latitude,
-                location.longitude
-            ).onErrorResumeNext {
-                failedFeatures[SourceFeature.FORECAST] = it
-                Observable.just(emptyList())
+            val calendar = Date().toCalendarWithTimeZone(location.timeZone)
+            calendar.apply {
+                set(Calendar.HOUR_OF_DAY, 0)
+                set(Calendar.MINUTE, 0)
+                set(Calendar.SECOND, 0)
+                set(Calendar.MILLISECOND, 0)
+            }
+            val formatter = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
+            formatter.timeZone = location.timeZone
+            List(6) { day ->
+                mApi.getForecast(
+                    token = apiKey,
+                    lat = location.latitude,
+                    lon = location.longitude,
+                    date = formatter.format(calendar.time),
+                    src = MET_IE_SRC,
+                    version = MET_IE_VERSION,
+                    env = MET_IE_ENV
+                ).onErrorResumeNext {
+                    failedFeatures[SourceFeature.FORECAST] = it
+                    Observable.just(MetIeForecastResult())
+                }.also {
+                    calendar.add(Calendar.DAY_OF_YEAR, 1)
+                }
             }
         } else {
-            Observable.just(emptyList())
+            List(5) {
+                Observable.just(MetIeForecastResult())
+            }
         }
         val alerts = if (SourceFeature.ALERT in requestedFeatures) {
-            mApi.getWarnings().onErrorResumeNext {
+            mApi.getWarnings(
+                token = apiKey,
+                src = MET_IE_SRC,
+                version = MET_IE_VERSION,
+                env = MET_IE_ENV
+            ).onErrorResumeNext {
                 failedFeatures[SourceFeature.ALERT] = it
                 Observable.just(MetIeWarningResult())
             }
@@ -99,15 +135,38 @@ class MetIeService @Inject constructor(
             Observable.just(MetIeWarningResult())
         }
 
-        return Observable.zip(forecast, alerts) { forecastResult: List<MetIeHourly>, alertsResult: MetIeWarningResult ->
+        return Observable.zip(
+            forecast[0],
+            forecast[1],
+            forecast[2],
+            forecast[3],
+            forecast[4],
+            forecast[5],
+            alerts
+        ) {
+                forecastResultJ0: MetIeForecastResult,
+                forecastResultJ1: MetIeForecastResult,
+                forecastResultJ2: MetIeForecastResult,
+                forecastResultJ3: MetIeForecastResult,
+                forecastResultJ4: MetIeForecastResult,
+                forecastResultJ5: MetIeForecastResult,
+                alertsResult: MetIeWarningResult,
+            ->
+            val hourlyForecastResultMerged = forecastResultJ0.mergedForecast.orEmpty() +
+                forecastResultJ1.mergedForecast.orEmpty() +
+                forecastResultJ2.mergedForecast.orEmpty() +
+                forecastResultJ3.mergedForecast.orEmpty() +
+                forecastResultJ4.mergedForecast.orEmpty() +
+                forecastResultJ5.mergedForecast.orEmpty()
+
             WeatherWrapper(
                 dailyForecast = if (SourceFeature.FORECAST in requestedFeatures) {
-                    getDailyForecast(location, forecastResult)
+                    getDailyForecast(location, hourlyForecastResultMerged)
                 } else {
                     null
                 },
                 hourlyForecast = if (SourceFeature.FORECAST in requestedFeatures) {
-                    getHourlyForecast(forecastResult)
+                    getHourlyForecast(hourlyForecastResultMerged)
                 } else {
                     null
                 },
@@ -123,11 +182,13 @@ class MetIeService @Inject constructor(
 
     private fun getDailyForecast(
         location: Location,
-        hourlyResult: List<MetIeHourly>,
-    ): List<DailyWrapper> {
+        hourlyResult: List<MetIeForecastHourly>?,
+    ): List<DailyWrapper>? {
+        if (hourlyResult == null) return null
+
         val dailyList = mutableListOf<DailyWrapper>()
         val hourlyListByDay = hourlyResult.groupBy { it.date }
-        for (i in 0 until hourlyListByDay.entries.size - 1) {
+        for (i in 0 until hourlyListByDay.entries.size) {
             val dayDate = hourlyListByDay.keys.toTypedArray()[i].toDateNoHour(location.timeZone)
             if (dayDate != null) {
                 dailyList.add(
@@ -144,28 +205,33 @@ class MetIeService @Inject constructor(
      * Returns hourly forecast
      */
     private fun getHourlyForecast(
-        hourlyResult: List<MetIeHourly>,
-    ): List<HourlyWrapper> {
-        val formatter = SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.ENGLISH)
+        hourlyResult: List<MetIeForecastHourly>?,
+    ): List<HourlyWrapper>? {
+        val formatter = SimpleDateFormat("yyyy-MM-dd HHmm", Locale.ENGLISH)
         formatter.timeZone = TimeZone.getTimeZone("Europe/Dublin")
 
-        return hourlyResult.map { result ->
+        return hourlyResult?.map { result ->
             HourlyWrapper(
-                date = formatter.parse("${result.date} ${result.time}")!!,
-                weatherCode = getWeatherCode(result.weatherNumber),
-                weatherText = result.weatherDescription,
+                date = formatter.parse("${result.date} ${result.localTime}")!!,
+                weatherCode = getWeatherCode(result.symbol?.number),
+                weatherText = result.symbol?.description,
                 temperature = TemperatureWrapper(
-                    temperature = result.temperature?.celsius
+                    temperature = result.temperature?.value?.toDoubleOrNull()?.celsius,
+                    feelsLike = result.feelsLike?.celsius
                 ),
                 precipitation = Precipitation(
-                    total = result.rainfall?.toDoubleOrNull()?.millimeters
+                    total = result.precipitation?.value?.toDoubleOrNull()?.millimeters
+                ),
+                precipitationProbability = PrecipitationProbability(
+                    total = result.precipitation?.probability?.toDoubleOrNull()?.percent
                 ),
                 wind = Wind(
-                    degree = result.windDirection?.toDoubleOrNull(),
-                    speed = result.windSpeed?.kilometersPerHour
+                    degree = result.windDirection?.deg?.toDoubleOrNull(),
+                    speed = result.windSpeed?.kph?.kilometersPerHour
                 ),
-                relativeHumidity = result.humidity?.toDoubleOrNull()?.percent,
-                pressure = result.pressure?.toDoubleOrNull()?.hectopascals
+                relativeHumidity = result.humidity?.value?.toDoubleOrNull()?.percent,
+                pressure = result.pressure?.value?.toDoubleOrNull()?.hectopascals,
+                cloudCover = result.cloudiness?.percent?.toDoubleOrNull()?.percent
             )
         }
     }
@@ -262,8 +328,12 @@ class MetIeService @Inject constructor(
         longitude: Double,
     ): Observable<List<LocationAddressInfo>> {
         return mApi.getReverseLocation(
-            latitude,
-            longitude
+            token = getApiKeyOrDefault(),
+            lat = latitude,
+            lon = longitude,
+            src = MET_IE_SRC,
+            version = MET_IE_VERSION,
+            env = MET_IE_ENV
         ).map {
             val locationList = mutableListOf<LocationAddressInfo>()
             if (it.city != "NO LOCATION SELECTED") {
@@ -303,8 +373,12 @@ class MetIeService @Inject constructor(
         location: Location,
     ): Observable<Map<String, String>> {
         return mApi.getReverseLocation(
-            location.latitude,
-            location.longitude
+            token = getApiKeyOrDefault(),
+            lat = location.latitude,
+            lon = location.longitude,
+            src = MET_IE_SRC,
+            version = MET_IE_VERSION,
+            env = MET_IE_ENV
         ).map {
             if (it.city != "NO LOCATION SELECTED" &&
                 !it.county.isNullOrEmpty() &&
@@ -317,8 +391,45 @@ class MetIeService @Inject constructor(
         }
     }
 
+    // CONFIG
+    private val config = SourceConfigStore(context, id)
+    private var apikey: String
+        set(value) {
+            config.edit().putString("apikey", value).apply()
+        }
+        get() = config.getString("apikey", null) ?: ""
+
+    private fun getApiKeyOrDefault(): String {
+        return apikey.ifEmpty { BuildConfig.MET_IE_KEY }
+    }
+    override val isConfigured
+        get() = getApiKeyOrDefault().isNotEmpty()
+
+    override val isRestricted
+        get() = apikey.isEmpty()
+
+    override fun getPreferences(context: Context): List<Preference> {
+        return listOf(
+            EditTextPreference(
+                titleId = R.string.settings_weather_source_met_ie_api_key,
+                summary = { c, content ->
+                    content.ifEmpty {
+                        c.getString(R.string.settings_source_default_value)
+                    }
+                },
+                content = apikey,
+                onValueChanged = {
+                    apikey = it
+                }
+            )
+        )
+    }
+
     companion object {
         private const val MET_IE_BASE_URL = "https://prodapi.metweb.ie/"
+        private const val MET_IE_SRC = "android"
+        private const val MET_IE_VERSION = "20513" // Last checked: 2025-10-29
+        private const val MET_IE_ENV = "prod"
 
         // Last checked: 2024-03-02 https://prodapi.metweb.ie/v2/warnings/regions
         val regionsMapping = mapOf(

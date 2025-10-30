@@ -20,15 +20,6 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class MetIeHourly(
-    val date: String,
-    val time: String,
-    val weatherNumber: String?,
-    val weatherDescription: String?,
-    @SerialName("wind-speed") val windSpeed: Int?,
-    val rainfall: String?,
-    @SerialName("wind-direction") val windDirection: String?,
-    val temperature: Int?,
-    val humidity: String?,
-    val pressure: String?,
+data class MetIeForecastPercent(
+    @SerialName("@percent") val percent: String?,
 )

@@ -762,8 +762,8 @@ This source aggregates data from Beijing Meteorological Service, ColorfulClouds 
 | Feature                        | Detail                                        |
 |--------------------------------|-----------------------------------------------|
 | 🗺️ **Coverage**               | 🇮🇪 Ireland                                  |
-| 📆 **Daily forecast**          | Up to 7 days                                  |
-| ⏱️ **Hourly forecast**         | Up to 7 days                                  |
+| 📆 **Daily forecast**          | Up to 6 days                                  |
+| ⏱️ **Hourly forecast**         | Up to 6 days                                  |
 | ▶️ **Current observation**     | Not available: will show hourly forecast data |
 | 😶‍🌫️ **Air quality**         | Not available                                 |
 | 🤧 **Pollen**                  | Not available                                 |

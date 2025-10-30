@@ -148,8 +148,13 @@ android {
         )
         it.buildConfigField(
             "String",
-            "HERE_KEY",
-            "\"${properties.getProperty("breezy.here.key") ?: ""}\""
+            "MET_IE_KEY",
+            "\"${properties.getProperty("breezy.metie.key") ?: ""}\""
+        )
+        it.buildConfigField(
+            "String",
+            "MET_OFFICE_KEY",
+            "\"${properties.getProperty("breezy.metoffice.key") ?: ""}\""
         )
         it.buildConfigField(
             "String",
@@ -170,11 +175,6 @@ android {
             "String",
             "PIRATE_WEATHER_KEY",
             "\"${properties.getProperty("breezy.pirateweather.key") ?: ""}\""
-        )
-        it.buildConfigField(
-            "String",
-            "MET_OFFICE_KEY",
-            "\"${properties.getProperty("breezy.metoffice.key") ?: ""}\""
         )
         it.buildConfigField(
             "String",

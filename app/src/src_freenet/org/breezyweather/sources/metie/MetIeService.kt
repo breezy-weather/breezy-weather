@@ -60,4 +60,9 @@ class MetIeService @Inject constructor(
     ): Observable<List<LocationAddressInfo>> {
         throw NonFreeNetSourceException()
     }
+
+    override val isConfigured = true
+    override val isRestricted = false
+
+    override fun getPreferences(context: Context): List<Preference> = emptyList()
 }

@@ -723,6 +723,7 @@
     <string name="settings_weather_source_atmo_sud_api_key" translatable="false">@string/settings_source_api_key</string>
     <string name="settings_weather_source_cwa_api_key" translatable="false">@string/settings_source_api_key</string>
     <string name="settings_weather_source_bmkg_api_key" translatable="false">@string/settings_source_api_key</string>
+    <string name="settings_weather_source_met_ie_api_key" translatable="false">@string/settings_source_api_key</string>
     <string name="settings_weather_source_met_office_api_key" translatable="false">@string/settings_source_api_key</string>
     <string name="settings_weather_source_aemet_api_key" translatable="false">@string/settings_source_api_key</string>
     <!-- Synonym of instance: Server -->

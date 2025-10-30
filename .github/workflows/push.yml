@@ -81,6 +81,7 @@ jobs:
           echo "breezy.cwa.key=$CWA_KEY" >> local.properties
           echo "breezy.eccc.key=$ECCC_KEY" >> local.properties
           echo "breezy.geonames.key=$GEO_NAMES_KEY" >> local.properties
+          echo "breezy.metie.key=$MET_IE_KEY" >> local.properties
           echo "breezy.mf.jwtKey=$MF_WSFT_JWT_KEY" >> local.properties
           echo "breezy.mf.key=$MF_WSFT_KEY" >> local.properties
           echo "breezy.openweather.key=$OPEN_WEATHER_KEY" >> local.properties
@@ -97,6 +98,7 @@ jobs:
           CWA_KEY: ${{ secrets.CWA_KEY }}
           ECCC_KEY: ${{ secrets.ECCC_KEY }}
           GEO_NAMES_KEY: ${{ secrets.GEO_NAMES_KEY }}
+          MET_IE_KEY: ${{ secrets.MET_IE_KEY }}
           MF_WSFT_JWT_KEY: ${{ secrets.MF_WSFT_JWT_KEY }}
           MF_WSFT_KEY: ${{ secrets.MF_WSFT_KEY }}
           OPEN_WEATHER_KEY: ${{ secrets.OPEN_WEATHER_KEY }}

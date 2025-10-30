@@ -23,6 +23,7 @@ import breezyweather.domain.source.SourceFeature
 import org.breezyweather.R
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.getCountryName
+import org.breezyweather.common.source.ConfigurableSource
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationParametersSource
 import org.breezyweather.common.source.NonFreeNetSource
@@ -39,6 +40,7 @@ abstract class MetIeServiceStub(context: Context) :
     WeatherSource,
     ReverseGeocodingSource,
     LocationParametersSource,
+    ConfigurableSource,
     NonFreeNetSource {
 
     override val id = "metie"
