@@ -166,7 +166,7 @@ class OpenWeatherService @Inject constructor(
         if (currentResult.dt == null) return null
 
         return CurrentWrapper(
-            weatherText = currentResult.weather?.getOrNull(0)?.main?.capitalize(),
+            weatherText = currentResult.weather?.getOrNull(0)?.description?.capitalize(),
             weatherCode = getWeatherCode(currentResult.weather?.getOrNull(0)?.id),
             temperature = TemperatureWrapper(
                 temperature = currentResult.main?.temp?.celsius,

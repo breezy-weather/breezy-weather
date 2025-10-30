@@ -27,6 +27,7 @@ The following features are already available in the current branch, but will be 
 - MET Éireann - Migrate to new API
 - Nominatim - Add missing preference to change server instance
 - Open-Meteo - Allow individual selection of new weather models: ECMWF IFS HRES 9 km, NCEP NAM U.S. Conus, MeteoSwiss
+- OpenWeather - Fix current condition not translated
 - Pollen Information AT - Add support as a pollen source for some European countries (@phileix)
 
 **Translations**
