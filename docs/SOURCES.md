@@ -222,7 +222,7 @@ For the United States, [Forecast Advisor](https://www.forecastadvisor.com/) has 
 |--------------------------------|---------------------------------------------------------------------|
 | 🗺️ **Coverage**               | 🌐 Worldwide (some features may not be available for all locations) |
 | 📆 **Daily forecast**          | Up to 8 days                                                        |
-| ⏱️ **Hourly forecast**         | Up to 2 days                                                        |
+| ⏱️ **Hourly forecast**         | Up to 7 days                                                        |
 | ▶️ **Current observation**     | Available: can complement another source as a **Current Source**    |
 | 😶‍🌫️ **Air quality**         | Not available                                                       |
 | 🤧 **Pollen**                  | Not available                                                       |
@@ -235,14 +235,14 @@ For the United States, [Forecast Advisor](https://www.forecastadvisor.com/) has 
 
 <details><summary><h4>Details of available data from Pirate Weather</h4></summary>
 
-| Data                      | Available | Data              | Available   |
-|---------------------------|-----------|-------------------|-------------|
+| Data                      | Available  | Data              | Available    |
+|---------------------------|------------|-------------------|--------------|
 | Weather Condition         | ✅         | Humidity          | ✅           |
 | Temperature               | ✅         | Dew Point         | ✅           |
-| Precipitation             | ✅ (RS)    | UV Index          | ✅           |
+| Precipitation             | ✅ (RSI)   | UV Index          | ✅           |
 | Precipitation Probability | ✅         | Sunshine Duration | ❌           |
 | Precipitation Duration    | ❌         | Cloud Cover       | ✅           |
-| Wind                      | ✅         | Visibility        | ✅ (Current) |
+| Wind                      | ✅         | Visibility        | ✅           |
 | Pressure                  | ✅         | Ceiling           | ❌           |
 </details>
 
