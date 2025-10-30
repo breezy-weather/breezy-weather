@@ -78,7 +78,7 @@ When a translation is added, add the CLDR data for this locale in the weather-un
 
 Gradle must always be updated that way (replace with new version number):
 ```
-./gradlew wrapper --gradle-version=9.1.0 --gradle-distribution-sha256-sum=a17ddd85a26b6a7f5ddb71ff8b05fc5104c0202c6e64782429790c933686c806
+./gradlew wrapper --gradle-version=9.2.0 --gradle-distribution-sha256-sum=df67a32e86e3276d011735facb1535f64d0d88df84fa87521e90becc2d735444
 ```
 
 You can find the newer checksum of the binary-only (-bin) ZIP on https://gradle.org/release-checksums/
