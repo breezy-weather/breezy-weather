@@ -62,7 +62,7 @@
     <string name="ephemeris_moon_phase_waxing_crescent">Rastući polumjesec</string>
     <string name="settings_section_general">Općenito</string>
     <string name="settings_notifications_forecast_today_title">Obavijest za dnevnu prognozu</string>
-    <string name="precipitation_nowcasting">Kratkoročna prognoza oborina</string>
+    <string name="precipitation_nowcasting">Kratkoročna prognoza padavine</string>
     <string name="daily_tomorrow_short">Sutra</string>
     <string name="air_quality">Kvaliteta zraka</string>
     <string name="weather_api_key_required_missing_title">Nedostaje potreban API ključ</string>
@@ -82,7 +82,7 @@
     <string name="widget_custom_subtitle_keyword_xnt_description">Noćna temperatura danas, sutra, …, 4 dana kasnije (°C/°F)</string>
     <string name="widget_style_pixel">Pixel</string>
     <string name="uv_index_8_10">Jako visoko</string>
-    <string name="widget_custom_subtitle_keyword_xdp_description">Dnevne oborine danas, sutra, …, 4 dana kasnije (%)</string>
+    <string name="widget_custom_subtitle_keyword_xdp_description">Dnevne padavine danas, sutra, …, za 4 dana (%)</string>
     <string name="daily_forecast">Dnevna prognoza</string>
     <string name="action_share">Podijeli</string>
     <string name="dialog_permissions_notification_content">Dodirnite ovdje za aktiviranje obavijesti o vremenskim upozorenjima ili odlučite kasnije u postavkama.</string>
@@ -111,7 +111,7 @@
     <string name="settings_background_updates_battery_optimization_summary">Ovo je prva stvar koju trebate pokušati kada ne primate obavijesti ili se widgeti ne osvježavaju.</string>
     <string name="pollen_level_2">Nisko</string>
     <string name="air_quality_level_5">Vrlo nezdravo</string>
-    <string name="precipitation_none">Nema oborina</string>
+    <string name="precipitation_none">Bez padavina</string>
     <string name="settings_units_temperature">Jedinica za temperaturu</string>
     <string name="widget_subtitle_data_custom">Prilagođeno</string>
     <string name="widget_style_oreo">Oreo</string>
@@ -130,7 +130,7 @@
     <string name="wind_strength_7">Žestok vjetar</string>
     <string name="widget_text">Tekst</string>
     <string name="air_quality_level_3_description">U zraku je visoka razina onečišćenja i nije zdrav za osjetljive skupine. Smanjite vrijeme provedeno na otvorenom ako osjetite simptome kao što su otežano disanje i iritacija grla.</string>
-    <string name="precipitation_probability">Vjerojatnost oborina</string>
+    <string name="precipitation_probability">Vjerojatnost padavina</string>
     <string name="weather_message_invalid_location">Neispravna lokacija. Izbrišite ju i ponovo ju dodajte</string>
     <string name="widget_subtitle_data_aqi">Kvaliteta zraka</string>
     <string name="settings_location">Lokacija</string>
@@ -180,7 +180,7 @@
     <string name="action_preview">Pregled</string>
     <string name="location_search_no_results_advice">Provjerite da ste pravilno napisali izraz pretrage te da niste previše specifični. Alternativno možete pokušati jedan drugi izvor pretraživanja lokacije koji će možda prikazati drukčije rezultate.</string>
     <string name="nighttime">Noću</string>
-    <string name="precipitation">Oborine</string>
+    <string name="precipitation">Padavine</string>
     <string name="location_message_permission_background_missing">Nedostaje dozvola za pristup lokaciji u pozadini</string>
     <string name="air_quality_pm10_voice">PM deset</string>
     <string name="ephemeris_moon_phase_new_moon">Mladi mjesec</string>
@@ -214,7 +214,7 @@
     <string name="ephemeris">Sunce i mjesec</string>
     <string name="settings_main_summary">Redoslijed blokova, prikazane stavke, animacije</string>
     <string name="widget_week">Tjedno</string>
-    <string name="widget_custom_subtitle_keyword_xnp_description">Noćne oborine danas, sutra, …, 4 dana kasnije (%)</string>
+    <string name="widget_custom_subtitle_keyword_xnp_description">Noćne padavine danas, sutra, …, za 4 dana (%)</string>
     <string name="air_quality_level_3">Loše</string>
     <string name="settings_main_section_options">Opcije</string>
     <string name="settings_location_access_precise_summaryOff">Aktivirajte „Koristi točnu lokaciju” ako imate probleme s dobivanjem lokacije.</string>
@@ -251,7 +251,7 @@
     <string name="settings_background_updates_summary">Stopa osvježavanja, rješavanje problema</string>
     <string name="settings_location_access_precise_title">Korištenje GPS-a uređaja</string>
     <string name="wind_direction_SW_short">JZ</string>
-    <string name="precipitation_duration">Trajanje oborina</string>
+    <string name="precipitation_duration">Trajanje padavina</string>
     <string name="settings_notifications_forecast_tomorrow_title">Obavijest za prognozu za sljedeći dan</string>
     <string name="widget_trend_daily">Trend po danima</string>
     <string name="settings_main_section_displayed_data">Prikazani podatci</string>
@@ -375,7 +375,7 @@
     <string name="widget_custom_subtitle_keyword_xsr_description">Izlazak Sunca danas, sutra, …, 4 dana kasnije</string>
     <string name="temperature_average_short">Prosjek</string>
     <string name="widget_live_wallpaper_weather_kind">Vrijeme</string>
-    <string name="precipitation_between_time">Oborine od %1$s do %2$s</string>
+    <string name="precipitation_between_time">Padavine od %1$s do %2$s</string>
     <string name="settings_main_threshold_lines_on_charts">Linije praga na grafikonima</string>
     <string name="ephemeris_moon_phase_last_quarter">Zadnja četvrt</string>
     <string name="wind">Vjetar</string>
@@ -699,8 +699,8 @@
     <string name="temperature_normals_deviation">Odstupanje</string>
     <string name="temperature_normals_deviation_explanation_maximum">Odstupanje od prosječne maksimalne temperature za mjesec %s za ovu lokaciju</string>
     <string name="temperature_normals_deviation_explanation_minimum">Odstupanje od prosječne minimalne temperature za mjesec %s za ovu lokaciju</string>
-    <string name="precipitation_total_day">Oborine danju</string>
-    <string name="precipitation_total_night">Oborine noću</string>
+    <string name="precipitation_total_day">Padavine danju</string>
+    <string name="precipitation_total_night">Padavine noću</string>
     <string name="wind_origin">Iz smjera %s</string>
     <string name="air_quality_index_scale">Skala indeksa kvalitete zraka</string>
     <string name="air_quality_index_harmless_exposure">Bezopasna izloženost</string>
