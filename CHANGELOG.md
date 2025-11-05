@@ -13,7 +13,7 @@ The following features are already available in the current branch, but will be 
 - New broadcast: you can use `org.breezyweather.ACTION_UPDATE_NOTIFIER` (or `org.breezyweather.debug.ACTION_UPDATE_NOTIFIER` with the debug build) to be notified of updated locations (most common use case is coupled with the content provider)
 
 
-# Version 6.0.12-rc (not yet released)
+# Version 6.0.12 (not yet released)
 
 **Improvements and fixes**
 - Daily/hourly forecast - Ensure the maximum value is always at a minimum defined value to ensure data is put in perspective, and remove threshold lines that weren’t very useful and cluttering the interface (wind, precipitation, cloud cover)
@@ -28,6 +28,7 @@ The following features are already available in the current branch, but will be 
 - Nominatim - Add missing preference to change server instance
 - Open-Meteo - Allow individual selection of new weather models: ECMWF IFS HRES 9 km, NCEP NAM U.S. Conus, MeteoSwiss
 - OpenWeather - Fix current condition not translated
+- Pirate Weather - Add support for thunderstorm icon (@cloneofghosts)
 - Pollen Information AT - Add support as a pollen source for some European countries (@phileix)
 
 **Translations**
