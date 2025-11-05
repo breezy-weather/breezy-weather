@@ -219,7 +219,7 @@ android {
                 "META-INF/DEPENDENCIES",
                 "META-INF/LICENSE",
                 "META-INF/NOTICE",
-                "META-INF/README.md",
+                "META-INF/README.md"
             )
         )
     }
