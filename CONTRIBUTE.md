@@ -20,7 +20,7 @@ Breezy Weather wants to be:
 - mainly target small displays, so we don’t want to fit too many things, as we also want to let the design breathe a bit
 
 
-### New preference
+### New features
 
 Probably, the most requested thing. “If you don’t want to make that feature for everyone, you can still make it a preference”.
 
@@ -33,6 +33,8 @@ At the same time, with the existing preferences, some people can’t even find t
 Additionally, any added preferences means implementing it, make the code execute conditionally for everyone, and maintain it (test it, handle bug reports, etc). What looks like a simple option can represent a lot of work.
 
 So, the idea is to make a fair use of preferences, so if it covers too narrow of a case, it won’t be implemented.
+
+You can read [Niagara’s design principles](https://help.niagaralauncher.app/article/8-niagaras-design-principles) for a similar take on the matter (although due to the nature of this weather app, the “universal” criteria doesn’t always apply to us).
 
 
 ### New weather sources
