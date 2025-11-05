@@ -209,13 +209,17 @@ android {
     packaging {
         resources.excludes.addAll(
             listOf(
-                "META-INF/DEPENDENCIES",
+                "kotlin-tooling-metadata.json",
                 "LICENSE.txt",
+                "META-INF/versions/9/OSGI-INF/MANIFEST.MF",
+                "META-INF/**/*.properties",
+                "META-INF/**/LICENSE.txt",
+                "META-INF/*.properties",
+                "META-INF/*.version",
+                "META-INF/DEPENDENCIES",
                 "META-INF/LICENSE",
-                "META-INF/LICENSE.txt",
-                "META-INF/README.md",
                 "META-INF/NOTICE",
-                "META-INF/*.kotlin_module"
+                "META-INF/README.md",
             )
         )
     }
