@@ -689,7 +689,7 @@
     <string name="common_weather_text_blowing_snow">吹雪（高度 8 英尺或以上）</string>
     <string name="pollen_pinus">松树</string>
     <string name="pollen_ulmus">榆树</string>
-    <string name="location_has_active_alerts">活动中的预警</string>
+    <string name="location_has_active_alerts">生效中的预警</string>
     <string name="location_last_updated_x">上次更新于 %s</string>
     <string name="settings_notifications_permission">需要通知权限</string>
     <string name="location_custom_name">自定义名称</string>
@@ -782,8 +782,8 @@
     <string name="uv_index_about_description">紫外线指数用于衡量太阳紫外线的辐射强度。该指数越高，对皮肤和眼睛的危害越大且发生速度越快，可能导致晒伤、皮肤癌和眼损伤。</string>
     <string name="air_quality_index_about_description_2">本应用采用的等级体系基于世界卫生组织建议，而非本地监管机构，这么做是为了拥有有意义的分类，便于比较不同国家/地区间的污染等级。</string>
     <string name="visibility_poor">差</string>
-    <string name="humidity_about_description">相对湿度（更常见的叫法就是湿度）是给定温度下空气中实有水蒸气与空气能含有的最大水蒸气量之比。</string>
-    <string name="pressure_about_description2">气压剧烈快速的变化用于预测天气的变化。比如，气压下降可能意味着即将下雨或下雪，而气压升高可能表示天气会转好。不正常的气压可能导致头痛、关节痛、疲倦和其他影响。</string>
+    <string name="humidity_about_description">相对湿度（通常简称为湿度）是给定温度下空气中实有水蒸气与空气能含有的最大水蒸气量之比。</string>
+    <string name="pressure_about_description2">明显且快速的气压变化可用于预测天气变化。比如，气压下降可能意味着即将下雨或下雪，而气压升高可能表示天气会转好。不正常的气压可能导致头痛、关节痛、疲倦和其他影响。</string>
     <string name="visibility_good">良</string>
     <string name="cloud_cover_about_description">云量指平均被云层遮蔽的天空百分比。云量和日光持续时长相关。</string>
     <string name="visibility_very_poor">非常差</string>
