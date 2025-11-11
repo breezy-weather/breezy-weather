@@ -24,6 +24,7 @@ The following features are already available in the current branch, but will be 
 - Fix current air quality disappearing when refreshing too fast
 
 **Weather sources**
+- China - Fix refresh error for some users (@kmod-midori)
 - MET Éireann - Migrate to new API
 - Nominatim - Add missing preference to change server instance
 - Open-Meteo - Allow individual selection of new weather models: ECMWF IFS HRES 9 km, NCEP NAM U.S. Conus, MeteoSwiss

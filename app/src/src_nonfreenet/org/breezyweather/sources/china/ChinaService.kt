@@ -588,7 +588,7 @@ class ChinaService @Inject constructor(
     }
 
     companion object {
-        private const val CHINA_WEATHER_BASE_URL = "https://weatherapi.market.xiaomi.com/wtr-v3/"
+        private const val CHINA_WEATHER_BASE_URL = "https://weatherapi.intl.xiaomi.com/wtr-v3/"
         private const val CHINA_APP_KEY = "weather20151024"
         private const val CHINA_SIGN = "zUFJoAR2ZVrDy1vF3D07"
     }
