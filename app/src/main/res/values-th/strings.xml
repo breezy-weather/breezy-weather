@@ -504,7 +504,7 @@
     <string name="settings_weather_source_current_position_disclaimer">อาจมีแหล่งข้อมูลสภาพอากาศอื่นพร้อมให้ใช้งานสำหรับสถานที่ของคุณเมื่อคุณรีเฟรชครั้งแรก</string>
     <string name="settings_weather_source_none">ไม่มี</string>
     <string name="settings_weather_sources_per_location_summary">กำหนดแหล่งข้อมูลสภาพอากาศที่ใช้สำหรับสถานที่นี้เอง</string>
-    <string name="settings_weather_source_freenet_disclaimer">มีแหล่งข้อมูลสภาพอากาศอื่นให้ใช้งานในแอปแบบมาตรฐาน แตะที่นี่เพื่อเรียนรู้เพิ่มเติม</string>
+    <string name="settings_weather_source_freenet_disclaimer">คุณกำลังใช้แอปรุ่นฟรีเน็ต เปลี่ยนกลับไปใช้รุ่นมาตรฐานหากคุณต้องการใช้บริการเครือข่ายที่ไม่เสรี</string>
     <string name="settings_source_api_key">API key</string>
     <string name="settings_source_instance">เซิร์ฟเวอร์</string>
     <string name="settings_source_instance_invalid">ต้องเป็น URL แบบ https และลงท้ายด้วยเครื่องหมาย /</string>
@@ -827,4 +827,7 @@
     <string name="common_weather_text_mostly_cloudy">เมฆคลุมเป็นส่วนใหญ่</string>
     <string name="settings_appearance_dark_mode_custom">โหมดมืดตั้งแต่ %1$s ถึง %2$s</string>
     <string name="action_pull_down_to_refresh">ลากลงเพื่อรีเฟรช</string>
+    <string name="message_source_non_free_network_title">แหล่งข้อมูลนี้ต้องการแอปรุ่นมาตรฐาน</string>
+    <string name="message_source_non_free_network_content">คุณกำลังใช้แอปรุ่นฟรีเน็ต ซึ่งรองรับเฉพาะแหล่งข้อมูลบนเครือข่ายเสรีเท่านั้น หากคุณต้องการใช้แหล่งข้อมูลนี้ต่อไป คุณจำเป็นต้องเปลี่ยนกลับไปใช้รุ่นมาตรฐาน หรือใช้แหล่งข้อมูลอื่น</string>
+    <string name="settings_weather_source_non_freenet">%s (บริการเครือข่ายที่ไม่เสรี)</string>
 </resources>
