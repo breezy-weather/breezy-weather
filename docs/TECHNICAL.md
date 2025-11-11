@@ -55,7 +55,7 @@ If you have more than 4 CPU cores, you may need to run the following to ensure t
 ```shell
 export CPUS_MAX=16 # Replace with your number of CPU cores
 export CPUS=4
-for (( c=$CPUS_MAX; c<$CPUS; c++ )) ; do echo 0 > /sys/devices/system/cpu/cpu$c/online; done
+for (( c=$CPUS; c<$CPUS_MAX; c++ )) ; do echo 0 > /sys/devices/system/cpu/cpu$c/online; done
 ```
 
 
