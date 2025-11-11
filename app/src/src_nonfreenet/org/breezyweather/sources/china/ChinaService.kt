@@ -148,7 +148,7 @@ class ChinaService @Inject constructor(
                 context.currentLocale.toString().lowercase(),
                 isGlobal = false,
                 appKey = CHINA_APP_KEY,
-                locationKey = "weathercn%3A$locationKey",
+                locationKey = "weathercn:$locationKey",
                 sign = CHINA_SIGN
             ).onErrorResumeNext {
                 failedFeatures[SourceFeature.MINUTELY] = it
