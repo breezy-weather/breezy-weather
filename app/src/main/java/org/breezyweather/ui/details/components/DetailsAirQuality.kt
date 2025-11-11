@@ -547,7 +547,7 @@ private fun AirQualitySwitcher(
             ToggleButton(
                 checked = false,
                 onCheckedChange = {
-                    if (menuState.isExpanded) {
+                    if (menuState.isShowing) {
                         menuState.dismiss()
                     } else {
                         menuState.show()
