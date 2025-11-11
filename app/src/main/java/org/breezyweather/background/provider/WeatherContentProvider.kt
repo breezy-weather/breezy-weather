@@ -177,13 +177,6 @@ class WeatherContentProvider : ContentProvider() {
         selectionArgs: Array<String>?,
         sortOrder: String?,
     ): Cursor? {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
-            // Disable the content provider on SDK < 23 since it grants dangerous
-            // permissions at install-time
-            Log.w(TAG, "Content provider read is only available for SDK >= 23")
-            return null
-        }
-
         if (!isAllowedPackage()) {
             Log.w(TAG, "Content provider is disabled for this app")
             return null

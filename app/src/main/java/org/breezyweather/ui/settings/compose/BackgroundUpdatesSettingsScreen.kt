@@ -235,35 +235,33 @@ fun BackgroundSettingsScreen(
             largeSeparatorItem()
 
             sectionHeaderItem(R.string.settings_background_updates_section_troubleshoot)
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                clickablePreferenceItem(R.string.settings_background_updates_battery_optimization) { id ->
-                    PreferenceViewWithCard(
-                        titleId = id,
-                        summaryId = R.string.settings_background_updates_battery_optimization_summary,
-                        isFirst = true
-                    ) {
-                        val packageName: String = context.packageName
-                        if (!context.powerManager.isIgnoringBatteryOptimizations(packageName)) {
-                            try {
-                                @SuppressLint("BatteryLife")
-                                val intent = Intent().apply {
-                                    action = Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS
-                                    data = "package:$packageName".toUri()
-                                    addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                                }
-                                context.startActivity(intent)
-                            } catch (e: ActivityNotFoundException) {
-                                SnackbarHelper.showSnackbar(
-                                    context.getString(
-                                        R.string.settings_background_updates_battery_optimization_activity_not_found
-                                    )
-                                )
+            clickablePreferenceItem(R.string.settings_background_updates_battery_optimization) { id ->
+                PreferenceViewWithCard(
+                    titleId = id,
+                    summaryId = R.string.settings_background_updates_battery_optimization_summary,
+                    isFirst = true
+                ) {
+                    val packageName: String = context.packageName
+                    if (!context.powerManager.isIgnoringBatteryOptimizations(packageName)) {
+                        try {
+                            @SuppressLint("BatteryLife")
+                            val intent = Intent().apply {
+                                action = Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS
+                                data = "package:$packageName".toUri()
+                                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                             }
-                        } else {
+                            context.startActivity(intent)
+                        } catch (e: ActivityNotFoundException) {
                             SnackbarHelper.showSnackbar(
-                                context.getString(R.string.settings_background_updates_battery_optimization_disabled)
+                                context.getString(
+                                    R.string.settings_background_updates_battery_optimization_activity_not_found
+                                )
                             )
                         }
+                    } else {
+                        SnackbarHelper.showSnackbar(
+                            context.getString(R.string.settings_background_updates_battery_optimization_disabled)
+                        )
                     }
                 }
             }

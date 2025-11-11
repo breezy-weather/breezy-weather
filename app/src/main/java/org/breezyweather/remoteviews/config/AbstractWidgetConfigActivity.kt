@@ -655,7 +655,7 @@ abstract class AbstractWidgetConfigActivity : BreezyActivity() {
 
     @SuppressLint("MissingPermission")
     private fun bindWallpaper(checkPermissions: Boolean) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkPermissions) {
+        if (checkPermissions) {
             val hasPermission = checkPermissions(0)
             if (!hasPermission) {
                 return
@@ -674,7 +674,6 @@ abstract class AbstractWidgetConfigActivity : BreezyActivity() {
      * @return true : already got permissions.
      * false: request permissions.
      */
-    @RequiresApi(Build.VERSION_CODES.M)
     private fun checkPermissions(requestCode: Int): Boolean {
         if (!hasPermission(Manifest.permission.READ_EXTERNAL_STORAGE)) {
             requestPermissions(arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), requestCode)
@@ -779,10 +778,7 @@ abstract class AbstractWidgetConfigActivity : BreezyActivity() {
                     updateHostView()
                     return
                 }
-                var hasPermission = true
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    hasPermission = checkPermissions(1)
-                }
+                val hasPermission = checkPermissions(1)
                 if (hasPermission) {
                     updateHostView()
                 }

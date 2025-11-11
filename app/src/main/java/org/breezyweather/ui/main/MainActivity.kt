@@ -362,8 +362,7 @@ class MainActivity : BreezyActivity(), HomeFragment.Callback, ManagementFragment
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.locationPermissionsRequest.collect {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M &&
-                        it != null &&
+                    if (it != null &&
                         it.permissionList.isNotEmpty() &&
                         it.consume()
                     ) {

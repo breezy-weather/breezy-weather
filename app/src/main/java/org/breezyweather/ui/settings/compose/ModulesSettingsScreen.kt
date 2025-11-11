@@ -324,7 +324,6 @@ fun ModulesSettingsScreen(
                     nameArrayId = R.array.notification_styles,
                     enabled = notificationEnabled && hasNotificationPermission,
                     card = true,
-                    isLast = Build.VERSION.SDK_INT < Build.VERSION_CODES.M,
                     onValueChanged = {
                         SettingsManager
                             .getInstance(context)
@@ -333,46 +332,44 @@ fun ModulesSettingsScreen(
                     }
                 )
             }
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                smallSeparatorItem()
-                switchPreferenceItem(R.string.settings_modules_notification_temp_icon_switch) { id ->
-                    SwitchPreferenceView(
-                        titleId = id,
-                        summaryOnId = R.string.settings_enabled,
-                        summaryOffId = R.string.settings_disabled,
-                        checked = SettingsManager
+            smallSeparatorItem()
+            switchPreferenceItem(R.string.settings_modules_notification_temp_icon_switch) { id ->
+                SwitchPreferenceView(
+                    titleId = id,
+                    summaryOnId = R.string.settings_enabled,
+                    summaryOffId = R.string.settings_disabled,
+                    checked = SettingsManager
+                        .getInstance(context)
+                        .isWidgetNotificationTemperatureIconEnabled,
+                    enabled = notificationEnabled && hasNotificationPermission,
+                    onValueChanged = {
+                        SettingsManager
                             .getInstance(context)
-                            .isWidgetNotificationTemperatureIconEnabled,
-                        enabled = notificationEnabled && hasNotificationPermission,
-                        onValueChanged = {
-                            SettingsManager
-                                .getInstance(context)
-                                .isWidgetNotificationTemperatureIconEnabled = it
-                            updateNotificationIfNecessary(context)
-                        }
-                    )
-                }
-                smallSeparatorItem()
-                switchPreferenceItem(R.string.settings_modules_notification_feels_like_switch) { id ->
-                    SwitchPreferenceView(
-                        titleId = id,
-                        summaryOnId = R.string.settings_enabled,
-                        summaryOffId = R.string.settings_disabled,
-                        checked = SettingsManager
+                            .isWidgetNotificationTemperatureIconEnabled = it
+                        updateNotificationIfNecessary(context)
+                    }
+                )
+            }
+            smallSeparatorItem()
+            switchPreferenceItem(R.string.settings_modules_notification_feels_like_switch) { id ->
+                SwitchPreferenceView(
+                    titleId = id,
+                    summaryOnId = R.string.settings_enabled,
+                    summaryOffId = R.string.settings_disabled,
+                    checked = SettingsManager
+                        .getInstance(context)
+                        .isWidgetNotificationUsingFeelsLike,
+                    enabled = notificationEnabled &&
+                        hasNotificationPermission &&
+                        notificationTemperatureIconEnabled,
+                    isLast = true,
+                    onValueChanged = {
+                        SettingsManager
                             .getInstance(context)
-                            .isWidgetNotificationUsingFeelsLike,
-                        enabled = notificationEnabled &&
-                            hasNotificationPermission &&
-                            notificationTemperatureIconEnabled,
-                        isLast = true,
-                        onValueChanged = {
-                            SettingsManager
-                                .getInstance(context)
-                                .isWidgetNotificationUsingFeelsLike = it
-                            updateNotificationIfNecessary(context)
-                        }
-                    )
-                }
+                            .isWidgetNotificationUsingFeelsLike = it
+                        updateNotificationIfNecessary(context)
+                    }
+                )
             }
             sectionFooterItem(R.string.settings_modules_section_notification_widget)
 

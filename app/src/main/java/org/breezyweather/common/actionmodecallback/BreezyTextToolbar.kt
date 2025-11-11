@@ -21,7 +21,6 @@ import android.content.Intent
 import android.os.Build
 import android.view.ActionMode
 import android.view.View
-import androidx.annotation.RequiresApi
 import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.platform.TextToolbar
 import androidx.compose.ui.platform.TextToolbarStatus
@@ -49,40 +48,36 @@ internal class BreezyTextToolbar(
         textActionModeCallback.rect = rect
         textActionModeCallback.onCopyRequested = onCopyRequested
         textActionModeCallback.onSelectAllRequested = onSelectAllRequested
-        textActionModeCallback.onTranslateRequested = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            {
-                // Get selected text by copying it, then restore the previous clip
-                val clipboardManager = view.context.clipboardManager
-                val previousClipboard = clipboardManager.primaryClip
-                onCopyRequested?.invoke()
-                val text = clipboardManager.text
-                if (previousClipboard != null) {
-                    clipboardManager.setPrimaryClip(previousClipboard)
-                } else {
-                    clipboardManager.setPrimaryClip(ClipData.newPlainText(null, " "))
-                }
-
-                val intent = Intent().apply {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                        action = Intent.ACTION_TRANSLATE
-                        putExtra(Intent.EXTRA_TEXT, text.trim())
-                    } else {
-                        action = Intent.ACTION_PROCESS_TEXT
-                        type = "text/plain"
-                        putExtra(Intent.EXTRA_PROCESS_TEXT, text.trim())
-                        putExtra(Intent.EXTRA_PROCESS_TEXT_READONLY, true)
-                    }
-                    flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                }
-
-                try {
-                    view.context.startActivity(Intent.createChooser(intent, ""))
-                } catch (e: Exception) {
-                    SnackbarHelper.showSnackbar(view.context.getString(R.string.action_translate_no_app))
-                }
+        textActionModeCallback.onTranslateRequested = {
+            // Get selected text by copying it, then restore the previous clip
+            val clipboardManager = view.context.clipboardManager
+            val previousClipboard = clipboardManager.primaryClip
+            onCopyRequested?.invoke()
+            val text = clipboardManager.text
+            if (previousClipboard != null) {
+                clipboardManager.setPrimaryClip(previousClipboard)
+            } else {
+                clipboardManager.setPrimaryClip(ClipData.newPlainText(null, " "))
             }
-        } else {
-            null
+
+            val intent = Intent().apply {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                    action = Intent.ACTION_TRANSLATE
+                    putExtra(Intent.EXTRA_TEXT, text.trim())
+                } else {
+                    action = Intent.ACTION_PROCESS_TEXT
+                    type = "text/plain"
+                    putExtra(Intent.EXTRA_PROCESS_TEXT, text.trim())
+                    putExtra(Intent.EXTRA_PROCESS_TEXT_READONLY, true)
+                }
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            }
+
+            try {
+                view.context.startActivity(Intent.createChooser(intent, ""))
+            } catch (e: Exception) {
+                SnackbarHelper.showSnackbar(view.context.getString(R.string.action_translate_no_app))
+            }
         }
         textActionModeCallback.onShareRequested = {
             // Get selected text by copying it, then restore the previous clip
@@ -112,16 +107,11 @@ internal class BreezyTextToolbar(
         }
         if (actionMode == null) {
             status = TextToolbarStatus.Shown
-            actionMode =
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    TextToolbarHelperMethods.startActionMode(
-                        view,
-                        BreezyFloatingTextActionModeCallback(textActionModeCallback),
-                        ActionMode.TYPE_FLOATING
-                    )
-                } else {
-                    view.startActionMode(BreezyPrimaryTextActionModeCallback(textActionModeCallback))
-                }
+            actionMode = TextToolbarHelperMethods.startActionMode(
+                view,
+                BreezyFloatingTextActionModeCallback(textActionModeCallback),
+                ActionMode.TYPE_FLOATING
+            )
         } else {
             actionMode?.invalidate()
         }
@@ -155,9 +145,7 @@ internal class BreezyTextToolbar(
  * compiled. It is expected that this class will soft-fail verification, but the classes which use
  * this method will pass.
  */
-@RequiresApi(Build.VERSION_CODES.M)
 internal object TextToolbarHelperMethods {
-    @RequiresApi(Build.VERSION_CODES.M)
     fun startActionMode(
         view: View,
         actionModeCallback: ActionMode.Callback,
@@ -166,7 +154,6 @@ internal object TextToolbarHelperMethods {
         return view.startActionMode(actionModeCallback, type)
     }
 
-    @RequiresApi(Build.VERSION_CODES.M)
     fun invalidateContentRect(actionMode: ActionMode) {
         actionMode.invalidateContentRect()
     }

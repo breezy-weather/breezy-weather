@@ -171,28 +171,59 @@ fun LocationSettingsScreen(
             sectionFooterItem(R.string.settings_location_section_general)
             largeSeparatorItem()
 
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                sectionHeaderItem(R.string.location_service_native)
-                clickablePreferenceItem(R.string.settings_location_access_switch_title) { id ->
+            sectionHeaderItem(R.string.location_service_native)
+            clickablePreferenceItem(R.string.settings_location_access_switch_title) { id ->
+                PreferenceViewWithCard(
+                    titleId = id,
+                    summaryId = if (accessCoarseLocationPermissionState.status == PermissionStatus.Granted) {
+                        R.string.settings_location_access_switch_summaryOn
+                    } else {
+                        R.string.settings_location_access_switch_summaryOff
+                    },
+                    isFirst = true,
+                    isLast = accessBackgroundLocationPermissionState == null &&
+                        Build.VERSION.SDK_INT < Build.VERSION_CODES.S,
+                    onClick = {
+                        if (accessCoarseLocationPermissionState.status != PermissionStatus.Granted) {
+                            if (
+                                ActivityCompat.shouldShowRequestPermissionRationale(
+                                    context,
+                                    Manifest.permission.ACCESS_COARSE_LOCATION
+                                )
+                            ) {
+                                accessCoarseLocationPermissionState.launchPermissionRequest()
+                            } else {
+                                context.openApplicationDetailsSettings()
+                            }
+                        } else {
+                            SnackbarHelper.showSnackbar(
+                                context.getString(R.string.settings_location_access_permission_already_granted)
+                            )
+                        }
+                    }
+                )
+            }
+            accessBackgroundLocationPermissionState?.let {
+                smallSeparatorItem()
+                clickablePreferenceItem(R.string.settings_location_access_background_title) { id ->
                     PreferenceViewWithCard(
                         titleId = id,
-                        summaryId = if (accessCoarseLocationPermissionState.status == PermissionStatus.Granted) {
-                            R.string.settings_location_access_switch_summaryOn
+                        summaryId = if (it.status == PermissionStatus.Granted) {
+                            R.string.settings_location_access_background_summaryOn
                         } else {
-                            R.string.settings_location_access_switch_summaryOff
+                            R.string.settings_location_access_background_summaryOff
                         },
-                        isFirst = true,
-                        isLast = accessBackgroundLocationPermissionState == null &&
-                            Build.VERSION.SDK_INT < Build.VERSION_CODES.S,
+                        enabled = accessCoarseLocationPermissionState.status == PermissionStatus.Granted,
+                        isLast = Build.VERSION.SDK_INT < Build.VERSION_CODES.S,
                         onClick = {
-                            if (accessCoarseLocationPermissionState.status != PermissionStatus.Granted) {
+                            if (it.status != PermissionStatus.Granted) {
                                 if (
                                     ActivityCompat.shouldShowRequestPermissionRationale(
                                         context,
-                                        Manifest.permission.ACCESS_COARSE_LOCATION
+                                        Manifest.permission.ACCESS_BACKGROUND_LOCATION
                                     )
                                 ) {
-                                    accessCoarseLocationPermissionState.launchPermissionRequest()
+                                    it.launchPermissionRequest()
                                 } else {
                                     context.openApplicationDetailsSettings()
                                 }
@@ -204,74 +235,41 @@ fun LocationSettingsScreen(
                         }
                     )
                 }
-                accessBackgroundLocationPermissionState?.let {
-                    smallSeparatorItem()
-                    clickablePreferenceItem(R.string.settings_location_access_background_title) { id ->
-                        PreferenceViewWithCard(
-                            titleId = id,
-                            summaryId = if (it.status == PermissionStatus.Granted) {
-                                R.string.settings_location_access_background_summaryOn
-                            } else {
-                                R.string.settings_location_access_background_summaryOff
-                            },
-                            enabled = accessCoarseLocationPermissionState.status == PermissionStatus.Granted,
-                            isLast = Build.VERSION.SDK_INT < Build.VERSION_CODES.S,
-                            onClick = {
-                                if (it.status != PermissionStatus.Granted) {
-                                    if (
-                                        ActivityCompat.shouldShowRequestPermissionRationale(
-                                            context,
-                                            Manifest.permission.ACCESS_BACKGROUND_LOCATION
-                                        )
-                                    ) {
-                                        it.launchPermissionRequest()
-                                    } else {
-                                        context.openApplicationDetailsSettings()
-                                    }
-                                } else {
-                                    SnackbarHelper.showSnackbar(
-                                        context.getString(R.string.settings_location_access_permission_already_granted)
-                                    )
-                                }
-                            }
-                        )
-                    }
-                }
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-                    smallSeparatorItem()
-                    clickablePreferenceItem(R.string.settings_location_access_precise_title) { id ->
-                        PreferenceViewWithCard(
-                            titleId = id,
-                            summaryId = if (accessFineLocationPermissionState.status == PermissionStatus.Granted) {
-                                R.string.settings_location_access_precise_summaryOn
-                            } else {
-                                R.string.settings_location_access_precise_summaryOff
-                            },
-                            enabled = accessCoarseLocationPermissionState.status == PermissionStatus.Granted,
-                            isLast = true,
-                            onClick = {
-                                if (accessFineLocationPermissionState.status != PermissionStatus.Granted) {
-                                    if (
-                                        ActivityCompat.shouldShowRequestPermissionRationale(
-                                            context,
-                                            Manifest.permission.ACCESS_FINE_LOCATION
-                                        )
-                                    ) {
-                                        accessFineLocationPermissionState.launchPermissionRequest()
-                                    } else {
-                                        context.openApplicationDetailsSettings()
-                                    }
-                                } else {
-                                    SnackbarHelper.showSnackbar(
-                                        context.getString(R.string.settings_location_access_permission_already_granted)
-                                    )
-                                }
-                            }
-                        )
-                    }
-                }
-                sectionFooterItem(R.string.location_service_native)
             }
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                smallSeparatorItem()
+                clickablePreferenceItem(R.string.settings_location_access_precise_title) { id ->
+                    PreferenceViewWithCard(
+                        titleId = id,
+                        summaryId = if (accessFineLocationPermissionState.status == PermissionStatus.Granted) {
+                            R.string.settings_location_access_precise_summaryOn
+                        } else {
+                            R.string.settings_location_access_precise_summaryOff
+                        },
+                        enabled = accessCoarseLocationPermissionState.status == PermissionStatus.Granted,
+                        isLast = true,
+                        onClick = {
+                            if (accessFineLocationPermissionState.status != PermissionStatus.Granted) {
+                                if (
+                                    ActivityCompat.shouldShowRequestPermissionRationale(
+                                        context,
+                                        Manifest.permission.ACCESS_FINE_LOCATION
+                                    )
+                                ) {
+                                    accessFineLocationPermissionState.launchPermissionRequest()
+                                } else {
+                                    context.openApplicationDetailsSettings()
+                                }
+                            } else {
+                                SnackbarHelper.showSnackbar(
+                                    context.getString(R.string.settings_location_access_permission_already_granted)
+                                )
+                            }
+                        }
+                    )
+                }
+            }
+            sectionFooterItem(R.string.location_service_native)
 
             // TODO: Duplicate code from weather sources
             locationSources.filterIsInstance<ConfigurableSource>().forEach { preferenceSource ->

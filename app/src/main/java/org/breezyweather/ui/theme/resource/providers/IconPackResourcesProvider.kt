@@ -24,9 +24,7 @@ import android.content.pm.PackageManager
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.Icon
 import android.net.Uri
-import android.os.Build
 import androidx.annotation.IntRange
-import androidx.annotation.RequiresApi
 import androidx.annotation.Size
 import androidx.core.content.res.ResourcesCompat
 import breezyweather.domain.weather.reference.WeatherCode
@@ -338,12 +336,11 @@ open class IconPackResourcesProvider(
             if (mConfig.hasMinimalIcons) {
                 return getDrawable(getMiniXmlIconName(code, dayTime))!!
             }
-        } catch (ignore: Exception) {
+        } catch (_: Exception) {
         }
         return mDefaultProvider.getMinimalXmlIcon(code, dayTime)
     }
 
-    @RequiresApi(Build.VERSION_CODES.M)
     override fun getMinimalIcon(code: WeatherCode?, dayTime: Boolean): Icon {
         try {
             if (mConfig.hasMinimalIcons) {

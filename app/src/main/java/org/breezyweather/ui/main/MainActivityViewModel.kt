@@ -348,7 +348,7 @@ class MainActivityViewModel @Inject constructor(
             }
         }
 
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M || !checkPermissions) {
+        if (!checkPermissions) {
             updating = true
             SettingsManager.getInstance(getApplication())
                 .weatherManualUpdateLastTimestamp = Date().time

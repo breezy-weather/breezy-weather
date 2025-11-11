@@ -17,14 +17,11 @@
 package org.breezyweather.common.actionmodecallback
 
 import android.graphics.Rect
-import android.os.Build
 import android.view.ActionMode
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import androidx.annotation.RequiresApi
 
-@RequiresApi(Build.VERSION_CODES.M)
 internal class BreezyFloatingTextActionModeCallback(
     private val callback: BreezyTextActionModeCallback,
 ) : ActionMode.Callback2() {

@@ -128,10 +128,10 @@ class WeatherUpdateJob @AssistedInject constructor(
                 }
             } finally {
                 notifier.cancelProgressNotification()
-                // if (BuildConfig.FLAVOR != "freenet" && SettingsManager.getInstance(context).isAppUpdateCheckEnabled) {
-                if ((BuildConfig.FLAVOR != "freenet" && SettingsManager.getInstance(context).isAppUpdateCheckEnabled) ||
+                /*if ((BuildConfig.FLAVOR != "freenet" && SettingsManager.getInstance(context).isAppUpdateCheckEnabled) ||
                     Build.VERSION.SDK_INT < Build.VERSION_CODES.M
-                ) {
+                ) {*/
+                if (BuildConfig.FLAVOR != "freenet" && SettingsManager.getInstance(context).isAppUpdateCheckEnabled) {
                     try {
                         updateChecker.checkForUpdate(context, forceCheck = false)
                     } catch (e: Exception) {

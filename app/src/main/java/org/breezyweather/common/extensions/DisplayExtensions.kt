@@ -222,10 +222,6 @@ fun Window.setSystemBarStyle(
         val colorSystemBarDark = Color.argb(0x80, 0x1b, 0x1b, 0x1b)
         val colorSystemBarLight = Color.argb(0xe6, 0xFF, 0xFF, 0xFF)
 
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
-            // Always apply a dark shader as a light or transparent status bar is not supported
-            newLightStatus = false
-        }
         statusBarColor = Color.TRANSPARENT
 
         navigationBarColor = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && lightStatus) {

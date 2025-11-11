@@ -19,7 +19,6 @@ package org.breezyweather.background.forecast
 import android.app.Notification
 import android.content.Context
 import android.graphics.drawable.Icon
-import android.os.Build
 import androidx.core.app.NotificationCompat
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Daily
@@ -130,9 +129,7 @@ class ForecastNotificationNotifier(
             )
         }.build()
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M &&
-            weather.current?.weatherCode != null
-        ) {
+        if (weather.current?.weatherCode != null) {
             try {
                 notification.javaClass
                     .getMethod("setSmallIcon", Icon::class.java)
@@ -144,7 +141,7 @@ class ForecastNotificationNotifier(
                             daytime
                         )
                     )
-            } catch (ignore: Exception) {
+            } catch (_: Exception) {
                 // do nothing.
             }
         }
