@@ -85,7 +85,7 @@
     <string name="weather_message_data_refresh_failed">La actualización de los datos ha fallado</string>
     <string name="location_dialog_failed_to_locate_action_select_source">Utilizar otro servicio de ubicación</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Añadir ubicación manualmente y eliminar “%s”</string>
-    <string name="dialog_permissions_location_background_title">Acceso a la ubicación en segundo plano</string>
+    <string name="dialog_permissions_location_background_title">Acceso a ubicación en segundo plano</string>
     <string name="dialog_permissions_location_background_content">Para permitir que la actualización del tiempo en segundo plano se realice para la ubicación actual más reciente conocida por Android, debe establecer el permiso de ubicación en “Permitir todo el tiempo”. Si no lo haces, el tiempo se actualizará en función de las últimas coordenadas recuperadas en primer plano, que pueden estar desfasadas.</string>
     <string name="widget_label_view_style">Estilo de vista</string>
     <string name="widget_label_show_widget_card">Fondo de color</string>
@@ -204,7 +204,7 @@
     <string name="widget_subtitle_data_custom">Personalizado</string>
     <!-- Weather kind -->
     <string name="common_weather_text_partly_cloudy">Parcialmente nuboso</string>
-    <string name="common_weather_text_cloudy">Nuboso</string>
+    <string name="common_weather_text_cloudy">Cubierto</string>
     <string name="common_weather_text_rain">Lluvia</string>
     <string name="common_weather_text_snow">Nieve</string>
     <string name="weather_kind_hail">Granizo</string>
@@ -316,7 +316,7 @@
     <string name="widget_style_pixel">Píxel</string>
     <string name="widget_style_vertical">Vertical</string>
     <string name="dialog_permissions_notification_content">Toca para activar las notificaciones sobre alertas meteorológicas o decide luego en la Configuración.</string>
-    <string name="settings_location_access_background_title">Acceso a la ubicación en segundo plano</string>
+    <string name="settings_location_access_background_title">Acceder a ubicación en segundo plano</string>
     <string name="air_quality_no2_full">Dióxido de nitrógeno (%s)</string>
     <string name="action_continue">Continuar</string>
     <string name="action_close">Cerrar</string>
@@ -341,7 +341,7 @@
     <string name="pollen_betula">Abedul</string>
     <string name="pollen_artemisia">Artemisia</string>
     <string name="pollen_olea">Olivo</string>
-    <string name="pollen_level_0">Ninguno</string>
+    <string name="pollen_level_0">Ausente</string>
     <string name="pollen_level_1">Muy bajo</string>
     <string name="pollen_level_2">Bajo</string>
     <string name="pollen_level_3">Moderado</string>
@@ -395,7 +395,7 @@
     <string name="settings_location_access_precise_summaryOff">Habilita “Usar ubicación precisa” si tienes problemas para obtener la ubicación.</string>
     <string name="settings_modules_live_wallpaper_error">No se ha podido iniciar el selector de fondos de pantalla. Aún puedes activar el fondo de pantalla de %s seleccionando “Fondo en vivo” en el selector de fondos de la pantalla de inicio.</string>
     <string name="settings_modules_week_icon_mode_title">Icono mostrado en vistas semanales</string>
-    <string name="settings_notifications_summary">Alertas meteorológicas, precipitaciones, notificaciones del pronóstico para la ubicación principal</string>
+    <string name="settings_notifications_summary">Alertas meteorológicas, precipitaciones o pronóstico para la ubicación principal</string>
     <string name="settings_notifications_forecast_time_tomorrow_title">Hora para notificar pronóstico para mañana</string>
     <string name="settings_modules">Complementos y fondos de pantalla animados</string>
     <string name="settings_modules_section_widgets_in_use">Widgets en uso</string>
@@ -695,9 +695,9 @@
     <string name="temperature_normals_deviation_explanation_minimum">Desviación del promedio de temperatura mínima en %s para está ubicación</string>
     <string name="precipitation_total_day">Precipitaciones en el día</string>
     <string name="precipitation_total_night">Precipitaciones por la noche</string>
-    <string name="precipitation_rain_total_day">Lluvia en el día</string>
+    <string name="precipitation_rain_total_day">Lluvia por el día</string>
     <string name="precipitation_rain_total_night">Lluvia por la noche</string>
-    <string name="precipitation_snow_total_day">Nieve en el día</string>
+    <string name="precipitation_snow_total_day">Nieve por el día</string>
     <string name="precipitation_snow_total_night">Nieve por la noche</string>
     <string name="wind_speed_about">Sobre el viento y las rachas</string>
     <string name="ephemeris_about_dusk">El anochecer es la etapa más oscura del crepúsculo antes de que desaparezca la última luz visible.</string>
@@ -770,12 +770,12 @@
     <string name="visibility_about_description">Indica hasta qué distancia se pueden ver con claridad objetos como edificios y colinas. La visibilidad puede verse afectada por precipitaciones, niebla, polvo, humo o neblina.</string>
     <string name="visibility_from_to_number">%1$s a %2$s</string>
     <string name="visibility_from_to_description">%1$s a %2$s</string>
-    <string name="visibility_very_poor">Muy pobre</string>
-    <string name="visibility_poor">Pobre</string>
+    <string name="visibility_very_poor">Muy baja</string>
+    <string name="visibility_poor">Baja</string>
     <string name="visibility_moderate">Moderada</string>
     <string name="visibility_good">Buena</string>
-    <string name="visibility_clear">Clara</string>
-    <string name="visibility_perfectly_clear">Muy clara</string>
+    <string name="visibility_clear">Excelente</string>
+    <string name="visibility_perfectly_clear">Excepcional</string>
     <string name="cloud_cover_about">Sobre la nubosidad</string>
     <string name="cloud_cover_about_description">La nubosidad se refiere al porcentaje del cielo promedio que está cubierto por nubes. La nubosidad está directamente relacionada con la duración de la insolación terrestre.</string>
     <string name="cloud_cover_from_to_number">%1$s a %2$s</string>
@@ -807,7 +807,7 @@
     <string name="about_update_check_eol">Esta versión de Android ya no tiene soporte</string>
     <string name="content_provider_permission_label">Leer datos de Breezy Weather</string>
     <string name="content_provider_permission_description">obtener información meteorológica de Breezy Weather, incluidas las coordenadas de tus ubicaciones, como la ubicación actual si la has añadido</string>
-    <string name="common_weather_text_mostly_cloudy">Mayormente nuboso</string>
+    <string name="common_weather_text_mostly_cloudy">Muy nuboso</string>
     <string name="settings_appearance_dark_mode_custom">Modo oscuro de %1$s a %2$s</string>
     <string name="action_pull_down_to_refresh">Desliza abajo para actualizar</string>
     <string name="message_source_non_free_network_title">Esta fuente requiere la versión Standard de la aplicación</string>
