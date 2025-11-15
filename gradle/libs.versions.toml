@@ -47,7 +47,7 @@ sqlite = "3.49.0"
 sqlite-android = "2.6.1"
 suncalc = "2.14"
 swiperefreshlayout = "1.1.0"
-vico = "2.3.1"
+vico = "2.3.4"
 work-runtime = "2.11.0"
 
 [libraries]
