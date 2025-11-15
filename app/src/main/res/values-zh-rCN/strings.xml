@@ -504,7 +504,7 @@
     <string name="pressure_short">气压</string>
     <string name="settings_weather_sources_default_source">新位置的默认源</string>
     <string name="settings_weather_source_unavailable">%s（不可用）</string>
-    <string name="settings_weather_source_freenet_disclaimer">您正在使用免费网络版应用。如需使用非免费网络服务，请切换至标准版。</string>
+    <string name="settings_weather_source_freenet_disclaimer">您正在使用自由网络版应用。如需使用非自由网络服务，请切换至标准版。</string>
     <string name="location_delete_location_dialog_title">是否要删除此位置？</string>
     <string name="location_delete_location_dialog_message">您即将从已储存的位置列表中删除“%s”。</string>
     <string name="location_delete_location_dialog_message_no_name">您即将从已储存的位置列表中删除这个位置。</string>
