@@ -527,7 +527,7 @@
     <string name="pollen_cupressaceae_taxaceae">柏树</string>
     <string name="pollen_urticaceae">荨麻/墙草</string>
     <string name="widget_custom_subtitle_keyword_xpis_description">花粉指数摘要：今天、明天、...、4天后</string>
-    <string name="about_open_link_message">打开 %s？</string>
+    <string name="about_open_link_message">要打开 %s 吗？</string>
     <string name="sunshine">日照</string>
     <string name="message_source_not_installed_error_content">更改此位置的天气数据源，或删除并重新添加此位置。</string>
     <string name="settings_per_location">位置选项</string>
