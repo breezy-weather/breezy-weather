@@ -99,7 +99,7 @@
     <string name="precipitation_probability">Probabilidade de precipitacións</string>
     <string name="precipitation">Precipitacións</string>
     <string name="precipitation_intensity_light">Feble</string>
-    <string name="precipitation_between_time">Precipitacións entre as %1$s e as %2$s</string>
+    <string name="precipitation_between_time">Precipitacións de %1$s a %2$s</string>
     <string name="wind_direction_N_short">N</string>
     <string name="wind_direction_NE_short">NE</string>
     <string name="wind_direction_E_short">E</string>
@@ -171,7 +171,7 @@
     <string name="ephemeris_moon_phase_new_moon">Lúa nova</string>
     <string name="ephemeris_moon_phase_waxing_crescent">Crecente</string>
     <string name="ephemeris_moon_phase_first_quarter">Cuarto crecente</string>
-    <string name="ephemeris_moon_phase_waxing_gibbous">Crecente</string>
+    <string name="ephemeris_moon_phase_waxing_gibbous">Xibosa crecente</string>
     <string name="ephemeris_moon_phase_full_moon">Lúa chea</string>
     <string name="current_weather">Clima actual</string>
     <string name="temperature_degree_day">Grao día</string>
@@ -205,7 +205,7 @@
     <string name="wind_direction_SW">Suroeste</string>
     <string name="wind_direction_W">Oeste</string>
     <string name="wind_direction_NW">Noroeste</string>
-    <string name="ephemeris_moonrise_at">Anoitecer ás %s</string>
+    <string name="ephemeris_moonrise_at">Saída da lúa ás %s</string>
     <string name="ephemeris_moonset_at">Posta da lúa ás %s</string>
     <string name="cloud_cover_short">Nubeiro</string>
     <string name="weather_message_invalid_location">Ubicación non válida, bórraa e volve engadila</string>
@@ -286,4 +286,22 @@
     <string name="common_weather_text_rain_snow_mixed_heavy">Chuzos de punta e neve</string>
     <string name="common_weather_text_fog">Néboa</string>
     <string name="common_weather_text_dust">Poeira</string>
+    <string name="ephemeris_moon">Lúa</string>
+    <string name="widget_custom_subtitle_keyword_xms_description">Posta da lúa hoxe, mañá, ..., 4 días despois</string>
+    <string name="widget_custom_subtitle_keyword_xmp_description">Fase luar de hoxe, mañá, ..., 4 días despois</string>
+    <string name="ephemeris_sun">Sol</string>
+    <string name="ephemeris_about_rise">A hora de saída e cando o sol ou a lúa aparecen por completo sobre o horizonte.</string>
+    <string name="ephemeris_about_set">A hora de posta é cando o sol ou a lúa desaparece por completo baixo o horizonte.</string>
+    <string name="ephemeris_about_dawn">O amencer é cando aparece a primeira luz do día antes de que saia o sol.</string>
+    <string name="temperature_feels_like_details">Sensación da temperatura como resultado da humidade, vento e/ou o sol.</string>
+    <string name="conditions">Condicións</string>
+    <string name="air_quality_short">Cal. do aire</string>
+    <string name="air_quality_index_short">ICA</string>
+    <string name="air_quality_index_about">Sobre o índice da calidade do aire</string>
+    <string name="precipitation_total_day">Precipitacións diúrnas</string>
+    <string name="precipitation_total_night">Precipitacións nocturnas</string>
+    <string name="precipitation_rain_total_day">Chuvia diúrna</string>
+    <string name="precipitation_rain_total_night">Chuvia nocturna</string>
+    <string name="precipitation_snow_total_day">Neve diúrna</string>
+    <string name="precipitation_snow_total_night">Neve nocturna</string>
 </resources>
