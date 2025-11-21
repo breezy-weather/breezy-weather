@@ -24,16 +24,16 @@ Both flavors are signed with the same signature, so you can easily try/switch be
 - **[GitHub releases](https://github.com/breezy-weather/breezy-weather/releases)** is where releases built by GitHub are published under APK format. Any Android device can install APK files without needing any particular app. If you have a GitHub account, you can subscribe to be notified of updates, however it’s more convenient to use a store app to track updates. Due to technical limitations, this is also the only source to provide architecture-specific APKs, although the difference between them and the universal APK is of a negligible 2 MB, so it should not be a criteria of choice.
 - **[Breezy Weather’s F-Droid repositories](https://github.com/breezy-weather/fdroid-repo/blob/main/README.md)** are maintained by Breezy Weather developers and get updates from a F-Droid client that doesn’t support receiving updates from GitHub.
 - **[Izzy F-Droid repository](https://apt.izzysoft.de/fdroid/index/info)** offers the standard flavor which is our recommended choice if you would like someone to independently review the app before it gets published. Updates are fast (less than 24 hours).
-- **[F-Droid default repository](https://f-droid.org/packages/org.breezyweather/)** offers the flavor with only free-network sources. Updates are slower as it requires someone on F-Droid team to manually add new versions, as autoupdates cannot be enabled for technical reasons. If you decide to use this source and you want to report an issue, you will be asked to update to the latest version before making the report.
+- **[F-Droid default repository](https://f-droid.org/packages/org.breezyweather/)** offers the flavor with only free-network sources. Updates require someone on F-Droid team to manually add new versions, as autoupdates cannot be enabled for technical reasons. Since November 2025, after this manual action, updates are made available faster than it used to be in the past. If you decide to use this source and you want to report an issue, you will be asked to update to the latest version before making the report if it happens to be lagging behind.
 
-| Differences                | GitHub releases | [F-Droid repo] Breezy Weather | [F-Droid repo] Izzy    | [F-Droid repo] Default    |
-|----------------------------|-----------------|-------------------------------|------------------------|---------------------------|
-| Available flavors          | All             | All                           | Standard               | Free network sources-only |
-| Pre-releases               | Optional        | Optional                      | ❌                      | ❌                         |
-| Delay for updates          | Immediate       | Immediate                     | Every day at 18:00 UTC | Very slow (manual)        |
-| APK matches source code    | ✅               | ✅                             | ✅                      | ✅                         |
-| Independently reviewed     | ❌               | ❌                             | ✅                      | ✅                         |
-| Architecture-specific APKs | ✅               | ❌                             | ❌                      | ❌                         |
+| Differences                | GitHub releases | [F-Droid repo] Breezy Weather | [F-Droid repo] Izzy    | [F-Droid repo] Default     |
+|----------------------------|-----------------|-------------------------------|------------------------|----------------------------|
+| Available flavors          | All             | All                           | Standard               | Free network sources-only  |
+| Pre-releases               | Optional        | Optional                      | ❌                      | ❌                          |
+| Delay for updates          | Immediate       | Immediate                     | Every day at 18:00 UTC | Depends on a manual action |
+| APK matches source code    | ✅               | ✅                             | ✅                      | ✅                          |
+| Independently reviewed     | ❌               | ❌                             | ✅                      | ✅                          |
+| Architecture-specific APKs | ✅               | ❌                             | ❌                      | ❌                          |
 
 
 ### Other not supported well-known sources
