@@ -24,10 +24,7 @@ data class PirateWeatherHourly(
     val icon: String?,
     val summary: String?,
 
-    val precipType: String?,
-    val precipIntensity: Double?,
     val precipProbability: Double?,
-    val precipIntensityError: Double?,
     val precipAccumulation: Double?,
     val liquidAccumulation: Double?,
     val snowAccumulation: Double?,

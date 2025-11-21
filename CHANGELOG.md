@@ -4,13 +4,14 @@
 - [Changelog for v4.x](docs/CHANGELOG_4.x.md)
 
 
-# Version 6.1.x (not yet released)
-
-The following features are already available in the current branch, but will be removed before each v6.0.x release and restored after, during the testing phase.
+# Version 6.1.0 (not yet released)
 
 **New features**
 - Content provider: allows (with your permission) other apps to query your weather data. [Read the announcement](https://github.com/breezy-weather/breezy-weather/discussions/2089)
 - New broadcast: you can use `org.breezyweather.ACTION_UPDATE_NOTIFIER` (or `org.breezyweather.debug.ACTION_UPDATE_NOTIFIER` with the debug build) to be notified of updated locations (most common use case is coupled with the content provider)
+
+**Weather sources**
+- Pirate Weather - Fix refresh error
 
 
 # Version 6.0.12 (2025-11-11)

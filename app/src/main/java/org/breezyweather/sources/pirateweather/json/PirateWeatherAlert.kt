@@ -25,7 +25,6 @@ data class PirateWeatherAlert(
     @SerialName("time") val start: Long,
     @SerialName("expires") val end: Long,
     val description: String?,
-    val regions: List<String>?,
     val severity: String?,
     val uri: String?,
 )

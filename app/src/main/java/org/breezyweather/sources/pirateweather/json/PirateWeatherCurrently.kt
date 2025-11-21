@@ -24,11 +24,6 @@ data class PirateWeatherCurrently(
     val icon: String?,
     val summary: String?,
 
-    val precipType: String?,
-    val precipIntensity: Double?,
-    val precipProbability: Double?,
-    val precipIntensityError: Double?,
-
     val temperature: Double?,
     val apparentTemperature: Double?,
 
