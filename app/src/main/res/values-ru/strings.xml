@@ -413,7 +413,7 @@
     <string name="message_parsing_error_content">Убедитесь, что вы обновили приложение до последней версии. Сервер может быть временно недоступен, в этом случае повторите попытку позже. Если проблема не устранена, создайте дамп журнала сбоев из настроек отладки и сообщите о проблеме на GitHub.</string>
     <string name="notification_update_error">%d обновление(ий) не удалось</string>
     <string name="message_source_not_installed_error_title">Источник больше не доступен</string>
-    <string name="temperature_degree_day_cooling">Градусо-день охлодительного сезона</string>
+    <string name="temperature_degree_day_cooling">Градусо-день охладительного сезона</string>
     <string name="setting_weather_source_accu_hours">Часы</string>
     <string name="temperature_degree_day_heating">Градусо-день отопительного периода</string>
     <string name="settings_weather_source_portal">Канал</string>
@@ -638,7 +638,7 @@
     <string name="action_open_in_other_app_description">Открыть это местоположение в другом приложении</string>
     <string name="ephemeris_about">О времени восхода и заката</string>
     <string name="ephemeris_about_rise">Время восхода — это момент, когда солнце или луна полностью появляются над горизонтом.</string>
-    <string name="ephemeris_about_set">Установленное время наступает, когда солнце или луна полностью скрываются за горизонтом.</string>
+    <string name="ephemeris_about_set">Время заката наступает, когда солнце или луна полностью скрываются за горизонтом.</string>
     <string name="daily_summary">Ежедневная сводка</string>
     <string name="chart_no_daily_data">Данные на этот день отсутствуют.</string>
     <string name="chart_no_hourly_data">Почасовые данные отсутствуют.</string>
@@ -684,7 +684,7 @@
     <string name="air_quality_co_sources">Обычно возникает в результате неполного сгорания углеродного топлива, например, в автомобильных двигателях и электростанциях.</string>
     <string name="pollen_primary">Основаная пыльца</string>
     <string name="pollen_details">Подробности о пыльце</string>
-    <string name="nighttime_details">Начинается вечером и продолжается до рассвета следующего дня</string>
+    <string name="nighttime_details">Начинается с заката и продолжается до рассвета следующего дня</string>
     <string name="humidity_about">Об относительной влажности</string>
     <string name="humidity_about_description">Относительная влажность, более известная просто как влажность, — это процентное содержание водяного пара в воздухе по сравнению с максимальным количеством, которое воздух может удерживать при данной температуре.</string>
     <string name="dew_point_about">О точке росы</string>
@@ -714,8 +714,8 @@
     <string name="label_description">Описание</string>
     <string name="label_expanded">Расширенный</string>
     <string name="label_collapsed">Свёрнутый</string>
-    <string name="ephemeris_about_dawn">Рассвет — это когда перед восходом солнца появляется первый видимый свет дня.</string>
-    <string name="ephemeris_about_dusk">Сумерки — это самая тёмная стадия между светом и ночью, перед тем как исчезает последний видимый свет.</string>
+    <string name="ephemeris_about_dawn">Рассвет — это время, когда перед восходом солнца появляется первый видимый свет дня.</string>
+    <string name="ephemeris_about_dusk">Сумерки – это самая темная стадия заката, перед тем как исчезнет последний видимый свет.</string>
     <string name="wind_origin">От %s</string>
     <string name="ephemeris_dawn_at">Закат в %s</string>
     <string name="ephemeris_dusk_at">Сумерки в %s</string>
