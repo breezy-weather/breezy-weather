@@ -793,4 +793,5 @@
     <string name="settings_weather_source_non_freenet">%s (nesvobodná síťová služba)</string>
     <string name="settings_appearance_dark_mode_custom">Tmavý režim od %1$s do %2$s</string>
     <string name="action_pull_down_to_refresh">Tahem dolů obnovte</string>
+    <string name="pressure_standard">Standardní</string>
 </resources>
