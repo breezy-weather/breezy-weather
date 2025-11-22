@@ -156,8 +156,8 @@ class HourlyPressureAdapter(
                 i += 2
             }
         }
-        mHighestPressure = PressureUnit.NORMAL.toFloat()
-        mLowestPressure = PressureUnit.NORMAL.toFloat()
+        mHighestPressure = PressureUnit.STANDARD.toFloat()
+        mLowestPressure = PressureUnit.STANDARD.toFloat()
         weather.nextHourlyForecast
             .forEach { hourly ->
                 hourly.pressure?.value?.let {
@@ -185,7 +185,7 @@ class HourlyPressureAdapter(
     override fun isValid(location: Location): Boolean {
         return mHighestPressure != null &&
             mLowestPressure != null &&
-            (mHighestPressure != PressureUnit.NORMAL.toFloat() || mLowestPressure != PressureUnit.NORMAL.toFloat())
+            (mHighestPressure != PressureUnit.STANDARD.toFloat() || mLowestPressure != PressureUnit.STANDARD.toFloat())
     }
 
     override fun getDisplayName(context: Context) = context.getString(R.string.tag_pressure)
@@ -194,9 +194,9 @@ class HourlyPressureAdapter(
         val keyLineList = mutableListOf<TrendRecyclerView.KeyLine>()
         keyLineList.add(
             TrendRecyclerView.KeyLine(
-                PressureUnit.NORMAL.toFloat(),
-                PressureUnit.NORMAL.pascals.formatValue(activity, UnitWidth.NARROW),
-                activity.getString(R.string.temperature_normal_short),
+                PressureUnit.STANDARD.toFloat(),
+                PressureUnit.STANDARD.pascals.formatValue(activity, UnitWidth.NARROW),
+                activity.getString(R.string.pressure_standard),
                 TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
             )
         )

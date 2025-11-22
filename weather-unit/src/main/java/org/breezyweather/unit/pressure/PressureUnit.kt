@@ -218,7 +218,7 @@ enum class PressureUnit(
 
     companion object {
 
-        const val NORMAL = 101325
+        const val STANDARD = 101325
 
         /**
          * Copyright © 1991-Present Unicode, Inc.

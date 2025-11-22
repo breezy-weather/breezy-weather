@@ -49,6 +49,7 @@
     <string name="pressure_rising">En hausse</string>
     <string name="pressure_steady">Stable</string>
     <string name="pressure_falling">En baisse</string>
+    <string name="pressure_standard">Normale</string>
     <string name="pressure_about">À propos de la pression</string>
     <string name="pressure_about_description1">La pression atmosphérique est la pression exercée par l’atmosphère terrestre. Cette appli utilise la pression moyenne au niveau de la mer pour faciliter la comparaison de pression d’emplacements situés à des altitudes différentes.</string>
     <string name="pressure_about_description2">Les variations importantes et rapides de la pression sont utilisées pour prévoir les changements météorologiques. Par exemple, une baisse de pression peut signifier que de la pluie ou de la neige se prépare, et une hausse de pression peut signifier que le temps va s’améliorer. Une pression atmosphérique anormale peut provoquer, entre autres, des maux de tête, des douleurs articulaires et de la fatigue.</string>

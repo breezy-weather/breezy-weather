@@ -233,13 +233,13 @@ private fun PressureChart(
     val chartStep = pressureUnit.chartStep
     val maxY = remember(mappedValues) {
         max(
-            PressureUnit.NORMAL.pascals.toDouble(pressureUnit) + chartStep.times(1.6),
+            PressureUnit.STANDARD.pascals.toDouble(pressureUnit) + chartStep.times(1.6),
             mappedValues.values.maxOf { it.toDouble(pressureUnit) }
         ).roundUpToNearestMultiplier(chartStep)
     }
     val minY = remember(mappedValues) {
         min(
-            PressureUnit.NORMAL.pascals.toDouble(pressureUnit) - chartStep.times(1.6),
+            PressureUnit.STANDARD.pascals.toDouble(pressureUnit) - chartStep.times(1.6),
             mappedValues.values.minOf { it.toDouble(pressureUnit) }
         ).roundDownToNearestMultiplier(chartStep)
     }
@@ -291,8 +291,8 @@ private fun PressureChart(
             )
         },
         trendHorizontalLines = persistentMapOf(
-            PressureUnit.NORMAL.pascals.toDouble(pressureUnit) to
-                context.getString(R.string.temperature_normal_short)
+            PressureUnit.STANDARD.pascals.toDouble(pressureUnit) to
+                context.getString(R.string.pressure_standard)
         ),
         minY = minY,
         topAxisValueFormatter = { _, value, _ ->
