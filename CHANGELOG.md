@@ -11,6 +11,7 @@
 - New broadcast: you can use `org.breezyweather.ACTION_UPDATE_NOTIFIER` (or `org.breezyweather.debug.ACTION_UPDATE_NOTIFIER` with the debug build) to be notified of updated locations (most common use case is coupled with the content provider)
 
 **Weather sources**
+- Icelandic Met Office - Fix refresh error
 - Pirate Weather - Fix refresh error
 
 
