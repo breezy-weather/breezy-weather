@@ -777,4 +777,5 @@
     <string name="common_weather_text_warm">חמים</string>
     <string name="pollen_primary">אבקה בוטנית</string>
     <string name="pollen_details">אודות אבקה בוטנית</string>
+    <string name="pressure_standard">רגיל</string>
 </resources>
