@@ -35,7 +35,7 @@ import org.breezyweather.common.options.BaseEnum
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.unit.formatting.format
 
-/**
+/*
  * This file is part of Breezy Weather.
  *
  * Breezy Weather is free software: you can redistribute it and/or modify it

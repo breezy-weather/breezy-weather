@@ -5,7 +5,7 @@ import org.breezyweather.sources.nlsc.xml.NlscLocationCodesResult
 import retrofit2.http.GET
 import retrofit2.http.Path
 
-/**
+/*
  * This file is part of Breezy Weather.
  *
  * Breezy Weather is free software: you can redistribute it and/or modify it

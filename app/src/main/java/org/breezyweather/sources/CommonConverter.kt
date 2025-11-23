@@ -1,4 +1,4 @@
-/**
+/*
  * This file is part of Breezy Weather.
  *
  * Breezy Weather is free software: you can redistribute it and/or modify it
@@ -81,7 +81,7 @@ import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.hours
 import kotlin.time.Duration.Companion.nanoseconds
 
-/**
+/*
  * /!\ WARNING /!\
  * It took me a lot of time to write these functions.
  * I would appreciate you don’t steal my work into a proprietary software.
@@ -95,7 +95,7 @@ import kotlin.time.Duration.Companion.nanoseconds
  * always stay free and open source if you add any modification to it.
  */
 
-/**
+/*
  * MERGE DATABASE DATA WITH REFRESHED WEATHER DATA
  * Useful to keep forecast history
  */
@@ -167,7 +167,7 @@ internal fun completeNewWeatherWithPreviousData(
     }
 }
 
-/**
+/*
  * MERGE MAIN WEATHER DATA WITH SECONDARY WEATHER DATA
  */
 
@@ -194,7 +194,7 @@ internal fun convertDailyWrapperToDailyList(
     }
 }
 
-/**
+/*
  * COMPUTE MISSING HOURLY DATA
  */
 
@@ -303,7 +303,7 @@ internal fun getWindDegree(
     else -> null
 }
 
-/**
+/*
  * DAILY FROM HOURLY
  */
 
@@ -804,7 +804,7 @@ private fun getHalfDayWeatherCodeFromHourlyList(
                 if (counts[3] > 1) {
                     return WeatherCode.HAIL
                 }
-                if (counts[0] > 1 && counts[2] > 1 || counts[1] > 1) {
+                if ((counts[0] > 1 && counts[2] > 1) || counts[1] > 1) {
                     return WeatherCode.SLEET
                 }
                 if (counts[2] > 1) {
@@ -1201,7 +1201,7 @@ fun getDailyVisibility(
     )
 }
 
-/**
+/*
  * HOURLY FROM DAILY
  */
 
@@ -1309,7 +1309,7 @@ private fun getCurrentUVFromDayMax(
     return UV(index = currentUV)
 }
 
-/**
+/*
  * CURRENT FROM DAILY AND HOURLY LIST
  */
 

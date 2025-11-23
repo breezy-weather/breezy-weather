@@ -24,7 +24,7 @@ import com.google.maps.android.data.MultiGeometry
 class GeoJsonGeometryCollection(
     geometries: List<Geometry<*>>,
 ) : MultiGeometry(geometries) {
-    /**
+    /*
      * Creates a new GeoJsonGeometryCollection object
      *
      * @param geometries array of Geometry objects to add to the GeoJsonGeometryCollection

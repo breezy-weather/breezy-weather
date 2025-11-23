@@ -1,4 +1,4 @@
-/**
+/*
  * This file is part of Breezy Weather.
  *
  * Breezy Weather is free software: you can redistribute it and/or modify it
@@ -383,7 +383,7 @@ class GeoSphereAtService @Inject constructor(
             Minutely(
                 date = date,
                 minuteInterval = 15,
-                /**
+                /*
                  * If I understand correctly, the unit is kg/m², which is approximately the same as mm
                  * However, since it's 15 min by 15 min, and we want mm/h unit, we just have to multiply
                  * by 4, right?

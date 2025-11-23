@@ -1,4 +1,4 @@
-/**
+/*
  * This file is part of Breezy Weather.
  *
  * Breezy Weather is free software: you can redistribute it and/or modify it
@@ -48,7 +48,7 @@ class BootReceiver : BroadcastReceiver() {
         if (action.isNullOrEmpty()) return
         when (action) {
             Intent.ACTION_BOOT_COMPLETED -> {
-                /**
+                /*
                  * We don’t use the return value, but querying the work manager might help bringing back
                  * scheduled workers after the app has been killed/shutdown on some devices
                  */

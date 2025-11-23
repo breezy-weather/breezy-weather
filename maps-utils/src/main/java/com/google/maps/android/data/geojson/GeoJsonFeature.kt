@@ -31,7 +31,7 @@ class GeoJsonFeature(
 ) : Feature(geometry, id, properties) {
     private val mBoundingBox: LatLngBounds?
 
-    /**
+    /*
      * Creates a new GeoJsonFeature object
      *
      * @param geometry    type of geometry to assign to the feature

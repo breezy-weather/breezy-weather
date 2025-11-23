@@ -1,4 +1,4 @@
-/**
+/*
  * This file is part of Breezy Weather.
  *
  * Breezy Weather is free software: you can redistribute it and/or modify it
@@ -85,7 +85,7 @@ class SwipeSwitchLayout @JvmOverloads constructor(
 
     // touch.
     override fun onInterceptTouchEvent(ev: MotionEvent): Boolean {
-        if (!isEnabled || ev.action != MotionEvent.ACTION_DOWN && mIsBeingNestedScrolling) {
+        if (!isEnabled || (ev.action != MotionEvent.ACTION_DOWN && mIsBeingNestedScrolling)) {
             return false
         }
         if (mTarget == null && isNotEmpty()) {
@@ -237,7 +237,7 @@ class SwipeSwitchLayout @JvmOverloads constructor(
 
     // interface.
     fun setData(currentIndex: Int, pageCount: Int) {
-        if (currentIndex < 0 || currentIndex >= pageCount) {
+        if (currentIndex !in 0..<pageCount) {
             // Ignore, happens when location list is empty (initial install)
             // throw RuntimeException("Invalid current index.")
         } else {
@@ -285,8 +285,7 @@ class SwipeSwitchLayout @JvmOverloads constructor(
         if (!mIsBeingNestedScrolling) {
             mIsBeingNestedScrolling = true
             mNestedScrollingDistance =
-                if (!target.canScrollHorizontally(-1) &&
-                    !target.canScrollHorizontally(1) ||
+                if ((!target.canScrollHorizontally(-1) && !target.canScrollHorizontally(1)) ||
                     mSwipeDistance != 0
                 ) {
                     mNestedScrollingTrigger
@@ -303,7 +302,7 @@ class SwipeSwitchLayout @JvmOverloads constructor(
 
     override fun onNestedPreScroll(target: View, dx: Int, dy: Int, consumed: IntArray, type: Int) {
         if (mSwipeDistance != 0) {
-            if (mSwipeDistance > 0 && mSwipeDistance - dx < 0 || mSwipeDistance < 0 && mSwipeDistance - dx > 0) {
+            if ((mSwipeDistance > 0 && mSwipeDistance - dx < 0) || (mSwipeDistance < 0 && mSwipeDistance - dx > 0)) {
                 consumed[0] = mSwipeDistance
             } else {
                 consumed[0] = dx

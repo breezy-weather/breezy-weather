@@ -1,4 +1,4 @@
-/**
+/*
  * This file is part of Breezy Weather.
  *
  * Breezy Weather is free software: you can redistribute it and/or modify it
@@ -25,7 +25,7 @@ data class EcccResult(
     val observation: EcccObservation?,
     val hourlyFcst: EcccHourlyFcst?,
     val dailyFcst: EcccDailyFcst?,
-    /**
+    /*
      * Not used as it is unclear to which day each rise data applies to
      * Especially around midnight
      * Or when you have something like that:

@@ -163,7 +163,7 @@ enum class TemperatureUnit(
         }
 
         val correctedLocale = locale.let {
-            /**
+            /*
              * Taiwan guidelines: https://www.bsmi.gov.tw/wSite/public/Attachment/f1736149048776.pdf
              * Ongoing issue: https://unicode-org.atlassian.net/jira/software/c/projects/CLDR/issues/CLDR-10604
              */
@@ -202,7 +202,7 @@ enum class TemperatureUnit(
             LocalePreferences.TemperatureUnit.CELSIUS -> CELSIUS
             LocalePreferences.TemperatureUnit.FAHRENHEIT -> FAHRENHEIT
             LocalePreferences.TemperatureUnit.KELVIN -> KELVIN
-            /**
+            /*
              * Copyright © 1991-Present Unicode, Inc.
              * License: Unicode License v3 https://www.unicode.org/license.txt
              * Source: https://github.com/unicode-org/cldr/blob/3f3967f3cbadc56bbb44a9aed20784e82ac64c67/common/supplemental/units.xml#L579-L582

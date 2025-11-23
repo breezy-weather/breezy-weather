@@ -23,7 +23,7 @@ import com.google.maps.android.data.MultiGeometry
 class GeoJsonMultiLineString(
     geoJsonLineStrings: List<GeoJsonLineString>,
 ) : MultiGeometry(geoJsonLineStrings) {
-    /**
+    /*
      * Creates a new GeoJsonMultiLineString object
      *
      * @param geoJsonLineStrings list of GeoJsonLineStrings to store
@@ -32,12 +32,12 @@ class GeoJsonMultiLineString(
         geometryType = "MultiLineString"
     }
 
+    /**
+     * Gets the type of geometry. The type of geometry conforms to the GeoJSON 'type'
+     * specification.
+     *
+     * @return type of geometry
+     */
     val type: String
-        /**
-         * Gets the type of geometry. The type of geometry conforms to the GeoJSON 'type'
-         * specification.
-         *
-         * @return type of geometry
-         */
         get() = geometryType
 }

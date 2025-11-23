@@ -1,4 +1,4 @@
-/**
+/*
  * This file is part of Breezy Weather.
  *
  * Breezy Weather is free software: you can redistribute it and/or modify it
@@ -88,7 +88,7 @@ class BreezyWeather : Application(), Configuration.Provider {
             setDayNightMode()
         }
 
-        /**
+        /*
          * We don’t use the return value, but querying the work manager might help bringing back
          * scheduled workers after the app has been killed/shutdown on some devices
          */

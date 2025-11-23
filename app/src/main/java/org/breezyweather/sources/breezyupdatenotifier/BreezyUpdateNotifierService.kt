@@ -1,4 +1,4 @@
-/**
+/*
  * This file is part of Breezy Weather.
  *
  * Breezy Weather is free software: you can redistribute it and/or modify it
@@ -44,9 +44,9 @@ class BreezyUpdateNotifierService @Inject constructor(
         context: Context,
         allLocations: List<Location>,
         updatedLocationIds: Array<String>?,
-    ): Bundle? {
+    ): Bundle {
         return Bundle().apply {
-            /**
+            /*
              * Contains the list of updated location IDs
              * If null, means the updated location is unknown.
              * It could be a deleted location, or a refresh on main screen
@@ -55,7 +55,7 @@ class BreezyUpdateNotifierService @Inject constructor(
                 "UpdatedLocationIds",
                 updatedLocationIds
             )
-            /**
+            /*
              * Contains the list of all known location IDs
              * If some locations were removed during the process, it won't be included in this list
              */

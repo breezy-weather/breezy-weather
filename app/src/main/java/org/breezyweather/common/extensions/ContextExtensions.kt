@@ -1,4 +1,4 @@
-/**
+/*
  * This file is part of Breezy Weather.
  *
  * Breezy Weather is free software: you can redistribute it and/or modify it
@@ -39,7 +39,7 @@ import org.breezyweather.domain.settings.SettingsManager
 import org.json.JSONObject
 import java.io.File
 
-/**
+/*
  * Taken from Mihon
  * Apache License, Version 2.0
  *

@@ -28,7 +28,7 @@ open class Point(
 ) : Geometry<Any> {
     private val mCoordinates: LatLng
 
-    /**
+    /*
      * Creates a new Point object
      *
      * @param coordinates coordinates of Point to store
@@ -37,12 +37,12 @@ open class Point(
         mCoordinates = coordinates
     }
 
+    /**
+     * Gets the coordinates of the Point
+     *
+     * @return coordinates of the Point
+     */
     override val geometryObject: Any
-        /**
-         * Gets the coordinates of the Point
-         *
-         * @return coordinates of the Point
-         */
         get() = mCoordinates
 
     override fun toString(): String {

@@ -27,7 +27,7 @@ import com.google.maps.android.data.geojson.GeoJsonMultiPolygon
 open class MultiGeometry(
     geometries: List<Geometry<*>>,
 ) : Geometry<Any> {
-    /**
+    /*
      * Gets the type of geometry
      *
      * @return type of geometry

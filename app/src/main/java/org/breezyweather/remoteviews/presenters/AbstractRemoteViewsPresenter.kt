@@ -1,4 +1,4 @@
-/**
+/*
  * This file is part of Breezy Weather.
  *
  * Breezy Weather is free software: you can redistribute it and/or modify it
@@ -95,7 +95,7 @@ abstract class AbstractRemoteViewsPresenter {
             }
             textType = when (backgroundType) {
                 WidgetBackgroundType.NONE -> {
-                    if (textColor == "dark" || textColor == "auto" && isLightWallpaper(context)) {
+                    if (textColor == "dark" || (textColor == "auto" && isLightWallpaper(context))) {
                         NotificationTextColor.DARK
                     } else {
                         NotificationTextColor.LIGHT

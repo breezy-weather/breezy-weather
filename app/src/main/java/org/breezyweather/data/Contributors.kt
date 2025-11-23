@@ -52,21 +52,21 @@ val appContributors: Array<ContributorItem> = arrayOf(
         github = "WangDaYeeeeee",
         contribution = R.string.about_contribution_WangDaYeeeeee
     ),
-    /**
+    /*
      * Many contributions
      */
     ContributorItem("min7-i", github = "min7-i"),
-    /**
+    /*
      * Many contributions
      */
     ContributorItem("chunshek", github = "chunshek"),
-    /**
+    /*
      * - Fix daily shift in widgets
      * - Improvements to the Android location source
      * - Many other contributions that I can no longer find
      */
     ContributorItem("Cod3d.", github = "Cod3dDOT"),
-    /**
+    /*
      * - Disable animation settings when disabled at system level
      * - Fix location dialog opening twice
      * - Fix location dialog being duplicated on certain screens
@@ -74,72 +74,72 @@ val appContributors: Array<ContributorItem> = arrayOf(
      * - Exclude live wallpaper preview from recent apps list
      */
     ContributorItem("ecawthorne", github = "ecawthorne"),
-    /**
+    /*
      * - Add cache support to OkHttp
      * - Added method to compute hourly/current UV based on daily UV
      */
     ContributorItem("Romain Théry", github = "rthery"),
-    /**
+    /*
      * Clean up / Documentation
      */
     ContributorItem("Mark Bestavros", github = "mbestavros"),
-    /**
+    /*
      * Dark mode fixes
      */
     ContributorItem("Suyash Gupta", github = "suyashgupta25"),
-    /**
+    /*
      * Fix Chinese calendar days
      */
     ContributorItem("Coelacanthus", github = "CoelacanthusHex"),
-    /**
+    /*
      * Show full multiline forecast in expanded notification
      */
     ContributorItem("danielzhang130", github = "danielzhang130"),
-    /**
+    /*
      * Added spacing between quantity and unit according to ISO.
      */
     ContributorItem("majjejjam", github = "majjejjam"),
-    /**
+    /*
      * MET Office source
      */
     ContributorItem("bunburya", github = "bunburya"),
-    /**
+    /*
      * Fix lag in refresh
      */
     ContributorItem("jayyuz", github = "jayyuz"),
-    /**
+    /*
      * Fix hourly forecast hours in China source
      */
     ContributorItem("JiunnTarn", github = "JiunnTarn"),
-    /**
+    /*
      * Remove trailing spaces in search
      */
     ContributorItem("mags0ft", github = "mags0ft"),
-    /**
+    /*
      * Make the app seen as a weather app for the system
      */
     ContributorItem("Devy Ballard", github = "devycarol"),
-    /**
+    /*
      * Fix dark mode of the Edit location dialog
      */
     ContributorItem("Mushfiq1060", github = "Mushfiq1060"),
-    /**
+    /*
      * Fix hourly tabs disappearing
      */
     ContributorItem("ccyybn", github = "ccyybn"),
-    /**
+    /*
      * Don’t open location list in landscape by default when there is only 1 location
      */
     ContributorItem("Doğaç Tanrıverdi", github = "DogacTanriverdi"),
-    /**
+    /*
      * Memory leak
      */
     ContributorItem("Nero Nguyen", github = "neronguyenvn"),
-    /**
+    /*
      * UX of custom subtitle documentation
      */
     ContributorItem("Dipesh Pal", github = "codewithdipesh"),
-    /**
+    /*
      * Logo
      */
     ContributorItem(

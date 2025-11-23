@@ -1,4 +1,4 @@
-/**
+/*
  * This file is part of Breezy Weather.
  *
  * Breezy Weather is free software: you can redistribute it and/or modify it
@@ -104,7 +104,7 @@ class PolylineAndHistogramView @JvmOverloads constructor(
         computeCoordinates()
         drawTimeLine(canvas)
         if (mHistogramValue != null &&
-            (mHistogramValue != 0f || mHighestPolylineValue == null && mLowestPolylineValue == null) &&
+            (mHistogramValue != 0f || (mHighestPolylineValue == null && mLowestPolylineValue == null)) &&
             mHistogramValueStr != null &&
             mHighestHistogramValue != null &&
             mLowestHistogramValue != null

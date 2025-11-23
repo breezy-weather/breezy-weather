@@ -172,7 +172,7 @@ enum class PrecipitationUnit(
         }
 
         val correctedLocale = locale.let {
-            /**
+            /*
              * Taiwan guidelines: https://www.bsmi.gov.tw/wSite/public/Attachment/f1736149048776.pdf
              * Ongoing issue: https://unicode-org.atlassian.net/jira/software/c/projects/CLDR/issues/CLDR-10604
              */
@@ -217,7 +217,7 @@ enum class PrecipitationUnit(
             (useNumberFormatter || useMeasureFormat)
         ) {
             val correctedLocale = locale.let {
-                /**
+                /*
                  * Use English units with Traditional Chinese
                  *
                  * Taiwan guidelines: https://www.bsmi.gov.tw/wSite/public/Attachment/f1736149048776.pdf

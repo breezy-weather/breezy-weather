@@ -37,7 +37,7 @@ import kotlin.time.Duration.Companion.minutes
 import kotlin.time.Duration.Companion.seconds
 import kotlin.time.DurationUnit
 
-/**
+/*
  * Duration already exists in Kotlin.time
  * Extending it with what we need
  */

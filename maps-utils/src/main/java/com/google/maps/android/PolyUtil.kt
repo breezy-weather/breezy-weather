@@ -50,7 +50,7 @@ object PolyUtil {
         geodesic: Boolean,
     ): Boolean {
         // Both ends on the same side of lng3.
-        if (lng3 >= 0 && lng3 >= lng2 || lng3 < 0 && lng3 < lng2) {
+        if ((lng3 >= 0 && lng3 >= lng2) || (lng3 < 0 && lng3 < lng2)) {
             return false
         }
         // Point is South Pole.

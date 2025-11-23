@@ -16,7 +16,7 @@
 
 package org.breezyweather.background.updater.data
 
-/**
+/*
  * Taken from Mihon
  * Apache License, Version 2.0
  *

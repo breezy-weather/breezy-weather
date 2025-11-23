@@ -1,4 +1,4 @@
-/**
+/*
  * This file is part of Breezy Weather.
  *
  * Breezy Weather is free software: you can redistribute it and/or modify it
@@ -27,7 +27,7 @@ import org.breezyweather.common.extensions.cancelNotification
 import org.breezyweather.common.extensions.notificationManager
 import org.breezyweather.BuildConfig.APPLICATION_ID as ID
 
-/**
+/*
  * Taken partially from Mihon
  * License Apache, Version 2.0
  * https://github.com/mihonapp/mihon/blob/aa498360db90350f2642e6320dc55e7d474df1fd/app/src/main/java/eu/kanade/tachiyomi/data/notification/NotificationReceiver.kt

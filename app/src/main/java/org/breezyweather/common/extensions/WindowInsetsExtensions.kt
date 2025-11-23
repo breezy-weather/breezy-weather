@@ -1,4 +1,4 @@
-/**
+/*
  * This file is part of Breezy Weather.
  *
  * Breezy Weather is free software: you can redistribute it and/or modify it
@@ -21,7 +21,7 @@ import androidx.core.graphics.Insets
 import androidx.core.view.ViewCompat.setOnApplyWindowInsetsListener
 import androidx.core.view.WindowInsetsCompat
 
-/**
+/*
  * Source: Android Developers, Chris Banes
  * https://medium.com/androiddevelopers/windowinsets-listeners-to-layouts-8f9ccc8fa4d1
  */

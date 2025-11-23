@@ -46,7 +46,7 @@ class GeoJsonParser(
      */
     private class LatLngAlt(val latLng: LatLng, val altitude: Double?)
 
-    /**
+    /*
      * Creates a new GeoJsonParser
      *
      * @param geoJsonFile GeoJSON file to parse

@@ -1,4 +1,4 @@
-/**
+/*
  * This file is part of Breezy Weather.
  *
  * Breezy Weather is free software: you can redistribute it and/or modify it
@@ -970,7 +970,7 @@ class MfService @Inject constructor(
                     "987" -> "PF"
                     "988" -> "NC"
                     else -> when (result.properties.timezone) {
-                        /**
+                        /*
                          * The nearest location is returned, so sometimes you end up in a different territory.
                          * HOWEVER, the timezone is always the one from the coordinates in parameter, so we can find the correct
                          *  territory that way

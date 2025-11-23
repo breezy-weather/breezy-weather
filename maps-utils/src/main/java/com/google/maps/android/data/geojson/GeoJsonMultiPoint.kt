@@ -23,7 +23,7 @@ import com.google.maps.android.data.MultiGeometry
 class GeoJsonMultiPoint(
     geoJsonPoints: List<GeoJsonPoint>,
 ) : MultiGeometry(geoJsonPoints) {
-    /**
+    /*
      * Creates a GeoJsonMultiPoint object
      *
      * @param geoJsonPoints list of GeoJsonPoints to store

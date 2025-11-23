@@ -1,4 +1,4 @@
-/**
+/*
  * This file is part of Breezy Weather.
  *
  * Breezy Weather is free software: you can redistribute it and/or modify it
@@ -111,7 +111,7 @@ class PrecipitationNowcastViewHolder(parent: ViewGroup) : AbstractMainCardViewHo
             minutely.values.max().inMicrometers
         )
         val trendHorizontalLines: ImmutableMap<Double, String> = buildMap {
-            /**
+            /*
              * Don’t show some thresholds when max precipitation is very high
              * - Below heavy level: keep all 3 lines
              * - Between heavy level and 2 * heavy level: keep light and heavy lines

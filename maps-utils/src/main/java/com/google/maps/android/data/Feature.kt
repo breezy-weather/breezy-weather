@@ -26,7 +26,7 @@ import com.google.maps.android.data.geojson.GeoJsonFeature
  * @param properties      map containing properties related to the feature
  */
 open class Feature(
-    /**
+    /*
      * Sets the stored Geometry and redraws it on the layer if it has already been added
      *
      * @param geometry Geometry to set
@@ -48,7 +48,7 @@ open class Feature(
     var mId: String? = id
         protected set
     private var mProperties: MutableMap<String, String?> = properties ?: mutableMapOf()
-    /**
+    /*
      * Gets the geometry object
      *
      * @return geometry object

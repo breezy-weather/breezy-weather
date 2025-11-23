@@ -1,4 +1,4 @@
-/**
+/*
  * This file is part of Breezy Weather.
  *
  * Breezy Weather is free software: you can redistribute it and/or modify it
@@ -16,11 +16,11 @@
 
 package org.breezyweather.sources.mf.json
 
+import kotlinx.serialization.Serializable
+
 /**
  * Mf history result.
  */
-import kotlinx.serialization.Serializable
-
 @Serializable
 data class MfHistoryResult(
     val history: List<MfHistory>?,

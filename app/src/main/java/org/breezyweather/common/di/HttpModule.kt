@@ -1,4 +1,4 @@
-/**
+/*
  * This file is part of Breezy Weather.
  *
  * Breezy Weather is free software: you can redistribute it and/or modify it
@@ -49,7 +49,7 @@ class HttpModule {
     @Singleton
     fun provideOkHttpClient(app: Application, loggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
         val client = if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
-            /**
+            /*
              * Add support for Let’s encrypt certificate authority on Android < 7.0
              */
             try {
