@@ -781,4 +781,5 @@
     <string name="message_source_non_free_network_content">Je gebruikt de Freenet-versie van de app, die alleen bronnen ondersteunt die op een vrij netwerk worden gehost. Schakel terug naar de standaardversie om deze bron te blijven gebruiken of kies een andere bron.</string>
     <string name="settings_weather_source_non_freenet">%s (niet-vrije netwerkservice)</string>
     <string name="action_pull_down_to_refresh">Trek omlaag om te vernieuwen</string>
+    <string name="pressure_standard">Standaard</string>
 </resources>
