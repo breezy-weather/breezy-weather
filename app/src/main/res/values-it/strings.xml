@@ -785,4 +785,5 @@
     <string name="visibility_about_description">La visibilità indica la distanza a cui si possono vedere chiaramente oggetti come edifici e colline. La visibilità può essere influenzata da precipitazioni, nebbia, polvere, fumo o foschia.</string>
     <string name="cloud_cover_about_description">La copertura nuvolosa si riferisce alla percentuale di cielo oscurata in media dalle nuvole. La copertura nuvolosa è correlata alla durata del soleggiamento.</string>
     <string name="action_change">Cambia</string>
+    <string name="pressure_standard">Normale</string>
 </resources>
