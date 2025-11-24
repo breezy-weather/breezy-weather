@@ -131,7 +131,7 @@
     <string name="widget_multi_city">Meerdere steden</string>
     <string name="widget_week_style_3_days">3 dagen</string>
     <string name="settings_location_access_switch_title">Locatietoegang</string>
-    <string name="common_weather_text_overcast">Zwaar bewolkt</string>
+    <string name="common_weather_text_overcast">Bewolkt</string>
     <string name="common_weather_text_rain_freezing">IJzel</string>
     <string name="common_weather_text_rain_freezing_light">Lichte ijzel</string>
     <string name="common_weather_text_drizzle_freezing">IJzelende motregen</string>
