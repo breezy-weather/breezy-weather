@@ -560,7 +560,7 @@
     <string name="common_weather_text_cold">קר</string>
     <string name="common_weather_text_frost">קרה</string>
     <string name="forecast">תחזית</string>
-    <string name="current_weather">מזג האוויר הנוכחי</string>
+    <string name="current_weather">מזג אוויר עדכני</string>
     <string name="air_quality_short">איכות האוויר</string>
     <string name="ephemeris_sun">שמש</string>
     <string name="ephemeris_moon">ירח</string>
