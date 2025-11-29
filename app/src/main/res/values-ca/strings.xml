@@ -576,4 +576,8 @@
     <string name="settings_background_updates_refresh_never_warning1">En desactivar les actualitzacions en rerefons, no tornareu a rebre cap notificació d’alerta o precipitació. Els ginys no s’actualitzaran fins no obriu l’aplicació.</string>
     <string name="settings_notifications_app_updates_check">Mostra notificacions de l’aplicació</string>
     <string name="current_weather">Clima actual</string>
+    <string name="forecast">Previsions</string>
+    <string name="air_quality_short">Qualitat d\'aire</string>
+    <string name="ephemeris_sun">Sol</string>
+    <string name="ephemeris_moon">Lluna</string>
 </resources>
