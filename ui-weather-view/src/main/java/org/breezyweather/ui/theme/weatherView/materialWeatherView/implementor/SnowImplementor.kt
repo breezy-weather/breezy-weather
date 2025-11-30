@@ -73,10 +73,9 @@ class SnowImplementor(
                 -radius
             }
 
-            val bound = (2 * speedY).toInt()
-            // Fix bound to at least two to prevent crashes on small screens (where bound would be 0) and provide
-            // some variation on medium screens (where bound would always be 1 and the RNG would only give 0)
-            speedX = r.nextInt(if (bound >= 2) bound else 2) - speedY
+            // Fix input to nextInt to at least two to prevent crashes on low res screens (where bound would be 0)
+            // and provide some variation on medium-res screens (where bound would always be 1)
+            speedX = r.nextInt((2 * speedY).toInt().coerceAtLeast(2)) - speedY
             computeCenterPosition()
         }
 
