@@ -822,4 +822,5 @@
     <string name="message_source_non_free_network_content">Vi uzas la Freenet version de la aplikaĵo, kiu nur subtenas fontojn gastigitajn sur libera reto. Por konservi uzi tiun fonton, ŝanĝi reen al la Norma versio. Alie, elektu alian fonton.</string>
     <string name="settings_weather_source_non_freenet">%s (nelibera reta servo)</string>
     <string name="settings_appearance_dark_mode_custom">Malhela reĝimo de %1$s ĝis %2$s</string>
+    <string name="pressure_standard">normala</string>
 </resources>
