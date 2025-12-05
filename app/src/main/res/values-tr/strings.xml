@@ -362,7 +362,7 @@
 \nÖrnek olarak “Anlık hava durumu: $cw$.” metni “Anlık hava durumu: Açık hava” olarak gösterilecektir.</string>
     <string name="widget_custom_subtitle_keyword_xdt_description">Bugünün, yarının, …, 4 gün sonrasının gündüz hava sıcaklığı (°C/°F)</string>
     <string name="widget_clock_font_sans_serif_light">Sans Serif İnce</string>
-    <string name="widget_week_style_5_days">5 günlük</string>
+    <string name="widget_week_style_5_days">5 gün</string>
     <string name="settings_location_access_switch_summaryOn">Kabul edildi. Kendi konumunuzu konum olarak ekleyebilirsiniz.</string>
     <string name="settings_location_access_background_summaryOn">Etkinleştirildi. Uygulama anlık konumunuz için hava durumu verisini arka planda güncelleyebilecek.</string>
     <string name="settings_location_access_background_summaryOff">Arka planda anlık konumunuzun güncellenebilmesi için lütfen “Her zaman izin ver” seçeneğini işaretleyin.</string>
@@ -428,7 +428,7 @@
     <string name="widget_clock_font_sans_serif">Sans Serif</string>
     <string name="weather_message_unsupported_feature">Kaynak istenilen özelliklerin birini desteklemiyor</string>
     <string name="widget_custom_subtitle_keyword_hd_description">Saatlik açıklama</string>
-    <string name="widget_week_style_3_days">3 günlük</string>
+    <string name="widget_week_style_3_days">3 gün</string>
     <string name="settings_background_updates_worker_info_title">İşlem bilgisi</string>
     <string name="settings_main_threshold_lines_on_charts">Grafiklerdeki eşik çizgileri</string>
     <string name="about_matrix">Matrix odası</string>
@@ -783,4 +783,5 @@
     <string name="content_provider_permission_label">Breezy Weather verilerini okuyun</string>
     <string name="content_provider_permission_description">Breezy Weather\'dan, konumunuzun koordinatları da dahil olmak üzere hava durumu bilgilerini alın (eğer eklediyseniz mevcut konumunuz gibi)</string>
     <string name="common_weather_text_mostly_cloudy">Çoğunlukla bulutlu</string>
+    <string name="pressure_standard">Standart</string>
 </resources>

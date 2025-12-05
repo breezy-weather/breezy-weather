@@ -775,4 +775,5 @@
     <string name="message_source_non_free_network_content">Ви використовуєте версію програми Freenet, яка підтримує лише джерела, розміщені у вільний мережі. Щоб продовжувати використовувати це джерело, поверніться до стандартної версії. В іншому випадку виберіть інше джерело.</string>
     <string name="settings_weather_source_non_freenet">%s (не-вільна мережева послуга)</string>
     <string name="action_pull_down_to_refresh">Потягніть униз, щоб оновити</string>
+    <string name="pressure_standard">Стандартний</string>
 </resources>

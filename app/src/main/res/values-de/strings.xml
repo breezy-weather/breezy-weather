@@ -788,4 +788,5 @@
     <string name="message_source_non_free_network_content">Du verwendest die Freenet-Version der App, die nur Quellen unterstützt, die in einem freien Netzwerk gehostet werden. Um diese Quelle weiterhin zu verwenden, wechsel zurück zur Standardversion. Andernfalls wähle eine andere Quelle.</string>
     <string name="settings_weather_source_non_freenet">%s (nicht-freier Netzwerkservice)</string>
     <string name="action_pull_down_to_refresh">Zum Aktualisieren nach unten ziehen</string>
+    <string name="pressure_standard">Standard</string>
 </resources>
