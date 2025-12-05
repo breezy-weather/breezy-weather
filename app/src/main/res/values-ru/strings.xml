@@ -653,7 +653,7 @@
     <string name="temperature_degree_day_cooling_explanation">Разница между наружной температурой и эталонной комфортной температурой, используемой для оценки потребности в энергии для охлаждения</string>
     <string name="wind_speed_about">О скорости и порывах ветра</string>
     <string name="wind_speed_about_description">Скорость ветра измеряется путем усреднения скоростей ветра за определенный период времени. Порывы ветра — это внезапные порывы ветра, обычно длящиеся менее 20 секунд.</string>
-    <string name="wind_gusts_short">Порывы ветра</string>
+    <string name="wind_gusts_short">Порывы</string>
     <string name="wind_strength_scale">Шкала Бофорта</string>
     <string name="uv_index_about">Об УФ-индексе</string>
     <string name="uv_index_about_description">УФ-индекс измеряет силу ультрафиолетового излучения солнца. Чем он выше, тем сильнее и быстрее оно может вызвать солнечные ожоги, рак кожи и повреждение глаз.</string>
