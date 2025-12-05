@@ -22,6 +22,7 @@ import com.google.maps.android.model.LatLng
 import kotlinx.serialization.Serializable
 import nl.adaptivity.xmlutil.serialization.XmlSerialName
 import nl.adaptivity.xmlutil.serialization.XmlValue
+import nl.adaptivity.xmlutil.util.CompactFragment
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.serializer.DateSerializer
 import java.util.Date
@@ -139,13 +140,13 @@ data class CapAlert(
         @Serializable
         @XmlSerialName("description", "", "cap")
         data class Description(
-            @XmlValue(true) val value: String? = null,
+            @XmlValue(true) val value: List<CompactFragment>? = null,
         )
 
         @Serializable
         @XmlSerialName("instruction", "", "cap")
         data class Instruction(
-            @XmlValue(true) val value: String? = null,
+            @XmlValue(true) val value: List<CompactFragment>? = null,
         )
 
         @Serializable
@@ -238,6 +239,43 @@ data class CapAlert(
                 }
             }
             return false
+        }
+
+        // apply formatting to alert text based on source
+        fun formatAlertText(
+            source: String? = null,
+            text: List<CompactFragment>?,
+        ): String? {
+            return text?.mapNotNull {
+                val contentString = it.contentString.trim()
+                with(source ?: (this.senderName?.value ?: "")) {
+                    when {
+                        startsWith(
+                            "NWS ",
+                            ignoreCase = true
+                        ) || equals("National Weather Service", ignoreCase = true) -> {
+                            // NWS folds lines at 80 characters for legacy systems. We don't need that.
+                            // Look for SINGLE line breaks surrounded by letters, numbers, and punctuation
+                            // and replace those with single spaces.
+                            Regex("""([0-9A-Za-z.,]) *\n([0-9A-Za-z])""").replace(contentString, "$1 $2")
+                        }
+                        equals("中央氣象署") -> {
+                            // CWA extends <description> with <typhoon-info> metadata for Typhoon Warnings.
+                            // Do not display those.
+                            // Also, format <section> elements with <h2>.
+                            val regex = Regex("""^<section title="(.*)">(.*)</section>$""")
+                            with(contentString) {
+                                when {
+                                    startsWith("<typhoon-info>") -> null
+                                    matches(regex) -> regex.replace(contentString, "<h2>$1</h2>\n<p>$2</p>\n")
+                                    else -> contentString
+                                }
+                            }
+                        }
+                        else -> contentString
+                    }
+                }
+            }?.joinToString("\n")?.trim()
         }
     }
 
