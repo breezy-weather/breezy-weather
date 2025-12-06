@@ -72,7 +72,10 @@ class SnowImplementor(
             } else {
                 -radius
             }
-            speedX = r.nextInt((2 * speedY).toInt()) - speedY
+
+            // Fix input to nextInt to at least two to prevent crashes on low res screens (where bound would be 0)
+            // and provide some variation on medium-res screens (where bound would always be 1)
+            speedX = r.nextInt((2 * speedY).toInt().coerceAtLeast(2)) - speedY
             computeCenterPosition()
         }
 
