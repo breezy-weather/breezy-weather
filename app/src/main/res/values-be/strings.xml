@@ -239,7 +239,7 @@
     <string name="widget_subtitle_data_aqi">Якасць паветра</string>
     <string name="widget_subtitle_data_wind">Вецер</string>
     <string name="widget_subtitle_data_custom">Уласны</string>
-    <string name="widget_custom_subtitle_explanation">Можна ўводзіць ўсё што хочаш, але варта ўлічваць даўжыню радка. Калі трэба вывесці даныя пра надвор’е, выкарыстоўвайце для спасылак сімвалы $ з адпаведным ключавым словам.\n\nНапрыклад, «Бягучае надвор’е: $cw$» будзе\nпаказана як «Бягучае надвор’е: Яснае неба».</string>
+    <string name="widget_custom_subtitle_explanation">Можна ўводзіць усё што хочаш, але варта ўлічваць даўжыню радка. Калі трэба вывесці даныя пра надвор’е, выкарыстоўвайце для спасылак сімвалы $ з адпаведным ключавым словам.\n\nНапрыклад, «Бягучае надвор’е: $cw$» будзе\nпаказана як «Бягучае надвор’е: Яснае неба».</string>
     <string name="widget_custom_subtitle_keyword_cw_description">Бягучае надвор’е</string>
     <string name="widget_custom_subtitle_keyword_ct_description">Бягучая тэмпература (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_cuv_description">Бягучы УФ-індэкс</string>
@@ -717,9 +717,9 @@
     <string name="ephemeris_sun">Сонца</string>
     <string name="ephemeris_moon">Месяц</string>
     <string name="about_update_check_eol">Гэта версія Android больш не падтрымліваецца</string>
-    <string name="ephemeris_dusk_at">Змрок ў %s</string>
+    <string name="ephemeris_dusk_at">Змрок у %s</string>
     <string name="ephemeris_about_dusk">Змрок — найцямнейшая частка змяркання перад поўным знікненнем бачнага святла.</string>
-    <string name="ephemeris_about_dawn">Світанне — час перад ўсходам сонца, калі з’яўляецца першае бачнае святло.</string>
+    <string name="ephemeris_about_dawn">Світанне — час перад усходам сонца, калі з’яўляецца першае бачнае святло.</string>
     <string name="precipitation_total_day">Ападкі ўдзень</string>
     <string name="precipitation_total_night">Ападкі ўначы</string>
     <string name="precipitation_rain_total_day">Дождж удзень</string>
