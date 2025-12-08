@@ -137,7 +137,7 @@
     <string name="ceiling">Ніжняя мяжа аблокаў</string>
     <string name="weather_message_invalid_location">Няправільнае месцазнаходжанне, выдаліце яго і дадайце нанова</string>
     <string name="weather_message_unsupported_feature">Крыніца не падтрымлівае адну з запытаных функцый</string>
-    <string name="weather_api_limit_reached_content">Каб абысці абмежаванне, дадайце уласны ключ API.</string>
+    <string name="weather_api_limit_reached_content">Каб абысці абмежаванне, дадайце ўласны ключ API.</string>
     <string name="weather_api_unauthorized_title">Неаўтарызаваны доступ да API</string>
     <string name="weather_api_key_required_missing_content">Каб выкарыстоўваць гэту функцыю, неабходна дадаць ключ API.</string>
     <string name="setting_weather_source_accu_days">Дні</string>
@@ -694,7 +694,7 @@
     <string name="air_quality_o3_sources">Азон утвараецца ў выніку хімічнай рэакцыі паміж атмасферным кіслародам, аксідамі азоту, монааксідам вугляроду і лятучымі арганічнымі злучэннямі пад уздзеяннем сонечнага святла.</string>
     <string name="air_quality_co_sources">Звычайна ўтвараецца пры няпоўным згаранні вугляродзістага паліва, напрыклад, у рухавіках аўтамабіляў і пры вытворчасці электраэнергіі.</string>
     <string name="nighttime_details">Пачынаецца ўвечары і працягваецца да світання наступнага дня</string>
-    <string name="pressure_about_description1">Атмасферны ціск — гэта ціск паветра на паверхню Зямлі і ўсе прадметы ў атмасферы. Праграма выкарыстоўвае ціск на сярэднім ўзроўні мора, каб палегчыць параўнанне ціску ў месцах на рознай вышыні.</string>
+    <string name="pressure_about_description1">Атмасферны ціск — гэта ціск паветра на паверхню Зямлі і ўсе прадметы ў атмасферы. Праграма выкарыстоўвае ціск на сярэднім узроўні мора, каб палегчыць параўнанне ціску для месцаў на рознай вышыні.</string>
     <string name="cloud_cover_about">Пра воблачнасць</string>
     <string name="cloud_cover_about_description">Воблачнасць азначае сярэдні працэнт неба, закрытага аблокамі. Воблачнасць звязана з працягласцю сонечнага ззяння.</string>
     <string name="data_sources">Крыніцы даных</string>
