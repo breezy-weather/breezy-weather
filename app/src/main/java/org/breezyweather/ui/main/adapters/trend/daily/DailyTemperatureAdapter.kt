@@ -244,8 +244,14 @@ class DailyTemperatureAdapter(
                 if (mHighestTemperature == null || it > mHighestTemperature!!) {
                     mHighestTemperature = it.toFloat()
                 }
+                if (mLowestTemperature == null || it < mLowestTemperature!!) {
+                    mLowestTemperature = it.toFloat()
+                }
             }
             daily.night?.temperature?.temperature?.value?.let {
+                if (mHighestTemperature == null || it > mHighestTemperature!!) {
+                    mHighestTemperature = it.toFloat()
+                }
                 if (mLowestTemperature == null || it < mLowestTemperature!!) {
                     mLowestTemperature = it.toFloat()
                 }

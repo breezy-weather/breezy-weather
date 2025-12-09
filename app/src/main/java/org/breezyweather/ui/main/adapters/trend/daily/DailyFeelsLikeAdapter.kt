@@ -212,8 +212,14 @@ class DailyFeelsLikeAdapter(
                 if (mHighestTemperature == null || it > mHighestTemperature!!) {
                     mHighestTemperature = it.toFloat()
                 }
+                if (mLowestTemperature == null || it < mLowestTemperature!!) {
+                    mLowestTemperature = it.toFloat()
+                }
             }
             (daily.night?.temperature?.feelsLikeTemperature ?: daily.night?.temperature?.temperature)?.value?.let {
+                if (mHighestTemperature == null || it > mHighestTemperature!!) {
+                    mHighestTemperature = it.toFloat()
+                }
                 if (mLowestTemperature == null || it < mLowestTemperature!!) {
                     mLowestTemperature = it.toFloat()
                 }

@@ -244,7 +244,11 @@ class PolylineAndHistogramView @JvmOverloads constructor(
         canvas.drawText(
             mHighPolylineValueStr ?: "",
             getRTLCompactX((measuredWidth / 2.0).toFloat()),
-            mHighPolylineY[1] - mPaint.fontMetrics.bottom - mTextMargin,
+            if (mHighPolylineY[1] > mLowPolylineY[1]) {
+                mHighPolylineY[1] - mPaint.fontMetrics.top + mTextMargin
+            } else {
+                mHighPolylineY[1] - mPaint.fontMetrics.bottom - mTextMargin
+            },
             mPaint
         )
         mPaint.setShadowLayer(0f, 0f, 0f, Color.TRANSPARENT)
@@ -315,7 +319,11 @@ class PolylineAndHistogramView @JvmOverloads constructor(
         canvas.drawText(
             mLowPolylineValueStr ?: "",
             getRTLCompactX((measuredWidth / 2.0).toFloat()),
-            mLowPolylineY[1] - mPaint.fontMetrics.top + mTextMargin,
+            if (mHighPolylineY[1] > mLowPolylineY[1]) {
+                mLowPolylineY[1] - mPaint.fontMetrics.bottom - mTextMargin
+            } else {
+                mLowPolylineY[1] - mPaint.fontMetrics.top + mTextMargin
+            },
             mPaint
         )
         mPaint.setShadowLayer(0f, 0f, 0f, Color.TRANSPARENT)
