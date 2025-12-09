@@ -10,6 +10,9 @@
 - Content provider: allows (with your permission) other apps to query your weather data. [Read the announcement](https://github.com/breezy-weather/breezy-weather/discussions/2089)
 - New broadcast: you can use `org.breezyweather.ACTION_UPDATE_NOTIFIER` (or `org.breezyweather.debug.ACTION_UPDATE_NOTIFIER` with the debug build) to be notified of updated locations (most common use case is coupled with the content provider)
 
+**Improvements and fixes**
+- Fix crash on some devices when current weather is snow (@Cactric)
+
 **Weather sources**
 - Icelandic Met Office - Fix refresh error
 - Pirate Weather - Fix refresh error
