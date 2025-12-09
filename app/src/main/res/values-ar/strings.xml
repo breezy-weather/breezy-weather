@@ -68,7 +68,7 @@
     <string name="daily_forecast">النشرة اليومية</string>
     <string name="hourly_forecast">توقعات كل ساعة</string>
     <string name="air_quality">جودة الهواء</string>
-    <string name="pollen">مسببات الحساسية</string>
+    <string name="pollen">حبوب اللقاح</string>
     <string name="ephemeris">الشمس والقمر</string>
     <string name="action_next">التالي</string>
     <string name="action_done">تم</string>
@@ -636,4 +636,8 @@
     <string name="action_allow">اسمح</string>
     <string name="action_open_in_other_app">افتح في تطبيق آخر</string>
     <string name="action_open_in_other_app_description">فتح هذا الموقع في تطبيق آخر</string>
+    <string name="air_quality_short">جودة الهواء</string>
+    <string name="ephemeris_sun">الشمس</string>
+    <string name="ephemeris_moon">القمر</string>
+    <string name="ephemeris_about">حول أوقات الشروق والغروب</string>
 </resources>
