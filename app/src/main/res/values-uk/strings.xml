@@ -680,7 +680,7 @@
     <string name="visibility_about_description">Видимість показує, наскільки далеко ви можете чітко бачити об’єкти, такі як будівлі та пагорби. На видимість можуть впливати опади, туман, пил, дим або імла.</string>
     <string name="visibility_from_to_number">%1$s до %2$s</string>
     <string name="visibility_from_to_description">%1$s до %2$s</string>
-    <string name="visibility_poor">Бідний</string>
+    <string name="visibility_poor">Низька</string>
     <string name="visibility_moderate">Помірно</string>
     <string name="visibility_good">Добре</string>
     <string name="visibility_clear">Очистити</string>
