@@ -471,7 +471,7 @@
     <string name="weather_message_unsupported_feature">المصدر لا يدعم إحدى الميزات المطلوبة</string>
     <string name="about_contribution_designer">مصمم الشعار</string>
     <string name="temperature_average_short">المتوسط</string>
-    <string name="temperature_normal_short">عادي</string>
+    <string name="temperature_normal_short">طبيعي</string>
     <string name="temperature_normals">معايير درجة الحرارة</string>
     <string name="settings_main_threshold_lines_on_charts">خطوط العتبة على الرسوم البيانية</string>
     <string name="settings_modules_broadcast_send_data_title">إرسال بيانات الطقس إلى %s</string>
@@ -640,4 +640,6 @@
     <string name="ephemeris_sun">الشمس</string>
     <string name="ephemeris_moon">القمر</string>
     <string name="ephemeris_about">حول أوقات الشروق والغروب</string>
+    <string name="temperature_real_details">درجة الحرارة الفعلية.</string>
+    <string name="clock">الساعة</string>
 </resources>
