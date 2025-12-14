@@ -183,7 +183,7 @@ For the United States, [Forecast Advisor](https://www.forecastadvisor.com/) has 
 </details>
 
 ### OpenWeather
-> 🔐 **This source requires an API key.** Breezy Weather comes with a pre-bundled API key. However, it is often rate-limited, so you may want to configure your own API key instead. [Register here](https://www.here.com/get-started/marketplace-listings/here-destination-weather)
+> 🔐 **This source requires an API key.** Breezy Weather comes with a pre-bundled API key. However, it is often rate-limited, so you may want to configure your own API key instead. [Register here](https://home.openweathermap.org/users/sign_up). Pick up the regular free API, not the One Call API which require payment info and is incompatible with Breezy Weather.
 
 **[OpenWeather](https://openweathermap.org/)** is a weather data provider based in London, United Kingdom.
 
