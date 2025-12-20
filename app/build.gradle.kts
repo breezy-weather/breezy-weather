@@ -327,6 +327,7 @@ dependencies {
     implementation(libs.recyclerview)
 
     // hilt.
+    ksp(libs.kotlin.metadata.jvm)
     implementation(libs.dagger.hilt.core)
     ksp(libs.dagger.hilt.compiler)
     implementation(libs.hilt.work)

@@ -1,15 +1,15 @@
 [versions]
-aboutlib = "13.1.0"
+aboutlib = "13.2.1"
 accompanist = "0.37.3"
-activity = "1.12.1"
+activity = "1.12.2"
 adaptiveiconview = "v0.0.3"
-agp = "8.13.1"
+agp = "8.13.2"
 appcompat = "1.7.1"
 annotationJvm = "1.9.1"
 breezy-datasharing-lib = "8e9e6f7e66d560b4d9e20e19193d3c640a664c9c"
 cardview = "1.0.0"
-compose-bom = "2025.12.00"
-compose-material3 = "1.5.0-alpha10"
+compose-bom = "2025.12.01"
+compose-material3 = "1.5.0-alpha11"
 compose-lint-checks = "1.4.2"
 core-ktx = "1.17.0"
 core-splashscreen = "1.2.0"
@@ -21,8 +21,8 @@ jjwt = "0.13.0"
 json = "20250517"
 junit = "6.0.1"
 kotest-assertions = "6.0.7"
-kotlin = "2.2.21"
-kotlin-ksp = "2.3.3"
+kotlin = "2.3.0"
+kotlin-ksp = "2.3.4"
 kotlinx-coroutines = "1.10.2"
 kotlinx-serialization-csv = "3.2.1"
 kotlinx-serialization-json = "1.9.0"
@@ -31,7 +31,7 @@ ktlint = "1.8.0"
 #leakcanary = "2.14"
 lifecycle = "2.10.0"
 lifecycle-extensions = "2.2.0"
-material = "1.14.0-alpha07"
+material = "1.14.0-alpha08"
 mockk = "1.14.7"
 navigation-compose = "2.9.6"
 okhttp = "5.3.2"
@@ -92,6 +92,7 @@ kotest-assertions = { group = "io.kotest", name = "kotest-assertions-core", vers
 kotlinx-coroutines-rx3 = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-rx3", version.ref = "kotlinx-coroutines" }
 kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "kotlinx-coroutines" }
 kotlin-gradle = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
+kotlin-metadata-jvm = { group = "org.jetbrains.kotlin", name = "kotlin-metadata-jvm", version.ref = "kotlin" }
 kotlinx-serialization-csv = { group = "de.brudaswen.kotlinx.serialization", name = "kotlinx-serialization-csv", version.ref = "kotlinx-serialization-csv" }
 kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinx-serialization-json" }
 kotlinx-serialization-xml-core = { group = "io.github.pdvrieze.xmlutil", name = "core-android", version.ref = "kotlinx-serialization-xml" }
