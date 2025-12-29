@@ -22,6 +22,7 @@ import breezyweather.domain.location.model.Location
 import breezyweather.domain.location.model.LocationAddressInfo
 import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.model.Alert
+import breezyweather.domain.weather.model.Precipitation
 import breezyweather.domain.weather.model.PrecipitationProbability
 import breezyweather.domain.weather.model.UV
 import breezyweather.domain.weather.model.Wind
@@ -48,6 +49,7 @@ import org.breezyweather.common.utils.helpers.LogHelper
 import org.breezyweather.sources.RefreshHelper
 import org.breezyweather.sources.ims.json.ImsLocation
 import org.breezyweather.sources.ims.json.ImsWeatherData
+import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.ratio.Ratio.Companion.percent
 import org.breezyweather.unit.speed.Speed.Companion.kilometersPerHour
 import org.breezyweather.unit.temperature.Temperature.Companion.celsius
@@ -174,6 +176,9 @@ class ImsService @Inject constructor(
                                 temperature = hourlyResult.value.preciseTemperature?.toDoubleOrNull()?.celsius,
                                 feelsLike = hourlyResult.value.windChill?.toDoubleOrNull()?.celsius
                             ),
+                            precipitation = hourlyResult.value.rain?.toDoubleOrNull()?.let { rainMm ->
+                                Precipitation(total = rainMm.millimeters, rain = rainMm.millimeters)
+                            },
                             precipitationProbability = PrecipitationProbability(
                                 total = hourlyResult.value.rainChance?.toDoubleOrNull()?.percent
                             ),
