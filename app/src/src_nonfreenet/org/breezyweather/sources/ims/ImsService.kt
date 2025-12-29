@@ -30,6 +30,7 @@ import breezyweather.domain.weather.reference.AlertSeverity
 import breezyweather.domain.weather.reference.WeatherCode
 import breezyweather.domain.weather.wrappers.CurrentWrapper
 import breezyweather.domain.weather.wrappers.DailyWrapper
+import breezyweather.domain.weather.wrappers.HalfDayWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
 import breezyweather.domain.weather.wrappers.TemperatureWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
@@ -136,9 +137,17 @@ class ImsService @Inject constructor(
     ): List<DailyWrapper>? {
         return data?.forecastData?.keys?.mapNotNull {
             it.toDateNoHour(location.timeZone)?.let { dayDate ->
+                val daily = data.forecastData[it]?.daily
+                val dailyWeatherCode = getWeatherCode(daily?.weatherCode)
                 DailyWrapper(
                     date = dayDate,
-                    uV = data.forecastData[it]!!.daily?.maximumUVI?.toDoubleOrNull()?.let { uvi ->
+                    day = HalfDayWrapper(
+                        weatherCode = dailyWeatherCode,
+                    ),
+                    night = HalfDayWrapper(
+                        weatherCode = dailyWeatherCode,
+                    ),
+                    uV = daily?.maximumUVI?.toDoubleOrNull()?.let { uvi ->
                         UV(uvi)
                     }
                 )
