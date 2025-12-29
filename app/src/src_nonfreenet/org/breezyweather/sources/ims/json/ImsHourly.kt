@@ -23,6 +23,7 @@ import kotlinx.serialization.Serializable
 data class ImsHourly(
     val hour: String,
     @SerialName("weather_code") val weatherCode: String?,
+    val rain: String?,
     @SerialName("rain_chance") val rainChance: String?,
     @SerialName("precise_temperature") val preciseTemperature: String?,
     @SerialName("relative_humidity") val relativeHumidity: String?,
