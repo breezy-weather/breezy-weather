@@ -22,5 +22,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class ImsDaily(
     @SerialName("weather_code") val weatherCode: String?,
+    @SerialName("minimum_temperature") val minimumTemperature: String?,
+    @SerialName("maximum_temperature") val maximumTemperature: String?,
     @SerialName("maximum_uvi") val maximumUVI: String?,
 )

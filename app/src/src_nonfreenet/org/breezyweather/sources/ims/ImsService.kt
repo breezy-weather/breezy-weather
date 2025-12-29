@@ -143,9 +143,15 @@ class ImsService @Inject constructor(
                     date = dayDate,
                     day = HalfDayWrapper(
                         weatherCode = dailyWeatherCode,
+                        temperature = TemperatureWrapper(
+                            temperature = daily?.maximumTemperature?.toDoubleOrNull()?.celsius
+                        )
                     ),
                     night = HalfDayWrapper(
                         weatherCode = dailyWeatherCode,
+                        temperature = TemperatureWrapper(
+                            temperature = daily?.minimumTemperature?.toDoubleOrNull()?.celsius
+                        )
                     ),
                     uV = daily?.maximumUVI?.toDoubleOrNull()?.let { uvi ->
                         UV(uvi)
