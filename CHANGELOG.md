@@ -17,6 +17,7 @@
 
 **Weather sources**
 - Icelandic Met Office - Fix refresh error
+- IMS - Add support for rain quantity (@ntzb)
 - Pirate Weather - Fix refresh error
 
 

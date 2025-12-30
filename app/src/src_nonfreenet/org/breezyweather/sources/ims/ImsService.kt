@@ -179,9 +179,9 @@ class ImsService @Inject constructor(
                             precipitation = hourlyResult.value.rain?.toDoubleOrNull()?.let { rainMm ->
                                 Precipitation(total = rainMm.millimeters, rain = rainMm.millimeters)
                             },
-                            precipitationProbability = PrecipitationProbability(
-                                total = hourlyResult.value.rainChance?.toDoubleOrNull()?.percent
-                            ),
+                            precipitationProbability = hourlyResult.value.rainChance?.toDoubleOrNull()?.let { rainPct ->
+                                PrecipitationProbability(total = rainPct.percent, rain = rainPct.percent)
+                            },
                             wind = hourlyResult.value.windSpeed?.let { windSpeed ->
                                 Wind(
                                     speed = windSpeed.kilometersPerHour,

@@ -144,6 +144,10 @@ val appContributors: Array<ContributorItem> = arrayOf(
      */
     ContributorItem("Cactric", github = "Cactric"),
     /*
+     * Contributions to IMS source
+     */
+    ContributorItem("ntzb", github = "ntzb"),
+    /*
      * Logo
      */
     ContributorItem(
