@@ -107,7 +107,7 @@ The number of columns shown at once depends on your display size and font scale.
 When data is missing for the whole period, the tab will be hidden.
 
 
-#### Temperature trends
+#### Conditions trends
 
 From top to bottom:
 
@@ -115,7 +115,7 @@ From top to bottom:
 - Maximum temperature of daytime (graph)
 - Minimum temperature of nighttime (graph)
 - Weather condition of nighttime (icon)
-- Maximum precipitation probability for the whole day (bar + text)
+- Maximum precipitation probability for daytime + nighttime (bar + text)
 
 If weather source has normals data, it will show two lines with maximum and minimum temperature normals for the month of the first day in forecast. If normals are not available, it will fallback to use a median maximum and minimum temperature for the daily forecast period.
 
@@ -205,7 +205,7 @@ From top to bottom:
 - Maximum feels like temperature of daytime (graph)
 - Minimum feels like temperature of nighttime (graph)
 - Weather condition of nighttime (icon)
-- Maximum precipitation probability for the whole day (bar + text)
+- Maximum precipitation probability for daytime + nighttime (bar + text)
 
 If weather source has normals data, it will show two lines with maximum and minimum temperature normals for the month of the first day in forecast. If normals are not available, it will fallback to use a median maximum and minimum temperature for the daily forecast period.
 
@@ -223,7 +223,7 @@ The number of columns shown at once depends on your display size and font scale.
 When data is missing for the whole period, the tab will be hidden.
 
 
-#### Temperature trends
+#### Conditions trends
 
 From top to bottom:
 
