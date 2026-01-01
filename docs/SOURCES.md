@@ -19,6 +19,7 @@ Below, you can find details about the support and implementation status for feat
 | 🌐 Worldwide                       | [OpenWeather](#openweather) 🔓                          | Forecast, Current, Air quality                                                       |
 | 🌐 Worldwide                       | [Pirate Weather](#pirate-weather) 🔐                    | Forecast, Current, Nowcasting, Alerts                                                |
 | 🌐 Worldwide                       | [WMO Severe Weather](#wmo-severe-weather)               | Alerts                                                                               |
+| 🇦🇽 Åland Islands                 | [FMI](#finnish-meteorological-institute)                | Forecast, Current, Air quality, Alerts, Normals                                      |
 | 🇦🇩 Andorra                       | [Météo-France](#météo-france)                           | Forecast, Alert, Normals, Address                                                    |
 | 🇦🇹 Austria                       | [GeoSphere Austria](#geosphere-austria)                 | Forecast, Air quality, Nowcasting, Alerts                                            |
 | 🇧🇩 Bangladesh                    | [BMD](#bangladesh-meteorological-department)            | Forecast, Address                                                                    |
@@ -35,6 +36,7 @@ Below, you can find details about the support and implementation status for feat
 | 🇪🇹 Ethiopia                      | [ClimWeb](#climweb)                                     | Alerts, Normals                                                                      |
 | 🇫🇰 Falkland Is.                  | [Met Office](#met-office) 🔐                            | Forecast, Address                                                                    |
 | 🇫🇴 Faroe Is.                     | [DMI](#danmarks-meteorologiske-institut)                | Forecast, Alerts, Address                                                            |
+| 🇫🇮 Finland                       | [FMI](#finnish-meteorological-institute)                | Forecast, Current, Air quality, Alerts, Normals                                      |
 | 🇫🇷 France                        | [Météo-France](#météo-france)                           | Forecast, Current, Nowcasting, Alerts, Normals, Address                              |
 | 🇫🇷 France                        | [Atmo France](#atmo-france)                             | Pollen                                                                               |
 | 🇫🇷 France                        | [Recosanté](#recosanté)                                 | Pollen                                                                               |
@@ -486,6 +488,37 @@ This source aggregates data from Beijing Meteorological Service, ColorfulClouds 
 | Precipitation Duration    | ❌           | Cloud Cover       | ❌           |
 | Wind                      | ✅           | Visibility        | ✅ (Current) |
 | Pressure                  | ✅ (Current) | Ceiling           | ❌           |
+</details>
+
+### Finnish Meteorological Institute
+> This source will be available in an upcoming release.
+
+**[Finnish Meteorological Institute](https://www.ilmatieteenlaitos.fi/)** is the official meteorological service of Finland, and the Åland Islands.
+
+| Feature                        | Detail                                                           |
+|--------------------------------|------------------------------------------------------------------|
+| 🗺️ **Coverage**               | 🇫🇮 Finland, 🇦🇽 Åland Islands ; air quality for 🌍 Europe     |
+| 📆 **Daily forecast**          | Up to 9 days                                                     |
+| ⏱️ **Hourly forecast**         | Up to 9 days                                                     |
+| ▶️ **Current observation**     | Available: can complement another source as a **Current Source** |
+| 😶‍🌫️ **Air quality**         | Up to 4 days                                                     |
+| 🤧 **Pollen**                  | Not available                                                    |
+| ☔ **Precipitation nowcasting** | Not available                                                    |
+| ⚠️ **Alerts**                  | Available                                                        |
+| 📊 **Normals**                 | Available                                                        |
+| 🧭 **Address lookup**          | Not available                                                    |
+
+<details><summary><h4>Details of available data from Finnish Meteorological Institute</h4></summary>
+
+| Data                      | Available | Data              | Available |
+|---------------------------|-----------|-------------------|-----------|
+| Weather Condition         | ✅         | Humidity          | ✅         |
+| Temperature               | ✅         | Dew Point         | ✅         |
+| Precipitation             | ✅         | UV Index          | ❌         |
+| Precipitation Probability | ✅         | Sunshine Duration | ❌         |
+| Precipitation Duration    | ❌         | Cloud Cover       | ✅         |
+| Wind                      | ✅         | Visibility        | Current   |
+| Pressure                  | ✅         | Ceiling           | ❌         |
 </details>
 
 ### GeoSphere Austria
