@@ -860,4 +860,5 @@
     <string name="message_source_non_free_network_content">您正使用本應用程式的 Freenet 版本，此版本只支援自由網路上的天氣來源。如想繼續使用本天氣來源，請切換回 Standard 版本；否則，請選用其他天氣來源。</string>
     <string name="settings_weather_source_non_freenet">%s (非自由網路服務)</string>
     <string name="action_pull_down_to_refresh">下拉重新整理</string>
+    <string name="pressure_standard">標準</string>
 </resources>
