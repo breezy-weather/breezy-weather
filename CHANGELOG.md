@@ -13,6 +13,7 @@
 **Improvements and fixes**
 - Fix crash on some devices when current weather is snow (@Cactric)
 - Fix overlap of texts on double line charts when the line “below” goes above the “above” line (for example, a min. night temperature higher than the max. day temperature)
+- Fix sun showing up on main screen when yesterday moon is still up and sun has not yet risen
 - Fix wind speed being cut on main screen on some devices with some languages
 
 **Weather sources**

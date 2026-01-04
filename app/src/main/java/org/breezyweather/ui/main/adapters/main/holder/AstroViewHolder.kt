@@ -100,7 +100,9 @@ abstract class AstroViewHolder(parent: ViewGroup, val isSun: Boolean) : Abstract
         if (itemView.context.areBlocksSquished) topGuideline.setGuidelinePercent(0.05f)
 
         val todayAstro = if (isSun) mWeather!!.today?.sun else mWeather!!.today?.moon
-        val validatedAstro = if (todayAstro?.riseDate == null || Date().time < todayAstro.riseDate!!.time) {
+        val validatedAstro = if (!isSun &&
+            (todayAstro?.riseDate == null || Date().time < todayAstro.riseDate!!.time)
+        ) {
             val yesterdayAstro =
                 mWeather!!.dailyForecast.getOrElse(mWeather!!.todayIndex!!.minus(1)) { null }?.moon
             if (yesterdayAstro?.isValid == true && yesterdayAstro.setDate!!.time > Date().time) {
