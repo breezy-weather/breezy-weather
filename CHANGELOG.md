@@ -17,6 +17,7 @@
 - Fix wind speed being cut on main screen on some devices with some languages
 
 **Weather sources**
+- BMD - Fix refresh error with recently added locations. Affected locations will need to be removed and re-added
 - Icelandic Met Office - Fix refresh error
 - IMS - Add support for rain quantity (@ntzb)
 - Pirate Weather - Fix refresh error

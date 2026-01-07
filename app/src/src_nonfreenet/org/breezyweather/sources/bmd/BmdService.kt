@@ -36,6 +36,7 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import org.breezyweather.R
 import org.breezyweather.common.exceptions.InvalidLocationException
+import org.breezyweather.common.utils.helpers.LogHelper
 import org.breezyweather.sources.bmd.json.BmdData
 import org.breezyweather.sources.bmd.json.BmdForecastResult
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
@@ -220,7 +221,9 @@ class BmdService @Inject constructor(
         val wgMap = mutableMapOf<String, Double?>()
         val ccMap = mutableMapOf<String, Int?>()
 
+        LogHelper.log("BW", "Before entering $upazila non null")
         hourlyResult.data?.getOrElse(upazila) { null }?.forecastData?.let { forecast ->
+            LogHelper.log("BW", "Entering non null")
             forecast.rf?.forEach {
                 rfMap[it.stepStart] = it.valMax
             }
@@ -404,7 +407,7 @@ class BmdService @Inject constructor(
         val request = Request.Builder().url(url).build()
         return okHttpClient.newCall(request).execute().use { call ->
             if (call.isSuccessful) {
-                call.body.string()
+                call.body.string().filter { it.isDigit() }
             } else {
                 throw InvalidLocationException()
             }
