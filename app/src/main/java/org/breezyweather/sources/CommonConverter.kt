@@ -756,9 +756,9 @@ private fun getHalfDayWeatherCodeFromHourlyList(
     val maxVisibilityFog = 1000.meters
     val maxWindSpeedWindy = 10.metersPerSecond
 
-    // If total precipitation is greater than 1 mm
+    // If total precipitation is greater or equal than 1 mm
     // and max probability is greater than 30 % (assume 100 % if not reported)
-    if ((totPrecipitation?.total ?: 0.0.millimeters) > minPrecipIntensity &&
+    if ((totPrecipitation?.total ?: 1.0.millimeters) >= minPrecipIntensity &&
         (maxPrecipitationProbability?.total ?: 100.percent) > minPrecipProbability
     ) {
         val isRain = maxPrecipitationProbability?.rain?.let { it > minPrecipProbability }
