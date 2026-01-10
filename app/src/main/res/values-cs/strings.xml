@@ -441,13 +441,13 @@
     <string name="common_weather_text_snow_moderate">Mírné sněžení</string>
     <string name="common_weather_text_snow_heavy">Silné sněžení</string>
     <string name="common_weather_text_snow_showers">Sněhové přeháňky</string>
-    <string name="common_weather_text_rain_freezing">Mrazivý déšť</string>
+    <string name="common_weather_text_rain_freezing">Mrznoucí déšť</string>
     <string name="common_weather_text_drizzle_freezing_light">Lehké mrznoucí mrholení</string>
     <string name="settings_background_updates_worker_info_summary">Poslední spuštění: %s</string>
     <string name="common_weather_text_rain_showers_heavy">Silné dešťové přeháňky</string>
-    <string name="common_weather_text_rain_freezing_light">Slabý mrazivý déšť</string>
-    <string name="common_weather_text_rain_freezing_heavy">Silný mrazivý déšť</string>
-    <string name="common_weather_text_rain_snow_mixed">Směs deště a sněhu</string>
+    <string name="common_weather_text_rain_freezing_light">Slabý mrznoucí déšť</string>
+    <string name="common_weather_text_rain_freezing_heavy">Silný mrznoucí déšť</string>
+    <string name="common_weather_text_rain_snow_mixed">Smíšený déšť a sníh</string>
     <string name="settings_weather_source_portal">Portál</string>
     <string name="settings_source_api_key">Klíč API</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">Usazování mlhy</string>
@@ -458,7 +458,7 @@
     <string name="common_weather_text_rain_moderate">Mírný déšť</string>
     <string name="common_weather_text_rain_heavy">Silný déšť</string>
     <string name="common_weather_text_snow_showers_heavy">Silné sněhové přeháňky</string>
-    <string name="common_weather_text_snow_grains">Sněhová zrna</string>
+    <string name="common_weather_text_snow_grains">Sněhové kroupy</string>
     <string name="common_weather_text_rain_snow_mixed_heavy">Silný déšť se sněhem</string>
     <string name="common_weather_text_rain_snow_mixed_showers_light">Slabý déšť a smíšené sněhové přeháňky</string>
     <string name="common_weather_text_snow_showers_light">Slabé sněhové přeháňky</string>
