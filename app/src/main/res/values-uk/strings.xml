@@ -683,7 +683,7 @@
     <string name="visibility_poor">Низька</string>
     <string name="visibility_moderate">Помірно</string>
     <string name="visibility_good">Добре</string>
-    <string name="visibility_clear">Очистити</string>
+    <string name="visibility_clear">Чисто</string>
     <string name="visibility_perfectly_clear">Абсолютно чисто</string>
     <string name="cloud_cover_about">Про хмарність</string>
     <string name="label_description">Опис</string>
