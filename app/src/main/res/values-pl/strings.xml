@@ -18,7 +18,7 @@
     <string name="humidity">Wilgotność</string>
     <string name="humidity_dew_point">Wilgotność / Punkt rosy</string>
     <string name="uv_index">Indeks UV</string>
-    <string name="sunshine_duration">Godziny słońca</string>
+    <string name="sunshine_duration">Usłonecznienie</string>
     <string name="notification_channel_forecast">Prognoza</string>
     <string name="daytime">Pora dzienna</string>
     <string name="nighttime">Pora nocna</string>
