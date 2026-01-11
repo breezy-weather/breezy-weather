@@ -24,10 +24,10 @@ data class PirateWeatherDaily(
     val icon: String?,
     val summary: String?,
 
-    val temperatureHigh: Double?,
-    val temperatureLow: Double?,
-    val apparentTemperatureHigh: Double?,
-    val apparentTemperatureLow: Double?,
+    val temperatureMax: Double?,
+    val temperatureMin: Double?,
+    val apparentTemperatureMax: Double?,
+    val apparentTemperatureMin: Double?,
 
     val dewPoint: Double?,
     val humidity: Double?,

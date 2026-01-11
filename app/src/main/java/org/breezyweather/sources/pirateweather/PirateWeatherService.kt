@@ -191,18 +191,16 @@ class PirateWeatherService @Inject constructor(
                     weatherSummary = result.summary,
                     weatherCode = getWeatherCode(result.icon),
                     temperature = TemperatureWrapper(
-                        temperature = result.temperatureHigh?.celsius,
-                        feelsLike = result.apparentTemperatureHigh?.celsius
+                        temperature = result.temperatureMax?.celsius,
+                        feelsLike = result.apparentTemperatureMax?.celsius
                     )
                 ),
                 night = HalfDayWrapper(
                     weatherSummary = result.summary,
                     weatherCode = getWeatherCode(result.icon),
-                    // temperatureLow/High are always forward-looking
-                    // See https://docs.pirateweather.net/en/latest/API/#temperaturelow
                     temperature = TemperatureWrapper(
-                        temperature = result.temperatureLow?.celsius,
-                        feelsLike = result.apparentTemperatureLow?.celsius
+                        temperature = result.temperatureMin?.celsius,
+                        feelsLike = result.apparentTemperatureMin?.celsius
                     )
                 ),
                 uV = UV(index = result.uvIndex),
