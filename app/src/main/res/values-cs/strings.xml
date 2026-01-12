@@ -757,7 +757,7 @@
     <string name="action_translate_no_app">Nenalezena žádná aplikace překladače</string>
     <string name="settings_appearance_dark_mode_locations_day_night">Podle dne/noci</string>
     <string name="settings_appearance_dark_mode_locations_dark">Vždy tmavé, pokud je aplikace ve tmavém režimu</string>
-    <string name="air_quality_pm25_about">Infrmace o jemných prachových částicích (%s)</string>
+    <string name="air_quality_pm25_about">Informace o jemných prachových částicích (%s)</string>
     <string name="air_quality_pm25_index">Stupnice indexu kvality ovzduší pro %s</string>
     <string name="air_quality_pm10_about">Informace o vdechovatelných pevných částicích (%s)</string>
     <string name="air_quality_pm10_index">Stupnice indexu kvality ovzduší pro %s</string>
