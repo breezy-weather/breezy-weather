@@ -53,7 +53,6 @@ import breezyweather.domain.weather.reference.WeatherCode
 import breezyweather.domain.weather.wrappers.AirQualityWrapper
 import breezyweather.domain.weather.wrappers.CurrentWrapper
 import breezyweather.domain.weather.wrappers.DailyWrapper
-import breezyweather.domain.weather.wrappers.HalfDayWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
 import breezyweather.domain.weather.wrappers.PollenWrapper
 import breezyweather.domain.weather.wrappers.TemperatureWrapper
@@ -420,19 +419,6 @@ class OpenMeteoService @Inject constructor(
                 }.time
             val daily = DailyWrapper(
                 date = theDayWithDstFixed,
-                day = HalfDayWrapper(
-                    temperature = TemperatureWrapper(
-                        temperature = dailyResult.temperatureMax?.getOrNull(i)?.celsius,
-                        feelsLike = dailyResult.apparentTemperatureMax?.getOrNull(i)?.celsius
-                    )
-                ),
-                night = HalfDayWrapper(
-                    temperature = TemperatureWrapper(
-                        // For night temperature, we take the minTemperature from the following day
-                        temperature = dailyResult.temperatureMin?.getOrNull(i + 1)?.celsius,
-                        feelsLike = dailyResult.apparentTemperatureMin?.getOrNull(i + 1)?.celsius
-                    )
-                ),
                 uV = UV(index = dailyResult.uvIndexMax?.getOrNull(i)),
                 sunshineDuration = dailyResult.sunshineDuration?.getOrNull(i)?.seconds,
                 relativeHumidity = DailyRelativeHumidity(

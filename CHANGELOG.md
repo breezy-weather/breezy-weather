@@ -22,6 +22,7 @@
 - BMD - Fix refresh error with recently added locations. Affected locations will need to be removed and re-added
 - Icelandic Met Office - Fix refresh error
 - IMS - Add support for rain quantity (@ntzb)
+- Open-Meteo - Fix day/night temperatures sometimes being shifted by 1 day
 - Pirate Weather - Fix refresh error
 
 
