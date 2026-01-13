@@ -775,4 +775,5 @@
     <string name="settings_appearance_dark_mode_custom">Цёмны рэжым з %1$s да %2$s</string>
     <string name="content_provider_permission_label">Чытаць даныя Breezy Weather</string>
     <string name="content_provider_permission_description">атрымліваць інфармацыю пра надвор’е ад Breezy Weather, у тым ліку каардынаты месцазнаходжанняў, уключаючы ваша бягучае месцазнаходжанне, калі яно дададзена</string>
+    <string name="pressure_standard">Стандартны</string>
 </resources>
