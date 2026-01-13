@@ -54,13 +54,13 @@
     <string name="uv_alert_level">Výstraha</string>
     <string name="air_quality_index">Index kvality ovzdušia</string>
     <string name="air_quality_level_1_description">Kvalita ovzdušia je ideálna pre väčšinu ľudí; môžete sa venovať bežným aktivitám vonku.</string>
-    <string name="air_quality_level_2">Dobrá</string>
-    <string name="air_quality_level_3">Zhoršená</string>
+    <string name="air_quality_level_2">Uspokojivá</string>
+    <string name="air_quality_level_3">Zlá</string>
     <string name="air_quality_level_3_description">Ovzdušie dosiahlo vysokú úroveň znečistenia a je nezdravé pre citlivé skupiny. Ak pociťujete príznaky, ako sú ťažkosti s dýchaním alebo podráždenie hrdla, obmedzte čas strávený vonku.</string>
-    <string name="air_quality_level_4">Zlá</string>
-    <string name="air_quality_level_5">Veľmi zlá</string>
-    <string name="air_quality_level_6">Extrémne zlá</string>
-    <string name="air_quality_level_6_description">Akákoľvek expozícia ovzdušia, aj len na niekoľko minút, môže mať vážne zdravotné účinky na všetkých. Vyhnite sa aktivitám vonku.</string>
+    <string name="air_quality_level_4">Nezdravá</string>
+    <string name="air_quality_level_5">Veľmi nezdravá</string>
+    <string name="air_quality_level_6">Nebezpečná</string>
+    <string name="air_quality_level_6_description">Akákoľvek expozícia ovzdušiu, aj len na niekoľko minút, môže mať vážne zdravotné účinky na všetkých. Vyhnite sa aktivitám vonku.</string>
     <string name="air_quality_pm25">PM2.5</string>
     <string name="air_quality_pm25_voice">PM dva celá päť</string>
     <string name="air_quality_pm10">PM10</string>
@@ -74,7 +74,7 @@
     <string name="hourly_forecast">Hodinová predpoveď</string>
     <string name="precipitation_snow">Sneh</string>
     <string name="wind_strength_9">Víchrica</string>
-    <string name="air_quality_level_1">Veľmi dobrá</string>
+    <string name="air_quality_level_1">Výborná</string>
     <string name="uv_index_6_7">Vysoký</string>
     <string name="air_quality_level_2_description">Kvalita ovzdušia je vo všeobecnosti prijateľná pre väčšinu ľudí. Citlivé skupiny však môžu pri dlhodobej expozícii pociťovať mierne až stredne závažné príznaky.</string>
     <string name="air_quality_level_4_description">Citlivé skupiny môžu okamžite pocítiť účinky na zdravie. Zdravé osoby môžu pri dlhodobej expozícii pociťovať ťažkosti s dýchaním a podráždenie hrdla. Obmedzte aktivity vonku.</string>
@@ -679,7 +679,7 @@
     <string name="air_quality_index_about_description_1">Index kvality ovzdušia (AQI) je stupnica, ktorá vám pomôže zistiť, aké je znečistenie ovzdušia v danej oblasti a aké sú potenciálne riziká pre vaše zdravie.</string>
     <string name="air_quality_index_about_description_2">Stupnica použitá v tejto aplikácii vychádza z odporúčaní Svetovej zdravotníckej organizácie, a nie z miestnych predpisov, aby boli kategórie zmysluplné a aby bolo ľahšie porovnávať úrovne znečistenia medzi krajinami.</string>
     <string name="air_quality_index_scale">Stupnica indexu kvality ovzdušia</string>
-    <string name="air_quality_pollutant_primary">Primárna znečisťujúca látka</string>
+    <string name="air_quality_pollutant_primary">Hlavná znečisťujúca látka</string>
     <string name="air_quality_pollutant_details">Podrobnosti o znečisťujúcej látke</string>
     <string name="air_quality_health_information">Informácie o zdraví</string>
     <string name="about_update_check_eol">‐Táto verzia Android už nie je podporovaná</string>
@@ -729,4 +729,7 @@
     <string name="air_quality_pm10_index">Stupnica indexu kvality ovzdušia pre %s</string>
     <string name="air_quality_pm25_index">Stupnica indexu kvality ovzdušia pre %s</string>
     <string name="uv_index_scale">Stupnica UV indexu</string>
+    <string name="ephemeris_dawn_at">Úsvit v %s</string>
+    <string name="nighttime_details">Začína večer a trvá až do úsvitu nasledujúceho dňa</string>
+    <string name="air_quality_index_harmless_exposure">Neškodná expozícia</string>
 </resources>
