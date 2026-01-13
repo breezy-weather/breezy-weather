@@ -16,6 +16,7 @@
 - Fix sun showing up on main screen when yesterday moon is still up and sun has not yet risen
 - Fix wind speed being cut on main screen on some devices with some languages
 - Fix overlap of rise/set times in sun & moon blocks with some languages if using 12-hour format
+- Remove minus sign when a number is rounded to 0
 
 **Weather sources**
 - BMD - Fix refresh error with recently added locations. Affected locations will need to be removed and re-added

@@ -41,7 +41,7 @@ fun Number.format(
     return if (supportsNumberFormatter() && useNumberFormatter) {
         (NumberFormatter.withLocale(locale) as LocalizedNumberFormatter)
             .precision(Precision.maxFraction(decimals))
-            .sign(if (showSign) NumberFormatter.SignDisplay.ALWAYS else NumberFormatter.SignDisplay.AUTO)
+            .sign(if (showSign) NumberFormatter.SignDisplay.ALWAYS else NumberFormatter.SignDisplay.NEGATIVE)
             .format(this)
             .toString()
     } else if (supportsNumberFormat() && useNumberFormat && !showSign) {

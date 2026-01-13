@@ -48,7 +48,7 @@ fun MeasureUnit.formatWithNumberFormatter(
 ): String {
     return (NumberFormatter.withLocale(locale) as LocalizedNumberFormatter)
         .precision(if (precision == 0) Precision.integer() else Precision.maxFraction(precision))
-        .sign(if (showSign) NumberFormatter.SignDisplay.ALWAYS else NumberFormatter.SignDisplay.AUTO)
+        .sign(if (showSign) NumberFormatter.SignDisplay.ALWAYS else NumberFormatter.SignDisplay.NEGATIVE)
         .unit(this)
         .perUnit(perUnit)
         .unitWidth(numberFormatterWidth)
