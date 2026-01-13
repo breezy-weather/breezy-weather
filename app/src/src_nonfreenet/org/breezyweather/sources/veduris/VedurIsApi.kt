@@ -10,13 +10,15 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface VedurIsApi {
-    @GET("_next/data/3398a8881de02c75a8a910a79dba2473fde746f3/en/vedur/spar/{id}.json")
+    @GET("_next/data/{page_id}/en/vedur/spar/{id}.json")
     fun getForecast(
+        @Path("page_id") pageId: String,
         @Path("id") id: String,
     ): Observable<VedurIsResult>
 
-    @GET("_next/data/3398a8881de02c75a8a910a79dba2473fde746f3/en/vedur/athuganir/{id}.json")
+    @GET("_next/data/{page_id}/en/vedur/athuganir/{id}.json")
     fun getCurrent(
+        @Path("page_id") pageId: String,
         @Path("id") id: String,
     ): Observable<VedurIsResult>
 

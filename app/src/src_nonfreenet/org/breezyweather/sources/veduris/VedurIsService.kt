@@ -81,7 +81,7 @@ class VedurIsService @Inject constructor(
         val failedFeatures = mutableMapOf<SourceFeature, Throwable>()
 
         val forecast = if (SourceFeature.FORECAST in requestedFeatures) {
-            mApi.getForecast(forecastStationId).onErrorResumeNext {
+            mApi.getForecast(VEDUR_IS_PAGE_ID, forecastStationId).onErrorResumeNext {
                 failedFeatures[SourceFeature.FORECAST] = it
                 Observable.just(VedurIsResult())
             }
@@ -90,7 +90,7 @@ class VedurIsService @Inject constructor(
         }
 
         val current = if (SourceFeature.CURRENT in requestedFeatures && !currentStationId.isNullOrEmpty()) {
-            mApi.getCurrent(currentStationId).onErrorResumeNext {
+            mApi.getCurrent(VEDUR_IS_PAGE_ID, currentStationId).onErrorResumeNext {
                 failedFeatures[SourceFeature.CURRENT] = it
                 Observable.just(VedurIsResult())
             }
@@ -486,6 +486,7 @@ class VedurIsService @Inject constructor(
 
     companion object {
         private const val VEDUR_IS_BASE_URL = "https://gottvedur.is/"
+        private const val VEDUR_IS_PAGE_ID = "8966f52b07caebba9b39748e5c5a3bbff1a6a156"
         private const val EARTH_POLAR_RADIUS = 6356752
         private const val EARTH_EQUATORIAL_RADIUS = 6378137
         private const val DISTANCE_LIMIT = 60000.0
