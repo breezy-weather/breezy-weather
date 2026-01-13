@@ -95,9 +95,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:maxLines="1"
-                app:layout_constraintHorizontal_chainStyle="packed"
+                app:autoSizeTextType="uniform"
+                app:layout_constraintHorizontal_chainStyle="spread_inside"
                 app:layout_constraintTop_toBottomOf="@+id/container_main_sun_moon_controlView"
-                app:layout_constraintStart_toStartOf="@+id/block_start_guideline" />
+                app:layout_constraintStart_toStartOf="@+id/block_start_guideline"
+                app:layout_constraintEnd_toStartOf="@+id/set_time"
+                tools:text="06:00" />
 
             <TextView
                 android:id="@+id/set_time"
@@ -107,9 +110,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:maxLines="1"
-                app:layout_constraintHorizontal_chainStyle="packed"
+                app:autoSizeTextType="uniform"
+                app:layout_constraintHorizontal_chainStyle="spread_inside"
                 app:layout_constraintTop_toBottomOf="@+id/container_main_sun_moon_controlView"
-                app:layout_constraintEnd_toEndOf="@+id/block_end_guideline" />
+                app:layout_constraintEnd_toEndOf="@+id/block_end_guideline"
+                app:layout_constraintStart_toEndOf="@+id/rise_time"
+                tools:text="18:00" />
 
             <org.breezyweather.ui.common.widgets.astro.MoonPhaseView
                 android:id="@+id/description_icon"
