@@ -631,14 +631,14 @@
     <string name="conditions">Podmienky</string>
     <string name="temperature_real_details">Aktuálna teplota.</string>
     <string name="wind_strength_scale">Beaufortova stupnica</string>
-    <string name="air_quality_index_short">AQI</string>
+    <string name="air_quality_index_short">IKO</string>
     <string name="air_quality_level_1_harmless_exposure">&gt; 1 rok</string>
     <string name="air_quality_level_2_harmless_exposure">&lt; 1 rok</string>
     <string name="air_quality_level_3_harmless_exposure">&lt; 1 deň</string>
     <string name="air_quality_level_4_harmless_exposure">&lt; 1 hodina</string>
     <string name="air_quality_level_5_harmless_exposure">&lt; niekoľko minút</string>
     <string name="air_quality_level_6_harmless_exposure">&lt; 1 minúta</string>
-    <string name="air_quality_short">Kvalita ovzdušia</string>
+    <string name="air_quality_short">Ovzdušie</string>
     <string name="ephemeris_sun">Slnko</string>
     <string name="ephemeris_moon">Mesiac</string>
     <string name="ephemeris_polar_day">Polárny deň</string>
