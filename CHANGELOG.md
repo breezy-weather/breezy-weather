@@ -17,6 +17,7 @@
 - Fix wind speed being cut on main screen on some devices with some languages
 - Fix overlap of rise/set times in sun & moon blocks with some languages if using 12-hour format
 - Remove minus sign when a number is rounded to 0
+- Fix missing precipitation probability in Daily Feels like tab
 
 **Weather sources**
 - BMD - Fix refresh error with recently added locations. Affected locations will need to be removed and re-added

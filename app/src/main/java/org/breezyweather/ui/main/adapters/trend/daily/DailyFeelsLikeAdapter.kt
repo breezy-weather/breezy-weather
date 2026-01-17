@@ -26,6 +26,7 @@ import breezyweather.domain.location.model.Location
 import org.breezyweather.R
 import org.breezyweather.common.activities.BreezyActivity
 import org.breezyweather.common.extensions.formatMeasure
+import org.breezyweather.common.extensions.formatPercent
 import org.breezyweather.common.extensions.getThemeColor
 import org.breezyweather.common.options.appearance.DetailScreen
 import org.breezyweather.ui.common.widgets.trend.TrendRecyclerView
@@ -46,6 +47,7 @@ class DailyFeelsLikeAdapter(
     location: Location,
     provider: ResourceProvider,
     private val temperatureUnit: TemperatureUnit,
+    private val showPrecipitationProbability: Boolean = true,
 ) : AbsDailyTrendAdapter(activity, location) {
     private val mResourceProvider: ResourceProvider = provider
     private val mDaytimeTemperatures: Array<Float?>
@@ -72,6 +74,17 @@ class DailyFeelsLikeAdapter(
                 day.temperature?.feelsLikeTemperature?.let {
                     talkBackBuilder.append(it.formatMeasure(activity, temperatureUnit, unitWidth = UnitWidth.LONG))
                 }
+                if (!day.weatherText.isNullOrEmpty()) {
+                    talkBackBuilder.append(day.weatherText)
+                }
+                if (showPrecipitationProbability) {
+                    day.precipitationProbability?.total?.let { p ->
+                        talkBackBuilder.append(activity.getString(org.breezyweather.unit.R.string.locale_separator))
+                            .append(activity.getString(R.string.precipitation_probability))
+                            .append(activity.getString(R.string.colon_separator))
+                            .append(p.formatPercent(activity))
+                    }
+                }
             }
             daily.night?.let { night ->
                 talkBackBuilder.append(activity.getString(org.breezyweather.unit.R.string.locale_separator))
@@ -80,11 +93,26 @@ class DailyFeelsLikeAdapter(
                 night.temperature?.feelsLikeTemperature?.let {
                     talkBackBuilder.append(it.formatMeasure(activity, temperatureUnit, unitWidth = UnitWidth.LONG))
                 }
+                if (!night.weatherText.isNullOrEmpty()) {
+                    talkBackBuilder.append(night.weatherText)
+                }
+                if (showPrecipitationProbability) {
+                    night.precipitationProbability?.total?.let { p ->
+                        talkBackBuilder.append(activity.getString(org.breezyweather.unit.R.string.locale_separator))
+                            .append(activity.getString(R.string.precipitation_probability))
+                            .append(activity.getString(R.string.colon_separator))
+                            .append(p.formatPercent(activity))
+                    }
+                }
             }
             dailyItem.setDayIconDrawable(
                 daily.day?.weatherCode?.let { ResourceHelper.getWeatherIcon(mResourceProvider, it, true) },
                 missingIconVisibility = View.INVISIBLE
             )
+            val daytimePrecipitationProbability = daily.day?.precipitationProbability?.total
+            val nighttimePrecipitationProbability = daily.night?.precipitationProbability?.total
+            val p = listOfNotNull(daytimePrecipitationProbability, nighttimePrecipitationProbability)
+                .takeIf { it.isNotEmpty() }?.maxBy { it.value }
             mPolylineAndHistogramView.setData(
                 buildTemperatureArrayForItem(mDaytimeTemperatures, position),
                 buildTemperatureArrayForItem(mNighttimeTemperatures, position),
@@ -104,10 +132,10 @@ class DailyFeelsLikeAdapter(
                     ),
                 mHighestTemperature,
                 mLowestTemperature,
-                null,
-                null,
-                null,
-                null
+                p?.takeIf { it.value > 0 && showPrecipitationProbability }?.inPercent?.toFloat(),
+                p?.takeIf { it.value > 0 && showPrecipitationProbability }?.formatPercent(activity, UnitWidth.NARROW),
+                100f,
+                0f
             )
             val themeColors = ThemeManager
                 .getInstance(itemView.context)
