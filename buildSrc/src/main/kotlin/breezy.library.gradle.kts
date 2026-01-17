@@ -1,5 +1,6 @@
-import breezy.buildlogic.configureAndroid
+import breezy.buildlogic.configureAndroidLibrary
 import breezy.buildlogic.configureTest
+import com.android.build.api.dsl.LibraryExtension
 
 plugins {
     id("com.android.library")
@@ -7,7 +8,7 @@ plugins {
     id("breezy.code.lint")
 }
 
-android {
-    configureAndroid(this)
+configure<LibraryExtension> {
+    configureAndroidLibrary()
     configureTest()
 }
