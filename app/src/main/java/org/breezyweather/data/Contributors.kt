@@ -104,6 +104,10 @@ val appContributors: Array<ContributorItem> = arrayOf(
      */
     ContributorItem("bunburya", github = "bunburya"),
     /*
+     * KNMI source
+     */
+    ContributorItem("Willem Schipper", github = "willem640"),
+    /*
      * Fix lag in refresh
      */
     ContributorItem("jayyuz", github = "jayyuz"),

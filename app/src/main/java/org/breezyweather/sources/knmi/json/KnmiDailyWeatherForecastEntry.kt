@@ -1,4 +1,4 @@
-/**
+/*
  * This file is part of Breezy Weather.
  *
  * Breezy Weather is free software: you can redistribute it and/or modify it
@@ -18,7 +18,6 @@ package org.breezyweather.sources.knmi.json
 
 import kotlinx.serialization.Serializable
 import org.breezyweather.common.serializer.DateSerializer
-
 import java.util.Date
 
 @Serializable

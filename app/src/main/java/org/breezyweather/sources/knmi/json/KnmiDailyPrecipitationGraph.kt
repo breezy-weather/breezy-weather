@@ -1,4 +1,4 @@
-/**
+/*
  * This file is part of Breezy Weather.
  *
  * Breezy Weather is free software: you can redistribute it and/or modify it
@@ -17,14 +17,12 @@
 package org.breezyweather.sources.knmi.json
 
 import kotlinx.serialization.Serializable
-
 import org.breezyweather.common.serializer.DateSerializer
-
 import java.util.Date
 
 @Serializable
 data class KnmiDailyPrecipitationGraph(
-    val dates: List<@Serializable(DateSerializer::class) Date>?,
+    @Suppress("ktlint") val dates: List<@Serializable(DateSerializer::class) Date>?,
     val amounts: List<Double>?,
     val lowerAmounts: List<Double>?,
     val upperAmounts: List<Double>?,

@@ -1,4 +1,4 @@
-/**
+/*
  * This file is part of Breezy Weather.
  *
  * Breezy Weather is free software: you can redistribute it and/or modify it
@@ -20,7 +20,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class KnmiWeatherSnapshot(
-    val alertLevel: String?,
-    val temperature: Int?,
-    val weatherType: Int?,
+    val alertLevel: String? = null,
+    val temperature: Int? = null,
+    val weatherType: Int? = null,
 )

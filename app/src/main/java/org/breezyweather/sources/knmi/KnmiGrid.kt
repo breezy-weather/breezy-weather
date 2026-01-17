@@ -1,4 +1,4 @@
-/**
+/*
  * This file is part of Breezy Weather.
  *
  * Breezy Weather is free software: you can redistribute it and/or modify it
@@ -18,10 +18,12 @@ package org.breezyweather.sources.knmi
 
 import breezyweather.domain.location.model.Location
 
-// This code is based on the iOS version of the KNMI app: https://gitlab.com/KNMI-OSS/KNMI-App/knmi-app-ios/-/blob/35a30d8543995b8f297612341b24d5f7f7e8a366/KNMI/SharedLibrary/Sources/GridDefinition/GridDefinition.swift
+// This code is based on the iOS version of the KNMI app:
+// https://gitlab.com/KNMI-OSS/KNMI-App/knmi-app-ios/-/blob/35a30d8543995b8f297612341b24d5f7f7e8a366/KNMI/SharedLibrary/Sources/GridDefinition/GridDefinition.swift
 // Which is licensed under the EUPL 1.2.
 enum class KnmiGridDirection(val stringRepresentation: String) {
-    southWestColumnRow("SWCR"), northWestColumnRow("NWCR")
+    SouthWestColumnRow("SWCR"),
+    NorthWestColumnRow("NWCR"),
 }
 
 data class KnmiGridSteps(
@@ -37,4 +39,3 @@ data class KnmiGridDefinition(
     val proj: String,
     val direction: KnmiGridDirection,
 )
-

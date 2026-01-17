@@ -1,4 +1,4 @@
-/**
+/*
  * This file is part of Breezy Weather.
  *
  * Breezy Weather is free software: you can redistribute it and/or modify it
@@ -20,12 +20,12 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class KnmiWeather(
-    val backgrounds: List<KnmiWeatherBackground>?,
-    val summaries: List<KnmiWeatherSummary>?,
-    val alerts: List<KnmiWeatherAlert>?,
-    val hourly: KnmiHourlyWeatherForecast?,
-    val daily: KnmiDailyWeatherForecast?,
-    val sun: KnmiSunData?,
-    val wind: KnmiWind?,
-    val uvIndex: KnmiUvIndex?,
+    val backgrounds: List<KnmiWeatherBackground>? = null,
+    val summaries: List<KnmiWeatherSummary>? = null,
+    val alerts: List<KnmiWeatherAlert>? = null,
+    val hourly: KnmiHourlyWeatherForecast? = null,
+    val daily: KnmiDailyWeatherForecast? = null,
+    val sun: KnmiSunData? = null,
+    val wind: KnmiWind? = null,
+    val uvIndex: KnmiUvIndex? = null,
 )

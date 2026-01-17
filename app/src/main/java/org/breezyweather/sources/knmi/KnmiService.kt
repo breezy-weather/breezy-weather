@@ -1,4 +1,4 @@
-/**
+/*
  * This file is part of Breezy Weather.
  *
  * Breezy Weather is free software: you can redistribute it and/or modify it
@@ -21,13 +21,11 @@ import androidx.compose.ui.text.input.KeyboardType
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
-import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.Normals
 import breezyweather.domain.weather.model.Precipitation
 import breezyweather.domain.weather.model.PrecipitationProbability
 import breezyweather.domain.weather.model.UV
 import breezyweather.domain.weather.model.Wind
-import breezyweather.domain.weather.reference.AlertSeverity
 import breezyweather.domain.weather.reference.Month
 import breezyweather.domain.weather.reference.WeatherCode
 import breezyweather.domain.weather.wrappers.CurrentWrapper
@@ -36,31 +34,28 @@ import breezyweather.domain.weather.wrappers.HalfDayWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
 import breezyweather.domain.weather.wrappers.TemperatureWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
-import com.google.maps.android.PolyUtil
-import com.google.maps.android.data.Feature
-import com.google.maps.android.data.geojson.GeoJsonMultiPolygon
-import com.google.maps.android.data.geojson.GeoJsonParser
-import com.google.maps.android.data.geojson.GeoJsonPolygon
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.BreezyWeather
 import org.breezyweather.R
 import org.breezyweather.common.exceptions.InvalidLocationException
+import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.extensions.getCountryName
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.getIsoFormattedDate
-import org.breezyweather.common.extensions.parseRawGeoJson
 import org.breezyweather.common.preference.EditTextPreference
 import org.breezyweather.common.preference.Preference
 import org.breezyweather.common.source.ConfigurableSource
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.WeatherSource
+import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_HIGHEST
+import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
 import org.breezyweather.domain.settings.SourceConfigStore
 import org.breezyweather.sources.knmi.json.KnmiDailyWeatherForecast
 import org.breezyweather.sources.knmi.json.KnmiDailyWeatherGraph
 import org.breezyweather.sources.knmi.json.KnmiHourlyWeatherForecast
 import org.breezyweather.sources.knmi.json.KnmiUvIndex
 import org.breezyweather.sources.knmi.json.KnmiWeather
-import org.breezyweather.sources.knmi.json.KnmiWeatherAlerts
 import org.breezyweather.sources.knmi.json.KnmiWeatherDetail
 import org.breezyweather.sources.knmi.json.KnmiWeatherSnapshot
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
@@ -70,7 +65,6 @@ import org.breezyweather.unit.temperature.Temperature.Companion.celsius
 import retrofit2.Retrofit
 import java.util.Calendar
 import java.util.Date
-import java.util.Objects
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -80,7 +74,7 @@ class KnmiService @Inject constructor(
 ) : HttpSource(), WeatherSource, ConfigurableSource {
 
     override val id = "knmi"
-    override val name = "KNMI - Royal Dutch Weather Institute (Netherlands)"
+    override val name = "Koninklijk Nederlands Meteorologisch Instituut (${context.currentLocale.getCountryName("NL")})"
     override val continent = SourceContinent.EUROPE
     override val privacyPolicyUrl = "https://www.knmi.nl/privacy"
 
@@ -88,16 +82,32 @@ class KnmiService @Inject constructor(
         client.baseUrl(instance!!).build().create(KnmiApi::class.java)
     }
 
-    override val supportedFeatures = mapOf(
-        SourceFeature.FORECAST to name,
-        SourceFeature.CURRENT to name,
-        SourceFeature.ALERT to name,
-        SourceFeature.NORMALS to name
-    )
     override val attributionLinks = mapOf(
         name to "https://www.knmi.nl/"
     )
+    override val supportedFeatures = mapOf(
+        SourceFeature.FORECAST to name,
+        SourceFeature.CURRENT to name,
+        // SourceFeature.ALERT to name,
+        SourceFeature.NORMALS to name
+    )
 
+    override fun isFeatureSupportedForLocation(
+        location: Location,
+        feature: SourceFeature,
+    ): Boolean {
+        return location.countryCode.equals("NL", ignoreCase = true)
+    }
+
+    override fun getFeaturePriorityForLocation(
+        location: Location,
+        feature: SourceFeature,
+    ): Int {
+        return when {
+            isFeatureSupportedForLocation(location, feature) -> PRIORITY_HIGHEST
+            else -> PRIORITY_NONE
+        }
+    }
 
     override fun requestWeather(
         context: Context,
@@ -120,78 +130,96 @@ class KnmiService @Inject constructor(
             )
         }
 
-        // This gets alerts from the API and uses OkHttp to download a html document containing advice for today (usually 1-2)
-        val alerts = if (SourceFeature.ALERT in requestedFeatures) {
+        // This gets alerts from the API and uses OkHttp to download a html document containing advice for today
+        //  (usually 1-2)
+        /*val alerts = if (SourceFeature.ALERT in requestedFeatures) {
             mApi.getAlerts()
         } else {
             Observable.just(KnmiWeatherAlerts(null, null, null, null, null))
-        }
+        }*/
 
         val weather = if (SourceFeature.FORECAST in requestedFeatures) {
             mApi.getWeather(
-                locationCode, null
+                location = locationCode,
+                region = null
             )
         } else {
-            Observable.just(KnmiWeather(null, null, null, null, null, null, null, null))
+            Observable.just(KnmiWeather())
         }
 
         val weatherDetail = if (SourceFeature.NORMALS in requestedFeatures) {
             mApi.getWeatherDetail(
-                locationCode, null, date = Date().getFormattedDate("yyyy-MM-dd")
+                location = locationCode,
+                region = null,
+                date = Date().getFormattedDate("yyyy-MM-dd")
             )
         } else {
-            Observable.just(KnmiWeatherDetail(null, null, null, null, null, null, null, null, null))
+            Observable.just(KnmiWeatherDetail())
         }
 
         val fourteenDayForecast = if (SourceFeature.FORECAST in requestedFeatures) {
             val twoDaysInFuture = Calendar.getInstance()
             twoDaysInFuture.add(Calendar.DATE, 2)
             mApi.getWeatherDetail(
-                locationCode, null, date = twoDaysInFuture.getIsoFormattedDate()
-                // Note: date needs to be yesterday or at least two days in the future. Otherwise WeatherDetail won't return 14 day date
+                location = locationCode,
+                region = null,
+                // Note: date needs to be yesterday or at least two days in the future.
+                //  Otherwise WeatherDetail won't return 14 day date
+                date = twoDaysInFuture.getIsoFormattedDate()
             )
         } else {
-            Observable.just(KnmiWeatherDetail(null, null, null, null, null, null, null, null, null))
+            Observable.just(KnmiWeatherDetail())
         }
 
-
         val weatherSnapshot = if (SourceFeature.CURRENT in requestedFeatures) {
-            mApi.getWeatherSnapshot(locationCode, null)
+            mApi.getWeatherSnapshot(
+                location = locationCode,
+                region = null
+            )
         } else {
-            Observable.just(KnmiWeatherSnapshot(null, null, null))
+            Observable.just(KnmiWeatherSnapshot())
         }
 
         return Observable.zip(
-            alerts, weather, weatherDetail, fourteenDayForecast, weatherSnapshot
-        ) { alerts, weather, weatherDetail, fourteenDayForecast, weatherSnapshot ->
+            // alerts,
+            weather,
+            weatherDetail,
+            fourteenDayForecast,
+            weatherSnapshot
+        ) { /*alerts, */weather, weatherDetail, fourteenDayForecast, weatherSnapshot ->
             WeatherWrapper(
                 dailyForecast = if (SourceFeature.FORECAST in requestedFeatures) {
                     getDailyForecast(weather.daily, fourteenDayForecast.daily, weather.uvIndex)
                 } else {
                     null
-                }, hourlyForecast = if (SourceFeature.FORECAST in requestedFeatures) {
+                },
+                hourlyForecast = if (SourceFeature.FORECAST in requestedFeatures) {
                     getHourlyForecast(weather.hourly)
                 } else {
                     null
-                }, current = if (SourceFeature.CURRENT in requestedFeatures) {
+                },
+                current = if (SourceFeature.CURRENT in requestedFeatures) {
                     getCurrent(weatherSnapshot)
                 } else {
                     null
-                }, alertList = if (SourceFeature.ALERT in requestedFeatures) {
+                },
+                /*alertList = if (SourceFeature.ALERT in requestedFeatures) {
                     getAlertList(alerts, location)
                 } else {
                     null
-                }, normals = if (SourceFeature.NORMALS in requestedFeatures) {
+                },*/
+                normals = if (SourceFeature.NORMALS in requestedFeatures) {
                     getNormals(weatherDetail)
                 } else {
                     null
-                }, failedFeatures = failedFeatures
+                },
+                failedFeatures = failedFeatures
             )
         }
     }
 
-
-    // This code is based on the iOS version of the KNMI app: https://gitlab.com/KNMI-OSS/KNMI-App/knmi-app-ios/-/blob/35a30d8543995b8f297612341b24d5f7f7e8a366/KNMI/SharedLibrary/Sources/GridDefinition/GridDefinition.swift
+    // This code is based on the iOS version of the KNMI app:
+    //  https://gitlab.com/KNMI-OSS/KNMI-App/knmi-app-ios/-/blob/35a30d8543995b8f297612341b24d5f7f7e8a366/KNMI/SharedLibrary/Sources/GridDefinition/GridDefinition.swift
     // Which is licensed under the EUPL 1.2.
     private fun getLocationCode(
         location: Location,
@@ -200,43 +228,53 @@ class KnmiService @Inject constructor(
         // As per KNMI app: for southWestColumnRow, northern eastern edge are outside bounds
         // and for northWestColumnRow, southern and eastern edges.
         when (gridDefinition.direction) {
-            KnmiGridDirection.southWestColumnRow -> {
-                if (!(location.latitude >= gridDefinition.southWest.latitude && location.latitude < gridDefinition.northEast.latitude && location.longitude >= gridDefinition.southWest.longitude && location.longitude < gridDefinition.northEast.longitude)) {
+            KnmiGridDirection.SouthWestColumnRow -> {
+                if (!(
+                        location.latitude >= gridDefinition.southWest.latitude &&
+                            location.latitude < gridDefinition.northEast.latitude &&
+                            location.longitude >= gridDefinition.southWest.longitude &&
+                            location.longitude < gridDefinition.northEast.longitude
+                        )
+                ) {
                     return null
                 }
             }
 
-            KnmiGridDirection.northWestColumnRow -> {
-                if (!(location.latitude > gridDefinition.southWest.latitude && location.latitude <= gridDefinition.northEast.latitude && location.longitude >= gridDefinition.southWest.longitude && location.longitude < gridDefinition.northEast.longitude)) {
+            KnmiGridDirection.NorthWestColumnRow -> {
+                if (!(
+                        location.latitude > gridDefinition.southWest.latitude &&
+                            location.latitude <= gridDefinition.northEast.latitude &&
+                            location.longitude >= gridDefinition.southWest.longitude &&
+                            location.longitude < gridDefinition.northEast.longitude
+                        )
+                ) {
                     return null
                 }
             }
         }
 
-        val latitudeMultiplier =
-            gridDefinition.steps.latitude.toDouble() / (gridDefinition.northEast.latitude - gridDefinition.southWest.latitude)
-        val longitudeMultiplier =
-            gridDefinition.steps.longitude.toDouble() / (gridDefinition.northEast.longitude - gridDefinition.southWest.longitude)
+        val latitudeMultiplier = gridDefinition.steps.latitude.toDouble() /
+            (gridDefinition.northEast.latitude - gridDefinition.southWest.latitude)
+        val longitudeMultiplier = gridDefinition.steps.longitude.toDouble() /
+            (gridDefinition.northEast.longitude - gridDefinition.southWest.longitude)
 
         return when (gridDefinition.direction) {
-            KnmiGridDirection.southWestColumnRow -> {
+            KnmiGridDirection.SouthWestColumnRow -> {
                 val latitudeCell =
                     ((location.latitude - gridDefinition.southWest.latitude) * latitudeMultiplier).toInt()
                 val longitudeCell =
                     ((location.longitude - gridDefinition.southWest.longitude) * longitudeMultiplier).toInt()
 
                 latitudeCell + longitudeCell * gridDefinition.steps.latitude
-
             }
 
-            KnmiGridDirection.northWestColumnRow -> {
+            KnmiGridDirection.NorthWestColumnRow -> {
                 val latitudeCell =
                     ((gridDefinition.northEast.latitude - location.latitude) * latitudeMultiplier).toInt()
                 val longitudeCell =
                     ((location.longitude - gridDefinition.southWest.longitude) * longitudeMultiplier).toInt()
 
                 latitudeCell + longitudeCell * gridDefinition.steps.latitude
-
             }
         }
     }
@@ -246,9 +284,11 @@ class KnmiService @Inject constructor(
      */
     private fun getCurrent(
         snapshot: KnmiWeatherSnapshot?,
-    ): CurrentWrapper? {
+    ): CurrentWrapper {
         return CurrentWrapper(
-            weatherCode = getWeatherCode(snapshot?.weatherType), temperature = TemperatureWrapper(
+            weatherCode = getWeatherCode(snapshot?.weatherType),
+            // TODO: weatherText = getWeatherText(it.weatherType),
+            temperature = TemperatureWrapper(
                 temperature = snapshot?.temperature?.celsius
             )
         )
@@ -263,8 +303,9 @@ class KnmiService @Inject constructor(
 
         val dailyList: MutableList<DailyWrapper> = ArrayList(numDays)
         for (i in 0 until numDays) {
-            val date = dailyWeatherGraph?.temperature?.dates?.get(i) ?: dailyWeatherForecast?.forecast?.get(i)?.date
-            ?: continue // date is required so fail, really should not happen
+            val date = dailyWeatherGraph?.temperature?.dates?.get(i)
+                ?: dailyWeatherForecast?.forecast?.get(i)?.date
+                ?: continue // date is required so fail, really should not happen
 
             val temperatureDay = dailyWeatherGraph?.temperature?.maxTemperatures?.get(i)?.celsius
             // use next day's minimum temp for night
@@ -282,23 +323,35 @@ class KnmiService @Inject constructor(
             } else {
                 null
             }
+            // TODO:
+            /*val weatherText = if (todayForecast?.date == date) {
+                getWeatherText(todayForecast.weatherType)
+            } else {
+                null
+            }*/
 
             dailyList.add(
                 DailyWrapper(
-                    date = date, day = HalfDayWrapper(
-                        weatherCode = weatherCode, temperature = TemperatureWrapper(
+                    date = date,
+                    day = HalfDayWrapper(
+                        weatherCode = weatherCode,
+                        temperature = TemperatureWrapper(
                             temperature = temperatureDay
-                        ), precipitation = Precipitation(
+                        ),
+                        precipitation = Precipitation(
                             total = precipitation
-                        ), precipitationProbability = PrecipitationProbability(
+                        ),
+                        precipitationProbability = PrecipitationProbability(
                             total = precipitationChance
                         )
-                    ), night = HalfDayWrapper(
-//                        weatherCode = weatherCode,
+                    ),
+                    night = HalfDayWrapper(
+                        // weatherCode = weatherCode,
                         temperature = TemperatureWrapper(
-                            temperature = temperatureNight,
+                            temperature = temperatureNight
                         )
-                    ), uV = if (i == 0) { // put the current UV day value into the first day
+                    ),
+                    uV = if (i == 0) { // put the current UV day value into the first day
                         UV(index = todayUv?.value?.toDouble())
                     } else {
                         null
@@ -320,8 +373,9 @@ class KnmiService @Inject constructor(
             HourlyWrapper(
                 date = it.dateTime ?: return null,
                 weatherCode = getWeatherCode(it.weatherType),
+                // TODO: weatherText = getWeatherText(it.weatherType),
                 temperature = TemperatureWrapper(
-                    temperature = it.temperature?.celsius,
+                    temperature = it.temperature?.celsius
                 ),
                 precipitation = Precipitation(
                     total = it.precipitation?.amount?.millimeters
@@ -333,7 +387,8 @@ class KnmiService @Inject constructor(
                     degree = it.wind?.degree,
                     // the API also gives beaufort wind speeds, but use km/h instead for more precision.
                     // The app will convert automatically if the user requests those units.
-                    speed = it.wind?.speed?.kilometersPerHour, gusts = it.wind?.gusts?.kilometersPerHour
+                    speed = it.wind?.speed?.kilometersPerHour,
+                    gusts = it.wind?.gusts?.kilometersPerHour
                 )
             )
         }
@@ -341,8 +396,11 @@ class KnmiService @Inject constructor(
 
     /**
      * Returns alerts
+     * TODO: Temporarly removed to be optimized through admin1/admin2 codes instead
      */
-    private fun getAlertList(
+    // private val alertAreas: GeoJsonParser by lazy { context.parseRawGeoJson(R.raw.source_knmi_alert_regions_simplified) }
+
+    /*private fun getAlertList(
         alerts: KnmiWeatherAlerts?,
         location: Location,
     ): List<Alert>? {
@@ -394,53 +452,107 @@ class KnmiService @Inject constructor(
 
             else -> false
         }
-    }
+    }*/
 
     // The weather code is always used for the app background
     // KnmiBackground is ignored altogether
     private fun getWeatherCode(knmiCode: Int?): WeatherCode? {
         // see https://gitlab.com/KNMI-OSS/KNMI-App/knmi-app-api/-/blob/9ce829305e0b3f91cfb2977b86e1727029dc35ba/app/helpers/weather.ts
-        // there are some extra codes for alerts, but not needed here: https://gitlab.com/KNMI-OSS/KNMI-App/knmi-app-api/-/blob/9ce829305e0b3f91cfb2977b86e1727029dc35ba/app/models/WeatherAlertsModel.ts
+        // there are some extra codes for alerts, but not needed here:
+        // https://gitlab.com/KNMI-OSS/KNMI-App/knmi-app-api/-/blob/9ce829305e0b3f91cfb2977b86e1727029dc35ba/app/models/WeatherAlertsModel.ts
         // Breezy Weather has less icons, so this is done on a best-effort basis
         return when (knmiCode) {
-            1380, 1381 -> WeatherCode.RAIN // lichte-bui-afgewisseld-door-zon - light rain with sun
-            1377, 1377 -> WeatherCode.CLOUDY // lichte-regen-zwaar-bewolkt - light rain heavy clouds
-            1405, 1406 -> WeatherCode.SNOW // lichte-sneeuwbui-afgewisseld-door-zon - light snow with sun
-            1404, 1404 -> WeatherCode.SNOW // lichte-sneeuwbui-zwaar-bewolkt - light snow heavy clouds
-            1382, 1383 -> WeatherCode.RAIN // matige-bui-afgewisseld-door-zon - moderate rain with sun
-            1378, 1378 -> WeatherCode.RAIN // matige-regen-zwaar-bewolkt - moderate rain heavy clouds
-            1408, 1409 -> WeatherCode.SNOW // matige-sneeuwbui-afgewisseld-door-zon - moderate snow with sun
-            1407, 1407 -> WeatherCode.SNOW // matige-sneeuwbui-zwaar-bewolkt - moderate snow heavy clouds
-            1375, 1376 -> WeatherCode.PARTLY_CLOUDY // opklaringen - cloudy with some sun
-            1417, 1418 -> WeatherCode.HAIL // hagelbui-afgewisseld-door-zon - hail with sun
-            1416, 1416 -> WeatherCode.HAIL // hagelbui-zwaar-bewolkt - hail with heavy clouds
-            1420, 1420 -> WeatherCode.FOG // mist - fog
-            1387, 1388 -> WeatherCode.PARTLY_CLOUDY // motregen-afgewisseld-door-opklaringen - drizzle with some sun
-            1386, 1386 -> WeatherCode.CLOUDY // motregen-zwaar-bewolkt - drizzle with heavy clouds
-            1396, 1397 -> WeatherCode.THUNDERSTORM // onweer-hagel-afgewisseld-door-zon - thunderstorm and hail with sun
-            1395, 1395 -> WeatherCode.THUNDERSTORM // onweer-hagel-zwaar-bewolkt - thunderstorm with hail and heavy clouds
-            1390, 1390 -> WeatherCode.THUNDERSTORM // onweer-zware-regen-zwaar-bewolkt - thunderstorm with heavy rain and heavy clouds
-            1391, 1392 -> WeatherCode.THUNDERSTORM // onweer-matige-regen-afgewisseld-door- - thunderstorm moderate rain with sun (last word is a guess)
-            1389, 1389 -> WeatherCode.THUNDERSTORM // onweer-matige-regen-zwaar-bewolkt - thunderstorm moderate rain heavy clouds
-            1399, 1400 -> WeatherCode.THUNDERSTORM // winterse-buien-onweer-afgewisseld-doo - winter rain and thunderstorm with sun (last word is a guess)
-            1398, 1398 -> WeatherCode.THUNDERSTORM // winterse-buien-onweer-zwaar-bewolkt - winter rain and thunderstorms with heavy clouds
-            1402, 1403 -> WeatherCode.SNOW // sneeuwbui-met-onweer-afgewisseld-door - snow with thunder and sun
-            1401, 1401 -> WeatherCode.SNOW // sneeuwbui-met-onweer-zwaar-bewolkt - snow with thunder and heavy rain
-            1384, 1385 -> WeatherCode.RAIN // zware-bui-afgewisseld-door-zon - heavy rain with sun
-            1379, 1379 -> WeatherCode.RAIN // zware-regen-zwaar-bewolkt - heavy rain heavy clouds
-            1411, 1412 -> WeatherCode.SNOW // zware-sneeuwbui-afgewisseld-door-zon - heavy snows with sun
-            1414, 1415 -> WeatherCode.SNOW // natte-sneeuwbui-afgewisseld-door-zon - wet snow with sun
-            1413, 1413 -> WeatherCode.SNOW // natte-sneeuwbui-zwaar-bewolkt - wet snow heavy clouds
-            1414, 1415 -> WeatherCode.SNOW // natte-sneeuwbui-afgewisseld-door-zon - wet snow with sun
-            1413, 1413 -> WeatherCode.SNOW // natte-sneeuwbui-zwaar-bewolkt - wet snow heavy clouds
-            1410, 1410 -> WeatherCode.SNOW // zware-sneeuwbui-zwaar-bewolkt - heavy snow heavy clouds
-            1372, 1373 -> WeatherCode.CLEAR // zonnig / onbewolkt - sunny/no clouds
-            1374, 1374 -> WeatherCode.CLOUDY // zwaar-bewolkt - heavy clouds
-            1419, 1419 -> WeatherCode.SLEET // gladheid-door-ijzel - slipperiness due to sleet
-            1393, 1394 -> WeatherCode.THUNDERSTORM // onweer-zware-regen-afgewisseld-door-zon - thunderstorm heavy rain with sun
+            1372, 1373 -> WeatherCode.CLEAR
+            1374, 1377, 1387, 1388 -> WeatherCode.CLOUDY
+            1375, 1376, 1386 -> WeatherCode.PARTLY_CLOUDY
+            in 1378..1385 -> WeatherCode.RAIN
+            in 1389..1400 -> WeatherCode.THUNDERSTORM
+            in 1401..1415 -> WeatherCode.SNOW
+            in 1416..1418 -> WeatherCode.HAIL
+            1419 -> WeatherCode.SLEET
+            1420 -> WeatherCode.FOG
             else -> null
         }
     }
+
+    // TODO: Create a getWeatherText function for a more precise text,
+    //  matching existing common_weather_text translations
+    //  If no matching translations are found, a non-translatable string can be created (with just EN/NL translations)
+    /*private fun getWeatherCode(knmiCode: Int?): String? {
+        // see https://gitlab.com/KNMI-OSS/KNMI-App/knmi-app-api/-/blob/9ce829305e0b3f91cfb2977b86e1727029dc35ba/app/helpers/weather.ts
+        // there are some extra codes for alerts, but not needed here:
+        // https://gitlab.com/KNMI-OSS/KNMI-App/knmi-app-api/-/blob/9ce829305e0b3f91cfb2977b86e1727029dc35ba/app/models/WeatherAlertsModel.ts
+        // Breezy Weather has less icons, so this is done on a best-effort basis
+        return when (knmiCode) {
+            // zonnig / onbewolkt - sunny/no clouds
+            1372, 1373 -> TODO()
+            // zwaar-bewolkt - heavy clouds
+            1374 -> TODO()
+            // opklaringen - cloudy with some sun
+            1375, 1376 -> TODO()
+            // lichte-regen-zwaar-bewolkt - light rain heavy clouds
+            1377 -> TODO()
+            // matige-regen-zwaar-bewolkt - moderate rain heavy clouds
+            1378 -> TODO()
+            // zware-regen-zwaar-bewolkt - heavy rain heavy clouds
+            1379 -> TODO()
+            // lichte-bui-afgewisseld-door-zon - light rain with sun
+            1380, 1381 -> TODO()
+            // matige-bui-afgewisseld-door-zon - moderate rain with sun
+            1382, 1383 -> TODO()
+            // zware-bui-afgewisseld-door-zon - heavy rain with sun
+            1384, 1385 -> TODO()
+            // motregen-zwaar-bewolkt - drizzle with heavy clouds
+            1386 -> TODO()
+            // motregen-afgewisseld-door-opklaringen - drizzle with some sun
+            1387, 1388 -> TODO()
+            // onweer-matige-regen-zwaar-bewolkt - thunderstorm moderate rain heavy clouds
+            1389 -> TODO()
+            // onweer-zware-regen-zwaar-bewolkt - thunderstorm with heavy rain and heavy clouds
+            1390 -> TODO()
+            // onweer-matige-regen-afgewisseld-door- - thunderstorm moderate rain with sun (last word is a guess)
+            1391, 1392 -> TODO()
+            // onweer-zware-regen-afgewisseld-door-zon - thunderstorm heavy rain with sun
+            1393, 1394 -> TODO()
+            // onweer-hagel-zwaar-bewolkt - thunderstorm with hail and heavy clouds
+            1395 -> TODO()
+            // onweer-hagel-afgewisseld-door-zon - thunderstorm and hail with sun
+            1396, 1397 -> TODO()
+            // winterse-buien-onweer-zwaar-bewolkt - winter rain and thunderstorms with heavy clouds
+            1398 -> TODO()
+            // winterse-buien-onweer-afgewisseld-doo - winter rain and thunderstorm with sun (last word is a guess)
+            1399, 1400 -> TODO()
+            // sneeuwbui-met-onweer-zwaar-bewolkt - snow with thunder and heavy rain
+            1401 -> TODO()
+            // sneeuwbui-met-onweer-afgewisseld-door - snow with thunder and sun
+            1402, 1403 -> TODO()
+            // lichte-sneeuwbui-zwaar-bewolkt - light snow heavy clouds
+            1404 -> TODO()
+            // lichte-sneeuwbui-afgewisseld-door-zon - light snow with sun
+            1405, 1406 -> TODO()
+            // matige-sneeuwbui-zwaar-bewolkt - moderate snow heavy clouds
+            1407 -> WeatherCode.SNOW
+            // matige-sneeuwbui-afgewisseld-door-zon - moderate snow with sun
+            1408, 1409 -> TODO()
+            // zware-sneeuwbui-zwaar-bewolkt - heavy snow heavy clouds
+            1410 -> TODO()
+            // zware-sneeuwbui-afgewisseld-door-zon - heavy snows with sun
+            1411, 1412 -> TODO()
+            // natte-sneeuwbui-zwaar-bewolkt - wet snow heavy clouds
+            1413 -> TODO()
+            // natte-sneeuwbui-afgewisseld-door-zon - wet snow with sun
+            1414, 1415 -> TODO()
+            // hagelbui-zwaar-bewolkt - hail with heavy clouds
+            1416 -> TODO()
+            // hagelbui-afgewisseld-door-zon - hail with sun
+            1417, 1418 -> TODO()
+            // gladheid-door-ijzel - slipperiness due to sleet
+            1419 -> TODO()
+            // mist - fog
+            1420 -> TODO()
+            else -> null
+        }
+    }*/
 
     private fun getNormals(
         weatherDetail: KnmiWeatherDetail?,
@@ -506,7 +618,8 @@ class KnmiService @Inject constructor(
                     } else {
                         it.ifEmpty { null }
                     }
-                })
+                }
+            )
         )
     }
 
@@ -521,11 +634,8 @@ class KnmiService @Inject constructor(
         steps = KnmiGridSteps(35, 30),
         prefix = "A",
         proj = "epsg4326",
-        direction = KnmiGridDirection.northWestColumnRow
+        direction = KnmiGridDirection.NorthWestColumnRow
     )
-
-    private val alertAreas: GeoJsonParser by lazy { context.parseRawGeoJson(R.raw.source_knmi_alert_regions_simplified) }
-
 
     companion object {
         private const val KNMI_BASE_URL = "https://api.app.knmi.cloud/"
