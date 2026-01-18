@@ -138,7 +138,7 @@ class NominatimService @Inject constructor(
         return when (countryCode.uppercase()) {
             // Keep the iso code "FR-XX" as the INSEE code is different
             "AR", "AU", "BR", "CA", "CD", "CL", "CN", "EC", "ES", "FM", "FR", "ID",
-            "KI", "KZ", "MN", "MX", "MY", "NZ", "PG", "PT", "RU", "UA", "US",
+            "KI", "KZ", "MN", "MX", "MY", "NL", "NZ", "PG", "PT", "RU", "UA", "US",
             -> address.isoLvl4
             else -> null
         }

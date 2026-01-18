@@ -20,9 +20,9 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class KnmiWeatherAlerts(
-    val regions: List<KnmiWeatherAlertsRegion>?,
-    val title: String?,
-    val description: String?,
-    val alerts: List<KnmiWeatherRegionAlertSnapshot>?,
-    val advice: List<KnmiWeatherAlertAdvice>?,
+    val regions: List<KnmiWeatherAlertsRegion>? = null,
+    val title: String? = null,
+    val description: String? = null,
+    val alerts: List<KnmiWeatherRegionAlertSnapshot>? = null,
+    val advice: List<KnmiWeatherAlertAdvice>? = null,
 )
