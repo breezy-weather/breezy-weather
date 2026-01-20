@@ -206,7 +206,7 @@
     <string name="settings_debug">Ladenie</string>
     <string name="common_weather_text_rain_snow_mixed_showers_heavy">Silný dážď a zmiešané snehové prehánky</string>
     <string name="common_weather_text_rain_showers">Dažďové prehánky</string>
-    <string name="common_weather_text_drizzle_light">Ľahké mrholenie</string>
+    <string name="common_weather_text_drizzle_light">Slabé mrholenie</string>
     <string name="about_dependencies">Závislosti</string>
     <string name="common_weather_text_rain_showers_moderate">Mierne dažďové prehánky</string>
     <string name="about_source_code">Zdrojový kód</string>
@@ -766,8 +766,8 @@
     <string name="settings_regional_preference">Regionálne nastavenia</string>
     <string name="visibility_very_poor">Veľmi zlá</string>
     <string name="visibility_poor">Zlá</string>
-    <string name="visibility_clear">Dobrá</string>
-    <string name="visibility_perfectly_clear">Veľmi dobrá</string>
+    <string name="visibility_clear">Jasná</string>
+    <string name="visibility_perfectly_clear">Úplne jasná</string>
     <string name="air_quality_pm10_about">O vdychovateľných časticiach (%s)</string>
     <string name="air_quality_pm10_full">Vdychovateľné častice (&lt; %s)</string>
     <string name="content_provider_permission_label">Načítať údaje Breezy Weather</string>
