@@ -24,7 +24,7 @@
     <string name="pressure">Tlak</string>
     <string name="visibility">Viditelnost</string>
     <string name="dew_point">Rosný bod</string>
-    <string name="cloud_cover">Oblačnost</string>
+    <string name="cloud_cover">Pokrytí oblačností</string>
     <string name="ceiling">Výška mraků</string>
     <string name="settings_icon_packs_get_more">Získat další</string>
     <string name="action_refresh">Obnovit</string>
@@ -428,7 +428,7 @@
     <string name="pollen_alnus">Olše</string>
     <string name="pollen_level_5">Velmi vysoké</string>
     <string name="pollen_level_4">Vysoké</string>
-    <string name="precipitation_nowcasting">Minutové srážky</string>
+    <string name="precipitation_nowcasting">Velmi krátkodobá předpověď</string>
     <string name="pollen_betula">Bříza</string>
     <string name="pollen_artemisia">Pelyněk</string>
     <string name="pollen_olea">Oliva</string>
@@ -587,7 +587,7 @@
     <string name="common_weather_text_warm">Teplo</string>
     <string name="common_weather_text_cool">Chladno</string>
     <string name="common_weather_text_dry">Sucho</string>
-    <string name="common_weather_text_mist">Opar</string>
+    <string name="common_weather_text_mist">Kouřmo</string>
     <string name="common_weather_text_cold">Zima</string>
     <string name="common_weather_text_dust">Prach</string>
     <string name="common_weather_text_dust_storm">Prachová bouře</string>
@@ -612,8 +612,8 @@
     <string name="pollen_acer">Javor</string>
     <string name="pollen_alternaria">Čerň střídavá</string>
     <string name="pollen_juniperus">Jalovec</string>
-    <string name="common_weather_text_blowing_snow">Odfukování sněhu</string>
-    <string name="common_weather_text_drifting_snow">Tající sníh</string>
+    <string name="common_weather_text_blowing_snow">Vysoko zvířený sníh</string>
+    <string name="common_weather_text_drifting_snow">Nízko zvířený sníh</string>
     <string name="common_weather_text_glaze">Ledovka</string>
     <string name="pollen_atriplex">Lebeda</string>
     <string name="pollen_pinus">Borovice</string>
@@ -723,9 +723,9 @@
     <string name="visibility_very_poor">Velmi špatná</string>
     <string name="data_sources">Zdroje dat</string>
     <string name="data_modified">Tento materiál byl upraven z originálu aplikací %s, převážně za účelem výpočtu nebo doplnění chybějících údajů.</string>
-    <string name="ephemeris_about_dawn">Úsvit je, když se objeví první viditelné světlo dne před východem slunce.</string>
+    <string name="ephemeris_about_dawn">Svítání je, když se objeví první viditelné světlo dne před východem slunce.</string>
     <string name="ephemeris_about_dusk">Setmění je nejtmavější fáze soumraku předtím než zmizí poslední viditelné světlo.</string>
-    <string name="ephemeris_dawn_at">Úsvit v %s</string>
+    <string name="ephemeris_dawn_at">Svítání v %s</string>
     <string name="ephemeris_dusk_at">Setmění v %s</string>
     <string name="wind_origin">Ze %s</string>
     <string name="action_configure_item">Nastavit %s</string>
