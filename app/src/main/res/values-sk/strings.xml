@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="precipitation_nowcasting">Zrážky po minútach</string>
+    <string name="precipitation_nowcasting">Veľmi krátkodobá predpoveď</string>
     <string name="air_quality">Kvalita ovzdušia</string>
     <string name="pollen">Alergény</string>
     <string name="ephemeris">Slnko a mesiac</string>
     <string name="alerts">Výstrahy</string>
-    <string name="alerts_to_follow">Nadchádzajúce výstrahy zobrazíte ťuknutím sem.</string>
+    <string name="alerts_to_follow">Nadchádzajúce výstrahy zobrazíte klepnutím sem.</string>
     <string name="daily_today_short">Dnes</string>
     <string name="daily_tomorrow_short">Zaj</string>
     <string name="temperature">Teplota</string>
@@ -13,7 +13,7 @@
     <string name="temperature_feels_like_with_unit">Pocitová teplota %s</string>
     <string name="temperature_apparent">Pocitová</string>
     <string name="temperature_wind_chill">Chladný vietor</string>
-    <string name="temperature_degree_day_heating">Vykurovací stupňodeň</string>
+    <string name="temperature_degree_day_heating">Vykurovací dennostupeň</string>
     <string name="precipitation">Zrážky</string>
     <string name="precipitation_probability">Pravdepodobnosť zrážok</string>
     <string name="precipitation_duration">Trvanie zrážok</string>
@@ -110,7 +110,7 @@
     <string name="temperature_normal_short">Normálna</string>
     <string name="notification_refreshed_at">Aktualizované</string>
     <string name="notification_channel_background_services">Služby na pozadí</string>
-    <string name="cloud_cover">Oblačnosť</string>
+    <string name="cloud_cover">Pokrytie oblačnosťou</string>
     <string name="ephemeris_sunrise_at">Východ slnka v %s</string>
     <string name="null_data_text">N/A</string>
     <string name="humidity">Vlhkosť</string>
@@ -546,7 +546,7 @@
     <string name="common_weather_text_dust">Prach</string>
     <string name="notification_precipitation_stopping">Zrážky čoskoro skončia</string>
     <string name="settings_weather_source_open_meteo_instance_air_quality">API pre kvalitu ovzdušia</string>
-    <string name="common_weather_text_mist">Opar</string>
+    <string name="common_weather_text_mist">Dymno</string>
     <string name="temperature_degree_day_cooling">Chladiaci dennostupeň</string>
     <string name="dialog_app_update_check_title">Udržovať aktuálne</string>
     <string name="settings_icon_packs_weather_icon_light">Svetlá ikona</string>
@@ -570,7 +570,7 @@
     <string name="message_multiple_refresh_errors">Obnova ukončená s chybami</string>
     <string name="settings_units_precipitation">Jednotka zrážok</string>
     <string name="settings_color_app">Podľa aplikácie</string>
-    <string name="common_weather_text_squall">Víchrica</string>
+    <string name="common_weather_text_squall">Húľava</string>
     <string name="precipitation_intensity_medium">Stredné</string>
     <string name="settings_main_hourly_trends_title">Hodinové vyhliadky</string>
     <string name="settings_notifications_app_updates_check">Oznámenia o aktualizáciách aplikácie</string>
@@ -586,8 +586,8 @@
     <string name="pollen_pinus">Borovica</string>
     <string name="pollen_ulmus">Brest</string>
     <string name="common_weather_text_tornado">Tornádo</string>
-    <string name="common_weather_text_blowing_snow">Sneženie</string>
-    <string name="common_weather_text_drifting_snow">Nánosy snehu</string>
+    <string name="common_weather_text_blowing_snow">Vysoko zvírený sneh</string>
+    <string name="common_weather_text_drifting_snow">Nízko zvírený sneh</string>
     <string name="common_weather_text_glaze">Poľadovica</string>
     <string name="widget_clock_day_horizontal">Hodiny + denná (vodorovný štýl)</string>
     <string name="widget_clock_day_details">Hodiny + denná (s podrobnosťami)</string>
@@ -611,7 +611,7 @@
     <string name="location_has_active_alerts">Zapnuté upozornenia</string>
     <string name="daily_yesterday">Včera</string>
     <string name="daily_today">Dnes</string>
-    <string name="daily_tomorrow">Zjatra</string>
+    <string name="daily_tomorrow">Zajtra</string>
     <string name="wind_direction_N">Sever</string>
     <string name="wind_direction_NE">Severovýchod</string>
     <string name="wind_direction_E">Východ</string>
@@ -647,7 +647,7 @@
     <string name="ephemeris_about">O čase východu a západu</string>
     <string name="ephemeris_about_rise">Čas východu je okamih, keď sa slnko alebo mesiac úplne objaví nad obzorom.</string>
     <string name="ephemeris_about_set">Čas západu je okamih, keď slnko alebo mesiac úplne zmizne pod obzorom.</string>
-    <string name="ephemeris_about_dawn">Úsvit je, keď sa pred východom slnka objaví prvé viditeľné svetlo dňa.</string>
+    <string name="ephemeris_about_dawn">Svitanie je, keď sa pred východom slnka objaví prvé viditeľné svetlo dňa.</string>
     <string name="ephemeris_about_dusk">Súmrak je najtmavšia fáza západu slnka, predtým ako zmizne posledné viditeľné svetlo.</string>
     <string name="daily_summary">Denný súhrn</string>
     <string name="chart_no_hourly_data">Údaje za hodinu nie sú k dispozícii.</string>
@@ -729,8 +729,8 @@
     <string name="air_quality_pm10_index">Stupnica indexu kvality ovzdušia pre %s</string>
     <string name="air_quality_pm25_index">Stupnica indexu kvality ovzdušia pre %s</string>
     <string name="uv_index_scale">Stupnica UV indexu</string>
-    <string name="ephemeris_dawn_at">Úsvit v %s</string>
-    <string name="nighttime_details">Začína večer a trvá až do úsvitu nasledujúceho dňa</string>
+    <string name="ephemeris_dawn_at">Svitanie v %s</string>
+    <string name="nighttime_details">Začína večer a trvá až do svitania nasledujúceho dňa</string>
     <string name="air_quality_index_harmless_exposure">Neškodná expozícia</string>
     <string name="air_quality_o3_about">O prízemnom ozóne (%s)</string>
     <string name="humidity_about_description">Relatívna vlhkosť, bežnejšie nazývaná jednoducho vlhkosť, je percentuálny podiel vodnej pary prítomnej vo vzduchu v porovnaní s maximálnym množstvom, ktoré môže vzduch pri danej teplote obsahovať.</string>
