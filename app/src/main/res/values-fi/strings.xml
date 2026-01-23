@@ -773,4 +773,9 @@
     <string name="settings_appearance_dark_mode_locations_day_night">Päivästä tai yöstä riippuen</string>
     <string name="settings_appearance_dark_mode_locations_dark">Aina tummana, kun sovellus on tummassa tilassa</string>
     <string name="about_update_check_eol">Tätä Android-versiota ei enää tueta</string>
+    <string name="action_add_as_location">Lisää sijainniksi</string>
+    <string name="action_pull_down_to_refresh">Vedä alas päivittääksesi</string>
+    <string name="settings_weather_source_non_freenet">%s (ei-vapaa verkkopalvelu)</string>
+    <string name="settings_appearance_dark_mode_custom">Tumma tila aikavälillä %1$s-%2$s</string>
+    <string name="common_weather_text_mostly_cloudy">Enimmäkseen pilvistä</string>
 </resources>
