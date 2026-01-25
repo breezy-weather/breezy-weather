@@ -21,7 +21,7 @@
 
 **Weather sources**
 - BMD - Fix refresh error with recently added locations. Affected locations will need to be removed and re-added
-- Koninklijk Nederlands Meteorologisch Instituut - Added as a forecast, current, alert and normals source for Netherlands (@willem640)
+- Koninklijk Nederlands Meteorologisch Instituut - Added as a forecast, current and normals source for Netherlands (@willem640)
 - Icelandic Met Office - Fix refresh error
 - IMS - Add support for rain quantity (@ntzb)
 - Open-Meteo - Fix day/night temperatures sometimes being shifted by 1 day

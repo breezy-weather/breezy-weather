@@ -710,7 +710,7 @@ This source aggregates data from Beijing Meteorological Service, ColorfulClouds 
 | 😶‍🌫️ **Air quality**         | Not available                                                    |
 | 🤧 **Pollen**                  | Not available                                                    |
 | ☔ **Precipitation nowcasting** | Not available                                                    |
-| ⚠️ **Alerts**                  | Available (no start/end dates)                                   |
+| ⚠️ **Alerts**                  | *Work in progress*                                               |
 | 📊 **Normals**                 | Available                                                        |
 | 🧭 **Address lookup**          | Not available                                                    |
 

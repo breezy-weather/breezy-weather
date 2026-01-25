@@ -155,23 +155,19 @@ internal fun AlertScreen(
                                             style = MaterialTheme.typography.titleMedium
                                         )
                                     }
-                                    alert.getFormattedDates(alertUiState.location!!, context)
-                                        .takeUnless { dates -> dates.isEmpty() }
-                                        ?.let { dates ->
-                                            Text(
-                                                text = dates,
-                                                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                                                style = MaterialTheme.typography.labelMedium,
-                                                modifier = Modifier
-                                                    .clearAndSetSemantics {
-                                                        contentDescription = alert.getFormattedDates(
-                                                            alertUiState.location!!,
-                                                            context,
-                                                            full = true
-                                                        )
-                                                    }
-                                            )
-                                        }
+                                    Text(
+                                        text = alert.getFormattedDates(alertUiState.location!!, context),
+                                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                        style = MaterialTheme.typography.labelMedium,
+                                        modifier = Modifier
+                                            .clearAndSetSemantics {
+                                                contentDescription = alert.getFormattedDates(
+                                                    alertUiState.location!!,
+                                                    context,
+                                                    full = true
+                                                )
+                                            }
+                                    )
                                 }
                             }
                             BreezySelectionContainer {

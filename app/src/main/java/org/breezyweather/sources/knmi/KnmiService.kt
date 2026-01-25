@@ -21,13 +21,11 @@ import androidx.compose.ui.text.input.KeyboardType
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
-import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.Normals
 import breezyweather.domain.weather.model.Precipitation
 import breezyweather.domain.weather.model.PrecipitationProbability
 import breezyweather.domain.weather.model.UV
 import breezyweather.domain.weather.model.Wind
-import breezyweather.domain.weather.reference.AlertSeverity
 import breezyweather.domain.weather.reference.Month
 import breezyweather.domain.weather.reference.WeatherCode
 import breezyweather.domain.weather.wrappers.CurrentWrapper
@@ -58,7 +56,6 @@ import org.breezyweather.sources.knmi.json.KnmiDailyWeatherGraph
 import org.breezyweather.sources.knmi.json.KnmiHourlyWeatherForecast
 import org.breezyweather.sources.knmi.json.KnmiUvIndex
 import org.breezyweather.sources.knmi.json.KnmiWeather
-import org.breezyweather.sources.knmi.json.KnmiWeatherAlerts
 import org.breezyweather.sources.knmi.json.KnmiWeatherDetail
 import org.breezyweather.sources.knmi.json.KnmiWeatherSnapshot
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
@@ -68,7 +65,6 @@ import org.breezyweather.unit.temperature.Temperature.Companion.celsius
 import retrofit2.Retrofit
 import java.util.Calendar
 import java.util.Date
-import java.util.Objects
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -92,7 +88,7 @@ class KnmiService @Inject constructor(
     override val supportedFeatures = mapOf(
         SourceFeature.FORECAST to name,
         SourceFeature.CURRENT to name,
-        SourceFeature.ALERT to name,
+        // SourceFeature.ALERT to name,
         SourceFeature.NORMALS to name
     )
 
@@ -100,18 +96,7 @@ class KnmiService @Inject constructor(
         location: Location,
         feature: SourceFeature,
     ): Boolean {
-        return when (feature) {
-            SourceFeature.ALERT -> location.countryCode.equals("NL", ignoreCase = true) &&
-                (
-                    admin1IsoCodeToAlertRegionId.keys.firstOrNull {
-                        location.admin1Code.equals(it, ignoreCase = true)
-                    } != null ||
-                        admin1NameToAlertRegionId.keys.firstOrNull {
-                            location.admin1.equals(it, ignoreCase = true)
-                        } != null
-                    )
-            else -> location.countryCode.equals("NL", ignoreCase = true)
-        }
+        return location.countryCode.equals("NL", ignoreCase = true)
     }
 
     override fun getFeaturePriorityForLocation(
@@ -147,11 +132,11 @@ class KnmiService @Inject constructor(
 
         // This gets alerts from the API and uses OkHttp to download a html document containing advice for today
         //  (usually 1-2)
-        val alerts = if (SourceFeature.ALERT in requestedFeatures) {
+        /*val alerts = if (SourceFeature.ALERT in requestedFeatures) {
             mApi.getAlerts()
         } else {
-            Observable.just(KnmiWeatherAlerts())
-        }
+            Observable.just(KnmiWeatherAlerts(null, null, null, null, null))
+        }*/
 
         val weather = if (SourceFeature.FORECAST in requestedFeatures) {
             mApi.getWeather(
@@ -196,17 +181,12 @@ class KnmiService @Inject constructor(
         }
 
         return Observable.zip(
-            alerts,
+            // alerts,
             weather,
             weatherDetail,
             fourteenDayForecast,
             weatherSnapshot
-        ) { alerts, weather, weatherDetail, fourteenDayForecast, weatherSnapshot ->
-            val currentRegion = getAlertRegion(location)
-            if (currentRegion == null) {
-                failedFeatures[SourceFeature.ALERT] = InvalidLocationException()
-            }
-
+        ) { /*alerts, */weather, weatherDetail, fourteenDayForecast, weatherSnapshot ->
             WeatherWrapper(
                 dailyForecast = if (SourceFeature.FORECAST in requestedFeatures) {
                     getDailyForecast(weather.daily, fourteenDayForecast.daily, weather.uvIndex)
@@ -223,11 +203,11 @@ class KnmiService @Inject constructor(
                 } else {
                     null
                 },
-                alertList = if (SourceFeature.ALERT in requestedFeatures && currentRegion != null) {
-                    getAlertList(alerts, currentRegion)
+                /*alertList = if (SourceFeature.ALERT in requestedFeatures) {
+                    getAlertList(alerts, location)
                 } else {
                     null
-                },
+                },*/
                 normals = if (SourceFeature.NORMALS in requestedFeatures) {
                     getNormals(weatherDetail)
                 } else {
@@ -416,12 +396,17 @@ class KnmiService @Inject constructor(
 
     /**
      * Returns alerts
+     * TODO: Temporarly removed to be optimized through admin1/admin2 codes instead
      */
-    private fun getAlertList(
+    // private val alertAreas: GeoJsonParser by lazy { context.parseRawGeoJson(R.raw.source_knmi_alert_regions_simplified) }
+
+    /*private fun getAlertList(
         alerts: KnmiWeatherAlerts?,
-        currentRegion: Int,
+        location: Location,
     ): List<Alert>? {
+
         if (alerts?.regions.isNullOrEmpty()) return null
+        val currentRegion = getAlertRegion(location)
         return alerts.regions.firstOrNull { it.region == currentRegion }?.alerts?.map { alert ->
             val severity = when (alert.level?.lowercase()) {
                 "red" -> AlertSeverity.EXTREME
@@ -437,21 +422,37 @@ class KnmiService @Inject constructor(
                 headline = alert.title,
                 description = alert.description,
                 severity = severity,
-                color = Alert.colorFromSeverity(severity)
+                color = Alert.colorFromSeverity(severity),
             )
         }
     }
 
+
     private fun getAlertRegion(
         location: Location,
     ): Int? {
-        return admin1IsoCodeToAlertRegionId.entries.firstOrNull {
-            location.admin1Code.equals(it.key, ignoreCase = true)
-        }?.value
-            ?: admin1NameToAlertRegionId.entries.firstOrNull {
-                location.admin1.equals(it.key, ignoreCase = true)
-            }?.value
+        return alertAreas.features.firstOrNull { isInsideAlertArea(it, location) }?.getProperty("id")?.toIntOrNull()
     }
+
+    private fun isInsideAlertArea(
+        // same as isMatchingTimeZone from BreezyTimeZoneService
+        feature: Feature,
+        location: Location,
+    ): Boolean {
+        return when (feature.geometry) {
+            is GeoJsonPolygon -> (feature.geometry as GeoJsonPolygon).coordinates.any { polygon ->
+                PolyUtil.containsLocation(location.latitude, location.longitude, polygon, true)
+            }
+            // file should only have GeoJsonPolygons, but include just in case
+            is GeoJsonMultiPolygon -> (feature.geometry as GeoJsonMultiPolygon).polygons.any {
+                it.coordinates.any { polygon ->
+                    PolyUtil.containsLocation(location.latitude, location.longitude, polygon, true)
+                }
+            }
+
+            else -> false
+        }
+    }*/
 
     // The weather code is always used for the app background
     // KnmiBackground is ignored altogether
@@ -639,74 +640,5 @@ class KnmiService @Inject constructor(
     companion object {
         private const val KNMI_BASE_URL = "https://api.app.knmi.cloud/"
         private const val KNMI_DEMO_BASE_URL = "https://api.app.dev.knmi.cloud/"
-
-        private val admin1IsoCodeToAlertRegionId = mapOf(
-            "NL-DR" to 1,
-            "NL-FL" to 2,
-            "NL-FR" to 3,
-            "NL-GE" to 4,
-            "NL-GR" to 5,
-            "NL-LI" to 7,
-            "NL-NB" to 8,
-            "NL-NH" to 9,
-            "NL-OV" to 10,
-            "NL-UT" to 11,
-            "NL-ZE" to 14,
-            "NL-ZH" to 15
-        )
-
-        /**
-         * Languages: original/en/de/es/fr
-         * If you want to add for more languages, feel free to make a pull request
-         * Case doesn't matter
-         */
-        private val admin1NameToAlertRegionId = mapOf(
-            "Drenthe" to 1,
-            "Drente" to 1, // de/es
-            "Flevoland" to 2,
-            "Flevolanda" to 2, // es
-            "Fryslân" to 3,
-            "Friesland" to 3, // de/alternate name
-            "Frisia" to 3, // en/es
-            "Frise" to 3, // fr
-            "Gelderland" to 4,
-            "Geldern" to 4, // de
-            "Güeldres" to 4, // es
-            "Gueldre" to 4, // fr
-            "Groningen" to 5,
-            "Groninga" to 5, // es
-            "Groningue" to 5, // fr
-            "IJsselmeergebied" to 6, // Sea
-            "Limburg" to 7,
-            "Limburgo" to 7, // es
-            "Limbourg" to 7, // fr
-            "Noord-Brabant" to 8,
-            "Nordbrabant" to 8, // de
-            "North Brabant" to 8, // en
-            "Brabante Septentrional" to 8, // es
-            "Brabant-Septentrional" to 8, // fr
-            "Noord-Holland" to 9,
-            "Nordholland" to 9, // de
-            "North Holland" to 9, // en
-            "Holanda Septentrional" to 9, // es
-            "Hollande-Septentrionale" to 9, // fr
-            "Overijssel" to 10,
-            "Oberyssel" to 10, // de
-            "Utrecht" to 11,
-            "Waddeneilanden" to 12,
-            "Westfriesische Inseln" to 12, // de
-            "West Frisian Islands" to 12, // en
-            "Îles de la Frise-Occidentale" to 12, // fr
-            "IJsselmeer" to 13, // Sea
-            "Zeeland" to 14,
-            "Seeland" to 14, // de
-            "Zelanda" to 14, // es
-            "Zélande" to 14, // fr
-            "Zuid-Holland" to 15,
-            "Südholland" to 15, // de
-            "South Holland" to 15, // en
-            "Holanda Meridional" to 15, // es
-            "Hollande-Méridionale" to 15 // fr
-        )
     }
 }
