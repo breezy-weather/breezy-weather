@@ -677,4 +677,12 @@
     <string name="settings_weather_source_current_position_disclaimer">Sau lần làm mới đầu tiên, có thể có thêm các nguồn dự báo thời tiết phù hợp với vị trí của bạn.</string>
     <string name="common_weather_text_tornado">Lốc xoáy</string>
     <string name="weather_source_continent_north_america">Bắc Mỹ</string>
+    <string name="air_quality_pm25_about">Về bụi mịn (%s)</string>
+    <string name="air_quality_pm25_index">Thang chỉ số chất lượng không khí (%s)</string>
+    <string name="air_quality_pm10_full">Bụi có thể hít vào (%s)</string>
+    <string name="air_quality_pm10_about">Về bụi mịn có thể hít vào (%s)</string>
+    <string name="air_quality_pm10_index">Thang chỉ số chất lượng không khí (%s)</string>
+    <string name="air_quality_pm_sources">Các nguồn chính bao gồm quá trình đốt cháy (ví dụ: nhà máy điện, hệ thống sưởi trong nhà, khí thải ô tô, cháy rừng), quá trình cơ học (ví dụ: xây dựng, bụi khoáng, nông nghiệp) và các hạt sinh học (ví dụ: phấn hoa, nấm mốc, vi khuẩn, vi rút).</string>
+    <string name="air_quality_so2_about">Về Lưu huỳnh điôxít (%s)</string>
+    <string name="air_quality_so2_index">Thang chỉ số chất lượng không khí (%s)</string>
 </resources>
