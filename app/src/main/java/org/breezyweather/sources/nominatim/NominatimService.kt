@@ -17,6 +17,7 @@
 package org.breezyweather.sources.nominatim
 
 import android.content.Context
+import android.util.Log
 import androidx.compose.ui.text.input.KeyboardType
 import breezyweather.domain.location.model.LocationAddressInfo
 import breezyweather.domain.source.SourceContinent
@@ -37,14 +38,15 @@ import org.breezyweather.domain.settings.SourceConfigStore
 import org.breezyweather.sources.nominatim.json.NominatimAddress
 import org.breezyweather.sources.nominatim.json.NominatimLocationResult
 import retrofit2.Retrofit
+import java.util.regex.Pattern
 import javax.inject.Inject
 import javax.inject.Named
 
 /**
- * Nominatim service
+ * Nominatim & LocationIQ service (Unified)
  *
- * Search is not possible, as timezone is mandatory
- * Only supports reverse geocoding for current location, by falling back to device timezone
+ * Supports standard Nominatim instances OR LocationIQ via API Key (pk.xxxx).
+ * Search is not possible for standard Nominatim, but enabled if LocationIQ key is provided.
  */
 class NominatimService @Inject constructor(
     @ApplicationContext context: Context,
@@ -52,9 +54,9 @@ class NominatimService @Inject constructor(
 ) : HttpSource(), LocationSearchSource, ReverseGeocodingSource, ConfigurableSource {
 
     override val id = "nominatim"
-    override val name = "Nominatim"
+    override val name = "Nominatim / LocationIQ"
     override val locationSearchAttribution =
-        "Nominatim • Data © OpenStreetMap contributors, ODbL 1.0. https://osm.org/copyright"
+        "Nominatim/LocationIQ • Data © OpenStreetMap contributors, ODbL 1.0. https://osm.org/copyright"
     override val privacyPolicyUrl = "https://osmfoundation.org/wiki/Privacy_Policy"
     override val continent = SourceContinent.WORLDWIDE
 
@@ -66,22 +68,37 @@ class NominatimService @Inject constructor(
         "OpenStreetMap" to "https://osm.org/",
         "https://osm.org/copyright" to "https://osm.org/copyright"
     )
+
+    // Regex for Vietnam Display Name parsing
+    // Finds specific administrative prefixes: Xã, Phường, Đặc Khu (case-insensitive, with/without accents)
+    private val vnSubProvinceRegex = Pattern.compile("(?iu)(?:^|,\\s*)([^,]*?(?:xã|phường|đặc\\s*khu|xa|phuong|dac\\s*khu)[^,]*)(?:,|$)")
+
     private val mApi by lazy {
+        val isLocationIQ = isLocationIqKey(instance)
+        val url = if (isLocationIQ) LOCATIONIQ_BASE_URL else (instance ?: NOMINATIM_BASE_URL)
+        Log.d("NominatimService", "Initializing API. URL: $url (LocationIQ: $isLocationIQ)")
         client
-            .baseUrl(instance!!)
+            .baseUrl(url)
             .build()
             .create(NominatimApi::class.java)
+    }
+
+    private fun isLocationIqKey(value: String?): Boolean {
+        return value?.startsWith("pk.") == true
     }
 
     override fun requestLocationSearch(
         context: Context,
         query: String,
     ): Observable<List<LocationAddressInfo>> {
+        val key = if (isLocationIqKey(instance)) instance else null
+        
         return mApi.searchLocations(
             acceptLanguage = context.currentLocale.toLanguageTag(),
             userAgent = USER_AGENT,
             q = query,
-            limit = 20
+            limit = 20,
+            key = key
         ).map { results ->
             results.mapNotNull {
                 convertLocation(it)
@@ -94,13 +111,24 @@ class NominatimService @Inject constructor(
         latitude: Double,
         longitude: Double,
     ): Observable<List<LocationAddressInfo>> {
+        val key = if (isLocationIqKey(instance)) instance else null
+        
+        // LocationIQ specific parameter tuning
+        val zoom = if (key != null) 18 else 13
+        val format = if (key != null) "json" else "jsonv2"
+
         return mApi.getReverseLocation(
             acceptLanguage = context.currentLocale.toLanguageTag(),
             userAgent = USER_AGENT,
             lat = latitude,
-            lon = longitude
+            lon = longitude,
+            zoom = zoom,
+            format = format,
+            key = key
         ).map {
+            Log.d("NominatimService", "Reverse Response: $it")
             if (it.address?.countryCode == null || it.address.countryCode.isEmpty()) {
+                Log.e("NominatimService", "Invalid Location: Address or CountryCode missing. Raw: $it")
                 throw InvalidLocationException()
             }
 
@@ -109,10 +137,47 @@ class NominatimService @Inject constructor(
     }
 
     private fun convertLocation(locationResult: NominatimLocationResult): LocationAddressInfo? {
+        Log.d("NominatimService", "convertLocation input: $locationResult")
+        
         return if (locationResult.address?.countryCode == null || locationResult.address.countryCode.isEmpty()) {
+            Log.d("NominatimService", "Dropped result due to missing countryCode")
             null
         } else {
             val countryCode = getNonAmbiguousCountryCode(locationResult.address)
+            
+            // Vietnam Special Parsing
+            var city = locationResult.address.town ?: locationResult.name
+            var district = locationResult.address.village
+            val isLocationIQ = isLocationIqKey(instance)
+
+            if (countryCode.equals("vn", ignoreCase = true)) {
+                // Try to extract Xa/Phuong/Dac Khu from display_name
+                val displayName = locationResult.displayName
+                Log.d("NominatimService", "Parsing VN Address - Provider: ${if(isLocationIQ) "LocationIQ" else "Nominatim"}")
+                Log.d("NominatimService", "Raw DisplayName: $displayName")
+                Log.d("NominatimService", "Initial City: $city, District: $district")
+
+                if (!displayName.isNullOrEmpty()) {
+                    val matcher = vnSubProvinceRegex.matcher(displayName)
+                    if (matcher.find()) {
+                        val matched = matcher.group(1).trim()
+                        Log.d("NominatimService", "Regex Matched: $matched")
+                        city = matched
+                        district = null // Hide district if we found a better name
+                    } else if (isLocationIQ) {
+                        // Fallback logic for LocationIQ if regex fails: use first part of display_name
+                        val fallback = displayName.split(",").firstOrNull()?.trim()
+                        Log.d("NominatimService", "Regex Failed. LocationIQ Fallback: $fallback")
+                        if (fallback != null) {
+                            city = fallback
+                            district = null
+                        }
+                    } else {
+                        Log.d("NominatimService", "Regex Failed. No fallback applied.")
+                    }
+                }
+                Log.d("NominatimService", "Final City: $city")
+            }
 
             LocationAddressInfo(
                 latitude = locationResult.lat.toDoubleOrNull(),
@@ -124,9 +189,9 @@ class NominatimService @Inject constructor(
                 admin2 = locationResult.address.county,
                 admin2Code = getAdmin2CodeForCountry(locationResult.address, countryCode),
                 admin3 = locationResult.address.municipality,
-                city = locationResult.address.town ?: locationResult.name,
+                city = city,
                 cityCode = locationResult.placeId?.toString(),
-                district = locationResult.address.village
+                district = district
             )
         }
     }
@@ -260,15 +325,15 @@ class NominatimService @Inject constructor(
             EditTextPreference(
                 titleId = R.string.settings_weather_source_nominatim_instance,
                 summary = { _, content ->
-                    content.ifEmpty {
+                    if (isLocationIqKey(content)) "LocationIQ" else content.ifEmpty {
                         NOMINATIM_BASE_URL
                     }
                 },
                 content = if (instance != NOMINATIM_BASE_URL) instance else null,
                 placeholder = NOMINATIM_BASE_URL,
-                regex = EditTextPreference.URL_REGEX,
-                regexError = context.getString(R.string.settings_source_instance_invalid),
-                keyboardType = KeyboardType.Uri,
+                regex = null,
+                regexError = null,
+                keyboardType = KeyboardType.Text,
                 onValueChanged = {
                     instance = if (it == NOMINATIM_BASE_URL) null else it.ifEmpty { null }
                 }
@@ -284,6 +349,7 @@ class NominatimService @Inject constructor(
 
     companion object {
         private const val NOMINATIM_BASE_URL = "https://nominatim.openstreetmap.org/"
+        private const val LOCATIONIQ_BASE_URL = "https://us1.locationiq.com/v1/"
         private const val USER_AGENT =
             "BreezyWeather/${BuildConfig.VERSION_NAME} github.com/breezy-weather/breezy-weather/issues"
     }

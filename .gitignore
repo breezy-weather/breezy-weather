@@ -4,7 +4,7 @@ build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
-
+.py
 ### IntelliJ IDEA ###
 .idea/*
 !.idea/icon.png
@@ -14,7 +14,7 @@ build/
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
-
+.env/
 ### Eclipse ###
 .apt_generated
 .classpath
