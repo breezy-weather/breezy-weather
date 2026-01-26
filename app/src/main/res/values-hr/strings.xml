@@ -777,4 +777,5 @@
     <string name="settings_appearance_dark_mode_locations_day_night">Prati dan/noć</string>
     <string name="settings_appearance_dark_mode_locations_dark">Uvijek tamno kada je aplikacija u tamnom modusu</string>
     <string name="settings_regional_preference">Regionalne preferencije</string>
+    <string name="pressure_standard">Standardni</string>
 </resources>
