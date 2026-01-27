@@ -517,7 +517,7 @@
     <string name="location_delete_location_dialog_message_no_name">Estás a punto de eliminar este lugar de tu lista de lugares guardados.</string>
     <string name="action_confirm">Confirmar</string>
     <string name="widget_label_hide_header">Ocultar el encabezado</string>
-    <string name="widget_custom_subtitle_keyword_caqi_description">Índice actual de calidad del aire (ICA)</string>
+    <string name="widget_custom_subtitle_keyword_caqi_description">Índice de calidad del aire actual</string>
     <string name="widget_custom_subtitle_keyword_xaqi_description">Índice de calidad del aire hoy, mañana, …, en 4 días</string>
     <string name="settings_weather_source_unavailable">%s (no disponible)</string>
     <string name="weather_message_too_frequent_refreshes">Por favor, espere unos segundos antes de volver a intentarlo…</string>
