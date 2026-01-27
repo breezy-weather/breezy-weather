@@ -32,8 +32,8 @@
     <string name="action_edit">Upravit</string>
     <string name="daily_yesterday_short">Včr</string>
     <string name="daily_tomorrow_short">Zít</string>
-    <string name="temperature_apparent">Pocitová</string>
-    <string name="temperature_wind_chill">Chladivý vítr</string>
+    <string name="temperature_apparent">Zdánlivá</string>
+    <string name="temperature_wind_chill">Ochlazující účinek větru</string>
     <string name="temperature_degree_day">Denostupeň</string>
     <string name="precipitation_thunderstorm">Bouřka</string>
     <string name="precipitation_rain">Déšť</string>
@@ -464,7 +464,7 @@
     <string name="common_weather_text_snow_showers_light">Slabé sněhové přeháňky</string>
     <string name="common_weather_text_drizzle">Mrholení</string>
     <string name="temperature_normal_short">Normální</string>
-    <string name="temperature_normals">Teplotní normy</string>
+    <string name="temperature_normals">Teplotní normály</string>
     <string name="message_source_not_installed_error_title">Zdroj již není k dispozici</string>
     <string name="about_contribution_designer">Tvůrce loga</string>
     <string name="common_weather_text_rain_showers">Dešťové přeháňky</string>
@@ -747,7 +747,7 @@
     <string name="daytime_short">Den</string>
     <string name="nighttime_short">Noc</string>
     <string name="temperature_normals_deviation">Odchylka</string>
-    <string name="temperature_normals_deviation_explanation_maximum">Odchylka od průměrné maximální teploty v měsíci %s v tomto umístění</string>
+    <string name="temperature_normals_deviation_explanation_maximum">Odchylka od průměrné maximální teploty v měsíci %s pro toto místo</string>
     <string name="temperature_normals_deviation_explanation_minimum">Odchylka od průměrné minimální teploty v měsíci %s v tomto umístění</string>
     <string name="widget_custom_subtitle_help_content_description">Zobrazit nápovědu k vlastním klíčovým slovům titulků</string>
     <string name="widget_custom_subtitle_alert_box_title">Vlastní nápověda titulků</string>
