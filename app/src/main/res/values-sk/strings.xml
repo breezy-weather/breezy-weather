@@ -11,13 +11,13 @@
     <string name="temperature">Teplota</string>
     <string name="temperature_feels_like">Pocitová teplota</string>
     <string name="temperature_feels_like_with_unit">Pocitová teplota %s</string>
-    <string name="temperature_apparent">Pocitová</string>
-    <string name="temperature_wind_chill">Chladný vietor</string>
+    <string name="temperature_apparent">Zdanlivá</string>
+    <string name="temperature_wind_chill">Ochladzujúci účinok vetra</string>
     <string name="temperature_degree_day_heating">Vykurovací dennostupeň</string>
     <string name="precipitation">Zrážky</string>
     <string name="precipitation_probability">Pravdepodobnosť zrážok</string>
     <string name="precipitation_duration">Trvanie zrážok</string>
-    <string name="precipitation_thunderstorm">Blesková búrka</string>
+    <string name="precipitation_thunderstorm">Búrka</string>
     <string name="precipitation_rain">Dážď</string>
     <string name="precipitation_ice">Ľad</string>
     <string name="precipitation_intensity_light">Slabé</string>
@@ -102,7 +102,7 @@
     <string name="visibility">Viditeľnosť</string>
     <string name="ceiling">Výška mrakov</string>
     <string name="ephemeris_sunset_at">Západ slnka v %s</string>
-    <string name="temperature_normals">Teplotné normy</string>
+    <string name="temperature_normals">Teplotné normály</string>
     <string name="nighttime">Noc</string>
     <string name="notification_channel_forecast">Predpoveď</string>
     <string name="pollen_ambrosia">Ambrózia</string>
@@ -657,7 +657,7 @@
     <string name="temperature_degree_day_heating_explanation">Rozdiel medzi vonkajšou teplotou a referenčnou komfortnou teplotou používanou na odhad potreby energie na vykurovanie</string>
     <string name="temperature_degree_day_cooling_explanation">Rozdiel medzi vonkajšou teplotou a referenčnou komfortnou teplotou používanou na odhad potreby energie na chladenie</string>
     <string name="temperature_normals_deviation">Odchýlka</string>
-    <string name="temperature_normals_deviation_explanation_maximum">Odchýlka od priemernej maximálnej teploty %s pre túto lokalitu</string>
+    <string name="temperature_normals_deviation_explanation_maximum">Odchýlka od priemernej maximálnej teploty %s pre toto miesto</string>
     <string name="temperature_normals_deviation_explanation_minimum">Odchýlka od priemernej minimálnej teploty %s pre túto lokalitu</string>
     <string name="precipitation_total_day">Zrážky počas dňa</string>
     <string name="precipitation_total_night">Zrážky počas noci</string>
