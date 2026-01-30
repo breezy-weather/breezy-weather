@@ -577,7 +577,7 @@
     <string name="dew_point_about">이슬점 정보</string>
     <string name="dew_point_about_description">이슬점은 상대습도가 %s에 도달하기 위해 공기를 냉각해야 하는 온도입니다.</string>
     <string name="pressure_about">기압 정보</string>
-    <string name="pressure_about_description1">대기압은 지구 대기가 가하는 압력입니다. 이 앱은 평균해면기압(MSLP)을 이용해 여러 고도에 위치한 장소의 기압을 쉽게 비교할 수 있도록 합니다.</string>
+    <string name="pressure_about_description1">대기압은 지구 대기가 가하는 압력입니다. 이 앱은 평균해면기압을 이용해 여러 고도에 위치한 장소의 기압을 쉽게 비교할 수 있도록 합니다.</string>
     <string name="pressure_about_description2">중요하고 급격한 기압 변화는 기상 변화를 예측하는 데 쓰입니다. 예를 들어 기압이 낮아지면 곧 비나 눈이 내릴 수 있고, 기압이 높아지면 날씨가 좋아질 수 있습니다. 비정상적인 기압은 두통, 관절통, 피로 등의 영향을 끼칠 수 있습니다.</string>
     <string name="visibility_about">가시거리 정보</string>
     <string name="visibility_about_description">가시거리는 얼마나 멀리 있는 건물이나 언덕을 또렷하게 볼 수 있는지 나타냅니다. 가시거리는 강수, 안개, 먼지, 연기, 연무의 영향을 받을 수 있습니다.</string>
