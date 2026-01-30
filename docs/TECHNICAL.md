@@ -36,7 +36,7 @@ You can omit any of the following properties to let the user configure their own
 4) Update versionCode and versionName in `app/build.gradle`.
 5) Write changelog in `CHANGELOG.md`.
 6) Commit all changes.
-7) Tag version beginning with a `v` (example: `git tag v6.0.13 -m "Version 6.0.13"`).
+7) Tag version beginning with a `v` (example: `git tag v6.1.0 -m "Version 6.1.0"`).
 8) Push with `git push --tags`
 9) GitHub action will run and sign the release.
 10) Update GitHub release notes draft and publish.
@@ -94,7 +94,7 @@ When a translation is added, add the CLDR data for this locale in the weather-un
 
 Gradle must always be updated that way (replace with new version number):
 ```
-./gradlew wrapper --gradle-version=9.3.0 --gradle-distribution-sha256-sum=0d585f69da091fc5b2beced877feab55a3064d43b8a1d46aeb07996b0915e0e0
+./gradlew wrapper --gradle-version=9.3.1 --gradle-distribution-sha256-sum=b266d5ff6b90eada6dc3b20cb090e3731302e553a27c5d3e4df1f0d76beaff06
 ```
 
 You can find the newer checksum of the binary-only (-bin) ZIP on https://gradle.org/release-checksums/
