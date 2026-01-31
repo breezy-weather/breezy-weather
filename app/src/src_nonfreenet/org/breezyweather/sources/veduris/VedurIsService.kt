@@ -22,8 +22,11 @@ import com.google.maps.android.data.geojson.GeoJsonPolygon
 import com.google.maps.android.model.LatLng
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
+import okhttp3.OkHttpClient
+import okhttp3.Request
 import org.breezyweather.R
 import org.breezyweather.common.exceptions.InvalidLocationException
+import org.breezyweather.common.exceptions.WeatherException
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.sources.veduris.json.VedurIsAlertRegionsResult
@@ -63,6 +66,8 @@ class VedurIsService @Inject constructor(
             .create(VedurIsApi::class.java)
     }
 
+    private val okHttpClient = OkHttpClient()
+
     override val attributionLinks = mapOf(
         weatherAttribution to "https://gottvedur.is/"
     )
@@ -80,8 +85,22 @@ class VedurIsService @Inject constructor(
         }
         val failedFeatures = mutableMapOf<SourceFeature, Throwable>()
 
+        val request = Request.Builder().url(VEDUR_IS_BASE_URL).build()
+        val buildId = okHttpClient.newCall(request).execute().use { call ->
+            if (call.isSuccessful) {
+                val body = call.body.string()
+                val regex = Regex(""""buildId":"([0-9a-f]+)"""")
+                regex.find(body)?.groupValues[1].toString()
+            } else {
+                null
+            }
+        }
+        if (buildId == null) {
+            return Observable.error(WeatherException())
+        }
+
         val forecast = if (SourceFeature.FORECAST in requestedFeatures) {
-            mApi.getForecast(VEDUR_IS_PAGE_ID, forecastStationId).onErrorResumeNext {
+            mApi.getForecast(buildId, forecastStationId).onErrorResumeNext {
                 failedFeatures[SourceFeature.FORECAST] = it
                 Observable.just(VedurIsResult())
             }
@@ -90,7 +109,7 @@ class VedurIsService @Inject constructor(
         }
 
         val current = if (SourceFeature.CURRENT in requestedFeatures && !currentStationId.isNullOrEmpty()) {
-            mApi.getCurrent(VEDUR_IS_PAGE_ID, currentStationId).onErrorResumeNext {
+            mApi.getCurrent(buildId, currentStationId).onErrorResumeNext {
                 failedFeatures[SourceFeature.CURRENT] = it
                 Observable.just(VedurIsResult())
             }
@@ -359,10 +378,7 @@ class VedurIsService @Inject constructor(
             stations[id] = latLng
             stationNames[id] = feature.properties.station.name
         }
-        val stationId = LatLng(latitude, longitude).getNearestLocation(stations)
-        if (stationId == null) {
-            throw InvalidLocationException()
-        }
+        val stationId = LatLng(latitude, longitude).getNearestLocation(stations) ?: throw InvalidLocationException()
         return listOf(
             LocationAddressInfo(
                 timeZoneId = "Atlantic/Reykjavik",
@@ -486,7 +502,6 @@ class VedurIsService @Inject constructor(
 
     companion object {
         private const val VEDUR_IS_BASE_URL = "https://gottvedur.is/"
-        private const val VEDUR_IS_PAGE_ID = "8966f52b07caebba9b39748e5c5a3bbff1a6a156"
         private const val EARTH_POLAR_RADIUS = 6356752
         private const val EARTH_EQUATORIAL_RADIUS = 6378137
         private const val DISTANCE_LIMIT = 60000.0
