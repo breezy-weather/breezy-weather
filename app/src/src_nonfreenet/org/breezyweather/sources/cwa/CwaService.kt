@@ -364,10 +364,12 @@ class CwaService @Inject constructor(
         // "Weather Assistant" returns a few paragraphs of human-written forecast summary.
         // We only want the first paragraph to keep it concise.
         val dailyForecast: String? = if (assistantResult.cwaopendata != null) {
-            assistantResult.cwaopendata.dataset?.parameterSet?.parameter?.getOrNull(0)?.parameterValue
+            assistantResult.cwaopendata.Dataset?.Locations?.Location
+                ?.WeatherElement?.ElementValue?.WeatherDescription?.getOrNull(0)
         } else {
             // Just in case the Assistant feed regresses to "cwbopendata" as the root property.
-            assistantResult.cwbopendata?.dataset?.parameterSet?.parameter?.getOrNull(0)?.parameterValue
+            assistantResult.cwbopendata?.Dataset?.Locations?.Location
+                ?.WeatherElement?.ElementValue?.WeatherDescription?.getOrNull(0)
         }
 
         return CurrentWrapper(
@@ -527,7 +529,7 @@ class CwaService @Inject constructor(
         val dates = wxTextMap.keys.groupBy { formatter.format(it).substring(0, 10) }.keys
         var dayTime: Long
         var nightTime: Long
-        dates.forEachIndexed { i, date ->
+        dates.forEach { date ->
             dayTime = formatter.parse("$date 06:00:00")!!.time
             nightTime = formatter.parse("$date 18:00:00")!!.time
             dailyList.add(

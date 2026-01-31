@@ -20,5 +20,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class CwaAssistantDataSet(
-    val parameterSet: CwaAssistantParameterSet? = null,
+    val Locations: CwaAssistantLocations? = null,
 )
