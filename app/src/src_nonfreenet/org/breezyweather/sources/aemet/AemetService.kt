@@ -45,8 +45,6 @@ import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.exceptions.InvalidOrIncompleteDataException
 import org.breezyweather.common.preference.EditTextPreference
 import org.breezyweather.common.preference.Preference
-import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_HIGHEST
-import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
 import org.breezyweather.domain.settings.SourceConfigStore
 import org.breezyweather.sources.aemet.json.AemetCurrentResult
 import org.breezyweather.sources.aemet.json.AemetDailyResult
@@ -71,6 +69,7 @@ import javax.inject.Named
 class AemetService @Inject constructor(
     @ApplicationContext context: Context,
     @Named("JsonClient") client: Retrofit.Builder,
+    private val okHttpClient: OkHttpClient,
 ) : AemetServiceStub(context) {
 
     override val privacyPolicyUrl = "https://www.aemet.es/es/nota_legal"
@@ -81,8 +80,6 @@ class AemetService @Inject constructor(
             .build()
             .create(AemetApi::class.java)
     }
-
-    private val okHttpClient = OkHttpClient()
 
     override val attributionLinks = mapOf(
         weatherAttribution to "https://www.aemet.es/"

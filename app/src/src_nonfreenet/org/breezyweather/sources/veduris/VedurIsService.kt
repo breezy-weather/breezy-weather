@@ -55,6 +55,7 @@ import kotlin.math.min
 class VedurIsService @Inject constructor(
     @ApplicationContext context: Context,
     @Named("JsonClient") client: Retrofit.Builder,
+    private val okHttpClient: OkHttpClient,
 ) : VedurIsServiceStub(context) {
 
     override val privacyPolicyUrl = "https://vedur.is/um-vi/vefurinn/personuvernd/"
@@ -65,8 +66,6 @@ class VedurIsService @Inject constructor(
             .build()
             .create(VedurIsApi::class.java)
     }
-
-    private val okHttpClient = OkHttpClient()
 
     override val attributionLinks = mapOf(
         weatherAttribution to "https://gottvedur.is/"

@@ -49,6 +49,7 @@ import kotlin.time.Duration.Companion.hours
 class ImdService @Inject constructor(
     @ApplicationContext context: Context,
     @Named("JsonClient") client: Retrofit.Builder,
+    private val okHttpClient: OkHttpClient,
 ) : ImdServiceStub(context) {
 
     private val mApi by lazy {
@@ -57,8 +58,6 @@ class ImdService @Inject constructor(
             .build()
             .create(ImdApi::class.java)
     }
-
-    private val okHttpClient = OkHttpClient()
 
     override val attributionLinks = mapOf(
         "India Meteorological Department" to "https://imd.gov.in/"

@@ -54,6 +54,7 @@ import javax.inject.Named
 class BmdService @Inject constructor(
     @ApplicationContext context: Context,
     @Named("JsonClient") client: Retrofit.Builder,
+    private val okHttpClient: OkHttpClient,
 ) : BmdServiceStub(context) {
 
     private val mApi by lazy {
@@ -62,8 +63,6 @@ class BmdService @Inject constructor(
             .build()
             .create(BmdApi::class.java)
     }
-
-    private val okHttpClient = OkHttpClient()
 
     override val attributionLinks = mapOf(
         weatherAttribution to "https://www.bmd.gov.bd/"
