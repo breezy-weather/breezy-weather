@@ -4,7 +4,7 @@
 - [Changelog for v4.x](docs/CHANGELOG_4.x.md)
 
 
-# Version 6.1.0 (not yet released)
+# Version 6.1.0 (2026-02-01)
 
 **New features**
 - Content provider: allows (with your permission) other apps to query your weather data. [Read the announcement](https://github.com/breezy-weather/breezy-weather/discussions/2089)
