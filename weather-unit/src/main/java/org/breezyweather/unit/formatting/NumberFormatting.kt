@@ -25,6 +25,7 @@ import org.breezyweather.unit.supportsNumberFormatter
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
 import java.util.Locale
+import kotlin.math.roundToInt
 
 /**
  * Uses LocalizedNumberFormatter on Android SDK >= 30 (which is the recommended way)
@@ -41,8 +42,8 @@ fun Number.format(
     return if (supportsNumberFormatter() && useNumberFormatter) {
         (NumberFormatter.withLocale(locale) as LocalizedNumberFormatter)
             .precision(Precision.maxFraction(decimals))
-            .sign(if (showSign) NumberFormatter.SignDisplay.ALWAYS else NumberFormatter.SignDisplay.NEGATIVE)
-            .format(this)
+            .sign(if (showSign) NumberFormatter.SignDisplay.ALWAYS else NumberFormatter.SignDisplay.AUTO)
+            .format(if (decimals == 0) this.toDouble().roundToInt() else this)
             .toString()
     } else if (supportsNumberFormat() && useNumberFormat && !showSign) {
         // showSign not supported by NumberFormat, skip

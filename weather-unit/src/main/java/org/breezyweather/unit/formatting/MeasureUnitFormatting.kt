@@ -30,6 +30,7 @@ import org.breezyweather.unit.supportsMeasureFormatPerUnit
 import org.breezyweather.unit.supportsNumberFormatterUsage
 import java.text.FieldPosition
 import java.util.Locale
+import kotlin.math.roundToInt
 
 /**
  * @param locale
@@ -48,7 +49,7 @@ fun MeasureUnit.formatWithNumberFormatter(
 ): String {
     return (NumberFormatter.withLocale(locale) as LocalizedNumberFormatter)
         .precision(if (precision == 0) Precision.integer() else Precision.maxFraction(precision))
-        .sign(if (showSign) NumberFormatter.SignDisplay.ALWAYS else NumberFormatter.SignDisplay.NEGATIVE)
+        .sign(if (showSign) NumberFormatter.SignDisplay.ALWAYS else NumberFormatter.SignDisplay.AUTO)
         .unit(this)
         .perUnit(perUnit)
         .unitWidth(numberFormatterWidth)
@@ -57,7 +58,7 @@ fun MeasureUnit.formatWithNumberFormatter(
                 usage(if (this is TimeUnit) "duration" else null)
             }
         }
-        .format(value)
+        .format(if (precision == 0) value.toDouble().roundToInt() else value)
         .toString()
 }
 

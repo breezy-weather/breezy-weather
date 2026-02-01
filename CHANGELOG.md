@@ -4,6 +4,12 @@
 - [Changelog for v4.x](docs/CHANGELOG_4.x.md)
 
 
+# Version 6.1.1 (2026-02-01)
+
+**Hotfix**
+- Fix crash on Android 11-13
+
+
 # Version 6.1.0 (2026-02-01)
 
 **New features**
