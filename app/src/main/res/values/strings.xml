@@ -1232,6 +1232,11 @@
     <!-- Weather texts for Vedur.is -->
     <string name="veduris_weather_text_fog_drizzle" translatable="false">Fog drizzle</string>
     <string name="veduris_weather_text_thunderstorm_light" translatable="false">Light thunderstorm</string>
+    <!-- Weather texts for FMI -->
+    <string name="fmi_weather_text_ice_pellets_light" translatable="false">Light ice pellets</string>
+    <string name="fmi_weather_text_ice_pellets_moderate" translatable="false">Moderate ice pellets</string>
+    <string name="fmi_weather_text_ice_pellets_heavy" translatable="false">Heavy ice pellets</string>
+    <string name="fmi_weather_text_ice_crystals" translatable="false">@string/nws_weather_text_ice_crystals</string>
     <!-- Do NOT translate everything below -->
     <!-- Widgets -->
     <string name="widget_custom_subtitle_keyword_cw" translatable="false">$cw$</string>
