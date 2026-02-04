@@ -781,4 +781,5 @@
     <string name="content_provider_permission_label">Πρόσβαση στα δεδομένα του Breezy Weather</string>
     <string name="content_provider_permission_description">Λήψη πληροφοριών καιρού και τοποθεσίας από το Breezy Weather</string>
     <string name="common_weather_text_mostly_cloudy">Κυρίως συννεφιασμένος</string>
+    <string name="pressure_standard">Τυπική</string>
 </resources>
