@@ -1,12 +1,13 @@
+
 import breezy.buildlogic.configureCompose
+import com.android.build.api.dsl.ApplicationExtension
 
 plugins {
     id("com.android.application")
-    kotlin("android")
 
     id("breezy.code.lint")
 }
 
-android {
-    configureCompose(this)
+configure<ApplicationExtension> {
+    configureCompose()
 }
