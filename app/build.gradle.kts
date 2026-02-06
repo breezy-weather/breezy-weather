@@ -3,6 +3,7 @@
 import breezy.buildlogic.getCommitCount
 import breezy.buildlogic.getGitSha
 import breezy.buildlogic.registerLocalesConfigTask
+import com.android.build.api.dsl.ApplicationExtension
 import java.util.Properties
 
 plugins {
@@ -17,7 +18,7 @@ plugins {
 
 val supportedAbi = setOf("armeabi-v7a", "arm64-v8a", "x86", "x86_64")
 
-android {
+configure<ApplicationExtension> {
     namespace = "org.breezyweather"
 
     defaultConfig {
@@ -197,12 +198,12 @@ android {
 
     sourceSets {
         getByName("basic") {
-            java.srcDirs("src/src_nonfreenet")
-            res.srcDirs("src/res_nonfreenet")
+            kotlin.directories += "src/src_nonfreenet"
+            res.directories += "src/res_nonfreenet"
         }
         getByName("freenet") {
-            java.srcDirs("src/src_freenet")
-            res.srcDirs("src/res_freenet")
+            kotlin.directories += "src/src_freenet"
+            res.directories += "src/res_freenet"
         }
     }
 
