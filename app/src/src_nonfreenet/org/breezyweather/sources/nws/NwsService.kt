@@ -433,7 +433,7 @@ class NwsService @Inject constructor(
             Alert(
                 alertId = it.properties.id,
                 startDate = it.properties.onset,
-                endDate = it.properties.expires,
+                endDate = it.properties.ends ?: it.properties.expires,
                 headline = it.properties.event ?: it.properties.headline,
                 description = it.properties.description?.let { d -> regex.replace(d, "$1 $2") },
                 instruction = it.properties.instruction?.let { d -> regex.replace(d, "$1 $2") },

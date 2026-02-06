@@ -26,6 +26,7 @@ data class NwsAlertProperties(
     @Serializable(DateSerializer::class) val effective: Date?,
     @Serializable(DateSerializer::class) val onset: Date?,
     @Serializable(DateSerializer::class) val expires: Date?,
+    @Serializable(DateSerializer::class) val ends: Date?,
     val status: String?,
     val severity: String?,
     val event: String?,
