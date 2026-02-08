@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="Weather.TextAppearance.MainBlock.Clock" parent="@style/TextAppearance.Material3.DisplaySmall">
-        <item name="android:fontFamily">@font/robotoflex_family</item>
+        <item name="android:fontFamily">@font/google_sans_flex</item>
         <item name="android:fontWeight">700</item>
         <item name="android:textSize">45sp</item>
     </style>
