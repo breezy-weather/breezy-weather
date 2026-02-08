@@ -517,7 +517,7 @@
     <string name="action_confirm">Konfirmasi</string>
     <string name="widget_label_hide_header">Sembunyikan tajuk</string>
     <string name="weather_message_too_frequent_refreshes">Silakan menunggu sebelum mencoba lagi…</string>
-    <string name="widget_custom_subtitle_keyword_xaqi_description">Indeks kualitas udara hari ini, besok, ..., 4 hari ke depan</string>
+    <string name="widget_custom_subtitle_keyword_xaqi_description">Indeks kualitas udara hari ini, besok, …, 4 hari ke depan</string>
     <string name="location_delete_location_dialog_title">Hapus lokasi?</string>
     <string name="location_delete_location_dialog_message">Anda akan menghapus “%s” dari daftar lokasi simpanan Anda.</string>
     <string name="location_delete_location_dialog_message_no_name">Anda akan menghapus lokasi ini dari daftar lokasi simpanan Anda.</string>
@@ -808,7 +808,7 @@
     <string name="pressure_standard">Standar</string>
     <string name="pressure_falling">Menurun</string>
     <string name="pressure_about">Tentang tekanan</string>
-    <string name="pressure_about_description1">Tekanan atmosfer adalah tekanan ke bawah yang diberikan oleh atmosfer bumi. Aplikasi ini menggunakan tekanan permukaan laut rata-rata (MSLP) untuk memudahkan perbandingan tekanan dari tempat-tempat dengan ketinggian yang berbeda.</string>
+    <string name="pressure_about_description1">Tekanan atmosfer adalah tekanan ke bawah yang diberikan oleh atmosfer bumi. Aplikasi ini menggunakan tekanan permukaan laut rata-rata untuk memudahkan perbandingan tekanan dari tempat-tempat dengan ketinggian yang berbeda.</string>
     <string name="pressure_about_description2">Perubahan tekanan yang signifikan dan cepat digunakan untuk memprediksi perubahan cuaca. Misalnya, penurunan tekanan dapat berarti hujan atau salju akan datang, dan tekanan yang meningkat dapat berarti cuaca akan membaik. Tekanan atmosfer yang tidak normal dapat menyebabkan sakit kepala, nyeri sendi, kelelahan, dan efek lainnya.</string>
     <string name="visibility_about">Tentang jarak pandang</string>
     <string name="visibility_about_description">Jarak pandang memberi tahu Anda seberapa jauh Anda dapat melihat objek seperti bangunan dan bukit dengan jelas. Jarak pandang dapat dipengaruhi oleh presipitasi, kabut, debu, asap, atau halimun.</string>
