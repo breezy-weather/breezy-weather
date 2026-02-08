@@ -939,7 +939,22 @@ This source aggregates data from Beijing Meteorological Service, ColorfulClouds 
 
 ### Met Office
 
-> 🔐 **This source requires an API key.** [Register here](https://datahub.metoffice.gov.uk/)
+> 🔐 **This source requires an API key.** [Register here](https://datahub.metoffice.gov.uk/), then in the **Site-Specific** section, subscribe to the **Global Spot** product.
+
+<details><summary>Detailed instructions from [@rustyjm](https://github.com/rustyjm)</summary>
+
+*Steps may change in case of website changes*
+
+1. Create a MET Office Datahub account
+2. Go to **My Subscriptions**
+3. In the **Site Specific** section, go to Product Type **Global Spot** and choose **Subscribe**.
+4. On the next page, under the free plan option choose **Subscribe**.
+5. When prompted, check the box to confirm you have read the terms and conditions and press **Confirm.**
+6. On the **Your Details** page, populate the required fields and **Continue**.
+7. Copy the provided API key
+8. In Breezy Weather, go to Settings > Weather Sources and paste the API key in the section for Met Office (United Kingdom)
+9. The Met Office should now work as a source.
+</details>
 
 **[Met Office](https://www.metoffice.gov.uk/)** is the official meteorological service of the United Kingdom.
 
