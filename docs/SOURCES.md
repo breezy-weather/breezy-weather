@@ -941,7 +941,7 @@ This source aggregates data from Beijing Meteorological Service, ColorfulClouds 
 
 > 🔐 **This source requires an API key.** [Register here](https://datahub.metoffice.gov.uk/), then in the **Site-Specific** section, subscribe to the **Global Spot** product.
 
-<details><summary>Detailed instructions from [@rustyjm](https://github.com/rustyjm)</summary>
+<details><summary>Detailed instructions from <a href="https://github.com/rustyjm">@rustyjm</a></summary>
 
 *Steps may change in case of website changes*
 
