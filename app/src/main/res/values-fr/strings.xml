@@ -129,7 +129,7 @@
     <string name="precipitation_snow">Neige</string>
     <string name="precipitation_snow_total_day">Neige de la journée</string>
     <string name="precipitation_snow_total_night">Neige de la nuit</string>
-    <string name="precipitation_ice">Glace</string>
+    <string name="precipitation_ice">Verglas</string>
     <string name="wind">Vent</string>
     <string name="wind_origin">Origine : %s</string>
     <string name="wind_speed_about">À propos de la vitesse du vent et des rafales</string>
