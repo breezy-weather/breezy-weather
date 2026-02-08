@@ -150,11 +150,11 @@ Pull requests are welcome. You can have a look at [issues opened to contribution
 
 ## Features currently being worked on by a contributor
 
-- [Announcement](https://github.com/breezy-weather/breezy-weather/discussions/2089) - Make Breezy weather data available through a ContentProvider. Currently in testing phase
+- [Announcement](https://github.com/breezy-weather/breezy-weather/discussions/2089) - Make Breezy weather data available through a ContentProvider. Landed in v6.1.0. Currently in an experimental phase; feedback appreciated
+- [#10](https://github.com/breezy-weather/breezy-weather/issues/10) - “Add location” page needs a new design, in the spirit of Google Maps where you can select location points on the map, or search manually - No mockup done yet
 
 ## Features lacking an active contributor
 
-- [#10](https://github.com/breezy-weather/breezy-weather/issues/10) - “Add location” page needs a new design, in the spirit of Google Maps where you can select location points on the map, or search manually - No mockup done yet
 - [#937](https://github.com/breezy-weather/breezy-weather/issues/937) - Widget overhaul (prerequisite for any new widget improvement) - Some mockups were done but no one is working on it anymore
 
 ## Features that will not be implemented
