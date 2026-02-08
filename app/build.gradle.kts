@@ -255,11 +255,12 @@ android {
 kotlin {
     compilerOptions {
         freeCompilerArgs.addAll(
+            "-opt-in=androidx.compose.foundation.layout.ExperimentalLayoutApi",
             "-opt-in=androidx.compose.material3.ExperimentalMaterial3Api",
             "-opt-in=androidx.compose.material3.ExperimentalMaterial3ExpressiveApi",
-            "-opt-in=androidx.compose.foundation.layout.ExperimentalLayoutApi",
+            "-opt-in=com.google.accompanist.permissions.ExperimentalPermissionsApi",
             "-opt-in=kotlinx.serialization.ExperimentalSerializationApi",
-            "-opt-in=com.google.accompanist.permissions.ExperimentalPermissionsApi"
+            "-Xannotation-default-target=param-property"
         )
     }
 }
