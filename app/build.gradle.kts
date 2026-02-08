@@ -181,6 +181,11 @@ android {
             "POLLENINFO_KEY",
             "\"${properties.getProperty("breezy.polleninfo.key") ?: ""}\""
         )
+        it.buildConfigField(
+            "String",
+            "INFOPLAZA_KEY",
+            "\"${properties.getProperty("breezy.infoplaza.key") ?: ""}\""
+        )
     }
 
     flavorDimensions.add("default")
