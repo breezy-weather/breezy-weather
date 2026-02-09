@@ -9,6 +9,9 @@
 **Sources**
 - NWS - Fix incorrect alert end date in some cases
 
+**Technical**
+- By default, the app will now compile unbranded. It has always been a requirement to change the name of the app when creating forks, but this has now been simplified. The aim is to avoid the confusion between our app and forks distributing modified releases we do not endorse.
+
 
 # Version 6.1.1 (2026-02-01)
 

@@ -82,7 +82,7 @@ class BrightSkyService @Inject constructor(
     override val privacyPolicyUrl = "https://brightsky.dev/"
 
     private val weatherAttribution = "Bright Sky, Data basis: Deutscher Wetterdienst. " +
-        context.getString(R.string.data_modified, context.getString(R.string.breezy_weather))
+        context.getString(R.string.data_modified, context.getString(R.string.brand_name))
 
     private val mApi: BrightSkyApi
         get() {

@@ -58,7 +58,7 @@ abstract class MetIeServiceStub(context: Context) :
     private val weatherAttribution = "Copyright Met Éireann. Source met.ie. This data is published under a " +
         "Commons Attribution 4.0 International (CC BY 4.0). Met Éireann does not accept any liability whatsoever " +
         "for any error or omission in the data, their availability, or for any loss or damage arising from their " +
-        "use. ${context.getString(R.string.data_modified, context.getString(R.string.breezy_weather))}"
+        "use. ${context.getString(R.string.data_modified, context.getString(R.string.brand_name))}"
     override val supportedFeatures = mapOf(
         SourceFeature.FORECAST to weatherAttribution,
         SourceFeature.ALERT to weatherAttribution,

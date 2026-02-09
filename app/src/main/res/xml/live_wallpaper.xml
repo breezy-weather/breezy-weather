@@ -2,4 +2,4 @@
 <wallpaper xmlns:android="http://schemas.android.com/apk/res/android"
     android:settingsActivity="org.breezyweather.wallpaper.LiveWallpaperConfigActivity"
     android:thumbnail="@drawable/live_wallpaper_thumbnail"
-    android:description="@string/breezy_weather" />
+    android:description="@string/brand_name" />

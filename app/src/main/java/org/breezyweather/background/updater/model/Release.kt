@@ -17,6 +17,7 @@
 package org.breezyweather.background.updater.model
 
 import android.os.Build
+import org.breezyweather.BuildConfig
 
 /*
  * Taken from Mihon
@@ -49,7 +50,7 @@ data class Release(
         }
 
         return assets.find {
-            it.startsWith("breezy-weather$apkVariant-") && !it.contains("freenet")
+            it.startsWith("${BuildConfig.GITHUB_RELEASE_PREFIX}$apkVariant-") && !it.contains("freenet")
         } ?: assets[0] // FIXME
     }
 

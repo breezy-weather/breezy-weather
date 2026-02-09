@@ -336,7 +336,7 @@ class SearchActivity : BreezyActivity() {
         if (dialogLinkOpenState.value) {
             AlertDialogLink(
                 onClose = { dialogLinkOpenState.value = false },
-                linkToOpen = "https://github.com/breezy-weather/breezy-weather/blob/main/INSTALL.md"
+                linkToOpen = BuildConfig.INSTALL_INSTRUCTIONS_LINK
             )
         }
     }

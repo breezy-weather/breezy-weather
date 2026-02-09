@@ -110,7 +110,7 @@ object Notifications {
         notificationManager.createNotificationChannelGroupsCompat(
             listOf(
                 buildNotificationChannelGroup(GROUP_BREEZY_WEATHER) {
-                    setName(context.getString(R.string.breezy_weather))
+                    setName(context.getString(R.string.brand_name))
                 }
             )
         )

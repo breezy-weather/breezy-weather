@@ -40,7 +40,7 @@ jobs:
         run: ./gradlew clean
 
       - name: Assemble basic flavor
-        run: ./gradlew assembleBasicDebug
+        run: ./gradlew assembleBasicDebug -Pbreezy # /!\ You’re NOT allowed to redistribute modified APKs with the breezy config enabled, see license terms
 
       - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
         with:

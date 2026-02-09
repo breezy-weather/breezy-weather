@@ -28,7 +28,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
-import org.breezyweather.BuildConfig
+import org.breezyweather.BreezyWeather
 import org.breezyweather.R
 import org.breezyweather.background.forecast.TodayForecastNotificationJob
 import org.breezyweather.background.forecast.TomorrowForecastNotificationJob
@@ -106,7 +106,7 @@ fun NotificationsSettingsScreen(
                 }
             }
 
-            if (BuildConfig.FLAVOR != "freenet") {
+            if (BreezyWeather.instance.isGitHubUpdateCheckerEnabled) {
                 sectionHeaderItem(R.string.notification_channel_app_updates)
                 switchPreferenceItem(R.string.settings_notifications_app_updates_check) { id ->
                     SwitchPreferenceView(

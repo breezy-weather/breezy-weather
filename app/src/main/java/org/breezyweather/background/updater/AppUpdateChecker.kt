@@ -17,7 +17,6 @@
 package org.breezyweather.background.updater
 
 import android.content.Context
-import android.os.Build
 import org.breezyweather.BuildConfig
 import org.breezyweather.background.updater.interactor.GetApplicationRelease
 import org.breezyweather.common.extensions.withIOContext
@@ -47,8 +46,8 @@ class AppUpdateChecker @Inject constructor(
             val result = getApplicationRelease.await(
                 GetApplicationRelease.Arguments(
                     BuildConfig.VERSION_NAME,
-                    GITHUB_ORG,
-                    GITHUB_REPO,
+                    BuildConfig.GITHUB_ORG,
+                    BuildConfig.GITHUB_REPO,
                     forceCheck
                 )
             )
@@ -63,7 +62,5 @@ class AppUpdateChecker @Inject constructor(
     }
 }
 
-val GITHUB_ORG = "breezy-weather"
-val GITHUB_REPO = "breezy-weather"
-
-val RELEASE_URL = "https://github.com/${GITHUB_REPO}/releases/tag/v${BuildConfig.VERSION_NAME}"
+val RELEASE_URL =
+    "https://github.com/${BuildConfig.GITHUB_ORG}/${BuildConfig.GITHUB_REPO}/releases/tag/v${BuildConfig.VERSION_NAME}"

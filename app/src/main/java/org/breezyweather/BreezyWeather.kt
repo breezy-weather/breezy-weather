@@ -148,6 +148,15 @@ class BreezyWeather : Application(), Configuration.Provider {
         }
     }
 
+    // GitHub is a non-free network, so we cannot automatically check for updates in the
+    // "freenet" flavor
+    // We ask for permission to manually check updates in the browser instead
+    val isGitHubUpdateCheckerEnabled: Boolean
+        get() = BuildConfig.FLAVOR != "freenet" &&
+            BuildConfig.GITHUB_REPO.isNotEmpty() &&
+            BuildConfig.GITHUB_ORG.isNotEmpty() &&
+            BuildConfig.GITHUB_RELEASE_PREFIX.isNotEmpty()
+
     override val workManagerConfiguration
         get() = Configuration.Builder()
             .setWorkerFactory(workerFactory)

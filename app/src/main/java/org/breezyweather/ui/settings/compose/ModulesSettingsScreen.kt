@@ -147,7 +147,7 @@ fun ModulesSettingsScreen(
                             SnackbarHelper.showSnackbar(
                                 context.getString(
                                     R.string.settings_modules_live_wallpaper_error,
-                                    context.getString(R.string.breezy_weather)
+                                    context.getString(R.string.brand_name)
                                 )
                             )
                         }

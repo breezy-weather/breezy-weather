@@ -1,0 +1,15 @@
+{
+  "uniqueId": "font.asap:custom",
+  "developers": [
+    {
+    "name": "The Asap Project Authors"
+    }
+  ],
+  "artifactVersion": "",
+  "description": "",
+  "name": "Asap Font Family",
+  "website": "https://github.com/Omnibus-Type/Asap",
+  "licenses": [
+    "OFL-1.1"
+  ]
+}

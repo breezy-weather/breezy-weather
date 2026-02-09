@@ -47,7 +47,7 @@ class DefaultResourceProvider : ResourceProvider() {
 
     init {
         mContext = BreezyWeather.instance
-        providerName = mContext.getString(R.string.breezy_weather)
+        providerName = mContext.getString(R.string.brand_name)
         providerIcon = mContext.applicationInfo.loadIcon(mContext.packageManager)
         val res = mContext.resources
         try {

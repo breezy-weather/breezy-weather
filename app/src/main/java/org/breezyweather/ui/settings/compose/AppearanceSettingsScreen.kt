@@ -52,6 +52,7 @@ import androidx.compose.ui.res.stringArrayResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import org.breezyweather.BreezyWeather
+import org.breezyweather.BuildConfig
 import org.breezyweather.R
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.getFormattedTime
@@ -251,18 +252,22 @@ fun AppearanceSettingsScreen(
                         onDismissRequest = {
                             dialogIconPackOpenState.value = false
                         },
-                        dismissButton = {
-                            TextButton(
-                                onClick = {
-                                    dialogLinkOpenState.value = true
+                        dismissButton = if (BuildConfig.ICON_PACKS_LINK.startsWith("https://")) {
+                            {
+                                TextButton(
+                                    onClick = {
+                                        dialogLinkOpenState.value = true
+                                    }
+                                ) {
+                                    Text(
+                                        text = stringResource(R.string.settings_icon_packs_get_more),
+                                        color = MaterialTheme.colorScheme.primary,
+                                        style = MaterialTheme.typography.labelLarge
+                                    )
                                 }
-                            ) {
-                                Text(
-                                    text = stringResource(R.string.settings_icon_packs_get_more),
-                                    color = MaterialTheme.colorScheme.primary,
-                                    style = MaterialTheme.typography.labelLarge
-                                )
                             }
+                        } else {
+                            null
                         },
                         confirmButton = {
                             TextButton(
@@ -340,7 +345,7 @@ fun AppearanceSettingsScreen(
                 if (dialogLinkOpenState.value) {
                     AlertDialogLink(
                         onClose = { dialogLinkOpenState.value = false },
-                        linkToOpen = "https://github.com/breezy-weather/breezy-weather-icon-packs/blob/main/README.md"
+                        linkToOpen = BuildConfig.ICON_PACKS_LINK
                     )
                 }
             }

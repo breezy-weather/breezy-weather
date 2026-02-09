@@ -94,6 +94,8 @@ class NwsService @Inject constructor(
     override val attributionLinks = mapOf(
         weatherAttribution to "https://www.weather.gov/"
     )
+    private val userAgent =
+        "${context.getString(R.string.brand_name)}/${BuildConfig.VERSION_NAME} ${BuildConfig.REPORT_ISSUE}"
 
     override fun requestWeather(
         context: Context,
@@ -117,7 +119,7 @@ class NwsService @Inject constructor(
 
         val nwsForecastResult = if (SourceFeature.FORECAST in requestedFeatures) {
             mApi.getForecast(
-                USER_AGENT,
+                userAgent,
                 gridId,
                 gridX.toInt(),
                 gridY.toInt()
@@ -131,7 +133,7 @@ class NwsService @Inject constructor(
 
         val nwsDailyResult = if (SourceFeature.FORECAST in requestedFeatures) {
             mApi.getDaily(
-                userAgent = USER_AGENT,
+                userAgent = userAgent,
                 gridId = gridId,
                 gridX = gridX.toInt(),
                 gridY = gridY.toInt()
@@ -145,7 +147,7 @@ class NwsService @Inject constructor(
 
         val nwsCurrentResult = if (SourceFeature.CURRENT in requestedFeatures) {
             mApi.getCurrent(
-                USER_AGENT,
+                userAgent,
                 station!!
             ).onErrorResumeNext {
                 failedFeatures[SourceFeature.CURRENT] = it
@@ -157,7 +159,7 @@ class NwsService @Inject constructor(
 
         val nwsAlertsResult = if (SourceFeature.ALERT in requestedFeatures) {
             mApi.getActiveAlerts(
-                USER_AGENT,
+                userAgent,
                 "${location.latitude},${location.longitude}"
             ).onErrorResumeNext {
                 failedFeatures[SourceFeature.ALERT] = it
@@ -940,7 +942,7 @@ class NwsService @Inject constructor(
         longitude: Double,
     ): Observable<List<LocationAddressInfo>> {
         return mApi.getPoints(
-            USER_AGENT,
+            userAgent,
             latitude,
             longitude
         ).map {
@@ -1008,7 +1010,7 @@ class NwsService @Inject constructor(
         location: Location,
     ): Observable<Map<String, String>> {
         return mApi.getPoints(
-            USER_AGENT,
+            userAgent,
             location.latitude,
             location.longitude
         ).map {
@@ -1016,7 +1018,7 @@ class NwsService @Inject constructor(
                 throw InvalidLocationException()
             }
             val stations = mApi.getStations(
-                USER_AGENT,
+                userAgent,
                 it.properties.gridId,
                 it.properties.gridX,
                 it.properties.gridY
@@ -1040,7 +1042,5 @@ class NwsService @Inject constructor(
         private const val OUTDATED_HOURS = 2
 
         private const val NWS_BASE_URL = "https://api.weather.gov/"
-        private const val USER_AGENT =
-            "(BreezyWeather/${BuildConfig.VERSION_NAME}, github.com/breezy-weather/breezy-weather/issues)"
     }
 }

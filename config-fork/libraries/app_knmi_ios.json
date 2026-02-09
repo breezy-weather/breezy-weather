@@ -1,0 +1,15 @@
+{
+  "uniqueId": "group.nl.knmi.weer:35a30d8543995b8f297612341b24d5f7f7e8a366",
+  "developers": [
+    {
+      "name": "Royal Netherlands Meteorological Institute Open Source"
+    }
+  ],
+  "artifactVersion": "",
+  "description": "The KNMI Weather App for iOS, giving you alerts in case of dangerous weather conditions (Code Geel/Oranje/Rood) and seismological events, and weather forecasts based on KNMI's weather models.",
+  "name": "Knmi-app-ios",
+  "website": "https://gitlab.com/KNMI-OSS/KNMI-App/knmi-app-ios",
+  "licenses": [
+    "EUPL-1.2"
+  ]
+}

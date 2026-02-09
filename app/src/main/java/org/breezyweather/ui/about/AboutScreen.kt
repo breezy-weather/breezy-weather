@@ -55,6 +55,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import kotlinx.coroutines.launch
+import org.breezyweather.BreezyWeather
 import org.breezyweather.BuildConfig
 import org.breezyweather.R
 import org.breezyweather.background.updater.interactor.GetApplicationRelease
@@ -111,22 +112,32 @@ internal fun AboutScreen(
         filteredTranslators = appTranslators.filter { it.lang.contains("en") }
     }
 
-    val contactLinks = arrayOf(
-        AboutAppLinkItem(
-            iconId = R.drawable.ic_code,
-            titleId = R.string.about_source_code
-        ) {
-            linkToOpen.value = "https://github.com/breezy-weather/breezy-weather"
-            dialogLinkOpenState.value = true
-        },
-        AboutAppLinkItem(
-            iconId = R.drawable.ic_forum,
-            titleId = R.string.about_matrix
-        ) {
-            linkToOpen.value = "https://matrix.to/#/#breezy-weather:matrix.org"
-            dialogLinkOpenState.value = true
+    val contactLinks = buildList {
+        add(
+            AboutAppLinkItem(
+                iconId = R.drawable.ic_code,
+                titleId = R.string.about_source_code
+            ) {
+                linkToOpen.value = BuildConfig.SOURCE_CODE_LINK
+                dialogLinkOpenState.value = true
+            }
+        )
+        BuildConfig.CONTACT_MATRIX.takeIf { it.startsWith("https://") }?.let {
+            add(
+                AboutAppLinkItem(
+                    iconId = R.drawable.ic_forum,
+                    titleId = R.string.about_matrix
+                ) {
+                    linkToOpen.value = it
+                    dialogLinkOpenState.value = true
+                }
+            )
         }
-    )
+    }
+
+    val isUpdateCheckerEnabled = remember {
+        BreezyWeather.instance.isGitHubUpdateCheckerEnabled || BuildConfig.RELEASES_LINK.isNotEmpty()
+    }
 
     Material3Scaffold(
         modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
@@ -146,100 +157,104 @@ internal fun AboutScreen(
         ) {
             item {
                 Header()
-                AboutAppLink(
-                    isFirst = true,
-                    isLast = true,
-                    icon = {
-                        // Use crossfade animation to prevent the progress indicator from flickering when repeatedly
-                        // pressing the update card as this causes the loading state to change back and forth almost
-                        // instantly.
-                        Crossfade(
-                            targetState = isCheckingUpdates.value,
-                            label = ""
-                        ) { loading ->
-                            when (loading) {
-                                false -> {
-                                    Icon(
-                                        painter = painterResource(R.drawable.ic_sync),
-                                        contentDescription = null,
-                                        tint = MaterialTheme.colorScheme.onSurface
-                                    )
-                                }
-                                true -> {
-                                    CircularProgressIndicator(
-                                        modifier = Modifier.size(24.dp),
-                                        color = MaterialTheme.colorScheme.onSurface
-                                    )
-                                }
-                            }
-                        }
-                    },
-                    title = stringResource(R.string.about_check_for_app_updates),
-                    onClick = {
-                        if (BuildConfig.FLAVOR == "freenet") {
-                            // GitHub is a non-free network, so we cannot automatically check for updates in the
-                            // "freenet" flavor
-                            // We ask for permission to manually check updates in the browser instead
-                            linkToOpen.value =
-                                "https://github.com/breezy-weather/breezy-weather/releases/latest"
-                            dialogLinkOpenState.value = true
-                        } else {
-                            if (!isCheckingUpdates.value) {
-                                scope.launch {
-                                    isCheckingUpdates.value = true
-
-                                    withUIContext {
-                                        try {
-                                            when (
-                                                val result = withIOContext {
-                                                    aboutViewModel.checkForUpdate(
-                                                        context,
-                                                        forceCheck = true
-                                                    )
-                                                }
-                                            ) {
-                                                is GetApplicationRelease.Result.NewUpdate -> {
-                                                    SnackbarHelper.showSnackbar(
-                                                        context.getString(
-                                                            R.string.notification_app_update_available
-                                                        ),
-                                                        context.getString(R.string.action_download)
-                                                    ) {
-                                                        uriHandler.openUri(result.release.releaseLink)
-                                                    }
-                                                }
-
-                                                is GetApplicationRelease.Result.NoNewUpdate -> {
-                                                    SnackbarHelper.showSnackbar(
-                                                        context.getString(R.string.about_no_new_updates)
-                                                    )
-                                                }
-                                                is GetApplicationRelease.Result.OsTooOld -> {
-                                                    SnackbarHelper.showSnackbar(
-                                                        context.getString(
-                                                            R.string.about_update_check_eol
-                                                        )
-                                                    )
-                                                }
-                                                else -> {}
-                                            }
-                                        } catch (e: Exception) {
-                                            e.message?.let { msg ->
-                                                SnackbarHelper.showSnackbar(
-                                                    msg
-                                                )
-                                            }
-                                            e.printStackTrace()
-                                        } finally {
-                                            isCheckingUpdates.value = false
-                                        }
+            }
+            if (isUpdateCheckerEnabled) {
+                item {
+                    AboutAppLink(
+                        isFirst = true,
+                        isLast = true,
+                        icon = {
+                            // Use crossfade animation to prevent the progress indicator from flickering when repeatedly
+                            // pressing the update card as this causes the loading state to change back and forth almost
+                            // instantly.
+                            Crossfade(
+                                targetState = isCheckingUpdates.value,
+                                label = ""
+                            ) { loading ->
+                                when (loading) {
+                                    false -> {
+                                        Icon(
+                                            painter = painterResource(R.drawable.ic_sync),
+                                            contentDescription = null,
+                                            tint = MaterialTheme.colorScheme.onSurface
+                                        )
+                                    }
+                                    true -> {
+                                        CircularProgressIndicator(
+                                            modifier = Modifier.size(24.dp),
+                                            color = MaterialTheme.colorScheme.onSurface
+                                        )
                                     }
                                 }
                             }
+                        },
+                        title = stringResource(R.string.about_check_for_app_updates),
+                        onClick = {
+                            if (BreezyWeather.instance.isGitHubUpdateCheckerEnabled) {
+                                if (!isCheckingUpdates.value) {
+                                    scope.launch {
+                                        isCheckingUpdates.value = true
+
+                                        withUIContext {
+                                            try {
+                                                when (
+                                                    val result = withIOContext {
+                                                        aboutViewModel.checkForUpdate(
+                                                            context,
+                                                            forceCheck = true
+                                                        )
+                                                    }
+                                                ) {
+                                                    is GetApplicationRelease.Result.NewUpdate -> {
+                                                        SnackbarHelper.showSnackbar(
+                                                            context.getString(
+                                                                R.string.notification_app_update_available
+                                                            ),
+                                                            context.getString(R.string.action_download)
+                                                        ) {
+                                                            uriHandler.openUri(result.release.releaseLink)
+                                                        }
+                                                    }
+
+                                                    is GetApplicationRelease.Result.NoNewUpdate -> {
+                                                        SnackbarHelper.showSnackbar(
+                                                            context.getString(R.string.about_no_new_updates)
+                                                        )
+                                                    }
+                                                    is GetApplicationRelease.Result.OsTooOld -> {
+                                                        SnackbarHelper.showSnackbar(
+                                                            context.getString(
+                                                                R.string.about_update_check_eol
+                                                            )
+                                                        )
+                                                    }
+                                                    else -> {}
+                                                }
+                                            } catch (e: Exception) {
+                                                e.message?.let { msg ->
+                                                    SnackbarHelper.showSnackbar(
+                                                        msg
+                                                    )
+                                                }
+                                                e.printStackTrace()
+                                            } finally {
+                                                isCheckingUpdates.value = false
+                                            }
+                                        }
+                                    }
+                                }
+                            } else {
+                                linkToOpen.value = BuildConfig.RELEASES_LINK
+                                dialogLinkOpenState.value = true
+                            }
                         }
-                    }
-                )
+                    )
+                }
+            }
+            item {
                 LargeSeparatorItem()
+            }
+            item {
                 SectionTitle(stringResource(R.string.about_contact))
             }
             itemsIndexed(contactLinks) { index, item ->
@@ -346,7 +361,7 @@ private fun Header() {
                 .fillMaxWidth()
         )
         Text(
-            text = stringResource(R.string.breezy_weather),
+            text = stringResource(R.string.brand_name),
             color = MaterialTheme.colorScheme.onSurface,
             style = MaterialTheme.typography.headlineSmall
         )

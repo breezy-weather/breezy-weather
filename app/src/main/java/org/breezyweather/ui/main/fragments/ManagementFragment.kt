@@ -89,7 +89,6 @@ import com.google.accompanist.permissions.PermissionStatus
 import com.google.accompanist.permissions.rememberMultiplePermissionsState
 import kotlinx.coroutines.launch
 import org.breezyweather.BreezyWeather
-import org.breezyweather.BuildConfig
 import org.breezyweather.R
 import org.breezyweather.common.activities.BreezyActivity
 import org.breezyweather.common.extensions.isDarkMode
@@ -339,7 +338,7 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
                             }
                         }
                     }
-                    if (BuildConfig.FLAVOR != "freenet") {
+                    if (BreezyWeather.instance.isGitHubUpdateCheckerEnabled) {
                         AnimatedVisibilitySlideVertically(
                             hasNotificationPermission == true && !notificationAppUpdateCheckDismissed
                         ) {

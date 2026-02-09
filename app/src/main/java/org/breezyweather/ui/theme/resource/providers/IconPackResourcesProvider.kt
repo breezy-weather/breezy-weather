@@ -122,7 +122,7 @@ open class IconPackResourcesProvider(
 
     private fun buildDefaultInstance(c: Context) {
         mContext = c.applicationContext
-        providerName = c.getString(R.string.breezy_weather)
+        providerName = c.getString(R.string.brand_name)
         mIconDrawable = mDefaultProvider.providerIcon
         val res = mContext.resources
         try {

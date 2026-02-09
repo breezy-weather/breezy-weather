@@ -28,6 +28,7 @@ import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import dagger.hilt.android.AndroidEntryPoint
+import org.breezyweather.BuildConfig
 import org.breezyweather.R
 import org.breezyweather.common.activities.BreezyActivity
 import org.breezyweather.common.extensions.currentLocale
@@ -88,8 +89,8 @@ class PrivacyPolicyActivity : BreezyActivity() {
             PreferenceScreen(
                 paddingValues = paddingValues.plus(PaddingValues(horizontal = dimensionResource(R.dimen.normal_margin)))
             ) {
-                clickablePreferenceItem(R.string.breezy_weather) { id ->
-                    val url = "https://github.com/breezy-weather/breezy-weather/blob/main/PRIVACY.md"
+                clickablePreferenceItem(R.string.brand_name) { id ->
+                    val url = BuildConfig.PRIVACY_POLICY_LINK
                     PreferenceViewWithCard(
                         title = stringResource(id),
                         summary = url,

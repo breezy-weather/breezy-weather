@@ -20,6 +20,7 @@ import android.content.Context
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
+import org.breezyweather.BuildConfig
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.getCountryName
 import org.breezyweather.common.source.HttpSource
@@ -56,6 +57,7 @@ abstract class NwsServiceStub(context: Context) :
         location: Location,
         feature: SourceFeature,
     ): Boolean {
+        if (BuildConfig.REPORT_ISSUE.isEmpty()) return false
         return setOf(
             "US",
             "GU", // Guam

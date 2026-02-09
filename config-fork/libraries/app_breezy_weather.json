@@ -1,0 +1,15 @@
+{
+  "uniqueId": "org.breezyweather:custom",
+  "developers": [
+    {
+      "name": "Breezy Weather"
+    }
+  ],
+  "artifactVersion": "",
+  "description": "A Material Design weather application this app was forked from",
+  "name": "Breezy Weather App",
+  "website": "https://github.com/breezy-weather/breezy-weather",
+  "licenses": [
+    "LGPL-3.0-only"
+  ]
+}

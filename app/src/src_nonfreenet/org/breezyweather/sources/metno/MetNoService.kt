@@ -84,6 +84,8 @@ class MetNoService @Inject constructor(
     override val attributionLinks = mapOf(
         "MET Norway" to "https://www.met.no/"
     )
+    private val userAgent =
+        "${context.getString(R.string.brand_name)}/${BuildConfig.VERSION_NAME} ${BuildConfig.REPORT_ISSUE}"
 
     override fun requestWeather(
         context: Context,
@@ -93,7 +95,7 @@ class MetNoService @Inject constructor(
         val failedFeatures = mutableMapOf<SourceFeature, Throwable>()
         val forecast = if (SourceFeature.FORECAST in requestedFeatures) {
             mApi.getForecast(
-                USER_AGENT,
+                userAgent,
                 location.latitude,
                 location.longitude
             ).onErrorResumeNext {
@@ -108,7 +110,7 @@ class MetNoService @Inject constructor(
             SourceFeature.MINUTELY in requestedFeatures
         ) {
             mApi.getNowcast(
-                USER_AGENT,
+                userAgent,
                 location.latitude,
                 location.longitude
             ).onErrorResumeNext {
@@ -126,7 +128,7 @@ class MetNoService @Inject constructor(
 
         val airQuality = if (SourceFeature.AIR_QUALITY in requestedFeatures) {
             mApi.getAirQuality(
-                USER_AGENT,
+                userAgent,
                 location.latitude,
                 location.longitude
             ).onErrorResumeNext {
@@ -139,7 +141,7 @@ class MetNoService @Inject constructor(
 
         val alerts = if (SourceFeature.ALERT in requestedFeatures) {
             mApi.getAlerts(
-                USER_AGENT,
+                userAgent,
                 if (context.currentLocale.toString().lowercase().startsWith("no")) "no" else "en",
                 location.latitude,
                 location.longitude
@@ -418,7 +420,5 @@ class MetNoService @Inject constructor(
 
     companion object {
         private const val METNO_BASE_URL = "https://api.met.no/weatherapi/"
-        private const val USER_AGENT =
-            "BreezyWeather/${BuildConfig.VERSION_NAME} github.com/breezy-weather/breezy-weather/issues"
     }
 }

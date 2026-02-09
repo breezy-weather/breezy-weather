@@ -20,6 +20,7 @@ import android.content.Context
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
+import org.breezyweather.BuildConfig
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.source.HttpSource
@@ -61,6 +62,8 @@ abstract class MetNoServiceStub(context: Context) :
         location: Location,
         feature: SourceFeature,
     ): Boolean {
+        if (BuildConfig.REPORT_ISSUE.isEmpty()) return false
+
         return when (feature) {
             // Nowcast only for Norway, Sweden, Finland and Denmark
             // Covered area is slightly larger as per https://api.met.no/doc/nowcast/datamodel

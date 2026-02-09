@@ -35,7 +35,7 @@ class BreezyUpdateNotifierService @Inject constructor(
     override val id = "breezyweatherupdatenotifier"
     override val name = context.getString(
         R.string.broadcast_source_breezy_weather_update_notifier,
-        context.getString(R.string.breezy_weather)
+        context.getString(R.string.brand_name)
     )
 
     override val intentAction = "${BuildConfig.APPLICATION_ID}.ACTION_UPDATE_NOTIFIER"

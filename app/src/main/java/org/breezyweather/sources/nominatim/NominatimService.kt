@@ -72,6 +72,8 @@ class NominatimService @Inject constructor(
             .build()
             .create(NominatimApi::class.java)
     }
+    private val userAgent =
+        "${context.getString(R.string.brand_name)}/${BuildConfig.VERSION_NAME} ${BuildConfig.REPORT_ISSUE}"
 
     override fun requestLocationSearch(
         context: Context,
@@ -79,7 +81,7 @@ class NominatimService @Inject constructor(
     ): Observable<List<LocationAddressInfo>> {
         return mApi.searchLocations(
             acceptLanguage = context.currentLocale.toLanguageTag(),
-            userAgent = USER_AGENT,
+            userAgent = userAgent,
             q = query,
             limit = 20
         ).map { results ->
@@ -96,7 +98,7 @@ class NominatimService @Inject constructor(
     ): Observable<List<LocationAddressInfo>> {
         return mApi.getReverseLocation(
             acceptLanguage = context.currentLocale.toLanguageTag(),
-            userAgent = USER_AGENT,
+            userAgent = userAgent,
             lat = latitude,
             lon = longitude
         ).map {
@@ -246,7 +248,7 @@ class NominatimService @Inject constructor(
 
     // CONFIG
     private val config = SourceConfigStore(context, id)
-    override val isConfigured = true
+    override val isConfigured = !BuildConfig.REPORT_ISSUE.isNullOrEmpty()
     override val isRestricted = false
     private var instance: String?
         set(value) {
@@ -284,7 +286,5 @@ class NominatimService @Inject constructor(
 
     companion object {
         private const val NOMINATIM_BASE_URL = "https://nominatim.openstreetmap.org/"
-        private const val USER_AGENT =
-            "BreezyWeather/${BuildConfig.VERSION_NAME} github.com/breezy-weather/breezy-weather/issues"
     }
 }

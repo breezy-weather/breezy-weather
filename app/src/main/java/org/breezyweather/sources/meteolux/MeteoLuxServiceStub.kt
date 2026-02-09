@@ -53,7 +53,7 @@ abstract class MeteoLuxServiceStub(context: Context) :
                 else -> "MeteoLux (Universal transfer into the Public Domain Creative Commons CC0 1.0)."
             }
         } +
-            " ${context.getString(R.string.data_modified, context.getString(R.string.breezy_weather))}"
+            " ${context.getString(R.string.data_modified, context.getString(R.string.brand_name))}"
     }
     override val supportedFeatures = mapOf(
         SourceFeature.FORECAST to weatherAttribution,

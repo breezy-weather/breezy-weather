@@ -80,7 +80,7 @@
 
     <application
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/breezy_weather"
+        android:label="@string/brand_name"
         android:name=".BreezyWeather"
         android:supportsRtl="true"
         android:largeHeap="true"
@@ -316,7 +316,7 @@
         <service
             android:name=".background.interfaces.TileService"
             android:foregroundServiceType="specialUse"
-            android:label="@string/breezy_weather"
+            android:label="@string/brand_name"
             android:icon="@drawable/weather_clear_day_mini_light"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE"
             android:exported="true">
