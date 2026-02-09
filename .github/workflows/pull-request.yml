@@ -37,7 +37,7 @@ jobs:
         run: ./gradlew spotlessCheck -Pbreezy # /!\ You’re NOT allowed to redistribute modified APKs with the breezy config enabled, see license terms
 
       - name: Clean build
-        run: ./gradlew clean
+        run: ./gradlew clean -Pbreezy # /!\ You’re NOT allowed to redistribute modified APKs with the breezy config enabled, see license terms
 
       - name: Assemble basic flavor
         run: ./gradlew assembleBasicDebug -Pbreezy # /!\ You’re NOT allowed to redistribute modified APKs with the breezy config enabled, see license terms
