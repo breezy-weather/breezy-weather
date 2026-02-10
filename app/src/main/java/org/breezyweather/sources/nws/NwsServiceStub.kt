@@ -57,7 +57,10 @@ abstract class NwsServiceStub(context: Context) :
         location: Location,
         feature: SourceFeature,
     ): Boolean {
+        // This source needs to know how to contact the app maintainers
+        // Make sure the app was compiled with the matching property in gradle.properties if failing here
         if (BuildConfig.REPORT_ISSUE.isEmpty()) return false
+
         return setOf(
             "US",
             "GU", // Guam

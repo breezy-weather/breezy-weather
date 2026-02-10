@@ -1118,7 +1118,7 @@ class MfService @Inject constructor(
 
     companion object {
         private const val MF_BASE_URL = "https://webservice.meteofrance.com/"
-        private const val USER_AGENT = "okhttp/4.9.2"
+        private const val USER_AGENT = "okhttp/5.2.1"
 
         private val frenchDepartments: Map<String, String> = mapOf(
             "01" to "Ain",

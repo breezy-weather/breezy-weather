@@ -91,6 +91,7 @@ class AtmoFranceService @Inject constructor(
 
         val todayCall = mApi.getPollen(
             apiToken = getApiKeyOrDefault(),
+            userAgent = USER_AGENT,
             apiCode = 122,
             codeInsee = currentCityCode,
             dateEch = today.getFormattedDate("yyyy-MM-dd", location)
@@ -100,6 +101,7 @@ class AtmoFranceService @Inject constructor(
 
         val tomorrowCall = mApi.getPollen(
             apiToken = getApiKeyOrDefault(),
+            userAgent = USER_AGENT,
             apiCode = 122,
             codeInsee = currentCityCode,
             dateEch = tomorrow.getFormattedDate("yyyy-MM-dd", location)
@@ -111,6 +113,7 @@ class AtmoFranceService @Inject constructor(
         val overmorrowCall = if (currentHour >= 13) {
             mApi.getPollen(
                 apiToken = getApiKeyOrDefault(),
+                userAgent = USER_AGENT,
                 apiCode = 122,
                 codeInsee = currentCityCode,
                 dateEch = overmorrow.getFormattedDate("yyyy-MM-dd", location)
@@ -238,5 +241,6 @@ class AtmoFranceService @Inject constructor(
     companion object {
         private const val ATMO_FRANCE_BASE_URL = "https://admindata.atmo-france.org/openapi/"
         private const val DATA_GOUV_GEO_BASE_URL = "https://api-adresse.data.gouv.fr/"
+        private const val USER_AGENT = "okhttp/3.14.9"
     }
 }

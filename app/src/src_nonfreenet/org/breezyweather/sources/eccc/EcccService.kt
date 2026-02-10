@@ -420,6 +420,6 @@ class EcccService @Inject constructor(
         private const val ECCC_BASE_URL = "https://app.weather.gc.ca/"
 
         // Most sold device in Canada
-        private const val USER_AGENT = "WeatherAppAndroid 2.3.0build199;14;moto g 5G - 2024"
+        private const val USER_AGENT = "WeatherAppAndroid 2.4.0build203;14;moto g 5G - 2024"
     }
 }

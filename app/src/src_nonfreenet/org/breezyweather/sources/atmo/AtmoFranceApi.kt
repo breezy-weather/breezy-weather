@@ -32,7 +32,7 @@ interface AtmoFranceApi {
     )
     fun getPollen(
         @Header("Api-token") apiToken: String,
-        @Header("User-Agent") userAgent: String = "okhttp/3.14.9",
+        @Header("User-Agent") userAgent: String,
         @Path("api_code") apiCode: Int,
         @Path("code_insee") codeInsee: String,
         @Path("date_ech") dateEch: String,

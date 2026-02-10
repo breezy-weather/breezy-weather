@@ -30,7 +30,7 @@ interface AtmoApi {
     @GET("point?with_list=true")
     fun getPointDetails(
         @Header("api_token") headerApiToken: String?,
-        @Header("User-Agent") userAgent: String = "okhttp/3.14.9",
+        @Header("User-Agent") userAgent: String,
         @Query("api_token") queryApiToken: String?,
         @Query("x") longitude: Double,
         @Query("y") latitude: Double,

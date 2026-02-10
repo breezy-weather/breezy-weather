@@ -77,6 +77,7 @@ abstract class AtmoService : AtmoServiceStub() {
 
         return mApi.getPointDetails(
             headerApiToken = if (isTokenInHeaders) getApiKeyOrDefault() else null,
+            userAgent = USER_AGENT,
             queryApiToken = if (isTokenInHeaders) null else getApiKeyOrDefault(),
             longitude = location.longitude,
             latitude = location.latitude,
@@ -165,5 +166,9 @@ abstract class AtmoService : AtmoServiceStub() {
                 }
             )
         )
+    }
+
+    companion object {
+        private const val USER_AGENT = "okhttp/3.14.9"
     }
 }
