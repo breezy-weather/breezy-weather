@@ -25,30 +25,7 @@ breezy.pirateweather.key=myapikey
 
 You can omit any of the following properties to let the user configure their own API key in the settings, or only use API-key-less sources (such as Open-Meteo).
 
-By default, the app is compiled unbranded and you will have to complete a few properties:
-```properties
-# RECOMMENDED. A link or email where to report issues. Do NOT link to Breezy Weather issue tracker. Use your own support. Some sources will not work without it
-app.report_issue=
-# MANDATORY. A link to the source code of your app
-app.source_code_link=
-# OPTIONAL. A link to where releases can be found
-app.releases_link=
-# MANDATORY. A link to install instructions for your app
-app.install_instructions_link=
-# MANDATORY. A link to your privacy policy
-app.privacy_policy_link=
-# OPTIONAL. A link to where the user can get icon packs
-app.icon_packs_link=
-# OPTIONAL. A link to a Matrix channel
-app.matrix_link=
-# Below are required if you intend to use the built-in GitHub update checker.
-# Name of your GitHub organization.
-app.github.org=
-# Name of the GitHub repo
-app.github.repo=
-# Prefix used in your releases. For example, in our case, all assets in GitHub releases start with "breezy-weather"
-app.github.release_prefix=
-```
+By default, the app is compiled unbranded and you will have to complete a few properties located in `gradle.properties`.
 
 If you have no plans to distribute releases and you only build the app for yourself ONLY, you can just pass the parameter `breezy` to the command line. Example:
 `./gradlew assembleBasicDebug -Pbreezy`

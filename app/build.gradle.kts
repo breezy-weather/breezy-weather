@@ -79,15 +79,15 @@ android {
                 globalProperties.getProperty("breezy.report_issue")?.let { prop -> "\"$prop\"" }
                     ?: run {
                         logger.warn(
-                            "Missing breezy.report_issue property! Some sources may not work without it. Please set this property in your local.properties to a link or an email where issues can be reported."
+                            "Missing breezy.report_issue property! Some sources may not work without it. Please set this property in gradle.properties to a link or an email where issues can be reported."
                         )
                         "\"\""
                     }
             } else {
-                localProperties.getProperty("app.report_issue")?.let { prop -> "\"$prop\"" }
+                globalProperties.getProperty("app.report_issue")?.let { prop -> "\"$prop\"" }
                     ?: run {
                         logger.warn(
-                            "Missing app.report_issue property! Some sources may not work without it. Please set this property in your local.properties to a link or an email where issues can be reported."
+                            "Missing app.report_issue property! Some sources may not work without it. Please set this property in gradle.properties to a link or an email where issues can be reported."
                         )
                         "\"\""
                     }
@@ -101,15 +101,15 @@ android {
                     ?.let { prop -> "\"$prop\"" }
                     ?: run {
                         throw GradleException(
-                            "Missing breezy.source_code_link property! Please set this property in your local.properties to a link where the source code of your app can be viewed"
+                            "Missing breezy.source_code_link property! Please set this property in gradle.properties to a link where the source code of your app can be viewed"
                         )
                     }
             } else {
-                localProperties.getProperty("app.source_code_link")?.takeIf { it.startsWith("https://") }
+                globalProperties.getProperty("app.source_code_link")?.takeIf { it.startsWith("https://") }
                     ?.let { prop -> "\"$prop\"" }
                     ?: run {
                         throw GradleException(
-                            "Missing app.source_code_link property! Please set this property in your local.properties to a link where the source code of your app can be viewed"
+                            "Missing app.source_code_link property! Please set this property in gradle.properties to a link where the source code of your app can be viewed"
                         )
                     }
             }
@@ -120,7 +120,7 @@ android {
             if (Config.isBreezy) {
                 "\"${globalProperties.getProperty("breezy.releases_link") ?: ""}\""
             } else {
-                "\"${localProperties.getProperty("app.releases_link") ?: ""}\""
+                "\"${globalProperties.getProperty("app.releases_link") ?: ""}\""
             }
         )
         it.buildConfigField(
@@ -131,15 +131,15 @@ android {
                     ?.let { prop -> "\"$prop\"" }
                     ?: run {
                         throw GradleException(
-                            "Missing breezy.install_instructions_link property! Please set this property in your local.properties to a link where installation instructions can be viewed"
+                            "Missing breezy.install_instructions_link property! Please set this property in gradle.properties to a link where installation instructions can be viewed"
                         )
                     }
             } else {
-                localProperties.getProperty("app.install_instructions_link")?.takeIf { it.startsWith("https://") }
+                globalProperties.getProperty("app.install_instructions_link")?.takeIf { it.startsWith("https://") }
                     ?.let { prop -> "\"$prop\"" }
                     ?: run {
                         throw GradleException(
-                            "Missing app.install_instructions_link property! Please set this property in your local.properties to a link where installation instructions can be viewed"
+                            "Missing app.install_instructions_link property! Please set this property in gradle.properties to a link where installation instructions can be viewed"
                         )
                     }
             }
@@ -150,7 +150,7 @@ android {
             if (Config.isBreezy) {
                 "\"${globalProperties.getProperty("breezy.icon_packs_link") ?: ""}\""
             } else {
-                "\"${localProperties.getProperty("app.icon_packs_link") ?: ""}\""
+                "\"${globalProperties.getProperty("app.icon_packs_link") ?: ""}\""
             }
         )
         it.buildConfigField(
@@ -161,15 +161,15 @@ android {
                     ?.let { prop -> "\"$prop\"" }
                     ?: run {
                         throw GradleException(
-                            "Missing breezy.privacy_policy_link property! Please set this property in your local.properties to a link where the privacy policy of your app can be viewed"
+                            "Missing breezy.privacy_policy_link property! Please set this property in gradle.properties to a link where the privacy policy of your app can be viewed"
                         )
                     }
             } else {
-                localProperties.getProperty("app.privacy_policy_link")?.takeIf { it.startsWith("https://") }
+                globalProperties.getProperty("app.privacy_policy_link")?.takeIf { it.startsWith("https://") }
                     ?.let { prop -> "\"$prop\"" }
                     ?: run {
                         throw GradleException(
-                            "Missing app.privacy_policy_link property! Please set this property in your local.properties to a link where the privacy policy of your app can be viewed"
+                            "Missing app.privacy_policy_link property! Please set this property in gradle.properties to a link where the privacy policy of your app can be viewed"
                         )
                     }
             }
@@ -180,7 +180,7 @@ android {
             if (Config.isBreezy) {
                 "\"${globalProperties.getProperty("breezy.matrix_link") ?: ""}\""
             } else {
-                "\"${localProperties.getProperty("app.matrix_link") ?: ""}\""
+                "\"${globalProperties.getProperty("app.matrix_link") ?: ""}\""
             }
         )
         it.buildConfigField(
@@ -189,7 +189,7 @@ android {
             if (Config.isBreezy) {
                 "\"${globalProperties.getProperty("breezy.github.org") ?: ""}\""
             } else {
-                "\"${localProperties.getProperty("app.github.org") ?: ""}\""
+                "\"${globalProperties.getProperty("app.github.org") ?: ""}\""
             }
         )
         it.buildConfigField(
@@ -198,7 +198,7 @@ android {
             if (Config.isBreezy) {
                 "\"${globalProperties.getProperty("breezy.github.repo") ?: ""}\""
             } else {
-                "\"${localProperties.getProperty("app.github.repo") ?: ""}\""
+                "\"${globalProperties.getProperty("app.github.repo") ?: ""}\""
             }
         )
         it.buildConfigField(
@@ -207,7 +207,7 @@ android {
             if (Config.isBreezy) {
                 "\"${globalProperties.getProperty("breezy.github.release_prefix") ?: ""}\""
             } else {
-                "\"${localProperties.getProperty("app.github.release_prefix") ?: ""}\""
+                "\"${globalProperties.getProperty("app.github.release_prefix") ?: ""}\""
             }
         )
         it.buildConfigField(
