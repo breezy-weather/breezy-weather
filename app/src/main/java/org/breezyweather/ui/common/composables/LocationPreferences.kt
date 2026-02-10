@@ -460,15 +460,17 @@ fun SecondarySourcesPreference(
                                 color = MaterialTheme.colorScheme.onSecondaryContainer,
                                 style = MaterialTheme.typography.bodyMedium
                             )
-                            TextButton(
-                                modifier = Modifier.align(Alignment.CenterHorizontally),
-                                onClick = {
-                                    dialogLinkOpenState.value = true
+                            if (BuildConfig.INSTALL_INSTRUCTIONS_LINK.startsWith("https://")) {
+                                TextButton(
+                                    modifier = Modifier.align(Alignment.CenterHorizontally),
+                                    onClick = {
+                                        dialogLinkOpenState.value = true
+                                    }
+                                ) {
+                                    Text(
+                                        text = stringResource(R.string.action_learn_more)
+                                    )
                                 }
-                            ) {
-                                Text(
-                                    text = stringResource(R.string.action_learn_more)
-                                )
                             }
                         }
                     }
@@ -482,9 +484,7 @@ fun SecondarySourcesPreference(
                         onSurface = MaterialTheme.colorScheme.onSecondaryContainer,
                         isFirst = true,
                         isLast = true,
-                        modifier = Modifier
-                            .padding(horizontal = dimensionResource(R.dimen.small_margin))
-                            .clickable { dialogLinkOpenState.value = true }
+                        modifier = Modifier.padding(horizontal = dimensionResource(R.dimen.small_margin))
                     ) {
                         Text(
                             text = stringResource(R.string.settings_weather_source_current_position_disclaimer),

@@ -96,7 +96,9 @@ class PrivacyPolicyActivity : BreezyActivity() {
                         summary = url,
                         isFirst = true
                     ) {
-                        uriHandler.openUri(url)
+                        if (url.startsWith("https://")) {
+                            uriHandler.openUri(url)
+                        }
                     }
                 }
 

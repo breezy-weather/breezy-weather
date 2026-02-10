@@ -127,15 +127,17 @@ fun LocationSettingsScreen(
                                 color = MaterialTheme.colorScheme.onSecondaryContainer,
                                 style = MaterialTheme.typography.bodyMedium
                             )
-                            TextButton(
-                                modifier = Modifier.align(Alignment.CenterHorizontally),
-                                onClick = {
-                                    dialogLinkOpenState.value = true
+                            if (BuildConfig.INSTALL_INSTRUCTIONS_LINK.startsWith("https://")) {
+                                TextButton(
+                                    modifier = Modifier.align(Alignment.CenterHorizontally),
+                                    onClick = {
+                                        dialogLinkOpenState.value = true
+                                    }
+                                ) {
+                                    Text(
+                                        text = stringResource(R.string.action_learn_more)
+                                    )
                                 }
-                            ) {
-                                Text(
-                                    text = stringResource(R.string.action_learn_more)
-                                )
                             }
                         }
                     }

@@ -113,15 +113,17 @@ internal fun AboutScreen(
     }
 
     val contactLinks = buildList {
-        add(
-            AboutAppLinkItem(
-                iconId = R.drawable.ic_code,
-                titleId = R.string.about_source_code
-            ) {
-                linkToOpen.value = BuildConfig.SOURCE_CODE_LINK
-                dialogLinkOpenState.value = true
-            }
-        )
+        BuildConfig.SOURCE_CODE_LINK.takeIf { it.startsWith("https://") }?.let {
+            add(
+                AboutAppLinkItem(
+                    iconId = R.drawable.ic_code,
+                    titleId = R.string.about_source_code
+                ) {
+                    linkToOpen.value = it
+                    dialogLinkOpenState.value = true
+                }
+            )
+        }
         BuildConfig.CONTACT_MATRIX.takeIf { it.startsWith("https://") }?.let {
             add(
                 AboutAppLinkItem(
@@ -251,26 +253,27 @@ internal fun AboutScreen(
                     )
                 }
             }
-            item {
-                LargeSeparatorItem()
-            }
-            item {
-                SectionTitle(stringResource(R.string.about_contact))
-            }
-            itemsIndexed(contactLinks) { index, item ->
-                AboutAppLink(
-                    iconId = item.iconId,
-                    title = stringResource(item.titleId),
-                    isFirst = index == 0,
-                    isLast = index == contactLinks.lastIndex,
-                    onClick = item.onClick
-                )
-                if (index != contactLinks.lastIndex) {
-                    SmallSeparatorItem()
+            largeSeparatorItem()
+
+            if (contactLinks.isNotEmpty()) {
+                item {
+                    SectionTitle(stringResource(R.string.about_contact))
                 }
+                itemsIndexed(contactLinks) { index, item ->
+                    AboutAppLink(
+                        iconId = item.iconId,
+                        title = stringResource(item.titleId),
+                        isFirst = index == 0,
+                        isLast = index == contactLinks.lastIndex,
+                        onClick = item.onClick
+                    )
+                    if (index != contactLinks.lastIndex) {
+                        SmallSeparatorItem()
+                    }
+                }
+                largeSeparatorItem()
             }
 
-            largeSeparatorItem()
             item { SectionTitle(stringResource(R.string.about_app)) }
             if (activity != null) {
                 itemsIndexed(aboutViewModel.getAboutAppLinks(activity)) { index, item ->

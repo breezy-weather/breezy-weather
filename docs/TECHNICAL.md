@@ -38,7 +38,7 @@ In Android Studio, this can be set up in the configuration of the `app` module, 
 *Instructions for members of the organization.*
 
 1) Test your debug build.
-2) Run tests `./gradlew testBasicDebugUnitTest -Pbreezy` and `./gradlew testDebugUnitTest -Pbreezy`.
+2) Run tests `./gradlew testBasicDebugUnitTest` and `./gradlew testDebugUnitTest`.
 3) Try to assemble a release `./gradlew assembleBasicRelease -Pbreezy`. /!\ Only the Breezy Weather organization can distribute releases with the `breezy` parameter. Forks must not include this parameter when building, and use their own branding.
 4) Update versionCode and versionName in `app/build.gradle`.
 5) Write changelog in `CHANGELOG.md`.

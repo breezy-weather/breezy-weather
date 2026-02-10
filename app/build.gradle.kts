@@ -100,17 +100,19 @@ android {
                 globalProperties.getProperty("breezy.source_code_link")?.takeIf { it.startsWith("https://") }
                     ?.let { prop -> "\"$prop\"" }
                     ?: run {
-                        throw GradleException(
+                        logger.error(
                             "Missing breezy.source_code_link property! Please set this property in gradle.properties to a link where the source code of your app can be viewed"
                         )
+                        "\"\""
                     }
             } else {
                 globalProperties.getProperty("app.source_code_link")?.takeIf { it.startsWith("https://") }
                     ?.let { prop -> "\"$prop\"" }
                     ?: run {
-                        throw GradleException(
+                        logger.error(
                             "Missing app.source_code_link property! Please set this property in gradle.properties to a link where the source code of your app can be viewed"
                         )
+                        "\"\""
                     }
             }
         )
@@ -130,17 +132,19 @@ android {
                 globalProperties.getProperty("breezy.install_instructions_link")?.takeIf { it.startsWith("https://") }
                     ?.let { prop -> "\"$prop\"" }
                     ?: run {
-                        throw GradleException(
+                        logger.warn(
                             "Missing breezy.install_instructions_link property! Please set this property in gradle.properties to a link where installation instructions can be viewed"
                         )
+                        "\"\""
                     }
             } else {
                 globalProperties.getProperty("app.install_instructions_link")?.takeIf { it.startsWith("https://") }
                     ?.let { prop -> "\"$prop\"" }
                     ?: run {
-                        throw GradleException(
+                        logger.warn(
                             "Missing app.install_instructions_link property! Please set this property in gradle.properties to a link where installation instructions can be viewed"
                         )
+                        "\"\""
                     }
             }
         )
@@ -160,17 +164,19 @@ android {
                 globalProperties.getProperty("breezy.privacy_policy_link")?.takeIf { it.startsWith("https://") }
                     ?.let { prop -> "\"$prop\"" }
                     ?: run {
-                        throw GradleException(
+                        logger.error(
                             "Missing breezy.privacy_policy_link property! Please set this property in gradle.properties to a link where the privacy policy of your app can be viewed"
                         )
+                        "\"\""
                     }
             } else {
                 globalProperties.getProperty("app.privacy_policy_link")?.takeIf { it.startsWith("https://") }
                     ?.let { prop -> "\"$prop\"" }
                     ?: run {
-                        throw GradleException(
+                        logger.error(
                             "Missing app.privacy_policy_link property! Please set this property in gradle.properties to a link where the privacy policy of your app can be viewed"
                         )
+                        "\"\""
                     }
             }
         )

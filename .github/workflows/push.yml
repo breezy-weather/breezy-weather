@@ -25,14 +25,14 @@ jobs:
         uses: gradle/actions/setup-gradle@f29f5a9d7b09a7c6b29859002d29d24e1674c884 # v5.0.1
 
       - name: Lint
-        run: ./gradlew spotlessCheck -Pbreezy # /!\ You’re NOT allowed to redistribute modified APKs with the breezy config enabled, see license terms
+        run: ./gradlew spotlessCheck
 
       - name: Clean build
-        run: ./gradlew clean -Pbreezy # /!\ You’re NOT allowed to redistribute modified APKs with the breezy config enabled, see license terms
+        run: ./gradlew clean
 
       - name: Assemble freenet flavor
         if: startsWith(github.ref, 'refs/tags/') && github.repository == 'breezy-weather/breezy-weather'
-        run: ./gradlew assembleFreenetRelease -Pbreezy # /!\ You’re NOT allowed to redistribute modified APKs with the breezy config enabled, see license terms
+        run: ./gradlew assembleFreenetRelease
 
       - name: Sign APK (free networks)
         if: startsWith(github.ref, 'refs/tags/') && github.repository == 'breezy-weather/breezy-weather'
@@ -63,7 +63,7 @@ jobs:
 
       - name: Clean build
         if: startsWith(github.ref, 'refs/tags/') && github.repository == 'breezy-weather/breezy-weather'
-        run: ./gradlew clean -Pbreezy # /!\ You’re NOT allowed to redistribute modified APKs with the breezy config enabled, see license terms
+        run: ./gradlew clean
 
       - name: Add secrets to local.properties
         if: startsWith(github.ref, 'refs/tags/') && github.repository == 'breezy-weather/breezy-weather'

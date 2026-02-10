@@ -34,10 +34,10 @@ jobs:
         uses: gradle/actions/setup-gradle@f29f5a9d7b09a7c6b29859002d29d24e1674c884 # v5.0.1
 
       - name: Lint
-        run: ./gradlew spotlessCheck -Pbreezy # /!\ You’re NOT allowed to redistribute modified APKs with the breezy config enabled, see license terms
+        run: ./gradlew spotlessCheck
 
       - name: Clean build
-        run: ./gradlew clean -Pbreezy # /!\ You’re NOT allowed to redistribute modified APKs with the breezy config enabled, see license terms
+        run: ./gradlew clean
 
       - name: Assemble basic flavor
         run: ./gradlew assembleBasicDebug -Pbreezy # /!\ You’re NOT allowed to redistribute modified APKs with the breezy config enabled, see license terms
