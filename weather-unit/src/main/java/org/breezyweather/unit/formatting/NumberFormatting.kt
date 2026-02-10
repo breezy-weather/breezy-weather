@@ -41,7 +41,7 @@ fun Number.format(
 ): String {
     return if (supportsNumberFormatter() && useNumberFormatter) {
         (NumberFormatter.withLocale(locale) as LocalizedNumberFormatter)
-            .precision(Precision.maxFraction(decimals))
+            .precision(if (decimals == 0) Precision.integer() else Precision.maxFraction(decimals))
             .sign(if (showSign) NumberFormatter.SignDisplay.ALWAYS else NumberFormatter.SignDisplay.AUTO)
             .format(if (decimals == 0) this.toDouble().roundToInt() else this)
             .toString()
@@ -49,11 +49,11 @@ fun Number.format(
         // showSign not supported by NumberFormat, skip
         NumberFormat.getNumberInstance(locale)
             .apply { maximumFractionDigits = decimals }
-            .format(this)
+            .format(if (decimals == 0) this.toDouble().roundToInt() else this)
             .toString()
     } else {
         return DecimalFormat(if (showSign && toDouble() > 0) "+0" else "0", DecimalFormatSymbols.getInstance(locale))
             .apply { setMaximumFractionDigits(decimals) }
-            .format(this)
+            .format(if (decimals == 0) this.toDouble().roundToInt() else this)
     }
 }

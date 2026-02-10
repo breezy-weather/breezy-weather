@@ -6,6 +6,9 @@
 
 # Version 6.1.2 (not yet released)
 
+**Improvements and fixes**
+- Remove minus sign when a number is rounded to 0 on Android < 11
+
 **Sources**
 - NWS - Fix incorrect alert end date in some cases
 
@@ -31,7 +34,7 @@
 - Fix sun showing up on main screen when yesterday moon is still up and sun has not yet risen
 - Fix wind speed being cut on main screen on some devices with some languages
 - Fix overlap of rise/set times in sun & moon blocks with some languages if using 12-hour format
-- Remove minus sign when a number is rounded to 0
+- Remove minus sign when a number is rounded to 0 on Android >= 11
 - Fix missing precipitation probability in Daily Feels like tab
 
 **Weather sources**
