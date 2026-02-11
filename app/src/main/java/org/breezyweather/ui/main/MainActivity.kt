@@ -35,7 +35,6 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.HelpOutline
 import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.AlertDialogDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.ListItemDefaults
@@ -636,7 +635,9 @@ class MainActivity : BreezyActivity(), HomeFragment.Callback, ManagementFragment
                             val message = this@MainActivity.getString(it.error.shortMessage)
 
                             ListItem(
-                                colors = ListItemDefaults.colors(AlertDialogDefaults.containerColor),
+                                colors = ListItemDefaults.colors(
+                                    containerColor = androidx.compose.ui.graphics.Color.Transparent
+                                ),
                                 modifier = Modifier
                                     .conditional(it.error.showDialogAction != null, {
                                         clickable { it.error.showDialogAction!!(this@MainActivity) }

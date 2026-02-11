@@ -36,6 +36,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
@@ -100,7 +101,9 @@ fun LocationPreference(
                             (BuildConfig.FLAVOR != "freenet" || it !is NonFreeNetSource)
                     )
                 }.toImmutableList(),
-                colors = ListItemDefaults.colors(AlertDialogDefaults.containerColor)
+                colors = ListItemDefaults.colors(
+                    containerColor = Color.Transparent
+                )
             ) { sourceId ->
                 SettingsManager.getInstance(activity).locationSource = sourceId
                 onClose(null)
@@ -110,7 +113,9 @@ fun LocationPreference(
             titleId = R.string.settings_weather_sources,
             iconId = R.drawable.ic_factory,
             summaryId = R.string.settings_weather_sources_per_location_summary,
-            colors = ListItemDefaults.colors(containerColor = AlertDialogDefaults.containerColor)
+            colors = ListItemDefaults.colors(
+                containerColor = Color.Transparent
+            )
         ) {
             dialogWeatherSourcesOpenState.value = true
         }
@@ -119,7 +124,9 @@ fun LocationPreference(
                 titleId = R.string.settings_per_location,
                 iconId = R.drawable.ic_settings,
                 summaryId = R.string.settings_per_location_summary,
-                colors = ListItemDefaults.colors(containerColor = AlertDialogDefaults.containerColor)
+                colors = ListItemDefaults.colors(
+                    containerColor = Color.Transparent
+                )
             ) {
                 dialogAdditionalLocationPreferencesOpenState.value = true
             }
@@ -128,7 +135,9 @@ fun LocationPreference(
             titleId = R.string.settings_global,
             iconId = R.drawable.ic_home,
             summaryId = R.string.settings_main_summary,
-            colors = ListItemDefaults.colors(containerColor = AlertDialogDefaults.containerColor)
+            colors = ListItemDefaults.colors(
+                containerColor = Color.Transparent
+            )
         ) {
             IntentHelper.startMainScreenSettingsActivity(activity)
             onClose(null)
@@ -964,7 +973,9 @@ fun SourceViewWithContinents(
     modifier: Modifier = Modifier,
     @DrawableRes iconId: Int? = null,
     enabled: Boolean = true,
-    colors: ListItemColors = ListItemDefaults.colors(AlertDialogDefaults.containerColor),
+    colors: ListItemColors = ListItemDefaults.colors(
+        containerColor = Color.Transparent
+    ),
     withState: Boolean = true,
     onValueChanged: (String) -> Unit,
 ) {

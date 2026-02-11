@@ -208,7 +208,7 @@ class FooterViewHolder(
                             item {
                                 ListItem(
                                     colors = ListItemDefaults.colors(
-                                        containerColor = AlertDialogDefaults.containerColor
+                                        containerColor = Color.Transparent
                                     ),
                                     leadingContent = source.getAttributionIcon()?.let {
                                         {

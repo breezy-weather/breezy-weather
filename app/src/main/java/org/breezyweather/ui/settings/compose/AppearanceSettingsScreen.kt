@@ -30,7 +30,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material3.AlertDialogDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.ListItem
@@ -295,22 +294,24 @@ fun AppearanceSettingsScreen(
                                 modifier = Modifier.fillMaxWidth(), // .fillMaxHeight()
                                 verticalArrangement = Arrangement.spacedBy(4.dp)
                             ) {
-                                items(listProviderState.value) {
+                                items(listProviderState.value) { iconPack ->
                                     ListItem(
-                                        colors = ListItemDefaults.colors(AlertDialogDefaults.containerColor),
+                                        colors = ListItemDefaults.colors(
+                                            containerColor = androidx.compose.ui.graphics.Color.Transparent
+                                        ),
                                         headlineContent = {
-                                            Text(it.providerName ?: "")
+                                            Text(iconPack.providerName ?: "")
                                         },
                                         modifier = Modifier.clickable {
-                                            SettingsManager.getInstance(context).iconProvider = it.packageName
-                                            iconProviderState.value = it.packageName
+                                            SettingsManager.getInstance(context).iconProvider = iconPack.packageName
+                                            iconProviderState.value = iconPack.packageName
                                             dialogIconPackOpenState.value = false
                                         },
                                         leadingContent = {
-                                            it.providerIcon?.toBitmap()?.asImageBitmap()?.let { bitmap ->
+                                            iconPack.providerIcon?.toBitmap()?.asImageBitmap()?.let { bitmap ->
                                                 Image(
                                                     bitmap,
-                                                    contentDescription = it.providerName,
+                                                    contentDescription = iconPack.providerName,
                                                     modifier = Modifier
                                                         .height(42.dp)
                                                         .width(42.dp)
@@ -322,7 +323,7 @@ fun AppearanceSettingsScreen(
                                                 onClick = {
                                                     IntentHelper.startPreviewIconActivity(
                                                         context as Activity,
-                                                        it.packageName
+                                                        iconPack.packageName
                                                     )
                                                 },
                                                 modifier = Modifier.clip(CircleShape)

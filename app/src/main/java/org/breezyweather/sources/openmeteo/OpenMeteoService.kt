@@ -20,7 +20,6 @@ import android.content.Context
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.AlertDialogDefaults
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.ListItemDefaults
 import androidx.compose.material3.MaterialTheme
@@ -31,6 +30,7 @@ import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import breezyweather.domain.location.model.Location
@@ -813,7 +813,9 @@ class OpenMeteoService @Inject constructor(
                 .joinToString(context.getString(org.breezyweather.unit.R.string.locale_separator)) {
                     it.model.getName(context)
                 },
-            colors = ListItemDefaults.colors(containerColor = AlertDialogDefaults.containerColor)
+            colors = ListItemDefaults.colors(
+                containerColor = Color.Transparent
+            )
         ) {
             dialogModelsOpenState.value = true
         }
@@ -846,7 +848,9 @@ class OpenMeteoService @Inject constructor(
                                 summary = { context, _ -> model.model.getDescription(context) },
                                 checked = model.enabled,
                                 card = false,
-                                colors = ListItemDefaults.colors(AlertDialogDefaults.containerColor)
+                                colors = ListItemDefaults.colors(
+                                    containerColor = Color.Transparent
+                                )
                             ) { checked ->
                                 if (checked) {
                                     OpenMeteoWeatherModel

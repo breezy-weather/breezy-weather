@@ -251,7 +251,7 @@ class NominatimService @Inject constructor(
 
     // This source needs to know how to contact the app maintainers
     // Make sure the app was compiled with the matching property in gradle.properties if failing here
-    override val isConfigured = !BuildConfig.REPORT_ISSUE.isEmpty()
+    override val isConfigured = BuildConfig.REPORT_ISSUE.isNotEmpty()
     override val isRestricted = false
 
     private var instance: String?
