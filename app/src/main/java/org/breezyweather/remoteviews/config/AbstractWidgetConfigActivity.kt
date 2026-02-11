@@ -24,7 +24,6 @@ import android.appwidget.AppWidgetManager
 import android.content.Context
 import android.content.Intent
 import android.graphics.Rect
-import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -45,7 +44,6 @@ import android.widget.Switch
 import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
 import androidx.annotation.CallSuper
-import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.AppCompatSpinner
 import androidx.core.view.updatePadding
 import androidx.core.widget.NestedScrollView

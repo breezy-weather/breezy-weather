@@ -19,7 +19,6 @@ package org.breezyweather.domain.weather.model
 import android.content.Context
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Alert
-import org.breezyweather.R
 import org.breezyweather.common.extensions.getFormattedFullDayAndMonth
 import org.breezyweather.common.extensions.getFormattedMediumDayAndMonth
 import org.breezyweather.common.extensions.getFormattedTime

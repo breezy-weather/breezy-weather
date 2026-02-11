@@ -73,7 +73,6 @@ import org.breezyweather.ui.common.widgets.generateCollapsedScrollBehavior
 import org.breezyweather.ui.common.widgets.getCardListItemMarginDp
 import org.breezyweather.ui.common.widgets.insets.FitStatusBarTopAppBar
 import org.breezyweather.ui.common.widgets.insets.bottomInsetItem
-import org.breezyweather.ui.settings.preference.LargeSeparatorItem
 import org.breezyweather.ui.settings.preference.SmallSeparatorItem
 import org.breezyweather.ui.settings.preference.largeSeparatorItem
 import org.breezyweather.ui.theme.compose.themeRipple

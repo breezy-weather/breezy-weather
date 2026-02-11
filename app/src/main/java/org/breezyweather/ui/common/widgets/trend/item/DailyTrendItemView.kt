@@ -22,7 +22,6 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
-import android.view.View
 import androidx.annotation.ColorInt
 import androidx.annotation.IntDef
 import org.breezyweather.R

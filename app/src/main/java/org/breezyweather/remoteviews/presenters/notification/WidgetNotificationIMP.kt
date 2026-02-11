@@ -18,7 +18,6 @@ package org.breezyweather.remoteviews.presenters.notification
 
 import android.content.Context
 import android.graphics.drawable.Icon
-import android.os.Build
 import android.widget.RemoteViews
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat

@@ -23,8 +23,6 @@ import android.content.pm.PackageManager
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.Icon
 import android.net.Uri
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.core.content.res.ResourcesCompat
 import breezyweather.domain.weather.reference.WeatherCode
 import org.breezyweather.R

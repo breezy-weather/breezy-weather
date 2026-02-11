@@ -17,7 +17,6 @@
 package org.breezyweather.sources.climweb
 
 import android.content.Context
-import breezyweather.domain.location.model.Location
 import dagger.hilt.android.qualifiers.ApplicationContext
 import org.breezyweather.R
 import org.breezyweather.common.extensions.currentLocale

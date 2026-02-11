@@ -16,17 +16,12 @@
 
 package org.breezyweather.unit.computing
 
-import org.breezyweather.unit.pressure.Pressure
 import org.breezyweather.unit.ratio.Ratio
-import org.breezyweather.unit.ratio.Ratio.Companion.fraction
 import org.breezyweather.unit.speed.Speed
 import org.breezyweather.unit.speed.Speed.Companion.kilometersPerHour
 import org.breezyweather.unit.temperature.Temperature
 import org.breezyweather.unit.temperature.Temperature.Companion.celsius
-import kotlin.math.cos
 import kotlin.math.exp
-import kotlin.math.ln
-import kotlin.math.log10
 import kotlin.math.pow
 
 /**

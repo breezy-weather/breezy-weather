@@ -68,7 +68,6 @@ import org.breezyweather.common.activities.BreezyActivity
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.ui.common.widgets.Material3Scaffold
 import org.breezyweather.ui.common.widgets.insets.FitStatusBarTopAppBar
-import org.breezyweather.ui.main.MainActivity
 import org.breezyweather.ui.settings.preference.composables.SwitchPreferenceView
 import org.breezyweather.ui.theme.compose.BreezyWeatherTheme
 import org.breezyweather.ui.theme.compose.themeRipple

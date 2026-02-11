@@ -22,10 +22,8 @@ import android.content.Context
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.Icon
 import android.net.Uri
-import android.os.Build
 import androidx.annotation.DrawableRes
 import androidx.annotation.IntRange
-import androidx.annotation.RequiresApi
 import androidx.annotation.Size
 import androidx.core.content.res.ResourcesCompat
 import breezyweather.domain.weather.reference.WeatherCode

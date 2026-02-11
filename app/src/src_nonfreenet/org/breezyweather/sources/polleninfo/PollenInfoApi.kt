@@ -17,10 +17,8 @@
 package org.breezyweather.sources.polleninfo
 
 import io.reactivex.rxjava3.core.Observable
-import org.breezyweather.sources.geosphereat.json.GeoSphereAtTimeseriesResult
 import org.breezyweather.sources.polleninfo.json.PollenInfoResult
 import retrofit2.http.GET
-import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface PollenInfoApi {
