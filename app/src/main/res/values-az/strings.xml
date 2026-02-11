@@ -1,3 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">Hava</string>
+    <string name="forecast">Proqnoz</string>
+    <string name="daily_forecast">Günlük proqnoz</string>
+    <string name="hourly_forecast">Saatlıq proqnoz</string>
+    <string name="current_weather">İndiki hava</string>
+    <string name="precipitation_nowcasting">Yağıntıların qısamüddətli proqnozu</string>
+    <string name="air_quality">Hava keyfiyyəti</string>
+    <string name="air_quality_short">Hava keyfiyyəti</string>
+    <string name="pollen">Tozcuq</string>
+    <string name="ephemeris">Günəş və Ay</string>
+    <string name="ephemeris_sun">Günəş</string>
+    <string name="ephemeris_moon">Ay</string>
+    <string name="ephemeris_about">Doğuş və batış vaxtları haqqında</string>
+    <string name="ephemeris_about_rise">Doğuş vaxtı, Günəşin və ya Ayın üfüqdə tam göründüyü andır.</string>
+    <string name="ephemeris_about_set">Batış vaxtı, Günəşin və ya Ayın üfüqdə tamamilə yox olduğu andır.</string>
 </resources>
