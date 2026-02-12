@@ -778,8 +778,4 @@
     <string name="settings_weather_source_non_freenet">%s (ei-vapaa verkkopalvelu)</string>
     <string name="settings_appearance_dark_mode_custom">Tumma tila aikavälillä %1$s-%2$s</string>
     <string name="common_weather_text_mostly_cloudy">Enimmäkseen pilvistä</string>
-    <string name="fmi_weather_text_ice_pellets_light">Heikkoa jääjyvässadetta</string>
-    <string name="fmi_weather_text_ice_pellets_moderate">Kohtalaista jääjyväsadetta</string>
-    <string name="fmi_weather_text_ice_pellets_heavy">Kovaa jääjyväsadetta</string>
-    <string name="fmi_weather_text_ice_crystals">Jääkiteitä</string>
 </resources>
