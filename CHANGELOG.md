@@ -10,6 +10,12 @@
 - FMI - Added as a new forecast, current, air quality, alert, normals source for Finland (@chunshek). Users on devices with hardened memory allocator (`hardened_malloc`) enabled, such as GrapheneOS may want to disable the feature for the app if they find the refresh to be too slow.
 
 
+# Version 6.1.3 (2026-02-12)
+
+**Hotfix**
+- Fix `freenet` flavor being released unbranded
+
+
 # Version 6.1.2 (2026-02-12)
 
 **Improvements and fixes**
