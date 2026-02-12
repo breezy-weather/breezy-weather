@@ -4,8 +4,10 @@
 - [Changelog for v4.x](docs/CHANGELOG_4.x.md)
 
 
-# Version 6.1.3 (not yet released)
+# Version 6.2.0 (not yet released)
 
+**Sources**
+- FMI - Added as a new forecast, current, air quality, alert, normals source for Finland (@chunshek). Users on devices with hardened memory allocator (`hardened_malloc`) enabled, such as GrapheneOS may want to disable the feature for the app if they find the refresh to be too slow.
 
 
 # Version 6.1.2 (2026-02-12)

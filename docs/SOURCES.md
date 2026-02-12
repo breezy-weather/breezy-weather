@@ -492,7 +492,7 @@ This source aggregates data from Beijing Meteorological Service, ColorfulClouds 
 </details>
 
 ### Finnish Meteorological Institute
-> This source will be available in an upcoming release.
+> This source will be available in the upcoming v6.2.0 version.
 
 **[Finnish Meteorological Institute](https://www.ilmatieteenlaitos.fi/)** is the official meteorological service of Finland, and the Åland Islands.
 

@@ -92,6 +92,17 @@ The first thing to try is to whitelist Breezy Weather from battery optimization.
 If it still doesn’t work, you can find ways to circumvent aggressive manufacturer behaviors on the [Don’t kill my app! website](https://dontkillmyapp.com/).
 
 
+### Refreshing some locations takes a lot of time on hardened devices (such as GrapheneOS)
+
+Affects locations configured to use one of the following sources: EPD HK, FMI, FOSS Public Alert Server, NCDR, NLSC, WMO Severe Weather
+
+These sources need to parse XML data which are known to be slow on devices with hardened memory allocator (`hardened_malloc`) enabled.
+
+If you want to avoid the issue, you can:
+- Use any source that is not listed above instead
+- For GrapheneOS users, go to App info, and turn off Hardened memory allocator (not recommended)
+
+
 ### I used Geometric Weather before, and the “persistent notification” method worked fine for me, can you bring it back?
 
 If you don’t already have a widget, you can try adding one (you don’t need to have it on your main page). On some devices, this may help mimic the old “persistent notification” by avoiding app being killed for no reason, although the widget does not run anything like the old method, it just renders once and updates only on background updates or force refresh from the app.
