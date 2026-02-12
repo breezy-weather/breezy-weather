@@ -4,7 +4,11 @@
 - [Changelog for v4.x](docs/CHANGELOG_4.x.md)
 
 
-# Version 6.1.2 (not yet released)
+# Version 6.1.3 (not yet released)
+
+
+
+# Version 6.1.2 (2026-02-12)
 
 **Improvements and fixes**
 - Remove minus sign when a number is rounded to 0 on Android < 11

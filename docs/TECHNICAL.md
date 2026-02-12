@@ -43,7 +43,7 @@ In Android Studio, this can be set up in the configuration of the `app` module, 
 4) Update versionCode and versionName in `app/build.gradle`.
 5) Write changelog in `CHANGELOG.md`.
 6) Commit all changes.
-7) Tag version beginning with a `v` (example: `git tag v6.1.2 -m "Version 6.1.2"`).
+7) Tag version beginning with a `v` (example: `git tag v6.1.3 -m "Version 6.1.3"`).
 8) Push with `git push --tags`
 9) GitHub action will run and sign the release.
 10) Update GitHub release notes draft and publish.
