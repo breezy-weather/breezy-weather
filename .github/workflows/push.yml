@@ -32,7 +32,7 @@ jobs:
 
       - name: Assemble freenet flavor
         if: startsWith(github.ref, 'refs/tags/') && github.repository == 'breezy-weather/breezy-weather'
-        run: ./gradlew assembleFreenetRelease
+        run: ./gradlew assembleFreenetRelease -Pbreezy # /!\ You’re NOT allowed to redistribute modified APKs with the breezy config enabled, see license terms
 
       - name: Sign APK (free networks)
         if: startsWith(github.ref, 'refs/tags/') && github.repository == 'breezy-weather/breezy-weather'
