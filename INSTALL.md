@@ -78,5 +78,5 @@ Tap the “Add” button at the very top, and you’re done!
    - Free-net flavor from Breezy Weather repo: `https://breezy-weather.github.io/fdroid-repo/fdroid-version/fdroid/repo`
    - Free-net flavor from default F-Droid repo: should already be enabled by default on your F-Droid client
 
-2) After adding the app, go to the app details and make sure to select which repo you want to get updates from to avoid cross-updates between flavors and repos. This is how you do it:
+2) After adding the repository, go to the app details and make sure to select which repo you want to get updates from to avoid cross-updates between flavors and repos. This is how you do it:
 ![F-Droid preferred repo feature](docs/fdroid_client_config.png)
