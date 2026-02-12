@@ -170,6 +170,7 @@ val appTranslators = arrayOf(
     TranslatorItem(arrayOf("ar"), "Rex_sa", github = "rex07"),
     TranslatorItem(arrayOf("ar"), "TomatoScriptCPP", github = "TomatoScriptCPP"),
     TranslatorItem(arrayOf("ar"), "jonnysemon", weblate = "jonnysemon"),
+    TranslatorItem(arrayOf("az"), "Elçin", weblate = "Aze44"),
     TranslatorItem(arrayOf("be"), "Yauhen", weblate = "Bugomol"),
     TranslatorItem(arrayOf("be"), "Drugi Sapog", weblate = "DinDrugi"),
     TranslatorItem(arrayOf("be"), "Ding User", weblate = "DeNGus"),

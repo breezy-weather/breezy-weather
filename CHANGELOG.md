@@ -12,6 +12,10 @@
 **Sources**
 - NWS - Fix incorrect alert end date in some cases
 
+**Translations**
+- Initial translation for Azerbaijani (Elçin)
+- Translations updated
+
 **Technical**
 - By default, the app will now compile unbranded. It has always been a requirement to change the name of the app when creating forks, but this has now been simplified. The aim is to avoid the confusion between our app and forks distributing modified releases we do not endorse.
 
@@ -46,6 +50,9 @@
 - IMS - Add support for rain quantity (@ntzb)
 - Open-Meteo - Fix day/night temperatures sometimes being shifted by 1 day
 - Pirate Weather - Fix refresh error
+
+**Translations**
+- Translations updated
 
 
 # Version 6.0.12 (2025-11-11)
