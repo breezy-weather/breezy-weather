@@ -20,6 +20,7 @@ Below, you can find details about the support and implementation status for feat
 | 🌐 Worldwide                       | [Pirate Weather](#pirate-weather) 🔐                                                              | Forecast, Current, Nowcasting, Alerts                                                |
 | 🌐 Worldwide                       | [WMO Severe Weather](#wmo-severe-weather)                                                         | Alerts                                                                               |
 | 🇦🇽 Åland Islands                 | [FMI](#finnish-meteorological-institute)                                                          | Forecast, Current, Air quality, Alerts, Normals                                      |
+| 🌐 Worldwide                       | [Infoplaza](#infoplaza) 🔐                                                                        | Forecast, Current, Nowcasting                                                        |
 | 🇦🇩 Andorra                       | [Météo-France](#météo-france)                                                                     | Forecast, Alert, Normals, Address                                                    |
 | 🇦🇹 Austria                       | [GeoSphere Austria](#geosphere-austria)                                                           | Forecast, Air quality, Nowcasting, Alerts                                            |
 | 🇧🇩 Bangladesh                    | [BMD](#bangladesh-meteorological-department)                                                      | Forecast, Address                                                                    |
@@ -247,6 +248,37 @@ For the United States, [Forecast Advisor](https://www.forecastadvisor.com/) has 
 | Precipitation Duration    | ❌         | Cloud Cover       | ✅         |
 | Wind                      | ✅         | Visibility        | ✅         |
 | Pressure                  | ✅         | Ceiling           | ❌         |
+</details>
+
+### Infoplaza
+> 🔐 **This source requires an API key.** [Register here](https://account.infoplaza.com/login), then [create your API key here](https://developer.infoplaza.com/apikeys)
+
+**[Infoplaza](https://infoplaza.com/)** is a weather data provider based in Houten, Utrecht, The Netherlands. They provide data to apps like Weeronline, Weerplaza, Buienalarm, Meteovista, Drops and Meteox.
+
+| Feature                        | Detail                                                              |
+|--------------------------------|---------------------------------------------------------------------|
+| 🗺️ **Coverage**               | 🌐 Worldwide (some features may not be available for all locations) |
+| 📆 **Daily forecast**          | Up to 15 days                                                       |
+| ⏱️ **Hourly forecast**         | Up to 7 days                                                        |
+| ▶️ **Current observation**     | Available: can complement another source as a **Current Source**    |
+| 😶‍🌫️ **Air quality**             | Not available                                                       |
+| 🤧 **Pollen**                  | Not available                                                       |
+| ☔ **Precipitation nowcasting** | Available                                                           |
+| ⚠️ **Alerts**                  | Not available                                                       |
+| 📊 **Normals**                 | Available                                                           |
+| 🧭 **Address lookup**          | Not available                                                       |
+
+<details><summary><h4>Details of available data from Infoplaza</h4></summary>
+
+| Data                      | Available  | Data              | Available    |
+|---------------------------|------------|-------------------|--------------|
+| Weather Condition         | ✅         | Humidity          | ✅           |
+| Temperature               | ✅         | Dew Point         | ✅           |
+| Precipitation             | ✅         | UV Index          | ✅           |
+| Precipitation Probability | ✅         | Sunshine Duration | ❌           |
+| Precipitation Duration    | ❌         | Cloud Cover       | ✅           |
+| Wind                      | ✅         | Visibility        | ✅           |
+| Pressure                  | ✅         | Ceiling           | ❌           |
 </details>
 
 ## National sources
