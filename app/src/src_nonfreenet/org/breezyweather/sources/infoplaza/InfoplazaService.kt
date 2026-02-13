@@ -68,6 +68,13 @@ class InfoplazaService @Inject constructor(
     @ApplicationContext context: Context,
     @Named("JsonClient") client: Retrofit.Builder,
 ) : InfoplazaServiceStub() {
+
+    override val privacyPolicyUrl = "https://www.infoplaza.com/en/disclaimer-and-privacy"
+
+    override val attributionLinks = mapOf(
+        name to "https://infoplaza.com/"
+    )
+
     private val mApi by lazy {
         client
             .baseUrl(INFOPLAZA_BASE_URL)
@@ -84,20 +91,20 @@ class InfoplazaService @Inject constructor(
 
         val forecast = if (SourceFeature.FORECAST in requestedFeatures ||
             SourceFeature.CURRENT in requestedFeatures ||
-            SourceFeature.MINUTELY in requestedFeatures) {
+            SourceFeature.MINUTELY in requestedFeatures
+        ) {
             mApi.getForecast(location.latitude, location.longitude, apiKey)
         } else {
-            Observable.just(InfoplazaForecastResult(null, null, null, null))
+            Observable.just(InfoplazaForecastResult())
         }
 
         val climate = if (SourceFeature.NORMALS in requestedFeatures) {
             mApi.getClimate(location.latitude, location.longitude, apiKey)
         } else {
-            Observable.just(InfoplazaClimateResult(null, null))
+            Observable.just(InfoplazaClimateResult())
         }
 
-        return Observable.zip(forecast, climate) {
-            forecastResult, climateResult ->
+        return Observable.zip(forecast, climate) { forecastResult, climateResult ->
             WeatherWrapper(
                 dailyForecast = if (SourceFeature.FORECAST in requestedFeatures) {
                     getDailyForecast(forecastResult.daily)
@@ -151,37 +158,45 @@ class InfoplazaService @Inject constructor(
         )
     }
 
+    /*
+     * FIXME: Completely broken in countries not in the same timezone as InfoPlaza
+     */
     private fun getDailyForecast(
         dailyResult: List<InfoplazaDaily>?,
     ): List<DailyWrapper>? {
         if (dailyResult == null || dailyResult.isEmpty()) return null
-        return listOf(
+        return buildList {
             // Prepend empty day for today because the source
             // only provides data for upcoming days
-            DailyWrapper(
-                date = (dailyResult.first().time.seconds - 1.days).inWholeMilliseconds.toDate()
+            add(
+                DailyWrapper(
+                    date = (dailyResult.first().time.seconds - 1.days).inWholeMilliseconds.toDate()
+                )
             )
-        ) + dailyResult.map { result ->
-            DailyWrapper(
-                date = result.time.seconds.inWholeMilliseconds.toDate(),
-                day = HalfDayWrapper(
-                    weatherCode = getWeatherCode(result.icon),
-                    temperature = TemperatureWrapper(
-                        temperature = result.temperatureHigh?.celsius,
-                        feelsLike = result.apparentTemperature?.celsius
+            addAll(
+                dailyResult.map { result ->
+                    DailyWrapper(
+                        date = result.time.seconds.inWholeMilliseconds.toDate(),
+                        day = HalfDayWrapper(
+                            weatherCode = getWeatherCode(result.icon),
+                            temperature = TemperatureWrapper(
+                                temperature = result.temperatureHigh?.celsius,
+                                feelsLike = result.apparentTemperature?.celsius
+                            )
+                        ),
+                        night = HalfDayWrapper(
+                            weatherCode = getWeatherCode(result.icon),
+                            temperature = TemperatureWrapper(
+                                temperature = result.temperatureLow?.celsius
+                            )
+                        ),
+                        uV = UV(index = result.uvIndex),
+                        relativeHumidity = DailyRelativeHumidity(average = result.humidity?.fraction),
+                        dewPoint = DailyDewPoint(average = result.dewPoint?.celsius),
+                        pressure = DailyPressure(average = result.pressure?.hectopascals),
+                        cloudCover = DailyCloudCover(average = result.cloudCover?.fraction)
                     )
-                ),
-                night = HalfDayWrapper(
-                    weatherCode = getWeatherCode(result.icon),
-                    temperature = TemperatureWrapper(
-                        temperature = result.temperatureLow?.celsius
-                    )
-                ),
-                uV = UV(index = result.uvIndex),
-                relativeHumidity = DailyRelativeHumidity(average = result.humidity?.fraction),
-                dewPoint = DailyDewPoint(average = result.dewPoint?.celsius),
-                pressure = DailyPressure(average = result.pressure?.hectopascals),
-                cloudCover = DailyCloudCover(average = result.cloudCover?.fraction)
+                }
             )
         }
     }
@@ -303,6 +318,8 @@ class InfoplazaService @Inject constructor(
                         c.getString(R.string.settings_source_default_value)
                     }
                 },
+                regex = Regex("^ip-[a-f0-9-]{36}$"),
+                regexError = context.getString(R.string.settings_source_api_key_invalid),
                 content = apikey,
                 onValueChanged = {
                     apikey = it

@@ -334,7 +334,7 @@ android {
         it.buildConfigField(
             "String",
             "INFOPLAZA_KEY",
-            "\"${properties.getProperty("breezy.infoplaza.key") ?: ""}\""
+            "\"${localProperties.getProperty("breezy.infoplaza.key") ?: ""}\""
         )
     }
 

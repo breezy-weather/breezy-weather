@@ -20,6 +20,6 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class InfoplazaClimateResult(
-    val period: String?,
-    val climate: List<InfoplazaClimate>?
+    val period: String? = null,
+    val climate: List<InfoplazaClimate>? = null,
 )

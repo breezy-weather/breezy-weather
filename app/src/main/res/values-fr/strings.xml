@@ -439,6 +439,7 @@
     <string name="action_delete">Supprimer</string>
     <string name="action_back">Retour</string>
     <string name="settings_source_api_key">Clé API</string>
+    <string name="settings_source_api_key_invalid">La valeur n’est pas dans le format attendu</string>
     <string name="settings_source_instance">Instance</string>
     <string name="settings_source_instance_invalid">Doit être une URL https se terminant par un /</string>
     <string name="settings_source_instance_geocoding">Instance de géocodage</string>

@@ -108,6 +108,10 @@ val appContributors: Array<ContributorItem> = arrayOf(
      */
     ContributorItem("Willem Schipper", github = "willem640"),
     /*
+     * Infoplaza source
+     */
+    ContributorItem("Sven", github = "SKBotNL"),
+    /*
      * Fix lag in refresh
      */
     ContributorItem("jayyuz", github = "jayyuz"),

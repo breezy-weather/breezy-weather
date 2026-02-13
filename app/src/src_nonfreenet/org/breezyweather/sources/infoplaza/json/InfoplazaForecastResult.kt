@@ -20,8 +20,8 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class InfoplazaForecastResult(
-    val currently: InfoplazaCurrently?,
-    val minutely: List<InfoplazaMinutely>?,
-    val hourly: List<InfoplazaHourly>?,
-    val daily: List<InfoplazaDaily>?,
+    val currently: InfoplazaCurrently? = null,
+    val minutely: List<InfoplazaMinutely>? = null,
+    val hourly: List<InfoplazaHourly>? = null,
+    val daily: List<InfoplazaDaily>? = null,
 )

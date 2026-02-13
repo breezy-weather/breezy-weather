@@ -22,5 +22,5 @@ import kotlinx.serialization.Serializable
 data class InfoplazaClimate(
     val month: Int?,
     val temperatureHigh: Double?,
-    val temperatureLow: Double?
+    val temperatureLow: Double?,
 )

@@ -32,17 +32,12 @@ abstract class InfoplazaServiceStub :
     override val id = "infoplaza"
     override val name = "Infoplaza"
     override val continent = SourceContinent.WORLDWIDE
-    override val privacyPolicyUrl = "https://www.infoplaza.com/en/disclaimer-and-privacy"
 
     override val supportedFeatures = mapOf(
         SourceFeature.FORECAST to name,
         SourceFeature.CURRENT to name,
         SourceFeature.MINUTELY to name,
         SourceFeature.NORMALS to name
-    )
-
-    override val attributionLinks = mapOf(
-        name to "https://infoplaza.com/"
     )
 
     override val isRestricted = false
