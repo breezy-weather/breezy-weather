@@ -41,7 +41,10 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.BuildConfig
 import org.breezyweather.R
+import org.breezyweather.common.extensions.getIsoFormattedDate
+import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.common.extensions.toDate
+import org.breezyweather.common.extensions.toDateNoHour
 import org.breezyweather.common.preference.EditTextPreference
 import org.breezyweather.common.preference.Preference
 import org.breezyweather.domain.settings.SourceConfigStore
@@ -59,9 +62,9 @@ import org.breezyweather.unit.ratio.Ratio.Companion.fraction
 import org.breezyweather.unit.speed.Speed.Companion.metersPerSecond
 import org.breezyweather.unit.temperature.Temperature.Companion.celsius
 import retrofit2.Retrofit
+import java.util.Calendar
 import javax.inject.Inject
 import javax.inject.Named
-import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.seconds
 
 class InfoplazaService @Inject constructor(
@@ -107,7 +110,7 @@ class InfoplazaService @Inject constructor(
         return Observable.zip(forecast, climate) { forecastResult, climateResult ->
             WeatherWrapper(
                 dailyForecast = if (SourceFeature.FORECAST in requestedFeatures) {
-                    getDailyForecast(forecastResult.daily)
+                    getDailyForecast(location, forecastResult.daily, forecastResult.hourly)
                 } else {
                     null
                 },
@@ -158,46 +161,74 @@ class InfoplazaService @Inject constructor(
         )
     }
 
-    /*
-     * FIXME: Completely broken in countries not in the same timezone as InfoPlaza
-     */
     private fun getDailyForecast(
+        location: Location,
         dailyResult: List<InfoplazaDaily>?,
+        hourlyResult: List<InfoplazaHourly>?,
     ): List<DailyWrapper>? {
         if (dailyResult == null || dailyResult.isEmpty()) return null
-        return buildList {
-            // Prepend empty day for today because the source
-            // only provides data for upcoming days
-            add(
-                DailyWrapper(
-                    date = (dailyResult.first().time.seconds - 1.days).inWholeMilliseconds.toDate()
-                )
-            )
-            addAll(
-                dailyResult.map { result ->
+
+        /*
+         * Unfortunately, dailys are completely broken in countries not in the same timezone as InfoPlaza,
+         * as data is reported for a shifted period
+         */
+        val firstReportedTime = dailyResult.first().time.seconds.inWholeMilliseconds.toDate()
+            .toCalendarWithTimeZone(location.timeZone)
+
+        // First case: the time is reported at 00:00, then the data is considered valid
+        if (firstReportedTime.get(Calendar.HOUR_OF_DAY) == 0) {
+            // Prepend empty day for today because the source only provides data for upcoming days
+            // The first day is created using calendar to ensure DST is taken into account
+            firstReportedTime.add(Calendar.DAY_OF_YEAR, -1)
+            firstReportedTime.set(Calendar.HOUR_OF_DAY, 0)
+            return buildList {
+                add(
                     DailyWrapper(
-                        date = result.time.seconds.inWholeMilliseconds.toDate(),
-                        day = HalfDayWrapper(
-                            weatherCode = getWeatherCode(result.icon),
-                            temperature = TemperatureWrapper(
-                                temperature = result.temperatureHigh?.celsius,
-                                feelsLike = result.apparentTemperature?.celsius
-                            )
-                        ),
-                        night = HalfDayWrapper(
-                            weatherCode = getWeatherCode(result.icon),
-                            temperature = TemperatureWrapper(
-                                temperature = result.temperatureLow?.celsius
-                            )
-                        ),
-                        uV = UV(index = result.uvIndex),
-                        relativeHumidity = DailyRelativeHumidity(average = result.humidity?.fraction),
-                        dewPoint = DailyDewPoint(average = result.dewPoint?.celsius),
-                        pressure = DailyPressure(average = result.pressure?.hectopascals),
-                        cloudCover = DailyCloudCover(average = result.cloudCover?.fraction)
+                        date = firstReportedTime.time
+                    )
+                )
+                addAll(
+                    dailyResult.map { result ->
+                        DailyWrapper(
+                            date = result.time.seconds.inWholeMilliseconds.toDate(),
+                            day = HalfDayWrapper(
+                                weatherCode = getWeatherCode(result.icon),
+                                temperature = TemperatureWrapper(
+                                    temperature = result.temperatureHigh?.celsius,
+                                    feelsLike = result.apparentTemperature?.celsius
+                                )
+                            ),
+                            night = HalfDayWrapper(
+                                weatherCode = getWeatherCode(result.icon),
+                                temperature = TemperatureWrapper(
+                                    temperature = result.temperatureLow?.celsius
+                                )
+                            ),
+                            uV = UV(index = result.uvIndex),
+                            relativeHumidity = DailyRelativeHumidity(average = result.humidity?.fraction),
+                            dewPoint = DailyDewPoint(average = result.dewPoint?.celsius),
+                            pressure = DailyPressure(average = result.pressure?.hectopascals),
+                            cloudCover = DailyCloudCover(average = result.cloudCover?.fraction)
+                        )
+                    }
+                )
+            }
+        } else {
+            // Second case: the time is different than 00:00, we generate empty dailys
+            if (hourlyResult.isNullOrEmpty()) return emptyList()
+
+            val dailyList = mutableListOf<DailyWrapper>()
+            val hourlyListByDay = hourlyResult.groupBy {
+                it.time.seconds.inWholeMilliseconds.toDate().getIsoFormattedDate(location)
+            }
+            for (i in 0 until hourlyListByDay.entries.size - 1) {
+                hourlyListByDay.keys.toTypedArray()[i].toDateNoHour(location.timeZone)?.let { dayDate ->
+                    dailyList.add(
+                        DailyWrapper(date = dayDate)
                     )
                 }
-            )
+            }
+            return dailyList
         }
     }
 
