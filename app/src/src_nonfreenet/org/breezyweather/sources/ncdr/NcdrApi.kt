@@ -24,7 +24,7 @@ import retrofit2.http.GET
 import retrofit2.http.Url
 
 interface NcdrApi {
-    @GET("RssAtomFeeds.ashx")
+    @GET("webapi/RssAtomFeeds.ashx")
     fun getAlerts(): Call<NcdrAlertsResult>
 
     @GET
