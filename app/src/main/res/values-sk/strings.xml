@@ -118,7 +118,7 @@
     <string name="ephemeris_moonset_at">Západ mesiaca v %s</string>
     <string name="ephemeris_moonrise_at">Východ mesiaca v %s</string>
     <string name="dew_point">Rosný bod</string>
-    <string name="sunshine_duration">Hodiny slnka</string>
+    <string name="sunshine_duration">Dĺžka slnečného svitu</string>
     <string name="daytime">Deň</string>
     <string name="notification_channel_widget">Widget</string>
     <string name="notification_channel_crash_logs">Protokoly o chybách</string>
@@ -221,7 +221,7 @@
     <string name="pressure_short">Tlak</string>
     <string name="weather_api_key_required_missing_content">Na použitie tohto zdroja je potrebné zadať API kľúč.</string>
     <string name="weather_source_accu_preference_hours_1">1 hodina</string>
-    <string name="location_current">Aktuálna poloha</string>
+    <string name="location_current">Moja poloha</string>
     <string name="location_message_deleted">Miesto odstránené</string>
     <string name="location_results_by">Výsledky polohy od %s</string>
     <string name="location_message_list_cannot_be_empty">Zoznam miest nemôže byť prázdny</string>
@@ -231,10 +231,10 @@
     <string name="location_message_reverse_geocoding_failed">Zdroj počasia nenašiel vyhovujúce miesto</string>
     <string name="action_add_new_location">Pridať nové miesto</string>
     <string name="alert">Výstraha</string>
-    <string name="ephemeris_moon_phase_waxing_gibbous">Dorastajúci mesiac</string>
+    <string name="ephemeris_moon_phase_waxing_gibbous">Pribúdajúci mesiac</string>
     <string name="ephemeris_moon_phase_last_quarter">Posledná štvrť</string>
-    <string name="ephemeris_moon_phase_waning_gibbous">Zmenšujúce sa tri štvrtiny</string>
-    <string name="ephemeris_moon_phase_waning_crescent">Zmenšujúca sa štvrtina</string>
+    <string name="ephemeris_moon_phase_waning_gibbous">Ubúdajúci mesiac</string>
+    <string name="ephemeris_moon_phase_waning_crescent">Ubúdajúci polmesiac</string>
     <string name="weather_message_invalid_location">Neplatné umiestnenie, odstraňte ho a znovu pridajte</string>
     <string name="weather_source_accu_preference_days_1">1 deň</string>
     <string name="weather_source_accu_preference_days_10">10 dní</string>
@@ -264,7 +264,7 @@
     <string name="weather_source_accu_preference_hours_240">240 hodín</string>
     <string name="location_delete_location_dialog_title">Odstrániť miesto?</string>
     <string name="location_message_permission_background_missing">Chýbajúce oprávnenie na prístup k polohe na pozadí</string>
-    <string name="ephemeris_moon_phase_waxing_crescent">Dorastajúci kosák</string>
+    <string name="ephemeris_moon_phase_waxing_crescent">Pribúdajúci polmesiac</string>
     <string name="ephemeris_moon_phase_first_quarter">Prvá štvrť</string>
     <string name="location_message_failed_to_locate">Nepodarilo sa zistiť aktuálnu polohu</string>
     <string name="weather_api_unauthorized_content">Pri niektorých zdrojoch dát o počasí je potrebné zadať vlastný API kľúč. Ak ste ho už zadali, opätovne ho skontrolujte.</string>
@@ -431,7 +431,7 @@
     <string name="widget_material_you_current">Material You – Aktuálny</string>
     <string name="widget_label_hide_subtitle">Skryť popisok</string>
     <string name="widget_multi_city">Viac miest</string>
-    <string name="widget_custom_subtitle_keyword_ch_description">Aktuálna vlhkosť vzduchu</string>
+    <string name="widget_custom_subtitle_keyword_ch_description">Aktuálna vlhkosť</string>
     <string name="widget_custom_subtitle_keyword_ct_description">Aktuálna teplota (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_xdtd_description">Teplota cez deň dnes, zajtra, …, 4 dni neskôr (°)</string>
     <string name="widget_custom_subtitle_keyword_xntd_description">Teplota cez noc dnes, zajtra, …, 4 dni neskôr (°)</string>
@@ -453,7 +453,7 @@
     <string name="widget_custom_subtitle_keyword_xms_description">Západ mesiaca dnes, zajtra, …, o 4 dni neskôr</string>
     <string name="widget_style_rectangle">Obdĺžnik</string>
     <string name="settings_appearance">Vzhľad</string>
-    <string name="settings_appearance_summary">Jazyk, tmavý režim, ikony, jednotky</string>
+    <string name="settings_appearance_summary">Jazyk, tmavý režim, balík ikon, jednotky</string>
     <string name="settings_appearance_dark_mode_title">Tmavý režim aplikácie</string>
     <string name="dialog_permissions_notification_content">Klepnite sem, aby ste aktivovali upozornenia na výstrahy počasia. Môžete to urobiť aj neskôr v nastaveniach.</string>
     <string name="widget_custom_subtitle_keyword_cw_description">Aktuálne počasie</string>
@@ -629,7 +629,7 @@
     <string name="chart_average">Priemer</string>
     <string name="chart_maximum_value">Maximálna hodnota</string>
     <string name="conditions">Podmienky</string>
-    <string name="temperature_real_details">Aktuálna teplota.</string>
+    <string name="temperature_real_details">Skutočná teplota.</string>
     <string name="wind_strength_scale">Beaufortova stupnica</string>
     <string name="air_quality_index_short">IKO</string>
     <string name="air_quality_level_1_harmless_exposure">&gt; 1 rok</string>
@@ -652,7 +652,7 @@
     <string name="daily_summary">Denný súhrn</string>
     <string name="chart_no_hourly_data">Údaje za hodinu nie sú k dispozícii.</string>
     <string name="chart_not_enough_hourly_data">Údaje za hodinu nie sú dostatočné na zobrazenie grafu pre tento deň.</string>
-    <string name="temperature_real">Aktuálna</string>
+    <string name="temperature_real">Skutočná</string>
     <string name="temperature_feels_like_details">Teplota ktorá sa vníma v dôsledku vlhkosti, vetra a/alebo slnečného žiarenia.</string>
     <string name="temperature_degree_day_heating_explanation">Rozdiel medzi vonkajšou teplotou a referenčnou komfortnou teplotou používanou na odhad potreby energie na vykurovanie</string>
     <string name="temperature_degree_day_cooling_explanation">Rozdiel medzi vonkajšou teplotou a referenčnou komfortnou teplotou používanou na odhad potreby energie na chladenie</string>
