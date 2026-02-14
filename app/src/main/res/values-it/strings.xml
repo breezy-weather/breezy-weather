@@ -600,7 +600,7 @@
     <string name="common_weather_text_frost">Gelo</string>
     <string name="settings_weather_source_current_position_disclaimer">Potrebbero essere disponibili altre fonti meteo per la località dopo il primo aggiornamento.</string>
     <string name="settings_weather_source_not_configured">%s (non configurato)</string>
-    <string name="forecast">Previsione</string>
+    <string name="forecast">Previsioni</string>
     <string name="pollen_juniperus">Ginepro</string>
     <string name="pollen_picea">Peccio</string>
     <string name="pollen_pinus">Pino</string>
