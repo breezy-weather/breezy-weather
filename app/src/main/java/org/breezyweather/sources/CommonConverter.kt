@@ -51,6 +51,8 @@ import org.breezyweather.unit.computing.computeApparentTemperature
 import org.breezyweather.unit.computing.computeDewPoint
 import org.breezyweather.unit.computing.computeHumidex
 import org.breezyweather.unit.computing.computeRelativeHumidity
+import org.breezyweather.unit.computing.computeTotalPrecipitation
+import org.breezyweather.unit.computing.computeTotalProbabilityOfPrecipitation
 import org.breezyweather.unit.computing.computeWindChillTemperature
 import org.breezyweather.unit.distance.Distance
 import org.breezyweather.unit.distance.Distance.Companion.meters
@@ -259,8 +261,32 @@ internal fun computeMissingHourlyData(
                 computedWindChill = computeWindChillTemperature(temp, wind?.speed),
                 computedHumidex = computeHumidex(temp, dewPoint)
             ),
-            precipitation = precipitation,
-            precipitationProbability = precipitationProbability,
+            precipitation = Precipitation(
+                total =
+                precipitation?.total
+                    ?: computeTotalPrecipitation(
+                        temp,
+                        precipitation?.rain,
+                        precipitation?.snow,
+                        precipitation?.ice
+                    ),
+                thunderstorm = precipitation?.thunderstorm,
+                rain = precipitation?.rain,
+                snow = precipitation?.snow,
+                ice = precipitation?.ice
+            ),
+            precipitationProbability = PrecipitationProbability(
+                total = precipitationProbability?.total ?: computeTotalProbabilityOfPrecipitation(
+                    precipitationProbability?.thunderstorm,
+                    precipitationProbability?.rain,
+                    precipitationProbability?.ice,
+                    precipitationProbability?.snow
+                ),
+                thunderstorm = precipitationProbability?.thunderstorm,
+                rain = precipitationProbability?.rain,
+                snow = precipitationProbability?.snow,
+                ice = precipitationProbability?.ice
+            ),
             wind = wind,
             relativeHumidity = relativeHumidity,
             dewPoint = dewPoint,

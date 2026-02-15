@@ -49,7 +49,6 @@ import org.breezyweather.R
 import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
-import org.breezyweather.common.extensions.plus
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.common.preference.EditTextPreference
 import org.breezyweather.common.preference.Preference
@@ -433,7 +432,6 @@ class MfService @Inject constructor(
             snow1h ?: snow3h ?: snow6h ?: snow12h ?: snow24h
         }
         return Precipitation(
-            total = (rainCumul + snowCumul)?.millimeters,
             rain = rainCumul?.millimeters,
             snow = snowCumul?.millimeters
         )

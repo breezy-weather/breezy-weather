@@ -220,7 +220,6 @@ class OpenWeatherService @Inject constructor(
                     feelsLike = result.main?.feelsLike?.celsius
                 ),
                 precipitation = Precipitation(
-                    total = getTotalPrecipitation(result.rain?.cumul3h, result.snow?.cumul3h)?.millimeters,
                     rain = result.rain?.cumul3h?.millimeters,
                     snow = result.snow?.cumul3h?.millimeters
                 ),
@@ -235,18 +234,6 @@ class OpenWeatherService @Inject constructor(
                 cloudCover = result.clouds?.all?.percent,
                 visibility = result.visibility?.meters
             )
-        }
-    }
-
-    // Function that checks for null before sum up
-    private fun getTotalPrecipitation(rain: Double?, snow: Double?): Double? {
-        if (rain == null) {
-            return snow
-        }
-        return if (snow == null) {
-            rain
-        } else {
-            rain + snow
         }
     }
 
