@@ -818,4 +818,7 @@
     <string name="cloud_cover_from_to_description">%1$s até %2$s</string>
     <string name="cloud_cover_scale">Escala da nebulosidade</string>
     <string name="broadcast_source_breezy_weather_update_notifier">%s Notificador da Atualização da Localização</string>
+    <string name="action_add_as_location">Adicionar como localização</string>
+    <string name="action_pull_down_to_refresh">Puxe para baixo para atualizar</string>
+    <string name="widget_live_wallpaper_animations_enable_dangerous">PERIGOSO</string>
 </resources>
