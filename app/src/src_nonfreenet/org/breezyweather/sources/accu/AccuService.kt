@@ -166,6 +166,8 @@ class AccuService @Inject constructor(
         } else {
             "en"
         }
+        // Using precipitation unit setting as a proxy of whether to use metric or imperial units.
+        // This is because AccuWeather's summary text reports precipitation amounts rather than temperature.
         val metric = SettingsManager.getInstance(context).getPrecipitationUnit(context) != PrecipitationUnit.INCH
         val failedFeatures = mutableMapOf<SourceFeature, Throwable>()
         val current = if (SourceFeature.CURRENT in requestedFeatures) {
