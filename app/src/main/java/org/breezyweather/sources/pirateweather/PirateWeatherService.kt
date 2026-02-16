@@ -53,6 +53,7 @@ import org.breezyweather.common.preference.Preference
 import org.breezyweather.common.source.ConfigurableSource
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.WeatherSource
+import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.domain.settings.SourceConfigStore
 import org.breezyweather.sources.pirateweather.json.PirateWeatherAlert
 import org.breezyweather.sources.pirateweather.json.PirateWeatherCurrently
@@ -60,12 +61,17 @@ import org.breezyweather.sources.pirateweather.json.PirateWeatherDaily
 import org.breezyweather.sources.pirateweather.json.PirateWeatherHourly
 import org.breezyweather.sources.pirateweather.json.PirateWeatherMinutely
 import org.breezyweather.unit.distance.Distance.Companion.kilometers
+import org.breezyweather.unit.distance.Distance.Companion.miles
 import org.breezyweather.unit.precipitation.Precipitation.Companion.centimeters
+import org.breezyweather.unit.precipitation.Precipitation.Companion.inches
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
 import org.breezyweather.unit.ratio.Ratio.Companion.fraction
 import org.breezyweather.unit.speed.Speed.Companion.metersPerSecond
+import org.breezyweather.unit.speed.Speed.Companion.milesPerHour
 import org.breezyweather.unit.temperature.Temperature.Companion.celsius
+import org.breezyweather.unit.temperature.Temperature.Companion.fahrenheit
+import org.breezyweather.unit.temperature.TemperatureUnit
 import retrofit2.Retrofit
 import java.util.Objects
 import javax.inject.Inject
@@ -107,36 +113,40 @@ class PirateWeatherService @Inject constructor(
     ): Observable<WeatherWrapper> {
         val apiKey = getApiKeyOrDefault()
 
+        // Using temperature unit setting as a proxy of whether to use metric or imperial units.
+        // This is because Pirate Weather's summary text reports temperature rather than precipitation amounts.
+        val metric = SettingsManager.getInstance(context).getTemperatureUnit(context) != TemperatureUnit.FAHRENHEIT
+
         return mApi.getForecast(
-            apiKey,
-            location.latitude,
-            location.longitude,
-            "si", // represents metric
-            context.currentLocale.code,
-            null,
-            "hourly"
+            apikey = apiKey,
+            lat = location.latitude,
+            lon = location.longitude,
+            units = if (metric) "si" else "us",
+            lang = context.currentLocale.code,
+            exclude = null,
+            extend = "hourly"
         ).map {
             WeatherWrapper(
                 /*base = Base(
                     publishDate = it.currently?.time?.seconds?.inWholeMilliseconds?.toDate() ?: Date()
                 ),*/
                 dailyForecast = if (SourceFeature.FORECAST in requestedFeatures) {
-                    getDailyForecast(it.daily?.data)
+                    getDailyForecast(it.daily?.data, metric)
                 } else {
                     null
                 },
                 hourlyForecast = if (SourceFeature.FORECAST in requestedFeatures) {
-                    getHourlyForecast(it.hourly?.data)
+                    getHourlyForecast(it.hourly?.data, metric)
                 } else {
                     null
                 },
                 current = if (SourceFeature.CURRENT in requestedFeatures) {
-                    getCurrent(it.currently, it.daily?.summary, it.hourly?.summary)
+                    getCurrent(it.currently, it.daily?.summary, it.hourly?.summary, metric)
                 } else {
                     null
                 },
                 minutelyForecast = if (SourceFeature.MINUTELY in requestedFeatures) {
-                    getMinutelyForecast(it.minutely?.data)
+                    getMinutelyForecast(it.minutely?.data, metric)
                 } else {
                     null
                 },
@@ -156,26 +166,42 @@ class PirateWeatherService @Inject constructor(
         result: PirateWeatherCurrently?,
         dailySummary: String?,
         hourlySummary: String?,
+        metric: Boolean = true,
     ): CurrentWrapper? {
         if (result == null) return null
         return CurrentWrapper(
             weatherText = result.summary,
             weatherCode = getWeatherCode(result.icon),
-            temperature = TemperatureWrapper(
-                temperature = result.temperature?.celsius,
-                feelsLike = result.apparentTemperature?.celsius
-            ),
-            wind = Wind(
-                degree = result.windBearing,
-                speed = result.windSpeed?.metersPerSecond,
-                gusts = result.windGust?.metersPerSecond
-            ),
+            temperature = if (metric) {
+                TemperatureWrapper(
+                    temperature = result.temperature?.celsius,
+                    feelsLike = result.apparentTemperature?.celsius
+                )
+            } else {
+                TemperatureWrapper(
+                    temperature = result.temperature?.fahrenheit,
+                    feelsLike = result.apparentTemperature?.fahrenheit
+                )
+            },
+            wind = if (metric) {
+                Wind(
+                    degree = result.windBearing,
+                    speed = result.windSpeed?.metersPerSecond,
+                    gusts = result.windGust?.metersPerSecond
+                )
+            } else {
+                Wind(
+                    degree = result.windBearing,
+                    speed = result.windSpeed?.milesPerHour,
+                    gusts = result.windGust?.milesPerHour
+                )
+            },
             uV = UV(index = result.uvIndex),
             relativeHumidity = result.humidity?.fraction,
-            dewPoint = result.dewPoint?.celsius,
+            dewPoint = if (metric) result.dewPoint?.celsius else result.dewPoint?.fahrenheit,
             pressure = result.pressure?.hectopascals,
             cloudCover = result.cloudCover?.fraction,
-            visibility = result.visibility?.kilometers,
+            visibility = if (metric) result.visibility?.kilometers else result.visibility?.miles,
             dailyForecast = dailySummary,
             hourlyForecast = hourlySummary
         )
@@ -183,6 +209,7 @@ class PirateWeatherService @Inject constructor(
 
     private fun getDailyForecast(
         dailyResult: List<PirateWeatherDaily>?,
+        metric: Boolean = true,
     ): List<DailyWrapper>? {
         return dailyResult?.map { result ->
             DailyWrapper(
@@ -190,27 +217,45 @@ class PirateWeatherService @Inject constructor(
                 day = HalfDayWrapper(
                     weatherSummary = result.summary,
                     weatherCode = getWeatherCode(result.icon),
-                    temperature = TemperatureWrapper(
-                        temperature = result.temperatureHigh?.celsius,
-                        feelsLike = result.apparentTemperatureHigh?.celsius
-                    )
+                    temperature = if (metric) {
+                        TemperatureWrapper(
+                            temperature = result.temperatureHigh?.celsius,
+                            feelsLike = result.apparentTemperatureHigh?.celsius
+                        )
+                    } else {
+                        TemperatureWrapper(
+                            temperature = result.temperatureHigh?.fahrenheit,
+                            feelsLike = result.apparentTemperatureHigh?.fahrenheit
+                        )
+                    }
                 ),
                 night = HalfDayWrapper(
                     weatherSummary = result.summary,
                     weatherCode = getWeatherCode(result.icon),
                     // temperatureLow/High are always forward-looking
                     // See https://docs.pirateweather.net/en/latest/API/#temperaturelow
-                    temperature = TemperatureWrapper(
-                        temperature = result.temperatureLow?.celsius,
-                        feelsLike = result.apparentTemperatureLow?.celsius
-                    )
+                    temperature = if (metric) {
+                        TemperatureWrapper(
+                            temperature = result.temperatureLow?.celsius,
+                            feelsLike = result.apparentTemperatureLow?.celsius
+                        )
+                    } else {
+                        TemperatureWrapper(
+                            temperature = result.temperatureLow?.fahrenheit,
+                            feelsLike = result.apparentTemperatureLow?.fahrenheit
+                        )
+                    }
                 ),
                 uV = UV(index = result.uvIndex),
                 relativeHumidity = DailyRelativeHumidity(average = result.humidity?.fraction),
-                dewPoint = DailyDewPoint(average = result.dewPoint?.celsius),
+                dewPoint = DailyDewPoint(
+                    average = if (metric) result.dewPoint?.celsius else result.dewPoint?.fahrenheit
+                ),
                 pressure = DailyPressure(average = result.pressure?.hectopascals),
                 cloudCover = DailyCloudCover(average = result.cloudCover?.fraction),
-                visibility = DailyVisibility(average = result.visibility?.kilometers)
+                visibility = DailyVisibility(
+                    average = if (metric) result.visibility?.kilometers else result.visibility?.miles
+                )
             )
         }
     }
@@ -220,39 +265,64 @@ class PirateWeatherService @Inject constructor(
      */
     private fun getHourlyForecast(
         hourlyResult: List<PirateWeatherHourly>?,
+        metric: Boolean = true,
     ): List<HourlyWrapper>? {
         return hourlyResult?.map { result ->
             HourlyWrapper(
                 date = result.time.seconds.inWholeMilliseconds.toDate(),
                 weatherText = result.summary,
                 weatherCode = getWeatherCode(result.icon),
-                temperature = TemperatureWrapper(
-                    temperature = result.temperature?.celsius,
-                    feelsLike = result.apparentTemperature?.celsius
-                ),
+                temperature = if (metric) {
+                    TemperatureWrapper(
+                        temperature = result.temperature?.celsius,
+                        feelsLike = result.apparentTemperature?.celsius
+                    )
+                } else {
+                    TemperatureWrapper(
+                        temperature = result.temperature?.fahrenheit,
+                        feelsLike = result.apparentTemperature?.fahrenheit
+                    )
+                },
                 // see https://docs.pirateweather.net/en/latest/API/#precipaccumulation
-                precipitation = Precipitation(
-                    total = result.precipAccumulation?.centimeters,
-                    rain = result.liquidAccumulation?.centimeters,
-                    snow = result.snowAccumulation?.centimeters,
-                    ice = result.iceAccumulation?.centimeters
-                ),
+                precipitation = if (metric) {
+                    Precipitation(
+                        total = result.precipAccumulation?.centimeters,
+                        rain = result.liquidAccumulation?.centimeters,
+                        snow = result.snowAccumulation?.centimeters,
+                        ice = result.iceAccumulation?.centimeters
+                    )
+                } else {
+                    Precipitation(
+                        total = result.precipAccumulation?.inches,
+                        rain = result.liquidAccumulation?.inches,
+                        snow = result.snowAccumulation?.inches,
+                        ice = result.iceAccumulation?.inches
+                    )
+                },
                 precipitationProbability = PrecipitationProbability(
                     total = result.precipProbability?.fraction
                 ),
-                wind = Wind(
-                    degree = result.windBearing,
-                    speed = result.windSpeed?.metersPerSecond,
-                    gusts = result.windGust?.metersPerSecond
-                ),
+                wind = if (metric) {
+                    Wind(
+                        degree = result.windBearing,
+                        speed = result.windSpeed?.metersPerSecond,
+                        gusts = result.windGust?.metersPerSecond
+                    )
+                } else {
+                    Wind(
+                        degree = result.windBearing,
+                        speed = result.windSpeed?.milesPerHour,
+                        gusts = result.windGust?.milesPerHour
+                    )
+                },
                 uV = UV(
                     index = result.uvIndex
                 ),
                 relativeHumidity = result.humidity?.fraction,
-                dewPoint = result.dewPoint?.celsius,
+                dewPoint = if (metric) result.dewPoint?.celsius else result.dewPoint?.fahrenheit,
                 pressure = result.pressure?.hectopascals,
                 cloudCover = result.cloudCover?.fraction,
-                visibility = result.visibility?.kilometers
+                visibility = if (metric) result.visibility?.kilometers else result.visibility?.miles
             )
         }
     }
@@ -261,7 +331,10 @@ class PirateWeatherService @Inject constructor(
      * Returns minutely forecast
      * Copied from openweather implementation
      */
-    private fun getMinutelyForecast(minutelyResult: List<PirateWeatherMinutely>?): List<Minutely>? {
+    private fun getMinutelyForecast(
+        minutelyResult: List<PirateWeatherMinutely>?,
+        metric: Boolean = true,
+    ): List<Minutely>? {
         if (minutelyResult.isNullOrEmpty()) return null
         val minutelyList = mutableListOf<Minutely>()
         minutelyResult.forEachIndexed { i, minutelyForecast ->
@@ -273,7 +346,11 @@ class PirateWeatherService @Inject constructor(
                     } else {
                         ((minutelyForecast.time - minutelyResult[i - 1].time) / 60).toDouble().roundToInt()
                     },
-                    precipitationIntensity = minutelyForecast.precipIntensity?.millimeters
+                    precipitationIntensity = if (metric) {
+                        minutelyForecast.precipIntensity?.millimeters
+                    } else {
+                        minutelyForecast.precipIntensity?.inches
+                    }
                 )
             )
         }
