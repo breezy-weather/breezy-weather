@@ -157,9 +157,9 @@ class SmgService @Inject constructor(
         }
 
         // ALERT
-        val alerts = MutableList(SMG_ALERT_TYPES.size) {
+        val alerts = MutableList(SMG_ALERT_TYPES.size) { type ->
             if (SourceFeature.ALERT in requestedFeatures) {
-                mApi.getWarning(SMG_ALERT_TYPES[it], lang).onErrorResumeNext {
+                mApi.getWarning(SMG_ALERT_TYPES[type], lang).onErrorResumeNext {
                     failedFeatures[SourceFeature.ALERT] = it
                     Observable.just(SmgWarningResult())
                 }
@@ -259,7 +259,9 @@ class SmgService @Inject constructor(
             // This is fine because Macao has a land area of just 32.9km²,
             // which is one-third the size of the forecast grid of most other countries (c. 100km²).
             // TODO: Once we have more intel on the coordinates of the stations, we can locate the nearest one.
-            report.station?.getOrNull(0)?.takeIf { it.stationname?.getOrNull(0) == "TAIPA GRANDE" }?.let {
+            report.station?.getOrNull(0)?.takeIf {
+                it.stationname?.getOrNull(0).equals("TAIPA GRANDE", ignoreCase = true)
+            }?.let {
                 current = CurrentWrapper(
                     temperature = TemperatureWrapper(
                         temperature = it.Temperature?.getOrNull(0)?.dValue?.getOrNull(0)?.toDoubleOrNull()?.celsius
