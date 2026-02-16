@@ -1300,4 +1300,38 @@
     <string name="colon_separator" translatable="false">:\u0020</string>
     <string name="dot_separator" translatable="false">\u0020•\u0020</string>
     <string name="parenthesis" translatable="false">%1$s (%2$s)</string>
+    <string name="knmi_weather_text_light_rain_heavy_clouds" translatable="false">Light rain with heavy clouds</string>
+    <string name="knmi_weather_text_moderate_rain_heavy_clouds" translatable="false">Moderate rain with heavy clouds</string>
+    <string name="knmi_weather_text_heavy_rain_heavy_clouds" translatable="false">Heavy rain with heavy clouds</string>
+    <string name="knmi_weather_text_drizzle_heavy_clouds" translatable="false">Drizzle with heavy clouds</string>
+    <string name="knmi_weather_text_drizzle_with_sun" translatable="false">Drizzle with some sun</string>
+    <string name="knmi_weather_text_thunderstorm_moderate_rain_heavy_clouds" translatable="false">Thunderstorm with moderate rain and heavy clouds</string>
+    <string name="knmi_weather_text_thunderstorm_moderate_rain_with_sun" translatable="false">Thunderstorm with moderate rain and some sun</string>
+    <string name="knmi_weather_text_thunderstorm_heavy_rain_sun" translatable="false">Thunderstorm with heavy rain and some sun</string>
+    <string name="knmi_weather_text_thunderstorm_hail_heavy_clouds" translatable="false">Thunderstorm with hail and heavy clouds</string>
+    <string name="knmi_weather_text_sunny" translatable="false">@string/common_weather_text_clear_sky</string>
+    <string name="knmi_weather_text_heavy_clouds" translatable="false">@string/common_weather_text_cloudy</string>
+    <string name="knmi_weather_text_cloudy_with_sun" translatable="false">@string/common_weather_text_mostly_cloudy</string>
+    <string name="knmi_weather_text_light_rain_with_sun" translatable="false">@string/common_weather_text_rain_showers_light</string>
+    <string name="knmi_weather_text_moderate_rain_with_sun" translatable="false">@string/common_weather_text_rain_showers_moderate</string>
+    <string name="knmi_weather_text_heavy_rain_with_sun" translatable="false">@string/common_weather_text_rain_showers_heavy</string>
+    <string name="knmi_weather_text_thunderstorm_heavy_rain_heavy_clouds" translatable="false">Thunderstorm with heavy rain and heavy clouds</string>
+    <string name="knmi_weather_text_thunderstorm_heavy_rain_with_sun" translatable="false">Thunderstorm with heavy rain and some sun</string>
+    <string name="knmi_weather_text_thunderstorm_hail_with_sun" translatable="false">Thunderstorm with hail and some sun</string>
+    <string name="knmi_weather_text_winter_rain_thunderstorm_heavy_clouds" translatable="false">Winter rain with thunderstorm and heavy clouds</string>
+    <string name="knmi_weather_text_winter_rain_thunderstorm_with_sun" translatable="false">Winter rain with thunderstorm and some sun</string>
+    <string name="knmi_weather_text_snow_thunderstorm_heavy_clouds" translatable="false">Snow with thunderstorm and heavy clouds</string>
+    <string name="knmi_weather_text_snow_thunderstorm_with_sun" translatable="false">Snow with thunderstorm and some sun</string>
+    <string name="knmi_weather_text_light_snow_heavy_clouds" translatable="false">Light snow with heavy clouds</string>
+    <string name="knmi_weather_text_light_snow_with_sun" translatable="false">Light snow with some sun</string>
+    <string name="knmi_weather_text_moderate_snow_heavy_clouds" translatable="false">Moderate snow with heavy clouds</string>
+    <string name="knmi_weather_text_moderate_snow_with_sun" translatable="false">Moderate snow with some sun</string>
+    <string name="knmi_weather_text_heavy_snow_heavy_clouds" translatable="false">Heavy snow with heavy clouds</string>
+    <string name="knmi_weather_text_heavy_snow_with_sun" translatable="false">Heavy snow with some sun</string>
+    <string name="knmi_weather_text_wet_snow_with_sun" translatable="false">Wet snow with some sun</string>
+    <string name="knmi_weather_text_wet_snow_heavy_clouds" translatable="false">Wet snow with heavy clouds</string>
+    <string name="knmi_weather_text_hail_heavy_clouds" translatable="false">Hail with heavy clouds</string>
+    <string name="knmi_weather_text_hail_with_sun" translatable="false">Hail with some sun</string>
+    <string name="knmi_weather_text_slippery_due_to_sleet" translatable="false">Slipperiness due to sleet</string>
+    <string name="knmi_weather_text_fog" translatable="false">@string/common_weather_text_fog</string>
 </resources>
