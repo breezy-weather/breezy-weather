@@ -304,4 +304,27 @@
     <string name="precipitation_rain_total_night">Chuvia nocturna</string>
     <string name="precipitation_snow_total_day">Neve diúrna</string>
     <string name="precipitation_snow_total_night">Neve nocturna</string>
+    <string name="ephemeris_about">Sobre os horarios de saída e posta</string>
+    <string name="ephemeris_about_dusk">O luscofusco é a fase máis escura do crepúsculo antes de que desapareza a última luz visible.</string>
+    <string name="ephemeris_polar_day">Día polar</string>
+    <string name="ephemeris_polar_night">Noite polar</string>
+    <string name="clock">Reloxo</string>
+    <string name="daily_summary">Resumo diario</string>
+    <string name="chart_no_daily_data">Non hai datos dispoñibles para este día.</string>
+    <string name="chart_no_hourly_data">Non hai datos por hora dispoñibles.</string>
+    <string name="chart_not_enough_hourly_data">Non hai suficientes datos horarios dispoñibles para amosar un gráfico para este día.</string>
+    <string name="chart_average">Promedio</string>
+    <string name="chart_maximum_value">Valor máximo</string>
+    <string name="temperature_real">Actual</string>
+    <string name="temperature_real_details">A temperatura real.</string>
+    <string name="temperature_degree_day_heating">Grao día de calefacción</string>
+    <string name="temperature_degree_day_heating_explanation">Diferenza entre a temperatura exterior e unha temperatura de referencia cómoda utilizada para estimar as necesidades de enerxía de calefacción</string>
+    <string name="temperature_degree_day_cooling">Grao día de refrixeración</string>
+    <string name="temperature_degree_day_cooling_explanation">Diferenza entre a temperatura exterior e unha temperatura de referencia cómoda utilizada para estimar as necesidades de enerxía de refrixeración</string>
+    <string name="temperature_normals_deviation">Desviación</string>
+    <string name="temperature_normals_deviation_explanation_maximum">Desviación da temperatura máxima media en %s para esta localización</string>
+    <string name="temperature_normals_deviation_explanation_minimum">Desviación da temperatura mínima media en %s para esta localización</string>
+    <string name="wind_speed_about">Sobre a velocidade do vento e os refachos</string>
+    <string name="wind_speed_about_description">A velocidade do vento mídese calculando a media das velocidades do vento durante un período de tempo. As refachos son explosións súbitas de vento que normalmente duran menos de 20 segundos.</string>
+    <string name="wind_gusts_short">Refachos</string>
 </resources>
