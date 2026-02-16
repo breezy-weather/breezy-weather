@@ -14,6 +14,8 @@
  * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
  */
 
+@file:Suppress("SpellCheckingInspection")
+
 package org.breezyweather.sources.knmi
 
 import android.content.Context
@@ -209,17 +211,17 @@ class KnmiService @Inject constructor(
 
             WeatherWrapper(
                 dailyForecast = if (SourceFeature.FORECAST in requestedFeatures) {
-                    getDailyForecast(weather.daily, fourteenDayForecast.daily, weather.uvIndex)
+                    getDailyForecast(context, weather.daily, fourteenDayForecast.daily, weather.uvIndex)
                 } else {
                     null
                 },
                 hourlyForecast = if (SourceFeature.FORECAST in requestedFeatures) {
-                    getHourlyForecast(weather.hourly)
+                    getHourlyForecast(context, weather.hourly)
                 } else {
                     null
                 },
                 current = if (SourceFeature.CURRENT in requestedFeatures) {
-                    getCurrent(weatherSnapshot)
+                    getCurrent(context, weatherSnapshot)
                 } else {
                     null
                 },
@@ -303,11 +305,12 @@ class KnmiService @Inject constructor(
      * Returns current weather
      */
     private fun getCurrent(
+        context: Context,
         snapshot: KnmiWeatherSnapshot?,
     ): CurrentWrapper {
         return CurrentWrapper(
             weatherCode = getWeatherCode(snapshot?.weatherType),
-            // TODO: weatherText = getWeatherText(it.weatherType),
+            weatherText = getWeatherText(context, snapshot?.weatherType),
             temperature = TemperatureWrapper(
                 temperature = snapshot?.temperature?.celsius
             )
@@ -315,6 +318,7 @@ class KnmiService @Inject constructor(
     }
 
     private fun getDailyForecast(
+        context: Context,
         dailyWeatherForecast: KnmiDailyWeatherForecast?,
         dailyWeatherGraph: KnmiDailyWeatherGraph?,
         todayUv: KnmiUvIndex?,
@@ -343,18 +347,18 @@ class KnmiService @Inject constructor(
             } else {
                 null
             }
-            // TODO:
-            /*val weatherText = if (todayForecast?.date == date) {
-                getWeatherText(todayForecast.weatherType)
+            val weatherText = if (todayForecast?.date == date) {
+                getWeatherText(context, todayForecast.weatherType)
             } else {
                 null
-            }*/
+            }
 
             dailyList.add(
                 DailyWrapper(
                     date = date,
                     day = HalfDayWrapper(
                         weatherCode = weatherCode,
+                        weatherText = weatherText,
                         temperature = TemperatureWrapper(
                             temperature = temperatureDay
                         ),
@@ -387,13 +391,14 @@ class KnmiService @Inject constructor(
      * Returns hourly forecast
      */
     private fun getHourlyForecast(
+        context: Context,
         hourlyResult: KnmiHourlyWeatherForecast?,
     ): List<HourlyWrapper>? {
         return hourlyResult?.forecast?.map {
             HourlyWrapper(
                 date = it.dateTime ?: return null,
                 weatherCode = getWeatherCode(it.weatherType),
-                // TODO: weatherText = getWeatherText(it.weatherType),
+                weatherText = getWeatherText(context, it.weatherType),
                 temperature = TemperatureWrapper(
                     temperature = it.temperature?.celsius
                 ),
@@ -469,89 +474,88 @@ class KnmiService @Inject constructor(
             in 1401..1415 -> WeatherCode.SNOW
             in 1416..1418 -> WeatherCode.HAIL
             1419 -> WeatherCode.SLEET
-            1420 -> WeatherCode.FOG
+            in 1420..1423 -> WeatherCode.FOG
             else -> null
         }
     }
 
-    // TODO: Create a getWeatherText function for a more precise text,
-    //  matching existing common_weather_text translations
-    //  If no matching translations are found, a non-translatable string can be created (with just EN/NL translations)
-    /*private fun getWeatherCode(knmiCode: Int?): String? {
+    private fun getWeatherText(
+        context: Context,
+        knmiCode: Int?,
+    ): String? {
         // see https://gitlab.com/KNMI-OSS/KNMI-App/knmi-app-api/-/blob/9ce829305e0b3f91cfb2977b86e1727029dc35ba/app/helpers/weather.ts
         // there are some extra codes for alerts, but not needed here:
         // https://gitlab.com/KNMI-OSS/KNMI-App/knmi-app-api/-/blob/9ce829305e0b3f91cfb2977b86e1727029dc35ba/app/models/WeatherAlertsModel.ts
-        // Breezy Weather has less icons, so this is done on a best-effort basis
         return when (knmiCode) {
             // zonnig / onbewolkt - sunny/no clouds
-            1372, 1373 -> TODO()
+            1372, 1373 -> context.getString(R.string.knmi_weather_text_sunny)
             // zwaar-bewolkt - heavy clouds
-            1374 -> TODO()
+            1374 -> context.getString(R.string.knmi_weather_text_heavy_clouds)
             // opklaringen - cloudy with some sun
-            1375, 1376 -> TODO()
+            1375, 1376 -> context.getString(R.string.knmi_weather_text_cloudy_with_sun)
             // lichte-regen-zwaar-bewolkt - light rain heavy clouds
-            1377 -> TODO()
+            1377 -> context.getString(R.string.knmi_weather_text_light_rain_heavy_clouds)
             // matige-regen-zwaar-bewolkt - moderate rain heavy clouds
-            1378 -> TODO()
+            1378 -> context.getString(R.string.knmi_weather_text_moderate_rain_heavy_clouds)
             // zware-regen-zwaar-bewolkt - heavy rain heavy clouds
-            1379 -> TODO()
+            1379 -> context.getString(R.string.knmi_weather_text_heavy_rain_heavy_clouds)
             // lichte-bui-afgewisseld-door-zon - light rain with sun
-            1380, 1381 -> TODO()
+            1380, 1381 -> context.getString(R.string.knmi_weather_text_light_rain_with_sun)
             // matige-bui-afgewisseld-door-zon - moderate rain with sun
-            1382, 1383 -> TODO()
+            1382, 1383 -> context.getString(R.string.knmi_weather_text_moderate_rain_with_sun)
             // zware-bui-afgewisseld-door-zon - heavy rain with sun
-            1384, 1385 -> TODO()
+            1384, 1385 -> context.getString(R.string.knmi_weather_text_heavy_rain_with_sun)
             // motregen-zwaar-bewolkt - drizzle with heavy clouds
-            1386 -> TODO()
+            1386 -> context.getString(R.string.knmi_weather_text_drizzle_heavy_clouds)
             // motregen-afgewisseld-door-opklaringen - drizzle with some sun
-            1387, 1388 -> TODO()
+            1387, 1388 -> context.getString(R.string.knmi_weather_text_drizzle_with_sun)
             // onweer-matige-regen-zwaar-bewolkt - thunderstorm moderate rain heavy clouds
-            1389 -> TODO()
+            1389 -> context.getString(R.string.knmi_weather_text_thunderstorm_moderate_rain_heavy_clouds)
             // onweer-zware-regen-zwaar-bewolkt - thunderstorm with heavy rain and heavy clouds
-            1390 -> TODO()
-            // onweer-matige-regen-afgewisseld-door- - thunderstorm moderate rain with sun (last word is a guess)
-            1391, 1392 -> TODO()
+            1390 -> context.getString(R.string.knmi_weather_text_thunderstorm_heavy_rain_heavy_clouds)
+            // onweer-matige-regen-afgewisseld-door- - thunderstorm moderate rain with sun
+            1391, 1392 -> context.getString(R.string.knmi_weather_text_thunderstorm_moderate_rain_with_sun)
             // onweer-zware-regen-afgewisseld-door-zon - thunderstorm heavy rain with sun
-            1393, 1394 -> TODO()
+            1393, 1394 -> context.getString(R.string.knmi_weather_text_thunderstorm_heavy_rain_with_sun)
             // onweer-hagel-zwaar-bewolkt - thunderstorm with hail and heavy clouds
-            1395 -> TODO()
+            1395 -> context.getString(R.string.knmi_weather_text_thunderstorm_hail_heavy_clouds)
             // onweer-hagel-afgewisseld-door-zon - thunderstorm and hail with sun
-            1396, 1397 -> TODO()
+            1396, 1397 -> context.getString(R.string.knmi_weather_text_thunderstorm_hail_with_sun)
             // winterse-buien-onweer-zwaar-bewolkt - winter rain and thunderstorms with heavy clouds
-            1398 -> TODO()
-            // winterse-buien-onweer-afgewisseld-doo - winter rain and thunderstorm with sun (last word is a guess)
-            1399, 1400 -> TODO()
-            // sneeuwbui-met-onweer-zwaar-bewolkt - snow with thunder and heavy rain
-            1401 -> TODO()
+            1398 -> context.getString(R.string.knmi_weather_text_winter_rain_thunderstorm_heavy_clouds)
+            // winterse-buien-onweer-afgewisseld-doo - winter rain and thunderstorm with sun
+            1399, 1400 -> context.getString(R.string.knmi_weather_text_winter_rain_thunderstorm_with_sun)
+            // sneeuwbui-met-onweer-zwaar-bewolkt - snow with thunder and heavy clouds
+            1401 -> context.getString(R.string.knmi_weather_text_snow_thunderstorm_heavy_clouds)
             // sneeuwbui-met-onweer-afgewisseld-door - snow with thunder and sun
-            1402, 1403 -> TODO()
+            1402, 1403 -> context.getString(R.string.knmi_weather_text_snow_thunderstorm_with_sun)
             // lichte-sneeuwbui-zwaar-bewolkt - light snow heavy clouds
-            1404 -> TODO()
+            1404 -> context.getString(R.string.knmi_weather_text_light_snow_heavy_clouds)
             // lichte-sneeuwbui-afgewisseld-door-zon - light snow with sun
-            1405, 1406 -> TODO()
+            1405, 1406 -> context.getString(R.string.knmi_weather_text_light_snow_with_sun)
             // matige-sneeuwbui-zwaar-bewolkt - moderate snow heavy clouds
-            1407 -> WeatherCode.SNOW
+            1407 -> context.getString(R.string.knmi_weather_text_moderate_snow_heavy_clouds)
             // matige-sneeuwbui-afgewisseld-door-zon - moderate snow with sun
-            1408, 1409 -> TODO()
+            1408, 1409 -> context.getString(R.string.knmi_weather_text_moderate_snow_with_sun)
             // zware-sneeuwbui-zwaar-bewolkt - heavy snow heavy clouds
-            1410 -> TODO()
-            // zware-sneeuwbui-afgewisseld-door-zon - heavy snows with sun
-            1411, 1412 -> TODO()
+            1410 -> context.getString(R.string.knmi_weather_text_heavy_snow_heavy_clouds)
+            // zware-sneeuwbui-afgewisseld-door-zon - heavy snow with sun
+            1411, 1412 -> context.getString(R.string.knmi_weather_text_heavy_snow_with_sun)
             // natte-sneeuwbui-zwaar-bewolkt - wet snow heavy clouds
-            1413 -> TODO()
+            1413 -> context.getString(R.string.knmi_weather_text_wet_snow_heavy_clouds)
             // natte-sneeuwbui-afgewisseld-door-zon - wet snow with sun
-            1414, 1415 -> TODO()
+            1414, 1415 -> context.getString(R.string.knmi_weather_text_wet_snow_with_sun)
             // hagelbui-zwaar-bewolkt - hail with heavy clouds
-            1416 -> TODO()
+            1416 -> context.getString(R.string.knmi_weather_text_hail_heavy_clouds)
             // hagelbui-afgewisseld-door-zon - hail with sun
-            1417, 1418 -> TODO()
+            1417, 1418 -> context.getString(R.string.knmi_weather_text_hail_with_sun)
             // gladheid-door-ijzel - slipperiness due to sleet
-            1419 -> TODO()
+            1419 -> context.getString(R.string.knmi_weather_text_slippery_due_to_sleet)
             // mist - fog
-            1420 -> TODO()
+            in 1420..1423 -> context.getString(R.string.knmi_weather_text_fog)
             else -> null
         }
-    }*/
+    }
 
     private fun getNormals(
         weatherDetail: KnmiWeatherDetail?,
