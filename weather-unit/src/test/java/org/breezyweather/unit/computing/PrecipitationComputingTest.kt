@@ -33,42 +33,36 @@ class PrecipitationComputingTest {
             rain = 20.0.millimeters,
             snow = 1.0.centimeters,
             ice = null
-        ) shouldBe
-            30.0.millimeters
+        ) shouldBe 30.0.millimeters
         computeTotalPrecipitation(
             temperature = 0.0.celsius,
             rain = null,
             snow = 3.0.centimeters,
             ice = null
-        ) shouldBe
-            10.0.millimeters
+        ) shouldBe 10.0.millimeters
         computeTotalPrecipitation(
             temperature = 0.0.celsius,
             rain = null,
             snow = null,
             ice = 2.0.centimeters
-        ) shouldBe
-            18.4.millimeters
+        ) shouldBe 18.4.millimeters
         computeTotalPrecipitation(
             temperature = 0.0.celsius,
             rain = 50.0.millimeters,
             snow = 6.0.centimeters,
             ice = 1.0.centimeters
-        ) shouldBe
-            79.2.millimeters
+        ) shouldBe 79.2.millimeters
         computeTotalPrecipitation(
             temperature = (-1.0).celsius,
             rain = null,
             snow = 5.0.centimeters,
             ice = null
-        ) shouldBe
-            10.0.millimeters
+        ) shouldBe 10.0.millimeters
         computeTotalPrecipitation(
             temperature = (-6.0).celsius,
             rain = null,
             snow = 4.5.centimeters,
             ice = null
-        ) shouldBe
-            5.0.millimeters
+        ) shouldBe 5.0.millimeters
     }
 }

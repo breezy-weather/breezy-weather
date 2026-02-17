@@ -9,6 +9,7 @@
 **Sources**
 - FMI - Added as a new forecast, current, air quality, alert, normals source for Finland (@chunshek). Users on devices with hardened memory allocator (`hardened_malloc`) enabled, such as GrapheneOS may want to disable the feature for the app if they find the refresh to be too slow.
 - Infoplaza - Added as a new worldwide forecast, current, minutely and normals source (@SKBotNL)
+- Météo-France/OpenWeather - Improve total precipitation computing (@chunshek)
 
 
 # Version 6.1.3 (2026-02-12)

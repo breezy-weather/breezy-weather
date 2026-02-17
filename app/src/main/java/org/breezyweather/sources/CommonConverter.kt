@@ -85,13 +85,13 @@ import kotlin.time.Duration.Companion.nanoseconds
 
 /*
  * /!\ WARNING /!\
- * It took me a lot of time to write these functions.
- * I would appreciate you don’t steal my work into a proprietary software.
- * LPGLv3 allows you to reuse my code but you have to respect its terms, basically
+ * It took us a lot of time to write these functions.
+ * I would appreciate you don’t steal our work into a proprietary software.
+ * LPGLv3 allows you to reuse our code but you have to respect its terms, basically
  * crediting the work of Breezy Weather along with giving a copy of its license.
  * If you already use a GPL license, you’re done. However, if you are using a
  * proprietary-friendly open source license such as MIT or Apache, you will have to
- * make an exception for the file you’re using my functions in.
+ * make an exception for the file you’re using our functions in.
  * For example, you will distribute your app under the MIT license with LPGLv3 exception
  * for file X. Basically, your app can become proprietary, however this file will have to
  * always stay free and open source if you add any modification to it.
@@ -262,8 +262,7 @@ internal fun computeMissingHourlyData(
                 computedHumidex = computeHumidex(temp, dewPoint)
             ),
             precipitation = Precipitation(
-                total =
-                precipitation?.total
+                total = precipitation?.total
                     ?: computeTotalPrecipitation(
                         temp,
                         precipitation?.rain,
