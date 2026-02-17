@@ -1,18 +1,19 @@
+
 import breezy.buildlogic.AndroidConfig
-import breezy.buildlogic.configureAndroid
+import breezy.buildlogic.configureAndroidApplication
 import breezy.buildlogic.configureTest
+import com.android.build.api.dsl.ApplicationExtension
 
 plugins {
     id("com.android.application")
-    kotlin("android")
 
     id("breezy.code.lint")
 }
 
-android {
+configure<ApplicationExtension> {
     defaultConfig {
         targetSdk = AndroidConfig.TARGET_SDK
     }
-    configureAndroid(this)
+    configureAndroidApplication()
     configureTest()
 }

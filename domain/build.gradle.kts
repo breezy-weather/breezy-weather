@@ -1,10 +1,11 @@
+import com.android.build.api.dsl.LibraryExtension
+
 plugins {
     id("breezy.library")
-    kotlin("android")
     kotlin("plugin.serialization")
 }
 
-android {
+configure<LibraryExtension> {
     namespace = "breezyweather.domain"
 
     defaultConfig {
