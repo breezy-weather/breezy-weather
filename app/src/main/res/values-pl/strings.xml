@@ -789,4 +789,5 @@
     <string name="settings_weather_source_non_freenet">%s (usługa płatna)</string>
     <string name="action_pull_down_to_refresh">Przeciągnij w dół, aby odświeżyć</string>
     <string name="pressure_standard">Standardowe</string>
+    <string name="settings_source_api_key_invalid">Wartość nie jest w przewidywanym formacie</string>
 </resources>
