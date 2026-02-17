@@ -782,4 +782,5 @@
     <string name="settings_weather_source_non_freenet">%s (nem szabad hálózati szolgáltatás)</string>
     <string name="action_pull_down_to_refresh">Húzza lefelé a frissítéshez</string>
     <string name="pressure_standard">Szabványos</string>
+    <string name="settings_source_api_key_invalid">Az érték nem a várt formátumban van megadva</string>
 </resources>
