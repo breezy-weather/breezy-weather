@@ -810,4 +810,5 @@
     <string name="knmi_weather_text_hail_with_sun">Hagelbui afgewisseld door zon</string>
     <string name="knmi_weather_text_slippery_due_to_sleet">Gladheid door ijzel</string>
     <string name="knmi_weather_text_fog">Mist</string>
+    <string name="settings_source_api_key_invalid">De waarde is niet in de verwachte vorm</string>
 </resources>
