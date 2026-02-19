@@ -218,7 +218,7 @@
     <string name="weather_kind_hail">Grindină</string>
     <string name="common_weather_text_fog">Ceață</string>
     <string name="weather_kind_haze">Pâclă</string>
-    <string name="weather_kind_thunder">Fulgere și Tunete</string>
+    <string name="weather_kind_thunder">Tunet</string>
     <string name="weather_kind_thunderstorm">Furtună</string>
     <string name="weather_kind_wind">Vânt</string>
     <string name="settings_background_updates_summary">Rata de actualizare și depanare</string>
@@ -253,8 +253,8 @@
     <string name="about_matrix">Server Matrix</string>
     <string name="about_source_code">Codul sursă</string>
     <string name="about_contribution_WangDaYeeeeee">Dezvoltator al proiectului original Geometric Weather</string>
-    <string name="common_weather_text_mostly_clear">Parțial senin</string>
-    <string name="common_weather_text_overcast">Înnorat</string>
+    <string name="common_weather_text_mostly_clear">Predominant senin</string>
+    <string name="common_weather_text_overcast">Cer acoperit</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">Ceață givrantă</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Furtună ușoară spre moderată</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Furtună cu grindină ușoară</string>
@@ -453,8 +453,8 @@
     <string name="notification_precipitation_stopping_desc">Așteptate să se oprească la %s</string>
     <string name="about_contact">Contact</string>
     <string name="about_contribution_designer">Designer pictogramă</string>
-    <string name="common_weather_text_rain_heavy">Ploaie puternică</string>
-    <string name="common_weather_text_rain_showers">Averse de ploaie</string>
+    <string name="common_weather_text_rain_heavy">Ploaie torențială</string>
+    <string name="common_weather_text_rain_showers">Averse</string>
     <string name="common_weather_text_rain_showers_moderate">Averse moderate de ploaie</string>
     <string name="common_weather_text_rain_showers_heavy">Averse puternice de ploaie</string>
     <string name="common_weather_text_rain_snow_mixed_light">Lapoviță slabă</string>
@@ -610,7 +610,7 @@
     <string name="pollen_atriplex">Lobodă</string>
     <string name="common_weather_text_blowing_snow">Zăpadă viscolită</string>
     <string name="common_weather_text_drifting_snow">Zăpadă spulberată</string>
-    <string name="common_weather_text_glaze">Gheață</string>
+    <string name="common_weather_text_glaze">Polei</string>
     <string name="weather_source_continent_oceania">Oceania</string>
     <string name="common_weather_text_frost">Îngheț</string>
     <string name="settings_debug_notification_permission">Necesar pentru a trimite notificări referitoare la log-urile de avarie și eșuări ale actualizărilor aplicației. %s</string>
@@ -649,8 +649,8 @@
     <string name="label_description">Descriere</string>
     <string name="cloud_cover_about_description">Acoperirea de nori se referă la procentul de cer acoperit de nori în medie. Acoperirea de nori este corelată cu durata de strălucire a soarelui.</string>
     <string name="cloud_cover_about">Despre acoperirea de nori</string>
-    <string name="visibility_perfectly_clear">Perfect clar</string>
-    <string name="visibility_clear">Clar</string>
+    <string name="visibility_perfectly_clear">Perfect clară</string>
+    <string name="visibility_clear">Clară</string>
     <string name="visibility_good">Bună</string>
     <string name="visibility_moderate">Moderată</string>
     <string name="visibility_poor">Scăzută</string>
@@ -780,9 +780,9 @@
     <string name="settings_appearance_dark_mode_custom">Mod întunecat de la %1$s la %2$s</string>
     <string name="settings_regional_preference">Preferințe regionald</string>
     <string name="about_update_check_eol">Această versiune Android nu mai este suportată</string>
-    <string name="content_provider_permission_label">Citiți datele Breazy Weather</string>
-    <string name="content_provider_permission_description">obțineți datele meteo de la Breezy Weather, inclusiv coordonatele locațiilor dvs. , cum ar fi locația curentă dacă ați adăugat-o</string>
-    <string name="common_weather_text_mostly_cloudy">Predominant înnorat</string>
+    <string name="content_provider_permission_label">Citește datele Breezy Weather</string>
+    <string name="content_provider_permission_description">obțineți datele meteo de la Breezy Weather, inclusiv coordonatele locațiilor dvs., cum ar fi locația curentă dacă ați adăugat-o</string>
+    <string name="common_weather_text_mostly_cloudy">Predominant noros</string>
     <string name="message_source_non_free_network_title">Această sursă necesită versiunea Standard a aplicației</string>
     <string name="message_source_non_free_network_content">Folosiți versiunea Freenet a aplicației, care suportă doar surse găzduite pe o rețea liberă. Pentru a continua să folosiți această sursă, treceți înapoi pe versiunea Standard. Altfel, alegeți o sursă diferită.</string>
     <string name="settings_weather_source_non_freenet">%s (serviciu de rețea non-liber)</string>
