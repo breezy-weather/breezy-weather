@@ -22,6 +22,7 @@ import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.model.AirQuality
 import breezyweather.domain.weather.model.Alert
+import breezyweather.domain.weather.model.DailyRelativeHumidity
 import breezyweather.domain.weather.model.Normals
 import breezyweather.domain.weather.model.UV
 import breezyweather.domain.weather.model.Wind
@@ -44,6 +45,7 @@ import org.breezyweather.sources.smg.json.SmgAirQualityResult
 import org.breezyweather.sources.smg.json.SmgBulletinResult
 import org.breezyweather.sources.smg.json.SmgCurrentResult
 import org.breezyweather.sources.smg.json.SmgForecastResult
+import org.breezyweather.sources.smg.json.SmgOutlookResult
 import org.breezyweather.sources.smg.json.SmgUvResult
 import org.breezyweather.sources.smg.json.SmgWarningResult
 import org.breezyweather.unit.pollutant.PollutantConcentration.Companion.microgramsPerCubicMeter
@@ -103,8 +105,18 @@ class SmgService @Inject constructor(
         requestedFeatures: List<SourceFeature>,
     ): Observable<WeatherWrapper> {
         val failedFeatures = mutableMapOf<SourceFeature, Throwable>()
+        val lang = with(context.currentLocale.code) {
+            when {
+                startsWith("zh") -> "c"
+                startsWith("pt") -> "p"
+                else -> "e"
+            }
+        }
+
         val daily = if (SourceFeature.FORECAST in requestedFeatures) {
-            mApi.getDaily().onErrorResumeNext {
+            mApi.getDaily(
+                lang = lang
+            ).onErrorResumeNext {
                 failedFeatures[SourceFeature.FORECAST] = it
                 Observable.just(SmgForecastResult())
             }
@@ -129,14 +141,6 @@ class SmgService @Inject constructor(
         } else {
             Observable.just(SmgCurrentResult())
         }
-
-        val lang = with(context.currentLocale.code) {
-            when {
-                startsWith("zh") -> "c"
-                startsWith("pt") -> "p"
-                else -> "e"
-            }
-        }
         val bulletin = if (SourceFeature.CURRENT in requestedFeatures) {
             mApi.getBulletin(
                 lang = lang
@@ -146,6 +150,14 @@ class SmgService @Inject constructor(
             }
         } else {
             Observable.just(SmgBulletinResult())
+        }
+        val outlook = if (SourceFeature.CURRENT in requestedFeatures) {
+            mApi.getOutlook().onErrorResumeNext {
+                failedFeatures[SourceFeature.CURRENT] = it
+                Observable.just(SmgOutlookResult())
+            }
+        } else {
+            Observable.just(SmgOutlookResult())
         }
         val uv = if (SourceFeature.CURRENT in requestedFeatures) {
             mApi.getUVIndex().onErrorResumeNext {
@@ -200,11 +212,12 @@ class SmgService @Inject constructor(
             Observable.just(SmgAirQualityResult())
         }
 
-        return Observable.zip(current, daily, hourly, bulletin, uv, warnings, airQuality) {
+        return Observable.zip(current, daily, hourly, bulletin, outlook, uv, warnings, airQuality) {
                 currentResult: SmgCurrentResult,
                 dailyResult: SmgForecastResult,
                 hourlyResult: SmgForecastResult,
                 bulletinResult: SmgBulletinResult,
+                outlookResult: SmgOutlookResult,
                 uvResult: SmgUvResult,
                 warningsResult: List<SmgWarningResult>,
                 airQualityResult: SmgAirQualityResult,
@@ -221,7 +234,7 @@ class SmgService @Inject constructor(
                     null
                 },
                 current = if (SourceFeature.CURRENT in requestedFeatures) {
-                    getCurrent(currentResult, bulletinResult, uvResult)
+                    getCurrent(currentResult, bulletinResult, outlookResult, uvResult, context)
                 } else {
                     null
                 },
@@ -250,9 +263,20 @@ class SmgService @Inject constructor(
     private fun getCurrent(
         currentResult: SmgCurrentResult,
         bulletinResult: SmgBulletinResult,
+        outlookResult: SmgOutlookResult,
         uvResult: SmgUvResult,
+        context: Context,
     ): CurrentWrapper {
         var current = CurrentWrapper()
+        val description = outlookResult.Forecast?.Custom?.getOrNull(0)?.Report?.getOrNull(0)?.Description?.getOrNull(0)
+        val dailyForecast = with(context.currentLocale.code) {
+            when {
+                startsWith("zh") -> description?.Chinese?.getOrNull(0)
+                startsWith("pt") -> description?.Portuguese?.getOrNull(0)
+                else -> description?.English?.getOrNull(0)
+            }
+        }
+
         currentResult.Weather?.Custom?.getOrNull(0)?.WeatherReport?.forEach { report ->
             // SMG has not released the coordinates of its various monitoring stations.
             // Therefore we default to "Taipa Grande" which is SMG's office location.
@@ -279,7 +303,8 @@ class SmgService @Inject constructor(
                     dewPoint = it.DewPoint?.getOrNull(0)?.dValue?.getOrNull(0)?.toDoubleOrNull()?.celsius,
                     pressure = it.MeanSeaLevelPressure?.getOrNull(0)?.dValue?.getOrNull(0)?.toDoubleOrNull()
                         ?.hectopascals,
-                    dailyForecast = bulletinResult.Forecast?.Custom?.getOrNull(0)?.TodaySituation?.getOrNull(0)
+                    dailyForecast = dailyForecast,
+                    hourlyForecast = bulletinResult.Forecast?.Custom?.getOrNull(0)?.TodaySituation?.getOrNull(0)
                 )
             }
         }
@@ -293,11 +318,11 @@ class SmgService @Inject constructor(
         val dailyList = mutableListOf<DailyWrapper>()
         val formatter = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
         formatter.timeZone = TimeZone.getTimeZone("Asia/Macau")
-        val dateTimeFormatter = SimpleDateFormat("yyyy/MM/dd HH:mm", Locale.ENGLISH)
-        dateTimeFormatter.timeZone = TimeZone.getTimeZone("Asia/Macau")
 
         var maxTemp: Double?
         var minTemp: Double?
+        var maxRh: Double?
+        var minRh: Double?
 
         dailyResult.forecast?.Custom?.getOrNull(0)?.WeatherForecast?.forEach {
             if (it.ValidFor?.getOrNull(0) !== null) {
@@ -309,11 +334,20 @@ class SmgService @Inject constructor(
                         "2" -> minTemp = t.Value?.getOrNull(0)?.toDoubleOrNull()
                     }
                 }
+                maxRh = null
+                minRh = null
+                it.Humidity?.forEach { h ->
+                    when (h.Type?.getOrNull(0)) {
+                        "1" -> maxRh = h.Value?.getOrNull(0)?.toDoubleOrNull()
+                        "2" -> minRh = h.Value?.getOrNull(0)?.toDoubleOrNull()
+                    }
+                }
                 dailyList.add(
                     DailyWrapper(
                         date = formatter.parse(it.ValidFor[0])!!,
                         day = HalfDayWrapper(
                             weatherText = getWeatherText(context, it.dailyWeatherStatus?.getOrNull(0)),
+                            weatherSummary = it.WeatherDescription?.getOrNull(0),
                             weatherCode = getWeatherCode(it.dailyWeatherStatus?.getOrNull(0)),
                             temperature = TemperatureWrapper(
                                 temperature = maxTemp?.celsius
@@ -321,10 +355,15 @@ class SmgService @Inject constructor(
                         ),
                         night = HalfDayWrapper(
                             weatherText = getWeatherText(context, it.dailyWeatherStatus?.getOrNull(0)),
+                            weatherSummary = it.WeatherDescription?.getOrNull(0),
                             weatherCode = getWeatherCode(it.dailyWeatherStatus?.getOrNull(0)),
                             temperature = TemperatureWrapper(
                                 temperature = minTemp?.celsius
                             )
+                        ),
+                        relativeHumidity = DailyRelativeHumidity(
+                            max = maxRh?.percent,
+                            min = minRh?.percent
                         )
                     )
                 )
