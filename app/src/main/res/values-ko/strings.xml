@@ -344,9 +344,9 @@
     <string name="air_quality_o3_voice">오존</string>
     <string name="air_quality_co_voice">일산화탄소</string>
     <string name="air_quality_level_1">완벽함</string>
-    <string name="air_quality_level_1_description">공기질이 대부분의 사람들에게 적합합니다. 일상적인 야외 활동을 하기에 좋습니다.</string>
+    <string name="air_quality_level_1_description">대기질이 대부분의 사람들에게 적합합니다. 일상적인 야외 활동을 하기에 좋습니다.</string>
     <string name="air_quality_level_2">보통</string>
-    <string name="air_quality_level_2_description">공기질이 대부분의 사람들에게 대체로 적합합니다. 그러나 장시간 노출될 경우 민감군은 경미하거나 중간 수준의 관련 증상을 보일 수 있습니다.</string>
+    <string name="air_quality_level_2_description">대기질이 대부분의 사람들에게 대체로 적합합니다. 그러나 장시간 노출될 경우 민감군은 경미하거나 중간 수준의 관련 증상을 보일 수 있습니다.</string>
     <string name="air_quality_level_3">나쁨</string>
     <string name="air_quality_level_3_description">대기 오염이 심각한 상태이며 민감군에 유해합니다. 호흡 곤란이나 목 자극과 같은 증상이 발생할 경우 야외 활동 시간을 줄이시기 바랍니다.</string>
     <string name="air_quality_level_4">건강에 해로움</string>
@@ -814,4 +814,5 @@
     <string name="content_provider_permission_description">Breezy Weather로부터 날씨 정보를 받으며, 현재 위치 등 사용자가 추가한 위치들의 좌표 정보를 포함합니다</string>
     <string name="widget_custom_subtitle_alert_box_title">사용자 지정 부제목 도움말</string>
     <string name="widget_custom_subtitle_help_content_description">사용자 지정 부제목 키워드 도움말 표시</string>
+    <string name="settings_source_api_key_invalid">값이 예상치 못한 형식입니다</string>
 </resources>
