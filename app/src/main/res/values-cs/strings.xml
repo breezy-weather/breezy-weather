@@ -794,4 +794,5 @@
     <string name="settings_appearance_dark_mode_custom">Tmavý režim od %1$s do %2$s</string>
     <string name="action_pull_down_to_refresh">Tahem dolů obnovte</string>
     <string name="pressure_standard">Standardní</string>
+    <string name="settings_source_api_key_invalid">Hodnota není v očekávaném formátu</string>
 </resources>

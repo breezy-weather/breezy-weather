@@ -864,4 +864,5 @@
     <string name="settings_weather_source_non_freenet">%s （非自由网络服务）</string>
     <string name="action_pull_down_to_refresh">下拉刷新</string>
     <string name="pressure_standard">标准</string>
+    <string name="settings_source_api_key_invalid">值的格式不符预期</string>
 </resources>

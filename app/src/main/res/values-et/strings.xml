@@ -778,4 +778,5 @@
     <string name="action_change">Muuda</string>
     <string name="widget_custom_subtitle_alert_box_title">Abiteave kohandatud subtiitrite kohta</string>
     <string name="pressure_standard">Standardne</string>
+    <string name="settings_source_api_key_invalid">Väärtus pole eeldatud vormingus</string>
 </resources>
