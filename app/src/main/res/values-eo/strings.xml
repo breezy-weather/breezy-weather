@@ -555,7 +555,7 @@
     <string name="weather_message_data_refresh_failed">Malsukcesis aktualigi datenojn</string>
     <string name="weather_message_invalid_location">Nevalida loko, bonvolu forigi ĝin kaj realdoni</string>
     <string name="weather_api_limit_reached_title">Troo da API-petoj</string>
-    <string name="location_search_source">Loka serĉo fonto</string>
+    <string name="location_search_source">Fonto por serĉi lokojn</string>
     <string name="widget_custom_subtitle_keyword_xnwd_description">Nokta vento hodiaŭa, morgaŭa, …, postpostpostmorgaŭa</string>
     <string name="settings_modules_notification_temp_icon_switch">Temperaturo kiel statobreta piktogramo</string>
     <string name="notification_refreshed_at">Ĝisdatigita je</string>
