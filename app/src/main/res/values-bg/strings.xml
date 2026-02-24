@@ -778,4 +778,5 @@
     <string name="content_provider_permission_description">получавайте информация за времето от Breezy Weather, включително координатите на вашите местоположения, като например текущото ви местоположение, ако сте го добавили</string>
     <string name="common_weather_text_mostly_cloudy">Предимно облачно</string>
     <string name="pressure_standard">Стандартен</string>
+    <string name="settings_source_api_key_invalid">Стойността не е в очаквания формат</string>
 </resources>
