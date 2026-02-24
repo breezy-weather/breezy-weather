@@ -439,4 +439,20 @@
     <string name="settings_modules">Widgeti &amp; Živo ozadje</string>
     <string name="settings_debug">Odpravljanje napak</string>
     <string name="widget_label_show_widget_card_alpha">Neprosojnost</string>
+    <string name="ephemeris_sun">Sonce</string>
+    <string name="ephemeris_moon">Luna</string>
+    <string name="ephemeris_polar_day">Polarni dan</string>
+    <string name="ephemeris_polar_night">Polarna noč</string>
+    <string name="clock">Ura</string>
+    <string name="temperature_real_details">Aktualna temperatura.</string>
+    <string name="temperature_normals_deviation">Deviacija</string>
+    <string name="precipitation_total_day">Dnevne padavine</string>
+    <string name="precipitation_total_night">Nočne padavine</string>
+    <string name="wind_speed_about_description">Hitrost vetra se meri s povprečjem hitrosti vetra v določenem časovnem obdobju. Pih je nenaden sunek vetra, ki običajno traja manj kot 20 sekund.</string>
+    <string name="uv_index_about_description">UV indeks meri moč ultravijoličnega sevanja sonca. Višji kot je, večja in hitrejša je možnost za opekline, kožnega raka in poškodbe oči.</string>
+    <string name="uv_index_time_to_burn_explanations">Točen čas za opekline je odvisen od nadmorske višine, prisotnosti odbojnih površin, kot sta voda ali sneg, vašega tipa kože in uporabe zaščitne kreme za sončenje.</string>
+    <string name="air_quality_index_about_description_2">Lestvica, uporabljena v tej aplikaciji, temelji na priporočilih Svetovne zdravstvene organizacije in ne na lokalnih predpisih, da bi bile kategorije smiselne in da bi bilo lažje primerjati stopnje onesnaženosti med državami.</string>
+    <string name="air_quality_index_harmless_exposure">Nenevarna izpostavljenost</string>
+    <string name="air_quality_pollutant_primary">Glavno onesnaževalo</string>
+    <string name="air_quality_health_information">Zdravstvene informacije</string>
 </resources>
