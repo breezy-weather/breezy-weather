@@ -20,6 +20,7 @@ import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.sources.smg.json.SmgBulletinResult
 import org.breezyweather.sources.smg.json.SmgCurrentResult
 import org.breezyweather.sources.smg.json.SmgForecastResult
+import org.breezyweather.sources.smg.json.SmgOutlookResult
 import org.breezyweather.sources.smg.json.SmgUvResult
 import org.breezyweather.sources.smg.json.SmgWarningResult
 import retrofit2.http.POST
@@ -42,6 +43,11 @@ interface SmgApi {
         @Query("selection") selection: String = "forecast",
         @Query("lang") lang: String = "e",
     ): Observable<SmgBulletinResult>
+
+    @POST("weather_v2")
+    fun getOutlook(
+        @Query("selection") selection: String = "weatherForecastDesc",
+    ): Observable<SmgOutlookResult>
 
     @POST("weather_v2")
     fun getCurrent(

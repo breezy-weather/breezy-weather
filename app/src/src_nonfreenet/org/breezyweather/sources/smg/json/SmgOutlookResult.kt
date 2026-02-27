@@ -14,13 +14,12 @@
  * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package org.breezyweather.sources.hko.json
+package org.breezyweather.sources.smg.json
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class HkoOneJsonFlw(
-    val GeneralSituation: String?,
-    val OutlookContent: String?,
-    val Icon1: String?,
+data class SmgOutlookResult(
+    @SerialName("WeatherForecastDesc") val Forecast: SmgOutlookRoot? = null,
 )

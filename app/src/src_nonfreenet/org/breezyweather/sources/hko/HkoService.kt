@@ -325,6 +325,7 @@ class HkoService @Inject constructor(
         regionalWeather: HkoCurrentRegionalWeather?,
         oneJson: HkoOneJsonResult,
     ): CurrentWrapper {
+        val regex = Regex("""<[^>]*>""")
         return CurrentWrapper(
             weatherText = getWeatherText(context, oneJson.FLW?.Icon1?.toIntOrNull()),
             weatherCode = getWeatherCode(oneJson.FLW?.Icon1?.toIntOrNull()),
@@ -341,7 +342,8 @@ class HkoService @Inject constructor(
             ),
             relativeHumidity = regionalWeather?.RH?.Value?.toDoubleOrNull()?.percent,
             pressure = regionalWeather?.Pressure?.Value?.toDoubleOrNull()?.hectopascals,
-            dailyForecast = oneJson.F9D?.WeatherForecast?.getOrElse(0) { null }?.ForecastWeather
+            dailyForecast = oneJson.FLW?.OutlookContent?.replace(regex, ""),
+            hourlyForecast = oneJson.FLW?.GeneralSituation?.replace(regex, "")
         )
     }
 
@@ -401,38 +403,45 @@ class HkoService @Inject constructor(
         var daytimeWeather: Int?
         var nightTimeWeather: Int?
 
-        dailyForecast?.forEach {
-            daytimeWeather = it.ForecastDailyWeather
+        dailyForecast?.forEach { daily ->
+            daytimeWeather = daily.ForecastDailyWeather
 
             // If the grid forecast does not return forecast daily weather,
             // fall back to citywide daily forecast weather conditions,
             // which is preferable to 9 days of "partly cloudy"
             if (daytimeWeather == null) {
-                daytimeWeather = oneJsonDailyWeather.getOrElse(it.ForecastDate) { null }
+                daytimeWeather = oneJsonDailyWeather.getOrElse(daily.ForecastDate) { null }
             }
 
-            // Replace a few full day weather codes with night time equivalents for better fitting descriptions
+            // Replace a few full day weather codes with nighttime equivalents for better fitting descriptions
             nightTimeWeather = when (daytimeWeather) {
                 50 -> 70 // Replace "Sunny" with "Fine"
                 51 -> 77 // Replace "Sunny Periods" with "Mainly Fine"
                 52 -> 76 // Replace "Sunny Intervals" with "Mainly Cloudy"
                 else -> daytimeWeather
             }
+
+            val weatherSummary = oneJson.F9D?.WeatherForecast?.firstOrNull {
+                it.ForecastDate == daily.ForecastDate
+            }?.ForecastWeather
+
             dailyList.add(
                 DailyWrapper(
-                    date = formatter.parse(it.ForecastDate)!!,
+                    date = formatter.parse(daily.ForecastDate)!!,
                     day = HalfDayWrapper(
                         weatherText = getWeatherText(context, daytimeWeather),
+                        weatherSummary = weatherSummary,
                         weatherCode = getWeatherCode(daytimeWeather),
                         precipitationProbability = PrecipitationProbability(
-                            total = getPrecipitationProbability(it.ForecastChanceOfRain)
+                            total = getPrecipitationProbability(daily.ForecastChanceOfRain)
                         )
                     ),
                     night = HalfDayWrapper(
                         weatherText = getWeatherText(context, nightTimeWeather),
+                        weatherSummary = weatherSummary,
                         weatherCode = getWeatherCode(nightTimeWeather),
                         precipitationProbability = PrecipitationProbability(
-                            total = getPrecipitationProbability(it.ForecastChanceOfRain)
+                            total = getPrecipitationProbability(daily.ForecastChanceOfRain)
                         )
                     )
                 )
@@ -465,7 +474,7 @@ class HkoService @Inject constructor(
         if (hourlyWeatherForecast != null) {
             for ((i, value) in hourlyWeatherForecast.withIndex()) {
                 // For some reason, ForecastWeather in the output refers to the condition in the previous 3 hours.
-                // Therefore we must back fill 3 hours of weather with the next known weather condition.
+                // Therefore, we must backfill 3 hours of weather with the next known weather condition.
                 currentHourWeather = null
                 index = i + 1
                 while (currentHourWeather == null && index < hourlyWeatherForecast.size) {
@@ -1087,7 +1096,7 @@ class HkoService @Inject constructor(
         var column: Int? = null
 
         // Identify grid ID for Current Observation and Reverse Geolocation.
-        // Current observations are in a 18 E-W × 18-N-S configuration, numbered from 0101 to 1818.
+        // Current observations are in an 18 E-W × 18-N-S configuration, numbered from 0101 to 1818.
         // The grid spacing is uneven, hence we iterate through the lists of the grid boundaries.
         var i = 1
         while (i < HKO_CURRENT_GRID_LATITUDES.size && row == null) {
