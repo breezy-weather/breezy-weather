@@ -37,6 +37,7 @@ import java.util.Date
 @XmlSerialName("alert", "urn:oasis:names:tc:emergency:cap:1.2", "cap")
 data class CapAlert(
     val identifier: Identifier? = null,
+    val sender: Sender? = null,
     val sent: Sent? = null,
     val msgType: MsgType? = null,
     val info: List<Info>? = null,
@@ -44,6 +45,12 @@ data class CapAlert(
     @Serializable
     @XmlSerialName("identifier", "", "cap")
     data class Identifier(
+        @XmlValue(true) val value: String? = null,
+    )
+
+    @Serializable
+    @XmlSerialName("sender", "", "cap")
+    data class Sender(
         @XmlValue(true) val value: String? = null,
     )
 
