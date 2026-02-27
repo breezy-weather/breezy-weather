@@ -58,6 +58,7 @@ import org.breezyweather.domain.settings.SourceConfigStore
 import org.breezyweather.sources.pirateweather.json.PirateWeatherAlert
 import org.breezyweather.sources.pirateweather.json.PirateWeatherCurrently
 import org.breezyweather.sources.pirateweather.json.PirateWeatherDaily
+import org.breezyweather.sources.pirateweather.json.PirateWeatherDayNight
 import org.breezyweather.sources.pirateweather.json.PirateWeatherHourly
 import org.breezyweather.sources.pirateweather.json.PirateWeatherMinutely
 import org.breezyweather.unit.distance.Distance.Companion.kilometers
@@ -114,24 +115,33 @@ class PirateWeatherService @Inject constructor(
         val apiKey = getApiKeyOrDefault()
 
         // Using temperature unit setting as a proxy of whether to use metric or imperial units.
-        // This is because Pirate Weather's summary text reports temperature rather than precipitation amounts.
+        // This is because Pirate Weather's daily summary text reports temperature rather than precipitation amounts.
+        // NB: Its hourly summary text reports precipitation amounts.
         val metric = SettingsManager.getInstance(context).getTemperatureUnit(context) != TemperatureUnit.FAHRENHEIT
+
+        // Make sure user language is supported by Pirate Weather. Fall back to English otherwise.
+        var lang = context.currentLocale.code.lowercase()
+        if (lang in PIRATE_WEATHER_LANGUAGE_REPLACEMENTS.keys) lang = PIRATE_WEATHER_LANGUAGE_REPLACEMENTS[lang]!!
+        if (lang !in PIRATE_WEATHER_LANGUAGES) lang = "en"
 
         return mApi.getForecast(
             apikey = apiKey,
             lat = location.latitude,
             lon = location.longitude,
             units = if (metric) "si" else "us",
-            lang = context.currentLocale.code,
+            lang = lang,
+            include = "day_night_forecast",
             exclude = null,
-            extend = "hourly"
+            extend = "hourly",
+            icon = "pirate",
+            version = "2"
         ).map {
             WeatherWrapper(
                 /*base = Base(
                     publishDate = it.currently?.time?.seconds?.inWholeMilliseconds?.toDate() ?: Date()
                 ),*/
                 dailyForecast = if (SourceFeature.FORECAST in requestedFeatures) {
-                    getDailyForecast(it.daily?.data, metric)
+                    getDailyForecast(it.daily?.data, it.dayNight?.data, metric, context)
                 } else {
                     null
                 },
@@ -209,40 +219,104 @@ class PirateWeatherService @Inject constructor(
 
     private fun getDailyForecast(
         dailyResult: List<PirateWeatherDaily>?,
+        dayNightResult: List<PirateWeatherDayNight>?,
         metric: Boolean = true,
+        context: Context,
     ): List<DailyWrapper>? {
         return dailyResult?.map { result ->
+            val dayPart = dayNightResult?.filter { it.time > result.time }?.minByOrNull { it.time }
+            val nightPart = dayNightResult?.filter {
+                it.time > (dayPart?.time ?: Long.MAX_VALUE)
+            }?.minByOrNull { it.time }
             DailyWrapper(
                 date = result.time.seconds.inWholeMilliseconds.toDate(),
                 day = HalfDayWrapper(
-                    weatherSummary = result.summary,
-                    weatherCode = getWeatherCode(result.icon),
+                    weatherText = getWeatherText(dayPart?.icon, context),
+                    weatherSummary = dayPart?.summary,
+                    weatherCode = getWeatherCode(dayPart?.icon),
                     temperature = if (metric) {
                         TemperatureWrapper(
-                            temperature = result.temperatureHigh?.celsius,
-                            feelsLike = result.apparentTemperatureHigh?.celsius
+                            temperature = dayPart?.temperature?.celsius,
+                            feelsLike = dayPart?.apparentTemperature?.celsius
                         )
                     } else {
                         TemperatureWrapper(
-                            temperature = result.temperatureHigh?.fahrenheit,
-                            feelsLike = result.apparentTemperatureHigh?.fahrenheit
+                            temperature = dayPart?.temperature?.fahrenheit,
+                            feelsLike = dayPart?.temperature?.fahrenheit
+                        )
+                    },
+                    precipitation = if (metric) {
+                        Precipitation(
+                            rain = dayPart?.liquidAccumulation?.centimeters,
+                            snow = dayPart?.snowAccumulation?.centimeters,
+                            ice = dayPart?.iceAccumulation?.centimeters
+                        )
+                    } else {
+                        Precipitation(
+                            rain = dayPart?.liquidAccumulation?.inches,
+                            snow = dayPart?.snowAccumulation?.inches,
+                            ice = dayPart?.iceAccumulation?.inches
+                        )
+                    },
+                    precipitationProbability = PrecipitationProbability(
+                        total = dayPart?.precipProbability?.fraction
+                    ),
+                    wind = if (metric) {
+                        Wind(
+                            degree = dayPart?.windBearing,
+                            speed = dayPart?.windSpeed?.metersPerSecond,
+                            gusts = dayPart?.windGust?.metersPerSecond
+                        )
+                    } else {
+                        Wind(
+                            degree = dayPart?.windBearing,
+                            speed = dayPart?.windSpeed?.milesPerHour,
+                            gusts = dayPart?.windSpeed?.milesPerHour
                         )
                     }
                 ),
                 night = HalfDayWrapper(
-                    weatherSummary = result.summary,
-                    weatherCode = getWeatherCode(result.icon),
-                    // temperatureLow/High are always forward-looking
-                    // See https://docs.pirateweather.net/en/latest/API/#temperaturelow
+                    weatherText = getWeatherText(nightPart?.icon, context),
+                    weatherSummary = nightPart?.summary,
+                    weatherCode = getWeatherCode(nightPart?.icon),
                     temperature = if (metric) {
                         TemperatureWrapper(
-                            temperature = result.temperatureLow?.celsius,
-                            feelsLike = result.apparentTemperatureLow?.celsius
+                            temperature = nightPart?.temperature?.celsius,
+                            feelsLike = nightPart?.apparentTemperature?.celsius
                         )
                     } else {
                         TemperatureWrapper(
-                            temperature = result.temperatureLow?.fahrenheit,
-                            feelsLike = result.apparentTemperatureLow?.fahrenheit
+                            temperature = nightPart?.temperature?.fahrenheit,
+                            feelsLike = nightPart?.temperature?.fahrenheit
+                        )
+                    },
+                    precipitation = if (metric) {
+                        Precipitation(
+                            rain = nightPart?.liquidAccumulation?.centimeters,
+                            snow = nightPart?.snowAccumulation?.centimeters,
+                            ice = nightPart?.iceAccumulation?.centimeters
+                        )
+                    } else {
+                        Precipitation(
+                            rain = nightPart?.liquidAccumulation?.inches,
+                            snow = nightPart?.snowAccumulation?.inches,
+                            ice = nightPart?.iceAccumulation?.inches
+                        )
+                    },
+                    precipitationProbability = PrecipitationProbability(
+                        total = nightPart?.precipProbability?.fraction
+                    ),
+                    wind = if (metric) {
+                        Wind(
+                            degree = nightPart?.windBearing,
+                            speed = nightPart?.windSpeed?.metersPerSecond,
+                            gusts = nightPart?.windGust?.metersPerSecond
+                        )
+                    } else {
+                        Wind(
+                            degree = nightPart?.windBearing,
+                            speed = nightPart?.windSpeed?.milesPerHour,
+                            gusts = nightPart?.windSpeed?.milesPerHour
                         )
                     }
                 ),
@@ -286,14 +360,12 @@ class PirateWeatherService @Inject constructor(
                 // see https://docs.pirateweather.net/en/latest/API/#precipaccumulation
                 precipitation = if (metric) {
                     Precipitation(
-                        total = result.precipAccumulation?.centimeters,
                         rain = result.liquidAccumulation?.centimeters,
                         snow = result.snowAccumulation?.centimeters,
                         ice = result.iceAccumulation?.centimeters
                     )
                 } else {
                     Precipitation(
-                        total = result.precipAccumulation?.inches,
                         rain = result.liquidAccumulation?.inches,
                         snow = result.snowAccumulation?.inches,
                         ice = result.iceAccumulation?.inches
@@ -384,17 +456,75 @@ class PirateWeatherService @Inject constructor(
         }
     }
 
+    private fun getWeatherText(icon: String?, context: Context): String? {
+        return when (icon) {
+            "clear-day" -> context.getString(R.string.common_weather_text_clear_sky)
+            "clear-night" -> context.getString(R.string.common_weather_text_clear_sky)
+            "thunderstorm" -> context.getString(R.string.weather_kind_thunderstorm)
+            "rain" -> context.getString(R.string.common_weather_text_rain)
+            "snow" -> context.getString(R.string.common_weather_text_snow)
+            "sleet" -> context.getString(R.string.common_weather_text_rain_snow_mixed)
+            "wind" -> context.getString(R.string.weather_kind_wind)
+            "fog" -> context.getString(R.string.common_weather_text_fog)
+            "cloudy" -> context.getString(R.string.common_weather_text_cloudy)
+            "partly-cloudy-day" -> context.getString(R.string.common_weather_text_partly_cloudy)
+            "partly-cloudy-night" -> context.getString(R.string.common_weather_text_partly_cloudy)
+            "hail" -> context.getString(R.string.weather_kind_hail)
+            "mostly-clear-day" -> context.getString(R.string.common_weather_text_mostly_clear)
+            "mostly-clear-night" -> context.getString(R.string.common_weather_text_mostly_clear)
+            "mostly-cloudy-day" -> context.getString(R.string.common_weather_text_mostly_cloudy)
+            "mostly-cloudy-night" -> context.getString(R.string.common_weather_text_mostly_cloudy)
+            // PW translations for below: "Possible rain/snow/sleet/precipitation/thunderstorm"
+            "possible-rain-day" -> context.getString(R.string.common_weather_text_rain)
+            "possible-rain-night" -> context.getString(R.string.common_weather_text_rain)
+            "possible-snow-day" -> context.getString(R.string.common_weather_text_snow)
+            "possible-snow-night" -> context.getString(R.string.common_weather_text_snow)
+            "possible-sleet-day" -> context.getString(R.string.common_weather_text_rain_snow_mixed)
+            "possible-sleet-night" -> context.getString(R.string.common_weather_text_rain_snow_mixed)
+            "possible-precipitation-day" -> context.getString(R.string.precipitation)
+            "possible-precipitation-night" -> context.getString(R.string.precipitation)
+            "possible-thunderstorm-day" -> context.getString(R.string.weather_kind_thunderstorm)
+            "possible-thunderstorm-night" -> context.getString(R.string.weather_kind_thunderstorm)
+            "precipitation" -> context.getString(R.string.precipitation)
+            "drizzle" -> context.getString(R.string.common_weather_text_drizzle)
+            "light-rain" -> context.getString(R.string.common_weather_text_rain_light)
+            "heavy-rain" -> context.getString(R.string.common_weather_text_rain_heavy)
+            "flurries" -> context.getString(R.string.common_weather_text_snow_light) // PW translation: "Flurries"
+            "light-snow" -> context.getString(R.string.common_weather_text_snow_light)
+            "heavy-snow" -> context.getString(R.string.common_weather_text_snow_heavy)
+            "very-slight-sleet" -> context.getString(R.string.common_weather_text_rain_snow_mixed_light)
+            "light-sleet" -> context.getString(R.string.common_weather_text_rain_snow_mixed_light)
+            "heavy-sleet" -> context.getString(R.string.common_weather_text_rain_snow_mixed_heavy)
+            "breezy" -> context.getString(R.string.weather_kind_wind) // PW translation: "Breezy"
+            "dangerous-wind" -> context.getString(R.string.weather_kind_wind) // PW translation: "Dangerously windy"
+            "mist" -> context.getString(R.string.common_weather_text_mist)
+            "haze" -> context.getString(R.string.weather_kind_haze)
+            "smoke" -> context.getString(R.string.common_weather_text_smoke)
+            "mixed" -> context.getString(R.string.common_weather_text_rain_snow_mixed)
+            else -> null
+        }
+    }
+
     private fun getWeatherCode(icon: String?): WeatherCode? {
         return when (icon) {
-            "rain" -> WeatherCode.RAIN
-            "sleet" -> WeatherCode.SLEET
-            "snow" -> WeatherCode.SNOW
-            "fog" -> WeatherCode.FOG
-            "wind" -> WeatherCode.WIND
-            "clear-day", "clear-night" -> WeatherCode.CLEAR
+            "precipitation", "possible-precipitation-day", "possible-precipitation-night",
+            "rain", "possible-rain-day", "possible-rain-night",
+            "drizzle", "light-rain", "heavy-rain",
+            -> WeatherCode.RAIN
+            "sleet", "possible-sleet-day", "possible-sleet-night", "mixed",
+            "very-light-sleet", "light-sleet", "heavy-sleet",
+            -> WeatherCode.SLEET
+            "snow", "possible-snow-day", "possible-snow-night",
+            "flurries", "light-snow", "heavy-snow",
+            -> WeatherCode.SNOW
+            "hail" -> WeatherCode.HAIL
+            "fog", "mist" -> WeatherCode.FOG
+            "haze", "smoke" -> WeatherCode.HAZE
+            "wind", "breezy", "dangerous-wind" -> WeatherCode.WIND
+            "clear-day", "clear-night", "mostly-clear-day", "mostly-clear-night" -> WeatherCode.CLEAR
             "partly-cloudy-day", "partly-cloudy-night" -> WeatherCode.PARTLY_CLOUDY
-            "cloudy" -> WeatherCode.CLOUDY
-            "thunderstorm" -> WeatherCode.THUNDERSTORM
+            "cloudy", "mostly-cloudy-day", "mostly-cloudy-night" -> WeatherCode.CLOUDY
+            "thunderstorm", "possible-thunderstorm-day", "possible-thunderstorm-night" -> WeatherCode.THUNDERSTORM
             else -> null
         }
     }
@@ -482,5 +612,28 @@ class PirateWeatherService @Inject constructor(
     companion object {
         private const val PIRATE_WEATHER_BASE_URL = "https://api.pirateweather.net/"
         private const val PIRATE_WEATHER_DEV_BASE_URL = "https://dev.pirateweather.net/"
+        private val PIRATE_WEATHER_LANGUAGES = arrayOf(
+            "en", "ar", "az", "be", "bg", "bn", "bs", "ca", "cs", "cy", "da", "de", "el", "eo", "es", "et", "fa", "fi",
+            "fr", "ga", "gd", "he", "hi", "hr", "hu", "id", "is", "it", "ja", "ka", "kn", "ko", "kw", "lv", "ml", "mr",
+            "nl", "no", "pa", "pl", "pt", "ro", "ru", "sk", "sl", "sr", "sv", "ta", "te", "tet", "tr", "uk", "ur", "vi",
+            "zh", "zh-tw"
+        )
+        private val PIRATE_WEATHER_LANGUAGE_REPLACEMENTS = mapOf(
+            "en-au" to "en",
+            "en-ca" to "en",
+            "en-gb" to "en",
+            "en-us" to "en",
+            "in" to "id",
+            "iw" to "he",
+            "nb" to "no",
+            "nb-no" to "no",
+            "pt-br" to "pt",
+            "sl-si" to "sl",
+            "zh-cn" to "zh",
+            "zh-hk" to "zh-tw",
+            "zh-mo" to "zh-tw",
+            "zh-my" to "zh",
+            "zh-sg" to "zh"
+        )
     }
 }

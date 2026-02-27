@@ -16,15 +16,23 @@
 
 package org.breezyweather.sources.pirateweather.json
 
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class PirateWeatherForecastResult(
-    val currently: PirateWeatherCurrently?,
-    val minutely: PirateWeatherForecast<PirateWeatherMinutely>?,
-    val hourly: PirateWeatherForecast<PirateWeatherHourly>?,
-    @SerialName("day_night") val dayNight: PirateWeatherForecast<PirateWeatherDayNight>?,
-    val daily: PirateWeatherForecast<PirateWeatherDaily>?,
-    val alerts: List<PirateWeatherAlert>?,
+data class PirateWeatherDayNight(
+    val time: Long,
+    val summary: String?,
+    val icon: String?,
+
+    val precipProbability: Double?,
+    val liquidAccumulation: Double?,
+    val snowAccumulation: Double?,
+    val iceAccumulation: Double?,
+
+    val temperature: Double?,
+    val apparentTemperature: Double?,
+
+    val windSpeed: Double?,
+    val windGust: Double?,
+    val windBearing: Double?,
 )
