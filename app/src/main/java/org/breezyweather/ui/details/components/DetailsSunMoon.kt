@@ -46,8 +46,8 @@ import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Astro
 import breezyweather.domain.weather.model.Daily
 import breezyweather.domain.weather.model.MoonPhase
-import com.patrykandpatrick.vico.core.cartesian.data.CartesianChartModelProducer
-import com.patrykandpatrick.vico.core.cartesian.data.lineSeries
+import com.patrykandpatrick.vico.compose.cartesian.data.CartesianChartModelProducer
+import com.patrykandpatrick.vico.compose.cartesian.data.lineSeries
 import kotlinx.collections.immutable.ImmutableMap
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toImmutableMap
@@ -63,7 +63,7 @@ import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.common.extensions.toDate
 import org.breezyweather.common.extensions.toTimezoneSpecificHour
 import org.breezyweather.domain.weather.model.getDescription
-import org.breezyweather.ui.common.charts.EphemerisChart
+import org.breezyweather.ui.common.charts.compose.EphemerisChart
 import org.breezyweather.ui.common.widgets.Material3ExpressiveCardListItem
 import org.breezyweather.ui.common.widgets.astro.MoonPhaseView
 import org.breezyweather.ui.common.widgets.defaultCardListItemElevation
