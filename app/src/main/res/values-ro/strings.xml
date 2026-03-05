@@ -788,4 +788,5 @@
     <string name="settings_weather_source_non_freenet">%s (serviciu de rețea non-liber)</string>
     <string name="action_pull_down_to_refresh">Trageți în jos pentru a reîmprospăta</string>
     <string name="pressure_standard">Standard</string>
+    <string name="settings_source_api_key_invalid">Cheia nu este validă</string>
 </resources>
