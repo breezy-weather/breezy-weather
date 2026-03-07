@@ -776,4 +776,5 @@
     <string name="settings_weather_source_non_freenet">%s (seirbhís líonra neamh-saor in aisce)</string>
     <string name="action_pull_down_to_refresh">Tarraing síos chun athnuachan</string>
     <string name="pressure_standard">Caighdeánach</string>
+    <string name="settings_source_api_key_invalid">Níl an luach san fhormáid a bhfuiltear ag súil léi</string>
 </resources>
