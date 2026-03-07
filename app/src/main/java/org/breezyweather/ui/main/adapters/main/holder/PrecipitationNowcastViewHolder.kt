@@ -23,31 +23,32 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.toArgb
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Precipitation
-import com.patrykandpatrick.vico.compose.common.fill
-import com.patrykandpatrick.vico.core.cartesian.CartesianChart
-import com.patrykandpatrick.vico.core.cartesian.CartesianDrawingContext
-import com.patrykandpatrick.vico.core.cartesian.axis.HorizontalAxis
-import com.patrykandpatrick.vico.core.cartesian.data.CartesianChartModelProducer
-import com.patrykandpatrick.vico.core.cartesian.data.CartesianLayerRangeProvider
-import com.patrykandpatrick.vico.core.cartesian.data.CartesianValueFormatter
-import com.patrykandpatrick.vico.core.cartesian.data.columnSeries
-import com.patrykandpatrick.vico.core.cartesian.decoration.HorizontalLine
-import com.patrykandpatrick.vico.core.cartesian.layer.ColumnCartesianLayer
-import com.patrykandpatrick.vico.core.cartesian.marker.CartesianMarker
-import com.patrykandpatrick.vico.core.cartesian.marker.DefaultCartesianMarker
-import com.patrykandpatrick.vico.core.common.Fill
-import com.patrykandpatrick.vico.core.common.Insets
-import com.patrykandpatrick.vico.core.common.Position
-import com.patrykandpatrick.vico.core.common.component.LineComponent
-import com.patrykandpatrick.vico.core.common.component.Shadow
-import com.patrykandpatrick.vico.core.common.component.ShapeComponent
-import com.patrykandpatrick.vico.core.common.component.TextComponent
-import com.patrykandpatrick.vico.core.common.shape.CorneredShape
+import com.patrykandpatrick.vico.views.cartesian.CartesianChart
 import com.patrykandpatrick.vico.views.cartesian.CartesianChartView
+import com.patrykandpatrick.vico.views.cartesian.CartesianDrawingContext
+import com.patrykandpatrick.vico.views.cartesian.axis.HorizontalAxis
+import com.patrykandpatrick.vico.views.cartesian.data.CartesianChartModelProducer
+import com.patrykandpatrick.vico.views.cartesian.data.CartesianLayerRangeProvider
+import com.patrykandpatrick.vico.views.cartesian.data.CartesianValueFormatter
+import com.patrykandpatrick.vico.views.cartesian.data.columnSeries
+import com.patrykandpatrick.vico.views.cartesian.decoration.HorizontalLine
+import com.patrykandpatrick.vico.views.cartesian.layer.ColumnCartesianLayer
+import com.patrykandpatrick.vico.views.cartesian.marker.CartesianMarker
+import com.patrykandpatrick.vico.views.cartesian.marker.CartesianMarkerController
+import com.patrykandpatrick.vico.views.cartesian.marker.DefaultCartesianMarker
+import com.patrykandpatrick.vico.views.common.Fill
+import com.patrykandpatrick.vico.views.common.Insets
+import com.patrykandpatrick.vico.views.common.Position
+import com.patrykandpatrick.vico.views.common.component.LineComponent
+import com.patrykandpatrick.vico.views.common.component.Shadow
+import com.patrykandpatrick.vico.views.common.component.ShapeComponent
+import com.patrykandpatrick.vico.views.common.component.TextComponent
+import com.patrykandpatrick.vico.views.common.shape.CorneredShape
 import kotlinx.collections.immutable.ImmutableMap
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toImmutableMap
@@ -65,7 +66,7 @@ import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.domain.weather.model.getContentDescription
 import org.breezyweather.domain.weather.model.getMinutelyDescription
 import org.breezyweather.domain.weather.model.getMinutelyTitle
-import org.breezyweather.ui.common.charts.SpecificHorizontalAxisItemPlacer
+import org.breezyweather.ui.common.charts.views.SpecificHorizontalAxisItemPlacer
 import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
 import org.breezyweather.ui.theme.weatherView.WeatherView
@@ -207,13 +208,13 @@ class PrecipitationNowcastViewHolder(parent: ViewGroup) : AbstractMainCardViewHo
                 rangeProvider = cartesianLayerRangeProvider
             ),
             bottomAxis = HorizontalAxis.bottom(
-                line = LineComponent(fill = fill(lineColor)),
+                line = LineComponent(fill = Fill(lineColor.toArgb())),
                 label = TextComponent(
                     color = labelColor,
                     padding = Insets(4f, 2f)
                 ),
                 valueFormatter = timeValueFormatter,
-                tick = LineComponent(fill = fill(lineColor)),
+                tick = LineComponent(fill = Fill(lineColor.toArgb())),
                 guideline = null,
                 itemPlacer = SpecificHorizontalAxisItemPlacer(
                     timeWithTicks,
@@ -226,7 +227,7 @@ class PrecipitationNowcastViewHolder(parent: ViewGroup) : AbstractMainCardViewHo
                     HorizontalLine(
                         y = { line.key.millimeters.inMicrometers },
                         verticalLabelPosition = Position.Vertical.Bottom,
-                        line = LineComponent(fill = fill(lineColor)),
+                        line = LineComponent(fill = Fill(lineColor.toArgb())),
                         labelComponent = TextComponent(color = labelColor),
                         label = { line.value }
                     )
@@ -234,9 +235,9 @@ class PrecipitationNowcastViewHolder(parent: ViewGroup) : AbstractMainCardViewHo
             } else {
                 emptyList()
             },
-            marker = marker
+            marker = marker,
+            markerController = CartesianMarkerController.showOnPress(consumeMoveEvents = true)
         )
-        chartView.consumeMoveEvents = true
         chartView.animateIn = SettingsManager.getInstance(context).isElementsAnimationEnabled
         chartView.modelProducer = modelProducer
         chartView.contentDescription = minutelyList.getContentDescription(context, location)
