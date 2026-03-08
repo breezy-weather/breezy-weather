@@ -613,4 +613,18 @@
     <string name="common_weather_text_dust">Støv</string>
     <string name="common_weather_text_frost">Frost</string>
     <string name="conditions">Vejrforhold</string>
+    <string name="ephemeris_about_rise">Opgangstiden er, når solen eller månen fuldt ud viser sig over horisonten.</string>
+    <string name="ephemeris_about_set">Nedgangstiden er, når solen eller månen helt forsvunder under horisonten.</string>
+    <string name="ephemeris_about_dawn">Demring er, når dagens første synlige lys viser sig før solopgang.</string>
+    <string name="ephemeris_about_dusk">Skumring er den mørkeste fase af tusmørke, før det sidste synlige lys forsvinder.</string>
+    <string name="ephemeris_polar_day">Midnatsol</string>
+    <string name="ephemeris_polar_night">Polarnat</string>
+    <string name="clock">Ur</string>
+    <string name="daily_summary">Daglig oversigt</string>
+    <string name="chart_no_daily_data">Ingen data tilgængelige for denne dag.</string>
+    <string name="chart_no_hourly_data">Ingen time-data tilgængelige.</string>
+    <string name="chart_not_enough_hourly_data">Der er ikke nok time-data til at vise en graf for denne dag.</string>
+    <string name="chart_average">Gennemsnit</string>
+    <string name="chart_maximum_value">Største værdi</string>
+    <string name="temperature_real">Faktisk</string>
 </resources>
