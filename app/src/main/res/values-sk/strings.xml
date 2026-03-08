@@ -776,4 +776,5 @@
     <string name="label_expanded">Rozbalené</string>
     <string name="label_collapsed">Zbalené</string>
     <string name="settings_source_api_key_invalid">Hodnota nie je v očakávanom formáte</string>
+    <string name="ephemeris_dusk_at">Zotmenie o %s</string>
 </resources>
