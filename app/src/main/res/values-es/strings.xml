@@ -815,4 +815,5 @@
     <string name="settings_weather_source_non_freenet">%s (servicio de red no libre)</string>
     <string name="pressure_standard">Estándar</string>
     <string name="settings_source_api_key_invalid">El valor no está en el formato esperado</string>
+    <string name="message_please_wait_refresh">Espera a que finalice la actualización</string>
 </resources>
