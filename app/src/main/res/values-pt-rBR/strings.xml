@@ -841,4 +841,6 @@
     <string name="settings_weather_source_non_freenet">%s (serviço de rede não livre)</string>
     <string name="action_pull_down_to_refresh">Puxe para baixo para recarregar</string>
     <string name="pressure_standard">Normal</string>
+    <string name="message_please_wait_refresh">Aguarde para concluir o recarregamento</string>
+    <string name="settings_source_api_key_invalid">O valor não está no formato esperado</string>
 </resources>
