@@ -795,4 +795,5 @@
     <string name="action_pull_down_to_refresh">Tahem dolů obnovte</string>
     <string name="pressure_standard">Standardní</string>
     <string name="settings_source_api_key_invalid">Hodnota není v očekávaném formátu</string>
+    <string name="message_please_wait_refresh">Počkejte prosím na dokončení obnovení</string>
 </resources>
