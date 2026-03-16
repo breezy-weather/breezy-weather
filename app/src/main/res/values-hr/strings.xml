@@ -778,4 +778,6 @@
     <string name="settings_appearance_dark_mode_locations_dark">Uvijek tamno kada je aplikacija u tamnom modusu</string>
     <string name="settings_regional_preference">Regionalne preferencije</string>
     <string name="pressure_standard">Standardni</string>
+    <string name="message_please_wait_refresh">Pričekajte da se osvježavanje završi</string>
+    <string name="settings_source_api_key_invalid">Vrijednost nije u očekivanom formatu</string>
 </resources>
