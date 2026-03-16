@@ -865,4 +865,5 @@
     <string name="action_pull_down_to_refresh">下拉刷新</string>
     <string name="pressure_standard">标准</string>
     <string name="settings_source_api_key_invalid">值的格式不符预期</string>
+    <string name="message_please_wait_refresh">请等待刷新完成</string>
 </resources>
