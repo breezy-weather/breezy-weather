@@ -68,7 +68,7 @@
     <string name="pollen">Аллергены</string>
     <string name="ephemeris">Восход и закат</string>
     <string name="action_next">Далее</string>
-    <string name="action_done">ОК</string>
+    <string name="action_done">Готово</string>
     <string name="settings_enabled">Вкл</string>
     <string name="settings_disabled">Выкл</string>
     <string name="action_set">Установить</string>
@@ -386,7 +386,7 @@
     <string name="settings_location_access_switch_title">Доступ к местоположению</string>
     <string name="settings_location_access_switch_summaryOff">Пожалуйста, разрешите, если вы хотите иметь возможность добавить ваше текущее местоположение в качестве местоположения.</string>
     <string name="settings_location_access_precise_summaryOff">Включите «Использовать точное местоположение», если у вас возникли проблемы с определением местоположения.</string>
-    <string name="settings_modules_notification_feels_like_switch">Использовать темперутуру “по ощущениям”</string>
+    <string name="settings_modules_notification_feels_like_switch">Использовать температуру “по ощущениям”</string>
     <string name="about_matrix">Комната Matrix</string>
     <string name="about_source_code">Исходный код</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Гроза со слабым градом</string>
@@ -785,4 +785,6 @@
     <string name="settings_weather_source_non_freenet">%s (не свободный сетевой сервис)</string>
     <string name="action_pull_down_to_refresh">Потяните вниз, чтобы обновить</string>
     <string name="pressure_standard">Стандарт</string>
+    <string name="message_please_wait_refresh">Пожалуйста, дождитесь завершения обновления</string>
+    <string name="settings_source_api_key_invalid">Значение не соответствует ожидаемому формату</string>
 </resources>
