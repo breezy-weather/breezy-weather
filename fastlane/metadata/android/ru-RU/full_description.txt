@@ -1,47 +1,47 @@
-Breezy Weather (англ. Свежая погода) — это многофункциональное, свободное и бесплатное приложение с Material 3 Expressive (выразительная тема Google Material 3), продуманной визуализацией, поддерживающее прогноз погоды, погодные условия в на сейчас, ближний прогноз текущей погоды, качество воздуха, пыльцу, оповещения из более чем 50ти источников погоды, таких как Open-Meteo.
+Breezy Weather — это мощное и бесплатное погодное приложение с открытым исходным кодом в стиле Material 3. Наглядные графики, прогнозы, текущая погода, данные об осадках на ближайший час, качестве воздуха и пыльце. Приложение берет данные из более чем 50 источников, включая NWS, Met Office UK, Met Éireann, ECCC и Open-Meteo.
 
-<b>Возможности</b>
+<b>Особенности</b>
 
-- Дневной и почасовой прогноз до 16 дней
-- Осадки в ближайший час
-- Текущие погодные условия
-- Информация о качестве воздуха, аллергенах и эфемеридах небесных тел
-- Оповещения об опасных погодных условиях и осадках
-- Возможность делиться данными с другими приложениями (например, GadgetBridge)
-- Упор на доступность для программ чтения с экрана и других мест
+• Детальные прогнозы на день и по часам до 16 дней
+• Осадки в течение ближайшего часа
+• Текущая погода в реальном времени
+• Данные о качестве воздуха, аллергенах и положении солнца/луны
+• Уведомления о непогоде и дождях
+• Возможность делиться данными с другими приложениями (например, Gadgetbridge)
+• Полная поддержка экранных дикторов и разных языков
 
 <b>Дизайн</b>
 
-- Material 3 Expressive
-- Подробные 24х-часовые графики
-- Автоматический тёмный режим
-- Наборы пользовательских значков
-- Большой выбор виджетов
-- Живые обои
+• Стиль Material 3 Expressive
+• Подробные графики на 24 часа
+• Автоматическая темная тема
+• Поддержка наборов иконок
+• Огромный выбор виджетов
+• Живые обои с погодой
 
-<b>Источники погоды</b>
+<b>Источники</b>
 
-- Во всех видах: Open-Meteo, ANAM-BF, Bright Sky (DWD), DCCMS, DMN, DWR, EMI, FOSS Public Alert Server, GMet, IGEBU, INM, KNMI, Mali-Météo, Météo Benin, Météo Tchad, Météo Togo, Mettelsat, MSD, Pirate Weather, Recosanté, SMA (Seychelles), SMA (Sudan), SSMS
-- Несвободные (не включены в версии с суфиксом _freenet): AccuWeather, AEMET, Atmo Auvergne-Rhône-Alpes, Atmo France, ATMO GrandEst, Atmo Hauts-de-France, AtmoSud, Baidu IP location, BMD, BMKG, CWA, DMI, ECCC, EKUK, EPD (Hong Kong), GeoNames, GeoSphere AT, HERE, HKO, Ilmateenistus, IMD, IMS, IP.SB, IPMA, LHMT, LVĢMC, JMA, MET Éireann, MET Norway, Met Office UK, Meteo AM, Météo-France, MeteoLux, MGM, смешанные китайские источники, NAMEM, NCDR, NCEI, NLSC, NWS, OpenWeather, PAGASA, SMG, Veðurstofa Íslands, ВМО неблагоприятных погодных условий
+• В основной версии: Open-Meteo, ANAM-BF, Bright Sky (DWD), DCCMS, DMN, DWR, EMI, FOSS Public Alert Server, GMet, IGEBU, INM, KNMI, Mali-Météo, Météo Benin, Météo Tchad, Météo Togo, Mettelsat, MSD, Pirate Weather, Recosanté, SMA (Seychelles), SMA (Sudan), SSMS.
+• Платные/закрытые (отсутствуют в версии _freenet): AccuWeather, AEMET, Atmo France, Baidu, DMI, ECCC, GeoNames, HERE, HKO, IMD, JMA, Met Office UK, Météo-France, NWS, OpenWeather, WMO и другие.
 
 <b>Разрешения</b>
 
-Требуемые:
+Обязательные:
 
-- Доступ в сеть (ACCESS_NETWORK_STATE, ACCESS_WIFI_STATE, INTERNET): чтобы получать данные о погоде из источников через Интернет
+• Сеть: доступ в интернет для загрузки данных о погоде.
 
-Необязательные:
+Дополнительные:
 
-- Фоновые сервисы (RECEIVE_BOOT_COMPLETED, WAKE_LOCK, SET_ALARM, FOREGROUND_SERVICE, FOREGROUND_SERVICE_DATA_SYNC, FOREGROUND_SERVICE_SPECIAL_USE): обновления погоды в фоновом режиме и запланированные уведомления о прогнозе погоды
-- Отключить оптимизацию батареи (REQUEST_IGNORE_BATTERY_OPTIMIZATIONS): помогает предотвратить закрытие приложения на некоторых устройствах
-- Отправлять оповещения (POST_NOTIFICATIONS): оповещения, осадки, прогноз на сегодня/завтра, виджет уведомлений, ход обновления фоновых обновлений и т. д.
-- Местоположение (ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION, ACCESS_BACKGROUND_LOCATION): чтобы показать погоду в вашем текущем местоположении
-- Storage (READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE): помогает установить живые обои и виджеты погоды на некоторых устройствах
-- Панель быстрого доступа (EXPAND_STATUS_BAR): разрешить запуск приложения из быстрых настроек
-- Выбор языка (READ_APP_SPECIFIC_LOCALES): позволяет сохранить определенный язык для приложения и прочитать значение после перезагрузки на некоторых устройствах
+• Фоновые службы: чтобы погода обновлялась сама и приходили уведомления.
+• Экономия заряда: чтобы система не «прибивала» приложение и виджеты не висли.
+• Уведомления: для оповещений о дожде и сводок прогноза.
+• Местоположение: чтобы автоматически показывать погоду там, где вы находитесь.
+• Память: нужна для работы живых обоев и некоторых виджетов.
+• Панель настроек: для быстрого запуска приложения из шторки.
+• Язык приложения: чтобы выбранный язык не сбрасывался после перезагрузки.
 
 <b>Лицензия</b>
 
-- GNU Lesser General Public License v3.0
-- This License does not grant any rights in the trademarks, service marks, or logos of any Contributor.
-- Misrepresentation of the origin of that material is prohibited, and modified versions of such material must be marked in reasonable ways as different from the original version.
+• GNU Lesser General Public License v3.0
+• Лицензия не дает прав на использование чужих торговых марок или логотипов.
+• Нельзя выдавать этот код за свой; в модифицированных версиях должно быть четко указано, что это измененный вариант.
