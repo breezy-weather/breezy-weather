@@ -777,4 +777,5 @@
     <string name="action_pull_down_to_refresh">Потягніть униз, щоб оновити</string>
     <string name="pressure_standard">Стандартний</string>
     <string name="settings_source_api_key_invalid">Значення не відповідає очікуваному формату</string>
+    <string name="message_please_wait_refresh">Просимо зачекати до завершення оновлення</string>
 </resources>
