@@ -427,7 +427,7 @@
     <string name="settings_location_access_precise_summaryOff">Ak máte problémy so získavaním polohy, povoľte “Použiť presnú polohu”.</string>
     <string name="widget_custom_subtitle_keyword_xdp_description">Zrážky cez deň dnes, zajtra, …, 4 dni neskôr (%)</string>
     <string name="settings_source_instance_invalid">Musí byť https URL ukončená znakom /</string>
-    <string name="settings_source_instance_geocoding">API pre Geocoding server</string>
+    <string name="settings_source_instance_geocoding">Geokódovacia inštancia</string>
     <string name="widget_material_you_current">Material You – Aktuálny</string>
     <string name="widget_label_hide_subtitle">Skryť popisok</string>
     <string name="widget_multi_city">Viac miest</string>
@@ -545,7 +545,7 @@
     <string name="common_weather_text_dust_storm">Prachová búrka</string>
     <string name="common_weather_text_dust">Prach</string>
     <string name="notification_precipitation_stopping">Zrážky čoskoro skončia</string>
-    <string name="settings_weather_source_open_meteo_instance_air_quality">API pre kvalitu ovzdušia</string>
+    <string name="settings_weather_source_open_meteo_instance_air_quality">Inštancia pre kvalitu ovzdušia</string>
     <string name="common_weather_text_mist">Dymno</string>
     <string name="temperature_degree_day_cooling">Chladiaci dennostupeň</string>
     <string name="dialog_app_update_check_title">Udržovať aktuálne</string>
@@ -560,7 +560,7 @@
     <string name="weather_source_continent_south_america">Južná Amerika</string>
     <string name="widget_clock_day_week">Hodiny + denná + týždenná</string>
     <string name="about_check_for_app_updates">Skontrolovať aktualizácie</string>
-    <string name="settings_weather_source_open_meteo_instance_forecast">API pre predpoveď</string>
+    <string name="settings_weather_source_open_meteo_instance_forecast">Inštancia pre predpoveď</string>
     <string name="action_show">Zobraziť</string>
     <string name="widget_custom_subtitle_keyword_ws_description">Týždeň (krátky tvar)</string>
     <string name="settings_location_access_precise_summaryOn">Zapnuté. Prednostne sa použije sieť mobilného operátora, ale GPS sa použije ako záloha.</string>
