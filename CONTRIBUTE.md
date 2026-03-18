@@ -55,6 +55,21 @@ Examples of weather sources that don’t fit:
 Note that some national sources don’t have endpoints by coordinates, or reverse geocoding (find nearest city/station), so we can’t support them.
 
 
+## Visual architecture overview
+
+If you are new to the project, you can find visual architecture diagrams in [`docs/visual-doc/`](docs/visual-doc/) to help you understand the codebase faster:
+
+| Diagram | Description |
+|---------|-------------|
+| [App logic overview](docs/visual-doc/app-logic-overview.png) | Main app flow from launch through weather data fetching, processing, and display |
+| [Module dependencies](docs/visual-doc/app-module-dependencies.png) | Project module structure: weather sources, services, UI layer, domain logic, widgets, and external libraries |
+| [Navigation routing](docs/visual-doc/app-navigation-routing.png) | User-facing navigation flow including permission handling, location discovery, and view rendering |
+| [State decision flow](docs/visual-doc/app-state-decision-flow.png) | Internal state management and decision-making logic |
+| [UI to database](docs/visual-doc/app-ui-to-db.png) | Data flow from the UI layer through repositories to external weather APIs |
+
+You can also connect this repository (locally or via GitHub) to [ArchToCode](https://archtocode.com) to interactively explore the architecture and visualize the project logic, which can help you contribute faster.
+
+
 ## Git setup for pull requests
 
 ### Init

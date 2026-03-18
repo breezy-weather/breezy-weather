@@ -147,6 +147,7 @@ alt="Get it on F-Droid" align="center" height="80" /></a>
 Pull requests are welcome. You can have a look at [issues opened to contributions](https://github.com/breezy-weather/breezy-weather/issues?q=is%3Aissue+is%3Aopen+label%3A%22Open+to+contributions%22). For other changes, please open an issue first to discuss what you would like to change.
 
 * [Contribution guide (includes a guide to create a new weather source)](CONTRIBUTE.md)
+* [Visual architecture diagrams for new contributors](docs/visual-doc/) — quickly understand the project structure and data flow
 
 ## Features currently being worked on by a contributor
 
