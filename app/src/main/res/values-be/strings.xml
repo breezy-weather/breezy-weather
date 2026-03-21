@@ -776,4 +776,6 @@
     <string name="content_provider_permission_label">Чытаць даныя Breezy Weather</string>
     <string name="content_provider_permission_description">атрымліваць інфармацыю пра надвор’е ад Breezy Weather, у тым ліку каардынаты месцазнаходжанняў, уключаючы ваша бягучае месцазнаходжанне, калі яно дададзена</string>
     <string name="pressure_standard">Стандартны</string>
+    <string name="message_please_wait_refresh">Калі ласка, пачакайце, пакуль аднаўленне не будзе завершана</string>
+    <string name="settings_source_api_key_invalid">Значэнне не адпавядае чаканаму фармату</string>
 </resources>
