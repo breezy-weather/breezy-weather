@@ -784,4 +784,5 @@
     <string name="common_weather_text_mostly_cloudy">Çoğunlukla bulutlu</string>
     <string name="pressure_standard">Standart</string>
     <string name="settings_source_api_key_invalid">Değer beklenen biçimde değil</string>
+    <string name="message_please_wait_refresh">Lütfen yenileme işleminin tamamlanmasını bekleyin</string>
 </resources>
