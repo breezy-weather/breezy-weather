@@ -101,7 +101,7 @@
     <string name="precipitation_thunderstorm">Onweersbui</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Onweersbui met zware hagel</string>
     <string name="common_weather_text_rain_snow_mixed_showers_heavy">Zware regen- en sneeuwbuien</string>
-    <string name="temperature_degree_day_heating">Verhitting dag</string>
+    <string name="temperature_degree_day_heating">Opwarming (dag)</string>
     <string name="temperature_degree_day_cooling">Koeldag</string>
     <string name="precipitation_snow">Sneeuw</string>
     <string name="precipitation_ice">IJzel</string>
