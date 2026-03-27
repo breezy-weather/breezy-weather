@@ -126,8 +126,6 @@ Below, you can find details about the support and implementation status for feat
 | 📊 **Normals**                 | Not available                                                       |
 | 🧭 **Address lookup**          | Not available                                                       |
 
-For the United States, [Forecast Advisor](https://www.forecastadvisor.com/) has temperature and precipitation 1-3 days accuracy comparison by city between the following sources: [AccuWeather](#accuweather), [NWS](#national-weather-service), **Open-Meteo** and [Pirate Weather](#pirate-weather).
-
 <details><summary><h4>Details of available data from Open-Meteo</h4></summary>
 
 | Data                      | Available | Data              | Available |
@@ -170,8 +168,6 @@ For the United States, [Forecast Advisor](https://www.forecastadvisor.com/) has 
 | ⚠️ **Alerts**                  | Available                                                                                             |
 | 📊 **Normals**                 | Available                                                                                             |
 | 🧭 **Address lookup**          | Available                                                                                             |
-
-For the United States, [Forecast Advisor](https://www.forecastadvisor.com/) has temperature and precipitation 1-3 days accuracy comparison by city between the following sources: **AccuWeather**, [NWS](#national-weather-service), [Open-Meteo](#open-meteo) and [Pirate Weather](#pirate-weather).
 
 <details><summary><h4>Details of available data from AccuWeather</h4></summary>
 
@@ -234,8 +230,6 @@ For the United States, [Forecast Advisor](https://www.forecastadvisor.com/) has 
 | ⚠️ **Alerts**                  | Available                                                           |
 | 📊 **Normals**                 | Not available                                                       |
 | 🧭 **Address lookup**          | Not available                                                       |
-
-For the United States, [Forecast Advisor](https://www.forecastadvisor.com/) has temperature and precipitation 1-3 days accuracy comparison by city between the following sources: [AccuWeather](#accuweather), [NWS](#national-weather-service), [Open-Meteo](#open-meteo) and **Pirate Weather**.
 
 <details><summary><h4>Details of available data from Pirate Weather</h4></summary>
 
@@ -1094,8 +1088,6 @@ This source aggregates data from Beijing Meteorological Service, ColorfulClouds 
 | ⚠️ **Alerts**                  | Available                                                                                                |
 | 📊 **Normals**                 | Not available: Users can add [NCEI](#national-centers-for-environmental-information) instead             |
 | 🧭 **Address lookup**          | Available                                                                                                |
-
-For the United States, [Forecast Advisor](https://www.forecastadvisor.com/) has temperature and precipitation 1-3 days accuracy comparison by city between the following sources: [AccuWeather](#accuweather), **NWS**, [Open-Meteo](#open-meteo) and [Pirate Weather](#pirate-weather).
 
 <details><summary><h4>Details of available data from NWS</h4></summary>
 
