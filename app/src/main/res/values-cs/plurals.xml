@@ -1,3 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <plurals name="notification_update_error">
+        <item quantity="one">%1$d aktualizace selhala</item>
+        <item quantity="few">%1$d aktualizace selhaly</item>
+        <item quantity="many">%1$d aktualizací selhalo</item>
+        <item quantity="other">%1$d aktualizací selhalo</item>
+    </plurals>
 </resources>
