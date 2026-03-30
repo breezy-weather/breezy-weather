@@ -862,4 +862,5 @@
     <string name="pressure_standard">標準</string>
     <string name="settings_source_api_key_invalid">值不符合預期的格式</string>
     <string name="message_please_wait_refresh">請等待重新整理完成</string>
+    <string name="settings_main_background_title">天氣為基的背景</string>
 </resources>
