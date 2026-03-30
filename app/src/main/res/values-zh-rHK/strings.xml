@@ -853,4 +853,5 @@
     <string name="pressure_standard">標準</string>
     <string name="settings_source_api_key_invalid">格式不符</string>
     <string name="message_please_wait_refresh">請等待更新完成</string>
+    <string name="settings_main_background_title">天氣為本的背景</string>
 </resources>
