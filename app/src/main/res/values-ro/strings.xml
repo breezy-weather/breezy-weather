@@ -146,7 +146,7 @@
     <string name="location_message_added">Locație adăugată</string>
     <string name="location_message_deleted">Locație ștearsă</string>
     <string name="location_message_list_cannot_be_empty">Lista locațiilor nu poate fi goală</string>
-    <string name="location_search_placeholder">Se caută locația…</string>
+    <string name="location_search_placeholder">Caută o localitate…</string>
     <string name="location_current_not_found_yet">Nu s-a găsit locația curentă…</string>
     <string name="settings_changes_apply_after_restart">Modificările vor avea efect după repornire</string>
     <string name="notification_running_in_background">Datele se actualizează în fundal</string>
