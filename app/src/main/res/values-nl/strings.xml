@@ -811,4 +811,5 @@
     <string name="knmi_weather_text_fog">Mist</string>
     <string name="settings_source_api_key_invalid">De waarde is niet in de verwachte vorm</string>
     <string name="message_please_wait_refresh">Wacht tot de vernieuwing is voltooid</string>
+    <string name="settings_main_background_title">Weergebaseerde achtergrond</string>
 </resources>
