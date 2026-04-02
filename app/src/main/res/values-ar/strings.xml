@@ -94,9 +94,9 @@
     <string name="widget_label_clock_font">خط الساعة</string>
     <string name="widget_live_wallpaper_weather_kind">الطقس</string>
     <string name="widget_live_wallpaper_day_night_type">الوقت</string>
-    <string name="location_message_added">تمت إضافة المنطقة بنجاح</string>
-    <string name="location_message_deleted">تمت إزالة المنطقة بنجاح</string>
-    <string name="location_message_list_cannot_be_empty">لا يمكن لقائمة المناطق أن تكون فارغة</string>
+    <string name="location_message_added">أُضيف الموقع</string>
+    <string name="location_message_deleted">حُذف الموقع</string>
+    <string name="location_message_list_cannot_be_empty">لا يمكن لقائمة المواقع أن تكون فارغة</string>
     <string name="location_search_placeholder">البحث عن موقع…</string>
     <string name="location_current_not_found_yet">لم يتم تحديد المنطقة الحالية بعد…</string>
     <string name="settings_changes_apply_after_restart">سيتم تطبيق التغييرات عند إعادة تشغيل الطبيق</string>
@@ -235,7 +235,7 @@
     <string name="air_quality_level_2">متوسطة</string>
     <string name="widget_week_style_3_days">3 أيام</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">درجة الحرارة الحالية (°)</string>
-    <string name="uv_index_8_10">مرتفع جدا</string>
+    <string name="uv_index_8_10">مرتفع جدًا</string>
     <string name="location_results_by">نتائج البحث بواسطة %s</string>
     <string name="wind_direction_SE_short">ج ش</string>
     <string name="air_quality_co_voice">أحادي أكسيد الكربون</string>
@@ -257,7 +257,7 @@
     <string name="air_quality_level_3">غير جيد</string>
     <string name="uv_index_6_7">عالية</string>
     <string name="uv_alert_level">تنبيه</string>
-    <string name="air_quality_level_1_description">جودة هواء مثالية لمعظم الأفراد ؛ استمتع بأنشطتك العادية في الهواء الطلق.</string>
+    <string name="air_quality_level_1_description">جودة هواء مثالية لمعظم الأفراد؛ استمتع بأنشطتك العادية في الهواء الطلق.</string>
     <string name="air_quality_level_4_description">يمكن أن يشعر الأشخاص الحساسون بآثار صحية على الفور. قد يواجه الأفراد الأصحاء صعوبة في التنفس وتهيج الحلق اثناء التعرض له لفترات طويلة. قلل من النشاط في الهواء الطلق.</string>
     <string name="air_quality_level_5">غير صحي للغاية</string>
     <string name="ephemeris_sunrise_at">طلوع الشمس عند %s</string>
@@ -423,10 +423,10 @@
     <string name="pollen_artemisia">عشبة النار</string>
     <string name="pollen_level_3">معتدل</string>
     <string name="pollen_level_4">عالي</string>
-    <string name="pollen_level_5">عالي جدا</string>
-    <string name="pollen_level_1">منخفض جدا</string>
+    <string name="pollen_level_5">عالي جدًا</string>
+    <string name="pollen_level_1">منخفض جدًا</string>
     <string name="pollen_olea">زيتون</string>
-    <string name="pollen_level_0">لاشيء</string>
+    <string name="pollen_level_0">لا شيء</string>
     <string name="pollen_level_2">منخفض</string>
     <string name="action_delete">حذف</string>
     <string name="weather_message_invalid_location">الموقع غير صالح، يرجى حذفه وإعادة إضافته</string>
@@ -486,7 +486,7 @@
     <string name="notification_precipitation_continuing_desc">من المتوقع أن يستمر حتى %s على الأقل</string>
     <string name="notification_precipitation_starting_desc">من المتوقع أن يبدأ عند %s</string>
     <string name="humidity_dew_point">الرطوبة / نقطة الندى</string>
-    <string name="location_message_updated">تم تحديث الموقع</string>
+    <string name="location_message_updated">حُدِّث الموقع</string>
     <string name="settings_weather_source_none">لاشيء</string>
     <string name="location_message_already_exists">تحتوي قائمة المواقع بالفعل على هذا الموقع مع مصدر التنبؤ هذا.</string>
     <string name="location_search_source">مزود خدمة البحث الجغرافي</string>
@@ -501,9 +501,9 @@
     <string name="settings_weather_sources_default_source">المصدر الافتراضي للمواقع الجديدة</string>
     <string name="settings_weather_source_unavailable">%s (غير متاح)</string>
     <string name="settings_weather_source_freenet_disclaimer">تتوفر المزيد من مصادر الطقس في الاصدرات الأخرى من التطبيق. انقر هنا لمعرفة المزيد.</string>
-    <string name="location_delete_location_dialog_title">هل تريد حذف المنطقة؟</string>
-    <string name="location_delete_location_dialog_message">أنت على وشك أن تحذف “%s” من لائحة المناطق المحفوظة.</string>
-    <string name="location_delete_location_dialog_message_no_name">أنت على وشك أن تحذف هذه المنطقة من لائحة المناطق المحفوظة.</string>
+    <string name="location_delete_location_dialog_title">أتريد حذف الموقع؟</string>
+    <string name="location_delete_location_dialog_message">أنت على وشك أن تحذف \"%s\" من لائحة المواقع المحفوظة.</string>
+    <string name="location_delete_location_dialog_message_no_name">أنت على وشك أن تحذف هذه المنطقة من لائحة المواقع المحفوظة.</string>
     <string name="widget_custom_subtitle_keyword_caqi_description">مؤشر جودة الهواء الحالي</string>
     <string name="widget_custom_subtitle_keyword_xaqi_description">مؤشر جودة الهواء لليوم، الغد، …، بعد 4 أيام</string>
     <string name="action_confirm">تأكيد</string>
@@ -591,7 +591,7 @@
     <string name="weather_source_continent_africa">أفريقيا</string>
     <string name="weather_source_continent_asia">آسيا</string>
     <string name="daily_today">اليوم</string>
-    <string name="daily_tomorrow">غداً</string>
+    <string name="daily_tomorrow">غدًا</string>
     <string name="wind_direction_N">شمال</string>
     <string name="wind_direction_NE">الشمال الشرقي</string>
     <string name="wind_direction_E">الشرق</string>
@@ -641,4 +641,11 @@
     <string name="ephemeris_about">حول أوقات الشروق والغروب</string>
     <string name="temperature_real_details">درجة الحرارة الفعلية.</string>
     <string name="clock">الساعة</string>
+    <string name="ephemeris_about_rise">وقت الشروق هو اللحظة التي تظهر فيها الشمس أو القمر بالكامل فوق الأفق.</string>
+    <string name="visibility_very_poor">ضعيفة جدًا</string>
+    <string name="visibility_poor">ضعيفة</string>
+    <string name="visibility_moderate">متوسطة</string>
+    <string name="visibility_good">جيدة</string>
+    <string name="visibility_clear">واضحة</string>
+    <string name="visibility_perfectly_clear">واضحة تمامًا</string>
 </resources>
