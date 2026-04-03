@@ -356,7 +356,7 @@
     <string name="widget_style_tile">Paan</string>
     <string name="widget_clock_font_sans_serif_light">Sans Serif Hele</string>
     <string name="widget_week_style_3_days">3 päeva</string>
-    <string name="widget_clock_font_sans_serif">Sans Serif</string>
+    <string name="widget_clock_font_sans_serif">Seriifideta kirjatüüp</string>
     <string name="settings_background_updates_battery_optimization">Lülita välja akukasutuse optimeerimine</string>
     <string name="settings_background_updates_battery_optimization_disabled">Akukasutuse optimeerimine on juba välja lülitatud.</string>
     <string name="settings_background_updates_worker_info_title">Protsessi info</string>
@@ -779,4 +779,5 @@
     <string name="pressure_standard">Standardne</string>
     <string name="settings_source_api_key_invalid">Väärtus pole eeldatud vormingus</string>
     <string name="message_please_wait_refresh">Palun oota, kuni andmete uuendamine lõppeb</string>
+    <string name="settings_main_background_title">Ilmaennustusega taust</string>
 </resources>
