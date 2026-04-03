@@ -842,4 +842,5 @@
     <string name="pressure_standard">Normal</string>
     <string name="message_please_wait_refresh">Aguarde para concluir o recarregamento</string>
     <string name="settings_source_api_key_invalid">O valor não está no formato esperado</string>
+    <string name="settings_main_background_title">Plano de fundo baseado no clima</string>
 </resources>
