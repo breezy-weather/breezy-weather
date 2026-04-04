@@ -790,4 +790,5 @@
     <string name="pressure_standard">Standard</string>
     <string name="settings_source_api_key_invalid">Der Wert hat nicht das erwartete Format</string>
     <string name="message_please_wait_refresh">Bitte warten, bis die Aktualisierung abgeschlossen ist</string>
+    <string name="settings_main_background_title">Wetterbasierter Hintergrund</string>
 </resources>
