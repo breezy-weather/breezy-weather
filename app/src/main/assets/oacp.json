@@ -1,0 +1,141 @@
+{
+  "oacpVersion": "0.3",
+  "appId": "__APPLICATION_ID__",
+  "displayName": "Breezy Weather",
+  "appDomains": ["weather", "forecast", "climate"],
+  "appKeywords": ["weather", "forecast", "temperature", "rain", "snow", "wind", "humidity", "climate", "conditions"],
+  "appAliases": ["breezy weather", "weather app", "weather", "forecast app"],
+  "capabilities": [
+    {
+      "id": "check_weather",
+      "description": "Get current weather conditions for a location from Breezy Weather.",
+      "domain": "weather",
+      "aliases": [
+        "check weather", "current weather", "weather now", "what's the weather",
+        "temperature", "is it raining", "weather conditions", "how's the weather"
+      ],
+      "examples": [
+        "what's the weather right now",
+        "check weather in New York",
+        "is it raining outside",
+        "what's the temperature",
+        "how's the weather in London",
+        "current conditions"
+      ],
+      "keywords": ["weather", "temperature", "rain", "snow", "wind", "conditions", "current", "now", "outside"],
+      "disambiguationHints": [
+        "Use this when the user asks about current or right-now weather conditions.",
+        "If no location is specified, uses the default configured location.",
+        "For future weather (tomorrow, this week), use check_forecast instead."
+      ],
+      "parameters": [
+        {
+          "name": "location",
+          "type": "string",
+          "required": false,
+          "description": "City or location name to check weather for",
+          "examples": ["New York", "London", "Tokyo", "San Francisco"],
+          "prompt": "Which location do you want weather for?"
+        }
+      ],
+      "confirmation": "never",
+      "executionMessage": "Checking current weather.",
+      "visibility": "public",
+      "completionMode": "fire_and_forget",
+      "sensitivity": "low",
+      "idempotent": true,
+      "invoke": {
+        "android": {
+          "type": "broadcast",
+          "action": "__APPLICATION_ID__.oacp.ACTION_CHECK_WEATHER"
+        }
+      }
+    },
+    {
+      "id": "check_forecast",
+      "description": "Get multi-day weather forecast for a location from Breezy Weather.",
+      "domain": "weather",
+      "aliases": [
+        "weather forecast", "forecast", "tomorrow's weather", "weekly forecast",
+        "will it rain tomorrow", "weather this week", "upcoming weather"
+      ],
+      "examples": [
+        "what's the forecast for tomorrow",
+        "weather forecast for this week",
+        "will it rain tomorrow in Seattle",
+        "5 day forecast",
+        "what's the weather going to be like this weekend"
+      ],
+      "keywords": ["forecast", "tomorrow", "week", "weekend", "upcoming", "future", "predict", "weather"],
+      "disambiguationHints": [
+        "Use this when the user asks about future weather (tomorrow, this week, etc.).",
+        "For current/right-now weather, use check_weather instead.",
+        "If no days specified, defaults to showing the full available forecast."
+      ],
+      "parameters": [
+        {
+          "name": "location",
+          "type": "string",
+          "required": false,
+          "description": "City or location name",
+          "examples": ["Seattle", "Paris", "Mumbai"],
+          "prompt": "Which location do you want the forecast for?"
+        },
+        {
+          "name": "days",
+          "type": "integer",
+          "required": false,
+          "description": "Number of forecast days (1-7)",
+          "minimum": 1,
+          "maximum": 7
+        }
+      ],
+      "confirmation": "never",
+      "executionMessage": "Checking weather forecast.",
+      "visibility": "public",
+      "completionMode": "fire_and_forget",
+      "sensitivity": "low",
+      "idempotent": true,
+      "invoke": {
+        "android": {
+          "type": "broadcast",
+          "action": "__APPLICATION_ID__.oacp.ACTION_CHECK_FORECAST"
+        }
+      }
+    },
+    {
+      "id": "open_weather",
+      "description": "Open the Breezy Weather app to view weather conditions visually.",
+      "domain": "weather",
+      "aliases": [
+        "open weather app", "show weather", "open breezy weather",
+        "launch weather", "view weather"
+      ],
+      "examples": [
+        "open the weather app",
+        "show me the weather",
+        "open Breezy Weather",
+        "launch weather app"
+      ],
+      "keywords": ["open", "show", "launch", "view", "weather", "app"],
+      "disambiguationHints": [
+        "Use this when the user wants to visually browse the weather app UI.",
+        "Prefer check_weather or check_forecast when the user wants specific data."
+      ],
+      "parameters": [],
+      "confirmation": "never",
+      "executionMessage": "Opening Breezy Weather.",
+      "visibility": "public",
+      "requiresForeground": true,
+      "completionMode": "foreground_handoff",
+      "sensitivity": "low",
+      "idempotent": true,
+      "invoke": {
+        "android": {
+          "type": "activity",
+          "action": "__APPLICATION_ID__.oacp.ACTION_OPEN_WEATHER"
+        }
+      }
+    }
+  ]
+}

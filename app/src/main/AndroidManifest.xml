@@ -128,6 +128,11 @@
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
+            <!-- OACP foreground action: open weather app -->
+            <intent-filter>
+                <action android:name="${applicationId}.oacp.ACTION_OPEN_WEATHER" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
             <intent-filter android:label="@string/action_add_as_location">
                 <data android:scheme="geo" />
 
@@ -343,6 +348,15 @@
                 android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
                 android:value="wallpaper" />
         </service>
+
+        <receiver
+            android:name=".oacp.OacpActionReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="${applicationId}.oacp.ACTION_CHECK_WEATHER" />
+                <action android:name="${applicationId}.oacp.ACTION_CHECK_FORECAST" />
+            </intent-filter>
+        </receiver>
 
         <receiver
             android:name=".background.receiver.BootReceiver"
