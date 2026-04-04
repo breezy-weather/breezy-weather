@@ -815,4 +815,5 @@
     <string name="widget_custom_subtitle_help_content_description">사용자 지정 부제목 키워드 도움말 표시</string>
     <string name="settings_source_api_key_invalid">값이 예상치 못한 형식입니다</string>
     <string name="message_please_wait_refresh">새로고침이 끝날 때까지 기다려 주세요</string>
+    <string name="settings_main_background_title">날씨 기반 배경</string>
 </resources>
