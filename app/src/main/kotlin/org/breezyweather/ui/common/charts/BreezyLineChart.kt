@@ -14,63 +14,54 @@
  * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package org.breezyweather.ui.common.charts
+package org.breezyweather.ui.common.charts.compose
 
-import android.graphics.Paint
-import android.graphics.Path
-import android.graphics.RectF
-import android.graphics.Shader
-import android.text.Layout
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.LinearGradientShader
+import androidx.compose.ui.graphics.shadow.Shadow
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.core.graphics.ColorUtils
 import breezyweather.domain.location.model.Location
 import com.patrykandpatrick.vico.compose.cartesian.CartesianChartHost
-import com.patrykandpatrick.vico.compose.cartesian.axis.auto
+import com.patrykandpatrick.vico.compose.cartesian.axis.Axis
+import com.patrykandpatrick.vico.compose.cartesian.axis.BaseAxis
+import com.patrykandpatrick.vico.compose.cartesian.axis.HorizontalAxis
+import com.patrykandpatrick.vico.compose.cartesian.axis.VerticalAxis
 import com.patrykandpatrick.vico.compose.cartesian.axis.rememberAxisGuidelineComponent
 import com.patrykandpatrick.vico.compose.cartesian.axis.rememberAxisLabelComponent
 import com.patrykandpatrick.vico.compose.cartesian.axis.rememberAxisLineComponent
 import com.patrykandpatrick.vico.compose.cartesian.axis.rememberAxisTickComponent
-import com.patrykandpatrick.vico.compose.cartesian.axis.rememberBottom
-import com.patrykandpatrick.vico.compose.cartesian.axis.rememberEnd
-import com.patrykandpatrick.vico.compose.cartesian.axis.rememberTop
-import com.patrykandpatrick.vico.compose.cartesian.layer.continuous
+import com.patrykandpatrick.vico.compose.cartesian.data.CartesianChartModelProducer
+import com.patrykandpatrick.vico.compose.cartesian.data.CartesianLayerRangeProvider
+import com.patrykandpatrick.vico.compose.cartesian.data.CartesianValueFormatter
+import com.patrykandpatrick.vico.compose.cartesian.decoration.HorizontalLine
+import com.patrykandpatrick.vico.compose.cartesian.layer.LineCartesianLayer
 import com.patrykandpatrick.vico.compose.cartesian.layer.rememberLine
 import com.patrykandpatrick.vico.compose.cartesian.layer.rememberLineCartesianLayer
+import com.patrykandpatrick.vico.compose.cartesian.marker.CartesianMarkerController
+import com.patrykandpatrick.vico.compose.cartesian.marker.CartesianMarkerVisibilityListener
+import com.patrykandpatrick.vico.compose.cartesian.marker.DefaultCartesianMarker
 import com.patrykandpatrick.vico.compose.cartesian.marker.rememberDefaultCartesianMarker
 import com.patrykandpatrick.vico.compose.cartesian.rememberCartesianChart
 import com.patrykandpatrick.vico.compose.cartesian.rememberVicoScrollState
+import com.patrykandpatrick.vico.compose.common.Fill
+import com.patrykandpatrick.vico.compose.common.Insets
+import com.patrykandpatrick.vico.compose.common.Position
+import com.patrykandpatrick.vico.compose.common.component.TextComponent
 import com.patrykandpatrick.vico.compose.common.component.rememberLineComponent
 import com.patrykandpatrick.vico.compose.common.component.rememberShapeComponent
 import com.patrykandpatrick.vico.compose.common.component.rememberTextComponent
-import com.patrykandpatrick.vico.compose.common.fill
-import com.patrykandpatrick.vico.compose.common.insets
-import com.patrykandpatrick.vico.core.cartesian.CartesianDrawingContext
-import com.patrykandpatrick.vico.core.cartesian.axis.Axis
-import com.patrykandpatrick.vico.core.cartesian.axis.BaseAxis
-import com.patrykandpatrick.vico.core.cartesian.axis.HorizontalAxis
-import com.patrykandpatrick.vico.core.cartesian.axis.VerticalAxis
-import com.patrykandpatrick.vico.core.cartesian.data.CartesianChartModelProducer
-import com.patrykandpatrick.vico.core.cartesian.data.CartesianLayerRangeProvider
-import com.patrykandpatrick.vico.core.cartesian.data.CartesianValueFormatter
-import com.patrykandpatrick.vico.core.cartesian.decoration.HorizontalLine
-import com.patrykandpatrick.vico.core.cartesian.layer.LineCartesianLayer
-import com.patrykandpatrick.vico.core.cartesian.marker.CartesianMarkerVisibilityListener
-import com.patrykandpatrick.vico.core.cartesian.marker.DefaultCartesianMarker
-import com.patrykandpatrick.vico.core.common.Fill
-import com.patrykandpatrick.vico.core.common.Position
-import com.patrykandpatrick.vico.core.common.component.Shadow
-import com.patrykandpatrick.vico.core.common.component.TextComponent
-import com.patrykandpatrick.vico.core.common.shape.CorneredShape
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.ImmutableMap
 import kotlinx.collections.immutable.persistentMapOf
@@ -87,6 +78,7 @@ import org.breezyweather.ui.theme.ThemeManager
 import java.util.Calendar
 import java.util.Date
 import kotlin.math.max
+import kotlin.math.roundToInt
 
 /**
  * A line chart with time as X-Axis and a formatted value on Y-Axis
@@ -113,7 +105,7 @@ fun BreezyLineChart(
             addExtremeLabelPadding = false
         )
     },
-    topAxisSize: BaseAxis.Size = BaseAxis.Size.auto(),
+    topAxisSize: BaseAxis.Size = BaseAxis.Size.Auto(),
     endAxisItemPlacer: VerticalAxis.ItemPlacer = remember {
         VerticalAxis.ItemPlacer.step()
     },
@@ -146,28 +138,34 @@ fun BreezyLineChart(
         label = if (markerFormatter == null) {
             // TODO: Report upstream to have a way to hide it
             rememberTextComponent(
-                color = Color.Transparent
+                style = TextStyle(
+                    color = Color.Transparent
+                )
             )
         } else {
             rememberTextComponent(
-                color = Color(context.getThemeColor(com.google.android.material.R.attr.colorOnPrimary)),
+                style = TextStyle(
+                    color = Color(context.getThemeColor(com.google.android.material.R.attr.colorOnPrimary)),
+                    textAlign = TextAlign.Center
+                ),
                 background = rememberShapeComponent(
-                    fill = Fill(context.getThemeColor(androidx.appcompat.R.attr.colorPrimary)),
-                    shape = CorneredShape.Pill,
-                    shadow = Shadow(
-                        radiusDp = LABEL_BACKGROUND_SHADOW_RADIUS_DP,
-                        yDp = LABEL_BACKGROUND_SHADOW_DY_DP
+                    fill = Fill(Color(context.getThemeColor(androidx.appcompat.R.attr.colorPrimary))),
+                    shape = RoundedCornerShape(50),
+                    shadows = listOf(
+                        Shadow(
+                            radius = LABEL_BACKGROUND_SHADOW_RADIUS_DP.dp,
+                            spread = LABEL_BACKGROUND_SHADOW_SPREAD_DP.dp
+                        )
                     )
                 ),
-                padding = insets(
+                padding = Insets(
                     dimensionResource(R.dimen.normal_margin),
                     dimensionResource(R.dimen.small_margin)
                 ),
-                textAlignment = Layout.Alignment.ALIGN_CENTER,
-                minWidth = TextComponent.MinWidth.fixed(40f)
+                minWidth = TextComponent.MinWidth.fixed(40.dp)
             )
         },
-        guideline = rememberLineComponent(fill = fill(labelColor)),
+        guideline = rememberLineComponent(fill = Fill(labelColor)),
         valueFormatter = markerFormatter ?: remember {
             DefaultCartesianMarker.ValueFormatter.default(colorCode = false)
         }
@@ -183,36 +181,62 @@ fun BreezyLineChart(
                 LineCartesianLayer.LineProvider.series(
                     colors.mapIndexed { index, colorList ->
                         LineCartesianLayer.rememberLine(
-                            fill = ScaleLineFill(colorList),
-                            areaFill = if (index == 0) ScaleAreaFill(colorList, context.isRtl) else null,
-                            stroke = LineCartesianLayer.LineStroke.continuous(LINE_THICKNESS_DP.dp)
+                            fill = LineCartesianLayer.LineFill.colorScale(
+                                if (context.isRtl) {
+                                    Axis.Position.Vertical.Start
+                                } else {
+                                    Axis.Position.Vertical.End
+                                }
+                            ) {
+                                colorList.entries.forEach {
+                                    it.value at it.key
+                                }
+                            },
+                            areaFill = if (index == 0) {
+                                LineCartesianLayer.AreaFill.colorScale(
+                                    if (context.isRtl) {
+                                        Axis.Position.Vertical.Start
+                                    } else {
+                                        Axis.Position.Vertical.End
+                                    }
+                                ) {
+                                    colorList.entries.forEach {
+                                        Color(
+                                            ColorUtils.setAlphaComponent(it.value.toArgb(), (255 * 0.5).roundToInt())
+                                        ) at it.key
+                                    }
+                                }
+                            } else {
+                                null
+                            },
+                            stroke = LineCartesianLayer.LineStroke.Continuous(LINE_THICKNESS_DP.dp)
                         )
                     }
                 ),
                 rangeProvider = cartesianLayerRangeProvider
             ),
             endAxis = VerticalAxis.rememberEnd(
-                line = rememberAxisLineComponent(fill = fill(lineColor)),
-                label = rememberAxisLabelComponent(color = labelColor),
+                line = rememberAxisLineComponent(fill = Fill(lineColor)),
+                label = rememberAxisLabelComponent(style = TextStyle(color = labelColor)),
                 valueFormatter = endAxisValueFormatter,
-                tick = rememberAxisTickComponent(fill = fill(lineColor)),
-                guideline = rememberAxisGuidelineComponent(fill = fill(lineColor)),
+                tick = rememberAxisTickComponent(fill = Fill(lineColor)),
+                guideline = rememberAxisGuidelineComponent(fill = Fill(lineColor)),
                 itemPlacer = endAxisItemPlacer
             ),
             bottomAxis = HorizontalAxis.rememberBottom(
-                line = rememberAxisLineComponent(fill = fill(lineColor)),
-                label = rememberAxisLabelComponent(color = labelColor),
+                line = rememberAxisLineComponent(fill = Fill(lineColor)),
+                label = rememberAxisLabelComponent(style = TextStyle(color = labelColor)),
                 valueFormatter = timeValueFormatter,
-                tick = rememberAxisTickComponent(fill = fill(lineColor)),
-                guideline = rememberAxisGuidelineComponent(fill = fill(lineColor)),
+                tick = rememberAxisTickComponent(fill = Fill(lineColor)),
+                guideline = rememberAxisGuidelineComponent(fill = Fill(lineColor)),
                 itemPlacer = remember {
                     TimeHorizontalAxisItemPlacer(startingDate, location.timeZone)
                 }
             ),
             topAxis = topAxisValueFormatter?.let {
                 HorizontalAxis.rememberTop(
-                    line = rememberAxisLineComponent(fill = fill(lineColor)),
-                    label = rememberAxisLabelComponent(color = labelColor),
+                    line = rememberAxisLineComponent(fill = Fill(lineColor)),
+                    label = rememberAxisLabelComponent(style = TextStyle(color = labelColor)),
                     valueFormatter = it,
                     tick = null,
                     guideline = null,
@@ -225,8 +249,8 @@ fun BreezyLineChart(
                     HorizontalLine(
                         y = { line.key },
                         verticalLabelPosition = Position.Vertical.Bottom,
-                        line = rememberLineComponent(fill = fill(lineColor)),
-                        labelComponent = rememberTextComponent(color = labelColor),
+                        line = rememberLineComponent(fill = Fill(lineColor)),
+                        labelComponent = rememberTextComponent(style = TextStyle(color = labelColor)),
                         label = { line.value }
                     )
                 }
@@ -234,97 +258,18 @@ fun BreezyLineChart(
                 emptyList()
             },
             marker = marker,
-            markerVisibilityListener = markerVisibilityListener
+            markerVisibilityListener = markerVisibilityListener,
+            markerController = CartesianMarkerController.rememberShowOnPress(consumeMoveEvents = true)
         ),
-        animateIn = SettingsManager.getInstance(context).isElementsAnimationEnabled,
         modelProducer = modelProducer,
-        scrollState = rememberVicoScrollState(scrollEnabled = false),
-        consumeMoveEvents = true,
         modifier = modifier
-            .height(max(LINE_CHART_HEIGHT_MIN_DP.toFloat(), context.windowHeightInDp.div(4)).dp)
-    )
-}
-
-/**
- * Author: Gowsky
- */
-internal data class ScaleLineFill(val colors: Map<Float, Color>) : LineCartesianLayer.LineFill {
-    private val paint = Paint(Paint.ANTI_ALIAS_FLAG)
-
-    override fun draw(
-        context: CartesianDrawingContext,
-        halfLineThickness: Float,
-        verticalAxisPosition: Axis.Position.Vertical?,
-    ) {
-        paint.shader = getShader(context, colors)
-
-        context.canvas.drawRect(
-            context.layerBounds.left,
-            context.layerBounds.top - halfLineThickness,
-            context.layerBounds.right,
-            context.layerBounds.bottom + halfLineThickness,
-            paint
-        )
-    }
-}
-
-/**
- * Author: Gowsky
- */
-internal data class ScaleAreaFill(
-    val colors: Map<Float, Color>,
-    val rtl: Boolean = false,
-) : LineCartesianLayer.AreaFill {
-    private val paint = Paint(Paint.ANTI_ALIAS_FLAG)
-    private val areaPath = Path()
-    private val areaBounds = RectF()
-
-    init {
-        paint.alpha = 128 // For semi-transparent area fill.
-    }
-
-    override fun draw(
-        context: CartesianDrawingContext,
-        linePath: Path,
-        halfLineThickness: Float,
-        verticalAxisPosition: Axis.Position.Vertical?,
-    ) {
-        linePath.computeBounds(areaBounds, false)
-
-        paint.shader = getShader(context, colors)
-
-        with(areaPath) {
-            set(linePath)
-            if (rtl) {
-                lineTo(areaBounds.left, context.layerBounds.bottom)
-                lineTo(areaBounds.right, context.layerBounds.bottom)
-            } else {
-                lineTo(areaBounds.right, context.layerBounds.bottom)
-                lineTo(areaBounds.left, context.layerBounds.bottom)
-            }
-            close()
-        }
-
-        context.canvas.drawPath(areaPath, paint)
-    }
-}
-
-/**
- * Author: Gowsky
- */
-private fun getShader(context: CartesianDrawingContext, colors: Map<Float, Color>): Shader {
-    val maxY = context.ranges.getYRange(null).maxY
-    val minY = context.ranges.getYRange(null).minY
-
-    return LinearGradientShader(
-        from = Offset(0f, context.layerBounds.top),
-        to = Offset(0f, context.layerBounds.bottom),
-        colors = colors.values.toList(),
-        colorStops = colors.keys.map { y -> 1f - ((y - minY) / (maxY - minY)).toFloat() }
+            .height(max(LINE_CHART_HEIGHT_MIN_DP.toFloat(), context.windowHeightInDp.div(4)).dp),
+        scrollState = rememberVicoScrollState(scrollEnabled = false),
+        animateIn = SettingsManager.getInstance(context).isElementsAnimationEnabled
     )
 }
 
 private const val LINE_CHART_HEIGHT_MIN_DP = 100
 private const val LINE_THICKNESS_DP = 5f
-private const val LABEL_BACKGROUND_SHADOW_RADIUS_DP = 4f
-private const val LABEL_BACKGROUND_SHADOW_DY_DP = 2f
+private const val LABEL_BACKGROUND_SHADOW_RADIUS_DP = 4
+private const val LABEL_BACKGROUND_SHADOW_SPREAD_DP = 2
