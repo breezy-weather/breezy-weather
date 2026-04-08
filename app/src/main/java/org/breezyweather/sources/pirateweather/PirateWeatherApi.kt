@@ -33,7 +33,10 @@ interface PirateWeatherApi {
         @Path("lon") lon: Double,
         @Query("units") units: String,
         @Query("lang") lang: String,
+        @Query("include") include: String?,
         @Query("exclude") exclude: String?,
         @Query("extend") extend: String?,
+        @Query("icon") icon: String?,
+        @Query("version") version: String?,
     ): Observable<PirateWeatherForecastResult>
 }
