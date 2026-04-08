@@ -30,6 +30,8 @@ import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.R
 import org.breezyweather.common.exceptions.InvalidOrIncompleteDataException
 import org.breezyweather.common.exceptions.WeatherException
+import org.breezyweather.common.extensions.code
+import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.preference.EditTextPreference
 import org.breezyweather.common.preference.Preference
 import org.breezyweather.common.source.ConfigurableSource
@@ -97,48 +99,134 @@ class FpasService @Inject constructor(
                 }
             }
         ) { alertResultList ->
-            WeatherWrapper(
-                alertList = alertResultList.filterIsInstance<CapAlert>().mapIndexedNotNull { index, capAlert ->
-                    // Filter out alert cancellations
-                    if (!capAlert.msgType?.value.equals("Cancel", ignoreCase = true)) {
-                        capAlert.getInfoForContext(context)?.let {
-                            // Filter out non-meteorological alerts, past alerts,
-                            // and alert whose polygons do not cover the requested location
-                            if (it.category?.value.equals("Met", ignoreCase = true) &&
-                                !it.urgency?.value.equals("Past", ignoreCase = true) &&
-                                it.containsPoint(LatLng(location.latitude, location.longitude))
-                            ) {
-                                val severity = when (it.severity?.value) {
-                                    "Extreme" -> AlertSeverity.EXTREME
-                                    "Severe" -> AlertSeverity.SEVERE
-                                    "Moderate" -> AlertSeverity.MODERATE
-                                    "Minor" -> AlertSeverity.MINOR
-                                    else -> AlertSeverity.UNKNOWN
-                                }
-                                val title = it.event?.value ?: it.headline?.value
-                                val start = it.onset?.value ?: it.effective?.value ?: capAlert.sent?.value
-                                Alert(
-                                    alertId = capAlert.identifier?.value
-                                        ?: alertUuids.getOrElse(index) {
-                                            Objects.hash(title, severity, start).toString()
-                                        },
-                                    startDate = start,
-                                    endDate = it.expires?.value,
-                                    headline = title,
-                                    description = it.formatAlertText(text = it.description?.value),
-                                    instruction = it.formatAlertText(text = it.instruction?.value),
-                                    source = it.senderName?.value,
-                                    severity = severity,
-                                    color = Alert.colorFromSeverity(severity)
-                                )
-                            } else {
-                                null
+
+            // SPECIAL CASE: Roshydromet alert IDs for pre-filtering.
+            val roshydrometAlerts = alertResultList.filterIsInstance<CapAlert>()
+                .filter { it.sender?.value == "web@mecom.ru" }
+                .mapNotNull { it.identifier?.value }
+
+            val alertList = alertResultList.filterIsInstance<CapAlert>().mapIndexedNotNull { index, capAlert ->
+
+                // flag for pre-filtering alerts
+                var eligible = true
+
+                // SPECIAL CASE: Roshydromet
+                // Multilingual alerts belonging to the same event has the same ID apart from the suffix.
+                // Mark alerts as ineligible based on user language preference.
+                if (capAlert.sender?.value == "web@mecom.ru") {
+                    var id = capAlert.identifier?.value ?: ""
+                    if (id.endsWith(".EN") || id.endsWith(".RU")) {
+                        val suffix = id.substring(id.length - 3)
+                        id = id.substring(0, id.length - 3)
+                        if (context.currentLocale.code.startsWith("ru", ignoreCase = true)) {
+                            if (suffix == ".EN" && roshydrometAlerts.contains("$id.RU")) {
+                                eligible = false
+                            }
+                        } else {
+                            if (suffix == ".RU" && roshydrometAlerts.contains("$id.EN")) {
+                                eligible = false
                             }
                         }
-                    } else {
-                        null
                     }
-                },
+                }
+
+                // Filter out canceled and other ineligible alerts based on pre-filtering
+                if (!capAlert.msgType?.value.equals("Cancel", ignoreCase = true) && eligible) {
+                    capAlert.getInfoForContext(context)?.let {
+                        // Filter out non-meteorological alerts, past alerts,
+                        // and alert whose polygons do not cover the requested location
+                        if (it.category?.value.equals("Met", ignoreCase = true) &&
+                            !it.urgency?.value.equals("Past", ignoreCase = true) &&
+                            it.containsPoint(LatLng(location.latitude, location.longitude))
+                        ) {
+                            val severity = when (it.severity?.value) {
+                                "Extreme" -> AlertSeverity.EXTREME
+                                "Severe" -> AlertSeverity.SEVERE
+                                "Moderate" -> AlertSeverity.MODERATE
+                                "Minor" -> AlertSeverity.MINOR
+                                else -> AlertSeverity.UNKNOWN
+                            }
+                            val title = it.event?.value ?: it.headline?.value
+                            val start = it.onset?.value ?: it.effective?.value ?: capAlert.sent?.value
+                            Alert(
+                                alertId = capAlert.identifier?.value
+                                    ?: alertUuids.getOrElse(index) {
+                                        Objects.hash(title, severity, start).toString()
+                                    },
+                                startDate = start,
+                                endDate = it.expires?.value,
+                                headline = title,
+                                description = it.formatAlertText(text = it.description?.value),
+                                instruction = it.formatAlertText(text = it.instruction?.value),
+                                source = it.senderName?.value ?: capAlert.sender?.value,
+                                severity = severity,
+                                color = Alert.colorFromSeverity(severity)
+                            )
+                        } else {
+                            null
+                        }
+                    }
+                } else {
+                    null
+                }
+            }
+
+            val excludedAlerts = mutableListOf<Pair<String, String>>()
+
+            // SPECIAL CASE: For agencies with transmit separate multilingual alerts for a single event,
+            // the following algo filters out by matching the same alert ID against source names.
+            // This works for BMKG (Indonesia) and NMC (Saudi Arabia).
+            // It may be extended to other agencies.
+
+            MULTILINGUAL_SOURCES.forEach { set ->
+                // Each `set` in MULTILINGUAL_SOURCES is a list of Kotlin maps,
+                // for an agency that transmits multilingual alerts as separate files,
+                // with a language code mapped to source name used in the alert
+
+                // This is for storing IDs of alerts transmitted in each language
+                val multiAlertIds = mutableMapOf<String, List<String>>()
+
+                // Fill up lists of IDs, one language at a time
+                set.forEach { entry ->
+                    val lang = entry.key
+                    val source = entry.value
+                    multiAlertIds[lang] = alertList
+                        .filter { it.source == source }
+                        .map { it.alertId }
+                }
+
+                // Go through all the alert languages again,
+                // and see if any (lang1) matches the user's language setting.
+                // If we've come to the last language in the set
+                // and nothing has matched up until that point,
+                // we will consider it a fallback match nonetheless.
+                var matched = false
+                set.forEach { entry1 ->
+                    val lang1 = entry1.key
+                    if (context.currentLocale.code.startsWith(lang1, ignoreCase = true) ||
+                        (!matched && lang1 == set.keys.last())
+                    ) {
+                        matched = true
+
+                        // Go through the alert ID lists of all the other languages (lang2)
+                        // along with their source names (source2).
+                        // If an ID overlaps with an ID in our matched language (lang1),
+                        // we will add the source2-ID pair into our exclusion list.
+                        set.filter { it.key != lang1 }.forEach { entry2 ->
+                            val lang2 = entry2.key
+                            val source2 = entry2.value
+                            excludedAlerts.addAll(
+                                (multiAlertIds[lang2] ?: emptyList())
+                                    .filter { multiAlertIds[lang1]?.contains(it) == true }
+                                    .map { Pair(source2, it) }
+                            )
+                        }
+                    }
+                }
+            }
+
+            WeatherWrapper(
+                alertList = alertList.filter { Pair(it.source, it.alertId) !in excludedAlerts },
                 failedFeatures = if (someAlertsFailed) {
                     mapOf(SourceFeature.ALERT to InvalidOrIncompleteDataException())
                 } else {
@@ -182,5 +270,20 @@ class FpasService @Inject constructor(
 
     companion object {
         private const val FPAS_BASE_URL = "https://alerts.kde.org/"
+
+        // Each item in this list is a map of language to source name.
+        // This is for identifying agencies that transmit separate multilingual alerts
+        // under different source names for the same event.
+        // NOTE: The fallback language should be listed last in each map.
+        private val MULTILINGUAL_SOURCES = listOf(
+            mapOf( // Indonesia: BMKG
+                "id" to "Badan Meteorologi Klimatologi dan Geofisika",
+                "en" to "Indonesia Agency for Meteorology, Climatology, and Geophysics"
+            ),
+            mapOf( // Saudi Arabia: NCM
+                "ar" to "المركز-الوطني-للأرصاد",
+                "en" to "NCM"
+            )
+        )
     }
 }
