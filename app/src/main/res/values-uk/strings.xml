@@ -284,7 +284,7 @@
     <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>
     <string name="widget_clock_font_sans_serif">Sans Serif</string>
     <string name="widget_clock_font_sans_serif_black">Sans Serif Black</string>
-    <string name="widget_clock_font_analog">Analog</string>
+    <string name="widget_clock_font_analog">Аналоговий</string>
     <string name="widget_live_wallpaper_weather_kind">Погода</string>
     <string name="widget_live_wallpaper_day_night_type">Час</string>
     <string name="settings_section_general">Основні</string>
@@ -777,4 +777,5 @@
     <string name="pressure_standard">Стандартний</string>
     <string name="settings_source_api_key_invalid">Значення не відповідає очікуваному формату</string>
     <string name="message_please_wait_refresh">Просимо зачекати до завершення оновлення</string>
+    <string name="settings_main_background_title">Фон залежно від погоди</string>
 </resources>
