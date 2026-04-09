@@ -1,3 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <plurals name="notification_update_error">
+        <item quantity="one">Не вдалося %1$d оновлення</item>
+        <item quantity="few">Не вдалося %1$d оновлення</item>
+        <item quantity="many">Не вдалося %1$d оновлень</item>
+        <item quantity="other">Не вдалося %1$d оновлень</item>
+    </plurals>
 </resources>
