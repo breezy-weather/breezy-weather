@@ -852,4 +852,7 @@
     <string name="content_provider_permission_label">Baca data Breezy Weather</string>
     <string name="content_provider_permission_description">dapatkan informasi cuaca dari Breezy Weather, termasuk koordinat lokasi Anda, seperti lokasi Anda saat ini jika Anda menambahkannya</string>
     <string name="common_weather_text_mostly_cloudy">Sebagian besar berawan</string>
+    <string name="message_please_wait_refresh">Silakan tunggu sampai penyegaran selesai</string>
+    <string name="settings_source_api_key_invalid">Nilai bukan dalam format yang diharapkan</string>
+    <string name="settings_main_background_title">Latar belakang berbasis cuaca</string>
 </resources>
