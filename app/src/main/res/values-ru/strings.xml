@@ -331,8 +331,8 @@
     <string name="widget_label_align_end">Выровнять по правому краю</string>
     <string name="widget_custom_subtitle_keyword_enter_description">Новая строка</string>
     <string name="widget_style_oreo">Oreo</string>
-    <string name="widget_clock_font_sans_serif_black">Sans Serif Black</string>
-    <string name="widget_clock_font_analog">Analog</string>
+    <string name="widget_clock_font_sans_serif_black">Шрифт Sans Serif Black</string>
+    <string name="widget_clock_font_analog">Аналоговый</string>
     <string name="common_weather_text_overcast">Пасмурно</string>
     <string name="common_weather_text_clear_sky">Ясно</string>
     <string name="alerts_to_follow">Надвигающиеся предупреждения – нажмите здесь для просмотра.</string>
@@ -352,7 +352,7 @@
     <string name="about_contributors">Участники</string>
     <string name="common_weather_text_snow_grains">Снежная крупа</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Средняя гроза</string>
-    <string name="widget_clock_font_sans_serif">Sans Serif</string>
+    <string name="widget_clock_font_sans_serif">Шрифт Sans Serif</string>
     <string name="air_quality_o3_full">Приземный озон(%s)</string>
     <string name="air_quality_no2_full">Двуокись азота (%s)</string>
     <string name="air_quality_so2_full">Диоксид серы (%s)</string>
@@ -381,7 +381,7 @@
     <string name="location_search_no_results">%1$s не может найти %2$s</string>
     <string name="settings_background_updates_refresh_title">Частота обновления</string>
     <string name="dialog_permissions_location_content">Чтобы использовать эту функцию, вам необходимо предоставить приложению разрешение на доступ к вашему текущему местоположению. Оно будет доступно только выбранным источникам данных о погоде. Если вы передумали, вы можете отменить процесс и добавить фиксированное местоположение вручную.</string>
-    <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>
+    <string name="widget_clock_font_sans_serif_light">Шрифт Sans Serif Light</string>
     <string name="settings_background_updates_refresh_never">Никогда</string>
     <string name="settings_location_access_switch_title">Доступ к местоположению</string>
     <string name="settings_location_access_switch_summaryOff">Пожалуйста, разрешите, если вы хотите иметь возможность добавить ваше текущее местоположение в качестве местоположения.</string>
@@ -786,4 +786,5 @@
     <string name="pressure_standard">Стандарт</string>
     <string name="message_please_wait_refresh">Пожалуйста, дождитесь завершения обновления</string>
     <string name="settings_source_api_key_invalid">Значение не соответствует ожидаемому формату</string>
+    <string name="settings_main_background_title">Фон, основанный на погоде</string>
 </resources>
