@@ -1,9 +1,10 @@
+import com.android.build.api.dsl.LibraryExtension
+
 plugins {
     id("breezy.library")
-    kotlin("android")
 }
 
-android {
+configure<LibraryExtension> {
     namespace = "org.breezyweather.ui.theme.weatherView"
 
     defaultConfig {
