@@ -19,7 +19,7 @@
     <string name="temperature">Tenperatura</string>
     <string name="temperature_wind_chill">Haize hotza</string>
     <string name="temperature_degree_day">Egun-gradu</string>
-    <string name="temperature_degree_day_heating">Berokuntzako egun-gradu</string>
+    <string name="temperature_degree_day_heating">Eguneko berogailu beharra</string>
     <string name="temperature_average_short">Btb</string>
     <string name="precipitation">Prezipitazioa</string>
     <string name="precipitation_probability">Prezipitazio-probabilitatea</string>
@@ -361,7 +361,7 @@
     <string name="common_weather_text_cloudy">Hodeitsu</string>
     <string name="common_weather_text_rain">Euria</string>
     <string name="about_contribution_WangDaYeeeeee">Jatorrizko proiektuaren garatzailea Geometric Weather</string>
-    <string name="common_weather_text_partly_cloudy">Partzialki hodeituta</string>
+    <string name="common_weather_text_partly_cloudy">Ostarteak</string>
     <string name="common_weather_text_rain_light">Euri arina</string>
     <string name="common_weather_text_rain_moderate">Euri ertaina</string>
     <string name="common_weather_text_rain_heavy">Euri-jasa</string>
@@ -601,4 +601,8 @@
     <string name="pressure_about">Presioari buruz</string>
     <string name="pressure_rising">Igotzen</string>
     <string name="air_quality_short">Airearen kalitatea</string>
+    <string name="nighttime_short">Gauez</string>
+    <string name="daytime_short">Egunez</string>
+    <string name="ephemeris_sun">Eguzkia</string>
+    <string name="ephemeris_moon">Ilargia</string>
 </resources>
