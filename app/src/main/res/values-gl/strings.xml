@@ -2,7 +2,7 @@
 <resources>
     <string name="hourly_forecast">Previsión horaria</string>
     <string name="precipitation_nowcasting">Precipitacións en tempo real</string>
-    <string name="pollen">Polen</string>
+    <string name="pollen">Pole</string>
     <string name="ephemeris">Sol e lúa</string>
     <string name="alert">Alerta</string>
     <string name="alerts">Alertas</string>
@@ -10,12 +10,12 @@
     <string name="temperature">Temperatura</string>
     <string name="temperature_feels_like">Síntese coma</string>
     <string name="temperature_feels_like_with_unit">Síntese coma %s</string>
-    <string name="temperature_wind_chill">Sensación térmica</string>
+    <string name="temperature_wind_chill">Sensación térmica fría por vento</string>
     <string name="precipitation_duration">Duración das precipitacións</string>
-    <string name="precipitation_thunderstorm">Tormenta</string>
+    <string name="precipitation_thunderstorm">Treboada</string>
     <string name="precipitation_rain">Chuvia</string>
     <string name="precipitation_snow">Neve</string>
-    <string name="precipitation_ice">Xeo</string>
+    <string name="precipitation_ice">Resío</string>
     <string name="temperature_normal_short">Normal</string>
     <string name="temperature_normals">Temperaturas normais</string>
     <string name="precipitation_none">Sen precipitacións</string>
@@ -26,11 +26,11 @@
     <string name="wind_direction_S_short">S</string>
     <string name="wind_direction_NW_short">NO</string>
     <string name="wind_strength_0">Calma</string>
-    <string name="wind_strength_1">Vento lixeiro</string>
+    <string name="wind_strength_1">Brisa moi lixeira</string>
     <string name="wind_strength_2">Brisa lixeira</string>
     <string name="wind_strength_3">Brisa suave</string>
     <string name="wind_strength_4">Brisa moderada</string>
-    <string name="wind_strength_5">Brisa fresca</string>
+    <string name="wind_strength_5">Brisa algo forte</string>
     <string name="wind_strength_6">Brisa forte</string>
     <string name="wind_strength_7">Vendaval moderado</string>
     <string name="wind_strength_8">Vendaval</string>
@@ -39,7 +39,7 @@
     <string name="wind_strength_10">Tormenta</string>
     <string name="wind_strength_11">Tormenta forte</string>
     <string name="uv_index">Índice UV</string>
-    <string name="uv_index_0_2">Baixo</string>
+    <string name="uv_index_0_2">Feble</string>
     <string name="uv_index_3_5">Moderado</string>
     <string name="uv_index_8_10">Moi alto</string>
     <string name="uv_index_11">Extremo</string>
@@ -102,7 +102,7 @@
     <string name="precipitation_between_time">Precipitacións de %1$s a %2$s</string>
     <string name="wind_direction_N_short">N</string>
     <string name="wind_direction_NE_short">NE</string>
-    <string name="wind_direction_E_short">E</string>
+    <string name="wind_direction_E_short">L</string>
     <string name="wind_direction_W_short">O</string>
     <string name="wind_direction_SW_short">SO</string>
     <string name="wind_strength_12">Furacán/Tifón</string>
@@ -117,7 +117,7 @@
     <string name="air_quality_level_6_description">A exposición ao aire, aínda que sexa por uns poucos minutos, pode provocar graves efectos na saúde de todos. Evite as actividades ao aire libre.</string>
     <string name="air_quality_o3_voice">Ozono</string>
     <string name="daily_today_short">Hoxe</string>
-    <string name="daily_tomorrow_short">Mña</string>
+    <string name="daily_tomorrow_short">Mañá</string>
     <string name="daily_yesterday_short">Onte</string>
     <string name="temperature_apparent">Aparente</string>
     <string name="alert_source">Fonte: %s</string>
@@ -147,7 +147,7 @@
     <string name="pollen_ambrosia">Ambrosia</string>
     <string name="pollen_artemisia">Artemisa</string>
     <string name="pollen_betula">Bidueiro</string>
-    <string name="temperature_average_short">Media</string>
+    <string name="temperature_average_short">Med.</string>
     <string name="air_quality_so2_full">Dióxido de xofre (%s)</string>
     <string name="air_quality_co_full">Monóxido de carbono (%s)</string>
     <string name="widget_custom_subtitle_keyword_ch_description">Humidade actual</string>
@@ -173,7 +173,7 @@
     <string name="ephemeris_moon_phase_first_quarter">Cuarto crecente</string>
     <string name="ephemeris_moon_phase_waxing_gibbous">Xibosa crecente</string>
     <string name="ephemeris_moon_phase_full_moon">Lúa chea</string>
-    <string name="current_weather">Clima actual</string>
+    <string name="current_weather">Tempo actual</string>
     <string name="temperature_degree_day">Grao día</string>
     <string name="pollen_cupressaceae_taxaceae">Ciprés</string>
     <string name="pollen_fraxinus">Freixo</string>
@@ -315,16 +315,23 @@
     <string name="chart_not_enough_hourly_data">Non hai suficientes datos horarios dispoñibles para amosar un gráfico para este día.</string>
     <string name="chart_average">Promedio</string>
     <string name="chart_maximum_value">Valor máximo</string>
-    <string name="temperature_real">Actual</string>
+    <string name="temperature_real">Real</string>
     <string name="temperature_real_details">A temperatura real.</string>
-    <string name="temperature_degree_day_heating">Grao día de calefacción</string>
+    <string name="temperature_degree_day_heating">Obxectivo de graos a aumentar para calefacción</string>
     <string name="temperature_degree_day_heating_explanation">Diferenza entre a temperatura exterior e unha temperatura de referencia cómoda utilizada para estimar as necesidades de enerxía de calefacción</string>
-    <string name="temperature_degree_day_cooling">Grao día de refrixeración</string>
+    <string name="temperature_degree_day_cooling">Obxectivo enfriamento diario para refrixeración</string>
     <string name="temperature_degree_day_cooling_explanation">Diferenza entre a temperatura exterior e unha temperatura de referencia cómoda utilizada para estimar as necesidades de enerxía de refrixeración</string>
     <string name="temperature_normals_deviation">Desviación</string>
     <string name="temperature_normals_deviation_explanation_maximum">Desviación da temperatura máxima media en %s para esta localización</string>
     <string name="temperature_normals_deviation_explanation_minimum">Desviación da temperatura mínima media en %s para esta localización</string>
     <string name="wind_speed_about">Sobre a velocidade do vento e os refachos</string>
-    <string name="wind_speed_about_description">A velocidade do vento mídese calculando a media das velocidades do vento durante un período de tempo. As refachos son explosións súbitas de vento que normalmente duran menos de 20 segundos.</string>
+    <string name="wind_speed_about_description">A velocidade do vento mídese calculando a media das velocidades do vento durante un período de tempo. As refachos son vagas súbitas de vento que normalmente duran menos de 20 segundos.</string>
     <string name="wind_gusts_short">Refachos</string>
+    <string name="wind_origin">Orixe: %s</string>
+    <string name="wind_strength_scale">Escala Beaufort</string>
+    <string name="uv_index_about">Respecto ao índice UV</string>
+    <string name="uv_index_about_description">O índice UltraVioleta/UV mide a forza da radiación ultravioleta do sol. Canto máis forte é, causa queimaduras solares máis fortes e rápidas, así como cancro de pel e dano visual.</string>
+    <string name="uv_index_scale">Escala do índice UV</string>
+    <string name="uv_index_time_to_burn">Tempo antes de se queimar</string>
+    <string name="uv_index_time_to_burn_explanations">O tempo exacto antes de se queimar depende da altitude, a presencia dun chan reflexante (como auga ou neve), o teu tipo de pel, e o uso de protección solar.</string>
 </resources>
