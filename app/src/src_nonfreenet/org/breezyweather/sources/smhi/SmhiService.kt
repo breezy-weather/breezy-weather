@@ -50,7 +50,7 @@ class SmhiService @Inject constructor(
 ) : SmhiServiceStub(context) {
 
     override val privacyPolicyUrl =
-        "https://www.smhi.se/omsmhi/hantering-av-personuppgifter/hantering-av-personuppgifter-1.135429"
+        "https://www.smhi.se/om-smhi/smhis-hantering-av-personuppgifter-och-integritetspolicy"
 
     private val mApi by lazy {
         client
@@ -90,16 +90,12 @@ class SmhiService @Inject constructor(
     ): List<DailyWrapper> {
         val dailyList = mutableListOf<DailyWrapper>()
         val hourlyListByDay = forecastResult.groupBy {
-            it.validTime.getIsoFormattedDate(location)
+            it.time.getIsoFormattedDate(location)
         }
         for (i in 0 until hourlyListByDay.entries.size - 1) {
             val dayDate = hourlyListByDay.keys.toTypedArray()[i].toDateNoHour(location.timeZone)
             if (dayDate != null) {
-                dailyList.add(
-                    DailyWrapper(
-                        date = dayDate
-                    )
-                )
+                dailyList.add(DailyWrapper(date = dayDate))
             }
         }
         return dailyList
@@ -113,27 +109,25 @@ class SmhiService @Inject constructor(
     ): List<HourlyWrapper> {
         return forecastResult.map { result ->
             HourlyWrapper(
-                date = result.validTime,
-                weatherCode = getWeatherCode(
-                    result.parameters.firstOrNull { it.name == "Wsymb2" }?.values?.getOrNull(0)
-                ),
+                date = result.time,
+                weatherCode = getWeatherCode(result.data.symbolCode),
                 temperature = TemperatureWrapper(
-                    temperature = result.parameters.firstOrNull { it.name == "t" }?.values?.getOrNull(0)?.celsius
+                    temperature = result.data.airTemperature?.celsius
                 ),
                 precipitation = Precipitation(
-                    total = result.parameters.firstOrNull { it.name == "pmean" }?.values?.getOrNull(0)?.millimeters
+                    total = result.data.precipitationAmountMean?.millimeters
                 ),
                 precipitationProbability = PrecipitationProbability(
-                    thunderstorm = result.parameters.firstOrNull { it.name == "tstm" }?.values?.getOrNull(0)?.percent
+                    thunderstorm = result.data.thunderstormProbability?.percent
                 ),
                 wind = Wind(
-                    degree = result.parameters.firstOrNull { it.name == "wd" }?.values?.getOrNull(0),
-                    speed = result.parameters.firstOrNull { it.name == "ws" }?.values?.getOrNull(0)?.metersPerSecond,
-                    gusts = result.parameters.firstOrNull { it.name == "gust" }?.values?.getOrNull(0)?.metersPerSecond
+                    degree = result.data.windFromDirection,
+                    speed = result.data.windSpeed?.metersPerSecond,
+                    gusts = result.data.windSpeedOfGust?.metersPerSecond
                 ),
-                relativeHumidity = result.parameters.firstOrNull { it.name == "r" }?.values?.getOrNull(0)?.percent,
-                pressure = result.parameters.firstOrNull { it.name == "msl" }?.values?.getOrNull(0)?.hectopascals,
-                visibility = result.parameters.firstOrNull { it.name == "vis" }?.values?.getOrNull(0)?.kilometers
+                relativeHumidity = result.data.relativeHumidity?.percent,
+                pressure = result.data.airPressureAtMeanSeaLevel?.hectopascals,
+                visibility = result.data.visibilityInAir?.kilometers
             )
         }
     }

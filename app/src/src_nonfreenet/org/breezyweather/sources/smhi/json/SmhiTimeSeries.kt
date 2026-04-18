@@ -22,6 +22,6 @@ import java.util.Date
 
 @Serializable
 data class SmhiTimeSeries(
-    @Serializable(DateSerializer::class) val validTime: Date,
-    val parameters: List<SmhiParameter>,
+    @Serializable(DateSerializer::class) val time: Date,
+    val data: SmhiTimeSeriesData,
 )
