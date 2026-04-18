@@ -247,7 +247,7 @@
     <string name="weather_source_accu_preference_hours_240">240 saatlik</string>
     <string name="weather_source_accu_preference_days_10">10 günlük</string>
     <string name="location_message_reverse_geocoding_failed">Hava durumu kaynağı eşleşen bir konum bulamadı</string>
-    <string name="location_message_permission_background_missing">Arkaplanda konum erişimi izni yok</string>
+    <string name="location_message_permission_background_missing">Arka planda konum erişimi izni yok</string>
     <string name="widget_multi_city">Birden fazla şehir</string>
     <string name="widget_custom_subtitle_keyword_cv_description">Şu anki görüş mesafesi</string>
     <string name="widget_custom_subtitle_keyword_al_description">Uyarılar</string>
@@ -378,8 +378,8 @@
     <string name="settings_modules_broadcast_send_data_title">%s’e hava durumu bilgisini gönder</string>
     <string name="about_privacy_policy">Gizlilik sözleşmesi</string>
     <string name="settings_color_day_night">Gündüz / Gece</string>
-    <string name="notification_channel_background_services">Arkaplan servisleri</string>
-    <string name="notification_running_in_background">Güncel kalmak için arkaplanda çalışıyor</string>
+    <string name="notification_channel_background_services">Arka plan servisleri</string>
+    <string name="notification_running_in_background">Güncel kalmak için arka planda çalışıyor</string>
     <string name="notification_style_native">Yerel</string>
     <string name="common_weather_text_overcast">Kapalı</string>
     <string name="common_weather_text_rain_snow_mixed_showers_light">Karla karışık hafif sağanak yağış</string>
@@ -785,4 +785,5 @@
     <string name="pressure_standard">Standart</string>
     <string name="settings_source_api_key_invalid">Değer beklenen biçimde değil</string>
     <string name="message_please_wait_refresh">Lütfen yenileme işleminin tamamlanmasını bekleyin</string>
+    <string name="settings_main_background_title">Hava durumuna göre arka plan</string>
 </resources>
