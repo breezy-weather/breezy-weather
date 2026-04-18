@@ -1,3 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">气</string>
+    <string name="forecast">占天时</string>
+    <string name="daily_forecast">日占天时</string>
+    <string name="hourly_forecast">分时占天时</string>
+    <string name="current_weather">此刻天时</string>
+    <string name="precipitation_nowcasting">占雨</string>
+    <string name="air_quality">空霭等</string>
+    <string name="air_quality_short">空霭等</string>
+    <string name="pollen">芳尘</string>
+    <string name="ephemeris">日&amp;月</string>
+    <string name="ephemeris_sun">日</string>
+    <string name="ephemeris_moon">月</string>
+    <string name="ephemeris_about">出没之时</string>
+    <string name="ephemeris_about_rise">升时者，乃日月全现于地平之上也。</string>
+    <string name="ephemeris_about_set">落时者，乃日月全隐于地平之下也。</string>
+    <string name="ephemeris_about_dawn">曙者，日出前初明见于天之时也。</string>
+    <string name="ephemeris_about_dusk">昏者，暮光最晦而残光未尽之时也。</string>
+    <string name="ephemeris_polar_day">不夜</string>
+    <string name="ephemeris_polar_night">永夜</string>
+    <string name="clock">时器</string>
+    <string name="alert">警铎</string>
+    <string name="alerts">警铎</string>
 </resources>
