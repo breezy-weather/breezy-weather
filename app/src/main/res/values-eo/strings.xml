@@ -823,4 +823,6 @@
     <string name="settings_appearance_dark_mode_custom">Malhela reĝimo de %1$s ĝis %2$s</string>
     <string name="pressure_standard">normala</string>
     <string name="settings_source_api_key_invalid">Valoro ne estas en la atendata formo</string>
+    <string name="message_please_wait_refresh">Bonvolu atendi ĝis la refreŝigo finiĝas</string>
+    <string name="settings_main_background_title">Laŭvetera fono</string>
 </resources>
