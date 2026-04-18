@@ -220,5 +220,5 @@
     <string name="notification_precipitation_starting_desc">False</string>
     <string name="notification_precipitation_continuing_desc">False</string>
     <string name="notification_precipitation_stopping_desc">False</string>
-    <string name="about_app">False</string>
+    <string name="about_app"></string>
 </resources>
