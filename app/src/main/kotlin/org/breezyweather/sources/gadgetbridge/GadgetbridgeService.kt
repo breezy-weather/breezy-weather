@@ -107,7 +107,7 @@ class GadgetbridgeService @Inject constructor() : BroadcastSource {
             moonRise = today?.moon?.riseDate?.time?.div(1000)?.toInt(),
             moonSet = today?.moon?.setDate?.time?.div(1000)?.toInt(),
             moonPhase = today?.moonPhase?.angle,
-
+            isCurrentLocation = if (location.isCurrentPosition) 1 else 0,
             airQuality = getAirQuality(current?.airQuality),
 
             forecasts = getDailyForecasts(location.weather?.dailyForecastStartingToday),
