@@ -155,8 +155,8 @@
     <string name="action_back">Takaisin</string>
     <string name="settings_icon_packs_check_details">Tarkista tiedot</string>
     <!-- $ = alert count. -->
-    <string name="air_quality_pm25_voice">Pienhiukkaset (%s)</string>
-    <string name="air_quality_pm10_voice">Hengitettävät hiukkaset (%s)</string>
+    <string name="air_quality_pm25_voice">Pienhiukkaset kaksi pilkku viisi</string>
+    <string name="air_quality_pm10_voice">Pienhiukkaset kymmenen</string>
     <string name="air_quality_so2_voice">Rikkidioksidi (S02)</string>
     <string name="air_quality_no2_voice">Typpidioksidi (NO2)</string>
     <string name="air_quality_o3_voice">Otsoni</string>
@@ -406,7 +406,7 @@
     <string name="wind_direction_S_short">E</string>
     <string name="wind_direction_W_short">L</string>
     <string name="temperature_normals">Normaalilämpötila</string>
-    <string name="temperature_normal_short">Norm.</string>
+    <string name="temperature_normal_short">Normaali</string>
     <string name="wind_direction_SW_short">Lo</string>
     <string name="wind_direction_variable">Vaihtuva</string>
     <string name="wind_direction_NE_short">Ko</string>
@@ -781,4 +781,23 @@
     <string name="fmi_weather_text_ice_pellets_moderate">Kohtalaista jääjyväsadetta</string>
     <string name="fmi_weather_text_ice_pellets_heavy">Kovaa jääjyväsadetta</string>
     <string name="fmi_weather_text_ice_crystals">Jääkiteitä</string>
+    <string name="humidity_from_to_number">%1$s–%2$s</string>
+    <string name="dew_point_from_to_number">%1$s–%2$s</string>
+    <string name="pressure_standard">Vakio</string>
+    <string name="visibility_scale">Näkyvyysasteikko</string>
+    <string name="cloud_cover_from_to_number">%1$s–%2$s</string>
+    <string name="cloud_cover_from_to_description">%1$s–%2$s</string>
+    <string name="cloud_cover_scale">Pilvisyyden asteikko</string>
+    <string name="broadcast_source_breezy_weather_update_notifier">%s Sijainnin päivitysilmoitin</string>
+    <string name="message_source_non_free_network_title">Tämä lähde vaatii sovelluksen perusversion</string>
+    <string name="message_source_non_free_network_content">Käytät sovelluksen Freenet-versiota, joka tukee vain ilmaisessa verkossa isännöityjä lähteitä. Jos haluat jatkaa tämän lähteen käyttöä, vaihda takaisin perusversioon. Muussa tapauksessa valitse toinen lähde.</string>
+    <string name="message_please_wait_refresh">Odota virkistyksen valmistumista</string>
+    <string name="widget_live_wallpaper_animations_enable_dangerous">VAARALLINEN</string>
+    <string name="widget_live_wallpaper_animations_enable_warning1">Taustakuva-animaatioiden tiedetään aiheuttavan muun muassa: korkeaa akun kulutusta; akun ylikuumenemista; korkeaa muistin kulutusta; heikentynyttä järjestelmän reagointikykyä; Android-järjestelmän kaatumista.</string>
+    <string name="widget_live_wallpaper_animations_enable_warning2">Jos päätät ottaa ne käyttöön, otat täyden vastuun mahdollisista ongelmista, eikä tukea tarjota.</string>
+    <string name="settings_source_api_key_invalid">Arvo ei ole odotetussa muodossa</string>
+    <string name="settings_main_background_title">Säähän perustuva tausta</string>
+    <string name="settings_regional_preference">Alueellinen mieltymys</string>
+    <string name="content_provider_permission_label">Lue Breezy Weather -tietoja</string>
+    <string name="content_provider_permission_description">saat Breezy Weatherin säätietoja, mukaan lukien sijaintiesi koordinaatit, kuten nykyisen sijaintisi, jos olet lisännyt sen</string>
 </resources>
