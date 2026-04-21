@@ -788,4 +788,6 @@
     <string name="action_pull_down_to_refresh">Trageți în jos pentru a reîmprospăta</string>
     <string name="pressure_standard">Standard</string>
     <string name="settings_source_api_key_invalid">Cheia nu este validă</string>
+    <string name="message_please_wait_refresh">Așteaptă finalizarea reîmprospătării</string>
+    <string name="settings_main_background_title">Fundal bazat pe vreme</string>
 </resources>
