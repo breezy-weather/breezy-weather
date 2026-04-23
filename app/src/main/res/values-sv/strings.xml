@@ -777,4 +777,7 @@
     <string name="message_source_non_free_network_content">Du använder Freenet-versionen av appen, som endast stöder källor som finns på ett fritt nätverk. För att fortsätta att använda denna källa, byt tillbaka till standardversionen. Annars väljer du en annan källa.</string>
     <string name="settings_weather_source_non_freenet">%s (icke-fri nätverkstjänst)</string>
     <string name="pressure_standard">Normalt</string>
+    <string name="message_please_wait_refresh">Vänta tills uppdateringen är klar</string>
+    <string name="settings_source_api_key_invalid">Värdet är inte i förväntat format</string>
+    <string name="settings_main_background_title">Väderbaserad bakgrund</string>
 </resources>
