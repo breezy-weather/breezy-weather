@@ -22,7 +22,7 @@
     <string name="settings_background_updates_refresh_skip_when_battery_low">Ignorera när batterinivån är låg</string>
     <string name="ephemeris_moon_phase_full_moon">Fullmåne</string>
     <string name="common_weather_text_cloudy">Molnigt</string>
-    <string name="location_message_reverse_geocoding_failed">Väderkällan misslyckades med att hitta en matchande plats</string>
+    <string name="location_message_reverse_geocoding_failed">Väderkällan kunde inte hitta en matchande plats</string>
     <string name="widget_custom_subtitle_keyword_d_description">Datum</string>
     <string name="temperature">Temperatur</string>
     <string name="precipitation_ice">Is</string>
@@ -352,7 +352,7 @@
     <string name="settings_main_background_animation_enabled">Aktiverad</string>
     <string name="widget_label_clock_font">Klocktypsnitt</string>
     <string name="settings_background_updates_dont_kill_my_app_title">Tillverkarspecifika instruktioner</string>
-    <string name="widget_custom_subtitle_keyword_hd_description">Beskrivning av timvis</string>
+    <string name="widget_custom_subtitle_keyword_hd_description">Timvis beskrivning</string>
     <string name="settings_modules_notification_feels_like_switch">Använd känns som-temperatur</string>
     <string name="dialog_permissions_location_content">För att använda denna funktion måste du ge appen behörighet att komma åt din nuvarande plats. Den kommer endast att delas med de valda väderkällorna. Om du har ångrat dig, kan du avbryta processen och lägga till en fast plats manuellt.</string>
     <string name="settings_notifications_forecast_time_today_title">Aviseringstid för dagens prognos</string>
@@ -368,10 +368,10 @@
     <string name="settings_modules_configure_widget_summary">Konfigurera denna widget</string>
     <string name="widget_label_view_style">Vystil</string>
     <string name="settings_modules_monochrome_icons_title">Enfärgade ikoner</string>
-    <string name="widget_subtitle_data_feels_like">Känns som-temperatur</string>
+    <string name="widget_subtitle_data_feels_like">Upplevd temperatur</string>
     <string name="settings_icon_packs_weather_icon_light">Ljus ikon</string>
     <string name="dialog_permissions_location_background_title">Behörighet till plats i bakgrunden</string>
-    <string name="weather_api_unauthorized_content">För vissa väderdatakällor måste du ange din egen API-nyckel. Om du redan har angett en, vänligen dubbelkolla den API-nyckel som du har angett.</string>
+    <string name="weather_api_unauthorized_content">För vissa väderdatakällor måste du ange din egen API-nyckel. Om du redan har angett en, kontrollera API-nyckeln du har angett en gång till</string>
     <string name="common_weather_text_rain_snow_mixed_showers">Snöblandade regnskurar</string>
     <string name="settings_color_dark">Mörk</string>
     <string name="common_weather_text_overcast">Mulet</string>
@@ -392,10 +392,10 @@
     <string name="settings_background_updates_worker_info_summary">Senast körd: %s</string>
     <string name="action_learn_more">Läs mer</string>
     <string name="dialog_permissions_location_title">Behörighet till platsinformation</string>
-    <string name="settings_modules_notification_persistent_switch">Pågående</string>
+    <string name="settings_modules_notification_persistent_switch">Beständig</string>
     <string name="settings_main_background_animation_title">Bakgrundsanimation</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Lätt eller medelkraftig åskstorm</string>
-    <string name="settings_location_access_precise_title">Enhetens gps-användning</string>
+    <string name="settings_location_access_precise_title">Användning av enhetens GPS</string>
     <string name="settings_notifications_forecast_tomorrow_title">Avisering om morgondagens prognos</string>
     <string name="settings_main_section_displayed_data">Visade data</string>
     <string name="settings_modules_section_notification_widget">Aviseringswidget</string>
@@ -454,7 +454,7 @@
     <string name="notification_style_native">Inbyggd</string>
     <string name="settings_main_cards_fade_in_switch">Blockframtoning</string>
     <string name="settings_modules_notification_temp_icon_switch">Temperatur som statusfältsikon</string>
-    <string name="settings_items_drag_to_sort">Tryck för att dra listobjekten för sortering</string>
+    <string name="settings_items_drag_to_sort">Tryck och dra för att sortera listobjekten</string>
     <string name="common_weather_text_mostly_clear">Mestadels klart</string>
     <string name="common_weather_text_drizzle_moderate">Måttligt duggregn</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">Avlagrande dimfrost</string>
@@ -494,13 +494,13 @@
     <string name="settings_weather_sources_default_source">Förvald källa för nya platser</string>
     <string name="alert">Varning</string>
     <string name="location_delete_location_dialog_title">Ta bort plats?</string>
-    <string name="weather_message_too_frequent_refreshes">Vänligen vänta några sekunder innan du försöker igen …</string>
+    <string name="weather_message_too_frequent_refreshes">Vänta några sekunder innan du försöker igen…</string>
     <string name="widget_custom_subtitle_keyword_caqi_description">Nuvarande luftkvalitetsindex</string>
-    <string name="message_invalid_incomplete_data">Ogiltiga eller ofullständiga data mottagna från server</string>
+    <string name="message_invalid_incomplete_data">Ogiltiga eller ofullständiga data togs emot från servern</string>
     <string name="location_delete_location_dialog_message">Du håller på att ta bort “%s” från din lista över sparade platser.</string>
     <string name="location_delete_location_dialog_message_no_name">Du håller på att ta bort denna plats från din lista över sparade platser.</string>
     <string name="widget_custom_subtitle_keyword_xaqi_description">Luftkvalitetsindex för i dag, i morgon, …, 4 dagar senare</string>
-    <string name="widget_label_hide_header">Göm rubrik</string>
+    <string name="widget_label_hide_header">Dölj rubrik</string>
     <string name="pollen_carpinus">Avenbok</string>
     <string name="pollen_castanea">Kastanjeträd</string>
     <string name="pollen_corylus">Hassel</string>
@@ -525,7 +525,7 @@
     <string name="settings_source_instance">Server</string>
     <string name="settings_source_instance_geocoding">Server för geokodning</string>
     <string name="settings_weather_source_unavailable">%s (ej tillgänglig)</string>
-    <string name="settings_modules_broadcast_title">Sänd mina väderdata till andra appar</string>
+    <string name="settings_modules_broadcast_title">Dela väderdata med andra appar</string>
     <string name="settings_per_location">Platsinställningar</string>
     <string name="settings_per_location_theme">Tema</string>
     <string name="settings_weather_source_freenet_disclaimer">Du använder Freenet-versionen av appen. Byt till standardversionen om du vill använda icke-fria nätverkstjänster.</string>
@@ -538,7 +538,7 @@
     <string name="settings_source_instance_invalid">Måste vara en HTTPS-URL som slutar med /</string>
     <string name="settings_invalid_syntax">Ogiltig syntax</string>
     <string name="dialog_time_picker_select_time">Välj tid</string>
-    <string name="widget_label_hide_alternate_calendar">Göm alternativ kalender</string>
+    <string name="widget_label_hide_alternate_calendar">Dölj alternativ kalender</string>
     <string name="settings_appearance_calendar_title">Alternativ kalender</string>
     <string name="message_server_unavailable_title">Server ej tillgänglig</string>
     <string name="common_weather_text_sand_storm">Sandstorm</string>
@@ -597,7 +597,7 @@
     <string name="pollen_juniperus">En</string>
     <string name="pollen_pinus">Tall</string>
     <string name="pollen_ulmus">Alm</string>
-    <string name="common_weather_text_glaze">Glattis</string>
+    <string name="common_weather_text_glaze">Glattis (isbeläggning)</string>
     <string name="common_weather_text_drifting_snow">Drivsnö</string>
     <string name="common_weather_text_blowing_snow">Yrsnö</string>
     <string name="pollen_picea">Gran</string>
