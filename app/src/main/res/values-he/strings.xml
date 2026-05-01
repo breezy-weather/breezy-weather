@@ -777,4 +777,6 @@
     <string name="pollen_primary">אבקה בוטנית</string>
     <string name="pollen_details">אודות אבקה בוטנית</string>
     <string name="pressure_standard">רגיל</string>
+    <string name="message_please_wait_refresh">נא להמתין עד להשלמת הרענון</string>
+    <string name="settings_main_background_title">רקע שמשתנה בהתאם למזג האוויר</string>
 </resources>
