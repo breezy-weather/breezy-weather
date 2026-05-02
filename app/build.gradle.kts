@@ -24,8 +24,8 @@ configure<ApplicationExtension> {
 
     defaultConfig {
         applicationId = "org.breezyweather"
-        versionCode = 60200
-        versionName = "6.2.0"
+        versionCode = 60201
+        versionName = "6.2.1"
 
         buildConfigField("String", "COMMIT_COUNT", "\"${getCommitCount()}\"")
         buildConfigField("String", "COMMIT_SHA", "\"${getGitSha()}\"")

@@ -4,7 +4,7 @@
 - [Changelog for v4.x](docs/CHANGELOG_4.x.md)
 
 
-# Version 6.2.0 (not yet released)
+# Version 6.2.0 (2026-05-01)
 
 **New features**
 - Add ability to disable the weather condition background on main screen. You can find it in Settings > Main screen.
