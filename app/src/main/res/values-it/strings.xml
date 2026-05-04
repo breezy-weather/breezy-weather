@@ -787,4 +787,5 @@
     <string name="pressure_standard">Normale</string>
     <string name="settings_source_api_key_invalid">Il valore non è nel formato previsto</string>
     <string name="message_please_wait_refresh">Attendi l’aggiornamento per completare</string>
+    <string name="settings_main_background_title">Sfondo basato sul tempo</string>
 </resources>
