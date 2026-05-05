@@ -47,6 +47,7 @@ import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.getCountryName
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.getIsoFormattedDate
+import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.common.preference.EditTextPreference
 import org.breezyweather.common.preference.Preference
 import org.breezyweather.common.source.ConfigurableSource
@@ -211,7 +212,7 @@ class KnmiService @Inject constructor(
 
             WeatherWrapper(
                 dailyForecast = if (SourceFeature.FORECAST in requestedFeatures) {
-                    getDailyForecast(context, weather.daily, fourteenDayForecast.daily, weather.uvIndex)
+                    getDailyForecast(context, location, weather.daily, fourteenDayForecast.daily, weather.uvIndex)
                 } else {
                     null
                 },
@@ -319,35 +320,44 @@ class KnmiService @Inject constructor(
 
     private fun getDailyForecast(
         context: Context,
+        location: Location,
         dailyWeatherForecast: KnmiDailyWeatherForecast?,
         dailyWeatherGraph: KnmiDailyWeatherGraph?,
         todayUv: KnmiUvIndex?,
     ): List<DailyWrapper>? {
-        val numDays = dailyWeatherGraph?.temperature?.dates?.size ?: dailyWeatherForecast?.forecast?.size ?: return null
+        val numDays = dailyWeatherGraph?.temperature?.dates?.size
+            ?: dailyWeatherForecast?.forecast?.size
+            ?: return null
 
         val dailyList: MutableList<DailyWrapper> = ArrayList(numDays)
         for (i in 0 until numDays) {
-            val date = dailyWeatherGraph?.temperature?.dates?.get(i)
+            val midnightUtc = dailyWeatherGraph?.temperature?.dates?.get(i)
                 ?: dailyWeatherForecast?.forecast?.get(i)?.date
                 ?: continue // date is required so fail, really should not happen
+
+            val midnightLocalTime = midnightUtc
+                .toCalendarWithTimeZone(location.timeZone)
+                .apply {
+                    set(Calendar.HOUR_OF_DAY, 0)
+                }.time
 
             val temperatureDay = dailyWeatherGraph?.temperature?.maxTemperatures?.get(i)?.celsius
             // use next day's minimum temp for night
             val temperatureNight = dailyWeatherGraph?.temperature?.minTemperatures?.getOrNull(i + 1)?.celsius
             val precipitation = dailyWeatherGraph?.precipitation?.amounts?.get(i)?.millimeters
             val todayForecast = dailyWeatherForecast?.forecast?.getOrNull(i)
-            val precipitationChance = if (todayForecast?.date == date) {
+            val precipitationChance = if (todayForecast?.date == midnightUtc) {
                 todayForecast.precipitation?.chance?.percent
             } else {
                 null
             }
 
-            val weatherCode = if (todayForecast?.date == date) {
+            val weatherCode = if (todayForecast?.date == midnightUtc) {
                 getWeatherCode(todayForecast.weatherType)
             } else {
                 null
             }
-            val weatherText = if (todayForecast?.date == date) {
+            val weatherText = if (todayForecast?.date == midnightUtc) {
                 getWeatherText(context, todayForecast.weatherType)
             } else {
                 null
@@ -355,7 +365,7 @@ class KnmiService @Inject constructor(
 
             dailyList.add(
                 DailyWrapper(
-                    date = date,
+                    date = midnightLocalTime,
                     day = HalfDayWrapper(
                         weatherCode = weatherCode,
                         weatherText = weatherText,

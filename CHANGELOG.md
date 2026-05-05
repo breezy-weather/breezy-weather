@@ -4,6 +4,12 @@
 - [Changelog for v4.x](docs/CHANGELOG_4.x.md)
 
 
+# Version 6.2.1 (not yet released)
+
+**Sources**
+- KNMI - Fix duplicate “Today” when migrating from another source
+
+
 # Version 6.2.0 (2026-05-01)
 
 **New features**
