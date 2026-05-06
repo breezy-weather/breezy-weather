@@ -1,1 +1,1 @@
-App meteorológica bonita, con muchas funciones y múltiples fuentes.
+Aplicación meteorológica con numerosas funciones, buenas representaciones gráficas y muchas fuentes de información.
