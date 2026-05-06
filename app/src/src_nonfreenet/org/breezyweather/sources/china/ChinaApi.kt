@@ -20,6 +20,7 @@ import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.sources.china.json.ChinaForecastResult
 import org.breezyweather.sources.china.json.ChinaLocationResult
 import org.breezyweather.sources.china.json.ChinaMinutelyResult
+import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -48,7 +49,7 @@ interface ChinaApi {
         @Query("sign") sign: String,
         @Query("isGlobal") isGlobal: Boolean,
         @Query("locale") locale: String,
-    ): Observable<ChinaForecastResult>
+    ): Call<ChinaForecastResult>
 
     @GET("weather/xm/forecast/minutely")
     fun getMinutelyWeather(
@@ -59,5 +60,5 @@ interface ChinaApi {
         @Query("appKey") appKey: String,
         @Query("locationKey") locationKey: String,
         @Query("sign") sign: String,
-    ): Observable<ChinaMinutelyResult>
+    ): Call<ChinaMinutelyResult>
 }
