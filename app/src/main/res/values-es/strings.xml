@@ -356,7 +356,7 @@
     <string name="ephemeris_moonset_at">Puesta lunar a las %s</string>
     <string name="ephemeris_sunset_at">Atardecer a las %s</string>
     <string name="ephemeris_moonrise_at">Salida lunar a las %s</string>
-    <string name="precipitation_nowcasting">Predicción de precipitación inmediata</string>
+    <string name="precipitation_nowcasting">Previsión de precipitaciones a corto plazo</string>
     <string name="settings_main_section_animations">Animaciones</string>
     <string name="settings_notifications">Notificaciones</string>
     <string name="settings_notifications_forecast_today_title">Notificar pronóstico del día</string>
@@ -571,7 +571,7 @@
     <string name="dialog_app_update_check_title">Mantente al día</string>
     <string name="dialog_app_update_check_content">Toca para activar las notificaciones sobre actualizaciones de la aplicación.</string>
     <string name="settings_unavailable_no_animations">No disponible, activa primero las animaciones en los ajustes de Android</string>
-    <string name="current_weather">Clima actual</string>
+    <string name="current_weather">Tiempo actual</string>
     <string name="common_weather_text_dry">Seco</string>
     <string name="common_weather_text_humid">Húmedo</string>
     <string name="common_weather_text_hot">Caliente</string>
@@ -671,9 +671,9 @@
     <string name="air_quality_short">Calidad aire</string>
     <string name="ephemeris_sun">Sol</string>
     <string name="ephemeris_moon">Luna</string>
-    <string name="ephemeris_about">Sobre la hora de salida y puesta</string>
-    <string name="ephemeris_about_rise">La hora de salida es cuando el sol o la luna aparecen por completo sobre el horizonte.</string>
-    <string name="ephemeris_about_set">La hora de puesta es cuando el sol o la luna desaparecen por completo bajo el horizonte.</string>
+    <string name="ephemeris_about">Sobre las horas de salida y puesta (del sol)</string>
+    <string name="ephemeris_about_rise">La hora de salida es cuando el sol o la luna aparecen completamente por encima del horizonte.</string>
+    <string name="ephemeris_about_set">La hora de puesta es cuando el sol o la luna desaparecen completamente por debajo del horizonte.</string>
     <string name="ephemeris_about_dawn">El amanecer es cuando aparece la primera luz visible del día antes de la salida del sol.</string>
     <string name="ephemeris_polar_day">Día polar</string>
     <string name="ephemeris_polar_night">Noche polar</string>
