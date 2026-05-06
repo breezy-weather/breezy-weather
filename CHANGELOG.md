@@ -7,7 +7,6 @@
 # Version 6.2.1 (not yet released)
 
 **Sources**
-- China - Add a 2.5 seconds delay between forecast and nowcasting requests to avoid server rejecting our request
 - KNMI - Fix duplicate “Today” when migrating from another source
 
 
