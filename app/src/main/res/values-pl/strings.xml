@@ -317,7 +317,7 @@
     <string name="air_quality_pm25_voice">PM dwa i pół</string>
     <string name="air_quality_no2_full">Dwutlenek azotu (%s)</string>
     <string name="air_quality_so2_full">Dwutlenek siarki (%s)</string>
-    <string name="air_quality_co_full">Tlenek węgla II (%s)</string>
+    <string name="air_quality_co_full">Tlenek węgla (%s)</string>
     <string name="air_quality_level_6_description">Każdy pobyt na zewnątrz, nawet przez kilka minut, może u każdego wywołać poważne skutki zdrowotne. Unikaj aktywności na zewnątrz.</string>
     <string name="air_quality_level_1_description">Jakość powietrza jest idealna dla większości osób. Można śmiało spędzać czas na zewnątrz.</string>
     <string name="air_quality_level_4_description">Osoby wrażliwe mogą od razu odczuć skutki zdrowotne. Po dłuższym przebywaniu na zewnątrz osoby zdrowe mogą mieć trudności z oddychaniem i odczuwać drapanie w gardle. Ogranicz aktywność na zewnątrz.</string>
@@ -717,7 +717,7 @@
     <string name="label_description">Opis</string>
     <string name="label_expanded">Rozszerzony</string>
     <string name="label_collapsed">Zwinięty</string>
-    <string name="air_quality_short">Jakość powietrza</string>
+    <string name="air_quality_short">Jakość pow.</string>
     <string name="ephemeris_sun">Słońce</string>
     <string name="ephemeris_moon">Księżyc</string>
     <string name="ephemeris_about_dawn">Świt to moment, gdy pojawia się pierwsze widoczne światło dnia, jeszcze przed wschodem słońca.</string>
