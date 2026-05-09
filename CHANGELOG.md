@@ -6,6 +6,9 @@
 
 # Version 6.2.1 (not yet released)
 
+**Improvements and fixes**
+- Fix temperature animation on main screen being slow in some cases (mostly when using Kelvin)
+
 **Sources**
 - KNMI - Fix duplicate “Today” when migrating from another source
 

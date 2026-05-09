@@ -28,6 +28,8 @@ import android.view.animation.DecelerateInterpolator
 import android.widget.TextView
 import java.math.BigDecimal
 import java.text.DecimalFormat
+import kotlin.time.Duration
+import kotlin.time.Duration.Companion.seconds
 
 /**
  * 数字增加动画的　TextView
@@ -55,7 +57,7 @@ class NumberAnimTextView @JvmOverloads constructor(
     /**
      * 动画总时间 默认 2000 毫秒
      */
-    var duration: Long = 2000
+    var duration: Duration = 2.seconds
 
     /**
      * 前缀
@@ -131,7 +133,7 @@ class NumberAnimTextView @JvmOverloads constructor(
             BigDecimal(mNumStart),
             BigDecimal(mNumEnd)
         ).apply {
-            duration = this@NumberAnimTextView.duration
+            duration = this@NumberAnimTextView.duration.inWholeMilliseconds
             interpolator = DecelerateInterpolator(3f)
             addUpdateListener { valueAnimator: ValueAnimator ->
                 val value = valueAnimator.animatedValue as BigDecimal

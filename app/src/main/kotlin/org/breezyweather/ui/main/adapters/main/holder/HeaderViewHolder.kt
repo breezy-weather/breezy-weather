@@ -38,8 +38,8 @@ import org.breezyweather.ui.main.widgets.TextRelativeClock
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
 import org.breezyweather.unit.formatting.UnitWidth
 import kotlin.math.abs
-import kotlin.math.max
 import kotlin.math.roundToInt
+import kotlin.time.Duration.Companion.milliseconds
 
 class HeaderViewHolder(parent: ViewGroup) : AbstractMainViewHolder(
     LayoutInflater.from(parent.context).inflate(R.layout.container_main_header, parent, false)
@@ -98,7 +98,9 @@ class HeaderViewHolder(parent: ViewGroup) : AbstractMainViewHolder(
                 mTemperatureTo = it.toDouble(temperatureUnit).roundToInt()
                 mTemperature.isAnimEnabled = itemAnimationEnabled
                 // no longer than 2 seconds.
-                mTemperature.duration = max(2000.0, abs(mTemperatureTo - mTemperatureFrom) * 20.0).toLong()
+                mTemperature.duration = (abs(mTemperatureTo - mTemperatureFrom) * 20.0)
+                    .coerceAtMost(2000.0)
+                    .milliseconds
                 mTemperatureUnitView.text = temperatureUnit.getNominativeUnit(context)
             } ?: run {
                 mTemperatureContainer.visibility = View.GONE
