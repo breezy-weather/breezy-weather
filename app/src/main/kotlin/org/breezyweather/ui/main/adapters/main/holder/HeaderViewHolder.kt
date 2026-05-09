@@ -97,9 +97,9 @@ class HeaderViewHolder(parent: ViewGroup) : AbstractMainViewHolder(
                 mTemperatureFrom = mTemperatureTo
                 mTemperatureTo = it.toDouble(temperatureUnit).roundToInt()
                 mTemperature.isAnimEnabled = itemAnimationEnabled
-                // no longer than 2 seconds.
                 mTemperature.duration = (abs(mTemperatureTo - mTemperatureFrom) * 20.0)
-                    .coerceAtMost(2000.0)
+                    .coerceAtLeast(1000.0) // at least 1 second
+                    .coerceAtMost(2000.0) // no longer than 2 seconds
                     .milliseconds
                 mTemperatureUnitView.text = temperatureUnit.getNominativeUnit(context)
             } ?: run {
