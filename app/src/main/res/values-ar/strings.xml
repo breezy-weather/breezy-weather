@@ -648,4 +648,17 @@
     <string name="visibility_good">جيدة</string>
     <string name="visibility_clear">واضحة</string>
     <string name="visibility_perfectly_clear">واضحة تمامًا</string>
+    <string name="ephemeris_about_set">الوقت المحدد هو عندما تختفي الشمس أو القمر تمامًا تحت الأفق.</string>
+    <string name="ephemeris_about_dawn">الفجر هو الوقت الذي يظهر فيه أول ضوء مرئي في اليوم قبل شروق الشمس.</string>
+    <string name="ephemeris_about_dusk">الشفق هو أظلم مراحل الليل، قبل أن يختفي آخر ضوء مرئي.</string>
+    <string name="ephemeris_polar_day">يوم قطبي</string>
+    <string name="ephemeris_polar_night">الليل القطبي</string>
+    <string name="daily_summary">ملخص اليوم</string>
+    <string name="chart_no_daily_data">لا تتوفر بيانات لهذا اليوم.</string>
+    <string name="chart_no_hourly_data">لا تتوفر بيانات كل ساعة.</string>
+    <string name="chart_not_enough_hourly_data">لا تتوفر بيانات كافية الخاصة بكل ساعة لعرض رسم بياني لهذا اليوم.</string>
+    <string name="chart_average">متوسط</string>
+    <string name="chart_maximum_value">القيمة القصوى</string>
+    <string name="conditions">شروط</string>
+    <string name="temperature_real">فِعلي</string>
 </resources>
