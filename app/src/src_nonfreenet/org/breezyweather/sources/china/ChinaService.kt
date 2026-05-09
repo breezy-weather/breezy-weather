@@ -81,17 +81,17 @@ class ChinaService @Inject constructor(
         }
     }
 
+    /**
+     * There are 2 URLs:
+     * - Intl server is located in the nearest place to the user (but not in China).
+     *   It has the following issue: rate-limit for minutely
+     * - Market server is located in the nearest place to the user (including China).
+     *   When the server is located in China, it has the following issue: incorrect text for English language
+     * So, this will use Market server when language is Chinese, and Intl server otherwise
+     */
     private val mApi by lazy {
         client
             .baseUrl(
-                /**
-                 * There are 2 URLs:
-                 * - Intl server is located in the nearest place to the user (but not in China).
-                 *   It has the following issue: rate-limit for minutely
-                 * - Market server is located in the nearest place to the user (including China).
-                 *   When the server is located in China, it has the following issue: incorrect text for English language
-                 * So, this will use Market server when language is Chinese, and Intl server otherwise
-                 */
                 if (context.currentLocale.language.startsWith("zh", ignoreCase = true)) {
                     CHINA_WEATHER_BASE_URL_MARKET
                 } else {
