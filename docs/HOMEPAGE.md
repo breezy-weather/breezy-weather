@@ -45,7 +45,7 @@ Just below, you can see the last time of refresh.
 Above weather blocks, you have details about current weather:
 
 - A description of the current weather condition
-- Temperature. When entering screen, this will animate from previous location’s temperature (or 0° if just opening the app) to the current location’s temperature, for a maximum duration of 2 seconds.
+- Temperature. When entering screen, this will animate from previous location’s temperature (or 0° if just opening the app) to the current location’s temperature, for a duration proportional to the temperature difference, and with a maximum duration of 2 seconds.
 - (If different from temperature) Feels like temperature
 - The temperature for the current and next half days:
   - Before 06:00, it will show yesterday nighttime min temperature (if available), followed by today daytime max temperature
