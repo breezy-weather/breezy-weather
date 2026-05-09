@@ -10,6 +10,7 @@
 - Cap temperature animation duration to 1 to 2 seconds
 
 **Sources**
+- China - Use a server which is less likely to return invalid data when language is set to Chinese
 - KNMI - Fix duplicate “Today” when migrating from another source
 
 

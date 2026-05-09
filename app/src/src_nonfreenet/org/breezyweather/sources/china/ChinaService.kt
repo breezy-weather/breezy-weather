@@ -83,7 +83,21 @@ class ChinaService @Inject constructor(
 
     private val mApi by lazy {
         client
-            .baseUrl(CHINA_WEATHER_BASE_URL)
+            .baseUrl(
+                /**
+                 * There are 2 URLs:
+                 * - Intl server is located in the nearest place to the user (but not in China).
+                 *   It has the following issue: rate-limit for minutely
+                 * - Market server is located in the nearest place to the user (including China).
+                 *   When the server is located in China, it has the following issue: incorrect text for English language
+                 * So, this will use Market server when language is Chinese, and Intl server otherwise
+                 */
+                if (context.currentLocale.language.startsWith("zh", ignoreCase = true)) {
+                    CHINA_WEATHER_BASE_URL_MARKET
+                } else {
+                    CHINA_WEATHER_BASE_URL_INTL
+                }
+            )
             .build()
             .create(ChinaApi::class.java)
     }
@@ -594,7 +608,8 @@ class ChinaService @Inject constructor(
     }
 
     companion object {
-        private const val CHINA_WEATHER_BASE_URL = "https://weatherapi.intl.xiaomi.com/wtr-v3/"
+        private const val CHINA_WEATHER_BASE_URL_MARKET = "https://weatherapi.market.xiaomi.com/wtr-v3/"
+        private const val CHINA_WEATHER_BASE_URL_INTL = "https://weatherapi.intl.xiaomi.com/wtr-v3/"
         private const val CHINA_APP_KEY = "weather20151024"
         private const val CHINA_SIGN = "zUFJoAR2ZVrDy1vF3D07"
     }
