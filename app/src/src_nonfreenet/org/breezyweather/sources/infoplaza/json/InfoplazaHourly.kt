@@ -34,5 +34,6 @@ data class InfoplazaHourly(
     val windGust: Double?,
     val windBearing: Double?,
     val cloudCover: Double?,
+    val uvIndex: Double?,
     val visibility: Double?,
 )
