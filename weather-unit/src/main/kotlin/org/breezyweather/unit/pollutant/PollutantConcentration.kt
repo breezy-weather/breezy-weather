@@ -143,6 +143,13 @@ value class PollutantConcentration internal constructor(
         require(decimals >= 0) { "decimals must be not negative, but was $decimals" }
         return formatToExactDecimals(toDouble(unit), decimals.coerceAtMost(unit.decimals.long)) + unit.id
     }
+
+    /**
+     * Return null if the value is not positive, otherwise this value
+     */
+    fun toValidOrNull(): PollutantConcentration? {
+        return takeIf { rawValue >= 0 }
+    }
 }
 
 // constructing from number of units

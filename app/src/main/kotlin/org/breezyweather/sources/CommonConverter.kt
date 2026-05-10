@@ -150,22 +150,44 @@ internal fun completeNewWeatherWithPreviousData(
             hourlyForecast = missingHourlyList + (newWeather.hourlyForecast ?: emptyList()),
             airQuality = if (!airQualitySource.isNullOrEmpty()) {
                 newWeather.airQuality?.copy(
-                    dailyForecast = missingDailyAirQualityList +
-                        (newWeather.airQuality!!.dailyForecast ?: emptyMap()),
-                    hourlyForecast = missingHourlyAirQualityList +
-                        (newWeather.airQuality!!.hourlyForecast ?: emptyMap())
+                    dailyForecast = ensureValidAirQuality(
+                        missingDailyAirQualityList +
+                            (newWeather.airQuality!!.dailyForecast ?: emptyMap())
+                    ),
+                    hourlyForecast = ensureValidAirQuality(
+                        missingHourlyAirQualityList +
+                            (newWeather.airQuality!!.hourlyForecast ?: emptyMap())
+                    )
                 )
             } else {
                 null
             },
             pollen = if (!pollenSource.isNullOrEmpty()) {
                 newWeather.pollen?.copy(
-                    dailyForecast = missingDailyPollenList + (newWeather.pollen!!.dailyForecast ?: emptyMap())
+                    dailyForecast = ensureValidPollen(
+                        missingDailyPollenList + (newWeather.pollen!!.dailyForecast ?: emptyMap())
+                    )
                 )
             } else {
                 null
             }
         )
+    }
+}
+
+internal fun ensureValidAirQuality(
+    forecast: Map<Date, AirQuality>,
+): Map<Date, AirQuality> {
+    return forecast.entries.associate {
+        it.key to it.value.toValid()
+    }
+}
+
+internal fun ensureValidPollen(
+    forecast: Map<Date, Pollen>,
+): Map<Date, Pollen> {
+    return forecast.entries.associate {
+        it.key to it.value.toValid()
     }
 }
 
@@ -401,6 +423,7 @@ internal fun completeDailyListFromHourlyList(
             moonPhase = getCalculatedMoonPhase(daily.date),
             airQuality = daily.airQuality ?: getDailyAirQualityFromHourlyList(
                 hourlyAirQuality.filter { it.key.getIsoFormattedDate(location) == theDayFormatted }.values
+                    .map { it.toValid() }
             ),
             pollen = daily.pollen ?: if (hourlyPollen.isEmpty() &&
                 currentPollen != null &&
@@ -410,6 +433,7 @@ internal fun completeDailyListFromHourlyList(
             } else if (hourlyPollen.isNotEmpty()) {
                 getDailyPollenFromHourlyList(
                     hourlyPollen.filter { it.key.getIsoFormattedDate(location) == theDayFormatted }.values
+                        .map { it.toValid() }
                 )
             } else {
                 null

@@ -8,6 +8,7 @@
 
 **Improvements and fixes**
 - Cap temperature animation duration to 1 to 2 seconds
+- Ensure pollutant and pollen concentrations are always positive to avoid a rare case of crash when some sources provide negative concentrations
 
 **Sources**
 - China - Use a server which is less likely to return invalid data when language is set to Chinese

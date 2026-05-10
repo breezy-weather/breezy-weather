@@ -22,7 +22,7 @@ import java.io.Serializable
 /**
  * Pollen (tree, grass, weed) and mold
  */
-class Pollen(
+data class Pollen(
     val alder: PollenConcentration? = null,
     val ash: PollenConcentration? = null,
     val birch: PollenConcentration? = null,
@@ -71,4 +71,30 @@ class Pollen(
             tree != null ||
             urticaceae != null ||
             willow != null
+
+    fun toValid(): Pollen {
+        return copy(
+            alder = alder?.toValidOrNull(),
+            ash = ash?.toValidOrNull(),
+            birch = birch?.toValidOrNull(),
+            chestnut = chestnut?.toValidOrNull(),
+            cypress = cypress?.toValidOrNull(),
+            grass = grass?.toValidOrNull(),
+            hazel = hazel?.toValidOrNull(),
+            hornbeam = hornbeam?.toValidOrNull(),
+            linden = linden?.toValidOrNull(),
+            mold = mold?.toValidOrNull(),
+            mugwort = mugwort?.toValidOrNull(),
+            oak = oak?.toValidOrNull(),
+            olive = olive?.toValidOrNull(),
+            plane = plane?.toValidOrNull(),
+            plantain = plantain?.toValidOrNull(),
+            poplar = poplar?.toValidOrNull(),
+            ragweed = ragweed?.toValidOrNull(),
+            sorrel = sorrel?.toValidOrNull(),
+            tree = tree?.toValidOrNull(),
+            urticaceae = urticaceae?.toValidOrNull(),
+            willow = willow?.toValidOrNull()
+        )
+    }
 }

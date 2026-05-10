@@ -26,7 +26,7 @@ import java.io.Serializable
  * For missing information, it uses WHO recommandations
  * https://www.who.int/news-room/fact-sheets/detail/ambient-(outdoor)-air-quality-and-health
  */
-class AirQuality(
+data class AirQuality(
     val pM25: PollutantConcentration? = null,
     val pM10: PollutantConcentration? = null,
     val sO2: PollutantConcentration? = null,
@@ -40,4 +40,15 @@ class AirQuality(
 
     val isIndexValid: Boolean
         get() = pM25 != null || pM10 != null || nO2 != null || o3 != null
+
+    fun toValid(): AirQuality {
+        return copy(
+            pM25 = pM25?.toValidOrNull(),
+            pM10 = pM10?.toValidOrNull(),
+            sO2 = sO2?.toValidOrNull(),
+            nO2 = nO2?.toValidOrNull(),
+            o3 = o3?.toValidOrNull(),
+            cO = cO?.toValidOrNull()
+        )
+    }
 }
