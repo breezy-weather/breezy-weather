@@ -269,6 +269,7 @@ class InfoplazaService @Inject constructor(
                 dewPoint = result.dewPoint?.celsius,
                 pressure = result.pressure?.hectopascals,
                 cloudCover = result.cloudCover?.fraction,
+                uV = UV(index = result.uvIndex),
                 visibility = result.visibility?.meters
             )
         }
