@@ -1,0 +1,47 @@
+Breezy Weather הוא יישומון מזג אוויר עשיר בתכונות חינמי בקוד פתוח עם ערכת נושא Material 3 עם ויזואליזציות מרשימות, תמיכה בתחזית, מצב מזג אוויר עדכני, איכות אוויר, אבקנים, התראות, מעל 50 מקורות נתוני מזג אוויר, כגון NWS, Met Office UK, Met Éireann, ECCC ו־ Open-Meteo.
+
+<b>תכונות</b>
+
+- תחזית יומית ושעתית עד 16 ימים קדימה
+- משקעים בשעה הקרובה
+- מצב עדכני בזמן אמת
+- איכות אוויר, אלרגנים ומידע אפמריס
+- התראות על משקעים ומצבים חמורים
+- שיתוף נתונים באישור המשתמש עם אפליקציות אחרות (כגון Gadgetbridge)
+- דגש על נגישות לקוראי מסך ואזורים נוספים
+
+<b>עיצוב</b>
+
+- Material 3 Expressive
+- טבלאות 24 שעות מפורטות
+- מצב dark mode אוטומטי
+- חבילות אייקונים מותאמות אישית
+- מבחר גדול של ווידג'טים
+- רקע חי
+
+<b>מקורות</b>
+
+- In all flavors: Open-Meteo, ANAM-BF, Bright Sky (DWD), DCCMS, DMN, DWR, EMI, FOSS Public Alert Server, GMet, IGEBU, INM, KNMI, Mali-Météo, Météo Benin, Météo Tchad, Météo Togo, Mettelsat, MSD, Pirate Weather, SMA (Seychelles), SMA (Sudan), SSMS
+- Not libre/self-hostable (not included in versions with suffix _freenet): AccuWeather, AEMET, Atmo Auvergne-Rhône-Alpes, Atmo France, ATMO GrandEst, Atmo Hauts-de-France, AtmoSud, Baidu IP location, BMD, BMKG, CWA, DMI, ECCC, EKUK, EPD (Hong Kong), GeoNames, GeoSphere AT, HERE, HKO, Ilmateenistus, IMD, IMS, IP.SB, IPMA, LHMT, LVĢMC, JMA, MET Éireann, MET Norway, Met Office UK, Meteo AM, Météo-France, MeteoLux, MGM, Mixed China sources, NAMEM, NCDR, NCEI, NLSC, NWS, OpenWeather, PAGASA, SMG, Veðurstofa Íslands, WMO Severe Weather
+
+<b>הרשאות</b>
+
+דרוש:
+
+- רשת (ACCESS_NETWORK_STATE, ACCESS_WIFI_STATE, INTERNET): קבלת נתוני מזג אוויר ממקורות באינטרנט
+
+אפשרי:
+
+- פעילות ברקע (RECEIVE_BOOT_COMPLETED, WAKE_LOCK, SET_ALARM, FOREGROUND_SERVICE, FOREGROUND_SERVICE_DATA_SYNC, FOREGROUND_SERVICE_SPECIAL_USE): עדכוני מזג אוויר ברקע והתראות תחזית מתוזמנות
+- התעלמות מיטוב סוללה (REQUEST_IGNORE_BATTERY_OPTIMIZATIONS): עוזר למנוע מהיישומון להיסגר במכשירים מסויימים
+- שליחת התראות (POST_NOTIFICATIONS): אזהרות, משקעים, תחזית היום/מחר, ווידג'ט-התראות, עדכון התקדמות של עדכונים ברקע, וכו'
+- מיקום (ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION, ACCESS_BACKGROUND_LOCATION): להראות מזג אוויר במיקומך הנוכחי
+- אחסון (READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE): עוזר בהגדרת רקע חי של מזג אוויר ו/או ווידג'טים בחלק מהמכשירים
+- אריח (EXPAND_STATUS_BAR): מאפשר להפעיל את היישומון מהגדרות מהירות
+- שפת יישומון ספציפית (READ_APP_SPECIFIC_LOCALES): מאפשר לשמור שפה ספציפית לאפליקציה ולקרוא את הערך לאחר הפעלה מחדש בחלק מהמכשירים
+
+<b>רישיון</b>
+
+- GNU Lesser General Public License v3.0
+- This License does not grant any rights in the trademarks, service marks, or logos of any Contributor.
+- Misrepresentation of the origin of that material is prohibited, and modified versions of such material must be marked in reasonable ways as different from the original version.
