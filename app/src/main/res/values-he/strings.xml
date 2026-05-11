@@ -779,4 +779,5 @@
     <string name="pressure_standard">רגיל</string>
     <string name="message_please_wait_refresh">נא להמתין עד להשלמת הרענון</string>
     <string name="settings_main_background_title">רקע שמשתנה בהתאם למזג האוויר</string>
+    <string name="settings_source_api_key_invalid">הערך אינו בפורמט הצפוי</string>
 </resources>
