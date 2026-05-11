@@ -30,7 +30,7 @@
     <string name="wind_strength_10">Zware storm</string>
     <string name="wind_strength_11">Zeer zware storm</string>
     <string name="wind_strength_12">Orkaan</string>
-    <string name="daily_forecast">Dagelijkse verwachting</string>
+    <string name="daily_forecast">Verwachting per dag</string>
     <string name="hourly_forecast">Verwachting per uur</string>
     <string name="air_quality">Luchtkwaliteit</string>
     <string name="ephemeris">Zon &amp; maan</string>
@@ -127,7 +127,7 @@
     <string name="common_weather_text_drizzle_light">Lichte motregen</string>
     <string name="common_weather_text_rain_snow_mixed_showers_light">Lichte regen- en sneeuwbuien</string>
     <string name="settings_location_access_precise_title">GPS-gebruik van apparaat</string>
-    <string name="widget_trend_daily">Dagtrend</string>
+    <string name="widget_trend_daily">Trend per dag</string>
     <string name="widget_multi_city">Meerdere steden</string>
     <string name="widget_week_style_3_days">3 dagen</string>
     <string name="settings_location_access_switch_title">Locatietoegang</string>
@@ -378,7 +378,7 @@
     <string name="settings_units_temperature">Temperatuurseenheid</string>
     <string name="settings_units_precipitation">Neerslageenheid</string>
     <string name="settings_main_summary">Volgorde van tegels, weergegeven items, animaties</string>
-    <string name="settings_main_daily_trends_title">Dagelijkse trends</string>
+    <string name="settings_main_daily_trends_title">Trends per dag</string>
     <string name="message_network_unavailable">Netwerk niet beschikbaar</string>
     <string name="message_parsing_error_content">Zorg ervoor dat je de laatste versie van de app hebt geïnstalleerd. De server kan tijdelijk niet beschikbaar zijn, probeer het in dat geval later nog eens. Als het probleem aanhoudt, dump dan een crash log van debug instellingen, en rapporteer een probleem op GitHub.</string>
     <string name="widget_custom_subtitle_keyword_cuv_description">Huidige UV-index</string>
@@ -655,7 +655,7 @@
     <string name="ephemeris_polar_day">Pooldag</string>
     <string name="ephemeris_polar_night">Poolnacht</string>
     <string name="clock">Klok</string>
-    <string name="daily_summary">Dagelijks overzicht</string>
+    <string name="daily_summary">Overzicht per dag</string>
     <string name="chart_no_daily_data">Geen gegevens voor deze dag.</string>
     <string name="chart_no_hourly_data">Geen gegevens van uur tot uur.</string>
     <string name="chart_not_enough_hourly_data">Er zijn niet genoeg gegevens per uur beschikbaar om een grafiek voor deze dag weer te geven.</string>
