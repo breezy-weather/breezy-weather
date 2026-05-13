@@ -345,7 +345,6 @@
     <string name="about_no_new_updates">Tətbiq yenilənməsi mövcud deyil</string>
     <string name="about_update_check_eol">Androidin bu versiyası artıq dəstəklənmir</string>
     <string name="about_contact">Əlaqə</string>
-    <string name="about_matrix"></string>
     <string name="about_source_code">Mənbə kodu</string>
     <string name="about_dependencies">Asılılıqlar</string>
     <string name="about_contributors">Töhfə verənlər</string>
