@@ -283,10 +283,10 @@ object WidgetNotificationIMP : AbstractRemoteViewsPresenter() {
                         setTextViewText(
                             viewId.second,
                             if (isWidgetNotificationUsingFeelsLike) {
-                                daily.getTrendTemperature(context, temperatureUnit)
-                            } else {
                                 daily.getTrendFeelsLikeTemperature(context, temperatureUnit)
                                     ?: daily.getTrendTemperature(context, temperatureUnit)
+                            } else {
+                                daily.getTrendTemperature(context, temperatureUnit)
                             }
                         )
                         if (weatherCode != null) {
