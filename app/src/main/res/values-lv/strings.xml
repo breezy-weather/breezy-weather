@@ -778,4 +778,5 @@
     <string name="action_pull_down_to_refresh">Pavilkt uz leju, lai atsvaidzinātu</string>
     <string name="pressure_standard">Parasts</string>
     <string name="settings_source_api_key_invalid">Vērtība nav paredzētajā veidolā</string>
+    <string name="message_please_wait_refresh">Lūgums uzgaidīt atsvaidzināšanas pabeigšanos</string>
 </resources>
