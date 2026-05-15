@@ -661,4 +661,6 @@
     <string name="chart_maximum_value">القيمة القصوى</string>
     <string name="conditions">شروط</string>
     <string name="temperature_real">فِعلي</string>
+    <string name="temperature_feels_like_details">كيف تبدو درجة الحرارة نتيجة للرطوبة والرياح و/أو أشعة الشمس.</string>
+    <string name="temperature_degree_day_heating_explanation">الفرق بين درجة الحرارة الخارجية ودرجة حرارة الراحة المرجعية المستخدمة لتقدير متطلبات طاقة التدفئة</string>
 </resources>
