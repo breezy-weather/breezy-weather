@@ -371,9 +371,9 @@
     <string name="settings_modules_notification_widget_title">أيقونة كإشعار</string>
     <string name="settings_modules_notification_persistent_switch">ثابتة</string>
     <string name="settings_debug">تصحيح</string>
-    <string name="settings_debug_summary">سجلات الأعطال</string>
-    <string name="settings_debug_dump_crash_logs_title">مشاركة سجلات الأعطال</string>
-    <string name="settings_debug_dump_crash_logs_summary">يحفظ سجلات الأخطاء في ملف لمشاركتها مع المطورين</string>
+    <string name="settings_debug_summary">سجلات الإنهيار</string>
+    <string name="settings_debug_dump_crash_logs_title">شارك سجلات الإنهيار</string>
+    <string name="settings_debug_dump_crash_logs_summary">يحفظ سجلات الإنهيار في ملف لمشاركتها مع المطوّرين</string>
     <string name="notification_channel_alerts">تنبيهات</string>
     <string name="notification_channel_background_services">خدمات الخلفية</string>
     <string name="about_contribution_WangDaYeeeeee">مطور المشروع الأصلي الطقس الهندسي</string>
@@ -412,7 +412,7 @@
     <string name="settings_background_updates_refresh_skip_when_battery_low">تجاهل عندما تكون البطارية منخفضة</string>
     <string name="message_parsing_error_title">فشل تحليل بيانات الطقس</string>
     <string name="message_server_timeout">انتهت مهلة الطلب</string>
-    <string name="message_parsing_error_content">تأكد من تحديثك إلى أحدث إصدار من التطبيق. قد يكون الخادم غير متاح مؤقتًا، وفي هذه الحالة، يرجى المحاولة مرة أخرى لاحقًا. إذا استمرت المشكلة، يرجى مشاركة سجل الأعطال من إعدادات التصحيح، والإبلاغ عن مشكلة على GitHub.</string>
+    <string name="message_parsing_error_content">تأكد من تحديثك إلى أحدث إصدار من التطبيق. قد يكون الخادم غير متاح مؤقتًا، وفي هذه الحالة، يرجى المحاولة مرة أخرى لاحقًا. إذا استمرت المشكلة، يرجى مشاركة سجلّ الإنهيار من إعدادات التصحيح، والإبلاغ عن مشكلة على GitHub.</string>
     <string name="message_source_not_installed_error_title">المصدر لم يعد متوفرا</string>
     <string name="settings_source_api_key">مفتاح API</string>
     <string name="temperature_degree_day_cooling">درجة الحرارة لتبريد منزلك</string>
@@ -475,9 +475,9 @@
     <string name="settings_main_threshold_lines_on_charts">خطوط العتبة على الرسوم البيانية</string>
     <string name="settings_modules_broadcast_send_data_title">إرسال بيانات الطقس إلى %s</string>
     <string name="settings_color_app">اتبع التطبيق</string>
-    <string name="settings_debug_dump_crash_logs_saved">تم حفظ سجل الاخطاء</string>
-    <string name="settings_debug_dump_crash_logs_tap_to_open">اضغط للفتح</string>
-    <string name="notification_channel_crash_logs">سجلات الأعطال</string>
+    <string name="settings_debug_dump_crash_logs_saved">حُفظ سجلّ الإنهيار</string>
+    <string name="settings_debug_dump_crash_logs_tap_to_open">انقر للفتح</string>
+    <string name="notification_channel_crash_logs">سجلات الإنهيار</string>
     <string name="notification_precipitation_starting">ستهطل الأمطار قريبا</string>
     <string name="notification_precipitation_continuing">التساقطات</string>
     <string name="notification_precipitation_stopping">سيتوقف هطول الأمطار قريبا</string>
@@ -625,7 +625,7 @@
     <string name="common_weather_text_glaze">صقيل</string>
     <string name="settings_notifications_permission">إذن الإشعار مطلوب</string>
     <string name="settings_notifications_permission_summary">بحاجة إلى إشعارك بشأن الإنذارات والتنبؤات وتحديثات التطبيقات. %s</string>
-    <string name="settings_debug_notification_permission">مطلوب للإبلاغ عن سجلات الأعطال وتحديثات الطقس الفاشلة. %s</string>
+    <string name="settings_debug_notification_permission">مطلوب للإبلاغ عن سجلات الإنهيار وتحديثات الطقس الفاشلة. %s</string>
     <string name="weather_source_continent_north_america">أمريكا الشمالية</string>
     <string name="weather_source_continent_oceania">أوقيانوسيا</string>
     <string name="weather_source_continent_south_america">أمريكا الجنوبية</string>
