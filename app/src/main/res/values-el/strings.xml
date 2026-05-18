@@ -781,4 +781,7 @@
     <string name="content_provider_permission_description">Λήψη πληροφοριών καιρού και τοποθεσίας από το Breezy Weather</string>
     <string name="common_weather_text_mostly_cloudy">Κυρίως συννεφιασμένος</string>
     <string name="pressure_standard">Τυπική</string>
+    <string name="message_please_wait_refresh">Παρακαλώ περιμένετε μέχρι να ολοκληρωθεί η ανανέωση</string>
+    <string name="settings_source_api_key_invalid">Η τιμή δεν είναι στην αναμενόμενη μορφή</string>
+    <string name="settings_main_background_title">Φόντο βάσει καιρού</string>
 </resources>
