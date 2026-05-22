@@ -14,6 +14,7 @@
 **Sources**
 - China - Use a server which is less likely to return invalid data when language is set to Chinese
 - KNMI - Fix duplicate “Today” when migrating from another source
+- KNMI - Fix precipitation probability being 100 times too low
 
 
 # Version 6.2.0 (2026-05-01)
