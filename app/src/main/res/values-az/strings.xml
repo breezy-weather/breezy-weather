@@ -281,7 +281,7 @@
     <string name="settings_modules_summary">Vidjetlər, bildiriş vidjeti, divar kağızı, digər tətbiqlərlə məlumat paylaşımı</string>
     <string name="settings_modules_live_wallpaper_title">Canlı divar kağızı</string>
     <string name="settings_modules_live_wallpaper_summary">Hava animasiyasını divar kağızı kimi təyin edin</string>
-    <string name="settings_modules_live_wallpaper_error">Divar kağızı seçicisini işə salmaq mümkün olmadı. Əsas ekranda divar kağızı seçicinizdə \"Canlı Divar kağızı\" seçməklə %s divar kağızını aktivləşdirə bilərsiniz.</string>
+    <string name="settings_modules_live_wallpaper_error">Divar kağızı seçicisini işə salmaq mümkün olmadı. Əsas ekranda divar kağızı seçicinizdə “Canlı Divar kağızı” seçməklə %s divar kağızını aktivləşdirə bilərsiniz.</string>
     <string name="settings_modules_week_icon_mode_title">Həftəlik baxışlarda göstəriləcək ikon</string>
     <string name="settings_modules_monochrome_icons_title">Monoxrom ikonlar</string>
     <string name="settings_modules_section_widgets_in_use">İstifadədə olan vidjetlər</string>
@@ -479,7 +479,7 @@
     <string name="settings_background_updates_refresh_never">Əsla</string>
     <string name="settings_background_updates_refresh_never_warning1">Fon yeniləmələrini söndürməklə, artıq bildirişlər və ya yağıntılar barədə bildirişlər almayacaqsınız. Tətbiqi açana qədər vidjetlər yenilənməyəcək.</string>
     <string name="settings_background_updates_refresh_never_warning2">Fon yeniləmə prosesi yüngüldür: ilk seçdiyiniz məkanı yalnız sizin seçdiyiniz tezlikdə, ikinci dərəcəli məkanları isə yalnız ehtiyacınız olduqda, gündə bir dəfə yeniləyir. Batareyaya qənaət edir və ayda %d MB trafik istifadəsini keçməməlidir.</string>
-    <string name="settings_background_updates_refresh_never_warning3">Fon yeniləmələrini söndürmək əvəzinə, daha az tez-tez yeniləmə tezliyindən istifadə etməyi nəzərdən keçirin, əks halda davam etmək istəyirsinizsə, \"Davam et\" düyməsini basın.</string>
+    <string name="settings_background_updates_refresh_never_warning3">Fon yeniləmələrini söndürmək əvəzinə, daha az tez-tez yeniləmə tezliyindən istifadə etməyi nəzərdən keçirin, əks halda davam etmək istəyirsinizsə, “Davam et” düyməsini basın.</string>
     <string name="settings_background_updates_refresh_skip_when_battery_low">Batareya az olduqda keç</string>
     <string name="settings_background_updates_section_troubleshoot">Nasazlıqları aradan qaldır</string>
     <string name="settings_background_updates_battery_optimization">Batareya optimallaşdırmasını deaktiv edin</string>
@@ -487,7 +487,7 @@
     <string name="settings_background_updates_battery_optimization_activity_not_found">Cihaz sazlamalarını açmaq mümkün olmadı.</string>
     <string name="settings_background_updates_battery_optimization_disabled">Batareya optimallaşdırması artıq deaktiv edilib.</string>
     <string name="settings_background_updates_dont_kill_my_app_title">İstehsalçıya məxsus təlimatlar</string>
-    <string name="settings_background_updates_dont_kill_my_app_summary">Bəzi istehsalçıların fon xidmətlərini dayandıran əlavə tətbiq məhdudiyyətləri var. \"Don’t kill my app!\" veb saytında bunun necə düzəldiləcəyi barədə məlumat var.</string>
+    <string name="settings_background_updates_dont_kill_my_app_summary">Bəzi istehsalçıların fon xidmətlərini dayandıran əlavə tətbiq məhdudiyyətləri var. “Don’t kill my app!” veb saytında bunun necə düzəldiləcəyi barədə məlumat var.</string>
     <string name="settings_background_updates_worker_info_title">Proses informasiyası</string>
     <string name="settings_background_updates_worker_info_summary">Son işə salınma: %s</string>
     <string name="settings_location">Məkan</string>
@@ -526,7 +526,7 @@
     <string name="location_message_already_exists">Məkan siyahısında artıq bu proqnoz mənbəyi ilə birlikdə bu məkan var.</string>
     <string name="location_message_deleted">Məkan silindi</string>
     <string name="location_delete_location_dialog_title">Məkan silinsin?</string>
-    <string name="location_delete_location_dialog_message">Yadda saxlanılan məkanlar siyahınızdan \"%s\" məkanını silmək üzrəsiniz.</string>
+    <string name="location_delete_location_dialog_message">Yadda saxlanılan məkanlar siyahınızdan “%s” məkanını silmək üzrəsiniz.</string>
     <string name="location_message_permission_missing">Məkan məlumatlarına giriş icazəsi yoxdur</string>
     <string name="location_message_permission_background_missing">Fonda məkan məlumatlarına giriş icazəsi yoxdur</string>
     <string name="location_message_location_access_off">Məkana məlumatlarına giriş deaktivdir</string>
@@ -591,7 +591,7 @@
     <string name="dialog_permissions_location_title">Məkan məlumatlarına giriş</string>
     <string name="dialog_permissions_location_content">Bu funksiyadan istifadə etmək üçün tətbiqə cari məkanınızın məluatlarına daxil olmaq üçün icazə verməlisiniz. Bu məlumat yalnız seçilmiş hava durumu mənbələri ilə paylaşılacaq. Fikrinizi dəyişmisinizsə, prosesi ləğv edə və sabit bir məkanı əl ilə əlavə edə bilərsiniz.</string>
     <string name="dialog_permissions_location_background_title">Fonda məkan məlumatlarına giriş</string>
-    <string name="dialog_permissions_location_background_content">Android tərəfindən bilinən ən son cari məkan üçün fonda hava yeniləməsinin edilməsinə icazə vermək üçün məkan məlumatları icazəsini \"Həmişə icazə ver\" olaraq təyin etməlisiniz. Bunu etməsəniz, hava durumu ön plandakı ən son əldə edilmiş koordinatlara əsasən yenilənəcək. Hansı ki, bu məlumatlara köhnələbiləndir.</string>
+    <string name="dialog_permissions_location_background_content">Android tərəfindən bilinən ən son cari məkan üçün fonda hava yeniləməsinin edilməsinə icazə vermək üçün məkan məlumatları icazəsini “Həmişə icazə ver” olaraq təyin etməlisiniz. Bunu etməsəniz, hava durumu ön plandakı ən son əldə edilmiş koordinatlara əsasən yenilənəcək. Hansı ki, bu məlumatlara köhnələbiləndir.</string>
     <string name="dialog_refresh_error_details_title">Xətaları yenilə</string>
     <string name="dialog_refresh_error_details_content">Əlavə yardım almaq üçün sual işarəsi olan xəta mesajlarına toxunun.</string>
     <string name="dialog_time_picker_select_time">Vaxtı seçin</string>
@@ -644,10 +644,10 @@
     <string name="settings_location_access_switch_summaryOff">Cari yerinizi bir yer kimi əlavə etmək istəyirsinizsə icazə verin.</string>
     <string name="settings_location_access_background_title">Fonda məkan məlumatlarına giriş</string>
     <string name="settings_location_access_background_summaryOn">Aktivləşdirilib. Tətbiq fon rejimində cari yeriniz üçün hava durumu məlumatlarını yeniləyə biləcək.</string>
-    <string name="settings_location_access_background_summaryOff">Cari məkanınız üçün fon yeniləmələrinə sahib olmaq üçün \"Həmişə icazə verin\" seçimini aktivləşdirin.</string>
+    <string name="settings_location_access_background_summaryOff">Cari məkanınız üçün fon yeniləmələrinə sahib olmaq üçün “Həmişə icazə verin” seçimini aktivləşdirin.</string>
     <string name="settings_location_access_precise_title">Cihazın GPS istifadəsi</string>
     <string name="settings_location_access_precise_summaryOn">Aktivləşdirilib. Cihazın şəbəkə provayderi prioritet olaraq və əksər hallarda istifadə olunacaq, lakin GPS ehtiyat vasitə kimi də istifadə edilə bilər.</string>
-    <string name="settings_location_access_precise_summaryOff">Məkanı tapmaqda çətinlik çəkirsinizsə, \"Dəqiq məkanı istifadə et\" seçimini aktivləşdirin.</string>
+    <string name="settings_location_access_precise_summaryOff">Məkanı tapmaqda çətinlik çəkirsinizsə, “Dəqiq məkanı istifadə et” seçimini aktivləşdirin.</string>
     <string name="settings_per_location">Yerləşmə seçimləri</string>
     <string name="settings_per_location_summary">Bu məkan üçün əlavə özəlləşdirmələr</string>
     <string name="settings_weather_sources_summary">Yeni məkanlar, özəl API açarları və digər mənbə sazlamaları üçün standart hava durumu mənbəyi</string>

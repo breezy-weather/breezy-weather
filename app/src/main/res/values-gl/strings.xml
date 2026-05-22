@@ -606,7 +606,7 @@
     <string name="settings_background_updates_refresh_never">Xamais</string>
     <string name="settings_background_updates_refresh_never_warning1">Ao desactivar as actualizacións en segundo plano, deixarás de recibir notificacións de alertas ou precipitacións. Os widgets non se actualizarán ata que abras a aplicación.</string>
     <string name="settings_background_updates_refresh_never_warning2">O proceso de actualización en segundo plano é lixeiro: só actualiza a túa primeira localización segundo a frecuencia que elixas, e as localizacións secundarias só se actualizan unha vez ao día se as necesitas. É eficiente en consumo de batería e non debería superar os %d MB de consumo de datos ao mes.</string>
-    <string name="settings_background_updates_refresh_never_warning3">Considera usar unha frecuencia de actualización menos frecuente no canto de desactivar as actualizacións en segundo plano; se non, preme \"Continuar\" se aínda queres seguir adiante.</string>
+    <string name="settings_background_updates_refresh_never_warning3">Considera usar unha frecuencia de actualización menos frecuente no canto de desactivar as actualizacións en segundo plano; se non, preme “Continuar” se aínda queres seguir adiante.</string>
     <string name="settings_background_updates_refresh_skip_when_battery_low">Saltar cando a batería estea baixa</string>
     <string name="settings_background_updates_section_troubleshoot">Solucionar problemas</string>
     <string name="settings_background_updates_battery_optimization">Desactivar a optimización da batería</string>
@@ -614,7 +614,7 @@
     <string name="settings_background_updates_battery_optimization_activity_not_found">Non foi posible abrir a configuración do dispositivo.</string>
     <string name="settings_background_updates_battery_optimization_disabled">A optimización da batería xa está desactivada.</string>
     <string name="settings_background_updates_dont_kill_my_app_title">Instrucións específicas do fabricante</string>
-    <string name="settings_background_updates_dont_kill_my_app_summary">Algúns fabricantes teñen restricións adicionais nas aplicacións que matan os servizos en segundo plano. O sitio web \'Don’t kill my app!\' ten información sobre como solucionalo.</string>
+    <string name="settings_background_updates_dont_kill_my_app_summary">Algúns fabricantes teñen restricións adicionais nas aplicacións que matan os servizos en segundo plano. O sitio web “Don’t kill my app!” ten información sobre como solucionalo.</string>
     <string name="settings_background_updates_worker_info_title">Información do proceso</string>
     <string name="settings_background_updates_worker_info_summary">Última execución: %s</string>
     <string name="settings_location">Localización</string>
@@ -626,10 +626,10 @@
     <string name="settings_location_access_switch_summaryOff">Permíteo se queres poder engadir a túa localización actual como unha localización.</string>
     <string name="settings_location_access_background_title">Acceso á localización en segundo plano</string>
     <string name="settings_location_access_background_summaryOn">Activado. A aplicación poderá actualizar en segundo plano os datos meteorolóxicos da túa localización actual.</string>
-    <string name="settings_location_access_background_summaryOff">Activa \"Permitir sempre\" para ter actualizacións en segundo plano da túa localización actual.</string>
+    <string name="settings_location_access_background_summaryOff">Activa “Permitir sempre” para ter actualizacións en segundo plano da túa localización actual.</string>
     <string name="settings_location_access_precise_title">Uso do GPS do dispositivo</string>
     <string name="settings_location_access_precise_summaryOn">Activado. Usarase prioritariamente e a maioría das veces o provedor de rede do dispositivo, pero tamén se pode usar o GPS como alternativa.</string>
-    <string name="settings_location_access_precise_summaryOff">Activa \"Usar localización precisa\" se tes problemas para obter unha localización.</string>
+    <string name="settings_location_access_precise_summaryOff">Activa “Usar localización precisa” se tes problemas para obter unha localización.</string>
     <string name="settings_weather_source_non_freenet">%s (servizo de rede non libre)</string>
     <string name="settings_weather_source_not_configured">%s (non configurado)</string>
     <string name="settings_weather_source_current_position_disclaimer">É posible que haxa máis fontes meteorolóxicas dispoñibles para a túa localización despois da primeira actualización.</string>
@@ -675,7 +675,7 @@
     <string name="settings_modules_summary">Widgets, widget de notificación, fondo de pantalla, compartición de datos con outras aplicacións</string>
     <string name="settings_modules_live_wallpaper_title">Fondo de pantalla animado</string>
     <string name="settings_modules_live_wallpaper_summary">Establecer unha animación meteorolóxica como fondo de pantalla</string>
-    <string name="settings_modules_live_wallpaper_error">Non foi posible iniciar o selector de fondo de pantalla. Aínda podes activar o fondo de pantalla %s escollendo \"Fondo de pantalla animado\" no selector de fondo de pantalla da túa pantalla de inicio.</string>
+    <string name="settings_modules_live_wallpaper_error">Non foi posible iniciar o selector de fondo de pantalla. Aínda podes activar o fondo de pantalla %s escollendo “Fondo de pantalla animado” no selector de fondo de pantalla da túa pantalla de inicio.</string>
     <string name="settings_modules_week_icon_mode_title">Icona que se mostra nas vistas semanais</string>
     <string name="settings_modules_monochrome_icons_title">Iconas monocromáticas</string>
     <string name="settings_modules_section_widgets_in_use">Widgets en uso</string>
