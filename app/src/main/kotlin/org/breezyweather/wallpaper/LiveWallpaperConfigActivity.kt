@@ -228,7 +228,7 @@ class LiveWallpaperConfigActivity : BreezyActivity() {
                                     stringResource(
                                         R.string.parenthesis,
                                         stringResource(R.string.action_enable),
-                                        timeLeft.format(decimals = 0, locale = context.currentLocale)
+                                        timeLeft.format(decimals = 0, locale = currentLocale)
                                     )
                                 } else {
                                     stringResource(R.string.action_enable)
