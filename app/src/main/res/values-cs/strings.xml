@@ -796,4 +796,5 @@
     <string name="settings_source_api_key_invalid">Hodnota není v očekávaném formátu</string>
     <string name="message_please_wait_refresh">Počkejte prosím na dokončení obnovení</string>
     <string name="settings_main_background_title">Pozadí založené na počasí</string>
+    <string name="settings_weather_source_no_longer_exists">%s (již neexistuje)</string>
 </resources>
