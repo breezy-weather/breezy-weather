@@ -64,17 +64,20 @@ import kotlinx.collections.immutable.persistentMapOf
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.collections.immutable.toImmutableMap
 import org.breezyweather.R
+import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.getColorResource
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.extensions.toDate
 import org.breezyweather.common.options.appearance.DetailScreen
 import org.breezyweather.common.utils.UnitUtils
+import org.breezyweather.domain.weather.model.getIndex
 import org.breezyweather.domain.weather.model.getLevel
 import org.breezyweather.domain.weather.model.getUVColor
 import org.breezyweather.ui.common.charts.BreezyLineChart
 import org.breezyweather.ui.common.charts.TimeTopAxisItemPlacer
 import org.breezyweather.ui.common.widgets.Material3ExpressiveCardListItem
+import org.breezyweather.unit.formatting.format
 import java.util.Date
 import kotlin.math.max
 import kotlin.math.roundToInt
@@ -217,7 +220,7 @@ private fun UVItem(
             TextFixedHeight(
                 text = buildAnnotatedString {
                     uV?.index?.let {
-                        append(UnitUtils.formatDouble(context, it, 1))
+                        append(it.format(decimals = 1, locale = context.currentLocale))
                         append(" ")
                     }
                     uV?.getLevel(context)?.let {
@@ -275,7 +278,9 @@ private fun UVChart(
         topAxisItemPlacer = remember(mappedValues) {
             TimeTopAxisItemPlacer(mappedValues.keys.toImmutableList())
         },
-        endAxisValueFormatter = { _, value, _ -> UnitUtils.formatInt(context, value.roundToInt()) },
+        endAxisValueFormatter = { _, value, _ ->
+            value.roundToInt().format(decimals = 0, locale = context.currentLocale)
+        },
         colors = remember {
             persistentListOf(
                 persistentMapOf(
@@ -291,7 +296,7 @@ private fun UVChart(
         },
         topAxisValueFormatter = { _, value, _ ->
             mappedValues.getOrElse(value.toLong()) { null }?.index?.roundToInt()
-                ?.let { UnitUtils.formatInt(context, it) }
+                ?.format(decimals = 0, locale = context.currentLocale)
                 ?: "-"
         },
         trendHorizontalLines = persistentMapOf(
@@ -339,7 +344,7 @@ fun UVScale(
             }
             UV.uvThresholds.forEachIndexed { index, startingValue ->
                 val endingValue = UV.uvThresholds.getOrElse(index + 1) { null }
-                    ?.let { " – ${UnitUtils.formatInt(context, it - 1)}" }
+                    ?.let { " – ${(it - 1).format(decimals = 0, locale = context.currentLocale)}" }
                     ?: "+"
                 val uv = UV(index = startingValue.toDouble())
                 Row(
@@ -366,7 +371,7 @@ fun UVScale(
                         )
                     }
                     Text(
-                        "${UnitUtils.formatInt(context, startingValue)}$endingValue",
+                        "${startingValue.format(decimals = 0, locale = context.currentLocale)}$endingValue",
                         textAlign = TextAlign.End,
                         modifier = Modifier.weight(1f)
                     )

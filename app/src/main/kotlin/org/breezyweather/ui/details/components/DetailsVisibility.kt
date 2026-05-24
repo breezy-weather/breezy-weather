@@ -83,6 +83,7 @@ import org.breezyweather.unit.distance.Distance
 import org.breezyweather.unit.distance.Distance.Companion.meters
 import org.breezyweather.unit.distance.toDistance
 import org.breezyweather.unit.formatting.UnitWidth
+import org.breezyweather.unit.formatting.format
 import java.util.Date
 import kotlin.math.max
 
@@ -385,21 +386,13 @@ fun VisibilityScale(
                 )
             }
             visibilityScaleThresholds.forEachIndexed { index, startingValue ->
-                val startingValueFormatted = UnitUtils.formatDouble(
-                    context,
-                    startingValue.toDouble(distanceUnit),
-                    distanceUnit.decimals.short
-                )
+                val startingValueFormatted = startingValue.toDouble(distanceUnit)
+                    .format(decimals = distanceUnit.decimals.short, locale = context.currentLocale)
                 val endingValueFormatted = visibilityScaleThresholds.getOrElse(index + 1) { null }
                     ?.let {
                         " – ${
-                            UnitUtils.formatDouble(
-                                context,
-                                it.toDouble(distanceUnit).minus(
-                                    if (distanceUnit.decimals.short == 0) 1.0 else 0.1
-                                ),
-                                distanceUnit.decimals.short
-                            )
+                            it.toDouble(distanceUnit).minus(if (distanceUnit.decimals.short == 0) 1.0 else 0.1)
+                                .format(decimals = distanceUnit.decimals.short, locale = context.currentLocale)
                         }"
                     }
                     ?: "+"

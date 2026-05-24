@@ -108,7 +108,6 @@ class LiveWallpaperConfigActivity : BreezyActivity() {
 
     @Composable
     private fun ContentView() {
-        val context = LocalContext.current
         val dialogOpenState = remember { mutableStateOf(false) }
         Material3Scaffold(
             topBar = {
@@ -140,12 +139,12 @@ class LiveWallpaperConfigActivity : BreezyActivity() {
                 }
                 item {
                     SwitchPreferenceView(
-                        title = context.getString(
+                        title = stringResource(
                             R.string.parenthesis,
-                            context.getString(R.string.settings_main_section_animations),
-                            context.getString(R.string.widget_live_wallpaper_animations_enable_dangerous)
+                            stringResource(R.string.settings_main_section_animations),
+                            stringResource(R.string.widget_live_wallpaper_animations_enable_dangerous)
                         ),
-                        summary = { _: Context, enabled: Boolean ->
+                        summary = { context: Context, enabled: Boolean ->
                             if (enabled) {
                                 "⚠️ ${context.getString(R.string.settings_enabled)}"
                             } else {
@@ -242,7 +241,7 @@ class LiveWallpaperConfigActivity : BreezyActivity() {
                         Text(
                             stringResource(
                                 R.string.parenthesis,
-                                context.getString(R.string.settings_main_section_animations),
+                                stringResource(R.string.settings_main_section_animations),
                                 stringResource(R.string.widget_live_wallpaper_animations_enable_dangerous)
                             )
                         )

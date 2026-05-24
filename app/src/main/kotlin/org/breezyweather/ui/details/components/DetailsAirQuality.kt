@@ -102,6 +102,7 @@ import org.breezyweather.ui.common.charts.SpecificVerticalAxisItemPlacer
 import org.breezyweather.ui.common.charts.TimeTopAxisItemPlacer
 import org.breezyweather.ui.common.widgets.Material3ExpressiveCardListItem
 import org.breezyweather.unit.formatting.UnitWidth
+import org.breezyweather.unit.formatting.format
 import java.util.Date
 import kotlin.math.max
 import kotlin.math.roundToInt
@@ -402,7 +403,7 @@ private fun AirQualityItem(
                 text = buildAnnotatedString {
                     if (selectedPollutant == null) {
                         airQuality?.getIndex()?.let {
-                            append(UnitUtils.formatInt(context, it))
+                            append(it.format(decimals = 0, locale = context.currentLocale))
                             append(" ")
                         }
                     } else {
@@ -488,7 +489,10 @@ private fun AirQualityChart(
         endAxisValueFormatter = remember(selectedPollutant) {
             { _, value, _ ->
                 if (selectedPollutant == null) {
-                    UnitUtils.formatInt(context, value.roundToInt())
+                    value.roundToInt().format(
+                        decimals = 0,
+                        locale = context.currentLocale
+                    )
                 } else {
                     PollutantIndex.getUnit(selectedPollutant).formatMeasure(context, value)
                 }
@@ -508,13 +512,13 @@ private fun AirQualityChart(
         topAxisValueFormatter = { _, value, _ ->
             mappedValues.getOrElse(value.toLong()) { null }
                 ?.let {
-                    UnitUtils.formatInt(
-                        context,
-                        if (selectedPollutant == null) {
-                            it.getIndex()!!
-                        } else {
-                            it.getConcentration(selectedPollutant)!!.roundToInt()
-                        }
+                    if (selectedPollutant == null) {
+                        it.getIndex()!!
+                    } else {
+                        it.getConcentration(selectedPollutant)!!.roundToInt()
+                    }.format(
+                        decimals = 0,
+                        locale = context.currentLocale
                     )
                 } ?: "-"
         },
@@ -773,7 +777,7 @@ fun AirQualityScale(
                 }
                 val endingValue = (selectedPollutant?.thresholds ?: PollutantIndex.aqiThresholds)
                     .getOrElse(index + 1) { null }
-                    ?.let { " – ${UnitUtils.formatInt(context, it - 1)}" }
+                    ?.let { " – ${(it - 1).format(decimals = 0, locale = context.currentLocale)}" }
                     ?: "+"
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
@@ -803,7 +807,7 @@ fun AirQualityScale(
                         modifier = Modifier.weight(1.5f)
                     )
                     Text(
-                        text = "${UnitUtils.formatInt(context, startingValue)}$endingValue",
+                        text = "${startingValue.format(decimals = 0, locale = context.currentLocale)}$endingValue",
                         textAlign = TextAlign.End,
                         modifier = Modifier.weight(1.5f)
                     )

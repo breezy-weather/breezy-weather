@@ -28,6 +28,7 @@ import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Weather
 import org.breezyweather.R
 import org.breezyweather.background.receiver.widget.WidgetDayProvider
+import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.formatMeasure
 import org.breezyweather.common.extensions.getFormattedMediumDayAndMonthInAdditionalCalendar
 import org.breezyweather.common.extensions.getFormattedTime
@@ -36,7 +37,6 @@ import org.breezyweather.common.extensions.getWeek
 import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.extensions.isRtl
 import org.breezyweather.common.source.PollenIndexSource
-import org.breezyweather.common.utils.UnitUtils
 import org.breezyweather.domain.location.model.getPlace
 import org.breezyweather.domain.location.model.isDaylight
 import org.breezyweather.domain.settings.SettingsManager
@@ -48,6 +48,7 @@ import org.breezyweather.remoteviews.Widgets
 import org.breezyweather.ui.theme.resource.ResourceHelper
 import org.breezyweather.ui.theme.resource.ResourcesProviderFactory
 import org.breezyweather.unit.formatting.UnitWidth
+import org.breezyweather.unit.formatting.format
 import org.breezyweather.unit.temperature.TemperatureUnit
 import java.util.Date
 import kotlin.math.abs
@@ -450,7 +451,7 @@ object DayWidgetIMP : AbstractRemoteViewsPresenter() {
                 if (airQuality.getIndex() != null && airQuality.getName(context) != null) {
                     context.getString(
                         R.string.parenthesis,
-                        UnitUtils.formatInt(context, airQuality.getIndex()!!),
+                        airQuality.getIndex()!!.format(decimals = 0, locale = context.currentLocale),
                         airQuality.getName(context)
                     )
                 } else {

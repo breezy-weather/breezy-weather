@@ -29,14 +29,15 @@ import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import breezyweather.domain.location.model.Location
 import org.breezyweather.BreezyWeather
 import org.breezyweather.R
+import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.formatMeasure
-import org.breezyweather.common.utils.UnitUtils
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.domain.weather.model.getTemperatureRangeSummary
 import org.breezyweather.ui.common.widgets.NumberAnimTextView
 import org.breezyweather.ui.main.widgets.TextRelativeClock
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
 import org.breezyweather.unit.formatting.UnitWidth
+import org.breezyweather.unit.formatting.format
 import kotlin.math.abs
 import kotlin.math.roundToInt
 import kotlin.time.Duration.Companion.milliseconds
@@ -155,8 +156,8 @@ class HeaderViewHolder(parent: ViewGroup) : AbstractMainViewHolder(
     override fun onEnterScreen() {
         super.onEnterScreen()
         mTemperature.setNumberString(
-            UnitUtils.formatInt(context, mTemperatureFrom),
-            UnitUtils.formatInt(context, mTemperatureTo)
+            mTemperatureFrom.format(decimals = 0, locale = context.currentLocale),
+            mTemperatureTo.format(decimals = 0, locale = context.currentLocale)
         )
     }
 }

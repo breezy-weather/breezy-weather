@@ -24,13 +24,14 @@ import androidx.appcompat.content.res.AppCompatResources
 import breezyweather.domain.location.model.Location
 import org.breezyweather.R
 import org.breezyweather.common.activities.BreezyActivity
+import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.options.appearance.DetailScreen
-import org.breezyweather.common.utils.UnitUtils
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.domain.weather.model.getContentDescription
 import org.breezyweather.domain.weather.model.getLevel
 import org.breezyweather.domain.weather.model.getShape
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
+import org.breezyweather.unit.formatting.format
 import kotlin.math.roundToInt
 
 class UvViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
@@ -56,9 +57,9 @@ class UvViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
                 location.weather!!.current?.uV?.getShape() ?: R.drawable.uv_unknown
             )
         )
-        uvIndexValueView.text = location.weather!!.current?.uV?.index?.roundToInt()?.let {
-            UnitUtils.formatInt(context, it)
-        } ?: "-"
+        uvIndexValueView.text = location.weather!!.current?.uV?.index?.roundToInt()
+            ?.format(decimals = 0, locale = context.currentLocale)
+            ?: "-"
         uvIndexLevelView.text = location.weather!!.current?.uV?.getLevel(context) ?: "-"
 
         location.weather!!.current?.uV?.getContentDescription(context)?.let {

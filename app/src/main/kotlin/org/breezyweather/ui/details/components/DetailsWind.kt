@@ -92,10 +92,12 @@ import org.breezyweather.common.utils.UnitUtils
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.domain.weather.model.drawableArrow
 import org.breezyweather.domain.weather.model.getDirection
+import org.breezyweather.domain.weather.model.getIndex
 import org.breezyweather.ui.common.charts.BreezyLineChart
 import org.breezyweather.ui.common.charts.TimeTopAxisItemPlacer
 import org.breezyweather.ui.common.widgets.Material3ExpressiveCardListItem
 import org.breezyweather.unit.formatting.UnitWidth
+import org.breezyweather.unit.formatting.format
 import org.breezyweather.unit.speed.Speed.Companion.beaufort
 import org.breezyweather.unit.speed.Speed.Companion.metersPerSecond
 import org.breezyweather.unit.speed.SpeedUnit
@@ -572,7 +574,7 @@ fun WindScale(
                             tint = Color(index.beaufort.getBeaufortScaleColor(context))
                         )
                         Text(
-                            text = UnitUtils.formatInt(context, index)
+                            text = index.format(decimals = 0, locale = context.currentLocale)
                         )
                     }
                     Text(

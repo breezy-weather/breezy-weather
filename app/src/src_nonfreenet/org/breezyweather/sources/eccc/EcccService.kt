@@ -43,7 +43,7 @@ import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.getCalendarMonth
 import org.breezyweather.common.extensions.toDate
-import org.breezyweather.common.extensions.toTimezoneNoHour
+import org.breezyweather.common.extensions.toTimezoneSpecificHour
 import org.breezyweather.common.preference.EditTextPreference
 import org.breezyweather.common.preference.Preference
 import org.breezyweather.domain.settings.SourceConfigStore
@@ -185,7 +185,7 @@ class EcccService @Inject constructor(
     ): List<DailyWrapper> {
         if (dailyResult == null) return emptyList()
         val dailyFirstDay = dailyResult.dailyIssuedTimeEpoch!!.toLong().seconds.inWholeMilliseconds.toDate()
-            .toTimezoneNoHour(location.timeZone)
+            .toTimezoneSpecificHour(location.timeZone, hour = 0)
         val dailyList = mutableListOf<DailyWrapper>()
         if (dailyFirstDay != null) {
             val firstDayIsNight = dailyResult.daily!![0].temperature?.periodLow != null

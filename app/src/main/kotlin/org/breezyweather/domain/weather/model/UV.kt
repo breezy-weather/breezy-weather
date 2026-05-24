@@ -23,7 +23,8 @@ import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
 import breezyweather.domain.weather.model.UV
 import org.breezyweather.R
-import org.breezyweather.common.utils.UnitUtils
+import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.unit.formatting.format
 
 fun UV.getLevel(context: Context): String? {
     if (index == null) return null
@@ -40,7 +41,7 @@ fun UV.getLevel(context: Context): String? {
 fun UV.getContentDescription(context: Context): String {
     val builder = StringBuilder()
     index?.let {
-        builder.append(UnitUtils.formatDouble(context, it, 0))
+        builder.append(it.format(decimals = 0, locale = context.currentLocale))
     }
     getLevel(context)?.let {
         if (builder.toString().isNotEmpty()) {
@@ -54,7 +55,7 @@ fun UV.getContentDescription(context: Context): String {
 fun UV.getShortDescription(context: Context): String {
     val builder = StringBuilder()
     index?.let {
-        builder.append(UnitUtils.formatDouble(context, it, 0))
+        builder.append(it.format(decimals = 0, locale = context.currentLocale))
     }
     getLevel(context)?.let {
         if (builder.toString().isNotEmpty()) builder.append(" ")

@@ -30,26 +30,8 @@ import androidx.compose.ui.text.style.BaselineShift
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.em
-import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.options.BaseEnum
-import org.breezyweather.domain.settings.SettingsManager
-import org.breezyweather.unit.formatting.format
 
-/*
- * This file is part of Breezy Weather.
- *
- * Breezy Weather is free software: you can redistribute it and/or modify it
- * under the terms of the GNU Lesser General Public License as published by the
- * Free Software Foundation, version 3 of the License.
- *
- * Breezy Weather is distributed in the hope that it will be useful, but
- * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
- * or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public
- * License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public License
- * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
- */
 object UnitUtils {
 
     fun getName(
@@ -78,37 +60,6 @@ object UnitUtils {
         names: Array<String>,
         values: Array<String>,
     ) = values.zip(names).firstOrNull { it.first == value }?.second
-
-    @Deprecated("Use Number.format() extension")
-    fun formatDouble(
-        context: Context,
-        value: Double,
-        precision: Int = 2,
-        showSign: Boolean = false,
-    ): String {
-        return value.format(
-            decimals = precision,
-            locale = context.currentLocale,
-            showSign = showSign,
-            useNumberFormatter = SettingsManager.Companion.getInstance(context).useNumberFormatter,
-            useNumberFormat = SettingsManager.Companion.getInstance(context).useMeasureFormat
-        )
-    }
-
-    @Deprecated("Use Number.format() extension")
-    fun formatInt(
-        context: Context,
-        value: Int,
-        showSign: Boolean = false,
-    ): String {
-        return value.format(
-            decimals = 0,
-            locale = context.currentLocale,
-            showSign = showSign,
-            useNumberFormatter = SettingsManager.Companion.getInstance(context).useNumberFormatter,
-            useNumberFormat = SettingsManager.Companion.getInstance(context).useMeasureFormat
-        )
-    }
 
     /**
      * Units will stay at the same size if it somehow fails to parse
@@ -188,7 +139,7 @@ object UnitUtils {
                 }
                 withStyle(
                     style = SpanStyle(
-                        baselineShift = BaselineShift.Companion.Subscript,
+                        baselineShift = BaselineShift.Subscript,
                         fontSize = 0.8.em
                     )
                 ) {

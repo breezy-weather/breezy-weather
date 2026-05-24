@@ -67,20 +67,15 @@ fun Date.toTimezone(timeZone: TimeZone = TimeZone.getDefault()): Date {
     )
 }
 
-@Deprecated("Use toTimezoneSpecificHour instead")
-fun Date.toTimezoneNoHour(timeZone: TimeZone = TimeZone.getDefault()): Date {
-    return toTimezoneSpecificHour(timeZone)
-}
-
 fun Date.toTimezoneSpecificHour(
     timeZone: TimeZone = TimeZone.getDefault(),
-    specificHour: Int = 0,
+    hour: Int = 0,
 ): Date {
     return toCalendarWithTimeZone(timeZone).apply {
         set(Calendar.YEAR, get(Calendar.YEAR))
         set(Calendar.MONTH, get(Calendar.MONTH))
         set(Calendar.DAY_OF_MONTH, get(Calendar.DAY_OF_MONTH))
-        set(Calendar.HOUR_OF_DAY, specificHour)
+        set(Calendar.HOUR_OF_DAY, hour)
         set(Calendar.MINUTE, 0)
         set(Calendar.SECOND, 0)
         set(Calendar.MILLISECOND, 0)

@@ -26,15 +26,16 @@ import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.UV
 import org.breezyweather.R
 import org.breezyweather.common.activities.BreezyActivity
+import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.getThemeColor
 import org.breezyweather.common.options.appearance.DetailScreen
-import org.breezyweather.common.utils.UnitUtils
 import org.breezyweather.domain.weather.model.getContentDescription
 import org.breezyweather.domain.weather.model.getUVColor
 import org.breezyweather.ui.common.widgets.trend.TrendRecyclerView
 import org.breezyweather.ui.common.widgets.trend.chart.PolylineAndHistogramView
 import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.weatherView.WeatherViewController
+import org.breezyweather.unit.formatting.format
 import kotlin.math.roundToInt
 
 /**
@@ -68,7 +69,7 @@ class HourlyUVAdapter(
                 null, null,
                 null, null,
                 null, null,
-                index?.roundToInt()?.toFloat() ?: 0f, index?.let { UnitUtils.formatDouble(activity, it, 0) },
+                index?.roundToInt()?.toFloat() ?: 0f, index?.format(decimals = 0, locale = activity.currentLocale),
                 mHighestIndex, 0f
             )
             mPolylineAndHistogramView.setLineColors(
@@ -136,7 +137,7 @@ class HourlyUVAdapter(
         keyLineList.add(
             TrendRecyclerView.KeyLine(
                 UV.UV_INDEX_MIDDLE.toFloat(),
-                UnitUtils.formatDouble(activity, UV.UV_INDEX_MIDDLE, 0),
+                UV.UV_INDEX_MIDDLE.format(decimals = 0, locale = activity.currentLocale),
                 activity.getString(R.string.uv_alert_level),
                 TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
             )

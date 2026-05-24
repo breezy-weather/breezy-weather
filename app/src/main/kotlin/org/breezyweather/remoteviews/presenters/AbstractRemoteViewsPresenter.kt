@@ -32,6 +32,7 @@ import androidx.core.content.ContextCompat
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Weather
 import org.breezyweather.R
+import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.formatMeasure
 import org.breezyweather.common.extensions.formatPercent
 import org.breezyweather.common.extensions.getFormattedDate
@@ -44,7 +45,6 @@ import org.breezyweather.common.options.NotificationTextColor
 import org.breezyweather.common.options.WidgetWeekIconMode
 import org.breezyweather.common.source.PollenIndexSource
 import org.breezyweather.common.utils.ColorUtils
-import org.breezyweather.common.utils.UnitUtils
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.domain.location.model.getPlace
 import org.breezyweather.domain.settings.ConfigStore
@@ -56,6 +56,7 @@ import org.breezyweather.domain.weather.model.getSummary
 import org.breezyweather.domain.weather.model.pollensWithConcentration
 import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.unit.formatting.UnitWidth
+import org.breezyweather.unit.formatting.format
 import org.breezyweather.unit.temperature.TemperatureUnit
 import java.util.Date
 
@@ -316,7 +317,7 @@ abstract class AbstractRemoteViewsPresenter {
                     if (weather.current?.airQuality?.isIndexValid == true) {
                         context.getString(
                             R.string.parenthesis,
-                            UnitUtils.formatInt(context, weather.current!!.airQuality!!.getIndex()!!),
+                            weather.current!!.airQuality!!.getIndex()!!.format(decimals = 0, context.currentLocale),
                             weather.current!!.airQuality!!.getName(context)
                         )
                     } else {
@@ -509,9 +510,9 @@ abstract class AbstractRemoteViewsPresenter {
                     if (weather.dailyForecastStartingToday.getOrNull(i)?.airQuality?.isIndexValid == true) {
                         context.getString(
                             R.string.parenthesis,
-                            UnitUtils.formatInt(
-                                context,
-                                weather.dailyForecastStartingToday[i].airQuality!!.getIndex()!!
+                            weather.dailyForecastStartingToday[i].airQuality!!.getIndex()!!.format(
+                                decimals = 0,
+                                locale = context.currentLocale
                             ),
                             weather.dailyForecastStartingToday[i].airQuality!!.getName(context)
                         )

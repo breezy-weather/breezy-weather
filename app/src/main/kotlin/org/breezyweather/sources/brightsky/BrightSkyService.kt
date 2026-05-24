@@ -43,7 +43,7 @@ import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.getIsoFormattedDate
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.common.extensions.toDateNoHour
-import org.breezyweather.common.extensions.toTimezoneNoHour
+import org.breezyweather.common.extensions.toTimezoneSpecificHour
 import org.breezyweather.common.preference.EditTextPreference
 import org.breezyweather.common.preference.Preference
 import org.breezyweather.common.source.ConfigurableSource
@@ -126,7 +126,7 @@ class BrightSkyService @Inject constructor(
     ): Observable<WeatherWrapper> {
         val failedFeatures = mutableMapOf<SourceFeature, Throwable>()
         val weather = if (SourceFeature.FORECAST in requestedFeatures) {
-            val initialDate = Date().toTimezoneNoHour(location.timeZone)
+            val initialDate = Date().toTimezoneSpecificHour(location.timeZone, hour = 0)
             val date = initialDate.toCalendarWithTimeZone(location.timeZone).apply {
                 add(Calendar.DAY_OF_YEAR, -1)
                 set(Calendar.HOUR_OF_DAY, 0)

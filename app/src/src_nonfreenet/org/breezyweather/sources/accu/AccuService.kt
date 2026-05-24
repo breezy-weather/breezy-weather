@@ -54,7 +54,7 @@ import org.breezyweather.common.extensions.codeWithCountry
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.common.extensions.toDate
-import org.breezyweather.common.extensions.toTimezoneNoHour
+import org.breezyweather.common.extensions.toTimezoneSpecificHour
 import org.breezyweather.common.preference.EditTextPreference
 import org.breezyweather.common.preference.ListPreference
 import org.breezyweather.common.preference.Preference
@@ -404,7 +404,8 @@ class AccuService @Inject constructor(
     ): List<DailyWrapper>? {
         return dailyForecasts?.map { forecasts ->
             DailyWrapper(
-                date = forecasts.EpochDate.seconds.inWholeMilliseconds.toDate().toTimezoneNoHour(location.timeZone),
+                date = forecasts.EpochDate.seconds.inWholeMilliseconds.toDate()
+                    .toTimezoneSpecificHour(location.timeZone, hour = 0),
                 day = HalfDayWrapper(
                     weatherText = forecasts.Day?.ShortPhrase,
                     weatherSummary = forecasts.Day?.LongPhrase,
@@ -629,7 +630,8 @@ class AccuService @Inject constructor(
                 val dailyPollen = getDailyPollen(it.AirAndPollen)
                 if (dailyPollen != null) {
                     pollenDaily[
-                        it.EpochDate.seconds.inWholeMilliseconds.toDate().toTimezoneNoHour(location.timeZone)
+                        it.EpochDate.seconds.inWholeMilliseconds.toDate()
+                            .toTimezoneSpecificHour(location.timeZone, hour = 0)
                     ] = dailyPollen
                 }
             }

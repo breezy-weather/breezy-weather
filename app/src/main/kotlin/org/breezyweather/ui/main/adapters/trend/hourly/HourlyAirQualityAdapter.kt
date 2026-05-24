@@ -25,9 +25,9 @@ import android.view.ViewGroup
 import breezyweather.domain.location.model.Location
 import org.breezyweather.R
 import org.breezyweather.common.activities.BreezyActivity
+import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.getThemeColor
 import org.breezyweather.common.options.appearance.DetailScreen
-import org.breezyweather.common.utils.UnitUtils
 import org.breezyweather.domain.weather.index.PollutantIndex
 import org.breezyweather.domain.weather.model.getColor
 import org.breezyweather.domain.weather.model.getIndex
@@ -36,6 +36,7 @@ import org.breezyweather.ui.common.widgets.trend.TrendRecyclerView
 import org.breezyweather.ui.common.widgets.trend.chart.PolylineAndHistogramView
 import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.weatherView.WeatherViewController
+import org.breezyweather.unit.formatting.format
 
 /**
  * Hourly air quality adapter.
@@ -66,7 +67,7 @@ class HourlyAirQualityAdapter(
             val index = hourly.airQuality?.getIndex()
             if (index != null) {
                 talkBackBuilder.append(activity.getString(org.breezyweather.unit.R.string.locale_separator))
-                    .append(UnitUtils.formatInt(activity, index))
+                    .append(index.format(decimals = 0, locale = activity.currentLocale))
                     .append(activity.getString(org.breezyweather.unit.R.string.locale_separator))
                     .append(hourly.airQuality!!.getName(itemView.context))
             }
@@ -74,7 +75,7 @@ class HourlyAirQualityAdapter(
                 null, null,
                 null, null,
                 null, null,
-                index?.toFloat(), index?.let { UnitUtils.formatInt(activity, it) },
+                index?.toFloat(), index?.format(decimals = 0, locale = activity.currentLocale),
                 mHighestIndex.toFloat(), 0f
             )
             mPolylineAndHistogramView.setLineColors(

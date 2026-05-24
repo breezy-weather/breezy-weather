@@ -30,9 +30,9 @@ import androidx.core.graphics.ColorUtils
 import breezyweather.domain.location.model.Location
 import org.breezyweather.R
 import org.breezyweather.common.activities.BreezyActivity
+import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.getThemeColor
 import org.breezyweather.common.options.appearance.DetailScreen
-import org.breezyweather.common.utils.UnitUtils
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.domain.weather.index.PollutantIndex
 import org.breezyweather.domain.weather.model.getColor
@@ -41,6 +41,7 @@ import org.breezyweather.domain.weather.model.getName
 import org.breezyweather.domain.weather.model.validAirQuality
 import org.breezyweather.ui.common.widgets.ArcProgress
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
+import org.breezyweather.unit.formatting.format
 import kotlin.math.roundToInt
 
 class AirQualityViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
@@ -70,7 +71,7 @@ class AirQualityViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
             if (itemAnimationEnabled) {
                 aqiProgress.apply {
                     progress = 0f
-                    aqiValueView.text = UnitUtils.formatInt(context, 0)
+                    aqiValueView.text = 0.format(decimals = 0, locale = context.currentLocale)
                     setProgressColor(
                         ContextCompat.getColor(context, R.color.colorLevel_1)
                     )
@@ -80,7 +81,7 @@ class AirQualityViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
                 val aqiColor = airQuality.getColor(aqiProgress.context)
                 aqiProgress.apply {
                     progress = mAqiIndex.toFloat()
-                    aqiValueView.text = UnitUtils.formatInt(context, mAqiIndex)
+                    aqiValueView.text = mAqiIndex.format(decimals = 0, locale = context.currentLocale)
                     setProgressColor(aqiColor)
                     setArcBackgroundColor(ColorUtils.setAlphaComponent(aqiColor, (255 * 0.1).toInt()))
                 }
@@ -92,7 +93,7 @@ class AirQualityViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
             talkBackBuilder
                 .append(context.getString(R.string.air_quality_index))
                 .append(context.getString(R.string.colon_separator))
-                .append(UnitUtils.formatInt(context, mAqiIndex))
+                .append(mAqiIndex.format(decimals = 0, locale = context.currentLocale))
                 .append(context.getString(org.breezyweather.unit.R.string.locale_separator))
                 .append(airQuality.getName(context))
         }
@@ -135,7 +136,7 @@ class AirQualityViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
                     aqiProgress.apply {
                         progress = (animation.animatedValue as Float)
                     }
-                    aqiValueView.text = UnitUtils.formatInt(context, aqiProgress.progress.roundToInt())
+                    aqiValueView.text = aqiProgress.progress.roundToInt().format(decimals = 0, context.currentLocale)
                 }
                 mAttachAnimatorSet = AnimatorSet().apply {
                     playTogether(progressColor, backgroundColor, aqiNumber)
