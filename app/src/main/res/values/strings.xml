@@ -705,6 +705,7 @@
     <string name="settings_weather_source_non_freenet">%s (non-free network service)</string>
     <string name="settings_weather_source_unavailable">%s (unavailable)</string>
     <string name="settings_weather_source_not_configured">%s (not configured)</string>
+    <string name="settings_weather_source_no_longer_exists">%s (no longer exists)</string>
     <string name="settings_weather_source_none">None</string>
     <string name="settings_weather_source_freenet_disclaimer">You are using the Freenet version of the app. Switch to the Standard version if you want to use non-free network services.</string>
     <string name="settings_weather_source_current_position_disclaimer">More weather sources may become available for your location after the first refresh.</string>

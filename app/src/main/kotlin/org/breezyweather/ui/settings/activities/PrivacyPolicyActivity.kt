@@ -35,6 +35,7 @@ import org.breezyweather.R
 import org.breezyweather.common.activities.BreezyActivity
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.plus
+import org.breezyweather.common.source.RemovedSource
 import org.breezyweather.sources.SourceManager
 import org.breezyweather.ui.common.widgets.Material3Scaffold
 import org.breezyweather.ui.common.widgets.generateCollapsedScrollBehavior
@@ -71,7 +72,7 @@ class PrivacyPolicyActivity : BreezyActivity() {
         val uriHandler = LocalUriHandler.current
         val sources = remember {
             sourceManager.getHttpSources()
-                .filter { it.privacyPolicyUrl.startsWith("http") }
+                .filter { it !is RemovedSource && it.privacyPolicyUrl.startsWith("http") }
                 .sortedWith { s1, s2 ->
                     // Sort by name because there are now a lot of sources
                     Collator.getInstance(

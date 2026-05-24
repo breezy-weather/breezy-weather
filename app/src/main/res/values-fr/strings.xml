@@ -465,6 +465,7 @@
     <string name="settings_weather_source_non_freenet">%s (service réseau non libre)</string>
     <string name="settings_weather_source_unavailable">%s (indisponible)</string>
     <string name="settings_weather_source_not_configured">%s (non configuré)</string>
+    <string name="settings_weather_source_no_longer_exists">%s (n’existe plus)</string>
     <string name="settings_weather_source_none">Aucune</string>
     <string name="settings_weather_source_freenet_disclaimer">Vous utilisez la version Freenet de l’application. Passez à la version Standard si vous souhaitez pouvoir utiliser des services réseau non libres.</string>
     <string name="settings_weather_source_current_position_disclaimer">D’autres sources pourraient devenir disponibles pour votre emplacement après une première mise à jour.</string>

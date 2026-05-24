@@ -27,6 +27,7 @@ import org.breezyweather.common.exceptions.SourceNotInstalledException
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.getCountryName
 import org.breezyweather.common.source.HttpSource
+import org.breezyweather.common.source.RemovedSource
 import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_MEDIUM
 import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
@@ -37,7 +38,7 @@ import javax.inject.Inject
  */
 class RecosanteService @Inject constructor(
     @ApplicationContext context: Context,
-) : HttpSource(), WeatherSource {
+) : HttpSource(), WeatherSource, RemovedSource {
 
     override val id = "recosante"
     override val name = "Recosanté (${context.currentLocale.getCountryName("FR")})"

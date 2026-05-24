@@ -52,6 +52,7 @@ import org.breezyweather.R
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.source.ConfigurableSource
 import org.breezyweather.common.source.NonFreeNetSource
+import org.breezyweather.common.source.RemovedSource
 import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.common.source.getName
 import org.breezyweather.common.utils.helpers.IntentHelper
@@ -96,7 +97,8 @@ fun LocationPreference(
                     Triple(
                         it.id,
                         it.getName(context),
-                        (it !is ConfigurableSource || it.isConfigured) &&
+                        it !is RemovedSource &&
+                            (it !is ConfigurableSource || it.isConfigured) &&
                             (BuildConfig.FLAVOR != "freenet" || it !is NonFreeNetSource)
                     )
                 }.toImmutableList(),
@@ -336,7 +338,8 @@ internal fun getCompatibleSources(
                     Triple(
                         it.id,
                         it.getName(context, feature, location),
-                        (it !is ConfigurableSource || it.isConfigured) &&
+                        it !is RemovedSource &&
+                            (it !is ConfigurableSource || it.isConfigured) &&
                             (BuildConfig.FLAVOR != "freenet" || it !is NonFreeNetSource) &&
                             it.isFeatureSupportedForLocation(location, feature)
                     )

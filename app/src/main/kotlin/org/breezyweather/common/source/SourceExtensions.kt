@@ -23,7 +23,9 @@ import org.breezyweather.BuildConfig
 import org.breezyweather.R
 
 fun Source.getName(context: Context, feature: SourceFeature? = null, location: Location? = null): String {
-    return if (this is NonFreeNetSource && BuildConfig.FLAVOR == "freenet") {
+    return if (this is RemovedSource) {
+        context.getString(R.string.settings_weather_source_no_longer_exists, name)
+    } else if (this is NonFreeNetSource && BuildConfig.FLAVOR == "freenet") {
         context.getString(R.string.settings_weather_source_non_freenet, name)
     } else if (this is ConfigurableSource && !isConfigured) {
         context.getString(R.string.settings_weather_source_not_configured, name)

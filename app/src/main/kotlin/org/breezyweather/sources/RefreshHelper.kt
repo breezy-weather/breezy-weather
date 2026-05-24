@@ -50,6 +50,7 @@ import org.breezyweather.common.exceptions.ApiKeyMissingException
 import org.breezyweather.common.exceptions.LocationException
 import org.breezyweather.common.exceptions.NoNetworkException
 import org.breezyweather.common.exceptions.ReverseGeocodingException
+import org.breezyweather.common.exceptions.SourceNotInstalledException
 import org.breezyweather.common.exceptions.WeatherException
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.getIsoFormattedDate
@@ -69,6 +70,7 @@ import org.breezyweather.common.source.LocationParametersSource
 import org.breezyweather.common.source.LocationResult
 import org.breezyweather.common.source.NonFreeNetSource
 import org.breezyweather.common.source.RefreshError
+import org.breezyweather.common.source.RemovedSource
 import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.WeatherResult
 import org.breezyweather.common.utils.helpers.IntentHelper
@@ -149,6 +151,9 @@ class RefreshHelper @Inject constructor(
         }
 
         return try {
+            if (locationService is RemovedSource) {
+                throw SourceNotInstalledException()
+            }
             if (locationService is ConfigurableSource && !locationService.isConfigured) {
                 throw ApiKeyMissingException()
             }
@@ -431,6 +436,9 @@ class RefreshHelper @Inject constructor(
         currentLocation: Location,
         context: Context,
     ): Location {
+        if (reverseGeocodingService is RemovedSource) {
+            throw SourceNotInstalledException()
+        }
         if (reverseGeocodingService is ConfigurableSource && !reverseGeocodingService.isConfigured) {
             throw ApiKeyMissingException()
         }
@@ -596,7 +604,17 @@ class RefreshHelper @Inject constructor(
                                         val featuresToUpdate = entry.value
                                             .filter {
                                                 // Remove sources that are not configured
-                                                if (BuildConfig.FLAVOR == "freenet" && service is NonFreeNetSource) {
+                                                if (service is RemovedSource) {
+                                                    errors.add(
+                                                        RefreshError(
+                                                            RefreshErrorType.SOURCE_NOT_INSTALLED,
+                                                            entry.key
+                                                        )
+                                                    )
+                                                    false
+                                                } else if (BuildConfig.FLAVOR == "freenet" &&
+                                                    service is NonFreeNetSource
+                                                ) {
                                                     errors.add(
                                                         RefreshError(
                                                             RefreshErrorType.NON_FREE_NETWORK_SOURCE,

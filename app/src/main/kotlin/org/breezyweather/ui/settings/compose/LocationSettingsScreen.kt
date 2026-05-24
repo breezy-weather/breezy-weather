@@ -47,6 +47,7 @@ import org.breezyweather.common.preference.ListPreference
 import org.breezyweather.common.source.ConfigurableSource
 import org.breezyweather.common.source.LocationSource
 import org.breezyweather.common.source.NonFreeNetSource
+import org.breezyweather.common.source.RemovedSource
 import org.breezyweather.common.source.getName
 import org.breezyweather.common.utils.helpers.SnackbarHelper
 import org.breezyweather.domain.settings.SettingsManager
@@ -166,7 +167,8 @@ fun LocationSettingsScreen(
                     valueArray = locationSources.map { it.id }.toTypedArray(),
                     nameArray = locationSources.map { it.getName(context) }.toTypedArray(),
                     enableArray = locationSources.map {
-                        (it !is ConfigurableSource || it.isConfigured) &&
+                        it !is RemovedSource &&
+                            (it !is ConfigurableSource || it.isConfigured) &&
                             (BuildConfig.FLAVOR != "freenet" || it !is NonFreeNetSource)
                     }.toTypedArray(),
                     summary = { _, value -> locationSources.firstOrNull { it.id == value }?.name },

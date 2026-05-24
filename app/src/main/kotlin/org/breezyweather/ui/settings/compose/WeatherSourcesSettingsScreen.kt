@@ -44,6 +44,7 @@ import org.breezyweather.common.source.ConfigurableSource
 import org.breezyweather.common.source.FeatureSource
 import org.breezyweather.common.source.LocationSource
 import org.breezyweather.common.source.NonFreeNetSource
+import org.breezyweather.common.source.RemovedSource
 import org.breezyweather.common.source.getName
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.ui.common.composables.AlertDialogLink
@@ -162,7 +163,8 @@ fun WeatherSourcesSettingsScreen(
                                 Triple(
                                     it.id,
                                     it.getName(context),
-                                    (it !is ConfigurableSource || it.isConfigured) &&
+                                    it !is RemovedSource &&
+                                        (it !is ConfigurableSource || it.isConfigured) &&
                                         (BuildConfig.FLAVOR != "freenet" || it !is NonFreeNetSource)
                                 )
                             }

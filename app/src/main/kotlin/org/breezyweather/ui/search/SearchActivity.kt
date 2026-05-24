@@ -76,6 +76,7 @@ import org.breezyweather.common.activities.BreezyActivity
 import org.breezyweather.common.extensions.inputMethodManager
 import org.breezyweather.common.source.ConfigurableSource
 import org.breezyweather.common.source.NonFreeNetSource
+import org.breezyweather.common.source.RemovedSource
 import org.breezyweather.common.source.getName
 import org.breezyweather.domain.location.model.getPlace
 import org.breezyweather.sources.SourceManager
@@ -315,7 +316,8 @@ class SearchActivity : BreezyActivity() {
                             }
                         }
                         items(sourceManager.getLocationSearchSources()) {
-                            val enabled = (it !is ConfigurableSource || it.isConfigured) &&
+                            val enabled = it !is RemovedSource &&
+                                (it !is ConfigurableSource || it.isConfigured) &&
                                 (BuildConfig.FLAVOR != "freenet" || it !is NonFreeNetSource)
                             RadioButton(
                                 selected = locationSearchSource.id == it.id,
