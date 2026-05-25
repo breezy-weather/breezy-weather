@@ -780,4 +780,5 @@
     <string name="message_please_wait_refresh">Vänta tills uppdateringen är klar</string>
     <string name="settings_source_api_key_invalid">Värdet är inte i förväntat format</string>
     <string name="settings_main_background_title">Väderbaserad bakgrund</string>
+    <string name="settings_weather_source_no_longer_exists">%s (finns inte längre)</string>
 </resources>
