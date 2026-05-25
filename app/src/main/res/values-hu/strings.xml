@@ -784,4 +784,5 @@
     <string name="settings_source_api_key_invalid">Az érték nem a várt formátumban van megadva</string>
     <string name="message_please_wait_refresh">Várja meg, amíg a frissítés befejeződik</string>
     <string name="settings_main_background_title">Időjárásalapú háttérkép</string>
+    <string name="settings_weather_source_no_longer_exists">%s (már nem létezik)</string>
 </resources>
