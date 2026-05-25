@@ -304,7 +304,7 @@
     <string name="precipitation_rain_total_night">Chuvia nocturna</string>
     <string name="precipitation_snow_total_day">Neve de día</string>
     <string name="precipitation_snow_total_night">Neve nocturna</string>
-    <string name="ephemeris_about">Sobre os horarios de saída e posta</string>
+    <string name="ephemeris_about">Sobre as horas de saída e posta</string>
     <string name="ephemeris_about_dusk">O luscofusco é a fase máis escura do crepúsculo antes de que desapareza a última luz visible.</string>
     <string name="ephemeris_polar_day">Día polar</string>
     <string name="ephemeris_polar_night">Noite polar</string>
@@ -590,9 +590,9 @@
     <string name="widget_style_temperature">Temperatura</string>
     <string name="widget_week_style_5_days">5 días</string>
     <string name="widget_week_style_3_days">3 días</string>
-    <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>
+    <string name="widget_clock_font_sans_serif_light">Sans Serif Lixeira</string>
     <string name="widget_clock_font_sans_serif">Sans Serif</string>
-    <string name="widget_clock_font_sans_serif_black">Sans Serif Black</string>
+    <string name="widget_clock_font_sans_serif_black">Sans Serif moi negra</string>
     <string name="widget_clock_font_analog">analóxico</string>
     <string name="widget_live_wallpaper_weather_kind">Tempo</string>
     <string name="widget_live_wallpaper_day_night_type">Hora</string>
@@ -778,4 +778,5 @@
     <string name="openmeteo_weather_text_depositing_rime_fog">néboa con formación de xeada</string>
     <string name="common_weather_text_glaze">xeada en superficie</string>
     <string name="common_weather_text_drifting_snow">Neve arrastrada polo vento</string>
+    <string name="settings_weather_source_no_longer_exists">%s (xa non existe)</string>
 </resources>
