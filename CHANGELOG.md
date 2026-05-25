@@ -11,6 +11,9 @@
 - Ensure pollutant and pollen concentrations are always positive to avoid a rare case of crash when some sources provide negative concentrations
 - Notification widget - Daily - Fix reversed feels like setting
 
+**Security**
+- Enable Arm memory tagging (MTE) asynchronous mode
+
 **Sources**
 - China - Use a server which is less likely to return invalid data when language is set to Chinese
 - KNMI - Fix duplicate “Today” when migrating from another source

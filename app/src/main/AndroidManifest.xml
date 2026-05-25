@@ -89,6 +89,7 @@
         android:enableOnBackInvokedCallback="true"
         android:networkSecurityConfig="@xml/network_security_config"
         android:allowCrossUidActivitySwitchFromBelow="false"
+        android:memtagMode="async"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning,ManifestResource,RtlEnabled,UnusedAttribute"
         tools:targetApi="n">
 
