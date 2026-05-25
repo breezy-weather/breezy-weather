@@ -778,4 +778,5 @@
     <string name="settings_source_api_key_invalid">Níl an luach san fhormáid a bhfuiltear ag súil léi</string>
     <string name="message_please_wait_refresh">Fan go dtí go mbeidh an t-athnuachan críochnaithe</string>
     <string name="settings_main_background_title">Cúlra bunaithe ar an aimsir</string>
+    <string name="settings_weather_source_no_longer_exists">%s (níl sé ann a thuilleadh)</string>
 </resources>
