@@ -780,4 +780,5 @@
     <string name="settings_source_api_key_invalid">Väärtus pole eeldatud vormingus</string>
     <string name="message_please_wait_refresh">Palun oota, kuni andmete uuendamine lõppeb</string>
     <string name="settings_main_background_title">Ilmaennustusega taust</string>
+    <string name="settings_weather_source_no_longer_exists">%s (pole enam olemas)</string>
 </resources>
