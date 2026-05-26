@@ -777,4 +777,6 @@
     <string name="pressure_standard">Стандартны</string>
     <string name="message_please_wait_refresh">Калі ласка, пачакайце, пакуль аднаўленне не будзе завершана</string>
     <string name="settings_source_api_key_invalid">Значэнне не адпавядае чаканаму фармату</string>
+    <string name="settings_weather_source_no_longer_exists">%s (больш не існуе)</string>
+    <string name="settings_main_background_title">Фон адпаведны надвор\'ю</string>
 </resources>
