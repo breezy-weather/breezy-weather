@@ -1,0 +1,47 @@
+تطبيق Breezy Weather هو تطبيق طقس غني بالمميزات، مجاني ومفتوح المصدر، يعتمد لغة التصميم Material 3 Expressive مع تصورات بيانية مدروسة بعناية. يدعم التطبيق التوقعات الجوية، وحالة الطقس في الوقت الفعلي، والتنبؤات الآنية، وجودة الهواء، وحبوب اللقاح، والتنبيهات، من أكثر من 50 مصدرًا للطقس، مثل NWS وMet Office UK وMet Éireann وECCC وOpen-Meteo.
+
+المميزات
+
+- توقعات يومية وساعية لمدة تصل إلى 16 يومًا
+- هطول الأمطار في الساعة القادمة
+- حالة الطقس في الوقت الفعلي
+- معلومات جودة الهواء، ومسببات الحساسية، والتقويم الفلكي
+- تنبيهات الطقس القاسي وهطول الأمطار
+- مشاركة البيانات اختيارياً مع تطبيقات أخرى (مثل Gadgetbridge)
+- التركيز على إمكانية الوصول لقارئات الشاشة واللغات الأخرى
+
+التصميم
+
+- Material 3 Expressive
+- مخططات تفصيلية على مدار 24 ساعة
+- وضع ليلي تلقائي
+- حزم أيقونات مخصصة
+- تشكيلة واسعة من الأدوات (Widgets)
+- خلفية حية
+
+المصادر
+
+- في جميع النسخ: Open-Meteo, ANAM-BF, Bright Sky (DWD), DCCMS, DMN, DWR, EMI, FOSS Public Alert Server, GMet, IGEBU, INM, KNMI, Mali-Météo, Météo Benin, Météo Tchad, Météo Togo, Mettelsat, MSD, Pirate Weather, SMA (Seychelles), SMA (Sudan), SSMS
+- مصادر غير حرة/غير قابلة للاستضافة الذاتية (غير مدرجة في النسخ التي تنتهي بـ _freenet): AccuWeather, AEMET, Atmo Auvergne-Rhône-Alpes, Atmo France, ATMO GrandEst, Atmo Hauts-de-France, AtmoSud, Baidu IP location, BMD, BMKG, CWA, DMI, ECCC, EKUK, EPD (Hong Kong), GeoNames, GeoSphere AT, HERE, HKO, Ilmateenistus, IMD, IMS, IP.SB, IPMA, LHMT, LVĢMC, JMA, MET Éireann, MET Norway, Met Office UK, Meteo AM, Météo-France, MeteoLux, MGM, Mixed China sources, NAMEM, NCDR, NCEI, NLSC, NWS, OpenWeather, PAGASA, SMG, Veðurstofa Íslands, WMO Severe Weather
+
+الأذونات
+
+مطلوبة:
+
+- الشبكة (ACCESS_NETWORK_STATE, ACCESS_WIFI_STATE, INTERNET): لجلب بيانات الطقس من المصادر عبر الإنترنت
+
+اختيارية:
+
+- خدمات الخلفية (RECEIVE_BOOT_COMPLETED, WAKE_LOCK, SET_ALARM, FOREGROUND_SERVICE, FOREGROUND_SERVICE_DATA_SYNC, FOREGROUND_SERVICE_SPECIAL_USE): لتحديثات الطقس في الخلفية وإشعارات التوقعات المجدولة
+- تجاهل تحسينات البطارية (REQUEST_IGNORE_BATTERY_OPTIMIZATIONS): للمساعدة في منع إغلاق التطبيق على بعض الأجهزة
+- إرسال الإشعارات (POST_NOTIFICATIONS): للتنبيهات، وهطول الأمطار، وتوقعات اليوم/الغد، وأداة الإشعارات، وتقدم تحديثات الخلفية، إلخ
+- الموقع (ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION, ACCESS_BACKGROUND_LOCATION): لعرض الطقس في موقعك الحالي
+- التخزين (READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE): يساعد في تعيين خلفية الطقس الحية و/أو الأدوات على بعض الأجهزة
+- اللوحة (EXPAND_STATUS_BAR): للسماح بتشغيل التطبيق من الإعدادات السريعة
+- لغة محددة للتطبيق (READ_APP_SPECIFIC_LOCALES): تسمح بحفظ لغة معينة للتطبيق وقراءة القيمة بعد إعادة التشغيل على بعض الأجهزة
+
+الترخيص
+
+- رخصة جنو العمومية الصغرى (GNU Lesser General Public License) الإصدار 3.0
+- لا تمنح هذه الرخصة أي حقوق في العلامات التجارية أو علامات الخدمة أو الشعارات الخاصة بأي مساهم.
+- يُحظر تحريف أصل تلك المواد، ويجب تمييز النسخ المعدلة من هذه المواد بطرق معقولة على أنها تختلف عن النسخة الأصلية.
