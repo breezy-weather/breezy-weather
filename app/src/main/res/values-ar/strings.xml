@@ -5,7 +5,7 @@
     <!-- keyword. -->
     <string name="location_current">المنطقة الحالية</string>
     <string name="daily_today_short">اليوم</string>
-    <string name="notification_refreshed_at">تم التحديث في</string>
+    <string name="notification_refreshed_at">حُدِّث في</string>
     <string name="precipitation">التساقطات</string>
     <string name="precipitation_probability">إحتمالية الهطول</string>
     <string name="precipitation_duration">مدة التساقطات</string>
@@ -30,7 +30,7 @@
     <string name="action_restart">إعادة التشغيل</string>
     <string name="action_edit">تحرير</string>
     <string name="daily_yesterday_short">أمس</string>
-    <string name="daily_tomorrow_short">غداً</string>
+    <string name="daily_tomorrow_short">غدًا</string>
     <string name="temperature_apparent">ظاهر</string>
     <string name="temperature_wind_chill">رياح باردة</string>
     <string name="temperature_degree_day">درجة اليوم</string>
@@ -72,8 +72,8 @@
     <string name="ephemeris">الشمس والقمر</string>
     <string name="action_next">التالي</string>
     <string name="action_done">تم</string>
-    <string name="settings_enabled">ممكّن</string>
-    <string name="settings_disabled">مُعطل</string>
+    <string name="settings_enabled">مُفعّل</string>
+    <string name="settings_disabled">مُعطّل</string>
     <string name="action_set">تعيين</string>
     <string name="action_help">مساعدة</string>
     <string name="action_learn_more">التعرف على المزيد</string>
@@ -83,7 +83,7 @@
     <string name="location_message_failed_to_locate">فشل في العثور على الموقع</string>
     <string name="weather_message_data_refresh_failed">فشل الحصول على البيانات</string>
     <string name="location_dialog_failed_to_locate_action_select_source">استخدم خدمة موقع أخرى</string>
-    <string name="location_dialog_failed_to_locate_action_add_manually">إضافة الموقع يدوياً و حذف ”%s“</string>
+    <string name="location_dialog_failed_to_locate_action_add_manually">أضف الموقع يدويًا واحذف ”%s“</string>
     <string name="widget_label_view_style">أسلوب العرض</string>
     <string name="widget_label_show_widget_card">لون الخلفية</string>
     <string name="widget_label_show_widget_card_alpha">التعتيم</string>
@@ -98,9 +98,9 @@
     <string name="location_message_deleted">حُذف الموقع</string>
     <string name="location_message_list_cannot_be_empty">لا يمكن لقائمة المواقع أن تكون فارغة</string>
     <string name="location_search_placeholder">البحث عن موقع…</string>
-    <string name="location_current_not_found_yet">لم يتم تحديد المنطقة الحالية بعد…</string>
+    <string name="location_current_not_found_yet">لم تُحدّد المنطقة الحالية بعد…</string>
     <string name="settings_changes_apply_after_restart">سيتم تطبيق التغييرات عند إعادة تشغيل الطبيق</string>
-    <string name="notification_running_in_background">التشغيل في الخلفية لإبقاء التطبيق محدثاً</string>
+    <string name="notification_running_in_background">التشغيل في الخلفية لإبقاء التطبيق مُحدثًا</string>
     <string name="notification_updating_weather_data">جارٍ تحديث بيانات الطقس (%1$d من %2$d)</string>
     <!-- action -->
     <string name="alerts">تنبيهات</string>
@@ -140,8 +140,8 @@
     <string name="settings_automatic">تلقائي</string>
     <string name="settings_none">لا شيء</string>
     <string name="settings_color_day_night">الوضع التلقائي</string>
-    <string name="settings_color_day_always">دائماً في النهار</string>
-    <string name="settings_color_night_always">دائماً في الليل</string>
+    <string name="settings_color_day_always">دائمًا في النهار</string>
+    <string name="settings_color_night_always">دائمًا في الليل</string>
     <string name="settings_color_light">فاتح</string>
     <string name="settings_color_grey">رمادي</string>
     <string name="settings_color_dark">داكن</string>
@@ -151,7 +151,7 @@
     <string name="widget_subtitle_data_feels_like">درجة الحرارة المحسوسة</string>
     <string name="widget_subtitle_data_custom">مخصص</string>
     <!-- Weather kind -->
-    <string name="common_weather_text_partly_cloudy">غائم جزئياً</string>
+    <string name="common_weather_text_partly_cloudy">غائم جزئيًا</string>
     <string name="common_weather_text_cloudy">غائم</string>
     <string name="common_weather_text_rain">مطر</string>
     <string name="common_weather_text_snow">ثلج</string>
@@ -168,9 +168,7 @@
     <string name="message_network_unavailable">الشبكة غير متوفرة</string>
     <string name="widget_material_you_current">”Material You“ – الحالي</string>
     <string name="widget_multi_city">مدينة متعددة</string>
-    <string name="widget_custom_subtitle_explanation">يمكنك إدخال أي شيء، ولكن يرجى الانتباه إلى طول النص. إذا كنت تريد اقتباس بيانات الطقس، فيرجى استخدام $ للإشارة إلى الكلمة الرئيسية المقابلة.
-\n
-\nعلى سبيل المثال، سيتم عرض “الطقس الحالي هو: $cw$.” ك “الطقس الحالي هو: سماء صافية.”.</string>
+    <string name="widget_custom_subtitle_explanation">يمكنك إدخال أي شيء، ولكن يُرجى الانتباه إلى طول النص. إذا كنت تريد اقتباس بيانات الطقس، فيُرجى استخدام $ للإشارة إلى الكلمة الرئيسية المقابلة. \n \nعلى سبيل المثال، سيتم عرض \"الطقس الحالي هو: $cw$.” ك “الطقس الحالي هو: سماء صافية.\".</string>
     <string name="widget_custom_subtitle_keyword_w_description">أسبوع</string>
     <string name="widget_custom_subtitle_keyword_dd_description">الوصف اليومي</string>
     <string name="widget_custom_subtitle_keyword_xnw_description">الطقس ليلا لليوم، الغد، …، بعد 4 أيام</string>
@@ -179,15 +177,15 @@
     <string name="widget_custom_subtitle_keyword_xdw_description">الطقس نهارا لليوم، الغد، …، بعد 4 أيام</string>
     <string name="widget_style_mini">صغير</string>
     <string name="settings_background_updates">تحديثات الخلفية</string>
-    <string name="settings_background_updates_battery_optimization">تعطيل تحسين البطارية</string>
+    <string name="settings_background_updates_battery_optimization">عطّل تحسين البطارية</string>
     <string name="settings_background_updates_battery_optimization_activity_not_found">تعذر فتح إعدادات الجهاز.</string>
-    <string name="settings_background_updates_battery_optimization_disabled">تم تعطيل تحسين البطارية بالفعل.</string>
+    <string name="settings_background_updates_battery_optimization_disabled">عُطّل تحسين البطارية بالفعل.</string>
     <string name="settings_background_updates_worker_info_title">معلومات العامل</string>
     <string name="settings_location_access_switch_title">الوصول إلى الموقع</string>
     <string name="settings_location_access_switch_summaryOn">مسموح. يمكنك إضافة موقعك الحالي كمنطقة.</string>
-    <string name="settings_location_access_background_summaryOn">مفعل. سيكون التطبيق قادرًا على تحديث بيانات الطقس لمنطقتك الحالية في الخلفية.</string>
-    <string name="settings_location_access_background_summaryOff">يرجى تمكين ”السماح طوال الوقت“ لتحديث منطقتك الحالية في الخلفية.</string>
-    <string name="settings_location_access_precise_summaryOff">قم بتمكين ”استخدام الموقع الدقيق“ إذا كنت تواجه مشكلة في الحصول على موقع.</string>
+    <string name="settings_location_access_background_summaryOn">مفعّل. سيكون التطبيق قادرًا على تحديث بيانات الطقس لمنطقتك الحالية في الخلفية.</string>
+    <string name="settings_location_access_background_summaryOff">يُرجى تفعيل ”السماح طوال الوقت“ لتحديث منطقتك الحالية في الخلفية.</string>
+    <string name="settings_location_access_precise_summaryOff">فعِّل ”استخدام الموقع الدقيق“ إذا كنت تواجه مشكلة في الحصول على موقع.</string>
     <string name="settings_source_default_value">افتراضي (بدون تغيير)</string>
     <string name="settings_icon_packs_weather_adaptive_icon">أيقونة الطقس</string>
     <string name="settings_icon_packs_weather_icon_grey">أيقونة رمادية</string>
@@ -214,7 +212,7 @@
     <string name="locations">المناطق</string>
     <string name="location_message_search_failed">فشل البحث عن الموقع</string>
     <string name="location_message_permission_background_missing">إذن الوصول إلى الموقع في الخلفية مفقود</string>
-    <string name="action_add_new_location">إضافة منطقة جديدة</string>
+    <string name="action_add_new_location">أضف منطقة جديدة</string>
     <string name="dialog_permissions_location_background_title">الوصول إلى الموقع في الخلفية</string>
     <string name="widget_custom_subtitle_keyword_ws_description">أسبوع (قصير)</string>
     <string name="widget_style_symmetry">تناظري</string>
@@ -247,7 +245,7 @@
     <string name="widget_material_you_forecast">”Material You“ – التوقعات</string>
     <string name="air_quality_so2_voice">ثاني أكسيد الكبريت</string>
     <string name="widget_custom_subtitle_keyword_enter_description">خط جديد</string>
-    <string name="settings_item_delete">حذف هذا العنصر</string>
+    <string name="settings_item_delete">احذف هذا العنصر</string>
     <string name="alerts_to_follow">تنبيهات قادمة، أنقر هنا لرؤيتهم.</string>
     <string name="wind_direction_N_short">شم</string>
     <string name="wind_direction_NE_short">ش ش</string>
@@ -308,14 +306,14 @@
     <string name="air_quality_so2_full">ثاني أكسيد الكبريت (%s)</string>
     <string name="air_quality_co_full">أول أكسيد الكربون (%s)</string>
     <string name="ephemeris_moonset_at">غروب القمر في %s</string>
-    <string name="weather_api_limit_reached_title">تم الوصول للحد الأقصى لطلبات API</string>
+    <string name="weather_api_limit_reached_title">وصلت للحد الأقصى لطلبات API</string>
     <string name="weather_api_limit_reached_content">لتجاوز الحد الأقصى، أضف مفتاح API الخاص بك.</string>
     <string name="weather_api_unauthorized_title">غير مصرح بالوصول الى API</string>
     <string name="weather_api_key_required_missing_title">مفتاح API المطلوب مفقود</string>
     <string name="weather_api_key_required_missing_content">لاستخدام هذا المصدر، تحتاج إلى توفير مفتاح API.</string>
     <string name="settings_weather_source_portal">منفذ</string>
     <string name="location_message_reverse_geocoding_failed">فشل مصدر الطقس في العثور على موقع مطابق</string>
-    <string name="action_close">اغلاق</string>
+    <string name="action_close">أغلِق</string>
     <string name="null_data_text">غير متوفر</string>
     <string name="widget_label_align_end">محاذاة اليسار</string>
     <string name="widget_custom_subtitle_keyword_cps_description">الضغط الحالي</string>
@@ -323,7 +321,7 @@
     <string name="settings_section_general">عام</string>
     <string name="settings_background_updates_refresh_title">معدل التحديث</string>
     <string name="settings_background_updates_refresh_never">أبدا</string>
-    <string name="settings_location_access_permission_already_granted">تم منح الإذن بالفعل</string>
+    <string name="settings_location_access_permission_already_granted">مُنح الإذن بالفعل</string>
     <string name="settings_location_access_precise_title">بيانات استخدام نظام تحديد المواقع العالمي (GPS)</string>
     <string name="settings_weather_sources_summary">مصدر الطقس الافتراضي للمواقع الجديدة ومفاتيح API المخصصة وإعدادات المصدر الأخرى</string>
     <string name="settings_modules_live_wallpaper_summary">تعيين حركة الطقس كخلفية</string>
@@ -333,27 +331,27 @@
     <string name="uv_index_3_5">معتدل</string>
     <string name="air_quality_level_5_description">سيشعر الأشخاص الحساسون بآثار صحية على الفور ويجب تجنب النشاط في الهواء الطلق. من المرجح أن يعاني الأفراد الأصحاء من صعوبة في التنفس وتهيج الحلق. ضع في اعتبارك البقاء في الداخل وإعادة جدولة الأنشطة الخارجية.</string>
     <string name="air_quality_no2_voice">ثاني أكسيد النيتروجين</string>
-    <string name="weather_api_unauthorized_content">في بعض مصادر الطقس، تحتاج إلى استعمال مفتاح API الخاص بك. إذا كنت قد استعملت واحدا بالفعل، فيرجى التحقق مرة أخرى من مفتاح API الذي استعملته.</string>
+    <string name="weather_api_unauthorized_content">في بعض مصادر الطقس، تحتاج إلى استعمال مفتاح API الخاص بك. إذا كنت قد استعملت واحدا بالفعل، فيُرجى التحقق مرة أخرى من مفتاح API الذي استعملته.</string>
     <string name="location_search_no_results">%1$s لا يستطيع العثور على %2$s</string>
     <string name="location_search_no_results_advice">تأكد من كتابة بحثك بشكل صحيح وليس محددًا للغاية. أو بدلاً من ذلك، يمكنك البحث باستخدام مزود بحث جغرافي آخر والذي قد يؤدي إلى نتائج مختلفة.</string>
-    <string name="dialog_permissions_notification_title">ابق على اطلاع</string>
-    <string name="dialog_permissions_notification_content">انقر هنا لتفعيل الإشعارات حول تنبيهات الطقس، أو فعله لاحقا في الإعدادات.</string>
+    <string name="dialog_permissions_notification_title">ابقِ على اطّلاع</string>
+    <string name="dialog_permissions_notification_content">انقر هنا لتفعيل الإشعارات حول تنبيهات الطقس، أو فعّله لاحقًا في الإعدادات.</string>
     <string name="precipitation_none">لا توجد تساقطات</string>
     <string name="settings_background_updates_battery_optimization_summary">هذا هو أول شيء يجب تجربته اذا لم تكن تتلقى إشعارات أو اذا لم يتم تحديث ويدجيتات سطح المكتب.</string>
     <string name="settings_background_updates_dont_kill_my_app_title">تعليمات خاصة بالشركة المصنعة</string>
     <string name="settings_background_updates_dont_kill_my_app_summary">تفرض بعض الشركات المصنعة قيودا إضافية على التطبيقات التي توقف خدمات الخلفية.يحتوي موقع !Don’t kill my app على معلومات حول كيفية إصلاح المشكلة.</string>
-    <string name="settings_location_access_switch_summaryOff">يرجى السماح إذا كنت تريد أن تكون قادرًا على إضافة موقعك الحالي كمنطقة.</string>
+    <string name="settings_location_access_switch_summaryOff">يُرجى السماح إذا كنت تريد أن تكون قادرًا على إضافة موقعك الحالي كمنطقة.</string>
     <string name="settings_location_access_background_title">الوصول إلى الموقع في الخلفية</string>
-    <string name="settings_location_access_precise_summaryOn">مفعل. سيتم الاعتماد على شبكة الجهاز كأولوية وفي معظم الوقت، ولكن من الممكن أيضا أن يستخدم GPS كبديل.</string>
-    <string name="settings_modules_live_wallpaper_error">تعذر تشغيل منتقي الخلفيات. لا يزال بإمكانك تمكين خلفية %s عن طريق اختيار ”Live Wallpaper“ في منتقي خلفيات الشاشة الرئيسية.</string>
+    <string name="settings_location_access_precise_summaryOn">مفعّل. سيتم الاعتماد على شبكة الجهاز كأولوية وفي معظم الوقت، ولكن من الممكن أيضا أن يستخدم GPS كبديل.</string>
+    <string name="settings_modules_live_wallpaper_error">تعذر تشغيل منتقي الخلفيات. لا يزال بإمكانك تفعيل خلفية %s عن طريق اختيار ”Live Wallpaper“ في منتقي خلفيات الشاشة الرئيسية.</string>
     <string name="action_more">انظر أكثر</string>
     <string name="location_service_native">API الافتراضي</string>
     <string name="action_location_list">لائحة المناطق</string>
     <string name="action_add_current_location">إضافة المنطقة الحالية</string>
     <string name="settings_notifications_forecast_time_tomorrow_title">وقت الإشعار لتوقعات اليوم التالي</string>
     <string name="settings_main_section_animations">الرسوم المتحركه</string>
-    <string name="settings_main_background_animation_enabled">ممكّن</string>
-    <string name="settings_main_background_animation_disabled">معطل</string>
+    <string name="settings_main_background_animation_enabled">مُفعّل</string>
+    <string name="settings_main_background_animation_disabled">مُعطّل</string>
     <string name="settings_main_cards_fade_in_switch">البطاقات تتلاشى لداخل</string>
     <string name="settings_main_cards_other_element_animations_switch">الرسوم المتحركة للعناصر الأخرى</string>
     <string name="settings_notifications_summary">إخطارات تنبيهات الطقس أو هطول الأمطار أو التوقعات للموقع الأول</string>
@@ -390,7 +388,7 @@
     <string name="weather_source_accu_preference_hours_72">72 ساعات</string>
     <string name="weather_source_accu_preference_hours_120">120 ساعة</string>
     <string name="weather_source_accu_preference_hours_240">240 ساعة</string>
-    <string name="action_continue">أستمرار</string>
+    <string name="action_continue">استمر</string>
     <string name="action_share">مشاركة</string>
     <string name="dialog_permissions_location_content">لاستخدام هذه الميزة، تحتاج إلى منح التطبيق إذنًا للوصول إلى موقعك الحالي. سيتم مشاركته فقط مع مصادر الطقس المحددة. إذا غيرت رأيك، يمكنك إلغاء العملية وإضافة موقع ثابت يدويًا.</string>
     <string name="dialog_permissions_location_background_content">للسماح بتحديث الطقس في الخلفية لأحدث موقع حالي معروف بواسطة أندرويد، تحتاج إلى تعيين إذن الموقع على ”السماح طوال الوقت“. إذا لم تقم بذلك، فسيتم تحديث الطقس بناءً على أحدث الإحداثيات المستردة في المقدمة، والتي قد تكون قديمة.</string>
@@ -412,7 +410,7 @@
     <string name="settings_background_updates_refresh_skip_when_battery_low">تجاهل عندما تكون البطارية منخفضة</string>
     <string name="message_parsing_error_title">فشل تحليل بيانات الطقس</string>
     <string name="message_server_timeout">انتهت مهلة الطلب</string>
-    <string name="message_parsing_error_content">تأكد من تحديثك إلى أحدث إصدار من التطبيق. قد يكون الخادم غير متاح مؤقتًا، وفي هذه الحالة، يرجى المحاولة مرة أخرى لاحقًا. إذا استمرت المشكلة، يرجى مشاركة سجلّ الإنهيار من إعدادات التصحيح، والإبلاغ عن مشكلة على GitHub.</string>
+    <string name="message_parsing_error_content">تأكد من تحديثك إلى أحدث إصدار من التطبيق. قد يكون الخادم غير متاح مؤقتًا، وفي هذه الحالة، يُرجى المحاولة مرة أخرى لاحقًا. إذا استمرت المشكلة، يُرجى مشاركة سجلّ الإنهيار من إعدادات التصحيح، والإبلاغ عن مشكلة على GitHub.</string>
     <string name="message_source_not_installed_error_title">المصدر لم يعد متوفرا</string>
     <string name="settings_source_api_key">مفتاح API</string>
     <string name="temperature_degree_day_cooling">درجة الحرارة لتبريد منزلك</string>
@@ -428,8 +426,8 @@
     <string name="pollen_olea">زيتون</string>
     <string name="pollen_level_0">لا شيء</string>
     <string name="pollen_level_2">منخفض</string>
-    <string name="action_delete">حذف</string>
-    <string name="weather_message_invalid_location">الموقع غير صالح، يرجى حذفه وإعادة إضافته</string>
+    <string name="action_delete">احذف</string>
+    <string name="weather_message_invalid_location">الموقع غير صالح، يُرجى حذفه وإعادة إضافته</string>
     <string name="about_dependencies">التبعيات</string>
     <string name="precipitation_nowcasting">التساقطات دقيقة بدقيقة</string>
     <string name="action_save">حفظ</string>
@@ -482,7 +480,7 @@
     <string name="notification_precipitation_continuing">التساقطات</string>
     <string name="notification_precipitation_stopping">سيتوقف هطول الأمطار قريبا</string>
     <string name="notification_precipitation_stopping_desc">من المتوقع أن يتوقف عند %s</string>
-    <string name="settings_unavailable_no_background_updates">غير متاح، قم بتمكين تحديثات الخلفية أولاً</string>
+    <string name="settings_unavailable_no_background_updates">غير متاح، فعِّل تحديثات الخلفية أولاً</string>
     <string name="notification_precipitation_continuing_desc">من المتوقع أن يستمر حتى %s على الأقل</string>
     <string name="notification_precipitation_starting_desc">من المتوقع أن يبدأ عند %s</string>
     <string name="humidity_dew_point">الرطوبة / نقطة الندى</string>
@@ -524,7 +522,7 @@
     <string name="pollen_urticaceae">نبات القراص / بيلتوري</string>
     <string name="sunshine">إضاءة الشمس</string>
     <string name="widget_custom_subtitle_keyword_xpis_description">مقتطف مؤشر حبوب اللقاح لليوم، الغد، …، بعد 4 أيام</string>
-    <string name="about_open_link_message">فتح %s ؟</string>
+    <string name="about_open_link_message">افتح %s؟</string>
     <string name="message_source_not_installed_error_content">قم إما بتغيير مصادر الطقس لهذا الموقع أو حذف هذا الموقع وإعادة إضافته.</string>
     <string name="settings_per_location">إعدادات الموقع</string>
     <string name="settings_per_location_summary">تخصيصات إضافية لهذا الموقع</string>
@@ -547,15 +545,15 @@
     <string name="dialog_time_picker_select_time">اختيار الوقت</string>
     <string name="dialog_time_picker_toggle_touch_input_voice">قم بالتبديل إلى الإدخال باللمس</string>
     <string name="widget_label_hide_alternate_calendar">إخفاء التقويم البديل</string>
-    <string name="settings_background_updates_refresh_never_warning3">فكر في استخدام معدل تحديث أقل تكرارًا بدلاً من إيقاف تشغيل تحديثات الخلفية، وإلا فانقر على ”متابعة“ إذا كنت لا تزال ترغب في المتابعة.</string>
-    <string name="settings_modules_broadcast_send_data_summary_empty">لم يتم العثور على حزم متوافقة</string>
+    <string name="settings_background_updates_refresh_never_warning3">فكر في استخدام معدّل تحديث أقل تكرارًا بدلاً من إيقاف تشغيل تحديثات الخلفية، وإلا فانقر على \"استمر\" إذا كنت لا تزال ترغب في المتابعة.</string>
+    <string name="settings_modules_broadcast_send_data_summary_empty">لم يُعثر على حزم متوافقة</string>
     <string name="dialog_time_picker_input_time">وقت الإدخال</string>
     <string name="dialog_time_picker_toggle_text_input_voice">قم بالتبديل إلى إدخال النص</string>
     <string name="settings_background_updates_refresh_never_warning1">من خلال إيقاف تشغيل تحديثات الخلفية، لن تتلقى بعد الآن إشعارات التحذير أو هطول الأمطار. لن تُحدّت الويدجات حتى تفتح التطبيق.</string>
     <string name="settings_background_updates_refresh_never_warning2">تتميز عملية التحديث في الخلفية بالبساطة: فهي تقوم فقط بتحديث موقعك الأول بالمعدل الذي حددته، والمواقع الثانوية فقط إذا كنت في حاجة إليها، مرة واحدة يوميًا. إنه موفر للبطارية ويجب ألا يتجاوز استهلاك البيانات %d ميجابايت شهريًا.</string>
     <string name="settings_appearance_calendar_title">التقويم البديل</string>
     <string name="message_server_unavailable_title">الخادم غير متاح</string>
-    <string name="message_server_unavailable_content">هذا عادة ما يكون خطأً مؤقتًا. في حالة استمرار الخطأ، يرجى الإبلاغ عن المشكلة على GitHub.</string>
+    <string name="message_server_unavailable_content">هذا عادة ما يكون خطأً مؤقتًا. في حالة استمرار الخطأ، يُرجى الإبلاغ عن المشكلة على GitHub.</string>
     <string name="action_edit_location">عدل هذا الموقع</string>
     <string name="settings_global">إعدادات عامة</string>
     <string name="precipitation_intensity_medium">مطر متوسط</string>
@@ -569,8 +567,8 @@
     <string name="meteoam_weather_text_tornado_watersprout">إعصار او رشة ماء</string>
     <string name="common_weather_text_smoke">دخان</string>
     <string name="dialog_app_update_check_title">البقاء على احدث إصدار</string>
-    <string name="dialog_app_update_check_content">اضغط هنا لتمكين الإشعارات حول تحديثات التطبيق.</string>
-    <string name="settings_unavailable_no_animations">غير متاح، قم بتمكين الرسوم المتحركة في إعدادات الجهاز أولاً</string>
+    <string name="dialog_app_update_check_content">اضغط هنا لتفعيل الإشعارات حول تحديثات التطبيق.</string>
+    <string name="settings_unavailable_no_animations">غير متاح، فعِّل الرسوم المتحركة في إعدادات الجهاز أولاً</string>
     <string name="current_weather">الطقس الحالي</string>
     <string name="common_weather_text_mist">سَدِيم</string>
     <string name="common_weather_text_dry">جاف</string>
@@ -634,7 +632,7 @@
     <string name="action_enable">فعِّل</string>
     <string name="action_allow">اسمح</string>
     <string name="action_open_in_other_app">افتح في تطبيق آخر</string>
-    <string name="action_open_in_other_app_description">فتح هذا الموقع في تطبيق آخر</string>
+    <string name="action_open_in_other_app_description">افتح هذا الموقع في تطبيق آخر</string>
     <string name="air_quality_short">جودة الهواء</string>
     <string name="ephemeris_sun">الشمس</string>
     <string name="ephemeris_moon">القمر</string>
