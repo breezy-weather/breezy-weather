@@ -910,7 +910,7 @@ class MainActivity : BreezyActivity(), HomeFragment.Callback, ManagementFragment
         viewModel.currentLocation.value?.location?.let {
             try {
                 IntentHelper.startBreezyActivity(this@MainActivity, it)
-            } catch (ignored: Exception) {
+            } catch (_: Exception) {
                 SnackbarHelper.showSnackbar(getString(R.string.action_open_in_other_app_no_app))
             }
         }
