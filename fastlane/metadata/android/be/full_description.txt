@@ -1,0 +1,47 @@
+Breezy Weather — гэта шматфункцыянальная бясплатная праграма для паказу надвор'я з адкрытым зыходным кодам, якая выкарыстоўвае стыль Material 3 Expressive з добра прадуманай візуалізацыяй. Праграма падтрымлівае звычайныя і кароткатэрміновы прагнозы, вывад надвор'я ў бягучы час, паказ звестак пра якасць паветра і пылок, а таксама абвесткі з больш чым 50 крыніц надвор'я сярод якіх NWS, Met Office UK, Met Éireann, ECCC і Open-Meteo.
+
+<b>Магчымасці</b>
+
+- Прагноз па днях і па гадзінах на тэрмін да 16 дзён
+- Ападкі на бліжэйшую гадзіну
+- Умовы надвор'я ў бягучы час
+- Інфармацыя пра якасць паветра, алергены, стан Сонца і Месяца
+- Абвесткі пра небяспечныя умовы надвор'я і ападкі
+- З дазволу карыстальніка, абмен данымі з іншымі праграмамі (напрыклад, Gadgetbridge)
+- Даступнасць для сродкаў чытання з экрана і магчымасць лакалізацыі
+
+<b>Дызайн</b>
+
+- Material 3 Expressive
+- Падрабязны пагадзінны графік на 24 гадзіны 
+- Аўтаматычны цёмны рэжым
+- Уласныя наборы значкоў
+- Вялікі выбар віджэтаў
+- Жывыя шпалеры
+
+<b>Крыніцы</b>
+
+- Ва ўсіх версіях: Open-Meteo, ANAM-BF, Bright Sky (DWD), DCCMS, DMN, DWR, EMI, FOSS Public Alert Server, GMet, IGEBU, INM, KNMI, Mali-Météo, Météo Benin, Météo Tchad, Météo Togo, Mettelsat, MSD, Pirate Weather, SMA (Сейшэльскія астравы), SMA (Судан), SSMS
+- Несвабодныя/з уласнай інфраструктурай (не ўключаны ў версіях з суфіксам _freenet): AccuWeather, AEMET, Atmo Auvergne-Rhône-Alpes, Atmo France, ATMO GrandEst, Atmo Hauts-de-France, AtmoSud, Baidu IP location, BMD, BMKG, CWA, DMI, ECCC, EKUK, EPD (Ганконг), GeoNames, GeoSphere AT, HERE, HKO, Ilmateenistus, IMD, IMS, IP.SB, IPMA, LHMT, LVĢMC, JMA, MET Éireann, MET Norway, Met Office UK, Meteo AM, Météo-France, MeteoLux, MGM, змешаныя кітайскія крыніцы, NAMEM, NCDR, NCEI, NLSC, NWS, OpenWeather, PAGASA, SMG, Veðurstofa Íslands, WMO Severe Weather
+
+<b>Дазволы</b>
+
+Абавязковыя:
+
+- Сетка (ACCESS_NETWORK_STATE, ACCESS_WIFI_STATE, INTERNET): атрыманне даных пра надвор'е з крыніц у інтэрнэце
+
+Неабавязковыя:
+
+- Фонавыя службы (RECEIVE_BOOT_COMPLETED, WAKE_LOCK, SET_ALARM, FOREGROUND_SERVICE, FOREGROUND_SERVICE_DATA_SYNC, FOREGROUND_SERVICE_SPECIAL_USE): абнаўленні надвор'я ў фонавым рэжыме і запланаваныя апавяшчэнні з прагнозам надвор'я
+- Ігнараваць аптымізацыю батарэі (REQUEST_IGNORE_BATTERY_OPTIMIZATIONS): на некаторых прыладах прадухіляе спыненне працы праграмы
+- Адпраўляць апавяшчэнні (POST_NOTIFICATIONS): абвесткі, ападкі, прагноз на сёння/заўтра, віджэт апавяшчэнняў, стан фонавых абнаўленняў і г.д.
+- Месцазнаходжанне (ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION, ACCESS_BACKGROUND_LOCATION): для паказу надвор'я для бягучага месцазнаходжання
+- Сховішча (READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE): на некаторых прыладах дазваляе наладжваць жывыя шпалеры і/або віджэты з надвор'ем
+- Панэль (EXPAND_STATUS_BAR): дазваляе запускаць праграму з панэлі хуткіх налад
+- Мова праграмы (READ_APP_SPECIFIC_LOCALES): на некаторых прыладах дазваляе захоўваць значэнне для выбранай мовы праграмы і чытаць яго пасля перазагрузкі
+
+<b>Ліцэнзія</b>
+
+- GNU Lesser General Public License v3.0
+- Гэтая ліцэнзія не дае ніякіх правоў на гандлёвыя маркі, значкі або лагатыпы сэрвісаў і іншых ўдзельнікаў праекта.
+- Забаронена скажаць звесткі пра паходжанне прадукту, а мадыфікаваныя версіі прадукту павінны быць належным чынам пазначаны як адрозныя ад зыходнай версіі.
