@@ -413,8 +413,8 @@ class HomeFragment : MainModuleFragment() {
         // - On the right on tablet because on the left it would be confused with the action icon
         binding.toolbar.title =
             (if (location?.isCurrentPosition == true && !requireContext().isTabletDevice) "⊙ " else "") +
-            (location?.getPlace(requireContext()) ?: "") +
-            (if (location?.isCurrentPosition == true && requireContext().isTabletDevice) " ⊙" else "")
+                (location?.getPlace(requireContext()) ?: "") +
+                (if (location?.isCurrentPosition == true && requireContext().isTabletDevice) " ⊙" else "")
 
         weatherView.setWeather(backgroundWeatherKind, daylight, requireContext().isDarkMode)
         binding.refreshLayout.setColorSchemeColors(

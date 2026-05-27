@@ -238,6 +238,7 @@ enum class RefreshErrorType(
                         }
                     }
                 }
+
                 is SSLHandshakeException -> SERVER_INSECURE
                 is SocketTimeoutException -> SERVER_TIMEOUT
                 is ApiLimitReachedException -> API_LIMIT_REACHED
@@ -253,6 +254,7 @@ enum class RefreshErrorType(
                     e.printStackTrace()
                     PARSING_ERROR
                 }
+
                 is SourceNotInstalledException -> SOURCE_NOT_INSTALLED
                 is NonFreeNetSourceException -> NON_FREE_NETWORK_SOURCE
                 is LocationSearchException -> LOCATION_SEARCH_FAILED

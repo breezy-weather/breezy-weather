@@ -766,13 +766,16 @@ class MainActivity : BreezyActivity(), HomeFragment.Callback, ManagementFragment
                     IntentHelper.startAlertActivity(this, formattedId)
                 }
             }
+
             ACTION_SHOW_DAILY_FORECAST -> {
                 val index = intent.getIntExtra(KEY_DAILY_INDEX, 0)
                 IntentHelper.startDailyWeatherActivity(this, formattedId, index)
             }
+
             ACTION_MANAGEMENT -> {
                 setManagementFragmentVisibility(true)
             }
+
             ACTION_VIEW -> {
                 val uri = intent.data
                 if (uri?.scheme.equals("geo", ignoreCase = true) && !uri?.schemeSpecificPart.isNullOrEmpty()) {

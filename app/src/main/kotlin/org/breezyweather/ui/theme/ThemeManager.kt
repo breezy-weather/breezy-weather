@@ -110,6 +110,7 @@ class ThemeManager private constructor(
                 } else {
                     false // Not available on Android < 11
                 }
+
                 else -> false // Unknown
             }
         }

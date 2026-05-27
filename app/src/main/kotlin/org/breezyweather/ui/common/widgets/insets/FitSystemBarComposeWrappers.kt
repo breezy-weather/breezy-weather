@@ -55,6 +55,7 @@ internal fun ColorScheme.applyTonalElevation(backgroundColor: Color, elevation: 
         backgroundColor
     }
 }
+
 internal fun ColorScheme.surfaceColorAtElevation(elevation: Dp): Color {
     if (elevation == 0.dp) return surface
     val alpha = ((4.5f * ln(elevation.value + 1)) + 2f) / 100f
@@ -136,6 +137,7 @@ fun BWCenterAlignedTopAppBar(
 )
 
 enum class BottomInsetKey { INSTANCE }
+
 fun LazyListScope.bottomInsetItem(
     extraHeight: Dp = 0.dp,
 ) = item(
