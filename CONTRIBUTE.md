@@ -1,21 +1,27 @@
 # Contributions
 
-## Rules for contributions
+## Rules for contributions from outside collaborators
 
 ### Summary
 
-1. You are contributing to an issue/idea tagged “Open to contributions”, or an [org member](https://github.com/orgs/breezy-weather/people) gave you permission to work on it
-2. If AI was used, you have followed the AI guidelines
-3. If you submit code, you ensured there is no linting issue
-4. Your pull request is up-to-date with current `main` branch
-5. Your pull request contains 1 single commit
+Before you start any contribution:
+1. Make sure to choose an issue/idea tagged “Open to contributions”. Comment on that issue/idea that you want to work on it
+2. If you plan on using AI, make sure to read carefully the AI guidelines before starting any code writing. Mention in the linked issue/idea the tools you want to use and their license terms for redistribution. If you don’t plan on using any, mention it as well.
+
+Wait for an [org member](https://github.com/orgs/breezy-weather/people) approval before you start working on it. We can understand you want to start working right away, but if you don’t wait for approval, you may waste your time if it’s not approved.
+
+When your contribution is ready:
+3. You ensure there is no linting issue
+4. Your code is up-to-date with current `main` branch
+5. Your patch contains 1 single commit
+6. You cannot create the pull request (only org members can, so we ensure contributors are following our guidelines). You link in the issue/idea to your branch and a maintainer will take care of creating the pull request for you (don’t worry, you will be credited as the author of the commit)
 
 
 ### The contribution was discussed beforehand
 
-While we welcome pull requests, before implementing any new feature/improvement, we ask you to come talk to us, to be sure it goes in the right direction. We don’t want you to spend time implementing something we don’t want (see “Rules for new features/improvements requests” section below) or implementing it the wrong way.
+While we welcome pull requests, before implementing any new feature/improvement, we ask you to come talk to us, to be sure it goes in the right direction. We don’t want you to spend time implementing something we don’t want (see “Rules for new features/improvements requests” section below) or implementing it the wrong way. Same goes for bug reports, as we want to make sure the contribution guidelines are correctly followed.
 
-You can also contribute to [existing issues tagged “Open to contributions”](https://github.com/breezy-weather/breezy-weather/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22Open%20to%20contributions%22), or [existing ideas tagged “Open to contributions”](https://github.com/breezy-weather/breezy-weather/discussions?discussions_q=is%3Aopen+label%3A%22Open+to+contributions%22).
+That's why you can only contribute to [existing issues tagged “Open to contributions”](https://github.com/breezy-weather/breezy-weather/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22Open%20to%20contributions%22), or [existing ideas tagged “Open to contributions”](https://github.com/breezy-weather/breezy-weather/discussions?discussions_q=is%3Aopen+label%3A%22Open+to+contributions%22) *after* you’ve expressed interest in that discussion.
 
 
 ### AI guidelines
@@ -30,7 +36,7 @@ If you use AI or any kind of assistance tool, you use it as an assistant, meanin
 
 If you can't follow them, don’t use AI.
 
-When in doubt, ask a project maintainer, before submitting the contribution.
+Otherwise, before starting any contribution, mention in the linked issue/idea the tools used and their license terms for redistribution.
 
 
 ### Linting
