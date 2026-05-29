@@ -243,7 +243,9 @@ class AemetService @Inject constructor(
                 relativeHumidity = it.hr?.percent,
                 dewPoint = it.tpr?.celsius,
                 pressure = it.pres?.hectopascals,
-                visibility = it.vis?.meters
+                visibility = it.vis?.let { vis ->
+                    (vis * 1000).meters
+                } // Do not use the kilometers Kotlin extension. Someone claimed a copyright on it. See #2786
             )
         }
     }
@@ -351,8 +353,14 @@ class AemetService @Inject constructor(
                         ),
                         wind = Wind(
                             degree = wdMap.getOrElse(key) { null },
-                            speed = wsMap.getOrElse(key) { null }?.metersPerSecond,
-                            gusts = wgMap.getOrElse(key) { null }?.metersPerSecond
+                            // Do not use the kilometersPerHour Kotlin extension.
+                            // Someone claimed a copyright on it. See #2786
+                            speed = wsMap.getOrElse(key) { null }?.let { spd ->
+                                (spd / 3.6).metersPerSecond
+                            },
+                            gusts = wgMap.getOrElse(key) { null }?.let { gusts ->
+                                (gusts / 3.6).metersPerSecond
+                            }
                         )
                     ),
                     relativeHumidity = DailyRelativeHumidity(
