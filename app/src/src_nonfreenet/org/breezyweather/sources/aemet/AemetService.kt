@@ -52,7 +52,7 @@ import org.breezyweather.sources.aemet.json.AemetHourlyResult
 import org.breezyweather.sources.aemet.json.AemetNormalsResult
 import org.breezyweather.sources.aemet.json.AemetStationsResult
 import org.breezyweather.sources.getWindDegree
-import org.breezyweather.unit.distance.Distance.Companion.kilometers
+import org.breezyweather.unit.distance.Distance.Companion.meters
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
 import org.breezyweather.unit.ratio.Ratio.Companion.percent
@@ -243,7 +243,7 @@ class AemetService @Inject constructor(
                 relativeHumidity = it.hr?.percent,
                 dewPoint = it.tpr?.celsius,
                 pressure = it.pres?.hectopascals,
-                visibility = it.vis?.kilometers
+                visibility = it.vis?.meters
             )
         }
     }
@@ -351,8 +351,8 @@ class AemetService @Inject constructor(
                         ),
                         wind = Wind(
                             degree = wdMap.getOrElse(key) { null },
-                            speed = wsMap.getOrElse(key) { null }?.kilometersPerHour,
-                            gusts = wgMap.getOrElse(key) { null }?.kilometersPerHour
+                            speed = wsMap.getOrElse(key) { null }?.metersPerSecond,
+                            gusts = wgMap.getOrElse(key) { null }?.metersPerSecond
                         )
                     ),
                     relativeHumidity = DailyRelativeHumidity(
