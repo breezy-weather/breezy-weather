@@ -77,6 +77,12 @@ git reset --soft HEAD~2
 You can make a new commit, and once again, push your changes adding the `--force` argument.
 
 
+## Rules for contributions for organization members
+
+All organization members of Breezy Weather must follow the following rule:
+- If someone has not followed the contribution guidelines and has published their code anyway, you are not allowed to copy that code. You may review the bug report to understand and analyze the issue, but you must then resolve it in your own way. For fixes that require only a few lines of code, it is possible that the two versions will be very similar, or even identical. Even if the contributor made the mistake of not following our warnings regarding the prohibition on contributing without our consent, they can still claim authorship of the code because it was written first, even if the code you wrote afterward is rightfully yours. In this case, you may decide to rewrite the code to avoid any misunderstanding. If this rewrite makes the code less optimized, it must be submitted to another member of the organization, who will impartially review the situation and the claims of both parties. This member of the organization will strive to reach a mutual agreement. If this proves impossible, they will decide either on a complete rewrite, a partial rewrite, or a complete commit revert. Since a rewrite may require writing code that is much less optimized to make it sufficiently different, it should be avoided, and a mutual agreement should be sought as a priority.
+
+
 ## Rules for new features/improvements requests
 
 ### General direction
