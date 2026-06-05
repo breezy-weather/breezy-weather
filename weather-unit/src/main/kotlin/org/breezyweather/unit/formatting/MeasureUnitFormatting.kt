@@ -23,7 +23,6 @@ import android.icu.text.MeasureFormat
 import android.icu.text.NumberFormat
 import android.icu.util.Measure
 import android.icu.util.MeasureUnit
-import android.icu.util.TimeUnit
 import android.os.Build
 import androidx.annotation.RequiresApi
 import org.breezyweather.unit.supportsMeasureFormatPerUnit
@@ -55,11 +54,22 @@ fun MeasureUnit.formatWithNumberFormatter(
         .unitWidth(numberFormatterWidth)
         .apply {
             if (supportsNumberFormatterUsage()) {
-                usage(if (this is TimeUnit) "duration" else null)
+                usage(if (isDurationUnit()) "duration" else null)
             }
         }
         .format(if (precision == 0) value.toDouble().roundToInt() else value)
         .toString()
+}
+
+@RequiresApi(Build.VERSION_CODES.N)
+fun MeasureUnit.isDurationUnit(): Boolean {
+    return this == MeasureUnit.NANOSECOND ||
+        this == MeasureUnit.MICROSECOND ||
+        this == MeasureUnit.MILLISECOND ||
+        this == MeasureUnit.SECOND ||
+        this == MeasureUnit.MINUTE ||
+        this == MeasureUnit.HOUR ||
+        this == MeasureUnit.DAY
 }
 
 /**

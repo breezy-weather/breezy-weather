@@ -10,6 +10,6 @@ object AndroidConfig {
     const val BUILD_TOOLS = "36.0.0"
 
     // https://youtrack.jetbrains.com/issue/KT-66995/JvmTarget-and-JavaVersion-compatibility-for-easier-JVM-version-setup
-    val JavaVersion = GradleJavaVersion.VERSION_1_8
-    val JvmTarget = KotlinJvmTarget.JVM_1_8
+    val JavaVersion = GradleJavaVersion.VERSION_11
+    val JvmTarget = KotlinJvmTarget.JVM_11
 }
