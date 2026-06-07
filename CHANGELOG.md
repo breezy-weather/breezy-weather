@@ -4,7 +4,11 @@
 - [Changelog for v4.x](docs/CHANGELOG_4.x.md)
 
 
-# Version 6.2.1 (not yet released)
+# Version 6.2.2 (unreleased)
+
+
+
+# Version 6.2.1 (2026-06-07)
 
 **Improvements and fixes**
 - Cap temperature animation duration to 1 to 2 seconds
