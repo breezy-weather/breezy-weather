@@ -42,6 +42,6 @@
 
 الترخيص
 
-- رخصة جنو العمومية الصغرى (GNU Lesser General Public License) الإصدار 3.0
-- لا تمنح هذه الرخصة أي حقوق في العلامات التجارية أو علامات الخدمة أو الشعارات الخاصة بأي مساهم.
-- يُحظر تحريف أصل تلك المواد، ويجب تمييز النسخ المعدلة من هذه المواد بطرق معقولة على أنها تختلف عن النسخة الأصلية.
+- GNU Lesser General Public License v3.0
+- This License does not grant any rights in the trademarks, service marks, or logos of any Contributor.
+- Misrepresentation of the origin of that material is prohibited, and modified versions of such material must be marked in reasonable ways as different from the original version.
