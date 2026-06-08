@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- app. -->
-    <string name="app_name">Vremea</string>
+    <string name="app_name">Meteo</string>
     <!-- keyword. -->
     <string name="location_current">Locația curentă</string>
     <string name="daily_today_short">Astăzi</string>
@@ -175,7 +175,7 @@
     <!-- settings -->
     <string name="settings_modules_live_wallpaper_title">Imagine de fundal live</string>
     <string name="settings_location_service">Serviciu locație</string>
-    <string name="settings_appearance_dark_mode_title">Modul întunecat al aplicației</string>
+    <string name="settings_appearance_dark_mode_title">Mod întunecat aplicație</string>
     <string name="settings_appearance_icon_pack_title">Pachet de pictograme</string>
     <string name="settings_appearance">Aspect</string>
     <string name="settings_main_gravity_sensor_switch">Senzor de gravitație</string>
@@ -187,7 +187,7 @@
     <string name="settings_units_pressure">Unitatea presiunii</string>
     <string name="settings_units_speed">Unitatea vitezei</string>
     <string name="settings_notifications_section_forecast">Prognoza meteo</string>
-    <string name="settings_modules_notification_temp_icon_switch">Temperatura în bara de stare</string>
+    <string name="settings_modules_notification_temp_icon_switch">Temperatura ca pictogramă în bara de stare</string>
     <string name="location_service_native">API Nativ</string>
     <string name="notification_style_native">Sistem</string>
     <string name="notification_style_cities">Orașe</string>
@@ -292,7 +292,7 @@
     <string name="location_message_permission_background_missing">Permisiunea accesului la locație în fundal lipsește</string>
     <string name="settings_modules_notification_widget_title">Widget de notificare</string>
     <string name="settings_modules_notification_style_title">Stil</string>
-    <string name="settings_modules_configure_widget_summary">Configură acest widget</string>
+    <string name="settings_modules_configure_widget_summary">Configurează acest widget</string>
     <string name="settings_modules_section_notification_widget">Widget de notificare</string>
     <string name="settings_debug_summary">Jurnale de incidente</string>
     <string name="settings_debug_dump_crash_logs_title">Distribuie jurnalele de incidente</string>
@@ -340,8 +340,8 @@
     <string name="widget_clock_font_analog">Analog</string>
     <string name="settings_background_updates_refresh_never">Niciodată</string>
     <string name="settings_background_updates_section_troubleshoot">Depanare</string>
-    <string name="settings_background_updates_battery_optimization">Dezactivați optimizarea bateriei</string>
-    <string name="settings_background_updates_battery_optimization_summary">Acesta este primul lucru pe care trebuie să-l încercați când nu primiți notificări sau widget-urile nu se actualizează.</string>
+    <string name="settings_background_updates_battery_optimization">Dezactivează optimizarea bateriei</string>
+    <string name="settings_background_updates_battery_optimization_summary">Acesta este primul lucru pe care trebuie să-l încerci când nu primești notificări sau widgeturile nu se actualizează.</string>
     <string name="settings_background_updates_battery_optimization_activity_not_found">Nu s-a putut deschide setările dispozitivului.</string>
     <string name="settings_background_updates_battery_optimization_disabled">Optimizarea bateriei este deja dezactivată.</string>
     <string name="settings_modules_monochrome_icons_title">Pictograme monocrom</string>
@@ -367,10 +367,10 @@
     <string name="settings_main_section_options">Opțiuni</string>
     <string name="settings_main_cards_fade_in_switch">Blocurile se estompează</string>
     <string name="settings_main_cards_other_element_animations_switch">Alte elemente de animație</string>
-    <string name="settings_notifications_summary">Notificări de alerte meteo, precipitații și prognoză pentru locația primară</string>
+    <string name="settings_notifications_summary">Notificări pentru alerte meteo, precipitații sau prognoză pentru prima locație</string>
     <string name="settings_notifications_alerts_title">Notificări ale alertelor meteo severe</string>
     <string name="settings_notifications_forecast_time_tomorrow_title">Ora de notificare privind prognoza zilei următoare</string>
-    <string name="settings_modules">Widgets &amp; Imagini de fundal live</string>
+    <string name="settings_modules">Module externe</string>
     <string name="settings_modules_live_wallpaper_summary">Setează o animație meteo ca imagine de fundal</string>
     <string name="weather_api_limit_reached_title">Limita solicitărilor API a fost atinsă</string>
     <string name="weather_api_limit_reached_content">Pentru a rezolva limita, adaugă propria cheie API.</string>
@@ -379,7 +379,7 @@
     <string name="settings_background_updates_dont_kill_my_app_summary">Unii producători au restricții suplimentare pentru aplicații care distrug serviciile de fundal. Site-ul web “Don’t kill my app!” are informații despre cum să o remediați.</string>
     <string name="settings_main_section_displayed_data">Date afișate</string>
     <string name="settings_notifications_precipitations_title">Notificări ale precipitațiilor</string>
-    <string name="settings_modules_summary">Widget-uri, widget-ul de notificare, imaginea de fundal, partajarea datelor cu alte aplicații</string>
+    <string name="settings_modules_summary">Widgeturi, widget de notificare, imagine de fundal, partajare de date cu alte aplicații</string>
     <string name="settings_location">Localizare</string>
     <string name="settings_location_summary">Setări ale serviciilor de locație</string>
     <string name="settings_location_access_switch_summaryOn">Permis. Poți adăuga locația ta curentă ca locație.</string>
@@ -397,7 +397,7 @@
     <string name="notification_channel_widget">Widget</string>
     <string name="location_message_reverse_geocoding_failed">Furnizorul meteo nu a găsit locația potrivită</string>
     <string name="action_undo">Anulează</string>
-    <string name="settings_modules_live_wallpaper_error">Nu s-a putut lansa selectorul de imagini de fundal. Poți activa în continuare imaginea de fundal %s alegând „Imagine de fundal live” în selectorul de imagini de fundal pentru ecranul de pornire.</string>
+    <string name="settings_modules_live_wallpaper_error">Nu s-a putut lansa selectorul de imagini de fundal. Poți activa în continuare imaginea de fundal %s alegând \"Imagine de fundal live\" în selectorul de imagini de fundal pentru ecranul de pornire.</string>
     <string name="null_data_text">N/A</string>
     <string name="temperature_degree_day_heating">Gradul de încălzire a zilei</string>
     <string name="temperature_degree_day_cooling">Gradul de răcire a zilei</string>
@@ -406,7 +406,7 @@
     <string name="air_quality_so2_full">Dioxid de sulf (%s)</string>
     <string name="action_show_errors">Apasă pentru a vedea detalii</string>
     <string name="location_search_no_results">%1$s nu poate găsi %2$s</string>
-    <string name="settings_background_updates_refresh_skip_when_battery_low">Ignorați când bateria este descărcată</string>
+    <string name="settings_background_updates_refresh_skip_when_battery_low">Ignoră când bateria este descărcată</string>
     <string name="settings_source_api_key">Cheie API</string>
     <string name="message_server_timeout">Cererea a expirat</string>
     <string name="pollen_betula">Mesteacăn</string>
@@ -426,9 +426,9 @@
     <string name="about_dependencies">Dependențe</string>
     <string name="air_quality_index">Indicele calității aerului</string>
     <string name="action_close">Închide</string>
-    <string name="dialog_permissions_notification_title">Stai informat</string>
+    <string name="dialog_permissions_notification_title">Rămâi informat</string>
     <string name="air_quality_pm25">PM2.5</string>
-    <string name="dialog_permissions_notification_content">Atinge aici pentru a activa notificările privind alertele meteo, sau modifică mai târziu în Setări.</string>
+    <string name="dialog_permissions_notification_content">Atinge aici pentru a activa notificările privind alertele meteo sau decide mai târziu în setări.</string>
     <string name="pollen_level_3">Moderat</string>
     <string name="pollen_level_4">Ridicat</string>
     <string name="pollen_level_5">Foarte ridicat</string>
@@ -471,7 +471,7 @@
     <string name="settings_debug_dump_crash_logs_saved">Jurnal de incidente salvat</string>
     <string name="common_weather_text_rain_snow_mixed_showers">Averse de lapoviță</string>
     <string name="settings_weather_sources_per_location_summary">Personalizează furnizorii meteo pentru această locație</string>
-    <string name="settings_modules_broadcast_send_data_title">Trimite date meteo către %s</string>
+    <string name="settings_modules_broadcast_send_data_title">Trimite date %s</string>
     <string name="location_delete_location_dialog_message_no_name">Ești pe cale să ștergi această locație din lista ta de locații salvate.</string>
     <string name="location_search_change_source">Schimbă serviciul de căutare a locației</string>
     <string name="settings_appearance_dark_mode_locations_title">Mod luminos / întunecat pe baza locației</string>
@@ -542,7 +542,7 @@
     <string name="settings_weather_source_open_meteo_instance_forecast">Server prognoză</string>
     <string name="settings_weather_source_open_meteo_instance_air_quality">Server calitatea aerului</string>
     <string name="settings_source_instance">Server</string>
-    <string name="settings_modules_broadcast_title">Transmite date meteo către alte aplicații</string>
+    <string name="settings_modules_broadcast_title">Partajare date</string>
     <string name="settings_per_location_theme">Temă</string>
     <string name="settings_source_instance_invalid">Trebuie să fie un URL https cu / la sfârșit</string>
     <string name="settings_invalid_syntax">Sintaxă incorectă</string>
@@ -550,12 +550,12 @@
     <string name="alert_source">Sursa: %s</string>
     <string name="widget_label_hide_alternate_calendar">Ascunde calendarul alternativ</string>
     <string name="settings_global">Setări globale</string>
-    <string name="settings_background_updates_refresh_never_warning1">Prin dezactivarea actualizărilor în fundal, nu vei mai primi notificări de alerte sau precipitații. Widgeturile nu vor fi reîmprospătate până când nu deschideți aplicația.</string>
+    <string name="settings_background_updates_refresh_never_warning1">Prin dezactivarea actualizărilor în fundal, nu vei mai primi notificări de alerte sau precipitații. Widgeturile nu vor fi reîmprospătate până când nu deschizi aplicația.</string>
     <string name="message_server_unavailable_title">Serve indisponibil</string>
     <string name="message_server_unavailable_content">Aceasta e de obicei o eroare temporară. Dacă eroarea persistă, te rog să o raportezi pe GitHub.</string>
     <string name="settings_background_updates_refresh_never_warning3">Poți considera posibilitatea de a utiliza o rată de reîmprospătare mai mică în loc să dezactivezi actualizările în fundal, totuși apasă “Continuă” dacă dorești să confirmi.</string>
     <string name="settings_appearance_calendar_title">Calendar alternativ</string>
-    <string name="settings_modules_broadcast_send_data_summary_empty">Nu au fost găsite pachete compatibile</string>
+    <string name="settings_modules_broadcast_send_data_summary_empty">Nu s-au găsit pachete compatibile</string>
     <string name="settings_background_updates_refresh_never_warning2">Procesul de actualizare în fundal este eficient: reîmprospătează doar prima locație în ritmul ales de tine, iar locațiile secundare doar dacă ai nevoie de ele, o dată pe zi. Este eficient din punct de vedere al bateriei și nu ar trebui să depășească %d MB de consum de date pe lună.</string>
     <string name="action_edit_location">Editează locația</string>
     <string name="dialog_time_picker_toggle_touch_input_voice">Comută la introducerea tactilă</string>
@@ -566,14 +566,14 @@
     <string name="settings_unavailable_no_animations">Indisponibil, activați mai întâi efectele de animații în setările Android</string>
     <string name="common_weather_text_smoke">Fum</string>
     <string name="dialog_app_update_check_title">Stai la curent</string>
-    <string name="dialog_app_update_check_content">Atingeți aici pentru a activa notificările privind actualizările aplicației.</string>
+    <string name="dialog_app_update_check_content">Atinge aici pentru a activa notificările privind actualizările aplicației.</string>
     <string name="settings_notifications_app_updates_check">Notificări privind actualizările aplicației</string>
     <string name="notification_channel_app_updates">Actualizări aplicație</string>
     <string name="notification_app_update_available">O nouă versiune este disponibilă!</string>
     <string name="about_no_new_updates">Nici o actualizare disponibilă</string>
     <string name="common_weather_text_sand_storm">Furtună de nisip</string>
     <string name="meteoam_weather_text_tornado_watersprout">Tornadă sau trombă de apă</string>
-    <string name="about_check_for_app_updates">Verificați actualizările aplicației</string>
+    <string name="about_check_for_app_updates">Caută actualizări ale aplicației</string>
     <string name="common_weather_text_dust">Praf</string>
     <string name="current_weather">Vremea acum</string>
     <string name="common_weather_text_tornado">Tornadă</string>
@@ -627,11 +627,11 @@
     <string name="location_reverse_geocoding">Căutare adresă</string>
     <string name="location_has_active_alerts">Alertă activă</string>
     <string name="action_grant_permission">Apăsați pentru a acorda permisiunea.</string>
-    <string name="settings_notifications_permission">Este necesară permiterea notificărilor</string>
+    <string name="settings_notifications_permission">Este necesară permisiunea pentru notificări</string>
     <string name="settings_modules_notification_permission_summary">Necesar pentru a afișa widget-ul notificării. %s</string>
     <string name="location_last_updated_x">Actualizat ultima dată %s</string>
     <string name="location_custom_name">Nume personalizat</string>
-    <string name="settings_notifications_permission_summary">Necesar pentru a trimite notificări referitoare la alerte, prognoze meteo și actualizari ale aplicației. %s</string>
+    <string name="settings_notifications_permission_summary">Necesară pentru notificări despre alerte, prognoze și actualizări ale aplicației. %s</string>
     <string name="message_server_insecure_title">Conexiunea sigură a eșuat</string>
     <string name="message_outdated_server_data">Date învechite primite de la server</string>
     <string name="action_allow">Permite</string>
@@ -777,13 +777,13 @@
     <string name="settings_appearance_dark_mode_locations_dark">Întotdeauna întunecat când aplicația este în modul întunecat</string>
     <string name="air_quality_level_5_harmless_exposure">&lt; câteva minute</string>
     <string name="settings_appearance_dark_mode_custom">Mod întunecat de la %1$s la %2$s</string>
-    <string name="settings_regional_preference">Preferințe regionald</string>
+    <string name="settings_regional_preference">Preferință regională</string>
     <string name="about_update_check_eol">Această versiune Android nu mai este suportată</string>
     <string name="content_provider_permission_label">Citește datele Breezy Weather</string>
     <string name="content_provider_permission_description">obțineți datele meteo de la Breezy Weather, inclusiv coordonatele locațiilor dvs., cum ar fi locația curentă dacă ați adăugat-o</string>
     <string name="common_weather_text_mostly_cloudy">Predominant noros</string>
     <string name="message_source_non_free_network_title">Această sursă necesită versiunea Standard a aplicației</string>
-    <string name="message_source_non_free_network_content">Folosiți versiunea Freenet a aplicației, care suportă doar surse găzduite pe o rețea liberă. Pentru a continua să folosiți această sursă, treceți înapoi pe versiunea Standard. Altfel, alegeți o sursă diferită.</string>
+    <string name="message_source_non_free_network_content">Folosești versiunea Freenet a aplicației, care suportă doar surse găzduite pe o rețea liberă. Pentru a continua să folosești această sursă, treci înapoi pe versiunea standard. Altfel, alege o sursă diferită.</string>
     <string name="settings_weather_source_non_freenet">%s (serviciu de rețea non-liber)</string>
     <string name="action_pull_down_to_refresh">Trageți în jos pentru a reîmprospăta</string>
     <string name="pressure_standard">Standard</string>
