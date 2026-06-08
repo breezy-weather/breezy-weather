@@ -103,7 +103,7 @@
     <string name="ephemeris_moon_phase_last_quarter">سه چارک</string>
     <string name="ephemeris_moon_phase_waning_crescent">کمان رو به محاق</string>
     <string name="ephemeris_sunrise_at">پگاه در %s</string>
-    <string name="nighttime">شب</string>
+    <string name="nighttime">در طول شب</string>
     <string name="settings_weather_source_portal">پورتال Portal</string>
     <string name="weather_source_accu_preference_days_5">۵ روز</string>
     <string name="weather_source_accu_preference_days_10">۱۰ روز</string>
@@ -188,7 +188,7 @@
     <string name="location_message_deleted">مکان حذف شد</string>
     <string name="location_message_list_cannot_be_empty">فهرست مکان ها نمی توانند خالی باشند</string>
     <string name="location_swipe_to_delete">شما می توانید به سمت چپ بکشید تا این آیتم را حذف کنید</string>
-    <string name="daytime">روز</string>
+    <string name="daytime">در طول روز</string>
     <string name="weather_message_data_refresh_failed">نوسازی داده‌ها ناموفق بود</string>
     <string name="location_message_added">موقعیت اضافه شده</string>
     <string name="location_message_failed_to_locate">پیدا کردن مکان فعلی انجام نشد</string>
@@ -774,4 +774,11 @@
     <string name="content_provider_permission_label">خواندن داده‌های Breezy Weather</string>
     <string name="content_provider_permission_description">اطلاعات آب و هوا را از Breezy Weather دریافت کنید، از جمله مختصات مکان های خود، مانند مکان فعلی خود در صورت افزودن آن</string>
     <string name="common_weather_text_mostly_cloudy">بیشتر ابری</string>
+    <string name="daytime_short">روز</string>
+    <string name="nighttime_short">شب</string>
+    <string name="pressure_standard">استاندارد</string>
+    <string name="message_please_wait_refresh">لطفاً منتظر کامل شدن به روزرسانی شوید</string>
+    <string name="settings_weather_source_no_longer_exists">%s (دیگر وجود ندارد)</string>
+    <string name="settings_source_api_key_invalid">مقدار وارد شده به فرمت مورد انتظار نیست</string>
+    <string name="settings_main_background_title">پس زمینه ی مبتنی بر هوا</string>
 </resources>
