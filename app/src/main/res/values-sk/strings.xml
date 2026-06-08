@@ -317,7 +317,7 @@
     <string name="settings_notifications_forecast_tomorrow_title">Notifikácia s predpoveďou na nasledujúci deň</string>
     <string name="settings_follow_system">Systémový</string>
     <string name="notification_precipitation_continuing">Zrážky</string>
-    <string name="notification_precipitation_starting">Zrážky očakávané</string>
+    <string name="notification_precipitation_starting">Očakávané zrážky v blízkej dobe</string>
     <string name="notification_style_native">Natívne</string>
     <string name="settings_main_section_animations">Animácie</string>
     <string name="settings_main_background_animation_title">Animácia pozadia</string>
@@ -325,7 +325,7 @@
     <string name="settings_modules_broadcast_title">Zdieľanie dát</string>
     <string name="settings_color_dark">Tmavý</string>
     <string name="settings_color_light">Svetlý</string>
-    <string name="notification_precipitation_starting_desc">Očakávaný začiatok o %s</string>
+    <string name="notification_precipitation_starting_desc">Začiatok sa očakáva o %s</string>
     <string name="notification_style_cities">Mestá</string>
     <string name="about_open_link_message">Otvoriť %s?</string>
     <string name="settings_notifications_forecast_time_tomorrow_title">Čas notifikácie s predpoveďou na ďalší deň</string>
@@ -425,7 +425,7 @@
     <string name="settings_location_access_switch_summaryOn">Povolené. Ako lokáciu si môžete pridať vašu aktuálnu polohu.</string>
     <string name="settings_location_access_background_summaryOn">Povolené. Aplikácia bude na pozadí aktualizovať dáta o počasí pre vašu aktuálnu lokalitu.</string>
     <string name="settings_location_access_precise_summaryOff">Ak máte problémy so získavaním polohy, povoľte “Použiť presnú polohu”.</string>
-    <string name="widget_custom_subtitle_keyword_xdp_description">Zrážky cez deň dnes, zajtra, …, 4 dni neskôr (%)</string>
+    <string name="widget_custom_subtitle_keyword_xdp_description">Zrážky cez deň dnes, zajtra, …, za 4 dni (%)</string>
     <string name="settings_source_instance_invalid">Musí byť https URL ukončená znakom /</string>
     <string name="settings_source_instance_geocoding">Geokódovacia inštancia</string>
     <string name="widget_material_you_current">Material You – Aktuálny</string>
@@ -465,7 +465,7 @@
     <string name="widget_custom_subtitle_keyword_xnt_description">Teplota cez noc dnes, zajtra, …, 4 dni neskôr (°C/°F)</string>
     <string name="settings_background_updates_refresh_never_warning2">Proces aktualizácie dát na pozadí je nenáročný: obnovuje sa iba vaša prvá lokácia, v cykle ktorý si zvolíte . Ostatné lokácie sa aktualizujú iba ak ich potrebujete raz denne. Tento proces nie je náročný na batériu zariadenia a nemal by spotrebovať viac ako %d MB dát za mesiac.</string>
     <string name="action_download">Stiahnuť</string>
-    <string name="widget_custom_subtitle_keyword_xnp_description">Zrážky cez noc dnes, zajtra, …, 4 dni neskôr (%)</string>
+    <string name="widget_custom_subtitle_keyword_xnp_description">Zrážky cez noc dnes, zajtra, …, za 4 dni (%)</string>
     <string name="widget_custom_subtitle_keyword_xaqi_description">Index kvality ovzdušia na dnes, zajtra, …, o 4 dni</string>
     <string name="widget_style_nano">Nano</string>
     <string name="settings_appearance_icon_pack_title">Balíček ikon</string>
@@ -543,7 +543,7 @@
     <string name="settings_modules_live_wallpaper_error">Nepodarilo sa spustiť výber tapety. Tapetu %s môžete stále zapnúť výberom položky „Live Wallpaper“ na domovskej obrazovke.</string>
     <string name="common_weather_text_dust_storm">Prachová búrka</string>
     <string name="common_weather_text_dust">Prach</string>
-    <string name="notification_precipitation_stopping">Zrážky čoskoro skončia</string>
+    <string name="notification_precipitation_stopping">Zrážky onedlho skončia</string>
     <string name="settings_weather_source_open_meteo_instance_air_quality">Inštancia pre kvalitu ovzdušia</string>
     <string name="common_weather_text_mist">Dymno</string>
     <string name="temperature_degree_day_cooling">Chladiaci dennostupeň</string>
@@ -675,7 +675,7 @@
     <string name="settings_appearance_dark_mode_locations_dark">Vždy tmavý, keď je aplikácia v tmavom režime</string>
     <string name="pressure_about_description2">Výrazné, rýchle zmeny tlaku sa používajú na predpovedanie zmien počasia. Napríklad pokles tlaku môže znamenať, že sa blíži dážď alebo sneh, a rastúci tlak môže znamenať, že sa počasie zlepší. Abnormálny atmosférický tlak môže spôsobiť bolesti hlavy, bolesti kĺbov, únavu a iné účinky.</string>
     <string name="air_quality_index_about">O indexe kvality ovzdušia</string>
-    <string name="air_quality_index_about_description_1">Index kvality ovzdušia (AQI) je stupnica, ktorá vám pomôže zistiť, aké je znečistenie ovzdušia v danej oblasti a aké sú potenciálne riziká pre vaše zdravie.</string>
+    <string name="air_quality_index_about_description_1">Index kvality ovzdušia (IKO) je stupnica, ktorá vám pomôže zistiť, aké je znečistenie ovzdušia v danej oblasti a aké sú potenciálne riziká pre vaše zdravie.</string>
     <string name="air_quality_index_about_description_2">Stupnica použitá v tejto aplikácii vychádza z odporúčaní Svetovej zdravotníckej organizácie, a nie z miestnych predpisov, aby boli kategórie zmysluplné a aby bolo ľahšie porovnávať úrovne znečistenia medzi krajinami.</string>
     <string name="air_quality_index_scale">Stupnica indexu kvality ovzdušia</string>
     <string name="air_quality_pollutant_primary">Hlavná znečisťujúca látka</string>
