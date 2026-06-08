@@ -786,4 +786,5 @@
     <string name="settings_source_api_key_invalid">Değer beklenen biçimde değil</string>
     <string name="message_please_wait_refresh">Lütfen yenileme işleminin tamamlanmasını bekleyin</string>
     <string name="settings_main_background_title">Hava durumuna göre arka plan</string>
+    <string name="settings_weather_source_no_longer_exists">%s (artık yok)</string>
 </resources>
