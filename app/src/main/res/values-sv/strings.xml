@@ -217,7 +217,7 @@
     <string name="wind_strength_12">Orkanstyrka</string>
     <string name="air_quality_level_1">Utmärkt</string>
     <string name="air_quality_level_1_description">Luftkvaliteten är idealisk för de flesta, så njut av dina utomhusaktiviteter.</string>
-    <string name="air_quality_level_2">Vackert</string>
+    <string name="air_quality_level_2">God</string>
     <string name="air_quality_level_2_description">Luftkvaliteten är i stort sett godkänd för de flesta. Känsliga personer kan dock uppleva lätta till medelsvåra symptom efter längre tids exponering.</string>
     <string name="air_quality_level_3">Dålig</string>
     <string name="air_quality_level_3_description">Luften har uppnått en sådan grad av föroreningar att den är ohälsosam för känsliga personer. Minimera tiden utomhus om du känner av symptom som andningssvårigheter eller irritation i halsen.</string>
@@ -371,7 +371,7 @@
     <string name="widget_subtitle_data_feels_like">Upplevd temperatur</string>
     <string name="settings_icon_packs_weather_icon_light">Ljus ikon</string>
     <string name="dialog_permissions_location_background_title">Behörighet till plats i bakgrunden</string>
-    <string name="weather_api_unauthorized_content">För vissa väderdatakällor måste du ange din egen API-nyckel. Om du redan har angett en, kontrollera API-nyckeln du har angett en gång till</string>
+    <string name="weather_api_unauthorized_content">För vissa väderdatakällor måste du ange din egen API-nyckel. Om du redan har angett en, kontrollera API-nyckeln du har angett en gång till.</string>
     <string name="common_weather_text_rain_snow_mixed_showers">Snöblandade regnskurar</string>
     <string name="settings_color_dark">Mörk</string>
     <string name="common_weather_text_overcast">Mulet</string>
