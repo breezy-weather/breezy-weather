@@ -646,7 +646,7 @@
     <string name="data_modified">Acest material a fost modificat din original de %s în principal pentru a calcula sau extrapola datele lipsă.</string>
     <string name="data_sources">Surse de date</string>
     <string name="label_description">Descriere</string>
-    <string name="cloud_cover_about_description">Acoperirea de nori se referă la procentul de cer acoperit de nori în medie. Acoperirea de nori este corelată cu durata de strălucire a soarelui.</string>
+    <string name="cloud_cover_about_description">Nebulozitatea se referă la procentul de cer acoperit de nori în medie. Nebulozitatea este corelată cu durata de strălucire a soarelui.</string>
     <string name="cloud_cover_about">Despre nebulozitate</string>
     <string name="visibility_perfectly_clear">Perfect clară</string>
     <string name="visibility_clear">Clară</string>
@@ -677,8 +677,8 @@
     <string name="chart_average">Medie</string>
     <string name="chart_maximum_value">Valoarea maximă</string>
     <string name="conditions">Condiții</string>
-    <string name="temperature_real">Reală</string>
-    <string name="temperature_real_details">Temperatura reală.</string>
+    <string name="temperature_real">Măsurată</string>
+    <string name="temperature_real_details">Temperatura măsurată.</string>
     <string name="temperature_feels_like_details">Cum se simte temperatura, ca urmare a umidității, a vântului și/sau a luminii solare.</string>
     <string name="ephemeris_about_dawn">Zorii zilei sunt momentul când apare prima lumină vizibilă înainte de răsăritul soarelui.</string>
     <string name="temperature_degree_day_heating_explanation">Diferența dintre temperatura exterioară și o temperatură de referință considerată confortabilă folosită pentru a estima necesarul de energie pentru încălzire.</string>
@@ -699,14 +699,14 @@
     <string name="wind_strength_scale">Scala Beaufort</string>
     <string name="uv_index_about">Despre indicele UV</string>
     <string name="uv_index_about_description">Indicele UV măsoară intensitatea radiațiilor ultraviolete emise de soare. Cu cât este mai mare, cu atât este mai mare și mai rapid riscul de arsură solară, cancer de piele și afecțiuni ale ochilor.</string>
-    <string name="uv_index_scale">Scara indicelui UV</string>
+    <string name="uv_index_scale">Scala indicelui UV</string>
     <string name="uv_index_time_to_burn">Timp până la apariția arsurii</string>
     <string name="uv_index_time_to_burn_explanations">Timpul exact până la apariția arsurii solare depinde de altitudine, de prezența suprafețelor care reflectă razele cum ar fi apa sau zăpada, de tipul de piele și de utilizarea produselor de protecție solară.</string>
     <string name="air_quality_index_short">ICA</string>
     <string name="air_quality_index_about">Despre indicele calităţii aerului</string>
     <string name="air_quality_index_about_description_1">Indicele calității aerului (ICA) este o scală concepută pentru a vă ajuta să înțelegeți cât de poluat este aerul într-o anumită zonă și care sunt riscurile potențiale pentru sănătatea dumneavoastră.</string>
     <string name="air_quality_index_about_description_2">Scala utilizată în această aplicație se bazează pe recomandările Organizației Mondiale a Sănătății, și nu pe reglementările locale, pentru a avea categorii semnificative și pentru a facilita compararea nivelurilor de poluare dintre țări.</string>
-    <string name="air_quality_index_scale">Scara Indicelui calității aerului</string>
+    <string name="air_quality_index_scale">Scala indicelui calității aerului</string>
     <string name="air_quality_index_harmless_exposure">Expunere inofensivă</string>
     <string name="air_quality_level_1_harmless_exposure">&gt; 1 an</string>
     <string name="air_quality_level_2_harmless_exposure">&lt; 1 an</string>
@@ -754,7 +754,7 @@
     <string name="visibility_scale">Scala de vizibilitate</string>
     <string name="cloud_cover_from_to_number">%1$s la %2$s</string>
     <string name="cloud_cover_from_to_description">%1$s la %2$s</string>
-    <string name="cloud_cover_scale">Scara de nebulozitate</string>
+    <string name="cloud_cover_scale">Scala de nebulozitate</string>
     <string name="weather_source_recommended">Recomandări</string>
     <string name="broadcast_source_breezy_weather_update_notifier">Notificator actualizări locație %s</string>
     <string name="action_add_as_location">Adaugă ca locație</string>
