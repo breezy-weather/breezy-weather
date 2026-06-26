@@ -71,7 +71,7 @@
     <string name="hourly_forecast">Previsão horária</string>
     <string name="air_quality">Qualidade do ar</string>
     <string name="pollen">Pólen</string>
-    <string name="ephemeris">Sol e lua</string>
+    <string name="ephemeris">Sol &amp; lua</string>
     <string name="action_next">Avançar</string>
     <string name="action_done">Pronto</string>
     <string name="settings_enabled">Ativado</string>
@@ -692,7 +692,7 @@
     <string name="action_open_in_other_app">Abrir em outro app</string>
     <string name="action_open_in_other_app_description">Abrir esta localização em outro app</string>
     <string name="ephemeris_about">Sobre o nascer e o pôr do sol</string>
-    <string name="ephemeris_about_rise">O horário de quando o sol ou a lua aparece totalmente acima do horizonte.</string>
+    <string name="ephemeris_about_rise">O horário em que o sol ou a lua aparece totalmente acima do horizonte.</string>
     <string name="ephemeris_about_set">O horário de quando o sol ou a lua desaparece totalmente abaixo do horizonte.</string>
     <string name="daily_summary">Resumo diário</string>
     <string name="chart_no_hourly_data">Não há dados horários.</string>
