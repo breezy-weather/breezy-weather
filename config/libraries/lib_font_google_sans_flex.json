@@ -1,0 +1,15 @@
+{
+  "uniqueId": "font.google.sans.flex:custom",
+  "developers": [
+    {
+      "name": "Google"
+    }
+  ],
+  "artifactVersion": "",
+  "description": "",
+  "name": "Google Sans Flex Font Family",
+  "website": "https://github.com/Omnibus-Type/Asap",
+  "licenses": [
+    "OFL-1.1"
+  ]
+}
