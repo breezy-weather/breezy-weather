@@ -583,7 +583,7 @@
     <string name="chart_no_daily_data">Cap dada disponible per a aquest dia.</string>
     <string name="chart_no_hourly_data">Cap dada horària disponible.</string>
     <string name="chart_not_enough_hourly_data">No hi ha suficients dades horàries per a mostrar la gràfica d’aquest dia.</string>
-    <string name="chart_average">Mitja</string>
+    <string name="chart_average">Mitjana</string>
     <string name="chart_maximum_value">Valor màxim</string>
     <string name="conditions">Condicions</string>
     <string name="temperature_real">Real</string>
@@ -787,4 +787,8 @@
     <string name="common_weather_text_blowing_snow">Neu bufada alta</string>
     <string name="common_weather_text_drifting_snow">Neu bufada suaument</string>
     <string name="common_weather_text_glaze">Glaçada</string>
+    <string name="message_please_wait_refresh">Espereu que es completi l\'actualització</string>
+    <string name="settings_weather_source_no_longer_exists">%s (ja no existeix)</string>
+    <string name="settings_source_api_key_invalid">El valor no està en el format esperat</string>
+    <string name="settings_main_background_title">Fons basat en el temps</string>
 </resources>
