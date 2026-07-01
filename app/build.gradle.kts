@@ -299,6 +299,11 @@ configure<ApplicationExtension> {
         )
         it.buildConfigField(
             "String",
+            "IMGW_TOKEN",
+            "\"${localProperties.getProperty("breezy.imgw.token") ?: ""}\""
+        )
+        it.buildConfigField(
+            "String",
             "MET_IE_KEY",
             "\"${localProperties.getProperty("breezy.metie.key") ?: ""}\""
         )
