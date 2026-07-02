@@ -152,6 +152,7 @@ Pull requests are welcome. You can have a look at [issues opened to contribution
 
 - [Announcement](https://github.com/breezy-weather/breezy-weather/discussions/2089) - Make Breezy weather data available through a ContentProvider. Landed in v6.1.0. Currently in an experimental phase; feedback appreciated
 - [#10](https://github.com/breezy-weather/breezy-weather/issues/10) - “Add location” page needs a new design, in the spirit of Google Maps where you can select location points on the map, or search manually - No mockup done yet
+- Radar: currently studying feasibility with the [self-hostable LibreWRX](https://librewxr.net/) and the future [Open-Meteo radar](https://github.com/open-meteo/open-meteo/issues/1437).
 
 ## Features lacking an active contributor
 
@@ -160,7 +161,6 @@ Pull requests are welcome. You can have a look at [issues opened to contribution
 ## Features that will not be implemented
 
 - Paid-only sources, too limited free-tier, or free-tier that requires privacy-invasive information (credit card info, phone number, etc)
-- Radar; [please check out this document for alternatives](docs/RADAR.md)
 - Adding `standard` flavor or non-free sources to the F-Droid default repo: please use the `standard` flavor from a different store/source instead
 - Changes to the [background updates process](docs/UPDATES.md), including but not limited: options for refreshing less than every 30 minutes, every time you open the app, every time you tap on widget, every time you unlock your phone
 - “Circular sky” interface: you can set a fixed light/dark background globally from Main screen settings instead.
