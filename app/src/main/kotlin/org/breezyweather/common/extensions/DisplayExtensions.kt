@@ -126,7 +126,7 @@ val Context.fontScale: Float
     get() {
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             resources.configuration.fontScale *
-                resources.displayMetrics.densityDpi.div(160f)
+                resources.displayMetrics.densityDpi.div(android.util.DisplayMetrics.DENSITY_DEVICE_STABLE.toFloat())
         } else {
             1f // Let’s just ignore it on old Android versions
         }

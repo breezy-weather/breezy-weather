@@ -67,8 +67,9 @@ class CrashLogUtils(
             Device name: ${Build.DEVICE} (${Build.PRODUCT})
             Device model: ${Build.MODEL}
             Font scale: ${context.fontScale}x
-            Window width: ${context.windowWidthInDp} dp / ${context.windowWidth} px
             Density DPI: ${context.resources.displayMetrics.densityDpi}
+            ${if (Build.VERSION.SDK_INT >= 24) "Stable device density: " + android.util.DisplayMetrics.DENSITY_DEVICE_STABLE else ""}
+            Window width: ${context.windowWidthInDp} dp / ${context.windowWidth} px
         """.trimIndent()
     }
 
