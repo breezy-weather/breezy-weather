@@ -2,6 +2,6 @@
 <resources>
     <plurals name="notification_update_error">
         <item quantity="one">%1$d uuendus ei õnnestunud</item>
-        <item quantity="other">%1$d uuendust ei õnnestunud</item>
+        <item quantity="other">%1$d uuendused ei õnnestunud</item>
     </plurals>
 </resources>
