@@ -185,4 +185,8 @@
     <string name="settings_appearance_section_regional">Tutlayt d temnaḍt</string>
     <string name="settings_appearance_dark_mode_title">Askar ubrik n usnas</string>
     <string name="settings_color_day_night">Ass / Iḍ</string>
+    <string name="temperature_real">Amiran</string>
+    <string name="temperature_real_details">Tifesniwin timiranin</string>
+    <string name="precipitation_thunderstorm">Taɛeǧajt</string>
+    <string name="wind_strength_scale">Tiseddarin n Beaufort</string>
 </resources>
