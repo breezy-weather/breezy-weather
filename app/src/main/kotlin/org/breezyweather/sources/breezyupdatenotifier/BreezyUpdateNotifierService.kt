@@ -44,25 +44,27 @@ class BreezyUpdateNotifierService @Inject constructor(
         context: Context,
         allLocations: List<Location>,
         updatedLocationIds: Array<String>?,
-    ): Bundle {
-        return Bundle().apply {
-            /*
-             * Contains the list of updated location IDs
-             * If null, means the updated location is unknown.
-             * It could be a deleted location, or a refresh on main screen
-             */
-            putStringArray(
-                "UpdatedLocationIds",
-                updatedLocationIds
-            )
-            /*
-             * Contains the list of all known location IDs
-             * If some locations were removed during the process, it won't be included in this list
-             */
-            putStringArray(
-                "AllLocationIds",
-                allLocations.map { it.formattedId }.toTypedArray()
-            )
+    ): Bundle? {
+        return updatedLocationIds?.let { ids ->
+            Bundle().apply {
+                /*
+                 * Contains the list of updated location IDs
+                 * If null, means the updated location is unknown.
+                 * It could be a deleted location, or a refresh on main screen
+                 */
+                putStringArray(
+                    "UpdatedLocationIds",
+                    ids
+                )
+                /*
+                 * Contains the list of all known location IDs
+                 * If some locations were removed during the process, it won't be included in this list
+                 */
+                putStringArray(
+                    "AllLocationIds",
+                    allLocations.map { it.formattedId }.toTypedArray()
+                )
+            }
         }
     }
 }

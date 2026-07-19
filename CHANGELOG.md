@@ -10,6 +10,9 @@
 - Met Office (UK) - Fix shifted day sequence in locations with a different timezone than UTC
 - NCEI - Fix parsing error
 
+**Technical**
+- [Breezy Update Notifier] Do not notify when the main screen is refreshed but no location is actually updated
+
 
 # Version 6.2.1 (2026-06-07)
 
