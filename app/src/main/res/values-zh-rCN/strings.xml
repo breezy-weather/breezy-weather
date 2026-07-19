@@ -44,7 +44,7 @@
     <string name="wind_strength_2">轻风</string>
     <string name="wind_strength_3">微风</string>
     <string name="wind_strength_4">和风</string>
-    <string name="wind_strength_5">劲风</string>
+    <string name="wind_strength_5">清劲风</string>
     <string name="wind_strength_6">强风</string>
     <string name="wind_strength_7">疾风</string>
     <string name="wind_strength_8">大风</string>
@@ -729,9 +729,9 @@
     <string name="temperature_feels_like_details">体感温度是指人体主观感受到的冷暖程度，受湿度、风速和日照等多因素综合影响。</string>
     <string name="temperature_degree_day_heating_explanation">用于估算供暖能源需求的室外温度与参考舒适温度之差</string>
     <string name="temperature_degree_day_cooling_explanation">用于估算冷却能源需求的室外温度与参考舒适温度之差</string>
-    <string name="wind_speed_about">关于风速和强风</string>
-    <string name="wind_speed_about_description">风速按一段时间内的平均风速衡量。强风指突然刮起的大风，通常持续不到 20 秒。</string>
-    <string name="wind_gusts_short">强风</string>
+    <string name="wind_speed_about">关于风速和阵风</string>
+    <string name="wind_speed_about_description">风速按一段时间内的平均风速衡量。阵风指突然刮起的大风，通常持续不到 20 秒。</string>
+    <string name="wind_gusts_short">阵风</string>
     <string name="wind_strength_scale">蒲福风级</string>
     <string name="uv_index_about">关于紫外线指数（UV Index）</string>
     <string name="uv_index_scale">紫外线指数（UV Index）分级表‌</string>
@@ -740,7 +740,7 @@
     <string name="air_quality_index_short">AQI</string>
     <string name="air_quality_index_about">关于空气质量指数</string>
     <string name="air_quality_index_about_description_1">AQI 等级体系旨在帮助你理解特定区域中空气污染程度，及其对你健康的潜在风险。</string>
-    <string name="air_quality_index_scale">AQI 等级体系</string>
+    <string name="air_quality_index_scale">空气质量指数等级</string>
     <string name="air_quality_index_harmless_exposure">无害暴露</string>
     <string name="air_quality_level_1_harmless_exposure">&gt; 1 年</string>
     <string name="air_quality_level_2_harmless_exposure">&lt; 1 年</string>
@@ -866,4 +866,5 @@
     <string name="settings_source_api_key_invalid">值的格式不符预期</string>
     <string name="message_please_wait_refresh">请等待刷新完成</string>
     <string name="settings_main_background_title">基于天气的背景</string>
+    <string name="settings_weather_source_no_longer_exists">%s（不再存在）</string>
 </resources>
