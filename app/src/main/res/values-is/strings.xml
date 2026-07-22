@@ -85,7 +85,7 @@
     <string name="pressure_short">Loftþr.</string>
     <string name="visibility">Skyggni</string>
     <string name="cloud_cover">Skýjahula</string>
-    <string name="location_search_placeholder">Staðarleit</string>
+    <string name="location_search_placeholder">Staðarleit…</string>
     <string name="action_search">Leita</string>
     <string name="action_close">Loka</string>
     <string name="action_close_menu">Loka valmynd</string>
@@ -115,4 +115,12 @@
     <string name="weather_kind_wind">Vindur</string>
     <string name="veduris_weather_text_fog_drizzle">Þokusúld</string>
     <string name="veduris_weather_text_thunderstorm_light">Lítils háttar þrumuveður</string>
+    <string name="daily_forecast">Dagleg veðurspá</string>
+    <string name="hourly_forecast">Klukkustundarspá</string>
+    <string name="precipitation_nowcasting">Skammtímaspá úrkomu</string>
+    <string name="pollen">Frjókorn</string>
+    <string name="ephemeris">Sól og tungl</string>
+    <string name="ephemeris_sun">Sól</string>
+    <string name="ephemeris_moon">Tungl</string>
+    <string name="null_data_text">Engin gögn</string>
 </resources>
