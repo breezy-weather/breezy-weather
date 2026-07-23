@@ -123,4 +123,5 @@
     <string name="ephemeris_sun">Sól</string>
     <string name="ephemeris_moon">Tungl</string>
     <string name="null_data_text">Engin gögn</string>
+    <string name="ephemeris_about">Um ris og setur himintungla</string>
 </resources>
