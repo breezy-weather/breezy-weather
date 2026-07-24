@@ -1,0 +1,47 @@
+Breezy Weather on funktsioonirohke tasuta avatud lähtekoodiga Material 3 Expressive ilmateaterakendus hästi läbimõeldud visualiseeringute ja ennustuste, reaalajas ilmaolude, lähiaja prognooside, õhukvaliteedi- ja saaste ning hoiatuste toega 50+ ilmateateallikast, näiteks NWS, Met Office UK, Met Éireann, ECCC ja Open-Meteo.
+
+<b>Funktsioonid</b>
+
+- Päeva- ja tunnised prognoosid kuni 16 päevani
+- Järgmise tunni sademed
+- Reaalajas ilmaolud
+- Õhukvaliteedi, allergeenide ja efemeriidide informatsioon
+- Ohtlike ilmaolude ja sademete hoiatused
+- Valikuline andmete jagamine teiste rakendustega (näiteks Gadgetbridge)
+- Tähelepanu ekraanilugejate juurdepääsetavusele ja lokaliseerimisele
+
+<b>Disain</b>
+
+- Material 3 Expressive
+- Detailsed 24 tunni graafikud
+- Automaatne tume režiim
+- Muudetavad ikoonipakid
+- Suur vidinate valik
+- Liikuv taustapilt
+
+<b>Allikad</b>
+
+- Kõikides versioonides: Open-Meteo, ANAM-BF, Bright Sky (DWD), DCCMS, DMN, DWR, EMI, FOSS Public Alert Server, GMet, IGEBU, INM, KNMI, Mali-Météo, Météo Benin, Météo Tchad, Météo Togo, Mettelsat, MSD, Pirate Weather, SMA (Seychelles), SMA (Sudan), SSMS
+- Mitte vabavaralistes/ise paigaldatavates (ei ole lisatud _freenet järelliitega versioonidesse): AccuWeather, AEMET, Atmo Auvergne-Rhône-Alpes, Atmo France, ATMO GrandEst, Atmo Hauts-de-France, AtmoSud, Baidu IP location, BMD, BMKG, CWA, DMI, ECCC, EKUK, EPD (Hong Kong), GeoNames, GeoSphere AT, HERE, HKO, Ilmateenistus, IMD, IMS, IP.SB, IPMA, LHMT, LVĢMC, JMA, MET Éireann, MET Norway, Met Office UK, Meteo AM, Météo-France, MeteoLux, MGM, Mixed China sources, NAMEM, NCDR, NCEI, NLSC, NWS, OpenWeather, PAGASA, SMG, Veðurstofa Íslands, WMO Severe Weather
+
+<b>Õigused</b>
+
+Vajalikud:
+
+- Internett (ACCESS_NETWORK_STATE, ACCESS_WIFI_STATE, INTERNET): ilmaandmete hankimine üle interneti
+
+Valikulised:
+
+- Tagatausta teenused (RECEIVE_BOOT_COMPLETED, WAKE_LOCK, SET_ALARM, FOREGROUND_SERVICE, FOREGROUND_SERVICE_DATA_SYNC, FOREGROUND_SERVICE_SPECIAL_USE): ilmauuendused taustal ja ajastatud prognooside teavitused
+- Ignoreeri aku optimeerimisi (REQUEST_IGNORE_BATTERY_OPTIMIZATIONS): aitab osadel seadmetel rakendust töös hoida
+- Saata teavitusi (POST_NOTIFICATIONS): hoiatused, sademed, tänane/homne prognoos, vidin teavituses, taustauuenduste edenemise värskendused jms
+- Asukoht (ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION, ACCESS_BACKGROUND_LOCATION): et näidata teie praeguse asukoha ilma
+- Salvestusruum (READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE): aitab osadel seadmetel liikuvat taustapilti ja/või vidinaid seada
+- Juhtimiskeskuse ikoon (EXPAND_STATUS_BAR): lubab rakendust juhtimiskeskusest avada
+- Rakendusepõhine keel (READ_APP_SPECIFIC_LOCALES): lubab salvestada rakenduse jaoks spetsiifilist keelt ja peale taaskäivitust seda väärtust lugeda osadel seadmetel
+
+<b>Litsens</b>
+
+- GNU Lesser General Public License v3.0
+- This License does not grant any rights in the trademarks, service marks, or logos of any Contributor.
+- Misrepresentation of the origin of that material is prohibited, and modified versions of such material must be marked in reasonable ways as different from the original version.

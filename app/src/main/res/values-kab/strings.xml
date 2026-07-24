@@ -174,4 +174,19 @@
     <string name="about_app">Ɣef usnas</string>
     <string name="common_weather_text_dry">Akiwan</string>
     <string name="air_quality_pm25">PM2.5</string>
+    <string name="action_translate">Suqel</string>
+    <string name="alert_source">Aɣbalu: %s</string>
+    <string name="action_configure_item">Swel %s</string>
+    <string name="action_close_menu">Mdel umuɣ</string>
+    <string name="widget_label_clock_font">Tasefsit n temrilt</string>
+    <string name="settings_follow_system">Akken yella unagraw</string>
+    <string name="about_privacy_policy">Tasertit n tbaḍnit</string>
+    <string name="settings_color_app">Awurman</string>
+    <string name="settings_appearance_section_regional">Tutlayt d temnaḍt</string>
+    <string name="settings_appearance_dark_mode_title">Askar ubrik n usnas</string>
+    <string name="settings_color_day_night">Ass / Iḍ</string>
+    <string name="temperature_real">Amiran</string>
+    <string name="temperature_real_details">Tifesniwin timiranin</string>
+    <string name="precipitation_thunderstorm">Taɛeǧajt</string>
+    <string name="wind_strength_scale">Tiseddarin n Beaufort</string>
 </resources>
