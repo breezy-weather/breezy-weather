@@ -57,7 +57,6 @@ internal fun Project.configureKotlin() {
         compilerOptions {
             jvmTarget.set(AndroidConfig.JvmTarget)
             freeCompilerArgs.addAll(
-                "-Xcontext-parameters",
                 "-opt-in=kotlin.RequiresOptIn",
             )
 
