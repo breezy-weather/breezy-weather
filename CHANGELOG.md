@@ -6,6 +6,9 @@
 
 # Version 6.2.2 (unreleased)
 
+**Improvements and fixes**
+- Main screen - Add precipitation probability to hourly feels like tab
+
 **Sources**
 - Met Office (UK) - Fix shifted day sequence in locations with a different timezone than UTC
 - NCEI - Fix parsing error
