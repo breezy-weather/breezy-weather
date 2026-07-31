@@ -637,7 +637,7 @@
     <string name="settings_appearance_dark_mode_locations_dark">Altijd donker als de app in donkere modus staat</string>
     <string name="wind_strength_scale">Schaal van Beaufort</string>
     <string name="uv_index_about">Over UV-index</string>
-    <string name="uv_index_about_description">De UV-index meet de sterkte van de ultraviolette straling van de zon. Hoe hoger het is, hoe sterker en sneller het zonnebrand, huidkanker en oogbeschadiging kan veroorzaken.</string>
+    <string name="uv_index_about_description">De UV-index meet de sterkte van de ultraviolette straling van de zon. Hoe hoger deze is, hoe groter en sneller het zonnebrand, huidkanker en oogschade kan veroorzaken.</string>
     <string name="uv_index_scale">UV-indexschaal</string>
     <string name="uv_index_time_to_burn">Tijd voor verbranding</string>
     <string name="uv_index_time_to_burn_explanations">De exacte tijd om te verbranden hangt af van de hoogte, de aanwezigheid van reflecterende oppervlakte zoals water of sneeuw, huidtype en het gebruik van zonnebrandcrème.</string>
@@ -677,7 +677,7 @@
     <string name="precipitation_snow_total_day">Sneeuw overdag</string>
     <string name="precipitation_snow_total_night">Sneeuw ’s nachts</string>
     <string name="wind_speed_about">Over windsnelheid en -vlagen</string>
-    <string name="wind_speed_about_description">De windsnelheid wordt gemeten door de windsnelheden over een bepaalde periode te middelen. Windvlagen zijn plotselinge windstoten die doorgaans minder dan 20 seconden aanhouden.</string>
+    <string name="wind_speed_about_description">De windsnelheid wordt bepaald door geregistreerde waarden over een periode te middelen. Windvlagen zijn plotselinge windstoten die doorgaans minder dan 20 seconden aanhouden.</string>
     <string name="wind_gusts_short">Vlagen</string>
     <string name="wind_origin">Vanuit %s</string>
     <string name="air_quality_index_about_description_2">De schaal die in deze app wordt gebruikt, is gebaseerd op aanbevelingen van de Wereldgezondheidsorganisatie, i.p.v. lokale regelgeving, om betekenisvolle categorieën te hanteren en het gemakkelijker te maken om de vervuilingsniveaus tussen landen te vergelijken.</string>
