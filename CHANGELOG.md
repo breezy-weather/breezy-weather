@@ -14,7 +14,7 @@
 - NCEI - Fix parsing error
 
 **Technical**
-- [Breezy Update Notifier] Do not notify when the main screen is refreshed but no location is actually updated
+- [Breezy Update Notifier] Fix broadcast when the location list is changed from the app
 
 
 # Version 6.2.1 (2026-06-07)

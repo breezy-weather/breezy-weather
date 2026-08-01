@@ -256,7 +256,7 @@ class MainActivity : BreezyActivity(), HomeFragment.Callback, ManagementFragment
 
             findHomeFragment()?.updateViews()
 
-            refreshBackgroundViews(viewModel.validLocationList.value)
+            viewModel.refreshBackgroundViews(viewModel.validLocationList.value)
         }
     }
 
@@ -352,19 +352,6 @@ class MainActivity : BreezyActivity(), HomeFragment.Callback, ManagementFragment
             }
         }
 
-        // Start a coroutine in the lifecycle scope
-        lifecycleScope.launch {
-            // repeatOnLifecycle launches the block in a new coroutine every time the
-            // lifecycle is in the STARTED state (or above) and cancels it when it's STOPPED.
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                // Trigger the flow and start listening for values.
-                // Note that this happens when lifecycle is STARTED and stops
-                // collecting when the lifecycle is STOPPED
-                viewModel.validLocationList.collect {
-                    refreshBackgroundViews(it)
-                }
-            }
-        }
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.locationPermissionsRequest.collect {
@@ -885,10 +872,6 @@ class MainActivity : BreezyActivity(), HomeFragment.Callback, ManagementFragment
         } else {
             supportFragmentManager.findFragmentById(R.id.fragment_drawer) as ManagementFragment?
         }
-    }
-
-    private fun refreshBackgroundViews(locationList: List<Location>?) {
-        viewModel.refreshBackgroundViews(this, locationList)
     }
 
     // interface.
