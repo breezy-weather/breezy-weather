@@ -89,6 +89,7 @@ import org.breezyweather.sources.geosphereat.GeoSphereAtService
 import org.breezyweather.sources.hko.HkoService
 import org.breezyweather.sources.ilmateenistus.IlmateenistusService
 import org.breezyweather.sources.imd.ImdService
+import org.breezyweather.sources.imgw.ImgwService
 import org.breezyweather.sources.ims.ImsService
 import org.breezyweather.sources.infoplaza.InfoplazaService
 import org.breezyweather.sources.ipma.IpmaService
@@ -164,6 +165,7 @@ class SourceManager @Inject constructor(
     igebuService: IgebuService,
     ilmateenistusService: IlmateenistusService,
     imdService: ImdService,
+    imgwService: ImgwService,
     imsService: ImsService,
     infoplazaService: InfoplazaService,
     inmgbService: InmgbService,
@@ -269,6 +271,7 @@ class SourceManager @Inject constructor(
         igebuService,
         ilmateenistusService,
         imdService,
+        imgwService,
         imsService,
         inmgbService,
         ipmaService,

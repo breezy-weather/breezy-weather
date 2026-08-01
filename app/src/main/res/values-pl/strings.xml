@@ -791,4 +791,7 @@
     <string name="settings_source_api_key_invalid">Wartość nie jest w przewidywanym formacie</string>
     <string name="message_please_wait_refresh">Proszę poczekać na zakończenie odświeżania</string>
     <string name="settings_main_background_title">Tło oparte na pogodzie</string>
+    <string name="imgw_weather_text_thunderstorm_approaching">Nadciąga burza</string>
+    <string name="imgw_weather_text_thunderstorm_heavy">Silna burza</string>
+    <string name="imgw_weather_text_diamond_dust">Słupki lodowe</string>
 </resources>

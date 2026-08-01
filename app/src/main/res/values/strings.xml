@@ -1239,6 +1239,17 @@
     <string name="fmi_weather_text_ice_pellets_moderate" translatable="false">Moderate ice pellets</string>
     <string name="fmi_weather_text_ice_pellets_heavy" translatable="false">Heavy ice pellets</string>
     <string name="fmi_weather_text_ice_crystals" translatable="false">@string/nws_weather_text_ice_crystals</string>
+    <!-- Weather texts for IMGW -->
+    <string name="imgw_weather_text_thunderstorm_approaching" translatable="false">Thunderstorm approaching</string>
+    <string name="imgw_weather_text_thunderstorm_heavy" translatable="false">Heavy thunderstorm</string>
+    <string name="imgw_weather_text_diamond_dust" translatable="false">Diamond dust</string>
+    <string name="imgw_weather_text_thunder" translatable="false">@string/weather_kind_thunder</string>
+    <string name="imgw_weather_text_haze" translatable="false">@string/weather_kind_haze</string>
+    <string name="imgw_weather_text_hail" translatable="false">@string/weather_kind_hail</string>
+    <string name="imgw_weather_text_thunderstorm_slight_or_moderate" translatable="false">@string/openmeteo_weather_text_thunderstorm_slight_or_moderate</string>
+    <string name="imgw_weather_text_thunderstorm_with_slight_hail" translatable="false">@string/openmeteo_weather_text_thunderstorm_with_slight_hail</string>
+    <string name="imgw_weather_text_thunderstorm_with_heavy_hail" translatable="false">@string/openmeteo_weather_text_thunderstorm_with_heavy_hail</string>
+    <string name="imgw_weather_text_depositing_rime_fog" translatable="false">@string/openmeteo_weather_text_depositing_rime_fog</string>
     <!-- Do NOT translate everything below -->
     <!-- Widgets -->
     <string name="widget_custom_subtitle_keyword_cw" translatable="false">$cw$</string>
