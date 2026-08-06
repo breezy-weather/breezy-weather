@@ -9,6 +9,11 @@
             <!-- https://letsencrypt.org/certificates/ -->
             <certificates src="@raw/isrg_root_x2" />
             <certificates src="@raw/isrg_root_x1" />
+
+            <!-- SSL.com EV Root CA RSA R2, unavailable on Android < 9 -->
+            <!-- Used by IMS (Israel Meteorological Service) -->
+            <!-- https://www.ssl.com/repository/ -->
+            <certificates src="@raw/sslcom_ev_root_rsa_r2" />
         </trust-anchors>
     </base-config>
 </network-security-config>
