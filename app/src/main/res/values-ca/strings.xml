@@ -255,7 +255,7 @@
     <string name="dialog_permissions_notification_title">Manteniu-vos informats</string>
     <string name="air_quality_no2_voice">Diòxid de nitrogen</string>
     <string name="pollen_artemisia">Artemísia</string>
-    <string name="widget_style_mini">Mini</string>
+    <string name="widget_style_mini">Petit</string>
     <string name="widget_style_vertical">Vertical</string>
     <string name="action_add_new_location">Afegir una ubicació nova</string>
     <string name="common_weather_text_drizzle_moderate">Plugim moderat</string>
@@ -268,7 +268,7 @@
     <string name="common_weather_text_rain_snow_mixed_heavy">Aiguaneu intensa</string>
     <string name="settings_modules_notification_style_title">Estil</string>
     <string name="settings_background_updates_refresh_title">Freqüència de refresc</string>
-    <string name="widget_clock_font_sans_serif_black">Sans Serif Black</string>
+    <string name="widget_clock_font_sans_serif_black">Sans Serif Black</string>
     <string name="air_quality_so2_full">Diòxid de sofre (%s)</string>
     <string name="settings_background_updates_refresh_skip_when_battery_low">Ignorar quan la bateria està baixa</string>
     <string name="location_message_reverse_geocoding_failed">La font meteorològica no ha trobat una ubicació coincident</string>
@@ -319,7 +319,7 @@
     <string name="weather_source_accu_preference_hours_72">72 hores</string>
     <string name="widget_label_align_end">Alinear a la dreta</string>
     <string name="weather_api_limit_reached_title">S’ha arribat al límit de sol·licituds de l’API</string>
-    <string name="settings_weather_source_portal">Portal</string>
+    <string name="settings_weather_source_portal">Accés</string>
     <string name="air_quality_level_3_description">L’aire ha assolit un alt nivell de contaminació i és insalubre per als grups sensibles. Reduïu el temps que passeu a l’exterior si sentiu símptomes com ara dificultat per respirar o irritació de gola.</string>
     <string name="common_weather_text_snow_grains">Neu granulada</string>
     <string name="weather_message_invalid_location">Ubicació no vàlida, suprimeix-la i torna-la a afegir</string>
@@ -383,8 +383,8 @@
     <string name="location_swipe_to_delete">Podeu lliscar cap a l’esquerra per suprimir aquest element</string>
     <string name="settings_background_updates_section_troubleshoot">Resolució de problemes</string>
     <string name="dialog_permissions_location_title">Accedir a la informació de la ubicació</string>
-    <string name="widget_clock_font_sans_serif">Sans Serif</string>
-    <string name="settings_modules_notification_persistent_switch">Persistent</string>
+    <string name="widget_clock_font_sans_serif">Sans Serif</string>
+    <string name="settings_modules_notification_persistent_switch">Constant</string>
     <string name="action_undo">Desfer</string>
     <string name="settings_main_background_animation_title">Animació en segon pla</string>
     <string name="pollen_level_1">Molt baix</string>
@@ -474,7 +474,7 @@
     <string name="settings_location_access_background_title">Accés a la ubicació en segon pla</string>
     <string name="common_weather_text_snow_moderate">Neu moderada</string>
     <string name="common_weather_text_snow_showers_light">Ruixats de neu dèbils</string>
-    <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>
+    <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>
     <string name="settings_notifications_forecast_time_tomorrow_title">Hora de notificació per al pronòstic del pròxim dia</string>
     <string name="notification_channel_alerts">Alertes</string>
     <string name="air_quality_level_5_description">Els grups sensibles notaran immediatament els efectes sobre la salut i han d’evitar l’activitat a l’aire lliure. És probable que les persones sanes experimentin dificultat per respirar i irritació de gola; considereu a quedar-vos a l’interior i reprogramar activitats a l’aire lliure.</string>
@@ -621,7 +621,7 @@
     <string name="air_quality_index_short">IQA</string>
     <string name="air_quality_index_about">Quant a l’índex de qualitat de l’aire</string>
     <string name="air_quality_index_about_description_1">L’índex de qualitat de l’aire (IQA) és una escala dissenyada per ajudar-vos a entendre com de contaminat està l’aire en un àrea particular i els riscs potencials a la vostra salut.</string>
-    <string name="air_quality_index_about_description_2">L’escala utilitzada en esta aplicació es basa en les recomanacions la de OMS més que en regulacions locals, per tal de tindre categories amb sentit i comparar més fàcil els nivells de pol·lució entre països.</string>
+    <string name="air_quality_index_about_description_2">L\'escala utilitzada en aquesta aplicació es basa en les recomanacions de l\'Organització Mundial de la Salut, en lloc de la normativa local, per tal de tenir categories significatives i facilitar la comparació dels nivells de contaminació entre països.</string>
     <string name="air_quality_index_scale">Escala de l’índex de qualitat de l’aire</string>
     <string name="air_quality_index_harmless_exposure">Exposició inofensiva</string>
     <string name="air_quality_level_1_harmless_exposure">&gt; 1 any</string>
@@ -704,7 +704,7 @@
     <string name="weather_source_continent_asia">Àsia</string>
     <string name="weather_source_continent_europe">Europa</string>
     <string name="weather_source_continent_north_america">Amèrica del Nord</string>
-    <string name="weather_source_continent_oceania">Oceania</string>
+    <string name="weather_source_continent_oceania">Austràsia</string>
     <string name="weather_source_continent_south_america">Amèrica del Sud</string>
     <string name="location_reverse_geocoding">Cerca d’adreça</string>
     <string name="location_custom_name">Nom personalitzat</string>
@@ -783,7 +783,7 @@
     <string name="common_weather_text_dust_storm">Tempesta de pols</string>
     <string name="common_weather_text_frost">Gelada</string>
     <string name="common_weather_text_squall">Borrasca</string>
-    <string name="common_weather_text_tornado">Tornado</string>
+    <string name="common_weather_text_tornado">Tornat</string>
     <string name="common_weather_text_blowing_snow">Neu bufada alta</string>
     <string name="common_weather_text_drifting_snow">Neu bufada suaument</string>
     <string name="common_weather_text_glaze">Glaçada</string>
