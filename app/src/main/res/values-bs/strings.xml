@@ -130,7 +130,7 @@
     <string name="weather_api_key_required_missing_content">Kako biste koristili ovaj izvor, morate priložiti API ključ.</string>
     <string name="weather_api_unauthorized_title">Pristup API-ju neovlašten</string>
     <string name="weather_api_unauthorized_content">Za neke izvore vremenskih podataka, morate dati svoj vlastiti API ključ. Ako ste ga već unijeli, još jednom provjerite API ključ koji ste naveli, možda je pogrešan.</string>
-    <string name="settings_weather_source_portal">Portal</string>
+    <string name="settings_weather_source_portal">Ulaz</string>
     <string name="setting_weather_source_accu_days">Dani</string>
     <string name="weather_source_accu_preference_days_1">1 dan</string>
     <string name="weather_source_accu_preference_days_5">5 dana</string>
@@ -196,7 +196,7 @@
     <string name="widget_custom_subtitle_keyword_xmp_description">Mjesečeva mijena danas, sutra, …, 4 dana kasnije</string>
     <string name="widget_style_rectangle">Pravougaonik</string>
     <string name="widget_style_temperature">Temperatura</string>
-    <string name="widget_clock_font_sans_serif">Sans Serif</string>
+    <string name="widget_clock_font_sans_serif">Sans Serif</string>
     <string name="settings_section_general">Opšte</string>
     <string name="widget_live_wallpaper_day_night_type">Vrijeme</string>
     <string name="settings_background_updates">Ažuriranja u pozadini</string>
@@ -378,15 +378,15 @@
     <string name="widget_custom_subtitle_keyword_xms_description">Zalazak mjeseca danas, sutra, …, 4 dana kasnije</string>
     <string name="widget_style_symmetry">Simetrija</string>
     <string name="widget_style_tile">Pločica</string>
-    <string name="widget_style_mini">Mini</string>
+    <string name="widget_style_mini">Mali</string>
     <string name="widget_style_nano">Nano</string>
     <string name="widget_style_pixel">Pixel</string>
     <string name="widget_style_vertical">Vertikalno</string>
     <string name="widget_style_oreo">Oreo</string>
     <string name="widget_week_style_5_days">5 dana</string>
     <string name="widget_week_style_3_days">3 dana</string>
-    <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>
-    <string name="widget_clock_font_sans_serif_black">Sans Serif Black</string>
+    <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>
+    <string name="widget_clock_font_sans_serif_black">Sans Serif Black</string>
     <string name="widget_clock_font_analog">Analogni stil</string>
     <string name="widget_live_wallpaper_weather_kind">Vrijeme</string>
     <string name="settings_background_updates_summary">Brzina osvježavanja, rješavanje problema</string>
@@ -771,9 +771,14 @@
     <string name="common_weather_text_dust_storm">Oluja s prašinom</string>
     <string name="common_weather_text_frost">Mraz</string>
     <string name="common_weather_text_squall">Nagli nalet vetra</string>
-    <string name="common_weather_text_tornado">Tornado</string>
+    <string name="common_weather_text_tornado">Kuja</string>
     <string name="common_weather_text_blowing_snow">Mećava</string>
     <string name="common_weather_text_drifting_snow">Nanosi snjiega</string>
     <string name="common_weather_text_glaze">Inje</string>
     <string name="meteoam_weather_text_tornado_watersprout">Tornado ili vodenjak</string>
+    <string name="pressure_standard">Standardni</string>
+    <string name="message_please_wait_refresh">Molimo pričekajte da se osvježavanje završi</string>
+    <string name="settings_weather_source_no_longer_exists">%s (više ne postoji)</string>
+    <string name="settings_source_api_key_invalid">Vrijednost nije u očekivanom formatu</string>
+    <string name="settings_main_background_title">Pozadina zavisna o vremenu</string>
 </resources>
