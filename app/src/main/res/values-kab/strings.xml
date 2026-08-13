@@ -487,4 +487,20 @@
     <string name="widget_material_you_current">Material You – Amiran</string>
     <string name="widget_refreshing">Aleqqem</string>
     <string name="widget_label_view_style">Talɣa n wufa</string>
+    <string name="widget_label_show_widget_card">Ini n lǧiha n deffir</string>
+    <string name="widget_label_hide_subtitle">Ffer azwel n uzwir</string>
+    <string name="widget_label_hide_header">Ffer azwel agejdan</string>
+    <string name="widget_label_subtitle_data">Isallen n uzwel n uzwir</string>
+    <string name="widget_label_hide_alternate_calendar">Ffer aɣawas n waggur nniḍen</string>
+    <string name="widget_label_align_end">Sɣel ɣer uyeffus</string>
+    <string name="widget_subtitle_data_time">Akud n uleqqem</string>
+    <string name="widget_subtitle_data_feels_like">Tabbawt n waḍu</string>
+    <string name="widget_custom_subtitle_help_content_description">Sken tallalt n wawalen n uzwel n uzwir i yugnen</string>
+    <string name="widget_custom_subtitle_alert_box_title">Tallalt n uzwel n uzwir i yugnen</string>
+    <string name="widget_custom_subtitle_explanation">Tzemreḍ ad tessekcamḍ kra i k-yeεǧben, maca ḥader ɣef teɣzi n tefrit. Ma tebɣiḍ ad d-tawiḍ isallen n tegnit, ma ulac akken, seqdec $ i ussekteɣ ɣef wawal n telɣut.\n\nAmedya, “Current weather is: $cw$.” ad d-yeffeɣ s talɣa n “Current weather is: Clear sky.”</string>
+    <string name="widget_custom_subtitle_keyword_ct_description">Tabbawt n tura (°C/°F)</string>
+    <string name="widget_custom_subtitle_keyword_at_description">Tabbawt n waḍu n tura (°C/°F)</string>
+    <string name="widget_custom_subtitle_keyword_atd_description">Tabbawt n waḍu n tura (°)</string>
+    <string name="widget_custom_subtitle_keyword_als_description">Iɣerbaten (meẓẓiyen)</string>
+    <string name="widget_custom_subtitle_keyword_ut_description">Akud n uleqqem</string>
 </resources>
