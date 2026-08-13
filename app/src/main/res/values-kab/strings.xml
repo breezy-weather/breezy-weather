@@ -349,11 +349,11 @@
     <string name="pollen_ulmus">Ulmu</string>
     <string name="pollen_urticaceae">Urticaceae</string>
     <string name="pollen_level_2">D adday</string>
-    <string name="pollen_level_3">Aεeddal</string>
-    <string name="pollen_level_4">Aεlayan</string>
-    <string name="pollen_level_5">Aεlayan s waṭas</string>
+    <string name="pollen_level_3">Aɛeddal</string>
+    <string name="pollen_level_4">Aɛlayan</string>
+    <string name="pollen_level_5">Aɛlayan s waṭas</string>
     <string name="ephemeris_moon_phase_new_moon">Agur ajdid</string>
-    <string name="ephemeris_moon_phase_waxing_crescent">Agur amcum neɣ Aεkraḍ n waggur</string>
+    <string name="ephemeris_moon_phase_waxing_crescent">Ayyur amecṭuḥ</string>
     <string name="ephemeris_moon_phase_first_quarter">Agur n ublug</string>
     <string name="ephemeris_moon_phase_waxing_gibbous">Agur yettemɣuṛen</string>
     <string name="ephemeris_moon_phase_full_moon">Tiziri tameɣrut</string>
@@ -420,4 +420,7 @@
     <string name="weather_api_key_required_missing_content">Akken ad tesseqdeḍ aɣbalu-agi, ilaq ad d-fkad tasarut n API (API key).</string>
     <string name="weather_source_recommended">Yettwasiğer</string>
     <string name="weather_source_accu_preference_hours_72">Tlata wussan</string>
+    <string name="pollen_quercus">Tasaft</string>
+    <string name="pollen_rumex">Asemmum</string>
+    <string name="pollen_level_1">Adday maḍi</string>
 </resources>
