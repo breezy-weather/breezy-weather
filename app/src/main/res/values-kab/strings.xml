@@ -423,4 +423,22 @@
     <string name="pollen_quercus">Tasaft</string>
     <string name="pollen_rumex">Asemmum</string>
     <string name="pollen_level_1">Adday maḍi</string>
+    <string name="weather_source_accu_preference_hours_120">Semmus n wussan</string>
+    <string name="weather_source_accu_preference_hours_240">Mraw n wussan</string>
+    <string name="broadcast_source_breezy_weather_update_notifier">Anaẓad n usileɣ n teɣrmt %s</string>
+    <string name="location_custom_name">Isem udmawan</string>
+    <string name="location_reverse_geocoding">Anadi n tansa</string>
+    <string name="location_results_by">Igemmaḍ n wadgen sɣur %s</string>
+    <string name="location_message_added">Adig yettwaseɣwet</string>
+    <string name="location_message_updated">Tansa tettwaseknul (tettwaseggem)</string>
+    <string name="location_message_already_exists">Tansa-agi tella yakan deg wumuɣ s uɣbalu-agi n tegnit.</string>
+    <string name="location_message_deleted">Adig yettwakkes</string>
+    <string name="location_delete_location_dialog_title">Ad kkseɣ adig-agi?</string>
+    <string name="location_delete_location_dialog_message">Tegriḍ ad tekkseḍ \"%s\" seg wumuɣ-ik n wadgen yettwaḥerzen.</string>
+    <string name="location_delete_location_dialog_message_no_name">Tegriḍ ad tekkseḍ adig-agi seg wumuɣ-ik n wadgen yettwaḥerzen.</string>
+    <string name="location_message_list_cannot_be_empty">Ur yezmir ara ad yili wumuɣ n wadgen d ilem</string>
+    <string name="location_swipe_to_delete">Tzemreḍ ad tsuseḍ ɣef zelmaḍ akken ad tekkseḍ aferdis-agi</string>
+    <string name="location_message_search_failed">Anadi n wadig yecceḍ</string>
+    <string name="location_message_failed_to_locate">Ur d-yufi ara adig amiran</string>
+    <string name="location_message_permission_missing">Tawnit n turagt n wadig ulac-itt</string>
 </resources>
