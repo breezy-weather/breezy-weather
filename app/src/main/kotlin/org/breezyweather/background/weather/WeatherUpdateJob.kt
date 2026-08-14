@@ -128,11 +128,15 @@ class WeatherUpdateJob @AssistedInject constructor(
                 }
             } finally {
                 notifier.cancelProgressNotification()
-                /*if ((BuildConfig.FLAVOR != "freenet" && SettingsManager.getInstance(context).isAppUpdateCheckEnabled) ||
-                    Build.VERSION.SDK_INT < Build.VERSION_CODES.M
-                ) {*/
-                if (BreezyWeather.instance.isGitHubUpdateCheckerEnabled &&
+                /*if (BreezyWeather.instance.isGitHubUpdateCheckerEnabled &&
                     SettingsManager.getInstance(context).isAppUpdateCheckEnabled
+                ) {*/
+                if (
+                    (
+                        BreezyWeather.instance.isGitHubUpdateCheckerEnabled &&
+                            SettingsManager.getInstance(context).isAppUpdateCheckEnabled
+                        ) ||
+                    Build.VERSION.SDK_INT < Build.VERSION_CODES.N
                 ) {
                     try {
                         updateChecker.checkForUpdate(context, forceCheck = false)
