@@ -17,8 +17,8 @@
     <string name="notification_channel_forecast">توقعات</string>
     <string name="daytime">النهار</string>
     <string name="nighttime">الليل</string>
-    <string name="temperature_feels_like">تبدو وكأنها</string>
-    <string name="temperature_feels_like_with_unit">تبدو وكأنها %s</string>
+    <string name="temperature_feels_like">درجة الحرارة المحسوسة</string>
+    <string name="temperature_feels_like_with_unit">درجة الحرارة المحسوسة: %s</string>
     <string name="settings_follow_system">حسب النظام</string>
     <string name="pressure">الضغط</string>
     <string name="visibility">الرؤية</string>
@@ -31,9 +31,9 @@
     <string name="action_edit">تحرير</string>
     <string name="daily_yesterday_short">أمس</string>
     <string name="daily_tomorrow_short">غدًا</string>
-    <string name="temperature_apparent">ظاهر</string>
-    <string name="temperature_wind_chill">رياح باردة</string>
-    <string name="temperature_degree_day">درجة اليوم</string>
+    <string name="temperature_apparent">الظاهرية</string>
+    <string name="temperature_wind_chill">برودة الرياح</string>
+    <string name="temperature_degree_day">اليوم الحراري</string>
     <string name="precipitation_thunderstorm">عاصفة رعدية</string>
     <string name="precipitation_rain">مطر</string>
     <string name="precipitation_snow">ثلج</string>
@@ -413,8 +413,8 @@
     <string name="message_parsing_error_content">تأكد من تحديثك إلى أحدث إصدار من التطبيق. قد يكون الخادم غير متاح مؤقتًا، وفي هذه الحالة، يُرجى المحاولة مرة أخرى لاحقًا. إذا استمرت المشكلة، يُرجى مشاركة سجلّ الإنهيار من إعدادات التصحيح، والإبلاغ عن مشكلة على GitHub.</string>
     <string name="message_source_not_installed_error_title">المصدر لم يعد متوفرا</string>
     <string name="settings_source_api_key">مفتاح API</string>
-    <string name="temperature_degree_day_cooling">درجة الحرارة لتبريد منزلك</string>
-    <string name="temperature_degree_day_heating">درجة الحرارة لتسخين منزلك</string>
+    <string name="temperature_degree_day_cooling">اليوم الحراري للتبريد</string>
+    <string name="temperature_degree_day_heating">اليوم الحراري للتدفئة</string>
     <string name="settings_background_updates_worker_info_summary">آخر تشغيل: %s</string>
     <string name="pollen_alnus">النغت</string>
     <string name="pollen_betula">البتولا</string>
@@ -469,7 +469,7 @@
     <string name="about_contribution_designer">مصمم الشعار</string>
     <string name="temperature_average_short">المتوسط</string>
     <string name="temperature_normal_short">طبيعي</string>
-    <string name="temperature_normals">معايير درجة الحرارة</string>
+    <string name="temperature_normals">المعدلات الطبيعية لدرجة الحرارة</string>
     <string name="settings_main_threshold_lines_on_charts">خطوط العتبة على الرسوم البيانية</string>
     <string name="settings_modules_broadcast_send_data_title">إرسال بيانات الطقس إلى %s</string>
     <string name="settings_color_app">اتبع التطبيق</string>
@@ -589,7 +589,7 @@
     <string name="weather_source_continent_africa">أفريقيا</string>
     <string name="weather_source_continent_asia">آسيا</string>
     <string name="daily_today">اليوم</string>
-    <string name="daily_tomorrow">غداً</string>
+    <string name="daily_tomorrow">غدًا</string>
     <string name="wind_direction_N">شمال</string>
     <string name="wind_direction_NE">الشمال الشرقي</string>
     <string name="wind_direction_E">الشرق</string>
@@ -646,7 +646,7 @@
     <string name="visibility_good">جيدة</string>
     <string name="visibility_clear">واضحة</string>
     <string name="visibility_perfectly_clear">واضحة تمامًا</string>
-    <string name="ephemeris_about_set">الوقت المحدد هو عندما تختفي الشمس أو القمر تماماً تحت الأفق.</string>
+    <string name="ephemeris_about_set">وقت الغروب هو الوقت الذي تختفي فيه الشمس أو القمر تمامًا تحت الأفق.</string>
     <string name="ephemeris_about_dawn">الفجر هو الوقت الذي يظهر فيه أول ضوء مرئي في اليوم قبل شروق الشمس.</string>
     <string name="ephemeris_about_dusk">الشفق المسائي هو المرحلة الأكثر ظلمة قبل أن يختفي آخر ضوء مرئي.</string>
     <string name="ephemeris_polar_day">اليوم القطبي</string>
@@ -654,12 +654,12 @@
     <string name="daily_summary">ملخص اليوم</string>
     <string name="chart_no_daily_data">لا تتوفر بيانات لهذا اليوم.</string>
     <string name="chart_no_hourly_data">لا تتوفر بيانات كل ساعة.</string>
-    <string name="chart_not_enough_hourly_data">لا تتوفر بيانات كافية الخاصة بكل ساعة لعرض رسم بياني لهذا اليوم.</string>
+    <string name="chart_not_enough_hourly_data">لا تتوفر بيانات كافية بالساعة لعرض رسم بياني لهذا اليوم.</string>
     <string name="chart_average">متوسط</string>
     <string name="chart_maximum_value">القيمة القصوى</string>
     <string name="conditions">الأحوال</string>
     <string name="temperature_real">فِعلي</string>
-    <string name="temperature_feels_like_details">كيف تبدو درجة الحرارة نتيجة للرطوبة والرياح و/أو أشعة الشمس.</string>
+    <string name="temperature_feels_like_details">درجة الحرارة المحسوسة نتيجة للرطوبة والرياح و/أو أشعة الشمس.</string>
     <string name="temperature_degree_day_heating_explanation">الفرق بين درجة الحرارة الخارجية ودرجة حرارة الراحة المرجعية المستخدمة لتقدير متطلبات طاقة التدفئة</string>
     <string name="temperature_degree_day_cooling_explanation">الفرق بين درجة الحرارة الخارجية ودرجة حرارة مرجعية مريحة تُستخدم لتقدير احتياجات طاقة التبريد</string>
     <string name="temperature_normals_deviation">انحراف</string>
