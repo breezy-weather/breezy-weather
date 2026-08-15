@@ -279,7 +279,7 @@
     <string name="widget_style_nano">Нано</string>
     <string name="widget_style_pixel">Пиксел</string>
     <string name="widget_week_style_5_days">5 дни</string>
-    <string name="widget_clock_font_sans_serif">Sans Serif</string>
+    <string name="widget_clock_font_sans_serif">Sans Serif</string>
     <string name="settings_location_access_background_summaryOn">Активирано. Приложението ще може да опреснява данните за времето за текущото ви местоположение във фонов режим.</string>
     <string name="settings_weather_sources">Източници на прогноза за времето</string>
     <string name="widget_live_wallpaper_day_night_type">Часово време</string>
@@ -610,7 +610,7 @@
     <string name="settings_notifications_permission">Необходимо е разрешение за нотификации</string>
     <string name="common_weather_text_blowing_snow">Навяващ сняг</string>
     <string name="action_grant_permission">Докоснете, за да дадете разрешение.</string>
-    <string name="air_quality_short">Ниво въздух</string>
+    <string name="air_quality_short">Качество на въздуха</string>
     <string name="ephemeris_sun">Слънце</string>
     <string name="ephemeris_moon">Луна</string>
     <string name="ephemeris_about">Относно времето за изгрев и залез</string>
@@ -778,7 +778,7 @@
     <string name="common_weather_text_mostly_cloudy">Предимно облачно</string>
     <string name="pressure_standard">Стандартен</string>
     <string name="settings_source_api_key_invalid">Стойността не е в очаквания формат</string>
-    <string name="message_please_wait_refresh">Моля, изчакайте завършването на обновяването</string>
+    <string name="message_please_wait_refresh">Моля, изчакайте обновяването да завърши!</string>
     <string name="settings_main_background_title">Фон според времето</string>
-    <string name="settings_weather_source_no_longer_exists">%s (вече не съществува)</string>
+    <string name="settings_weather_source_no_longer_exists"></string>
 </resources>
