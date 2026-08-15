@@ -1,46 +1,46 @@
-Breezy Weather è un'applicazione meteo Material 3 Expressive ricca di funzionalità, gratuita e open source, dotata di visualizzazioni curate, che offre previsioni, condizioni meteorologiche in tempo reale, nowcasting, qualità dell'aria, pollini e avvisi, provenienti da oltre 50 fonti meteorologiche, come NWS, Met Office UK, Met Éireann, ECCC e Open-Meteo.
+Breezy Weather è un'applicazione meteo ricca di funzioni e open source con interfaccia Material 3 Expressive; offre visualizzazioni ben pensate, previsioni, condizioni in tempo reale, qualità dell'aria, pollini, allerte meteo ottenute da più di 50 fonti, come Meteo AM e Open-Meteo.
 
-<b>Features</b>
+<b>Funzionalità</b>
 
-- Previsioni giornaliere e orarie fino a 16 giorni
-- Precipitazioni nella prossima ora
-- Condizioni meteorologiche in tempo reale
-- Informazioni sulla qualità dell'aria, allergeni ed efemeridi
-- Avvisi di maltempo e precipitazioni
-- Condivisione dei dati opzionale con altre app (come Gadgetbridge)
-- Attenzione particolare all'accessibilità per screen reader e altre lingue
+- Previsioni orarie e giornaliere fino a 16 giorni
+- Condizioni in tempo reale
+- Precipitazioni durante l'ora a venire
+- Qualità dell'aria, allergeni e dati sole e luna
+- Avvisi di maltempo e di precipitazioni
+- Condivisione opzionale dei dati con altre app (come Gadgetbridge)
+- Attenzione sull'accessibilità per lettori di schermi e altre lingue
 
 <b>Design</b>
 
 - Material 3 Expressive
-- Grafici dettagliati sulle 24 ore
-- Modalità scura automatica
-- Pacchetti di icone personalizzati
-- Ampia selezione di widget
+- Grafici 24h dettagliati
+- Tema scuro automatico
+- Temi di icone personalizzati
+- Ampia scelta di widget
 - Sfondo animato
 
-<b>Sources</b>
+<b>Sorgenti</b>
 
-- In tutte le versioni: Open-Meteo, ANAM-BF, Bright Sky (DWD), DCCMS, DMN, DWR, EMI, FOSS Public Alert Server, GMet, IGEBU, INM, KNMI, Mali-Météo, Météo Benin, Météo Tchad, Météo Togo, Mettelsat, MSD, Pirate Weather, SMA (Seychelles), SMA (Sudan), SSMS
-- Non libere/autoconducibili (non incluse nelle versioni con il suffisso _freenet): AccuWeather, AEMET, Atmo Auvergne-Rhône-Alpes, Atmo France, ATMO GrandEst, Atmo Hauts-de-France, AtmoSud, Baidu IP location, BMD, BMKG, CWA, DMI, ECCC, EKUK, EPD (Hong Kong), GeoNames, GeoSphere AT, HERE, HKO, Ilmateenistus, IMD, IMS, IP.SB, IPMA, LHMT, LVĢMC, JMA, MET Éireann, MET Norway, Met Office UK, Meteo AM, Météo-France, MeteoLux, MGM, Mixed China sources, NAMEM, NCDR, NCEI, NLSC, NWS, OpenWeather, PAGASA, SMG, Veðurstofa Íslands, WMO Severe Weather
+- Generali: Open-Meteo, ANAM-BF, Bright Sky (DWD), DCCMS, DMN, DWR, EMI, FOSS Public Alert Server, GMet, IGEBU, INM, KNMI, Mali-Météo, Météo Benin, Météo Tchad, Météo Togo, Mettelsat, MSD, Pirate Weather, SMA (Seychelles), SMA (Sudan), SSMS
+- Non libere/self-hostable (non incluse nella versione suffix _freenet): AccuWeather, AEMET, Atmo Auvergne-Rhône-Alpes, Atmo France, ATMO GrandEst, Atmo Hauts-de-France, AtmoSud, Baidu IP location, BMD, BMKG, CWA, DMI, ECCC, EKUK, EPD (Hong Kong), GeoNames, GeoSphere AT, HERE, HKO, Ilmateenistus, IMD, IMS, IP.SB, IPMA, LHMT, LVĢMC, JMA, MET Éireann, MET Norway, Met Office UK, Meteo AM, Météo-France, MeteoLux, MGM, Varie fonti per la Cina, NAMEM, NCDR, NCEI, NLSC, NWS, OpenWeather, PAGASA, SMG, Veðurstofa Íslands, OMM Eventi Meteorologici Estremi
 
-<b>Permissions</b>
+<b>Autorizzazioni</b>
 
-Required:
+Obbligatorie:
 
-- Network (ACCESS_NETWORK_STATE, ACCESS_WIFI_STATE, INTERNET): recupera i dati meteo dalle fonti tramite Internet
+- Rete (ACCESS_NETWORK_STATE, ACCESS_WIFI_STATE, INTERNET): recupera dati usando la rete internet
 
-Optional:
+Facoltative:
 
-- Background services (RECEIVE_BOOT_COMPLETED, WAKE_LOCK, SET_ALARM, FOREGROUND_SERVICE, FOREGROUND_SERVICE_DATA_SYNC, FOREGROUND_SERVICE_SPECIAL_USE): aggiornamenti meteo in background e notifiche di previsione programmate
-- Ignore battery optimizations (REQUEST_IGNORE_BATTERY_OPTIMIZATIONS): aiuta a impedire che l'app venga chiusa forzatamente su alcuni dispositivi
-- Send notifications (POST_NOTIFICATIONS): avvisi, precipitazioni, previsioni di oggi/domani, widget di notifica, stato di avanzamento degli aggiornamenti in background, ecc.
-- Location (ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION, ACCESS_BACKGROUND_LOCATION): per mostrare il meteo della tua posizione attuale
-- Storage (READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE): aiuta a impostare lo sfondo meteo animato e/o i widget su alcuni dispositivi
-- Tile (EXPAND_STATUS_BAR): consente di avviare l'app dalle Impostazioni Rapide
-- Specific app language (READ_APP_SPECIFIC_LOCALES): consente di salvare una lingua specifica per l'app e di leggerne il valore dopo il riavvio su alcuni dispositivi
+- Servizi in secondo piano (RECEIVE_BOOT_COMPLETED, WAKE_LOCK, SET_ALARM, FOREGROUND_SERVICE, FOREGROUND_SERVICE_DATA_SYNC, FOREGROUND_SERVICE_SPECIAL_USE): le previsioni si aggiornano in secondo piano e notifiche per le previsioni
+- Ignora ottimizzazione batteria (REQUEST_IGNORE_BATTERY_OPTIMIZATIONS): aiuta a prevenire che l'app venga chiusa su alcuni dispositivi
+- Invia notifiche (POST_NOTIFICATIONS): avvisi, precipitazioni, previsioni, widget, progresso aggiornamento, etc
+- Posizione (ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION, ACCESS_BACKGROUND_LOCATION): accesso alla posizione corrente per le previsioni
+- Memoria (READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE): aiuta a impostare il live wallpaper e i widget su alcuni dispositivi
+- Tile (EXPAND_STATUS_BAR): permette di lanciare l'app da Quick Settings
+- Lingua specifica dell'app (READ_APP_SPECIFIC_LOCALES): permette di salvare una specifica lingua per l'app e di leggerla dopo il riavvio di alcuni dispositivi
 
-<b>License</b>
+<b>Licenze</b>
 
 - GNU Lesser General Public License v3.0
 - This License does not grant any rights in the trademarks, service marks, or logos of any Contributor.
