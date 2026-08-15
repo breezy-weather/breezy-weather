@@ -780,5 +780,4 @@
     <string name="settings_source_api_key_invalid">Стойността не е в очаквания формат</string>
     <string name="message_please_wait_refresh">Моля, изчакайте обновяването да завърши!</string>
     <string name="settings_main_background_title">Фон според времето</string>
-    <string name="settings_weather_source_no_longer_exists"></string>
 </resources>

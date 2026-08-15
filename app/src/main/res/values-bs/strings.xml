@@ -776,9 +776,4 @@
     <string name="common_weather_text_drifting_snow">Nanosi snjiega</string>
     <string name="common_weather_text_glaze">Inje</string>
     <string name="meteoam_weather_text_tornado_watersprout">Tornado ili vodenjak</string>
-    <string name="pressure_standard"></string>
-    <string name="message_please_wait_refresh"></string>
-    <string name="settings_weather_source_no_longer_exists"></string>
-    <string name="settings_source_api_key_invalid"></string>
-    <string name="settings_main_background_title"></string>
 </resources>
