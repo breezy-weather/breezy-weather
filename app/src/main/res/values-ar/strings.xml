@@ -317,7 +317,7 @@
     <string name="null_data_text">غير متوفر</string>
     <string name="widget_label_align_end">محاذاة اليسار</string>
     <string name="widget_custom_subtitle_keyword_cps_description">الضغط الحالي</string>
-    <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>
+    <string name="widget_clock_font_sans_serif_light">Sans Serif خفيف</string>
     <string name="settings_section_general">عام</string>
     <string name="settings_background_updates_refresh_title">معدّل التحديث</string>
     <string name="settings_background_updates_refresh_never">أبدا</string>
