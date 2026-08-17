@@ -1,3 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <plurals name="notification_update_error">
+        <item quantity="zero">لا تحديثات فاشلة</item>
+        <item quantity="one">فشل تحديث واحد</item>
+        <item quantity="two">فشل تحديثين</item>
+        <item quantity="few">فشل %1$d تحديثات</item>
+        <item quantity="many">فشل %1$d تحديث</item>
+        <item quantity="other">فشل %1$d تحديث</item>
+    </plurals>
 </resources>
