@@ -7,7 +7,7 @@
     <string name="daily_today_short">اليوم</string>
     <string name="notification_refreshed_at">حُدِّث في</string>
     <string name="precipitation">التساقطات</string>
-    <string name="precipitation_probability">إحتمالية الهطول</string>
+    <string name="precipitation_probability">احتمالية هطول الأمطار</string>
     <string name="precipitation_duration">مدة التساقطات</string>
     <string name="temperature">درجة الحرارة</string>
     <string name="wind">الرياح</string>
