@@ -8,6 +8,7 @@
 
 **Improvements and fixes**
 - Main screen - Add precipitation probability to hourly feels like tab
+- Main screen - Make the sun dark instead of bright when the user explicitly asked for dark mode
 
 **Sources**
 - Met Office (UK) - Fix shifted day sequence in locations with a different timezone than UTC
