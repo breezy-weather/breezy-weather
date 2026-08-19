@@ -1,3 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">Aniau</string>
+    <string name="forecast">Wānana</string>
+    <string name="daily_forecast">Wānana i kēlā me kēia lā</string>
+    <string name="hourly_forecast">Wānana i kēlā me kēia hola</string>
+    <string name="current_weather">Ke aniau o kēia manawa</string>
+    <string name="precipitation_nowcasting">Ke hoʻolei nei i ka ua</string>
+    <string name="air_quality">Ka maikaʻi o ka ea</string>
+    <string name="air_quality_short">Maikaʻi o ka ea</string>
+    <string name="pollen">‘Ehu</string>
+    <string name="ephemeris">Lā a me ka mahina</string>
+    <string name="ephemeris_sun">Lā</string>
+    <string name="ephemeris_moon">Mahina</string>
+    <string name="ephemeris_about">E pili ana i nā manawa piʻi a me nā manawa napoʻo</string>
+    <string name="ephemeris_about_rise">ʻO ka manawa piʻi aʻe ka wā e ʻike piha ʻia ai ka lā a i ʻole ka mahina ma luna o ka ʻaoʻao o ka lewa.</string>
+    <string name="ephemeris_about_set">ʻO ka manawa i hoʻonohonoho ʻia ka wā e nalo loa ai ka lā a i ʻole ka mahina ma lalo o ka ʻaoʻao o ka honua.</string>
+    <string name="ephemeris_about_dawn">ʻO ka wanaʻao ka wā e puka mai ai ka mālamalama mua o ka lā ma mua o ka puka ʻana o ka lā.</string>
+    <string name="ephemeris_about_dusk">ʻO ka napoʻo ʻana o ka lā ka pae pōʻeleʻele loa o ka napoʻo ʻana o ka mālamalama hope loa.</string>
+    <string name="ephemeris_polar_day">Lā pōlā</string>
+    <string name="ephemeris_polar_night">Pō pōlā</string>
+    <string name="clock">Uaki</string>
+    <string name="alert">Makaʻala</string>
+    <string name="alerts">Nā leka hoʻomaopopo</string>
+    <string name="alerts_to_follow">Nā leka hoʻomaopopo e hiki mai ana, e kaomi ma aneʻi e ʻike iā lākou.</string>
+    <string name="alert_source">Puna: %s</string>
+    <string name="daily_yesterday">I nehinei</string>
+    <string name="daily_today">I kēia lā</string>
+    <string name="daily_tomorrow">ʻĀpōpō</string>
+    <string name="daily_yesterday_short">Nehi</string>
+    <string name="daily_today_short">I kēia lā</string>
 </resources>
