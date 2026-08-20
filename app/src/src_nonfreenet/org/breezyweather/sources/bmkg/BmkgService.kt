@@ -94,18 +94,22 @@ class BmkgService @Inject constructor(
         location: Location,
         requestedFeatures: List<SourceFeature>,
     ): Observable<WeatherWrapper> {
-        // API Key is needed for warnings, but not for current/forecast.
-        // Only throw exception if warnings are needed.
         val apiKey = getApiKeyOrDefault()
-        if (apiKey.isEmpty() && SourceFeature.ALERT in requestedFeatures) {
+        if (apiKey.isEmpty() && SourceFeature.FORECAST in requestedFeatures) {
+            return Observable.error(ApiKeyMissingException())
+        }
+        val publicToken = getPublicTokenOrDefault()
+        if (publicToken.isEmpty() && SourceFeature.ALERT in requestedFeatures) {
             return Observable.error(ApiKeyMissingException())
         }
 
         val failedFeatures = mutableMapOf<SourceFeature, Throwable>()
         val forecast = if (SourceFeature.FORECAST in requestedFeatures) {
             mApi.getForecast(
-                lat = location.latitude,
-                lon = location.longitude
+                referer = BMKG_BASE_URL,
+                apiKey = apiKey,
+                lon = location.longitude,
+                lat = location.latitude
             ).onErrorResumeNext {
                 failedFeatures[SourceFeature.FORECAST] = it
                 Observable.just(BmkgForecastResult())
@@ -128,7 +132,7 @@ class BmkgService @Inject constructor(
 
         val warning = if (SourceFeature.ALERT in requestedFeatures) {
             mApi.getWarning(
-                apiKey = apiKey,
+                publicToken = publicToken,
                 lat = location.latitude,
                 lon = location.longitude
             ).onErrorResumeNext {
@@ -145,7 +149,7 @@ class BmkgService @Inject constructor(
             ibf.add(
                 if (SourceFeature.ALERT in requestedFeatures) {
                     mApi.getIbf(
-                        apiKey = apiKey,
+                        publicToken = publicToken,
                         lat = location.latitude,
                         lon = location.longitude,
                         day = day
@@ -561,6 +565,15 @@ class BmkgService @Inject constructor(
     private fun getApiKeyOrDefault(): String {
         return apikey.ifEmpty { BuildConfig.BMKG_KEY }
     }
+    private var publicToken: String
+        set(value) {
+            config.edit().putString("public_token", value).apply()
+        }
+        get() = config.getString("public_token", null) ?: ""
+
+    private fun getPublicTokenOrDefault(): String {
+        return publicToken.ifEmpty { BuildConfig.BMKG_PUBLIC_TOKEN }
+    }
 
     // Always true, as we will filter depending on the feature requested
     override val isConfigured
@@ -580,6 +593,18 @@ class BmkgService @Inject constructor(
                 content = apikey,
                 onValueChanged = {
                     apikey = it
+                }
+            ),
+            EditTextPreference(
+                titleId = R.string.settings_weather_source_bmkg_public_token,
+                summary = { c, content ->
+                    content.ifEmpty {
+                        c.getString(R.string.settings_source_default_value)
+                    }
+                },
+                content = publicToken,
+                onValueChanged = {
+                    publicToken = it
                 }
             )
         )

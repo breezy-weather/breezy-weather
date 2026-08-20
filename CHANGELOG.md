@@ -11,6 +11,7 @@
 - Main screen - Make the sun dark instead of bright when the user explicitly asked for dark mode
 
 **Sources**
+- BMKG - Fix refresh errors
 - Met Office (UK) - Fix shifted day sequence in locations with a different timezone than UTC
 - NCEI - Fix parsing error
 

@@ -284,6 +284,11 @@ configure<ApplicationExtension> {
         )
         it.buildConfigField(
             "String",
+            "BMKG_PUBLIC_TOKEN",
+            "\"${localProperties.getProperty("breezy.bmkg.public_token") ?: ""}\""
+        )
+        it.buildConfigField(
+            "String",
             "CWA_KEY",
             "\"${localProperties.getProperty("breezy.cwa.key") ?: ""}\""
         )

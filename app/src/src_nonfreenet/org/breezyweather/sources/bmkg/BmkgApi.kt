@@ -41,20 +41,22 @@ interface BmkgApi {
 
     @GET("api/df/v1/forecast/coord")
     fun getForecast(
-        @Query("lat") lat: Double,
+        @Header("Referer") referer: String,
+        @Header("X-API-KEY") apiKey: String,
         @Query("lon") lon: Double,
+        @Query("lat") lat: Double,
     ): Observable<BmkgForecastResult>
 
     @GET("api/v1/public/weather/warning")
     fun getWarning(
-        @Header("X-API-KEY") apiKey: String,
+        @Header("x-public-token") publicToken: String,
         @Query("lat") lat: Double,
         @Query("long") lon: Double,
     ): Observable<BmkgWarningResult>
 
     @GET("api/v1/public/weather/warning/ibf")
     fun getIbf(
-        @Header("X-API-KEY") apiKey: String,
+        @Header("x-public-token") publicToken: String,
         @Query("lat") lat: Double,
         @Query("long") lon: Double,
         @Query("day") day: Int,
