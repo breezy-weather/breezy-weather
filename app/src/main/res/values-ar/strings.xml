@@ -35,8 +35,8 @@
     <string name="temperature_wind_chill">برودة الرياح</string>
     <string name="temperature_degree_day">اليوم الحراري</string>
     <string name="precipitation_thunderstorm">عاصفة رعدية</string>
-    <string name="precipitation_rain">مطر</string>
-    <string name="precipitation_snow">ثلج</string>
+    <string name="precipitation_rain">المطر</string>
+    <string name="precipitation_snow">الثلج</string>
     <string name="precipitation_ice">جليد</string>
     <string name="wind_strength_0">ساكن</string>
     <string name="wind_strength_1">هواء خفيف</string>
@@ -667,10 +667,10 @@
     <string name="temperature_normals_deviation_explanation_minimum">الانحراف عن متوسط درجة الحرارة الصغرى لـ %s في هذا الموقع</string>
     <string name="precipitation_total_day">هطول الأمطار خلال النهار</string>
     <string name="precipitation_total_night">هطول الأمطار ليلاً</string>
-    <string name="precipitation_rain_total_day">مطر النهار</string>
-    <string name="precipitation_rain_total_night">مطر الليل</string>
-    <string name="precipitation_snow_total_day">ثلوج النهار</string>
-    <string name="precipitation_snow_total_night">ثلوج الليل</string>
+    <string name="precipitation_rain_total_day">المطر خلال النهار</string>
+    <string name="precipitation_rain_total_night">المطر خلال الليل</string>
+    <string name="precipitation_snow_total_day">الثلج خلال النهار</string>
+    <string name="precipitation_snow_total_night">الثلج خلال الليل</string>
     <string name="wind_speed_about">حول سرعة الرياح وهباتها</string>
     <string name="wind_speed_about_description">تُقاس سرعة الرياح عن طريق حساب متوسط سرعات الرياح خلال فترة زمنية معينة. أما الهبات فهي دفعات مفاجئة من الرياح تستمر عادةً لأقل من 20 ثانية.</string>
     <string name="wind_gusts_short">الهبات</string>
