@@ -37,7 +37,7 @@
     <string name="precipitation_thunderstorm">عاصفة رعدية</string>
     <string name="precipitation_rain">المطر</string>
     <string name="precipitation_snow">الثلج</string>
-    <string name="precipitation_ice">جليد</string>
+    <string name="precipitation_ice">الجليد</string>
     <string name="wind_strength_0">ساكن</string>
     <string name="wind_strength_1">هواء خفيف</string>
     <string name="wind_strength_2">نسيم خفيف</string>
@@ -556,7 +556,7 @@
     <string name="message_server_unavailable_content">هذا عادة ما يكون خطأً مؤقتًا. في حالة استمرار الخطأ، يُرجى الإبلاغ عن المشكلة على GitHub.</string>
     <string name="action_edit_location">عدل هذا الموقع</string>
     <string name="settings_global">إعدادات عامة</string>
-    <string name="precipitation_intensity_medium">مطر متوسط</string>
+    <string name="precipitation_intensity_medium">متوسط</string>
     <string name="action_download">تنزيل</string>
     <string name="settings_notifications_app_updates_check">أبلغني بتحديثات التطبيق</string>
     <string name="about_no_new_updates">لا تتوفر تحديثات جديدة</string>
