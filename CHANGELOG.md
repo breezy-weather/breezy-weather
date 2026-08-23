@@ -4,7 +4,7 @@
 - [Changelog for v4.x](docs/CHANGELOG_4.x.md)
 
 
-# Version 6.2.2 (unreleased)
+# Version 6.2.2 (2026-08-23)
 
 **Improvements and fixes**
 - Main screen - Add precipitation probability to hourly feels like tab
