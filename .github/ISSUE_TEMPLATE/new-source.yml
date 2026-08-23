@@ -25,7 +25,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        **[Contribution guide](https://github.com/breezy-weather/breezy-weather/blob/main/CONTRIBUTE.md)**
+        **[Contribution guide](https://github.com/breezy-weather/breezy-weather/blob/main/CONTRIBUTING.md)**
 
   - type: input
     id: development
