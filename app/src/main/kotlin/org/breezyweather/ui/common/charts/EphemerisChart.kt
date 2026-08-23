@@ -37,6 +37,7 @@ import com.patrykandpatrick.vico.compose.cartesian.axis.rememberEnd
 import com.patrykandpatrick.vico.compose.cartesian.layer.continuous
 import com.patrykandpatrick.vico.compose.cartesian.layer.rememberLine
 import com.patrykandpatrick.vico.compose.cartesian.layer.rememberLineCartesianLayer
+import com.patrykandpatrick.vico.compose.cartesian.marker.rememberShowOnPress
 import com.patrykandpatrick.vico.compose.cartesian.rememberCartesianChart
 import com.patrykandpatrick.vico.compose.cartesian.rememberVicoScrollState
 import com.patrykandpatrick.vico.compose.common.fill
@@ -46,6 +47,7 @@ import com.patrykandpatrick.vico.core.cartesian.data.CartesianChartModelProducer
 import com.patrykandpatrick.vico.core.cartesian.data.CartesianLayerRangeProvider
 import com.patrykandpatrick.vico.core.cartesian.data.CartesianValueFormatter
 import com.patrykandpatrick.vico.core.cartesian.layer.LineCartesianLayer
+import com.patrykandpatrick.vico.core.cartesian.marker.CartesianMarkerController
 import kotlinx.collections.immutable.ImmutableList
 import org.breezyweather.R
 import org.breezyweather.common.extensions.getFormattedTime
@@ -78,7 +80,6 @@ fun EphemerisChart(
     endingDate: Long,
     modifier: Modifier = Modifier,
 ) {
-    val view = LocalView.current
     val context = LocalContext.current
 
     // 90 is the zenith, but add a safe-zone
@@ -147,12 +148,12 @@ fun EphemerisChart(
                 itemPlacer = remember {
                     TimeHorizontalAxisItemPlacer(startingDate.toDate(), location.timeZone)
                 }
-            )
+            ),
+            markerController = CartesianMarkerController.rememberShowOnPress(consumeMoveEvents = true)
         ),
         animateIn = SettingsManager.getInstance(context).isElementsAnimationEnabled,
         modelProducer = modelProducer,
         scrollState = rememberVicoScrollState(scrollEnabled = false),
-        consumeMoveEvents = true,
         modifier = modifier
             .height(max(LINE_CHART_HEIGHT_MIN_DP.toFloat(), context.windowHeightInDp.div(4)).dp)
     )

@@ -38,6 +38,7 @@ import com.patrykandpatrick.vico.core.cartesian.data.columnSeries
 import com.patrykandpatrick.vico.core.cartesian.decoration.HorizontalLine
 import com.patrykandpatrick.vico.core.cartesian.layer.ColumnCartesianLayer
 import com.patrykandpatrick.vico.core.cartesian.marker.CartesianMarker
+import com.patrykandpatrick.vico.core.cartesian.marker.CartesianMarkerController
 import com.patrykandpatrick.vico.core.cartesian.marker.DefaultCartesianMarker
 import com.patrykandpatrick.vico.core.common.Fill
 import com.patrykandpatrick.vico.core.common.Insets
@@ -234,9 +235,9 @@ class PrecipitationNowcastViewHolder(parent: ViewGroup) : AbstractMainCardViewHo
             } else {
                 emptyList()
             },
-            marker = marker
+            marker = marker,
+            markerController = CartesianMarkerController.showOnPress(consumeMoveEvents = true)
         )
-        chartView.consumeMoveEvents = true
         chartView.animateIn = SettingsManager.getInstance(context).isElementsAnimationEnabled
         chartView.modelProducer = modelProducer
         chartView.contentDescription = minutelyList.getContentDescription(context, location)
