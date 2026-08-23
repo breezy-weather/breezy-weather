@@ -781,4 +781,5 @@
     <string name="message_please_wait_refresh">Palun oota, kuni andmete uuendamine lõppeb</string>
     <string name="settings_main_background_title">Ilmaennustusega taust</string>
     <string name="settings_weather_source_no_longer_exists">%s (pole enam olemas)</string>
+    <string name="action_reset_to_default">Lähtesta vaikimisi väärtusteks</string>
 </resources>
