@@ -29,7 +29,6 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.LinearGradientShader
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.unit.dp
@@ -124,7 +123,6 @@ fun BreezyLineChart(
     markerFormatter: DefaultCartesianMarker.ValueFormatter? = null,
     markerVisibilityListener: CartesianMarkerVisibilityListener? = null,
 ) {
-    val view = LocalView.current
     val context = LocalContext.current
 
     val isTrendHorizontalLinesEnabled = SettingsManager.getInstance(context).isTrendHorizontalLinesEnabled

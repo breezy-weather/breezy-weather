@@ -93,4 +93,10 @@ class HourlyTrendDisplayAdapter(
         mHourlyTrendDisplayList.add(toPosition, mHourlyTrendDisplayList.removeAt(fromPosition))
         notifyItemMoved(fromPosition, toPosition)
     }
+
+    fun reset(hourlyTrendDisplays: List<HourlyTrendDisplay>) {
+        mHourlyTrendDisplayList.clear()
+        mHourlyTrendDisplayList.addAll(hourlyTrendDisplays)
+        notifyDataSetChanged()
+    }
 }

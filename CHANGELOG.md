@@ -4,6 +4,12 @@
 - [Changelog for v4.x](docs/CHANGELOG_4.x.md)
 
 
+# Version 6.2.3 (not yet released)
+
+**Improvements and fixes
+- Main screen settings - You can now reset blocks, daily trends, hourly trends to default order
+
+
 # Version 6.2.2 (2026-08-23)
 
 **Improvements and fixes**
