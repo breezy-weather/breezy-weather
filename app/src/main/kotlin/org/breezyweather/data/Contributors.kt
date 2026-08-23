@@ -330,6 +330,7 @@ val appTranslators = arrayOf(
     TranslatorItem(arrayOf("ja"), "しいたけ", github = "Shiitakeeeee"),
     TranslatorItem(arrayOf("kab"), "ButterflyOfFire", weblate = "boffire"),
     TranslatorItem(arrayOf("kab"), "Ziri Sut", github = "ZiriSut"),
+    TranslatorItem(arrayOf("kn"), "Vinay", github = "vinigani01"),
     TranslatorItem(arrayOf("ko"), "이서경", mail = "ng0972@naver.com"),
     TranslatorItem(arrayOf("ko"), "Yurical", github = "yurical"),
     TranslatorItem(arrayOf("ko"), "ID J", weblate = "tabby4442"),

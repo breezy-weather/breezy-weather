@@ -18,6 +18,13 @@
 **Technical**
 - [Breezy Update Notifier] Fix broadcast when the location list is changed from the app
 
+**Translations**
+- Initial translation for Creoles and pidgins (English based) (En Oh)
+- Initial translation for Hawaiian (En Oh)
+- Initial translation for Kannada (Vinay)
+- Initial translation for Urdu (haseebwt)
+- Translations updated
+
 
 # Version 6.2.1 (2026-06-07)
 
@@ -35,6 +42,9 @@
 - KNMI - Fix duplicate “Today” when migrating from another source
 - KNMI - Fix precipitation probability being 100 times too low
 - Recosanté - Removed source will no longer be available for choice in the source selection screens
+
+**Translations**
+- Translations updated
 
 
 # Version 6.2.0 (2026-05-01)
