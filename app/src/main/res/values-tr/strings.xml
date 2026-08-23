@@ -787,4 +787,5 @@
     <string name="message_please_wait_refresh">Lütfen yenileme işleminin tamamlanmasını bekleyin</string>
     <string name="settings_main_background_title">Hava durumuna göre arka plan</string>
     <string name="settings_weather_source_no_longer_exists">%s (artık yok)</string>
+    <string name="action_reset_to_default">Varsayılana sıfırla</string>
 </resources>
