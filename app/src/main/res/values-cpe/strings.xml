@@ -22,7 +22,7 @@
     <string name="clock">Da time</string>
     <string name="alert">Da kine warning</string>
     <string name="alerts">Choke warning</string>
-    <string name="alerts_to_follow">Upcoming warnings, click ova hea fo\' see \'em.</string>
+    <string name="alerts_to_follow">Upcoming warnings, click ova hea fo’ see ’em.</string>
     <string name="alert_source">Where da kine come from: %s</string>
     <string name="daily_yesterday">Da day before today</string>
     <string name="daily_today">Dis day right now</string>
@@ -38,12 +38,12 @@
     <string name="chart_maximum_value">Biggest kine</string>
     <string name="conditions">How stay outside</string>
     <string name="temperature">How hot or how cold</string>
-    <string name="temperature_real">Fo\' real</string>
-    <string name="temperature_real_details">Da fo\' real temperature.</string>
+    <string name="temperature_real">Fo’ real</string>
+    <string name="temperature_real_details">Da fo’ real temperature.</string>
     <string name="temperature_feels_like">How stay feel</string>
     <string name="temperature_feels_like_with_unit">Stay feel %s</string>
     <string name="temperature_feels_like_details">How da kine stay hit you (with da damp, wind, and sun).</string>
-    <string name="temperature_apparent">Right dere fo\' see</string>
+    <string name="temperature_apparent">Right dere fo’ see</string>
     <string name="temperature_wind_chill">Da cold wind bite kine</string>
     <string name="temperature_degree_day">Degree Day</string>
     <string name="temperature_degree_day_heating">Da days you gotta turn on da heater</string>
@@ -59,7 +59,7 @@
     <string name="precipitation">Da wet kine stuff</string>
     <string name="precipitation_total_day">Da wet kine stuff when da sun stay up</string>
     <string name="precipitation_total_night">Dark time rain kine</string>
-    <string name="precipitation_probability">Chances fo\' get wet</string>
+    <string name="precipitation_probability">Chances fo’ get wet</string>
     <string name="precipitation_duration">How long da wet kine stuff stay falling</string>
     <string name="precipitation_thunderstorm">Da storm with da boom-boom thunder</string>
     <string name="precipitation_rain">Water falling from da sky</string>
@@ -76,7 +76,7 @@
     <string name="precipitation_between_time">Wet kine stuff from %1$s to %2$s</string>
     <string name="wind">Blow kine</string>
     <string name="wind_speed_about">How fast da blow kine</string>
-    <string name="wind_speed_about_description">Da average wind speed, dat stay how fast da breeze blow steady ova time. Da gusts, dat da quick whipping kine wind dat blow hard fo\' under twenty seconds.</string>
+    <string name="wind_speed_about_description">Da average wind speed, dat stay how fast da breeze blow steady ova time. Da gusts, dat da quick whipping kine wind dat blow hard fo’ under twenty seconds.</string>
     <string name="wind_gusts_short">Sudden blow kine</string>
     <string name="wind_origin">Stay start %s</string>
     <string name="wind_direction_variable">Changing kine</string>

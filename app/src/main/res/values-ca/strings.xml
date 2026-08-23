@@ -787,7 +787,7 @@
     <string name="common_weather_text_blowing_snow">Neu bufada alta</string>
     <string name="common_weather_text_drifting_snow">Neu bufada suaument</string>
     <string name="common_weather_text_glaze">Glaçada</string>
-    <string name="message_please_wait_refresh">Espereu que es completi l\'actualització</string>
+    <string name="message_please_wait_refresh">Espereu que es completi l’actualització</string>
     <string name="settings_weather_source_no_longer_exists">%s (ja no existeix)</string>
     <string name="settings_source_api_key_invalid">El valor no està en el format esperat</string>
     <string name="settings_main_background_title">Fons basat en el temps</string>

@@ -140,7 +140,7 @@
     <string name="widget_custom_subtitle_keyword_xss_description">Apusul de Azi, Mâine, …, 4 zile mai târziu</string>
     <string name="widget_custom_subtitle_keyword_xmr_description">Răsăritul lunii de Azi, Mâine, …, 4 zile mai târziu</string>
     <string name="widget_custom_subtitle_keyword_xms_description">Apusul lunii de Azi, Mâine, …, 4 zile mai târziu</string>
-    <string name="widget_custom_subtitle_keyword_xmp_description">Faza lunii pentru azi, mâine, ..., peste 4 zile</string>
+    <string name="widget_custom_subtitle_keyword_xmp_description">Faza lunii pentru azi, mâine, …, peste 4 zile</string>
     <string name="widget_live_wallpaper_weather_kind">Vremea</string>
     <string name="widget_live_wallpaper_day_night_type">Ora</string>
     <string name="location_message_added">Locație adăugată</string>
@@ -397,7 +397,7 @@
     <string name="notification_channel_widget">Widget</string>
     <string name="location_message_reverse_geocoding_failed">Furnizorul meteo nu a găsit locația potrivită</string>
     <string name="action_undo">Anulează</string>
-    <string name="settings_modules_live_wallpaper_error">Nu s-a putut lansa selectorul de imagini de fundal. Poți activa în continuare imaginea de fundal %s alegând \"Imagine de fundal live\" în selectorul de imagini de fundal pentru ecranul de pornire.</string>
+    <string name="settings_modules_live_wallpaper_error">Nu s-a putut lansa selectorul de imagini de fundal. Poți activa în continuare imaginea de fundal %s alegând “Imagine de fundal live” în selectorul de imagini de fundal pentru ecranul de pornire.</string>
     <string name="null_data_text">N/A</string>
     <string name="temperature_degree_day_heating">Gradul de încălzire a zilei</string>
     <string name="temperature_degree_day_cooling">Gradul de răcire a zilei</string>

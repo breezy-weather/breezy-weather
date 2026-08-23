@@ -165,7 +165,7 @@
     <string name="humidity_short">ಆರ್ದ್ರತೆ</string>
     <string name="humidity_dew_point">ಆರ್ದ್ರತೆ / ಇಬ್ಬನಿ ಬಿಂದು</string>
     <string name="humidity_about">ಸಾಪೇಕ್ಷ ಆರ್ದ್ರತೆಯ ಕುರಿತು</string>
-    <string name="humidity_about_description">ಸಾಪೇಕ್ಷ ಆರ್ದ್ರತೆಯನ್ನು ಸಾಮಾನ್ಯವಾಗಿ \'ಆರ್ದ್ರತೆ\' ಎಂದೇ ಕರೆಯಲಾಗುತ್ತದೆ. ಇದು ನಿರ್ದಿಷ್ಟ ತಾಪಮಾನದಲ್ಲಿ ಗಾಳಿಯು ಹೊಂದಿರಬಹುದಾದ ಗರಿಷ್ಠ ನೀರಿನ ಆವಿಯ ಪ್ರಮಾಣಕ್ಕೆ ಹೋಲಿಸಿದರೆ, ಪ್ರಸ್ತುತ ಗಾಳಿಯಲ್ಲಿರುವ ನೀರಿನ ಆವಿಯ ಶೇಕಡಾ ಪ್ರಮಾಣವಾಗಿದೆ.</string>
+    <string name="humidity_about_description">ಸಾಪೇಕ್ಷ ಆರ್ದ್ರತೆಯನ್ನು ಸಾಮಾನ್ಯವಾಗಿ “ಆರ್ದ್ರತೆ” ಎಂದೇ ಕರೆಯಲಾಗುತ್ತದೆ. ಇದು ನಿರ್ದಿಷ್ಟ ತಾಪಮಾನದಲ್ಲಿ ಗಾಳಿಯು ಹೊಂದಿರಬಹುದಾದ ಗರಿಷ್ಠ ನೀರಿನ ಆವಿಯ ಪ್ರಮಾಣಕ್ಕೆ ಹೋಲಿಸಿದರೆ, ಪ್ರಸ್ತುತ ಗಾಳಿಯಲ್ಲಿರುವ ನೀರಿನ ಆವಿಯ ಶೇಕಡಾ ಪ್ರಮಾಣವಾಗಿದೆ.</string>
     <string name="humidity_from_to_number">%1$s - %2$s</string>
     <string name="dew_point">ಇಬ್ಬನಿ ಬಿಂದು</string>
     <string name="dew_point_short">ಇಬ್ಬನಿ ಬಿಂದು</string>
@@ -457,7 +457,7 @@
     <string name="widget_subtitle_data_custom">ವೈಯಕ್ತೀಕರಣ</string>
     <string name="widget_custom_subtitle_help_content_description">ವೈಯಕ್ತೀಕರಿಸಿದ ಉಪಶೀರ್ಷಿಕೆಯ ಕೀವರ್ಡ್‌ಗಳ ಸಹಾಯ ತೋರಿಸಿ</string>
     <string name="widget_custom_subtitle_alert_box_title">ವೈಯಕ್ತೀಕರಿಸಿದ ಉಪಶೀರ್ಷಿಕೆ ಸಹಾಯ</string>
-    <string name="widget_custom_subtitle_explanation">ನೀವು ಯಾವುದೇ ಪಠ್ಯವನ್ನು ನಮೂದಿಸಬಹುದು, ಆದರೆ ಪಠ್ಯದ ಉದ್ದದ ಬಗ್ಗೆ ಗಮನವಿರಲಿ. ಹವಾಮಾನದ ಮಾಹಿತಿಯನ್ನು ಸೇರಿಸಲು, ಸಂಬಂಧಿತ ಕೀವರ್ಡ್ ಅನ್ನು ಉಲ್ಲೇಖಿಸಲು $ ಅನ್ನು ಬಳಸಿ.\n\nಉದಾಹರಣೆಗೆ, \"ಈಗಿನ ಹವಾಮಾನ: $cw$.\" ಅನ್ನು \"ಈಗಿನ ಹವಾಮಾನ: ನಿರಭ್ರ ಆಕಾಶ.\" ಎಂದು ಪ್ರದರ್ಶಿಸಲಾಗುತ್ತದೆ.</string>
+    <string name="widget_custom_subtitle_explanation">ನೀವು ಯಾವುದೇ ಪಠ್ಯವನ್ನು ನಮೂದಿಸಬಹುದು, ಆದರೆ ಪಠ್ಯದ ಉದ್ದದ ಬಗ್ಗೆ ಗಮನವಿರಲಿ. ಹವಾಮಾನದ ಮಾಹಿತಿಯನ್ನು ಸೇರಿಸಲು, ಸಂಬಂಧಿತ ಕೀವರ್ಡ್ ಅನ್ನು ಉಲ್ಲೇಖಿಸಲು $ ಅನ್ನು ಬಳಸಿ.\n\nಉದಾಹರಣೆಗೆ, “ಈಗಿನ ಹವಾಮಾನ: $cw$.” ಅನ್ನು “ಈಗಿನ ಹವಾಮಾನ: ನಿರಭ್ರ ಆಕಾಶ.” ಎಂದು ಪ್ರದರ್ಶಿಸಲಾಗುತ್ತದೆ.</string>
     <string name="widget_custom_subtitle_keyword_cw_description">ಈಗಿನ ಹವಾಮಾನ</string>
     <string name="widget_custom_subtitle_keyword_ct_description">ಈಗಿನ ಹವಾಮಾನ (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">ಈಗಿನ ಹವಾಮಾನ (°)</string>
@@ -526,7 +526,7 @@
     <string name="settings_background_updates_refresh_never">ಎಂದೂ ಇಲ್ಲ</string>
     <string name="settings_background_updates_refresh_never_warning1">ಹಿನ್ನೆಲೆ ನವೀಕರಣಗಳನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿದರೆ, ಹವಾಮಾನ ಎಚ್ಚರಿಕೆಗಳು ಅಥವಾ ಅವಕ್ಷೇಪಣ ಅಧಿಸೂಚನೆಗಳನ್ನು ನೀವು ಇನ್ನು ಮುಂದೆ ಸ್ವೀಕರಿಸುವುದಿಲ್ಲ. ನೀವು ಆ್ಯಪ್ ತೆರೆಯುವವರೆಗೆ ವಿಜೆಟ್‌ಗಳು ಮರುನವೀಕರಿಸುವುದಿಲ್ಲ.</string>
     <string name="settings_background_updates_refresh_never_warning2">ಹಿನ್ನೆಲೆ ನವೀಕರಣ ಪ್ರಕ್ರಿಯೆ ಹಗುರವಾಗಿದೆ: ಇದು ನೀವು ಆರಿಸಿದ ಆವರ್ತನದಲ್ಲಿ ನಿಮ್ಮ ಮೊದಲ ಸ್ಥಳವನ್ನು ಮಾತ್ರ ಮರುನವೀಕರಿಸುತ್ತದೆ. ಹೆಚ್ಚುವರಿ ಸ್ಥಳಗಳನ್ನು ಅಗತ್ಯವಿದ್ದಾಗ ಮಾತ್ರ, ದಿನಕ್ಕೆ ಒಮ್ಮೆ ನವೀಕರಿಸಲಾಗುತ್ತದೆ. ಇದು ಬ್ಯಾಟರಿಯನ್ನು ಸಮರ್ಥವಾಗಿ ನಿರ್ವಹಿಸುತ್ತದೆ ಮತ್ತು ತಿಂಗಳಿಗೆ %d MB ಗಿಂತ ಹೆಚ್ಚು ಡೇಟಾವನ್ನು ಬಳಸುವುದಿಲ್ಲ.</string>
-    <string name="settings_background_updates_refresh_never_warning3">ಹಿನ್ನೆಲೆ ನವೀಕರಣಗಳನ್ನು ಸಂಪೂರ್ಣವಾಗಿ ನಿಷ್ಕ್ರಿಯಗೊಳಿಸುವ ಬದಲು, ಮರುನವೀಕರಣದ ಆವರ್ತನವನ್ನು ಕಡಿಮೆ ಮಾಡುವುದನ್ನು ಪರಿಗಣಿಸಿ. ಇಲ್ಲದಿದ್ದರೆ, ಮುಂದುವರೆಯಲು ಬಯಸಿದರೆ \"ಮುಂದುವರಿಸಿ\" ಅನ್ನು ತಟ್ಟಿ.</string>
+    <string name="settings_background_updates_refresh_never_warning3">ಹಿನ್ನೆಲೆ ನವೀಕರಣಗಳನ್ನು ಸಂಪೂರ್ಣವಾಗಿ ನಿಷ್ಕ್ರಿಯಗೊಳಿಸುವ ಬದಲು, ಮರುನವೀಕರಣದ ಆವರ್ತನವನ್ನು ಕಡಿಮೆ ಮಾಡುವುದನ್ನು ಪರಿಗಣಿಸಿ. ಇಲ್ಲದಿದ್ದರೆ, ಮುಂದುವರೆಯಲು ಬಯಸಿದರೆ “ಮುಂದುವರಿಸಿ” ಅನ್ನು ತಟ್ಟಿ.</string>
     <string name="settings_background_updates_refresh_skip_when_battery_low">ಬ್ಯಾಟರಿ ಕಡಿಮೆಯಿದ್ದಾಗ ಬಿಟ್ಟುಬಿಡಿ</string>
     <string name="settings_background_updates_section_troubleshoot">ಸಮಸ್ಯೆ ನಿವಾರಣೆ</string>
     <string name="settings_background_updates_battery_optimization">ಬ್ಯಾಟರಿ ಉತ್ತಮೀಕರಣ ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿ</string>
@@ -546,10 +546,10 @@
     <string name="settings_location_access_switch_summaryOff">ನಿಮ್ಮ ಪ್ರಸ್ತುತ ಸ್ಥಳವನ್ನು ಒಂದು ಸ್ಥಳವಾಗಿ ಸೇರಿಸಲು, ದಯವಿಟ್ಟು ಅನುಮತಿ ನೀಡಿ.</string>
     <string name="settings_location_access_background_title">ಹಿನ್ನೆಲೆ ಸ್ಥಳ ಪ್ರವೇಶ</string>
     <string name="settings_location_access_background_summaryOn">ಸಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ. ಆ್ಯಪ್ ನಿಮ್ಮ ಪ್ರಸ್ತುತ ಸ್ಥಳದ ಹವಾಮಾನ ಮಾಹಿತಿಯನ್ನು ಹಿನ್ನೆಲೆಯಲ್ಲಿ ಮರುನವೀಕರಿಸಬಹುದು.</string>
-    <string name="settings_location_access_background_summaryOff">ನಿಮ್ಮ ಪ್ರಸ್ತುತ ಸ್ಥಳದ ಹಿನ್ನೆಲೆ ಮರುನವೀಕರಣಗಳಿಗಾಗಿ, ದಯವಿಟ್ಟು \"ಯಾವಾಗಲೂ ಅನುಮತಿಸಿ\" ಅನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ.</string>
+    <string name="settings_location_access_background_summaryOff">ನಿಮ್ಮ ಪ್ರಸ್ತುತ ಸ್ಥಳದ ಹಿನ್ನೆಲೆ ಮರುನವೀಕರಣಗಳಿಗಾಗಿ, ದಯವಿಟ್ಟು “ಯಾವಾಗಲೂ ಅನುಮತಿಸಿ” ಅನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ.</string>
     <string name="settings_location_access_precise_title">ಸಾಧನದ GPS ಬಳಕೆ</string>
     <string name="settings_location_access_precise_summaryOn">ಸಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ. ಸಾಧನದ ನೆಟ್‌ವರ್ಕ್ ಆಧಾರಿತ ಸ್ಥಳಕ್ಕೆ ಆದ್ಯತೆ ನೀಡಲಾಗುತ್ತದೆ. ಅಗತ್ಯವಿದ್ದರೆ GPS ಅನ್ನು ಬಳಸಲಾಗುತ್ತದೆ.</string>
-    <string name="settings_location_access_precise_summaryOff">ಸ್ಥಳ ಪತ್ತೆಹಚ್ಚಲು ಸಮಸ್ಯೆಯಾದರೆ, \"ನಿಖರ ಸ್ಥಳ ಬಳಸಿ\" ಅನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ.</string>
+    <string name="settings_location_access_precise_summaryOff">ಸ್ಥಳ ಪತ್ತೆಹಚ್ಚಲು ಸಮಸ್ಯೆಯಾದರೆ, “ನಿಖರ ಸ್ಥಳ ಬಳಸಿ” ಅನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ.</string>
     <string name="settings_global">ಸಾರ್ವತ್ರಿಕ ಸಂಯೋಜನೆ</string>
     <string name="settings_per_location">ಸ್ಥಳದ ಆದ್ಯತೆಗಳು</string>
     <string name="settings_per_location_summary">ಈ ಸ್ಥಳಕ್ಕಾಗಿ ಹೆಚ್ಚುವರಿ ವ್ಯಯಕ್ತೀಕರಣಗಳು</string>
