@@ -789,4 +789,5 @@
     <string name="message_please_wait_refresh">Attendi l’aggiornamento per completare</string>
     <string name="settings_main_background_title">Sfondo basato sul tempo</string>
     <string name="settings_weather_source_no_longer_exists">%s (non esiste più)</string>
+    <string name="action_reset_to_default">Ripristina le impostazioni predefinite</string>
 </resources>
