@@ -45,12 +45,12 @@
     <string name="wind_strength_4">نسيم معتدل</string>
     <string name="wind_strength_5">نسيم عليل</string>
     <string name="wind_strength_6">نسيم قوي</string>
-    <string name="wind_strength_7">قريب من الرياح العاتية</string>
+    <string name="wind_strength_7">عاصفة معتدلة</string>
     <string name="wind_strength_8">عاصفة</string>
-    <string name="wind_strength_9">رياح عاتية قوية</string>
-    <string name="wind_strength_10">عاصفة</string>
+    <string name="wind_strength_9">عاصفة قوية</string>
+    <string name="wind_strength_10">العاصفة</string>
     <string name="wind_strength_11">عاصفة عنيفة</string>
-    <string name="wind_strength_12">إعصار</string>
+    <string name="wind_strength_12">قوة الإعصار</string>
     <string name="precipitation_intensity_light">خفيف</string>
     <string name="precipitation_intensity_heavy">غزير</string>
     <string name="ephemeris_moon_phase_new_moon">مُحاق</string>
@@ -221,7 +221,7 @@
     <string name="air_quality_level_1">ممتازة</string>
     <string name="air_quality_level_4">غير صحية</string>
     <string name="settings_icon_packs_weather_icon_dark">أيقونة داكنة</string>
-    <string name="uv_index_11">الأقصى</string>
+    <string name="uv_index_11">شديد جدًا</string>
     <string name="precipitation_between_time">هطول الأمطار من %1$s إلى %2$s</string>
     <string name="widget_style_temperature">الحرارة</string>
     <string name="widget_style_rectangle">مستطيل</string>
@@ -494,7 +494,7 @@
     <string name="humidity_short">الرطوبة</string>
     <string name="visibility_short">الرؤية</string>
     <string name="pressure_short">الضغط</string>
-    <string name="uv_index_short">الأشعة الضارة</string>
+    <string name="uv_index_short">مؤشر الأشعة فوق البنفسجية</string>
     <string name="cloud_cover_short">الغيوم</string>
     <string name="settings_weather_sources_default_source">المصدر الافتراضي للمواقع الجديدة</string>
     <string name="settings_weather_source_unavailable">%s (غير متاح)</string>
@@ -681,7 +681,7 @@
     <string name="air_quality_pollutant_primary">ملوث أساسي</string>
     <string name="air_quality_pollutant_details">تفاصيل التلوث</string>
     <string name="air_quality_health_information">معلومات الصحة</string>
-    <string name="uv_index_about_description">يقيس مؤشر الأشعة فوق البنفسجية مدى قوة إشعاع الشمس فوق البنفسجي. فكلما ارتفع هذا المؤشر، زاد احتمال وسرعة تسببه في حروق الشمس، وسرطان الجلد، وتضرر العينين.</string>
+    <string name="uv_index_about_description">يقيس مؤشر الأشعة فوق البنفسجية مدى قوة الأشعة فوق البنفسجية الصادرة عن الشمس. وكلما ارتفع المؤشر، زادت سرعة واحتمالية تسببه في حروق الشمس وسرطان الجلد وتضرر العينين.</string>
     <string name="uv_index_scale">مقياس مؤشر الأشعة فوق البنفسجية</string>
     <string name="uv_index_time_to_burn">المدة اللازمة للإصابة بحروق الشمس</string>
     <string name="uv_index_time_to_burn_explanations">يعتمد الوقت الدقيق للإصابة بحروق الشمس على الارتفاع، ووجود أسطح عاكسة مثل الماء أو الثلج، ونوع بشرتك، واستخدام واقي الشمس.</string>
@@ -695,7 +695,7 @@
     <string name="air_quality_level_3_harmless_exposure">أقل مِن يوم</string>
     <string name="air_quality_level_4_harmless_exposure">أقل مِن ساعة</string>
     <string name="air_quality_level_5_harmless_exposure">أقل مِن بضعة دقائق</string>
-    <string name="air_quality_index_short">م‌ج‌ه</string>
+    <string name="air_quality_index_short">AQI</string>
     <string name="air_quality_pm25_full">الجسيمات الدقيقة (أقل من %s)</string>
     <string name="air_quality_pm25_about">حول الجسيمات الدقيقة (%s)</string>
     <string name="air_quality_pm25_index">مقياس مؤشر جودة الهواء لـ %s</string>
