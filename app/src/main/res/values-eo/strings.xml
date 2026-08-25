@@ -825,4 +825,5 @@
     <string name="settings_source_api_key_invalid">Valoro ne estas en la atendata formo</string>
     <string name="message_please_wait_refresh">Bonvolu atendi ĝis la refreŝigo finiĝas</string>
     <string name="settings_main_background_title">Laŭvetera fono</string>
+    <string name="action_reset_to_default">Restarigi al defaŭlto</string>
 </resources>
