@@ -38,12 +38,13 @@ enum class OpenMeteoWeatherModel(
     CMA_GRAPES_GLOBAL("cma_grapes_global"),
     BOM_ACCESS_GLOBAL("bom_access_global"),
 
-    NCEP_GFS_SEAMLESS("gfs_seamless"),
-    NCEP_GFS_GLOBAL("gfs_global"),
-    NCEP_HRRR_US_CONUS("gfs_hrrr"),
+    NCEP_GFS_SEAMLESS("ncep_gfs_seamless"),
+    NCEP_GFS_GLOBAL("ncep_gfs_global"),
+    NCEP_HRRR_US_CONUS("ncep_hrrr_conus"),
     NCEP_NBM_US_CONUS("ncep_nbm_conus"),
     NCEP_NAM_US_CONUS("ncep_nam_conus"),
-    GFS_GRAPHCAST("gfs_graphcast025"),
+    NCEP_AIGFS("ncep_aigfs025"),
+    NCEP_HGEFS_ENSEMBLE_MEAN("ncep_hgefs025_ensemble_mean"),
 
     JMA_SEAMLESS("jma_seamless"),
     JMA_MSM("jma_msm"),
@@ -53,15 +54,16 @@ enum class OpenMeteoWeatherModel(
     KMA_MSM("kma_ldps"),
     KMA_GSM("kma_gdps"),
 
-    DWD_ICON_SEAMLESS("icon_seamless"),
-    DWD_ICON_GLOBAL("icon_global"),
-    DWD_ICON_EU("icon_eu"),
-    DWD_ICON_D2("icon_d2"),
+    DWD_ICON_SEAMLESS("dwd_icon_seamless"),
+    DWD_ICON_GLOBAL("dwd_icon_global"),
+    DWD_ICON_EU("dwd_icon_eu"),
+    DWD_ICON_D2("dwd_icon_d2"),
 
-    GEM_SEAMLESS("gem_seamless"),
-    GEM_GLOBAL("gem_global"),
-    GEM_REGIONAL("gem_regional"),
-    GEM_HRDPS_CONTINENTAL("gem_hrdps_continental"),
+    CMC_GEM_SEAMLESS("cmc_gem_seamless"),
+    CMC_GEM_GLOBAL("cmc_gem_gdps"),
+    CMC_GEM_REGIONAL("cmc_gem_rdps"),
+    CMC_GEM_HRDPS_CONTINENTAL("cmc_gem_hrdps"),
+    CMC_GEM_HRDPS_WEST("cmc_gem_hrdps_west"),
 
     METEO_FRANCE_SEAMLESS("meteofrance_seamless"),
     METEO_FRANCE_ARPEGE_WORLD("meteofrance_arpege_world"),
@@ -88,6 +90,13 @@ enum class OpenMeteoWeatherModel(
     METEOSWISS_ICON_SEAMLESS("meteoswiss_icon_seamless"),
     METEOSWISS_ICON_CH1("meteoswiss_icon_ch1"),
     METEOSWISS_ICON_CH2("meteoswiss_icon_ch2"),
+
+    GEOSPHERE_SEAMLESS("geosphere_seamless"),
+    GEOSPHERE_AROME_AUSTRIA("geosphere_arome_austria"),
+
+    CHMI_ALADIN_SEAMLESS("chmi_aladin_seamless"),
+    CHMI_ALADIN_CENTRAL_EUROPE("chmi_aladin_central_europe_2km"),
+    CHMI_ALADIN_CZ("chmi_aladin_cz_1km"),
     ;
 
     companion object {

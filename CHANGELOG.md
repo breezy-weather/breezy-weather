@@ -11,6 +11,7 @@
 
 **Sources**
 - BMKG - Temporarily disable alert support
+- Open-Meteo - Update selectable weather models
 
 **Technical**
 - Remove support for Android 6
