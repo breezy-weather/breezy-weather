@@ -146,7 +146,6 @@ enum class PressureUnit(
     ),
     ;
 
-    @RequiresApi(Build.VERSION_CODES.N)
     override fun getMeasureUnit(): MeasureUnit? {
         return when (this) {
             PASCAL -> null
@@ -159,7 +158,6 @@ enum class PressureUnit(
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.N)
     override fun getPerMeasureUnit(): MeasureUnit? = null
 
     /**

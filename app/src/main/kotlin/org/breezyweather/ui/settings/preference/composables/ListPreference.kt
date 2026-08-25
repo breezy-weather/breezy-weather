@@ -434,7 +434,6 @@ fun LanguagePreferenceView(
     }
 }
 
-@RequiresApi(Build.VERSION_CODES.N)
 @Composable
 fun CalendarPreferenceView(
     @StringRes titleId: Int,

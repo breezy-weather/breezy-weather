@@ -49,7 +49,6 @@ object CalendarHelper {
         LocalePreferences.CalendarType.PERSIAN
     )
 
-    @RequiresApi(Build.VERSION_CODES.N)
     private fun getDisplayName(
         calendar: String,
         locale: Locale = Locale.Builder().setLanguage("en").setRegion("001").build(),
@@ -65,7 +64,6 @@ object CalendarHelper {
         )
     }
 
-    @RequiresApi(Build.VERSION_CODES.N)
     fun getCalendars(context: Context): ImmutableList<AlternateCalendar> {
         return supportedCalendars.map {
             val displayName = try {
@@ -144,10 +142,6 @@ object CalendarHelper {
     }
 
     fun getAlternateCalendarSetting(context: Context): String? {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
-            return null
-        }
-
         val alternateCalendarSetting = SettingsManager.getInstance(context).alternateCalendar
         if (alternateCalendarSetting == "none") {
             return null

@@ -220,7 +220,7 @@ object Notifications {
             notificationId,
             buildSingleAlertNotification(context, location, alert, inGroup, notificationId)
         )
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && inGroup) {
+        if (inGroup) {
             context.notify(
                 ID_ALERT_GROUP,
                 buildAlertGroupSummaryNotification(context, location, alert, notificationId)
@@ -265,7 +265,7 @@ object Notifications {
                 .setSummaryText(time)
                 .bigText(description)
         )
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && inGroup) {
+        if (inGroup) {
             builder.setGroup(ALERT_GROUP_KEY)
         }
         return builder.build()
