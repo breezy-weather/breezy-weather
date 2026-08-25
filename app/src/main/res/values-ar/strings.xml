@@ -218,7 +218,7 @@
     <string name="widget_style_symmetry">تناظري</string>
     <string name="widget_style_oreo">أوريو</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">عاصفة رعدية طفيفة أو معتدلة</string>
-    <string name="air_quality_level_1">ممتازة</string>
+    <string name="air_quality_level_1">ممتاز</string>
     <string name="air_quality_level_4">غير صحية</string>
     <string name="settings_icon_packs_weather_icon_dark">أيقونة داكنة</string>
     <string name="uv_index_11">شديد جدًا</string>
@@ -255,7 +255,7 @@
     <string name="air_quality_level_3">غير جيد</string>
     <string name="uv_index_6_7">عالية</string>
     <string name="uv_alert_level">تنبيه</string>
-    <string name="air_quality_level_1_description">جودة هواء مثالية لمعظم الأفراد؛ استمتع بأنشطتك العادية في الهواء الطلق.</string>
+    <string name="air_quality_level_1_description">جودة الهواء مثالية لمعظم الأفراد؛ استمتع بأنشطتك المعتادة في الهواء الطلق.</string>
     <string name="air_quality_level_4_description">يمكن أن يشعر الأشخاص الحساسون بآثار صحية على الفور. قد يواجه الأفراد الأصحاء صعوبة في التنفس وتهيج الحلق اثناء التعرض له لفترات طويلة. قلل من النشاط في الهواء الطلق.</string>
     <string name="air_quality_level_5">غير صحية للغاية</string>
     <string name="ephemeris_sunrise_at">طلوع الشمس عند %s</string>
@@ -687,9 +687,9 @@
     <string name="uv_index_time_to_burn_explanations">يعتمد الوقت الدقيق للإصابة بحروق الشمس على الارتفاع، ووجود أسطح عاكسة مثل الماء أو الثلج، ونوع بشرتك، واستخدام واقي الشمس.</string>
     <string name="air_quality_index_about">حول مؤشر جودة الهواء</string>
     <string name="air_quality_index_about_description_1">مؤشر جودة الهواء (AQI) هو مقياس مصمّم لمساعدتك على فهم مدى تلوث الهواء في منطقة معينة، والمخاطر المحتملة على صحتك.</string>
-    <string name="air_quality_index_about_description_2">يعتمد المقياس المستخدم في هذا التطبيق على توصيات منظمة الصحة العالمية، بدلاً من اللوائح المحلية، وذلك للحصول على فئات ذات مغزى، وتسهيل مقارنة مستويات التلوث بين الدول.</string>
+    <string name="air_quality_index_about_description_2">يعتمد المقياس المستخدم في هذا التطبيق على توصيات منظمة الصحة العالمية، وليس على اللوائح المحلية، لتوفير فئات ذات معنى وتسهيل مقارنة مستويات التلوث بين الدول.</string>
     <string name="air_quality_index_scale">مقياس مؤشر جودة الهواء</string>
-    <string name="air_quality_index_harmless_exposure">تعرض غير ضار</string>
+    <string name="air_quality_index_harmless_exposure">التعرض غير الضار</string>
     <string name="air_quality_level_1_harmless_exposure">أكثر مِن سنة</string>
     <string name="air_quality_level_2_harmless_exposure">أقل مِن سنة</string>
     <string name="air_quality_level_3_harmless_exposure">أقل مِن يوم</string>
