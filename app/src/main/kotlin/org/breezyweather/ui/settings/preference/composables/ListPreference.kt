@@ -17,10 +17,8 @@
 package org.breezyweather.ui.settings.preference.composables
 
 import android.content.Context
-import android.os.Build
 import androidx.annotation.ArrayRes
 import androidx.annotation.DrawableRes
-import androidx.annotation.RequiresApi
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.foundation.clickable
@@ -64,6 +62,7 @@ import org.breezyweather.R
 import org.breezyweather.common.options.appearance.CalendarHelper
 import org.breezyweather.common.options.appearance.LocaleHelper
 import org.breezyweather.domain.settings.SettingsManager
+import org.breezyweather.domain.source.SelectableSource
 import org.breezyweather.ui.common.composables.AlertDialogNoPadding
 import org.breezyweather.ui.common.widgets.Material3ExpressiveCardListItem
 import org.breezyweather.ui.common.widgets.defaultCardListItemElevation
@@ -175,6 +174,7 @@ fun ListPreferenceView(
     colors: ListItemColors = ListItemDefaults.colors(),
     withState: Boolean = true,
     dismissButton: @Composable (() -> Unit)? = null,
+    trailingContent: @Composable ((String) -> Unit)? = null, // value -> trailing content
     onValueChanged: (String) -> Unit,
 ) {
     val listSelectedState = remember { mutableStateOf(selectedKey) }
@@ -232,6 +232,13 @@ fun ListPreferenceView(
                         style = MaterialTheme.typography.bodyMedium
                     )
                 }
+            }
+        } else {
+            null
+        },
+        trailingContent = if (trailingContent != null) {
+            {
+                trailingContent(if (withState) listSelectedState.value else selectedKey)
             }
         } else {
             null
@@ -319,13 +326,14 @@ fun ListPreferenceWithGroupsView(
     title: String,
     summary: (Context, String) -> String?, // value -> summary.
     selectedKey: String,
-    values: ImmutableMap<String?, ImmutableList<Triple<String, String, Boolean>>>,
+    values: ImmutableMap<String?, ImmutableList<SelectableSource>>,
     modifier: Modifier = Modifier,
     @DrawableRes iconId: Int? = null,
     enabled: Boolean = true,
     colors: ListItemColors = ListItemDefaults.colors(),
     withState: Boolean = true,
     dismissButton: @Composable (() -> Unit)? = null,
+    trailingContent: @Composable ((String) -> Unit)? = null, // value -> trailing content
     onValueChanged: (String) -> Unit,
 ) {
     val keyList = mutableListOf<String>()
@@ -340,10 +348,10 @@ fun ListPreferenceWithGroupsView(
             nameList.add("")
             enableList.add(false)
         }
-        for (triple in v1) {
-            keyList.add(triple.first)
-            nameList.add(triple.second)
-            enableList.add(triple.third)
+        for (selectableSource in v1) {
+            keyList.add(selectableSource.id)
+            nameList.add(selectableSource.displayName)
+            enableList.add(selectableSource.enabled)
         }
     }
 
@@ -360,6 +368,7 @@ fun ListPreferenceWithGroupsView(
         colors = colors,
         withState = withState,
         dismissButton = dismissButton,
+        trailingContent = trailingContent,
         onValueChanged = onValueChanged
     )
 }

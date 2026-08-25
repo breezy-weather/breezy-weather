@@ -24,6 +24,9 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.ListItemColors
 import androidx.compose.material3.ListItemDefaults
 import androidx.compose.material3.MaterialTheme
@@ -32,11 +35,14 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceContinent
@@ -51,6 +57,7 @@ import org.breezyweather.BuildConfig
 import org.breezyweather.R
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.source.ConfigurableSource
+import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.NonFreeNetSource
 import org.breezyweather.common.source.RemovedSource
 import org.breezyweather.common.source.WeatherSource
@@ -58,6 +65,7 @@ import org.breezyweather.common.source.getName
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.common.utils.helpers.SnackbarHelper
 import org.breezyweather.domain.settings.SettingsManager
+import org.breezyweather.domain.source.SelectableSource
 import org.breezyweather.domain.source.resourceName
 import org.breezyweather.sources.SourceManager
 import org.breezyweather.ui.common.widgets.Material3ExpressiveCardListItem
@@ -296,7 +304,7 @@ internal fun getCompatibleSources(
     location: Location,
     selectedSource: String,
     feature: SourceFeature,
-): ImmutableMap<Int, ImmutableList<Triple<String, String, Boolean>>> {
+): ImmutableMap<Int, ImmutableList<SelectableSource>> {
     val groupComparator = Comparator<Int> { va1, va2 ->
         if (va1 == R.string.weather_source_recommended && va2 == R.string.weather_source_recommended) {
             0
@@ -335,13 +343,14 @@ internal fun getCompatibleSources(
                     }
                 }
                 .map {
-                    Triple(
+                    SelectableSource(
                         it.id,
                         it.getName(context, feature, location),
                         it !is RemovedSource &&
                             (it !is ConfigurableSource || it.isConfigured) &&
                             (BuildConfig.FLAVOR != "freenet" || it !is NonFreeNetSource) &&
-                            it.isFeatureSupportedForLocation(location, feature)
+                            it.isFeatureSupportedForLocation(location, feature),
+                        if (it is HttpSource) it.privacyPolicyUrl else null
                     )
                 }
                 .toImmutableList()
@@ -518,20 +527,21 @@ fun SecondarySourcesPreference(
                         if (
                             forecastSource.value.isNotEmpty() &&
                             !compatibleForecastSources.values.any { l ->
-                                l.any { it.first == forecastSource.value }
+                                l.any { it.id == forecastSource.value }
                             }
                         ) {
                             put(
                                 null,
                                 buildList {
                                     add(
-                                        Triple(
+                                        SelectableSource(
                                             forecastSource.value,
                                             stringResource(
                                                 R.string.settings_weather_source_unavailable,
                                                 forecastSource.value
                                             ),
-                                            false
+                                            false,
+                                            null
                                         )
                                     )
                                 }.toImmutableList()
@@ -572,25 +582,27 @@ fun SecondarySourcesPreference(
                             buildList {
                                 if (currentSource.value.isNotEmpty() &&
                                     !compatibleCurrentSources.values.any { l ->
-                                        l.any { it.first == currentSource.value }
+                                        l.any { it.id == currentSource.value }
                                     }
                                 ) {
                                     add(
-                                        Triple(
+                                        SelectableSource(
                                             currentSource.value,
                                             stringResource(
                                                 R.string.settings_weather_source_unavailable,
                                                 currentSource.value
                                             ),
-                                            false
+                                            false,
+                                            null
                                         )
                                     )
                                 }
                                 add(
-                                    Triple(
+                                    SelectableSource(
                                         "",
                                         stringResource(R.string.forecast),
-                                        true
+                                        true,
+                                        null
                                     )
                                 )
                             }.toImmutableList()
@@ -611,25 +623,27 @@ fun SecondarySourcesPreference(
                             buildList {
                                 if (airQualitySource.value.isNotEmpty() &&
                                     !compatibleAirQualitySources.values.any { l ->
-                                        l.any { it.first == airQualitySource.value }
+                                        l.any { it.id == airQualitySource.value }
                                     }
                                 ) {
                                     add(
-                                        Triple(
+                                        SelectableSource(
                                             airQualitySource.value,
                                             stringResource(
                                                 R.string.settings_weather_source_unavailable,
                                                 airQualitySource.value
                                             ),
-                                            false
+                                            false,
+                                            null
                                         )
                                     )
                                 }
                                 add(
-                                    Triple(
+                                    SelectableSource(
                                         "",
                                         stringResource(R.string.settings_weather_source_none),
-                                        true
+                                        true,
+                                        null
                                     )
                                 )
                             }.toImmutableList()
@@ -650,25 +664,27 @@ fun SecondarySourcesPreference(
                             buildList {
                                 if (pollenSource.value.isNotEmpty() &&
                                     !compatiblePollenSources.values.any { l ->
-                                        l.any { it.first == pollenSource.value }
+                                        l.any { it.id == pollenSource.value }
                                     }
                                 ) {
                                     add(
-                                        Triple(
+                                        SelectableSource(
                                             pollenSource.value,
                                             stringResource(
                                                 R.string.settings_weather_source_unavailable,
                                                 pollenSource.value
                                             ),
-                                            false
+                                            false,
+                                            null
                                         )
                                     )
                                 }
                                 add(
-                                    Triple(
+                                    SelectableSource(
                                         "",
                                         stringResource(R.string.settings_weather_source_none),
-                                        true
+                                        true,
+                                        null
                                     )
                                 )
                             }.toImmutableList()
@@ -689,25 +705,27 @@ fun SecondarySourcesPreference(
                             buildList {
                                 if (minutelySource.value.isNotEmpty() &&
                                     !compatibleMinutelySources.values.any { l ->
-                                        l.any { it.first == minutelySource.value }
+                                        l.any { it.id == minutelySource.value }
                                     }
                                 ) {
                                     add(
-                                        Triple(
+                                        SelectableSource(
                                             minutelySource.value,
                                             stringResource(
                                                 R.string.settings_weather_source_unavailable,
                                                 minutelySource.value
                                             ),
-                                            false
+                                            false,
+                                            null
                                         )
                                     )
                                 }
                                 add(
-                                    Triple(
+                                    SelectableSource(
                                         "",
                                         stringResource(R.string.settings_weather_source_none),
-                                        true
+                                        true,
+                                        null
                                     )
                                 )
                             }.toImmutableList()
@@ -728,25 +746,27 @@ fun SecondarySourcesPreference(
                             buildList {
                                 if (alertSource.value.isNotEmpty() &&
                                     !compatibleAlertSources.values.any { l ->
-                                        l.any { it.first == alertSource.value }
+                                        l.any { it.id == alertSource.value }
                                     }
                                 ) {
                                     add(
-                                        Triple(
+                                        SelectableSource(
                                             alertSource.value,
                                             stringResource(
                                                 R.string.settings_weather_source_unavailable,
                                                 alertSource.value
                                             ),
-                                            false
+                                            false,
+                                            null
                                         )
                                     )
                                 }
                                 add(
-                                    Triple(
+                                    SelectableSource(
                                         "",
                                         stringResource(R.string.settings_weather_source_none),
-                                        true
+                                        true,
+                                        null
                                     )
                                 )
                             }.toImmutableList()
@@ -767,25 +787,27 @@ fun SecondarySourcesPreference(
                             buildList {
                                 if (normalsSource.value.isNotEmpty() &&
                                     !compatibleNormalsSources.values.any { l ->
-                                        l.any { it.first == normalsSource.value }
+                                        l.any { it.id == normalsSource.value }
                                     }
                                 ) {
                                     add(
-                                        Triple(
+                                        SelectableSource(
                                             normalsSource.value,
                                             stringResource(
                                                 R.string.settings_weather_source_unavailable,
                                                 normalsSource.value
                                             ),
-                                            false
+                                            false,
+                                            null
                                         )
                                     )
                                 }
                                 add(
-                                    Triple(
+                                    SelectableSource(
                                         "",
                                         stringResource(R.string.settings_weather_source_none),
-                                        true
+                                        true,
+                                        null
                                     )
                                 )
                             }.toImmutableList()
@@ -807,25 +829,27 @@ fun SecondarySourcesPreference(
                                 buildList {
                                     if (reverseGeocodingSource.value.isNotEmpty() &&
                                         !compatibleReverseGeocodingSources.values.any { l ->
-                                            l.any { it.first == reverseGeocodingSource.value }
+                                            l.any { it.id == reverseGeocodingSource.value }
                                         }
                                     ) {
                                         add(
-                                            Triple(
+                                            SelectableSource(
                                                 reverseGeocodingSource.value,
                                                 stringResource(
                                                     R.string.settings_weather_source_unavailable,
                                                     reverseGeocodingSource.value
                                                 ),
-                                                false
+                                                false,
+                                                null
                                             )
                                         )
                                     }
                                     add(
-                                        Triple(
+                                        SelectableSource(
                                             "",
                                             stringResource(R.string.settings_weather_source_none),
-                                            true
+                                            true,
+                                            null
                                         )
                                     )
                                 }.toImmutableList()
@@ -978,7 +1002,7 @@ fun SourceView(
 fun SourceViewWithContinents(
     title: String,
     selectedKey: String,
-    sourceList: ImmutableMap<Int?, ImmutableList<Triple<String, String, Boolean>>>,
+    sourceList: ImmutableMap<Int?, ImmutableList<SelectableSource>>,
     modifier: Modifier = Modifier,
     @DrawableRes iconId: Int? = null,
     enabled: Boolean = true,
@@ -989,6 +1013,9 @@ fun SourceViewWithContinents(
     onValueChanged: (String) -> Unit,
 ) {
     val context = LocalContext.current
+    val uriHandler = LocalUriHandler.current
+    val linkToOpen = rememberSaveable { mutableStateOf("") }
+    val dialogLinkOpenState = remember { mutableStateOf(false) }
 
     ListPreferenceWithGroupsView(
         modifier = modifier,
@@ -1000,9 +1027,28 @@ fun SourceViewWithContinents(
         }.toImmutableMap(),
         summary = { _, value ->
             sourceList.values.firstOrNull { c ->
-                c.firstOrNull { it.first == value } != null
-            }?.firstOrNull { it.first == value }?.second
+                c.firstOrNull { it.id == value } != null
+            }?.firstOrNull { it.id == value }?.displayName
         },
+        // TODO UX: Some users may think the button allows to change the source
+        /*trailingContent = { value ->
+            sourceList.values.firstOrNull { c ->
+                c.firstOrNull { it.id == value } != null
+            }?.firstOrNull { it.id == value }?.privacyPolicyUrl?.let {
+                IconButton(
+                    onClick = {
+                        linkToOpen.value = it
+                        dialogLinkOpenState.value = true
+                    }
+                ) {
+                    Icon(
+                        painterResource(R.drawable.ic_shield_lock),
+                        contentDescription = stringResource(R.string.about_privacy_policy),
+                        tint = MaterialTheme.colorScheme.onSurface
+                    )
+                }
+            }
+        },*/
         onValueChanged = { sourceId ->
             onValueChanged(sourceId)
         },
@@ -1010,4 +1056,53 @@ fun SourceViewWithContinents(
         colors = colors,
         withState = withState
     )
+
+    if (dialogLinkOpenState.value) {
+        AlertDialog(
+            title = {
+                Text(
+                    text = stringResource(R.string.about_privacy_policy),
+                    color = MaterialTheme.colorScheme.onSurface,
+                    style = MaterialTheme.typography.headlineSmall
+                )
+            },
+            text = {
+                Text(
+                    text = stringResource(R.string.about_open_link_message, linkToOpen.value),
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    style = MaterialTheme.typography.bodyMedium
+                )
+            },
+            onDismissRequest = {
+                dialogLinkOpenState.value = false
+            },
+            confirmButton = {
+                TextButton(
+                    onClick = {
+                        uriHandler.openUri(linkToOpen.value)
+                        dialogLinkOpenState.value = false
+                    }
+                ) {
+                    Text(
+                        text = stringResource(R.string.action_confirm),
+                        color = MaterialTheme.colorScheme.primary,
+                        style = MaterialTheme.typography.labelLarge
+                    )
+                }
+            },
+            dismissButton = {
+                TextButton(
+                    onClick = {
+                        dialogLinkOpenState.value = false
+                    }
+                ) {
+                    Text(
+                        text = stringResource(android.R.string.cancel),
+                        color = MaterialTheme.colorScheme.primary,
+                        style = MaterialTheme.typography.labelLarge
+                    )
+                }
+            }
+        )
+    }
 }
