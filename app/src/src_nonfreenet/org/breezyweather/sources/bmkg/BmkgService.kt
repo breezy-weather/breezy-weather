@@ -98,10 +98,6 @@ class BmkgService @Inject constructor(
         if (apiKey.isEmpty() && SourceFeature.FORECAST in requestedFeatures) {
             return Observable.error(ApiKeyMissingException())
         }
-        val publicToken = getPublicTokenOrDefault()
-        if (publicToken.isEmpty() && SourceFeature.ALERT in requestedFeatures) {
-            return Observable.error(ApiKeyMissingException())
-        }
 
         val failedFeatures = mutableMapOf<SourceFeature, Throwable>()
         val forecast = if (SourceFeature.FORECAST in requestedFeatures) {
@@ -130,6 +126,12 @@ class BmkgService @Inject constructor(
             Observable.just(BmkgCurrentResult())
         }
 
+        val publicToken = ""
+        /*val publicToken = if (SourceFeature.ALERT in requestedFeatures) {
+            TODO: Needs to be pulled from the https://cuaca.bmkg.go.id/ webpage
+        } else {
+            ""
+        }*/
         val warning = if (SourceFeature.ALERT in requestedFeatures) {
             mApi.getWarning(
                 publicToken = publicToken,
@@ -565,15 +567,6 @@ class BmkgService @Inject constructor(
     private fun getApiKeyOrDefault(): String {
         return apikey.ifEmpty { BuildConfig.BMKG_KEY }
     }
-    private var publicToken: String
-        set(value) {
-            config.edit().putString("public_token", value).apply()
-        }
-        get() = config.getString("public_token", null) ?: ""
-
-    private fun getPublicTokenOrDefault(): String {
-        return publicToken.ifEmpty { BuildConfig.BMKG_PUBLIC_TOKEN }
-    }
 
     // Always true, as we will filter depending on the feature requested
     override val isConfigured
@@ -593,18 +586,6 @@ class BmkgService @Inject constructor(
                 content = apikey,
                 onValueChanged = {
                     apikey = it
-                }
-            ),
-            EditTextPreference(
-                titleId = R.string.settings_weather_source_bmkg_public_token,
-                summary = { c, content ->
-                    content.ifEmpty {
-                        c.getString(R.string.settings_source_default_value)
-                    }
-                },
-                content = publicToken,
-                onValueChanged = {
-                    publicToken = it
                 }
             )
         )

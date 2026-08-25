@@ -78,7 +78,6 @@ jobs:
           echo "breezy.atmosud.key=$ATMO_SUD_KEY" >> local.properties
           echo "breezy.baiduip.key=$BAIDU_IP_LOCATION_AK" >> local.properties
           echo "breezy.bmkg.key=$BMKG_KEY" >> local.properties
-          echo "breezy.bmkg.public_token=$BMKG_PUBLIC_TOKEN" >> local.properties
           echo "breezy.cwa.key=$CWA_KEY" >> local.properties
           echo "breezy.eccc.key=$ECCC_KEY" >> local.properties
           echo "breezy.geonames.key=$GEO_NAMES_KEY" >> local.properties
