@@ -17,7 +17,6 @@
 package org.breezyweather.background.updater
 
 import android.content.Context
-import android.os.Build
 import org.breezyweather.BreezyWeather
 import org.breezyweather.BuildConfig
 import org.breezyweather.background.updater.interactor.GetApplicationRelease
@@ -43,10 +42,10 @@ class AppUpdateChecker @Inject constructor(
         }
 
         // Disable app update checks for older Android versions that we're going to drop support for
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
+        /*if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
             AppUpdateNotifier(context).promptOldAndroidVersion()
             return GetApplicationRelease.Result.OsTooOld
-        }
+        }*/
 
         return withIOContext {
             val result = getApplicationRelease.await(

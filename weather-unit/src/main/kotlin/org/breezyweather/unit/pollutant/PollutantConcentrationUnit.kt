@@ -73,7 +73,6 @@ enum class PollutantConcentrationUnit(
     ),
     ;
 
-    @RequiresApi(Build.VERSION_CODES.N)
     override fun getMeasureUnit(): MeasureUnit? {
         return when (this) {
             MICROGRAM_PER_CUBIC_METER -> MeasureUnit.MICROGRAM
@@ -81,7 +80,6 @@ enum class PollutantConcentrationUnit(
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.N)
     override fun getPerMeasureUnit(): MeasureUnit? {
         return MeasureUnit.CUBIC_METER
     }

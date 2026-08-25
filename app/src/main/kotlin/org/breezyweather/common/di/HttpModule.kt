@@ -48,34 +48,7 @@ class HttpModule {
     @Provides
     @Singleton
     fun provideOkHttpClient(app: Application, loggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
-        val client = if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
-            /*
-             * Add support for Let’s encrypt certificate authority on Android < 7.0
-             */
-            try {
-                val certificateFactory = CertificateFactory.getInstance("X.509")
-                val certificateIsrgRootX1 = certificateFactory
-                    .generateCertificates(app.resources.openRawResource(R.raw.isrg_root_x1))
-                    .single() as X509Certificate
-                val certificateIsrgRootX2 = certificateFactory
-                    .generateCertificates(app.resources.openRawResource(R.raw.isrg_root_x2))
-                    .single() as X509Certificate
-                val certificates = HandshakeCertificates.Builder()
-                    .addTrustedCertificate(certificateIsrgRootX1)
-                    .addTrustedCertificate(certificateIsrgRootX2)
-                    .addPlatformTrustedCertificates()
-                    .build()
-
-                OkHttpClient.Builder()
-                    .sslSocketFactory(certificates.sslSocketFactory(), certificates.trustManager)
-            } catch (ignored: Exception) {
-                OkHttpClient.Builder()
-            }
-        } else {
-            OkHttpClient.Builder()
-        }
-
-        return client
+        return OkHttpClient.Builder()
             .connectTimeout(30, TimeUnit.SECONDS)
             .readTimeout(30, TimeUnit.SECONDS)
             .writeTimeout(45, TimeUnit.SECONDS)

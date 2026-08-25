@@ -124,24 +124,16 @@ val Context.density: Int
 
 val Context.fontScale: Float
     get() {
-        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            resources.configuration.fontScale *
-                resources.displayMetrics.densityDpi.div(android.util.DisplayMetrics.DENSITY_DEVICE_STABLE.toFloat())
-        } else {
-            1f // Let’s just ignore it on old Android versions
-        }
+        return resources.configuration.fontScale *
+            resources.displayMetrics.densityDpi.div(android.util.DisplayMetrics.DENSITY_DEVICE_STABLE.toFloat())
     }
 
 // Take into account font scale, but not as much
 // For example a font scale of 1.6 makes the width 1.3 times larger
 val Context.fontScaleToApply: Float
     get() {
-        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            fontScale.let {
-                if (it != 1f) 1f + abs(it - 1f).div(2f).times(if (it > 1f) 1f else -1f) else it
-            }
-        } else {
-            1f // Let’s just ignore it on old Android versions
+        return fontScale.let {
+            if (it != 1f) 1f + abs(it - 1f).div(2f).times(if (it > 1f) 1f else -1f) else it
         }
     }
 

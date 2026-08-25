@@ -19,8 +19,6 @@ package org.breezyweather.unit
 import android.content.Context
 import android.icu.text.MeasureFormat
 import android.icu.util.MeasureUnit
-import android.os.Build
-import androidx.annotation.RequiresApi
 import org.breezyweather.unit.formatting.UnitDecimals
 import org.breezyweather.unit.formatting.UnitTranslation
 import org.breezyweather.unit.formatting.UnitWidth
@@ -53,13 +51,11 @@ interface WeatherUnit {
     /**
      * [MeasureUnit] used with ICU formatting for compatible Android devices
      */
-    @RequiresApi(Build.VERSION_CODES.N)
     fun getMeasureUnit(): MeasureUnit?
 
     /**
      * [MeasureUnit] used with ICU formatting for compatible Android devices
      */
-    @RequiresApi(Build.VERSION_CODES.N)
     fun getPerMeasureUnit(): MeasureUnit?
 
     /**
@@ -154,9 +150,8 @@ interface WeatherUnit {
         useNumberFormatter: Boolean = true,
         useMeasureFormat: Boolean = true,
     ): String {
-        if (supportsMeasureFormat() &&
-            getMeasureUnit() != null &&
-            (getPerMeasureUnit() == null || supportsMeasureFormat()) &&
+        if (getMeasureUnit() != null &&
+            (getPerMeasureUnit() == null || supportsMeasureFormatPerUnit()) &&
             (useNumberFormatter || useMeasureFormat)
         ) {
             if (supportsNumberFormatter() && useNumberFormatter) {

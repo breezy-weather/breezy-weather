@@ -25,17 +25,8 @@ fun supportsNumberFormatter() = getVersionSdkInt() >= Build.VERSION_CODES.R
 @ChecksSdkIntAtLeast(api = Build.VERSION_CODES.TIRAMISU)
 fun supportsNumberFormatterUsage() = getVersionSdkInt() >= Build.VERSION_CODES.TIRAMISU
 
-@ChecksSdkIntAtLeast(api = Build.VERSION_CODES.N)
-fun supportsNumberFormat() = getVersionSdkInt() >= Build.VERSION_CODES.N
-
-@ChecksSdkIntAtLeast(api = Build.VERSION_CODES.N)
-fun supportsMeasureFormat() = getVersionSdkInt() >= Build.VERSION_CODES.N
-
 @ChecksSdkIntAtLeast(api = Build.VERSION_CODES.P)
 fun supportsMeasureFormatPerUnit() = getVersionSdkInt() >= Build.VERSION_CODES.P
-
-@ChecksSdkIntAtLeast(api = Build.VERSION_CODES.N)
-fun supportsMeasureUnit() = getVersionSdkInt() >= Build.VERSION_CODES.N
 
 @ChecksSdkIntAtLeast(api = Build.VERSION_CODES.R)
 fun supportsMeasureUnitAtmosphere() = getVersionSdkInt() >= Build.VERSION_CODES.R

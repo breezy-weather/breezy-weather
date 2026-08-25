@@ -205,7 +205,6 @@ enum class SpeedUnit(
     ),
     ;
 
-    @RequiresApi(Build.VERSION_CODES.N)
     override fun getMeasureUnit(): MeasureUnit? {
         return when (this) {
             CENTIMETER_PER_SECOND -> MeasureUnit.CENTIMETER
@@ -218,7 +217,6 @@ enum class SpeedUnit(
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.N)
     override fun getPerMeasureUnit(): MeasureUnit? {
         return when (this) {
             CENTIMETER_PER_SECOND -> MeasureUnit.SECOND

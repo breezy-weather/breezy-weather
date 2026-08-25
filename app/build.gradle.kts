@@ -363,7 +363,7 @@ configure<ApplicationExtension> {
         }
         getByName("freenet") {
             kotlin.directories += "src/src_freenet"
-            res.directories += "src/res_freenet"
+            // res.directories += "src/res_freenet"
             if (Config.isBreezy) {
                 res.directories += "src/res_breezy"
             } else {

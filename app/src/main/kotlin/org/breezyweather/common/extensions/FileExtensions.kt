@@ -18,9 +18,7 @@ package org.breezyweather.common.extensions
 
 import android.content.Context
 import android.net.Uri
-import android.os.Build
 import androidx.core.content.FileProvider
-import androidx.core.net.toUri
 import org.breezyweather.BuildConfig
 import java.io.File
 
@@ -30,11 +28,7 @@ import java.io.File
  * @param context context of application
  */
 fun File.getUriCompat(context: Context): Uri {
-    return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-        FileProvider.getUriForFile(context, BuildConfig.APPLICATION_ID + ".fileprovider", this)
-    } else {
-        toUri()
-    }
+    return FileProvider.getUriForFile(context, BuildConfig.APPLICATION_ID + ".fileprovider", this)
 }
 
 fun fileFromAsset(resource: Int, context: Context): File =

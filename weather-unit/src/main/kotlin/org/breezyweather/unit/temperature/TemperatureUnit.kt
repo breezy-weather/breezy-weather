@@ -115,7 +115,6 @@ enum class TemperatureUnit(
     ),
     ;
 
-    @RequiresApi(Build.VERSION_CODES.N)
     override fun getMeasureUnit(): MeasureUnit? {
         return when (this) {
             DECI_CELSIUS -> null
@@ -125,7 +124,6 @@ enum class TemperatureUnit(
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.N)
     override fun getPerMeasureUnit(): MeasureUnit? = null
 
     /**
