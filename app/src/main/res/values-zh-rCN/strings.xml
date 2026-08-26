@@ -867,4 +867,5 @@
     <string name="message_please_wait_refresh">请等待刷新完成</string>
     <string name="settings_main_background_title">基于天气的背景</string>
     <string name="settings_weather_source_no_longer_exists">%s（不再存在）</string>
+    <string name="action_reset_to_default">重置为默认</string>
 </resources>
