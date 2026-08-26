@@ -786,4 +786,5 @@
     <string name="content_provider_permission_label">قراءة بيانات Breezy Weather</string>
     <string name="content_provider_permission_description">احصل على معلومات الطقس من Breezy Weather، بما في ذلك إحداثيات مواقعك، مثل موقعك الحالي أضفته</string>
     <string name="common_weather_text_mostly_cloudy">غائم غالبًا</string>
+    <string name="action_reset_to_default">صفّر للمبدئي</string>
 </resources>
