@@ -13,20 +13,35 @@ Main screen shows the weather for the selected location, with an optional drawer
 
 ## Theme
 
-In the background, you can see an animation matching the current weather condition.
+The main screen is a location-based screen, meaning the dark mode is based on day and night at the viewed location, with one exception possible for accessibility reasons described below. Additionally, the background adjusts to the current weather condition.
 
-The color of the background depends on dark mode settings and whether the sun is up for the selected location:
+When app dark mode¹ is off:
+- During daytime, the sun is up, so the weather condition is depicted using bright colors and the dark mode is off
+- During nighttime, the sun is down, so the weather condition is depicted using dark colors and the dark mode is on
 
-| App dark mode¹   | Location-based dark mode             | Sun is up | Sun is down |
-|------------------|--------------------------------------|-----------|-------------|
-| Light            | Follow day/night                     | Light     | Dark        |
-| Light            | Always dark when app is in dark mode | Light     | Dark        |
-| Dark             | Follow day/night                     | Light     | Dark        |
-| Dark             | Always dark when app is in dark mode | Dark      | Dark        |
+When app dark mode¹ is on:
+- During daytime, the sun is up, but the **Location-based dark mode** preference (from `Settings` > `Appearance`) will affect the theme:
+  - When set to **Follow day/night**, the weather condition is depicted using bright colors and the dark mode is off
+  - When set to **Always dark when app is in dark mode**, a solar eclipse will cause the weather conditions to be depicted in dark colors and dark mode to be on
+- During nighttime, the sun is down, so the weather condition is depicted using dark colors and the dark mode is on
 
-¹If set to “Follow system”, pick the current system dark mode to read this table
+By default, the **Location-based dark mode** preference is set **Always dark when app is in dark mode**, so that users with accessibility needs are not affected by bright colors, but we recommend setting it to **Follow day/night** for a more accurate weather-condition representation, if you can.
 
-This animation is dynamic by default, but you can choose a static one in the settings (Appearance).
+Summary:
+
+| App dark mode¹ | Location-based dark mode             | Theme when sun is up | Theme when sun is down |
+|----------------|--------------------------------------|----------------------|------------------------|
+| Light          | Follow day/night                     | Light                | Dark                   |
+| Light          | Always dark when app is in dark mode | Light                | Dark                   |
+| Dark           | Follow day/night                     | Light                | Dark                   |
+| Dark           | Always dark when app is in dark mode | Dark (solar eclipse) | Dark                   |
+
+¹If set to **Follow system**, pick the current system dark mode
+
+In `Settings` > `Main screen`, you’ll find several options for customizing the background behavior:
+- **Weather-based background** lets you replace the theme with a static white or black background with no animations
+- **Background animation** lets you decide if you want the elements (sun, clouds, etc.) to animate or remain static
+- **Gravity sensor** lets you decide if you want the elements (sun, clouds, etc.) to move when you tilt your device
 
 
 ## App bar
@@ -45,7 +60,7 @@ Just below, you can see the last time of refresh.
 Above weather blocks, you have details about current weather:
 
 - A description of the current weather condition
-- Temperature. When entering screen, this will animate from previous location’s temperature (or 0° if just opening the app) to the current location’s temperature, for a duration of 1 to 2 seconds depending on the temperature difference. This animation can be disabled in Settings > Main screen > Other element animations.
+- Temperature. When entering screen, this will animate from previous location’s temperature (or 0° if just opening the app) to the current location’s temperature, for a duration of 1 to 2 seconds depending on the temperature difference. This animation can be disabled in `Settings` > `Main screen` > `Other element animations`.
 - (If different from temperature) Feels like temperature
 - The temperature for the current and next half days:
   - Before 06:00, it will show yesterday nighttime min temperature (if available), followed by today daytime max temperature
