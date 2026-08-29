@@ -5,12 +5,14 @@
 ### Summary
 
 Before you start any contribution:
+
 1. Make sure to choose an issue/idea tagged “Open to contributions”. Comment on that issue/idea that you want to work on it
-2. If you plan on using AI, make sure to read carefully the AI guidelines before starting any code writing. Mention in the linked issue/idea the tools you want to use and their license terms for redistribution. If you don’t plan on using any, mention it as well.
+2. If you plan on using AI, make sure to read carefully the AI guidelines before starting any code writing. Mention in the linked issue/idea the tools you want to use and their license terms for redistribution. **If you don’t plan on using any, mention it as well.**
 
 Wait for an [org member](https://github.com/orgs/breezy-weather/people) approval before you start working on it. We can understand you want to start working right away, but if you don’t wait for approval, you may waste your time if it’s not approved.
 
 When your contribution is ready:
+
 3. You ensure there is no linting issue
 4. Your code is up-to-date with current `main` branch
 5. Your patch contains 1 single commit
