@@ -18,6 +18,7 @@
 
 **Technical**
 - Remove support for Android 6
+- Target Android 17
 
 
 # Version 6.2.2 (2026-08-23)
