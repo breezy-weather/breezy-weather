@@ -8,7 +8,7 @@
 
 **Improvements and fixes
 - Main screen settings - You can now reset blocks, daily trends, hourly trends to default order
-- Main screen - Hourly wind: add gusts
+- Main screen - Add daily/hourly wind gusts in forecast blocks
 
 **Sources**
 - BMKG - Temporarily disable alert support

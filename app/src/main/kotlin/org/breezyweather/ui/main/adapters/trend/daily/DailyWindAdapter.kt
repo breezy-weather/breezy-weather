@@ -34,6 +34,7 @@ import org.breezyweather.common.options.appearance.DetailScreen
 import org.breezyweather.domain.weather.model.drawableArrow
 import org.breezyweather.domain.weather.model.getColor
 import org.breezyweather.domain.weather.model.getContentDescription
+import org.breezyweather.domain.weather.model.getGustsColor
 import org.breezyweather.ui.common.widgets.trend.TrendRecyclerView
 import org.breezyweather.ui.common.widgets.trend.chart.DoubleHistogramView
 import org.breezyweather.unit.speed.Speed.Companion.metersPerSecond
@@ -46,6 +47,8 @@ class DailyWindAdapter(
     location: Location,
 ) : AbsDailyTrendAdapter(activity, location) {
     private var mHighestWindSpeed = 15.metersPerSecond.inCentimetersPerSecond.toFloat() // TODO: Make this a const
+    private var mHasNotableDayGusts = false
+    private var mHasNotableNightGusts = false
 
     inner class ViewHolder(itemView: View) : AbsDailyTrendAdapter.ViewHolder(itemView) {
         private val mDoubleHistogramView = DoubleHistogramView(itemView.context)
@@ -65,9 +68,10 @@ class DailyWindAdapter(
                     .append(activity.getString(org.breezyweather.unit.R.string.locale_separator))
                     .append(activity.getString(R.string.daytime))
                     .append(activity.getString(R.string.colon_separator))
-                    .append(daily.day!!.wind!!.getContentDescription(activity))
+                    .append(daily.day!!.wind!!.getContentDescription(activity, withGusts = true))
             }
             val dayWindColor = daily.day?.wind?.getColor(activity) ?: Color.TRANSPARENT
+            val dayWindGustsColor = daily.day?.wind?.getGustsColor(activity)
             val dayIcon = daily.day?.wind?.drawableArrow?.let {
                 AppCompatResources.getDrawable(activity, it)
             }
@@ -75,18 +79,40 @@ class DailyWindAdapter(
             dailyItem.setDayIconDrawable(dayIcon, missingIconVisibility = View.INVISIBLE)
 
             val nightWindColor = daily.night?.wind?.getColor(activity) ?: Color.TRANSPARENT
+            val nightWindGustsColor = daily.night?.wind?.getGustsColor(activity)
+
+            val daySpeed = daily.day?.wind?.speed
+            val dayGusts = daily.day?.wind?.gusts
+            val dayGustsStr = when {
+                dayGusts != null && daySpeed != null && dayGusts > daySpeed -> dayGusts.formatValue(activity)
+                mHasNotableDayGusts -> "" // Reserve space so texts stay aligned across the trend
+                else -> null
+            }
+            val nightSpeed = daily.night?.wind?.speed
+            val nightGusts = daily.night?.wind?.gusts
+            val nightGustsStr = when {
+                nightGusts != null && nightSpeed != null && nightGusts > nightSpeed -> nightGusts.formatValue(activity)
+                mHasNotableNightGusts -> "" // Reserve space so texts stay aligned across the trend
+                else -> null
+            }
 
             mDoubleHistogramView.setData(
-                daily.day?.wind?.speed?.value?.toFloat() ?: 0f,
-                daily.night?.wind?.speed?.value?.toFloat() ?: 0f,
-                daily.day?.wind?.speed?.formatValue(activity),
-                daily.night?.wind?.speed?.formatValue(activity),
-                mHighestWindSpeed
+                daySpeed?.value?.toFloat() ?: 0f,
+                nightSpeed?.value?.toFloat() ?: 0f,
+                daySpeed?.formatValue(activity),
+                nightSpeed?.formatValue(activity),
+                mHighestWindSpeed,
+                dayGusts?.value?.toFloat(),
+                nightGusts?.value?.toFloat(),
+                dayGustsStr,
+                nightGustsStr
             )
             mDoubleHistogramView.setLineColors(
                 dayWindColor,
                 nightWindColor,
-                activity.getThemeColor(com.google.android.material.R.attr.colorOutline)
+                activity.getThemeColor(com.google.android.material.R.attr.colorOutline),
+                dayWindGustsColor ?: dayWindColor,
+                nightWindGustsColor ?: nightWindColor
             )
             mDoubleHistogramView.setTextColors(activity.getThemeColor(R.attr.colorBodyText))
             mDoubleHistogramView.setHistogramAlphas(1f, 0.5f)
@@ -96,7 +122,7 @@ class DailyWindAdapter(
                     .append(activity.getString(org.breezyweather.unit.R.string.locale_separator))
                     .append(activity.getString(R.string.nighttime))
                     .append(activity.getString(R.string.colon_separator))
-                    .append(daily.night!!.wind!!.getContentDescription(activity))
+                    .append(daily.night!!.wind!!.getContentDescription(activity, withGusts = true))
             }
             val nightIcon = daily.night?.wind?.drawableArrow?.let {
                 AppCompatResources.getDrawable(activity, it)
@@ -114,15 +140,25 @@ class DailyWindAdapter(
     init {
         maxOf(
             location.weather!!.dailyForecast
-                .mapNotNull { it.day?.wind?.speed?.value }
+                .flatMap { listOfNotNull(it.day?.wind?.speed?.value, it.day?.wind?.gusts?.value) }
                 .maxOrNull() ?: 0L,
             location.weather!!.dailyForecast
-                .mapNotNull { it.night?.wind?.speed?.value }
+                .flatMap { listOfNotNull(it.night?.wind?.speed?.value, it.night?.wind?.gusts?.value) }
                 .maxOrNull() ?: 0L
         ).let {
             if (it > mHighestWindSpeed) {
                 mHighestWindSpeed = it.toFloat()
             }
+        }
+        mHasNotableDayGusts = location.weather!!.dailyForecast.any {
+            it.day?.wind?.speed != null &&
+                it.day?.wind?.gusts != null &&
+                it.day!!.wind!!.gusts!! > it.day!!.wind!!.speed!!
+        }
+        mHasNotableNightGusts = location.weather!!.dailyForecast.any {
+            it.night?.wind?.speed != null &&
+                it.night?.wind?.gusts != null &&
+                it.night!!.wind!!.gusts!! > it.night!!.wind!!.speed!!
         }
     }
 

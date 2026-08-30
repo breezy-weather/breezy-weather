@@ -48,17 +48,44 @@ class DoubleHistogramView @JvmOverloads constructor(
     private var mHighestHistogramValue: Float? = null
     private var mHighHistogramY = 0
     private var mLowHistogramY = 0
-    private val mMargins: Int
+
+    // Optional secondary bar drawn behind the main bar, and an optional small
+    // rounded "pill" showing its value, drawn between the arrow icon and the speed text.
+    private var mHighSecondaryHistogramValue: Float? = null
+    private var mLowSecondaryHistogramValue: Float? = null
+    private var mHighSecondaryHistogramValueStr: String? = null
+    private var mLowSecondaryHistogramValueStr: String? = null
+    private var mHighSecondaryHistogramY = 0
+    private var mLowSecondaryHistogramY = 0
     private val mMarginCenter: Int
     override val marginTop: Int
-        get() = mMargins
+        get() = getContext().dpToPx(
+            if (mHighSecondaryHistogramValueStr != null) {
+                MARGIN_DIP + SECONDARY_HISTOGRAM_PILL_RESERVED_SPACE_DIP
+            } else {
+                MARGIN_DIP
+            }
+        ).toInt()
     override val marginBottom: Int
-        get() = mMargins
+        get() = getContext().dpToPx(
+            if (mLowSecondaryHistogramValueStr != null) {
+                MARGIN_DIP + SECONDARY_HISTOGRAM_PILL_RESERVED_SPACE_DIP
+            } else {
+                MARGIN_DIP
+            }
+        ).toInt()
+
     private val mHistogramWidth: Int
     private val mHistogramTextSize: Int
     private val mChartLineWith: Int
     private val mTextMargin: Int
-    private val mLineColors = intArrayOf(Color.BLACK, Color.DKGRAY, Color.LTGRAY)
+    private val mSecondaryHistogramPillTextSize: Int
+    private val mSecondaryHistogramPillPaddingHorizontal: Int
+    private val mSecondaryHistogramPillPaddingVertical: Int
+    private val mSecondaryHistogramPillMargin: Int
+
+    // 0 = day/high, 1 = night/low, 2 = sub line, 3 = day/high gusts, 4 = night/low gusts.
+    private val mLineColors = intArrayOf(Color.BLACK, Color.DKGRAY, Color.LTGRAY, Color.BLACK, Color.DKGRAY)
     private var mTextColor = 0
     private var mTextShadowColor = 0
 
@@ -67,12 +94,18 @@ class DoubleHistogramView @JvmOverloads constructor(
 
     init {
         setTextColors(Color.BLACK)
-        mMargins = getContext().dpToPx(MARGIN_DIP).toInt()
         mMarginCenter = getContext().dpToPx(MARGIN_CENTER_DIP).toInt()
         mHistogramWidth = getContext().dpToPx(HISTOGRAM_WIDTH_DIP).toInt()
         mHistogramTextSize = getContext().dpToPx(HISTOGRAM_TEXT_SIZE_DIP).toInt()
         mChartLineWith = getContext().dpToPx(CHART_LINE_SIZE_DIP).toInt()
         mTextMargin = getContext().dpToPx(TEXT_MARGIN_DIP).toInt()
+        mSecondaryHistogramPillTextSize = getContext().dpToPx(SECONDARY_HISTOGRAM_PILL_TEXT_SIZE_DIP).toInt()
+        mSecondaryHistogramPillPaddingHorizontal =
+            getContext().dpToPx(SECONDARY_HISTOGRAM_PILL_PADDING_HORIZONTAL_DIP).toInt()
+        mSecondaryHistogramPillPaddingVertical =
+            getContext().dpToPx(SECONDARY_HISTOGRAM_PILL_PADDING_VERTICAL_DIP).toInt()
+        mSecondaryHistogramPillMargin = getContext().dpToPx(SECONDARY_HISTOGRAM_PILL_MARGIN_DIP).toInt()
+
         mPaint.typeface = getContext().getTypefaceFromTextAppearance(R.style.title_text)
         mHistogramAlphas = floatArrayOf(1f, 1f)
     }
@@ -82,12 +115,32 @@ class DoubleHistogramView @JvmOverloads constructor(
         computeCoordinates()
         drawTimeLine(canvas)
         if (mHighestHistogramValue != null) {
+            if (mHighSecondaryHistogramValue != null &&
+                mHighHistogramValue != null &&
+                mHighSecondaryHistogramValue!! > mHighHistogramValue!! &&
+                mHighSecondaryHistogramValueStr != null
+            ) {
+                drawHighSecondaryHistogram(canvas)
+            }
+            if (mLowSecondaryHistogramValue != null &&
+                mLowHistogramValue != null &&
+                mLowSecondaryHistogramValue!! > mLowHistogramValue!! &&
+                mLowSecondaryHistogramValueStr != null
+            ) {
+                drawLowSecondaryHistogram(canvas)
+            }
             if (mHighHistogramValue != null && mHighHistogramValue != 0f && mHighHistogramValueStr != null) {
                 drawHighHistogram(canvas)
             }
             if (mLowHistogramValue != null && mLowHistogramValue != 0f && mLowHistogramValueStr != null) {
                 drawLowHistogram(canvas)
             }
+        }
+        if (!mHighSecondaryHistogramValueStr.isNullOrEmpty()) {
+            drawHighSecondaryHistogramPill(canvas)
+        }
+        if (!mLowSecondaryHistogramValueStr.isNullOrEmpty()) {
+            drawLowSecondaryHistogramPill(canvas)
         }
     }
 
@@ -97,11 +150,57 @@ class DoubleHistogramView @JvmOverloads constructor(
         mPaint.color = mLineColors[2]
         canvas.drawLine(
             measuredWidth / 2f,
-            mMargins.toFloat(),
+            marginTop.toFloat(),
             measuredWidth / 2f,
-            (measuredHeight - mMargins).toFloat(),
+            (measuredHeight - marginBottom).toFloat(),
             mPaint
         )
+    }
+
+    private fun drawHighSecondaryHistogram(canvas: Canvas) {
+        val cx = measuredWidth / 2f
+        val cy = measuredHeight / 2f - mMarginCenter / 2f
+
+        mPaint.apply {
+            style = Paint.Style.FILL
+            color = mLineColors[3]
+            alpha = (255 * SECONDARY_HISTOGRAM_ALPHA).toInt()
+        }
+        canvas.drawRoundRect(
+            RectF(
+                cx - mHistogramWidth / 2f,
+                mHighSecondaryHistogramY.toFloat(),
+                cx + mHistogramWidth / 2f,
+                cy
+            ),
+            mHistogramWidth / 2f,
+            mHistogramWidth / 2f,
+            mPaint
+        )
+        mPaint.alpha = 255
+    }
+
+    private fun drawLowSecondaryHistogram(canvas: Canvas) {
+        val cx = measuredWidth / 2f
+        val cy = measuredHeight / 2f + mMarginCenter / 2f
+
+        mPaint.apply {
+            style = Paint.Style.FILL
+            color = mLineColors[4]
+            alpha = (255 * SECONDARY_HISTOGRAM_ALPHA).toInt()
+        }
+        canvas.drawRoundRect(
+            RectF(
+                cx - mHistogramWidth / 2f,
+                cy,
+                cx + mHistogramWidth / 2f,
+                mLowSecondaryHistogramY.toFloat()
+            ),
+            mHistogramWidth / 2f,
+            mHistogramWidth / 2f,
+            mPaint
+        )
+        mPaint.alpha = 255
     }
 
     private fun drawHighHistogram(canvas: Canvas) {
@@ -140,7 +239,7 @@ class DoubleHistogramView @JvmOverloads constructor(
         canvas.drawText(
             mHighHistogramValueStr ?: "",
             cx,
-            mHighHistogramY - mPaint.fontMetrics.bottom - mTextMargin,
+            marginTop - mPaint.fontMetrics.bottom - mTextMargin,
             mPaint
         )
         mPaint.setShadowLayer(0f, 0f, 0f, Color.TRANSPARENT)
@@ -182,10 +281,82 @@ class DoubleHistogramView @JvmOverloads constructor(
         canvas.drawText(
             mLowHistogramValueStr ?: "",
             cx,
-            mLowHistogramY - mPaint.fontMetrics.top + mTextMargin,
+            (measuredHeight - marginBottom) - mPaint.fontMetrics.top + mTextMargin,
             mPaint
         )
         mPaint.setShadowLayer(0f, 0f, 0f, Color.TRANSPARENT)
+    }
+
+    private fun drawHighSecondaryHistogramPill(canvas: Canvas) {
+        val text = mHighSecondaryHistogramValueStr ?: return
+
+        mPaint.apply {
+            shader = null
+            style = Paint.Style.FILL
+            textAlign = Paint.Align.CENTER
+            textSize = mSecondaryHistogramPillTextSize.toFloat()
+            setShadowLayer(0f, 0f, 0f, Color.TRANSPARENT)
+        }
+        val fontMetrics = mPaint.fontMetrics
+        val textWidth = mPaint.measureText(text)
+        val pillHeight = fontMetrics.bottom - fontMetrics.top + 2f * mSecondaryHistogramPillPaddingVertical
+        val pillWidth = maxOf(pillHeight, textWidth + 2f * mSecondaryHistogramPillPaddingHorizontal)
+
+        val centerX = measuredWidth / 2f
+        val top = mSecondaryHistogramPillMargin.toFloat()
+        val bottom = top + pillHeight
+
+        mPaint.color = mLineColors[3]
+        canvas.drawRoundRect(
+            RectF(centerX - pillWidth / 2f, top, centerX + pillWidth / 2f, bottom),
+            pillHeight / 2f,
+            pillHeight / 2f,
+            mPaint
+        )
+
+        mPaint.color = Color.BLACK
+        canvas.drawText(
+            text,
+            centerX,
+            bottom - mSecondaryHistogramPillPaddingVertical - fontMetrics.bottom,
+            mPaint
+        )
+    }
+
+    private fun drawLowSecondaryHistogramPill(canvas: Canvas) {
+        val text = mLowSecondaryHistogramValueStr ?: return
+
+        mPaint.apply {
+            shader = null
+            style = Paint.Style.FILL
+            textAlign = Paint.Align.CENTER
+            textSize = mSecondaryHistogramPillTextSize.toFloat()
+            setShadowLayer(0f, 0f, 0f, Color.TRANSPARENT)
+        }
+        val fontMetrics = mPaint.fontMetrics
+        val textWidth = mPaint.measureText(text)
+        val pillHeight = fontMetrics.bottom - fontMetrics.top + 2f * mSecondaryHistogramPillPaddingVertical
+        val pillWidth = maxOf(pillHeight, textWidth + 2f * mSecondaryHistogramPillPaddingHorizontal)
+
+        val centerX = measuredWidth / 2f
+        val bottom = (measuredHeight - mSecondaryHistogramPillMargin).toFloat()
+        val top = bottom - pillHeight
+
+        mPaint.color = mLineColors[4]
+        canvas.drawRoundRect(
+            RectF(centerX - pillWidth / 2f, top, centerX + pillWidth / 2f, bottom),
+            pillHeight / 2f,
+            pillHeight / 2f,
+            mPaint
+        )
+
+        mPaint.color = Color.BLACK
+        canvas.drawText(
+            text,
+            centerX,
+            bottom - mSecondaryHistogramPillPaddingVertical - fontMetrics.bottom,
+            mPaint
+        )
     }
 
     // control.
@@ -195,12 +366,20 @@ class DoubleHistogramView @JvmOverloads constructor(
         highHistogramValueStr: String?,
         lowHistogramValueStr: String?,
         highestHistogramValue: Float?,
+        highSecondaryHistogramValue: Float? = null,
+        lowSecondaryHistogramValue: Float? = null,
+        highSecondaryHistogramValueStr: String? = null,
+        lowSecondaryHistogramValueStr: String? = null,
     ) {
         mHighHistogramValue = highHistogramValues
         mLowHistogramValue = lowHistogramValues
         mHighHistogramValueStr = highHistogramValueStr
         mLowHistogramValueStr = lowHistogramValueStr
         mHighestHistogramValue = highestHistogramValue
+        mHighSecondaryHistogramValue = highSecondaryHistogramValue
+        mLowSecondaryHistogramValue = lowSecondaryHistogramValue
+        mHighSecondaryHistogramValueStr = highSecondaryHistogramValueStr
+        mLowSecondaryHistogramValueStr = lowSecondaryHistogramValueStr
         invalidate()
     }
 
@@ -208,10 +387,14 @@ class DoubleHistogramView @JvmOverloads constructor(
         @ColorInt colorHigh: Int,
         @ColorInt colorLow: Int,
         @ColorInt colorSubLine: Int,
+        @ColorInt secondaryColorHigh: Int? = null,
+        @ColorInt secondaryColorLow: Int? = null,
     ) {
         mLineColors[0] = colorHigh
         mLineColors[1] = colorLow
         mLineColors[2] = colorSubLine
+        mLineColors[3] = secondaryColorHigh ?: colorHigh
+        mLineColors[4] = secondaryColorLow ?: colorLow
         invalidate()
     }
 
@@ -226,16 +409,31 @@ class DoubleHistogramView @JvmOverloads constructor(
     }
 
     private fun computeCoordinates() {
-        val canvasHeight = (measuredHeight - mMargins * 2 - mMarginCenter) / 2f
         val cy = measuredHeight / 2f
+        val topCanvasHeight = cy - mMarginCenter / 2f - marginTop
+        val bottomCanvasHeight = (measuredHeight - marginBottom) - (cy + mMarginCenter / 2f)
         if (mHighestHistogramValue != null) {
             if (mHighHistogramValue != null) {
                 mHighHistogramY =
-                    (cy - mMarginCenter / 2f - canvasHeight * mHighHistogramValue!! / mHighestHistogramValue!!).toInt()
+                    (cy - mMarginCenter / 2f - topCanvasHeight * mHighHistogramValue!! / mHighestHistogramValue!!)
+                        .toInt()
             }
             if (mLowHistogramValue != null) {
                 mLowHistogramY =
-                    (cy + mMarginCenter / 2f + canvasHeight * mLowHistogramValue!! / mHighestHistogramValue!!).toInt()
+                    (cy + mMarginCenter / 2f + bottomCanvasHeight * mLowHistogramValue!! / mHighestHistogramValue!!)
+                        .toInt()
+            }
+            if (mHighSecondaryHistogramValue != null) {
+                mHighSecondaryHistogramY = (
+                    cy - mMarginCenter / 2f -
+                        topCanvasHeight * mHighSecondaryHistogramValue!! / mHighestHistogramValue!!
+                    ).toInt()
+            }
+            if (mLowSecondaryHistogramValue != null) {
+                mLowSecondaryHistogramY = (
+                    cy + mMarginCenter / 2f +
+                        bottomCanvasHeight * mLowSecondaryHistogramValue!! / mHighestHistogramValue!!
+                    ).toInt()
             }
         }
     }
@@ -247,5 +445,14 @@ class DoubleHistogramView @JvmOverloads constructor(
         private const val HISTOGRAM_TEXT_SIZE_DIP = 14f
         private const val CHART_LINE_SIZE_DIP = 1f
         private const val TEXT_MARGIN_DIP = 2f
+
+        private const val SECONDARY_HISTOGRAM_PILL_TEXT_SIZE_DIP = 10f
+        private const val SECONDARY_HISTOGRAM_PILL_PADDING_HORIZONTAL_DIP = 6f
+        private const val SECONDARY_HISTOGRAM_PILL_PADDING_VERTICAL_DIP = 3f
+        private const val SECONDARY_HISTOGRAM_PILL_MARGIN_DIP = 2f
+        private const val SECONDARY_HISTOGRAM_PILL_RESERVED_SPACE_DIP =
+            SECONDARY_HISTOGRAM_PILL_TEXT_SIZE_DIP + 2 * SECONDARY_HISTOGRAM_PILL_PADDING_VERTICAL_DIP +
+                SECONDARY_HISTOGRAM_PILL_MARGIN_DIP + 4f
+        private const val SECONDARY_HISTOGRAM_ALPHA = 0.3f
     }
 }
