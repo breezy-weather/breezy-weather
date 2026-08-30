@@ -11,6 +11,7 @@
 - Main screen - Forecast charts - Add daily/hourly wind gusts
 - Main screen - Forecast charts - Remove excessive margin at the top of some charts
 - Main screen - Forecast charts - Make threshold lines draw on top of chart instead of behind
+- Main screen - Forecast charts - Accessibility: texts will now take into account system font scale
 
 **Sources**
 - BMKG - Temporarily disable alert support

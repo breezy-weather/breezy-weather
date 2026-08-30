@@ -26,6 +26,7 @@ import androidx.annotation.ColorInt
 import androidx.annotation.Size
 import org.breezyweather.R
 import org.breezyweather.common.extensions.dpToPx
+import org.breezyweather.common.extensions.fontScaleToApply
 import org.breezyweather.common.extensions.getTypefaceFromTextAppearance
 
 /**
@@ -65,7 +66,7 @@ class DoubleHistogramView @JvmOverloads constructor(
             } else {
                 MARGIN_DIP
             }
-        ).toInt()
+        ).times(getContext().fontScaleToApply).toInt()
     override val marginBottom: Int
         get() = getContext().dpToPx(
             if (mLowSecondaryHistogramValueStr != null) {
@@ -73,7 +74,7 @@ class DoubleHistogramView @JvmOverloads constructor(
             } else {
                 MARGIN_DIP
             }
-        ).toInt()
+        ).times(getContext().fontScaleToApply).toInt()
 
     private val mHistogramWidth: Int
     private val mHistogramTextSize: Int
@@ -96,10 +97,12 @@ class DoubleHistogramView @JvmOverloads constructor(
         setTextColors(Color.BLACK)
         mMarginCenter = getContext().dpToPx(MARGIN_CENTER_DIP).toInt()
         mHistogramWidth = getContext().dpToPx(HISTOGRAM_WIDTH_DIP).toInt()
-        mHistogramTextSize = getContext().dpToPx(HISTOGRAM_TEXT_SIZE_DIP).toInt()
+        mHistogramTextSize = getContext().dpToPx(HISTOGRAM_TEXT_SIZE_DIP)
+            .times(getContext().fontScaleToApply).toInt()
         mChartLineWith = getContext().dpToPx(CHART_LINE_SIZE_DIP).toInt()
         mTextMargin = getContext().dpToPx(TEXT_MARGIN_DIP).toInt()
-        mSecondaryHistogramPillTextSize = getContext().dpToPx(SECONDARY_HISTOGRAM_PILL_TEXT_SIZE_DIP).toInt()
+        mSecondaryHistogramPillTextSize = getContext().dpToPx(SECONDARY_HISTOGRAM_PILL_TEXT_SIZE_DIP)
+            .times(getContext().fontScaleToApply).toInt()
         mSecondaryHistogramPillPaddingHorizontal =
             getContext().dpToPx(SECONDARY_HISTOGRAM_PILL_PADDING_HORIZONTAL_DIP).toInt()
         mSecondaryHistogramPillPaddingVertical =

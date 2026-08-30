@@ -25,6 +25,7 @@ import androidx.annotation.ColorInt
 import androidx.core.view.isNotEmpty
 import org.breezyweather.R
 import org.breezyweather.common.extensions.dpToPx
+import org.breezyweather.common.extensions.fontScaleToApply
 import org.breezyweather.common.extensions.getTypefaceFromTextAppearance
 import org.breezyweather.ui.common.widgets.trend.item.AbsTrendItemView
 import org.breezyweather.ui.main.widgets.NestedHorizontalRecyclerView
@@ -70,7 +71,8 @@ class TrendRecyclerView @JvmOverloads constructor(
     init {
         setWillNotDraw(false)
         mPaint.typeface = getContext().getTypefaceFromTextAppearance(R.style.subtitle_text)
-        mTextSize = getContext().dpToPx(TEXT_SIZE_DIP.toFloat()).toInt()
+        mTextSize = getContext().dpToPx(TEXT_SIZE_DIP.toFloat())
+            .times(getContext().fontScaleToApply).toInt()
         mTextMargin = getContext().dpToPx(TEXT_MARGIN_DIP.toFloat()).toInt()
         mLineWidth = getContext().dpToPx(LINE_WIDTH_DIP.toFloat()).toInt()
         mDrawingBoundaryTop = -1

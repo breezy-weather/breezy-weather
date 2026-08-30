@@ -31,6 +31,7 @@ import androidx.annotation.Size
 import androidx.core.graphics.ColorUtils
 import org.breezyweather.R
 import org.breezyweather.common.extensions.dpToPx
+import org.breezyweather.common.extensions.fontScaleToApply
 import org.breezyweather.common.extensions.getTypefaceFromTextAppearance
 import org.breezyweather.ui.common.widgets.DayNightShaderWrapper
 
@@ -97,14 +98,17 @@ class PolylineAndHistogramView @JvmOverloads constructor(
             } else {
                 MARGIN_BOTTOM_DIP // Makes the histogram value the last element drawn
             }
-        ).toInt()
+        ).times(getContext().fontScaleToApply).toInt()
 
     init {
         setTextColors(Color.BLACK, Color.DKGRAY, Color.GRAY)
         setHistogramAlpha(0.33f)
-        marginTop = getContext().dpToPx(if (hasTopPolylineLabel) MARGIN_TOP_DIP else MARGIN_TOP_COMPACT_DIP).toInt()
-        mPolylineTextSize = getContext().dpToPx(POLYLINE_TEXT_SIZE_DIP).toInt()
-        mHistogramTextSize = getContext().dpToPx(HISTOGRAM_TEXT_SIZE_DIP).toInt()
+        marginTop = getContext().dpToPx(if (hasTopPolylineLabel) MARGIN_TOP_DIP else MARGIN_TOP_COMPACT_DIP)
+            .times(getContext().fontScaleToApply).toInt()
+        mPolylineTextSize = getContext().dpToPx(POLYLINE_TEXT_SIZE_DIP)
+            .times(getContext().fontScaleToApply).toInt()
+        mHistogramTextSize = getContext().dpToPx(HISTOGRAM_TEXT_SIZE_DIP)
+            .times(getContext().fontScaleToApply).toInt()
         mPolylineWidth = getContext().dpToPx(POLYLINE_SIZE_DIP).toInt()
         mHistogramWidth = getContext().dpToPx(HISTOGRAM_WIDTH_DIP).toInt()
         mChartLineWidth = getContext().dpToPx(CHART_LINE_SIZE_DIP).toInt()
