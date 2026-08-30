@@ -96,10 +96,12 @@ fun DetailsVisibility(
     modifier: Modifier = Modifier,
 ) {
     val mappedValues = remember(hourlyList) {
-        hourlyList
-            .filter { it.visibility != null }
-            .associate { it.date.time to it.visibility!! }
-            .toImmutableMap()
+        buildMap(hourlyList.size) {
+            hourlyList.forEach { hourly ->
+                val visibility = hourly.visibility ?: return@forEach
+                put(hourly.date.time, visibility)
+            }
+        }.toImmutableMap()
     }
     var activeItem: Pair<Date, Distance>? by remember { mutableStateOf(null) }
     val markerVisibilityListener = remember {
@@ -302,7 +304,7 @@ private fun VisibilityChart(
 
     val modelProducer = remember { CartesianChartModelProducer() }
 
-    LaunchedEffect(location) {
+    LaunchedEffect(mappedValues) {
         modelProducer.runTransaction {
             lineSeries {
                 series(
@@ -337,8 +339,10 @@ private fun VisibilityChart(
                 )
             )
         },
-        topAxisValueFormatter = { _, value, _ ->
-            mappedValues.getOrElse(value.toLong()) { null }?.formatValue(context) ?: "-"
+        topAxisValueFormatter = remember(mappedValues) {
+            { _, value, _ ->
+                mappedValues.getOrElse(value.toLong()) { null }?.formatValue(context) ?: "-"
+            }
         },
         endAxisItemPlacer = remember { VerticalAxis.ItemPlacer.step({ step }) },
         markerVisibilityListener = markerVisibilityListener

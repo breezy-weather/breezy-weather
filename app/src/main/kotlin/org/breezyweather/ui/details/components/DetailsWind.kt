@@ -115,10 +115,14 @@ fun DetailsWind(
     modifier: Modifier = Modifier,
 ) {
     val mappedValues = remember(hourlyList) {
-        hourlyList
-            .filter { it.wind?.speed != null }
-            .associate { it.date.time to it.wind!! }
-            .toImmutableMap()
+        buildMap(hourlyList.size) {
+            hourlyList.forEach { hourly ->
+                val wind = hourly.wind ?: return@forEach
+                if (wind.speed != null) {
+                    put(hourly.date.time, wind)
+                }
+            }
+        }.toImmutableMap()
     }
     var activeItem: Pair<Date, Wind>? by remember { mutableStateOf(null) }
     val markerVisibilityListener = remember {
@@ -349,7 +353,7 @@ private fun WindChart(
 
     val modelProducer = remember { CartesianChartModelProducer() }
 
-    LaunchedEffect(location) {
+    LaunchedEffect(mappedValues) {
         modelProducer.runTransaction {
             lineSeries {
                 series(
@@ -452,27 +456,29 @@ private fun WindChart(
                 )
             )
         },
-        topAxisValueFormatter = { _, value, _ ->
-            mappedValues.getOrElse(value.toLong()) { null }?.let { wind ->
-                if (wind.degree == null) {
-                    "-"
-                } else {
-                    val d = AppCompatResources.getDrawable(context, wind.drawableArrow!!)
-                    if (d != null) {
-                        val ss = SpannableString("abc")
-                        d.setBounds(0, 0, context.dpToPx(18f).roundToInt(), context.dpToPx(18f).roundToInt())
-                        d.colorFilter = PorterDuffColorFilter(
-                            iconColor.toArgb(),
-                            PorterDuff.Mode.SRC_ATOP
-                        )
-                        val span = ImageSpan(d, ImageSpan.ALIGN_BASELINE)
-                        ss.setSpan(span, 0, 3, Spannable.SPAN_INCLUSIVE_EXCLUSIVE)
-                        ss
+        topAxisValueFormatter = remember(mappedValues) {
+            { _, value, _ ->
+                mappedValues.getOrElse(value.toLong()) { null }?.let { wind ->
+                    if (wind.degree == null) {
+                        "-"
                     } else {
-                        wind.arrow ?: "-"
+                        val d = AppCompatResources.getDrawable(context, wind.drawableArrow!!)
+                        if (d != null) {
+                            val ss = SpannableString("abc")
+                            d.setBounds(0, 0, context.dpToPx(18f).roundToInt(), context.dpToPx(18f).roundToInt())
+                            d.colorFilter = PorterDuffColorFilter(
+                                iconColor.toArgb(),
+                                PorterDuff.Mode.SRC_ATOP
+                            )
+                            val span = ImageSpan(d, ImageSpan.ALIGN_BASELINE)
+                            ss.setSpan(span, 0, 3, Spannable.SPAN_INCLUSIVE_EXCLUSIVE)
+                            ss
+                        } else {
+                            wind.arrow ?: "-"
+                        }
                     }
-                }
-            } ?: "-"
+                } ?: "-"
+            }
         },
         trendHorizontalLines = buildMap {
             if (maxY > 7.beaufort.toDouble(speedUnit)) {

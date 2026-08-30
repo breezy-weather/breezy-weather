@@ -103,6 +103,7 @@ import org.breezyweather.common.extensions.toBitmap
 import org.breezyweather.common.extensions.toDate
 import org.breezyweather.common.options.appearance.DetailScreen
 import org.breezyweather.domain.settings.SettingsManager
+import org.breezyweather.domain.weather.model.getConcentration
 import org.breezyweather.ui.common.charts.BreezyLineChart
 import org.breezyweather.ui.common.charts.TimeTopAxisItemPlacer
 import org.breezyweather.ui.common.widgets.AnimatableIconView
@@ -135,17 +136,19 @@ fun DetailsConditions(
         SettingsManager.getInstance(context).getTemperatureUnit(context)
     }
     val mappedValues = remember(hourlyList, selectedChart) {
-        hourlyList
-            .filter {
-                it.temperature?.temperature != null &&
+        buildMap(hourlyList.size) {
+            hourlyList.forEach { hourly ->
+                val isValid = hourly.temperature?.temperature != null &&
                     if (selectedChart != DetailScreen.TAG_FEELS_LIKE) {
                         true
                     } else {
-                        it.temperature?.feelsLikeTemperature != null
+                        hourly.temperature?.feelsLikeTemperature != null
                     }
+                if (isValid) {
+                    put(hourly.date.time, hourly)
+                }
             }
-            .associateBy { it.date.time }
-            .toImmutableMap()
+        }.toImmutableMap()
     }
     var activeItem: Pair<Date, Hourly>? by remember { mutableStateOf(null) }
     val markerVisibilityListener = remember {
@@ -169,10 +172,12 @@ fun DetailsConditions(
     }
 
     val mappedProbabilityValues = remember(hourlyList) {
-        hourlyList
-            .filter { it.precipitationProbability?.total != null }
-            .associate { it.date.time to it.precipitationProbability!!.total!! }
-            .toImmutableMap()
+        buildMap(hourlyList.size) {
+            hourlyList.forEach { hourly ->
+                val precipitationProbabilityTotal = hourly.precipitationProbability?.total ?: return@forEach
+                put(hourly.date.time, precipitationProbabilityTotal)
+            }
+        }.toImmutableMap()
     }
     var activeProbabilityItem: Pair<Date, Ratio>? by remember { mutableStateOf(null) }
     val probabilityMarkerVisibilityListener = remember {
@@ -810,7 +815,7 @@ private fun TemperatureChart(
 
     val modelProducer = remember { CartesianChartModelProducer() }
 
-    LaunchedEffect(location, showRealTemp) {
+    LaunchedEffect(mappedValues, showRealTemp) {
         modelProducer.runTransaction {
             lineSeries {
                 series(
@@ -871,17 +876,19 @@ private fun TemperatureChart(
                 )
             )
         },
-        topAxisValueFormatter = { _, value, _ ->
-            mappedValues.getOrElse(value.toLong()) { null }?.let { hourly ->
-                hourly.weatherCode?.let {
-                    val ss = SpannableString("abc")
-                    val d = ResourceHelper.getWeatherIcon(provider, it, hourly.isDaylight)
-                    d.setBounds(0, 0, context.dpToPx(18f).roundToInt(), context.dpToPx(18f).roundToInt())
-                    val span = ImageSpan(d, ImageSpan.ALIGN_BASELINE)
-                    ss.setSpan(span, 0, 3, Spannable.SPAN_INCLUSIVE_EXCLUSIVE)
-                    ss
-                }
-            } ?: "-"
+        topAxisValueFormatter = remember(mappedValues) {
+            { _, value, _ ->
+                mappedValues.getOrElse(value.toLong()) { null }?.let { hourly ->
+                    hourly.weatherCode?.let {
+                        val ss = SpannableString("abc")
+                        val d = ResourceHelper.getWeatherIcon(provider, it, hourly.isDaylight)
+                        d.setBounds(0, 0, context.dpToPx(18f).roundToInt(), context.dpToPx(18f).roundToInt())
+                        val span = ImageSpan(d, ImageSpan.ALIGN_BASELINE)
+                        ss.setSpan(span, 0, 3, Spannable.SPAN_INCLUSIVE_EXCLUSIVE)
+                        ss
+                    }
+                } ?: "-"
+            }
         },
         trendHorizontalLines = buildMap {
             normals?.let {

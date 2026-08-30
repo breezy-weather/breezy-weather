@@ -176,7 +176,7 @@ fun EphemerisChart(
 
     val modelProducer = remember { CartesianChartModelProducer() }
 
-    LaunchedEffect(location) {
+    LaunchedEffect(mappedMoonValues, mappedSunValues) {
         modelProducer.runTransaction {
             lineSeries {
                 if (mappedMoonValues.isNotEmpty()) {

@@ -88,10 +88,12 @@ fun DetailsHumidity(
     val context = LocalContext.current
     val temperatureUnit = SettingsManager.getInstance(context).getTemperatureUnit(context)
     val mappedHumidityValues = remember(hourlyList) {
-        hourlyList
-            .filter { it.relativeHumidity != null }
-            .associate { it.date.time to it.relativeHumidity!! }
-            .toImmutableMap()
+        buildMap(hourlyList.size) {
+            hourlyList.forEach { hourly ->
+                val relativeHumidity = hourly.relativeHumidity ?: return@forEach
+                put(hourly.date.time, relativeHumidity)
+            }
+        }.toImmutableMap()
     }
     var activeHumidityItem: Pair<Date, Ratio>? by remember { mutableStateOf(null) }
     val humidityMarkerVisibilityListener = remember {
@@ -115,10 +117,12 @@ fun DetailsHumidity(
     }
 
     val mappedDewPointValues = remember(hourlyList) {
-        hourlyList
-            .filter { it.dewPoint != null }
-            .associate { it.date.time to it.dewPoint!! }
-            .toImmutableMap()
+        buildMap(hourlyList.size) {
+            hourlyList.forEach { hourly ->
+                val dewPoint = hourly.dewPoint ?: return@forEach
+                put(hourly.date.time, dewPoint)
+            }
+        }.toImmutableMap()
     }
     var activeDewPointItem: Pair<Date, Temperature>? by remember { mutableStateOf(null) }
     val dewPointMarkerVisibilityListener = remember {
@@ -306,7 +310,7 @@ private fun HumidityChart(
 
     val modelProducer = remember { CartesianChartModelProducer() }
 
-    LaunchedEffect(location) {
+    LaunchedEffect(mappedValues) {
         modelProducer.runTransaction {
             lineSeries {
                 series(
@@ -346,8 +350,10 @@ private fun HumidityChart(
                 )
             )
         },
-        topAxisValueFormatter = { _, value, _ ->
-            mappedValues.getOrElse(value.toLong()) { null }?.formatPercent(context, UnitWidth.NARROW) ?: "-"
+        topAxisValueFormatter = remember(mappedValues) {
+            { _, value, _ ->
+                mappedValues.getOrElse(value.toLong()) { null }?.formatPercent(context, UnitWidth.NARROW) ?: "-"
+            }
         },
         endAxisItemPlacer = remember { VerticalAxis.ItemPlacer.step({ 20.0 }) }, // Every 20 %
         markerVisibilityListener = markerVisibilityListener
@@ -466,7 +472,7 @@ private fun DewPointChart(
 
     val modelProducer = remember { CartesianChartModelProducer() }
 
-    LaunchedEffect(location) {
+    LaunchedEffect(mappedValues) {
         modelProducer.runTransaction {
             lineSeries {
                 series(
@@ -509,13 +515,15 @@ private fun DewPointChart(
                 )
             )
         },
-        topAxisValueFormatter = { _, value, _ ->
-            mappedValues.getOrElse(value.toLong()) { null }?.formatMeasure(
-                context,
-                temperatureUnit,
-                valueWidth = UnitWidth.NARROW,
-                unitWidth = UnitWidth.NARROW
-            ) ?: "-"
+        topAxisValueFormatter = remember(mappedValues) {
+            { _, value, _ ->
+                mappedValues.getOrElse(value.toLong()) { null }?.formatMeasure(
+                    context,
+                    temperatureUnit,
+                    valueWidth = UnitWidth.NARROW,
+                    unitWidth = UnitWidth.NARROW
+                ) ?: "-"
+            }
         },
         minY = minY,
         endAxisItemPlacer = remember { VerticalAxis.ItemPlacer.step({ step }) },

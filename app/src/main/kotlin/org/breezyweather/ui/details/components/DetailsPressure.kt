@@ -95,10 +95,12 @@ fun DetailsPressure(
     modifier: Modifier = Modifier,
 ) {
     val mappedValues = remember(hourlyList) {
-        hourlyList
-            .filter { it.pressure != null }
-            .associate { it.date.time to it.pressure!! }
-            .toImmutableMap()
+        buildMap(hourlyList.size) {
+            hourlyList.forEach { hourly ->
+                val pressure = hourly.pressure ?: return@forEach
+                put(hourly.date.time, pressure)
+            }
+        }.toImmutableMap()
     }
     var activeItem: Pair<Date, Pressure>? by remember { mutableStateOf(null) }
     val markerVisibilityListener = remember {
@@ -247,7 +249,7 @@ private fun PressureChart(
 
     val modelProducer = remember { CartesianChartModelProducer() }
 
-    LaunchedEffect(location) {
+    LaunchedEffect(mappedValues) {
         modelProducer.runTransaction {
             lineSeries {
                 series(
@@ -295,41 +297,43 @@ private fun PressureChart(
                 context.getString(R.string.pressure_standard)
         ),
         minY = minY,
-        topAxisValueFormatter = { _, value, _ ->
-            val currentIndex = mappedValues.keys.indexOfFirst { it == value.toLong() }.let {
-                if (it == 0) 1 else it
-            }
-            if (currentIndex > 0) {
-                val previousValue = mappedValues.values.elementAt(currentIndex - 1)
-                val currentValue = mappedValues.values.elementAt(currentIndex)
-                val trendIcon = with(currentValue.value - previousValue.value) {
-                    when {
-                        // Take into account the trend if the difference is of at least 0.5
-                        this >= 0.5 -> R.drawable.ic_arrow_upward_alt
-                        this <= -0.5 -> R.drawable.ic_arrow_downward_alt
-                        else -> R.drawable.ic_equal
-                    }
+        topAxisValueFormatter = remember(mappedValues) {
+            { _, value, _ ->
+                val currentIndex = mappedValues.keys.indexOfFirst { it == value.toLong() }.let {
+                    if (it == 0) 1 else it
                 }
-                val d = AppCompatResources.getDrawable(context, trendIcon)
-                if (d != null) {
-                    val ss = SpannableString("abc")
-                    d.setBounds(0, 0, context.dpToPx(18f).roundToInt(), context.dpToPx(18f).roundToInt())
-                    d.colorFilter = PorterDuffColorFilter(
-                        iconColor.toArgb(),
-                        PorterDuff.Mode.SRC_ATOP
-                    )
-                    val span = ImageSpan(d, ImageSpan.ALIGN_BASELINE)
-                    ss.setSpan(span, 0, 3, Spannable.SPAN_INCLUSIVE_EXCLUSIVE)
-                    ss
+                if (currentIndex > 0) {
+                    val previousValue = mappedValues.values.elementAt(currentIndex - 1)
+                    val currentValue = mappedValues.values.elementAt(currentIndex)
+                    val trendIcon = with(currentValue.value - previousValue.value) {
+                        when {
+                            // Take into account the trend if the difference is of at least 0.5
+                            this >= 0.5 -> R.drawable.ic_arrow_upward_alt
+                            this <= -0.5 -> R.drawable.ic_arrow_downward_alt
+                            else -> R.drawable.ic_equal
+                        }
+                    }
+                    val d = AppCompatResources.getDrawable(context, trendIcon)
+                    if (d != null) {
+                        val ss = SpannableString("abc")
+                        d.setBounds(0, 0, context.dpToPx(18f).roundToInt(), context.dpToPx(18f).roundToInt())
+                        d.colorFilter = PorterDuffColorFilter(
+                            iconColor.toArgb(),
+                            PorterDuff.Mode.SRC_ATOP
+                        )
+                        val span = ImageSpan(d, ImageSpan.ALIGN_BASELINE)
+                        ss.setSpan(span, 0, 3, Spannable.SPAN_INCLUSIVE_EXCLUSIVE)
+                        ss
+                    } else {
+                        when (trendIcon) {
+                            R.drawable.ic_arrow_upward_alt -> "↑"
+                            R.drawable.ic_arrow_downward_alt -> "↓"
+                            else -> "="
+                        }
+                    }
                 } else {
-                    when (trendIcon) {
-                        R.drawable.ic_arrow_upward_alt -> "↑"
-                        R.drawable.ic_arrow_downward_alt -> "↓"
-                        else -> "="
-                    }
+                    "-"
                 }
-            } else {
-                "-"
             }
         },
         endAxisItemPlacer = remember { VerticalAxis.ItemPlacer.step({ chartStep }) },

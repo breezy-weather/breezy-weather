@@ -95,10 +95,12 @@ fun DetailsPrecipitation(
     modifier: Modifier = Modifier,
 ) {
     val mappedQuantityValues = remember(hourlyList) {
-        hourlyList
-            .filter { it.precipitation?.total != null }
-            .associate { it.date.time to it.precipitation!!.total!! }
-            .toImmutableMap()
+        buildMap(hourlyList.size) {
+            hourlyList.forEach { hourly ->
+                val precipitationTotal = hourly.precipitation?.total ?: return@forEach
+                put(hourly.date.time, precipitationTotal)
+            }
+        }.toImmutableMap()
     }
     var activeQuantityItem: Pair<Date, Precipitation>? by remember {
         mutableStateOf(null)
@@ -124,10 +126,12 @@ fun DetailsPrecipitation(
     }
 
     val mappedProbabilityValues = remember(hourlyList) {
-        hourlyList
-            .filter { it.precipitationProbability?.total != null }
-            .associate { it.date.time to it.precipitationProbability!!.total!! }
-            .toImmutableMap()
+        buildMap(hourlyList.size) {
+            hourlyList.forEach { hourly ->
+                val precipitationProbabilityTotal = hourly.precipitationProbability?.total ?: return@forEach
+                put(hourly.date.time, precipitationProbabilityTotal)
+            }
+        }.toImmutableMap()
     }
     var activeProbabilityItem: Pair<Date, Ratio>? by remember { mutableStateOf(null) }
     val probabilityMarkerVisibilityListener = remember {
@@ -355,7 +359,7 @@ internal fun PrecipitationChart(
 
     val modelProducer = remember { CartesianChartModelProducer() }
 
-    LaunchedEffect(location) {
+    LaunchedEffect(mappedValues) {
         modelProducer.runTransaction {
             columnSeries {
                 series(
@@ -597,7 +601,7 @@ internal fun PrecipitationProbabilityChart(
 
     val modelProducer = remember { CartesianChartModelProducer() }
 
-    LaunchedEffect(location) {
+    LaunchedEffect(mappedValues) {
         modelProducer.runTransaction {
             lineSeries {
                 series(

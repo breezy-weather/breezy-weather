@@ -71,6 +71,7 @@ import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.extensions.toDate
 import org.breezyweather.common.options.appearance.DetailScreen
 import org.breezyweather.common.utils.UnitUtils
+import org.breezyweather.domain.weather.model.getConcentration
 import org.breezyweather.domain.weather.model.getIndex
 import org.breezyweather.domain.weather.model.getLevel
 import org.breezyweather.domain.weather.model.getUVColor
@@ -91,10 +92,14 @@ fun DetailsUV(
     modifier: Modifier = Modifier,
 ) {
     val mappedValues = remember(hourlyList) {
-        hourlyList
-            .filter { it.uV?.isValid == true }
-            .associate { it.date.time to it.uV!! }
-            .toImmutableMap()
+        buildMap(hourlyList.size) {
+            hourlyList.forEach { hourly ->
+                val uV = hourly.uV ?: return@forEach
+                if (uV.isValid) {
+                    put(hourly.date.time, uV)
+                }
+            }
+        }.toImmutableMap()
     }
     var activeItem: Pair<Date, UV>? by remember { mutableStateOf(null) }
     val markerVisibilityListener = remember {
@@ -259,7 +264,7 @@ private fun UVChart(
 
     val modelProducer = remember { CartesianChartModelProducer() }
 
-    LaunchedEffect(location) {
+    LaunchedEffect(mappedValues) {
         modelProducer.runTransaction {
             lineSeries {
                 series(
@@ -294,10 +299,12 @@ private fun UVChart(
                 )
             )
         },
-        topAxisValueFormatter = { _, value, _ ->
-            mappedValues.getOrElse(value.toLong()) { null }?.index?.roundToInt()
-                ?.format(decimals = 0, locale = context.currentLocale)
-                ?: "-"
+        topAxisValueFormatter = remember(mappedValues) {
+            { _, value, _ ->
+                mappedValues.getOrElse(value.toLong()) { null }?.index?.roundToInt()
+                    ?.format(decimals = 0, locale = context.currentLocale)
+                    ?: "-"
+            }
         },
         trendHorizontalLines = persistentMapOf(
             UV.UV_INDEX_MIDDLE to context.getString(R.string.uv_alert_level)

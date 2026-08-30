@@ -72,6 +72,7 @@ import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.extensions.toDate
 import org.breezyweather.common.options.appearance.DetailScreen
+import org.breezyweather.domain.weather.model.getConcentration
 import org.breezyweather.domain.weather.model.getFullLabel
 import org.breezyweather.domain.weather.model.getRangeDescriptionSummary
 import org.breezyweather.domain.weather.model.getRangeSummary
@@ -93,10 +94,12 @@ fun DetailsCloudCover(
     modifier: Modifier = Modifier,
 ) {
     val mappedValues = remember(hourlyList) {
-        hourlyList
-            .filter { it.cloudCover != null }
-            .associate { it.date.time to it.cloudCover!! }
-            .toImmutableMap()
+        buildMap(hourlyList.size) {
+            hourlyList.forEach { hourly ->
+                val cloudCover = hourly.cloudCover ?: return@forEach
+                put(hourly.date.time, cloudCover)
+            }
+        }.toImmutableMap()
     }
     var activeItem: Pair<Date, Ratio>? by remember { mutableStateOf(null) }
     val markerVisibilityListener = remember {
@@ -266,7 +269,7 @@ private fun CloudCoverChart(
     val context = LocalContext.current
 
     val modelProducer = remember { CartesianChartModelProducer() }
-    LaunchedEffect(location) {
+    LaunchedEffect(mappedValues) {
         modelProducer.runTransaction {
             lineSeries {
                 series(
