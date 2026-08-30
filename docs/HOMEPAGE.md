@@ -269,6 +269,7 @@ From top to bottom:
 
 - Origin of the dominant wind of the hour (arrow icon)
 - Wind speed of the hour (text + bar)
+- *New in v6.2.3* Wind gusts if they are greater than wind speed of the hour (text in a pill + transparent bar behind the wind speed bar)
 
 Wind icons and speed bars have a different color according to Beaufort wind scale:
 

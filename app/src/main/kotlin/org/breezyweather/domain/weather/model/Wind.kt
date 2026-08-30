@@ -39,7 +39,17 @@ fun Wind.validate(): Wind {
 @ColorInt
 fun Wind.getColor(context: Context): Int {
     if (speed == null) return Color.TRANSPARENT
-    return when (speed!!.inBeaufort) {
+    return getBeaufortColor(context, speed!!.inBeaufort)
+}
+
+@ColorInt
+fun Wind.getGustsColor(context: Context): Int {
+    if (gusts == null) return Color.TRANSPARENT
+    return getBeaufortColor(context, gusts!!.inBeaufort)
+}
+
+internal fun getBeaufortColor(context: Context, bft: Int): Int {
+    return when (bft) {
         in 0..<4 -> ContextCompat.getColor(context, R.color.colorLevel_1)
         in 4..<6 -> ContextCompat.getColor(context, R.color.colorLevel_2)
         in 6..<8 -> ContextCompat.getColor(context, R.color.colorLevel_3)
