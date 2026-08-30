@@ -731,12 +731,12 @@
     <string name="pressure_rising">الصعود</string>
     <string name="pressure_steady">ثابت</string>
     <string name="pressure_standard">قياسي</string>
-    <string name="pressure_falling">يهبط</string>
+    <string name="pressure_falling">ينخفض</string>
     <string name="pressure_about">حول الضغط</string>
-    <string name="pressure_about_description1">الضغط الجوي هو الضغط الهابط الذي يمارسه الغلاف الجوي للأرض. يستخدم هذا التطبيق متوسط الضغط عند مستوى سطح البحر (MSLP) لتسهيل مقارنة الضغط بين الأماكن ذات الارتفاعات المختلفة.</string>
-    <string name="pressure_about_description2">تُستخدم التغيرات السريعة والملحوظة في الضغط للتنبؤ بتقلبات الطقس. فعلى سبيل المثال، قد يعني انخفاض الضغط اقتراب هطول الأمطار أو الثلوج، بينما قد يشير ارتفاع الضغط إلى تحسن الأحوال الجوية. كما يمكن أن يتسبب الضغط الجوي غير الطبيعي في حدوث صداع، وآلام في المفاصل، وإرهاق، وآثار أخرى.</string>
+    <string name="pressure_about_description1">الضغط الجوي هو الضغط المتجه إلى أسفل والذي يمارسه الغلاف الجوي للأرض. يستخدم هذا التطبيق متوسط الضغط عند مستوى سطح البحر (MSLP) لتسهيل مقارنة الضغط بين الأماكن ذات الارتفاعات المختلفة.</string>
+    <string name="pressure_about_description2">تُستخدم التغيرات السريعة والملحوظة في الضغط للتنبؤ بتغيرات الطقس. فعلى سبيل المثال، قد يعني انخفاض الضغط اقتراب هطول الأمطار أو الثلوج، بينما قد يشير ارتفاع الضغط إلى تحسن الأحوال الجوية. كما يمكن أن يتسبب الضغط الجوي غير الطبيعي في حدوث الصداع وآلام المفاصل والإرهاق وآثار أخرى.</string>
     <string name="visibility_about">حول الرؤية</string>
-    <string name="visibility_about_description">توضح لك الرؤية مدى البعد الذي يمكنك من خلاله رؤية الأشياء بوضوح مثل المباني والتلال. ويمكن أن تتأثر الرؤية بهطول الأمطار أو الضباب أو الغبار أو الدخان أو السديم.</string>
+    <string name="visibility_about_description">توضح الرؤية مدى البعد الذي يمكنك من خلاله رؤية الأشياء بوضوح، مثل المباني والتلال. ويمكن أن تتأثر الرؤية بهطول الأمطار أو الضباب أو الغبار أو الدخان أو العَجاج.</string>
     <string name="visibility_scale">مقياس الرؤية</string>
     <string name="visibility_from_to_number">%1$s إلى %2$s</string>
     <string name="visibility_from_to_description">%1$s إلى %2$s</string>
