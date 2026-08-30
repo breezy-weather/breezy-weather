@@ -56,7 +56,7 @@ class DailyFeelsLikeAdapter(
     private var mLowestTemperature: Float? = null
 
     inner class ViewHolder(itemView: View) : AbsDailyTrendAdapter.ViewHolder(itemView) {
-        private val mPolylineAndHistogramView = PolylineAndHistogramView(itemView.context)
+        private val mPolylineAndHistogramView = PolylineAndHistogramView(itemView.context, hasTopPolylineLabel = true)
 
         init {
             dailyItem.chartItemView = mPolylineAndHistogramView
