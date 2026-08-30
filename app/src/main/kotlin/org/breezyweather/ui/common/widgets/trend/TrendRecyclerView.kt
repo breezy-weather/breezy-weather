@@ -80,8 +80,8 @@ class TrendRecyclerView @JvmOverloads constructor(
         mKeyLineList = mutableListOf()
     }
 
-    override fun onDraw(canvas: Canvas) {
-        super.onDraw(canvas)
+    override fun dispatchDraw(canvas: Canvas) {
+        super.dispatchDraw(canvas)
         drawKeyLines(canvas)
     }
 
