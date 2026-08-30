@@ -41,6 +41,7 @@ class PolylineAndHistogramView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0,
+    hasTopPolylineLabel: Boolean = false,
 ) : AbsChartItemView(context, attrs, defStyleAttr) {
     private val mPaint = Paint().apply {
         strokeCap = Paint.Cap.ROUND
@@ -101,7 +102,7 @@ class PolylineAndHistogramView @JvmOverloads constructor(
     init {
         setTextColors(Color.BLACK, Color.DKGRAY, Color.GRAY)
         setHistogramAlpha(0.33f)
-        marginTop = getContext().dpToPx(MARGIN_TOP_DIP).toInt()
+        marginTop = getContext().dpToPx(if (hasTopPolylineLabel) MARGIN_TOP_DIP else MARGIN_TOP_COMPACT_DIP).toInt()
         mPolylineTextSize = getContext().dpToPx(POLYLINE_TEXT_SIZE_DIP).toInt()
         mHistogramTextSize = getContext().dpToPx(HISTOGRAM_TEXT_SIZE_DIP).toInt()
         mPolylineWidth = getContext().dpToPx(POLYLINE_SIZE_DIP).toInt()
@@ -615,6 +616,7 @@ class PolylineAndHistogramView @JvmOverloads constructor(
 
     companion object {
         private const val MARGIN_TOP_DIP = 24f
+        private const val MARGIN_TOP_COMPACT_DIP = 12f
         private const val MARGIN_BOTTOM_DIP = 36f
         private const val POLYLINE_SIZE_DIP = 5f
         private const val POLYLINE_TEXT_SIZE_DIP = 14f
