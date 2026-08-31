@@ -24,7 +24,7 @@
     <string name="visibility">الرؤية</string>
     <string name="dew_point">نقطة الندى</string>
     <string name="cloud_cover">الغطاء السحابي</string>
-    <string name="ceiling">الحد الأعلى</string>
+    <string name="ceiling">ارتفاع قاعدة السحب</string>
     <string name="settings_icon_packs_get_more">أحصل على المزيد</string>
     <string name="action_refresh">تحديث</string>
     <string name="action_restart">إعادة التشغيل</string>
@@ -81,7 +81,7 @@
     <string name="about_translators">المترجمون</string>
     <!-- feedback. -->
     <string name="location_message_failed_to_locate">فشل في العثور على الموقع</string>
-    <string name="weather_message_data_refresh_failed">فشل الحصول على البيانات</string>
+    <string name="weather_message_data_refresh_failed">فشل تحديث البيانات</string>
     <string name="location_dialog_failed_to_locate_action_select_source">استخدم خدمة موقع أخرى</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">أضف الموقع يدويًا واحذف ”%s“</string>
     <string name="widget_label_view_style">أسلوب العرض</string>
@@ -209,7 +209,7 @@
     <string name="settings_main_section_displayed_data">البيانات المعروضة</string>
     <string name="settings_main_daily_trends_title">التوقعات اليومية</string>
     <string name="widget_custom_subtitle_keyword_hd_description">وصف كل ساعة</string>
-    <string name="locations">المناطق</string>
+    <string name="locations">المواقع</string>
     <string name="location_message_search_failed">فشل البحث عن الموقع</string>
     <string name="location_message_permission_background_missing">إذن الوصول إلى الموقع في الخلفية مفقود</string>
     <string name="action_add_new_location">أضف منطقة جديدة</string>
@@ -306,9 +306,9 @@
     <string name="air_quality_so2_full">ثاني أكسيد الكبريت (%s)</string>
     <string name="air_quality_co_full">أول أكسيد الكربون (%s)</string>
     <string name="ephemeris_moonset_at">غروب القمر عند %s</string>
-    <string name="weather_api_limit_reached_title">وصلت للحد الأقصى لطلبات API</string>
+    <string name="weather_api_limit_reached_title">تم الوصول إلى الحد الأقصى لطلبات API</string>
     <string name="weather_api_limit_reached_content">لتجاوز الحد الأقصى، أضف مفتاح API الخاص بك.</string>
-    <string name="weather_api_unauthorized_title">غير مصرح بالوصول الى API</string>
+    <string name="weather_api_unauthorized_title">الوصول إلى API غير مصرح به</string>
     <string name="weather_api_key_required_missing_title">مفتاح API المطلوب مفقود</string>
     <string name="weather_api_key_required_missing_content">لاستخدام هذا المصدر، تحتاج إلى توفير مفتاح API.</string>
     <string name="settings_weather_source_portal">منفذ</string>
@@ -331,7 +331,7 @@
     <string name="uv_index_3_5">معتدل</string>
     <string name="air_quality_level_5_description">سيشعر الأشخاص الحساسون بآثار صحية على الفور، ويجب عليهم تجنب النشاط في الهواء الطلق. ومن المرجح أن يعاني الأفراد الأصحاء من صعوبة في التنفس وتهيّج الحلق؛ لذا يُنصح بالبقاء في الداخل وإعادة جدولة الأنشطة الخارجية.</string>
     <string name="air_quality_no2_voice">ثاني أكسيد النيتروجين</string>
-    <string name="weather_api_unauthorized_content">في بعض مصادر الطقس، تحتاج إلى استعمال مفتاح API الخاص بك. إذا كنت قد استعملت واحدا بالفعل، فيُرجى التحقق مرة أخرى من مفتاح API الذي استعملته.</string>
+    <string name="weather_api_unauthorized_content">في بعض مصادر بيانات الطقس، تحتاج إلى استخدام مفتاح API الخاص بك. وإذا كنت قد قدمت مفتاحًا بالفعل، فيُرجى التحقق مرة أخرى من مفتاح API الذي قدمته.</string>
     <string name="location_search_no_results">%1$s لا يستطيع العثور على %2$s</string>
     <string name="location_search_no_results_advice">تأكد من كتابة بحثك بشكل صحيح وليس محددًا للغاية. أو بدلاً من ذلك، يمكنك البحث باستخدام مزود بحث جغرافي آخر والذي قد يؤدي إلى نتائج مختلفة.</string>
     <string name="dialog_permissions_notification_title">ابقِ على اطّلاع</string>
@@ -490,7 +490,7 @@
     <string name="location_search_source">مزود خدمة البحث الجغرافي</string>
     <string name="location_search_change_source">تغيير مزود خدمة البحث الجغرافي</string>
     <string name="dew_point_short">نقطة الندى</string>
-    <string name="ceiling_short">الحد الأعلى</string>
+    <string name="ceiling_short">ارتفاع قاعدة السحب</string>
     <string name="humidity_short">الرطوبة</string>
     <string name="visibility_short">الرؤية</string>
     <string name="pressure_short">الضغط</string>
@@ -506,7 +506,7 @@
     <string name="widget_custom_subtitle_keyword_xaqi_description">مؤشر جودة الهواء لليوم، الغد، …، بعد 4 أيام</string>
     <string name="action_confirm">تأكيد</string>
     <string name="widget_label_hide_header">اخفاء العنوان</string>
-    <string name="weather_message_too_frequent_refreshes">برجاء الانتظار لبضع ثوان قبل اعادة المحاولة…</string>
+    <string name="weather_message_too_frequent_refreshes">يُرجى الانتظار بضع ثوانٍ قبل إعادة المحاولة…</string>
     <string name="pollen_corylus">البندق</string>
     <string name="pollen_cupressaceae_taxaceae">السرو</string>
     <string name="pollen_fraxinus">المَران</string>
@@ -586,7 +586,7 @@
     <string name="pollen_atriplex">سالتبوش</string>
     <string name="settings_weather_source_not_configured">%s (غير مضبوط)</string>
     <string name="weather_source_continent_worldwide">العالم</string>
-    <string name="weather_source_continent_africa">أفريقيا</string>
+    <string name="weather_source_continent_africa">إفريقيا</string>
     <string name="weather_source_continent_asia">آسيا</string>
     <string name="daily_today">اليوم</string>
     <string name="daily_tomorrow">غدًا</string>
@@ -746,9 +746,9 @@
     <string name="cloud_cover_from_to_description">%1$s إلى %2$s</string>
     <string name="cloud_cover_scale">مقياس الغطاء السحابي</string>
     <string name="data_sources">مصادر البيانات</string>
-    <string name="data_modified">عُدلت هذه المادة عن الأصل بواسطة %s بشكل أساسي لحساب أو استقراء البيانات المفقودة.</string>
+    <string name="data_modified">تم تعديل هذه المادة عن الأصل بواسطة %s، بشكل أساسي لحساب البيانات المفقودة أو استقرائها.</string>
     <string name="weather_source_recommended">موصى به</string>
-    <string name="broadcast_source_breezy_weather_update_notifier">منبه تحديث الموقع لـ %s</string>
+    <string name="broadcast_source_breezy_weather_update_notifier">منبّه تحديث الموقع لـ %s</string>
     <string name="action_add_as_location">أضف كموقع</string>
     <string name="action_open_in_other_app_no_app">لم يُعثر على تطبيق خرائط</string>
     <string name="action_configure_item">اضبط %s</string>
