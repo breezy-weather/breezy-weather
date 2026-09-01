@@ -174,7 +174,7 @@ class DailyWindAdapter(
     override fun getItemCount() = location.weather!!.dailyForecast.size
 
     override fun isValid(location: Location) = location.weather!!.dailyForecast.any {
-        it.day?.precipitation?.total != null || it.night?.precipitation?.total != null
+        it.day?.wind?.speed != null || it.night?.wind?.speed != null
     }
 
     override fun getDisplayName(context: Context) = context.getString(R.string.tag_wind)

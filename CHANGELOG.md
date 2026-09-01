@@ -12,6 +12,7 @@
 - Main screen - Forecast charts - Remove excessive margin at the top of some charts
 - Main screen - Forecast charts - Make threshold lines draw on top of chart instead of behind
 - Main screen - Forecast charts - Accessibility: texts will now take into account system font scale
+- Main screen - Forecast charts - Fix missing Daily Wind tab when there is no precipitation in the whole period
 
 **Sources**
 - BMKG - Temporarily disable alert support
