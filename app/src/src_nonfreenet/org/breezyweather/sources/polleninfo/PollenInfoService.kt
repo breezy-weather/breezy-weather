@@ -76,7 +76,7 @@ class PollenInfoService @Inject constructor(
     private fun getPollen(
         location: Location,
         result: PollenInfoResult,
-    ): PollenWrapper? {
+    ): PollenWrapper {
         val dailyForecast = mutableMapOf<Date, Pollen>()
         val today = Date().toTimezoneSpecificHour(location.timeZone)
 
@@ -111,20 +111,52 @@ class PollenInfoService @Inject constructor(
 
         return Pollen(
             alder = contaminationList.firstOrNull { it.pollId == 1 }?.getContaminationForDay(dayNumber)?.pollenIndex,
+            // TODO: Amaranth family (Amaranthaceae)
+            ash = contaminationList.firstOrNull { it.pollId == 4 }?.getContaminationForDay(dayNumber)?.pollenIndex,
+            // TODO: Beech (Fagus spp.)
             birch = contaminationList.firstOrNull { it.pollId == 2 }?.getContaminationForDay(dayNumber)?.pollenIndex,
+            // TODO: Black locust (Robinia pseudoacacia)
+            // TODO: Blackthorn/Sloe, Cherry, Damson/Plum (Prunus spp.)
+            // TODO: Canada goldenrod (Solidago canadensis)
+            chestnut = contaminationList.firstOrNull { it.pollId == 326 }
+                ?.getContaminationForDay(dayNumber)?.pollenIndex,
             cypress = contaminationList.firstOrNull { it.pollId == 17 }?.getContaminationForDay(dayNumber)?.pollenIndex,
+            // TODO: Elder (Sambucus spp.)
+            // TODO: Elm (Ulmus spp.)
+            // TODO: English ivy (Hedera helix)
+            // TODO: European chestnut (Castanea sativa)
+            // TODO: Fir (Abies spp.)
             grass = contaminationList.firstOrNull { it.pollId == 5 }?.getContaminationForDay(dayNumber)?.pollenIndex,
             hazel = contaminationList.firstOrNull { it.pollId == 3 }?.getContaminationForDay(dayNumber)?.pollenIndex,
+            // TODO: Hop Hornbeam (Ostrya spp.)
+            // hornbeam = // TODO
+            // TODO: Horse chestnut (Aesculus spp.)
+            // TODO: Japanese pagoda tree (Styphnolobium japonicum)
+            // TODO: Larch (Larix spp.)
+            linden = contaminationList.firstOrNull { it.pollId == 355 }?.getContaminationForDay(dayNumber)?.pollenIndex,
+            // TODO: Maple (Acer spp.)
+            // Actually Alternaria:
+            mold = contaminationList.firstOrNull { it.pollId == 23 }?.getContaminationForDay(dayNumber)?.pollenIndex,
             mugwort = contaminationList.firstOrNull { it.pollId == 7 }?.getContaminationForDay(dayNumber)?.pollenIndex,
+            // oak = // TODO
             olive = contaminationList.firstOrNull { it.pollId == 18 }?.getContaminationForDay(dayNumber)?.pollenIndex,
+            // TODO: Pine (Pinus spp.)
             plane = contaminationList.firstOrNull { it.pollId == 16 }?.getContaminationForDay(dayNumber)?.pollenIndex,
-            ragweed = contaminationList.firstOrNull { it.pollId == 6 }?.getContaminationForDay(dayNumber)?.pollenIndex,
-            urticaceae = contaminationList.firstOrNull { it.pollId == 15 }
+            plantain = contaminationList.firstOrNull { it.pollId == 320 }
                 ?.getContaminationForDay(dayNumber)?.pollenIndex,
-            // TODO: Replace with Alternaria:
-            mold = contaminationList.firstOrNull { it.pollId == 23 }?.getContaminationForDay(dayNumber)?.pollenIndex
+            // poplar = // TODO
+            // TODO: Privet (Ligustrum spp.)
+            ragweed = contaminationList.firstOrNull { it.pollId == 6 }?.getContaminationForDay(dayNumber)?.pollenIndex,
             // TODO: Add rye (Secale)
             // rye = contaminationList.firstOrNull { it.pollId == 291 }?.getContaminationForDay(dayNumber)?.pollenIndex
+            sorrel = contaminationList.firstOrNull { it.pollId == 356 }?.getContaminationForDay(dayNumber)?.pollenIndex,
+            // TODO: Tree of Heaven (Ailanthus altissima)
+            // treeOfHeaven = contaminationList.firstOrNull { it.pollId == 1107 }?.getContaminationForDay(dayNumber)?.pollenIndex
+            urticaceae = contaminationList.firstOrNull { it.pollId == 15 }
+                ?.getContaminationForDay(dayNumber)?.pollenIndex
+            // TODO: Walnut (Juglans spp.)
+            // willow = // TODO
+            // TODO: Yew (Taxus spp.)
         )
     }
 

@@ -17,6 +17,7 @@
 **Sources**
 - BMKG - Temporarily disable alert support
 - Open-Meteo - Update selectable weather models
+- Pollen Information - Add missing pollens: ash, chestnut, linden, plantain, sorrel
 
 **Technical**
 - Remove support for Android 6
