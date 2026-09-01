@@ -3,7 +3,7 @@
     <!-- app. -->
     <string name="app_name">الطقس</string>
     <!-- keyword. -->
-    <string name="location_current">المنطقة الحالية</string>
+    <string name="location_current">الموقع الحالي</string>
     <string name="daily_today_short">اليوم</string>
     <string name="notification_refreshed_at">حُدِّث في</string>
     <string name="precipitation">التساقطات</string>
@@ -95,7 +95,7 @@
     <string name="widget_live_wallpaper_weather_kind">الطقس</string>
     <string name="widget_live_wallpaper_day_night_type">الوقت</string>
     <string name="location_message_added">أُضيف الموقع</string>
-    <string name="location_message_deleted">حُذف الموقع</string>
+    <string name="location_message_deleted">تم حذف الموقع</string>
     <string name="location_message_list_cannot_be_empty">لا يمكن لقائمة المواقع أن تكون فارغة</string>
     <string name="location_search_placeholder">البحث عن موقع…</string>
     <string name="location_current_not_found_yet">لم تُحدّد المنطقة الحالية بعد…</string>
@@ -234,7 +234,7 @@
     <string name="widget_week_style_3_days">3 أيام</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">درجة الحرارة الحالية (°)</string>
     <string name="uv_index_8_10">مرتفع جدًا</string>
-    <string name="location_results_by">نتائج البحث بواسطة %s</string>
+    <string name="location_results_by">نتائج المواقع من %s</string>
     <string name="wind_direction_SE_short">SE</string>
     <string name="air_quality_co_voice">أول أكسيد الكربون</string>
     <string name="air_quality_level_3_description">وصل تلوث الهواء إلى مستوى مرتفع، وأصبح غير صحي للفئات الحساسة. قلّل الوقت الذي تقضيه في الخارج إذا كنت تشعر بأعراض مثل صعوبة التنفس أو تهيّج الحلق.</string>
