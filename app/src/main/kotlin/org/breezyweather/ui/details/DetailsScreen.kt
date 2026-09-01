@@ -359,11 +359,11 @@ fun DailyPagerContent(
     pollenIndexSource: PollenIndexSource?,
     modifier: Modifier = Modifier,
 ) {
-    val daily = remember(selected) {
+    val daily = remember(location, selected) {
         location.weather!!.dailyForecast[selected]
     }
 
-    val hourlyList = remember(selected) {
+    val hourlyList = remember(location, selected) {
         val startingDate = daily.date.toTimezoneSpecificHour(location.timeZone, 0)
         val endingDate = daily.date.toCalendarWithTimeZone(location.timeZone).apply {
             add(Calendar.DAY_OF_MONTH, 1)
@@ -391,7 +391,7 @@ fun DailyPagerContent(
             ?: location.weather!!.base.refreshTime!!
     }
 
-    val current = remember(selected) {
+    val current = remember(location, selected, currentUpdateTime) {
         if (daily.isToday(location) && currentUpdateTime > daily.date) location.weather!!.current else null
     }
 
@@ -505,10 +505,10 @@ fun DailyPagerContent(
                 )
             }
             DetailScreen.TAG_SUN_MOON -> {
-                val sunTimes = remember(selected) {
+                val sunTimes = remember(location) {
                     location.weather!!.dailyForecast.mapNotNull { it.sun }
                 }
-                val moonTimes = remember(selected) {
+                val moonTimes = remember(location) {
                     location.weather!!.dailyForecast.mapNotNull { it.moon }
                 }
                 DetailsSunMoon(location, daily, sunTimes, moonTimes)
