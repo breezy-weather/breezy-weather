@@ -80,7 +80,7 @@
     <string name="about_app">حول التطبيق</string>
     <string name="about_translators">المترجمون</string>
     <!-- feedback. -->
-    <string name="location_message_failed_to_locate">فشل في العثور على الموقع</string>
+    <string name="location_message_failed_to_locate">تعذّر العثور على الموقع الحالي</string>
     <string name="weather_message_data_refresh_failed">فشل تحديث البيانات</string>
     <string name="location_dialog_failed_to_locate_action_select_source">استخدم خدمة موقع أخرى</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">أضف الموقع يدويًا واحذف ”%s“</string>
@@ -211,7 +211,7 @@
     <string name="widget_custom_subtitle_keyword_hd_description">وصف كل ساعة</string>
     <string name="locations">المواقع</string>
     <string name="location_message_search_failed">فشل البحث عن الموقع</string>
-    <string name="location_message_permission_background_missing">إذن الوصول إلى الموقع في الخلفية مفقود</string>
+    <string name="location_message_permission_background_missing">إذن الوصول إلى الموقع في الخلفية غير متوفر</string>
     <string name="action_add_new_location">أضف منطقة جديدة</string>
     <string name="dialog_permissions_location_background_title">الوصول إلى الموقع في الخلفية</string>
     <string name="widget_custom_subtitle_keyword_ws_description">أسبوع (قصير)</string>
@@ -333,7 +333,7 @@
     <string name="air_quality_no2_voice">ثاني أكسيد النيتروجين</string>
     <string name="weather_api_unauthorized_content">في بعض مصادر بيانات الطقس، تحتاج إلى استخدام مفتاح API الخاص بك. وإذا كنت قد قدمت مفتاحًا بالفعل، فيُرجى التحقق مرة أخرى من مفتاح API الذي قدمته.</string>
     <string name="location_search_no_results">%1$s لا يستطيع العثور على %2$s</string>
-    <string name="location_search_no_results_advice">تأكد من كتابة بحثك بشكل صحيح وليس محددًا للغاية. أو بدلاً من ذلك، يمكنك البحث باستخدام مزود بحث جغرافي آخر والذي قد يؤدي إلى نتائج مختلفة.</string>
+    <string name="location_search_no_results_advice">تأكد من كتابة بحثك بشكل صحيح وألا يكون محددًا للغاية. وبدلًا من ذلك، يمكنك تجربة مصدر آخر للبحث عن الموقع، والذي قد يعرض نتائج مختلفة.</string>
     <string name="dialog_permissions_notification_title">ابقِ على اطّلاع</string>
     <string name="dialog_permissions_notification_content">انقر هنا لتفعيل الإشعارات حول تنبيهات الطقس، أو فعّله لاحقًا في الإعدادات.</string>
     <string name="precipitation_none">لا توجد تساقطات</string>
@@ -376,7 +376,7 @@
     <string name="notification_channel_background_services">خدمات الخلفية</string>
     <string name="about_contribution_WangDaYeeeeee">مطور المشروع الأصلي الطقس الهندسي</string>
     <string name="common_weather_text_mostly_clear">صافٍ غالبًا</string>
-    <string name="location_message_permission_missing">إذن الوصول إلى الموقع مفقود</string>
+    <string name="location_message_permission_missing">إذن الوصول إلى الموقع غير متوفر</string>
     <string name="setting_weather_source_accu_days">الأيام</string>
     <string name="weather_source_accu_preference_days_1">يوم 1</string>
     <string name="weather_source_accu_preference_days_5">5 أيام</string>
@@ -487,8 +487,8 @@
     <string name="location_message_updated">حُدِّث الموقع</string>
     <string name="settings_weather_source_none">لاشيء</string>
     <string name="location_message_already_exists">تحتوي قائمة المواقع بالفعل على هذا الموقع مع مصدر التنبؤ هذا.</string>
-    <string name="location_search_source">مزود خدمة البحث الجغرافي</string>
-    <string name="location_search_change_source">تغيير مزود خدمة البحث الجغرافي</string>
+    <string name="location_search_source">مصدر البحث عن الموقع</string>
+    <string name="location_search_change_source">تغيير مصدر البحث عن الموقع</string>
     <string name="dew_point_short">نقطة الندى</string>
     <string name="ceiling_short">ارتفاع قاعدة السحب</string>
     <string name="humidity_short">الرطوبة</string>
@@ -499,8 +499,8 @@
     <string name="settings_weather_sources_default_source">المصدر الافتراضي للمواقع الجديدة</string>
     <string name="settings_weather_source_unavailable">%s (غير متاح)</string>
     <string name="settings_weather_source_freenet_disclaimer">أنت تستخدم نُسخة Freenet من التطبيق. انتقل إلى النُسخة القياسية (Standard) إذا كنت ترغب في استخدام خدمات الشبكة غير الحرة.</string>
-    <string name="location_delete_location_dialog_title">أتريد حذف الموقع؟</string>
-    <string name="location_delete_location_dialog_message">أنت على وشك أن تحذف ”%s“ من لائحة المواقع المحفوظة.</string>
+    <string name="location_delete_location_dialog_title">هل تريد حذف الموقع؟</string>
+    <string name="location_delete_location_dialog_message">أنت على وشك حذف \"%s\" من قائمة المواقع المحفوظة.</string>
     <string name="location_delete_location_dialog_message_no_name">أنت على وشك أن تحذف هذه المنطقة من لائحة المواقع المحفوظة.</string>
     <string name="widget_custom_subtitle_keyword_caqi_description">مؤشر جودة الهواء الحالي</string>
     <string name="widget_custom_subtitle_keyword_xaqi_description">مؤشر جودة الهواء لليوم، الغد، …، بعد 4 أيام</string>
@@ -599,7 +599,7 @@
     <string name="weather_source_continent_europe">أوروبا</string>
     <string name="location_custom_name">اسم مخصص</string>
     <string name="location_reverse_geocoding">البحث عن العنوان</string>
-    <string name="location_message_location_access_off">الوصول إلى الموقع متوقف</string>
+    <string name="location_message_location_access_off">الوصول إلى الموقع غير مفعّل</string>
     <string name="location_last_updated_x">آخر تحديث %s</string>
     <string name="location_has_active_alerts">إنذار فعال</string>
     <string name="action_grant_permission">انقر لمنح الإذن.</string>
