@@ -51,6 +51,7 @@ import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.json.Json
 import org.breezyweather.BuildConfig
+import org.breezyweather.R
 import org.breezyweather.common.extensions.getBeaufortScaleColor
 import org.breezyweather.common.extensions.getBeaufortScaleStrength
 import org.breezyweather.common.extensions.getCloudCoverDescription
@@ -71,6 +72,7 @@ import org.breezyweather.datasharing.json.BreezyHourly
 import org.breezyweather.datasharing.json.BreezyMinutely
 import org.breezyweather.datasharing.json.BreezyNormals
 import org.breezyweather.datasharing.json.BreezyPollen
+import org.breezyweather.datasharing.json.BreezyPollenLevel
 import org.breezyweather.datasharing.json.BreezyPollutant
 import org.breezyweather.datasharing.json.BreezyPrecipitation
 import org.breezyweather.datasharing.json.BreezyPrecipitationDuration
@@ -455,7 +457,14 @@ class WeatherContentProvider : ContentProvider() {
                     weather.normals,
                     temperatureUnit
                 ),
-                sources = getSources(location)
+                sources = getSources(location),
+                pollenLevels = pollenIndexSource?.let { pis ->
+                    context!!.resources.getStringArray(pis.pollenLabels).map {
+                        BreezyPollenLevel(it)
+                    }
+                } ?: context!!.resources.getStringArray(R.array.pollen_levels).map {
+                    BreezyPollenLevel(it)
+                }
             )
         }
     }
