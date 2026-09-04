@@ -35,7 +35,7 @@ import com.patrykandpatrick.vico.views.cartesian.axis.HorizontalAxis
 import com.patrykandpatrick.vico.views.cartesian.data.CartesianChartModelProducer
 import com.patrykandpatrick.vico.views.cartesian.data.CartesianLayerRangeProvider
 import com.patrykandpatrick.vico.views.cartesian.data.CartesianValueFormatter
-import com.patrykandpatrick.vico.views.cartesian.data.columnSeries
+import com.patrykandpatrick.vico.views.cartesian.data.columnModel
 import com.patrykandpatrick.vico.views.cartesian.decoration.HorizontalLine
 import com.patrykandpatrick.vico.views.cartesian.layer.ColumnCartesianLayer
 import com.patrykandpatrick.vico.views.cartesian.marker.CartesianMarker
@@ -244,7 +244,7 @@ class PrecipitationNowcastViewHolder(parent: ViewGroup) : AbstractMainCardViewHo
 
         activity.lifecycleScope.launch {
             modelProducer.runTransaction {
-                columnSeries {
+                columnModel {
                     series(
                         x = minutely.keys,
                         y = minutely.values.map { it.value }

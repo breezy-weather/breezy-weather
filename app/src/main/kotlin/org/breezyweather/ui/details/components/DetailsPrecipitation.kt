@@ -52,8 +52,8 @@ import breezyweather.domain.weather.model.PrecipitationDuration
 import breezyweather.domain.weather.model.PrecipitationProbability
 import com.patrykandpatrick.vico.compose.cartesian.axis.VerticalAxis
 import com.patrykandpatrick.vico.compose.cartesian.data.CartesianChartModelProducer
-import com.patrykandpatrick.vico.compose.cartesian.data.columnSeries
-import com.patrykandpatrick.vico.compose.cartesian.data.lineSeries
+import com.patrykandpatrick.vico.compose.cartesian.data.columnModel
+import com.patrykandpatrick.vico.compose.cartesian.data.lineModel
 import com.patrykandpatrick.vico.compose.cartesian.marker.CartesianMarker
 import com.patrykandpatrick.vico.compose.cartesian.marker.CartesianMarkerVisibilityListener
 import com.patrykandpatrick.vico.compose.common.Fill
@@ -360,7 +360,7 @@ internal fun PrecipitationChart(
 
     LaunchedEffect(mappedValues) {
         modelProducer.runTransaction {
-            columnSeries {
+            columnModel {
                 series(
                     x = mappedValues.keys,
                     y = mappedValues.values.map { it.toDouble(precipitationUnit) }
@@ -602,7 +602,7 @@ internal fun PrecipitationProbabilityChart(
 
     LaunchedEffect(mappedValues) {
         modelProducer.runTransaction {
-            lineSeries {
+            lineModel {
                 series(
                     x = mappedValues.keys,
                     y = mappedValues.values.map { it.inPercent }

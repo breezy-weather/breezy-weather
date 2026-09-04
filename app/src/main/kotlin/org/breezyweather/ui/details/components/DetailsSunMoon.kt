@@ -47,7 +47,7 @@ import breezyweather.domain.weather.model.Astro
 import breezyweather.domain.weather.model.Daily
 import breezyweather.domain.weather.model.MoonPhase
 import com.patrykandpatrick.vico.compose.cartesian.data.CartesianChartModelProducer
-import com.patrykandpatrick.vico.compose.cartesian.data.lineSeries
+import com.patrykandpatrick.vico.compose.cartesian.data.lineModel
 import kotlinx.collections.immutable.ImmutableMap
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toImmutableMap
@@ -178,7 +178,7 @@ fun EphemerisChart(
 
     LaunchedEffect(mappedMoonValues, mappedSunValues) {
         modelProducer.runTransaction {
-            lineSeries {
+            lineModel {
                 if (mappedMoonValues.isNotEmpty()) {
                     series(
                         x = mappedMoonValues.keys,
