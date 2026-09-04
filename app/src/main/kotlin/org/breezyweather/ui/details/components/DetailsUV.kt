@@ -54,7 +54,7 @@ import breezyweather.domain.weather.model.Hourly
 import breezyweather.domain.weather.model.UV
 import com.patrykandpatrick.vico.compose.cartesian.axis.VerticalAxis
 import com.patrykandpatrick.vico.compose.cartesian.data.CartesianChartModelProducer
-import com.patrykandpatrick.vico.compose.cartesian.data.lineSeries
+import com.patrykandpatrick.vico.compose.cartesian.data.lineModel
 import com.patrykandpatrick.vico.compose.cartesian.marker.CartesianMarker
 import com.patrykandpatrick.vico.compose.cartesian.marker.CartesianMarkerVisibilityListener
 import kotlinx.collections.immutable.ImmutableList
@@ -266,7 +266,7 @@ private fun UVChart(
 
     LaunchedEffect(mappedValues) {
         modelProducer.runTransaction {
-            lineSeries {
+            lineModel {
                 series(
                     x = mappedValues.keys,
                     y = mappedValues.values.map { it.index ?: 0 }
