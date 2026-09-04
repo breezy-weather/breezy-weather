@@ -239,6 +239,11 @@ configure<ApplicationExtension> {
         )
         it.buildConfigField(
             "String",
+            "DEFAULT_RADAR_SOURCE",
+            "\"${localProperties.getProperty("breezy.source.default_radar") ?: "librewxr"}\""
+        )
+        it.buildConfigField(
+            "String",
             "ACCU_WEATHER_KEY",
             "\"${localProperties.getProperty("breezy.accu.key") ?: ""}\""
         )
@@ -538,6 +543,9 @@ dependencies {
     // utils.
     implementation(libs.suncalc)
     implementation(libs.aboutLibraries)
+
+    // map
+    implementation(libs.maplibre.compose)
 
     // Allows reflection of the relative time class to pass Locale as parameter
     implementation(libs.restrictionBypass)
