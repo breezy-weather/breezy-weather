@@ -16,9 +16,6 @@
 
 package org.breezyweather.ui.details.components
 
-import android.text.Spannable
-import android.text.SpannableString
-import android.text.style.ImageSpan
 import android.view.View
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -75,7 +72,6 @@ import breezyweather.domain.weather.model.Daily
 import breezyweather.domain.weather.model.Hourly
 import breezyweather.domain.weather.model.Normals
 import breezyweather.domain.weather.reference.WeatherCode
-import com.patrykandpatrick.vico.compose.cartesian.axis.BaseAxis
 import com.patrykandpatrick.vico.compose.cartesian.axis.VerticalAxis
 import com.patrykandpatrick.vico.compose.cartesian.data.CartesianChartModelProducer
 import com.patrykandpatrick.vico.compose.cartesian.data.lineSeries
@@ -90,7 +86,6 @@ import kotlinx.collections.immutable.toImmutableMap
 import kotlinx.coroutines.launch
 import org.breezyweather.R
 import org.breezyweather.common.extensions.currentLocale
-import org.breezyweather.common.extensions.dpToPx
 import org.breezyweather.common.extensions.formatMeasure
 import org.breezyweather.common.extensions.getCalendarMonth
 import org.breezyweather.common.extensions.getFormattedTime
@@ -103,7 +98,7 @@ import org.breezyweather.common.extensions.toDate
 import org.breezyweather.common.options.appearance.DetailScreen
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.ui.common.charts.compose.BreezyLineChart
-import org.breezyweather.ui.common.charts.compose.TimeTopAxisItemPlacer
+import org.breezyweather.ui.common.charts.compose.IconCartesianMarker
 import org.breezyweather.ui.common.widgets.AnimatableIconView
 import org.breezyweather.ui.theme.resource.ResourceHelper
 import org.breezyweather.ui.theme.resource.ResourcesProviderFactory
@@ -117,7 +112,6 @@ import org.breezyweather.unit.temperature.toTemperature
 import java.util.Date
 import kotlin.math.max
 import kotlin.math.min
-import kotlin.math.roundToInt
 
 @Composable
 fun DetailsConditions(
@@ -812,6 +806,7 @@ private fun TemperatureChart(
     }
 
     val modelProducer = remember { CartesianChartModelProducer() }
+    val iconSizePx = with(LocalDensity.current) { IconCartesianMarker.DEFAULT_ICON_SIZE.roundToPx() }
 
     LaunchedEffect(mappedValues, showRealTemp) {
         modelProducer.runTransaction {
@@ -843,10 +838,18 @@ private fun TemperatureChart(
         modelProducer = modelProducer,
         theDay = daily.date,
         maxY = maxY,
-        topAxisItemPlacer = remember(mappedValues) {
-            TimeTopAxisItemPlacer(mappedValues.keys.toImmutableList())
+        topIconValues = remember(mappedValues) { mappedValues.keys.toImmutableList() },
+        topIconProvider = remember(mappedValues, iconSizePx) {
+            { x: Long ->
+                mappedValues[x]?.let { hourly ->
+                    hourly.weatherCode?.let {
+                        ResourceHelper.getWeatherIcon(provider, it, hourly.isDaylight)
+                            .toBitmap(iconSizePx, iconSizePx)
+                            .asImageBitmap()
+                    }
+                }
+            }
         },
-        topAxisSize = BaseAxis.Size.Fixed(23.dp),
         endAxisValueFormatter = { _, value, _ ->
             value.toTemperature(temperatureUnit)
                 .formatMeasure(context, temperatureUnit, valueWidth = UnitWidth.NARROW, unitWidth = UnitWidth.NARROW)
@@ -873,20 +876,6 @@ private fun TemperatureChart(
                     0f to Color(128, 128, 128, 160)
                 )
             )
-        },
-        topAxisValueFormatter = remember(mappedValues) {
-            { _, value, _ ->
-                mappedValues.getOrElse(value.toLong()) { null }?.let { hourly ->
-                    hourly.weatherCode?.let {
-                        val ss = SpannableString("abc")
-                        val d = ResourceHelper.getWeatherIcon(provider, it, hourly.isDaylight)
-                        d.setBounds(0, 0, context.dpToPx(18f).roundToInt(), context.dpToPx(18f).roundToInt())
-                        val span = ImageSpan(d, ImageSpan.ALIGN_BASELINE)
-                        ss.setSpan(span, 0, 3, Spannable.SPAN_INCLUSIVE_EXCLUSIVE)
-                        ss
-                    }
-                } ?: "-"
-            }
         },
         trendHorizontalLines = buildMap {
             normals?.let {
