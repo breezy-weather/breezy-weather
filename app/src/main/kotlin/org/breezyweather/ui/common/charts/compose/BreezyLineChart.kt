@@ -22,6 +22,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.shadow.Shadow
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
@@ -63,6 +64,7 @@ import com.patrykandpatrick.vico.compose.common.component.rememberShapeComponent
 import com.patrykandpatrick.vico.compose.common.component.rememberTextComponent
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.ImmutableMap
+import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.persistentMapOf
 import org.breezyweather.R
 import org.breezyweather.common.extensions.getFormattedTime
@@ -87,6 +89,19 @@ import kotlin.math.roundToInt
  * @param maxY max Y value for this chart
  * @param endAxisValueFormatter value formatter for the right side
  * @param markerFormatter value formatter for the marker. Leave empty to hide the marker
+ * @param topAxisValueFormatter text value formatter for a top axis. Leave null to draw no top
+ *   axis. Use this for plain text labels; for images (e.g. weather condition icons, trend
+ *   arrows), use [topIconValues]/[topIconProvider] instead.
+ * @param topAxisItemPlacer decides which x values the top axis shows a label for.
+ * @param topAxisSize the size reserved for the top axis.
+ * @param topIconValues the x values for which an icon may be drawn above the chart. Leave empty
+ *   to draw no icons and reserve no space for them. Not every value necessarily gets an icon:
+ *   some may be skipped if there isn't room for all of them, the same way top axis labels used to
+ *   be skipped in the past.
+ * @param topIconProvider returns the icon to draw for a given x value (one of [topIconValues]),
+ *   or null to draw nothing for it.
+ * @param topIconTint if non-null, tints icons with this color. Use this for monochrome icons,
+ *   such as arrows. Leave null for full-color icons, such as weather condition icons.
  */
 @Composable
 fun BreezyLineChart(
@@ -106,6 +121,9 @@ fun BreezyLineChart(
         )
     },
     topAxisSize: BaseAxis.Size = BaseAxis.Size.Auto(),
+    topIconValues: ImmutableList<Long> = persistentListOf(),
+    topIconProvider: (x: Long) -> ImageBitmap? = { null },
+    topIconTint: Color? = null,
     endAxisItemPlacer: VerticalAxis.ItemPlacer = remember {
         VerticalAxis.ItemPlacer.step()
     },
@@ -172,6 +190,23 @@ fun BreezyLineChart(
 
     val timeValueFormatter = CartesianValueFormatter { _, value, _ ->
         Date(value.toLong()).getFormattedTime(location, context, context.is12Hour)
+    }
+
+    // Reuses the same item placer a top HorizontalAxis would use, so icon spacing matches what
+    // top axis label spacing used to look like.
+    val topIconItemPlacer = remember(topIconValues) {
+        TimeTopAxisItemPlacer(topIconValues)
+    }
+    val topIconMarker = remember(topIconValues, topIconItemPlacer, topIconProvider, topIconTint) {
+        if (topIconValues.isEmpty()) {
+            null
+        } else {
+            IconCartesianMarker(
+                itemPlacer = topIconItemPlacer,
+                tint = topIconTint,
+                iconProvider = { x -> topIconProvider(x.toLong()) }
+            )
+        }
     }
 
     CartesianChartHost(
@@ -242,6 +277,9 @@ fun BreezyLineChart(
                     itemPlacer = topAxisItemPlacer,
                     size = topAxisSize
                 )
+            },
+            persistentMarkers = topIconMarker?.let { iconMarker ->
+                { _ -> topIconValues.forEach { iconMarker at it } }
             },
             decorations = if (isTrendHorizontalLinesEnabled) {
                 trendHorizontalLines.entries.map { line ->

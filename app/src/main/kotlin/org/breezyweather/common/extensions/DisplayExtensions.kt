@@ -233,10 +233,10 @@ fun Window.setSystemBarStyle(
     }
 }
 
-fun Drawable.toBitmap(): Bitmap {
-    val bitmap = createBitmap(intrinsicWidth, intrinsicHeight)
+fun Drawable.toBitmap(width: Int = intrinsicWidth, height: Int = intrinsicHeight): Bitmap {
+    val bitmap = createBitmap(width, height)
     val canvas = Canvas(bitmap)
-    setBounds(0, 0, intrinsicWidth, intrinsicHeight)
+    setBounds(0, 0, width, height)
     draw(canvas)
     return bitmap
 }
