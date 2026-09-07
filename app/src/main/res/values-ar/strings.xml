@@ -98,13 +98,13 @@
     <string name="location_message_deleted">تم حذف الموقع</string>
     <string name="location_message_list_cannot_be_empty">لا يمكن لقائمة المواقع أن تكون فارغة</string>
     <string name="location_search_placeholder">البحث عن موقع…</string>
-    <string name="location_current_not_found_yet">لم تُحدّد المنطقة الحالية بعد…</string>
+    <string name="location_current_not_found_yet">لم يتم العثور على الموقع الحالي بعد…</string>
     <string name="settings_changes_apply_after_restart">سيتم تطبيق التغييرات عند إعادة تشغيل الطبيق</string>
     <string name="notification_running_in_background">التشغيل في الخلفية لإبقاء التطبيق مُحدثًا</string>
     <string name="notification_updating_weather_data">جارٍ تحديث بيانات الطقس (%1$d من %2$d)</string>
     <!-- action -->
     <string name="alerts">التنبيهات</string>
-    <string name="action_search">بحث</string>
+    <string name="action_search">البحث</string>
     <string name="action_settings">الإعدادات</string>
     <string name="action_preview">عرض</string>
     <string name="action_about">حول</string>
@@ -212,7 +212,7 @@
     <string name="locations">المواقع</string>
     <string name="location_message_search_failed">فشل البحث عن الموقع</string>
     <string name="location_message_permission_background_missing">إذن الوصول إلى الموقع في الخلفية غير متوفر</string>
-    <string name="action_add_new_location">أضف منطقة جديدة</string>
+    <string name="action_add_new_location">إضافة موقع جديد</string>
     <string name="dialog_permissions_location_background_title">الوصول إلى الموقع في الخلفية</string>
     <string name="widget_custom_subtitle_keyword_ws_description">أسبوع (قصير)</string>
     <string name="widget_style_symmetry">تناظري</string>
@@ -345,9 +345,9 @@
     <string name="settings_location_access_precise_summaryOn">مفعّل. سيتم الاعتماد على شبكة الجهاز كأولوية وفي معظم الوقت، ولكن من الممكن أيضا أن يستخدم GPS كبديل.</string>
     <string name="settings_modules_live_wallpaper_error">تعذر تشغيل منتقي الخلفيات. لا يزال بإمكانك تفعيل خلفية %s عن طريق اختيار ”Live Wallpaper“ في منتقي خلفيات الشاشة الرئيسية.</string>
     <string name="action_more">انظر أكثر</string>
-    <string name="location_service_native">API الافتراضي</string>
-    <string name="action_location_list">لائحة المناطق</string>
-    <string name="action_add_current_location">أضف المنطقة الحالية</string>
+    <string name="location_service_native">واجهة API الأصلية</string>
+    <string name="action_location_list">قائمة المواقع</string>
+    <string name="action_add_current_location">إضافة الموقع الحالي</string>
     <string name="settings_notifications_forecast_time_tomorrow_title">وقت الإشعار لتوقعات اليوم التالي</string>
     <string name="settings_main_section_animations">الرسوم المتحركه</string>
     <string name="settings_main_background_animation_enabled">مُفعّل</string>
@@ -601,7 +601,7 @@
     <string name="location_reverse_geocoding">البحث عن العنوان</string>
     <string name="location_message_location_access_off">الوصول إلى الموقع غير مفعّل</string>
     <string name="location_last_updated_x">آخر تحديث %s</string>
-    <string name="location_has_active_alerts">إنذار فعال</string>
+    <string name="location_has_active_alerts">تنبيه نشط</string>
     <string name="action_grant_permission">انقر لمنح الإذن.</string>
     <string name="dialog_refresh_error_details_title">أخطاء في التحديث</string>
     <string name="action_show">عرض</string>
