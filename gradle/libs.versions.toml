@@ -32,6 +32,7 @@ ktlint = "1.8.0"
 #leakcanary = "2.14"
 lifecycle = "2.11.0"
 lifecycle-extensions = "2.2.0"
+maplibre-compose = "0.14.0"
 material = "1.14.0"
 mockk = "1.14.11"
 navigation-compose = "2.10.0"
@@ -108,6 +109,7 @@ lifecycle-reactivestreams-ktx = { group = "androidx.lifecycle", name = "lifecycl
 lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycle" }
 lifecycle-viewmodel-compose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "lifecycle" }
 lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
+maplibre-compose = { group = "org.maplibre.compose", name = "maplibre-compose", version.ref = "maplibre-compose" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
 navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation-compose" }

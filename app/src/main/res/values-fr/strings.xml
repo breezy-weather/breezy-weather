@@ -541,6 +541,11 @@
     <string name="action_configure_item">Configurer %s</string>
     <string name="action_preview">Aperçu</string>
     <string name="action_about">À propos</string>
+    <!-- Weather map (radar) -->
+    <string name="map_radar">Radar</string>
+    <string name="map_satellite">Satellite</string>
+    <string name="map_past">Passé</string>
+    <string name="map_nowcast">Temps réel</string>
     <!-- widget -->
     <string name="widget_day">Jour</string>
     <string name="widget_week">Semaine</string>
@@ -570,6 +575,9 @@
     <string name="action_enable">Activer</string>
     <string name="action_allow">Autoriser</string>
     <string name="action_grant_permission">Appuyez pour accorder la permission.</string>
+    <string name="action_open_radar">Ouvrir la carte météo</string>
+    <!-- Radar screen -->
+    <string name="radar_title">Carte météo</string>
     <!-- Libellés -->
     <string name="label_description">Description</string>
     <string name="label_expanded">Développé</string>
@@ -768,6 +776,7 @@
     <string name="action_open_in_other_app">Ouvrir dans une autre app</string>
     <string name="action_open_in_other_app_description">Ouvrir cet emplacement dans une autre application</string>
     <string name="action_open_in_other_app_no_app">Aucune appli de carte compatible trouvée</string>
+    <string name="action_open_in_external_browser">Ouvrir dans un navigateur externe</string>
     <string name="widget_material_you_forecast">Material You – Prévisions</string>
     <string name="widget_material_you_current">Material You – En ce moment</string>
     <string name="notification_channel_alerts">Vigilances</string>
