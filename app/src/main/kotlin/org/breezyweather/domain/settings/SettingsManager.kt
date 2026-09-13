@@ -204,6 +204,13 @@ class SettingsManager private constructor(
         }
         get() = config.getString("default_weather_source", null) ?: BuildConfig.DEFAULT_FORECAST_SOURCE
 
+    var radarSource: String
+        set(value) {
+            config.edit().putString("radar_source", value).apply()
+            notifySettingsChanged()
+        }
+        get() = config.getString("radar_source", null) ?: BuildConfig.DEFAULT_RADAR_SOURCE
+
     // unit.
     var temperatureUnit: TemperatureUnit?
         set(value) {
