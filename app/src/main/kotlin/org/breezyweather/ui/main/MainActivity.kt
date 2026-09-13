@@ -896,6 +896,12 @@ class MainActivity : BreezyActivity(), HomeFragment.Callback, ManagementFragment
         }
     }
 
+    override fun onRadarIconClicked() {
+        viewModel.currentLocation.value?.location?.let {
+            IntentHelper.startRadarActivity(this@MainActivity, it.formattedId)
+        }
+    }
+
     override fun onManageIconClicked() {
         setManagementFragmentVisibility(!isOrWillManagementFragmentVisible)
     }
