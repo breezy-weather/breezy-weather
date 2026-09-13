@@ -17,8 +17,8 @@
     <string name="notification_channel_forecast">توقعات</string>
     <string name="daytime">النهار</string>
     <string name="nighttime">الليل</string>
-    <string name="temperature_feels_like">درجة الحرارة المحسوسة</string>
-    <string name="temperature_feels_like_with_unit">درجة الحرارة المحسوسة: %s</string>
+    <string name="temperature_feels_like">يُشعَر وكأنه</string>
+    <string name="temperature_feels_like_with_unit">يُحَس كأنه %s</string>
     <string name="settings_follow_system">حسب النظام</string>
     <string name="pressure">الضغط</string>
     <string name="visibility">الرؤية</string>
