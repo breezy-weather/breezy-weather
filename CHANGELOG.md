@@ -6,7 +6,7 @@
 
 # Version 6.2.3 (not yet released)
 
-**Improvements and fixes
+**Improvements and fixes**
 - Main screen settings - You can now reset blocks, daily trends, hourly trends to default order
 - Main screen - Forecast charts - Add daily/hourly wind gusts
 - Main screen - Forecast charts - Remove excessive margin at the top of some charts
