@@ -779,4 +779,5 @@
     <string name="common_weather_text_glaze">xeada en superficie</string>
     <string name="common_weather_text_drifting_snow">Neve arrastrada polo vento</string>
     <string name="settings_weather_source_no_longer_exists">%s (xa non existe)</string>
+    <string name="action_reset_to_default">Restabelecer a configuración predeterminada</string>
 </resources>
