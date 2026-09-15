@@ -792,4 +792,5 @@
     <string name="message_please_wait_refresh">Bitte warten, bis die Aktualisierung abgeschlossen ist</string>
     <string name="settings_main_background_title">Wetterbasierter Hintergrund</string>
     <string name="settings_weather_source_no_longer_exists">%s (existiert nicht mehr)</string>
+    <string name="action_reset_to_default">Auf Standardwerte zurücksetzen</string>
 </resources>

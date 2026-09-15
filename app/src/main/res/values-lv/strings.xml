@@ -98,7 +98,7 @@
     <string name="action_back">Atpakaļ</string>
     <string name="action_next">Nākamais</string>
     <string name="action_done">Gatavs</string>
-    <string name="action_delete">Dzēst</string>
+    <string name="action_delete">Izdzēst</string>
     <string name="action_continue">Turpināt</string>
     <string name="action_close">Aizvērt</string>
     <string name="dialog_permissions_location_content">Lai izmantotu šo iespēju, ir nepieciešams nodrošināt lietotnei atļauju piekļūt pašreizējai atrašanās vietai. Tā tiks kopīgota tikai ar atlasītajiem laikapstākļu avotiem. Ja pārdomāji, ir iespēja atcelt darbību un pašrocīgi pievienot noteiktu atrašanās vietu.</string>
@@ -781,4 +781,5 @@
     <string name="message_please_wait_refresh">Lūgums uzgaidīt atsvaidzināšanas pabeigšanos</string>
     <string name="settings_weather_source_no_longer_exists">%s (vairs nepastāv)</string>
     <string name="settings_main_background_title">Uz laikapstākļiem balstīts fons</string>
+    <string name="action_reset_to_default">Atiestatīt uz noklusējumu</string>
 </resources>

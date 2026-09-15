@@ -779,4 +779,5 @@
     <string name="message_please_wait_refresh">Просимо зачекати до завершення оновлення</string>
     <string name="settings_main_background_title">Фон залежно від погоди</string>
     <string name="settings_weather_source_no_longer_exists">%s (більше не існує)</string>
+    <string name="action_reset_to_default">Скинути до типових</string>
 </resources>

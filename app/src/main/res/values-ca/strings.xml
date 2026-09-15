@@ -791,4 +791,5 @@
     <string name="settings_weather_source_no_longer_exists">%s (ja no existeix)</string>
     <string name="settings_source_api_key_invalid">El valor no està en el format esperat</string>
     <string name="settings_main_background_title">Fons basat en el temps</string>
+    <string name="action_reset_to_default">Reinicia als valors per defecte</string>
 </resources>
