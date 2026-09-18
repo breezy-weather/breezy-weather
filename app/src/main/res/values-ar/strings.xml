@@ -28,7 +28,7 @@
     <string name="settings_icon_packs_get_more">أحصل على المزيد</string>
     <string name="action_refresh">تحديث</string>
     <string name="action_restart">إعادة التشغيل</string>
-    <string name="action_edit">تحرير</string>
+    <string name="action_edit">تعديل</string>
     <string name="daily_yesterday_short">أمس</string>
     <string name="daily_tomorrow_short">غدًا</string>
     <string name="temperature_apparent">الظاهرية</string>
@@ -75,7 +75,7 @@
     <string name="settings_enabled">مُفعّل</string>
     <string name="settings_disabled">مُعطّل</string>
     <string name="action_set">تعيين</string>
-    <string name="action_help">مساعدة</string>
+    <string name="action_help">المساعدة</string>
     <string name="action_learn_more">التعرف على المزيد</string>
     <string name="about_app">حول التطبيق</string>
     <string name="about_translators">المترجمون</string>
@@ -313,7 +313,7 @@
     <string name="weather_api_key_required_missing_content">لاستخدام هذا المصدر، تحتاج إلى توفير مفتاح API.</string>
     <string name="settings_weather_source_portal">منفذ</string>
     <string name="location_message_reverse_geocoding_failed">فشل مصدر الطقس في العثور على موقع مطابق</string>
-    <string name="action_close">أغلِق</string>
+    <string name="action_close">إغلاق</string>
     <string name="null_data_text">غير متوفر</string>
     <string name="widget_label_align_end">محاذاة اليسار</string>
     <string name="widget_custom_subtitle_keyword_cps_description">الضغط الحالي</string>
@@ -334,7 +334,7 @@
     <string name="weather_api_unauthorized_content">في بعض مصادر بيانات الطقس، تحتاج إلى استخدام مفتاح API الخاص بك. وإذا كنت قد قدمت مفتاحًا بالفعل، فيُرجى التحقق مرة أخرى من مفتاح API الذي قدمته.</string>
     <string name="location_search_no_results">%1$s لا يستطيع العثور على %2$s</string>
     <string name="location_search_no_results_advice">تأكد من كتابة بحثك بشكل صحيح وألا يكون محددًا للغاية. وبدلًا من ذلك، يمكنك تجربة مصدر آخر للبحث عن الموقع، والذي قد يعرض نتائج مختلفة.</string>
-    <string name="dialog_permissions_notification_title">ابقِ على اطّلاع</string>
+    <string name="dialog_permissions_notification_title">ابقَ على اطلاع</string>
     <string name="dialog_permissions_notification_content">انقر هنا لتفعيل الإشعارات حول تنبيهات الطقس، أو فعّله لاحقًا في الإعدادات.</string>
     <string name="precipitation_none">لا توجد تساقطات</string>
     <string name="settings_background_updates_battery_optimization_summary">هذا هو أول شيء يجب تجربته اذا لم تكن تتلقى إشعارات أو اذا لم يتم تحديث ويدجيتات سطح المكتب.</string>
@@ -344,7 +344,7 @@
     <string name="settings_location_access_background_title">الوصول إلى الموقع في الخلفية</string>
     <string name="settings_location_access_precise_summaryOn">مفعّل. سيتم الاعتماد على شبكة الجهاز كأولوية وفي معظم الوقت، ولكن من الممكن أيضا أن يستخدم GPS كبديل.</string>
     <string name="settings_modules_live_wallpaper_error">تعذر تشغيل منتقي الخلفيات. لا يزال بإمكانك تفعيل خلفية %s عن طريق اختيار ”Live Wallpaper“ في منتقي خلفيات الشاشة الرئيسية.</string>
-    <string name="action_more">انظر أكثر</string>
+    <string name="action_more">المزيد</string>
     <string name="location_service_native">واجهة API الأصلية</string>
     <string name="action_location_list">قائمة المواقع</string>
     <string name="action_add_current_location">إضافة الموقع الحالي</string>
@@ -388,10 +388,10 @@
     <string name="weather_source_accu_preference_hours_72">72 ساعات</string>
     <string name="weather_source_accu_preference_hours_120">120 ساعة</string>
     <string name="weather_source_accu_preference_hours_240">240 ساعة</string>
-    <string name="action_continue">استمر</string>
+    <string name="action_continue">متابعة</string>
     <string name="action_share">مشاركة</string>
     <string name="dialog_permissions_location_content">لاستخدام هذه الميزة، تحتاج إلى منح التطبيق إذنًا للوصول إلى موقعك الحالي. سيتم مشاركته فقط مع مصادر الطقس المحددة. إذا غيرت رأيك، يمكنك إلغاء العملية وإضافة موقع ثابت يدويًا.</string>
-    <string name="dialog_permissions_location_background_content">للسماح بتحديث الطقس في الخلفية لأحدث موقع حالي معروف بواسطة أندرويد، تحتاج إلى تعيين إذن الموقع على ”السماح طوال الوقت“. إذا لم تقم بذلك، فسيتم تحديث الطقس بناءً على أحدث الإحداثيات المستردة في المقدمة، والتي قد تكون قديمة.</string>
+    <string name="dialog_permissions_location_background_content">للسماح بتحديث الطقس في الخلفية لأحدث موقع حالي معروف بواسطة أندرويد، تحتاج إلى تعيين إذن الموقع على \"السماح طوال الوقت\". إذا لم تقم بذلك، فسيتم تحديث الطقس بناءً على أحدث الإحداثيات المستردة في المقدمة، والتي قد تكون قديمة.</string>
     <string name="message_tap_again_to_exit">انقر مرة أخرى للخروج</string>
     <string name="widget_custom_subtitle_keyword_xdt_description">درجة الحرارة نهارا لليوم، الغد، …، بعد 4 أيام (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_xnt_description">درجة الحرارة ليلا لليوم، الغد، …، بعد 4 أيام (°C/°F)</string>
@@ -411,7 +411,7 @@
     <string name="message_parsing_error_title">فشل تحليل بيانات الطقس</string>
     <string name="message_server_timeout">انتهت مهلة الطلب</string>
     <string name="message_parsing_error_content">تأكد من تحديثك إلى أحدث إصدار من التطبيق. قد يكون الخادم غير متاح مؤقتًا، وفي هذه الحالة، يُرجى المحاولة مرة أخرى لاحقًا. إذا استمرت المشكلة، يُرجى مشاركة سجلّ الإنهيار من إعدادات التصحيح، والإبلاغ عن مشكلة على GitHub.</string>
-    <string name="message_source_not_installed_error_title">المصدر لم يعد متوفرا</string>
+    <string name="message_source_not_installed_error_title">المصدر لم يعد متوفراً</string>
     <string name="settings_source_api_key">مفتاح API</string>
     <string name="temperature_degree_day_cooling">اليوم الحراري للتبريد</string>
     <string name="temperature_degree_day_heating">اليوم الحراري للتدفئة</string>
@@ -426,7 +426,7 @@
     <string name="pollen_olea">شجرة الزيتون</string>
     <string name="pollen_level_0">لا شيء</string>
     <string name="pollen_level_2">منخفض</string>
-    <string name="action_delete">احذف</string>
+    <string name="action_delete">حذف</string>
     <string name="weather_message_invalid_location">الموقع غير صالح، يُرجى حذفه وإعادة إضافته</string>
     <string name="about_dependencies">التبعيات</string>
     <string name="precipitation_nowcasting">التنبؤ قصير المدى بالتساقطات</string>
@@ -523,7 +523,7 @@
     <string name="sunshine">أشعة الشمس</string>
     <string name="widget_custom_subtitle_keyword_xpis_description">مقتطف مؤشر حبوب اللقاح لليوم، الغد، …، بعد 4 أيام</string>
     <string name="about_open_link_message">افتح %s؟</string>
-    <string name="message_source_not_installed_error_content">قم إما بتغيير مصادر الطقس لهذا الموقع أو حذف هذا الموقع وإعادة إضافته.</string>
+    <string name="message_source_not_installed_error_content">إما أن تغير مصادر الطقس لهذا الموقع، أو تحذفه وتُعيد إضافته.</string>
     <string name="settings_per_location">إعدادات الموقع</string>
     <string name="settings_per_location_summary">تخصيصات إضافية لهذا الموقع</string>
     <string name="settings_weather_source_open_meteo_weather_models">نماذج الطقس</string>
@@ -543,12 +543,12 @@
     <string name="settings_invalid_syntax">صيغة غير صالحة</string>
     <string name="alert_source">المصدر: %s</string>
     <string name="dialog_time_picker_select_time">اختيار الوقت</string>
-    <string name="dialog_time_picker_toggle_touch_input_voice">قم بالتبديل إلى الإدخال باللمس</string>
+    <string name="dialog_time_picker_toggle_touch_input_voice">التحول إلى مدخل اللمس</string>
     <string name="widget_label_hide_alternate_calendar">إخفاء التقويم البديل</string>
     <string name="settings_background_updates_refresh_never_warning3">فكر في استخدام معدّل تحديث أقل تكرارًا بدلاً من إيقاف تشغيل تحديثات الخلفية، وإلا فانقر على \"استمر\" إذا كنت لا تزال ترغب في المتابعة.</string>
     <string name="settings_modules_broadcast_send_data_summary_empty">لم يُعثر على حزم متوافقة</string>
-    <string name="dialog_time_picker_input_time">وقت الإدخال</string>
-    <string name="dialog_time_picker_toggle_text_input_voice">قم بالتبديل إلى إدخال النص</string>
+    <string name="dialog_time_picker_input_time">إدخال الوقت</string>
+    <string name="dialog_time_picker_toggle_text_input_voice">التحول إلى إدخال النص</string>
     <string name="settings_background_updates_refresh_never_warning1">من خلال إيقاف تشغيل تحديثات الخلفية، لن تتلقى بعد الآن إشعارات التحذير أو هطول الأمطار. لن تُحدّت الويدجات حتى تفتح التطبيق.</string>
     <string name="settings_background_updates_refresh_never_warning2">تتميز عملية التحديث في الخلفية بالبساطة: فهي تقوم فقط بتحديث موقعك الأول بالمعدّل الذي حدّدته، والمواقع الثانوية فقط إذا كنت في حاجة إليها، مرة واحدة يوميًا. إنه موفر للبطارية ويجب ألا يتجاوز استهلاك البيانات %d ميجابايت شهريًا.</string>
     <string name="settings_appearance_calendar_title">التقويم البديل</string>
@@ -566,7 +566,7 @@
     <string name="common_weather_text_sand_storm">عاصفة رملية</string>
     <string name="meteoam_weather_text_tornado_watersprout">إعصار او رشة ماء</string>
     <string name="common_weather_text_smoke">دخان</string>
-    <string name="dialog_app_update_check_title">البقاء على احدث إصدار</string>
+    <string name="dialog_app_update_check_title">ابقَ على اطلاع دائم</string>
     <string name="dialog_app_update_check_content">انقر هنا لتفعيل الإشعارات حول تحديثات التطبيق.</string>
     <string name="settings_unavailable_no_animations">غير متاح، فعِّل الرسوم المتحركة في إعدادات الجهاز أولاً</string>
     <string name="current_weather">الطقس الحالي</string>
@@ -628,9 +628,9 @@
     <string name="weather_source_continent_oceania">أوقيانوسيا</string>
     <string name="weather_source_continent_south_america">أمريكا الجنوبية</string>
     <string name="message_server_insecure_title">فشل الاتصال الآمن</string>
-    <string name="message_outdated_server_data">استُلم بيانات قديمة من الخادم</string>
-    <string name="action_enable">فعِّل</string>
-    <string name="action_allow">اسمح</string>
+    <string name="message_outdated_server_data">تم تلقي بيانات قديمة من الخادم</string>
+    <string name="action_enable">تفعيل</string>
+    <string name="action_allow">السماح</string>
     <string name="action_open_in_other_app">افتح في تطبيق آخر</string>
     <string name="action_open_in_other_app_description">افتح هذا الموقع في تطبيق آخر</string>
     <string name="air_quality_short">جودة الهواء</string>
@@ -753,18 +753,18 @@
     <string name="action_open_in_other_app_no_app">لم يُعثر على تطبيق خرائط</string>
     <string name="action_configure_item">اضبط %s</string>
     <string name="action_pull_down_to_refresh">اسحب للأسفل للتحديث</string>
-    <string name="action_change">غيِّر</string>
-    <string name="action_close_menu">أغلِق القائمة</string>
-    <string name="action_toggle_data_type_menu">بدّل قائمة اختيار نوع البيانات</string>
-    <string name="action_share_no_app">لم يُعثر على تطبيق للمشاركة معه</string>
-    <string name="action_translate">ترجم</string>
+    <string name="action_change">تغيير</string>
+    <string name="action_close_menu">إغلاق القائمة</string>
+    <string name="action_toggle_data_type_menu">تبديل قائمة اختيار نوع البيانات</string>
+    <string name="action_share_no_app">لم يُعثر على تطبيق للمشاركة</string>
+    <string name="action_translate">ترجمة</string>
     <string name="action_translate_no_app">لم يُعثر على تطبيق ترجمة</string>
     <string name="label_description">الوصف</string>
     <string name="label_expanded">موسَّع</string>
-    <string name="label_collapsed">مطوِ</string>
+    <string name="label_collapsed">مطوي</string>
     <string name="message_incompatible_times_title">أوقات التنبؤ غير متوافقة</string>
-    <string name="message_incompatible_times_content">غيِّر توقعاتك أو مصدر جودة الهواء حتى تتطابق الأوقات.</string>
-    <string name="message_source_non_free_network_title">يتطلب هذا المصدر النُسخة القياسية من التطبيق</string>
+    <string name="message_incompatible_times_content">غيّر مصدر توقعاتك أو جودة الهواء حتى تتطابق الأوقات.</string>
+    <string name="message_source_non_free_network_title">يتطلب هذا المصدر النسخة القياسية من التطبيق</string>
     <string name="message_source_non_free_network_content">أنت تستخدم نُسخة Freenet من التطبيق، والتي لا تدعم إلا المصادر المستضافة على شبكة حرة. لمتابعة استخدام هذا المصدر، يُرجى العودة إلى النُسخة القياسية (Standard)، أو اختر مصدرًا آخر.</string>
     <string name="message_please_wait_refresh">يُرجى الانتظار حتى يكتمل التحديث</string>
     <string name="widget_custom_subtitle_help_content_description">أظهر تعليمات الكلمات المفتاحية المخصّصة للترجمة المصاحبة</string>
@@ -786,5 +786,5 @@
     <string name="content_provider_permission_label">قراءة بيانات Breezy Weather</string>
     <string name="content_provider_permission_description">احصل على معلومات الطقس من Breezy Weather، بما في ذلك إحداثيات مواقعك، مثل موقعك الحالي أضفته</string>
     <string name="common_weather_text_mostly_cloudy">غائم غالبًا</string>
-    <string name="action_reset_to_default">صفّر للمبدئي</string>
+    <string name="action_reset_to_default">إعادة التعيين إلى الوضع الافتراضي</string>
 </resources>
