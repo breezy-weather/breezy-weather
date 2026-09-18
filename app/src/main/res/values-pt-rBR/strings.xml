@@ -844,4 +844,5 @@
     <string name="settings_source_api_key_invalid">O valor não está no formato esperado</string>
     <string name="settings_main_background_title">Plano de fundo baseado no clima</string>
     <string name="settings_weather_source_no_longer_exists">%s (não existe mais)</string>
+    <string name="action_reset_to_default">Redefinir para valores padrão</string>
 </resources>
