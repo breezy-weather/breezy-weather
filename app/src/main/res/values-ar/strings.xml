@@ -215,7 +215,7 @@
     <string name="action_add_new_location">إضافة موقع جديد</string>
     <string name="dialog_permissions_location_background_title">الوصول إلى الموقع في الخلفية</string>
     <string name="widget_custom_subtitle_keyword_ws_description">الأسبوع (قصير)</string>
-    <string name="widget_style_symmetry">تناظري</string>
+    <string name="widget_style_symmetry">التناظر</string>
     <string name="widget_style_oreo">أوريو</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">عاصفة رعدية طفيفة أو معتدلة</string>
     <string name="air_quality_level_1">ممتاز</string>
