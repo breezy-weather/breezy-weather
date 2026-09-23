@@ -139,9 +139,9 @@
     <string name="settings_modules_notification_temp_icon_switch">درجة الحرارة كرمز في شريط الحالة</string>
     <string name="settings_automatic">تلقائي</string>
     <string name="settings_none">لا شيء</string>
-    <string name="settings_color_day_night">الوضع التلقائي</string>
-    <string name="settings_color_day_always">دائمًا في النهار</string>
-    <string name="settings_color_night_always">دائمًا في الليل</string>
+    <string name="settings_color_day_night">نهاري / ليلي</string>
+    <string name="settings_color_day_always">دائماً في النهار</string>
+    <string name="settings_color_night_always">دائماً في الليل</string>
     <string name="settings_color_light">فاتح</string>
     <string name="settings_color_grey">رمادي</string>
     <string name="settings_color_dark">داكن</string>
@@ -151,7 +151,7 @@
     <string name="widget_subtitle_data_feels_like">درجة الحرارة المحسوسة</string>
     <string name="widget_subtitle_data_custom">مخصص</string>
     <!-- Weather kind -->
-    <string name="common_weather_text_partly_cloudy">غائم جزئيًا</string>
+    <string name="common_weather_text_partly_cloudy">غائم جزئياً</string>
     <string name="common_weather_text_cloudy">غائم</string>
     <string name="common_weather_text_rain">مطر</string>
     <string name="common_weather_text_snow">ثلج</string>
@@ -160,7 +160,7 @@
     <string name="weather_kind_haze">مُغبَر</string>
     <string name="weather_kind_thunder">رعد</string>
     <string name="weather_kind_thunderstorm">عاصفة رعدية</string>
-    <string name="weather_kind_wind">رياح</string>
+    <string name="weather_kind_wind">الرياح</string>
     <string name="settings_main_cards_title">البطاقات</string>
     <string name="widget_custom_subtitle_keyword_d_description">التاريخ</string>
     <string name="widget_custom_subtitle_keyword_ct_description">درجة الحرارة الحالية (°C°/F)</string>
@@ -288,7 +288,7 @@
     <string name="widget_custom_subtitle_keyword_lon_description">خط الطول</string>
     <string name="widget_custom_subtitle_keyword_xsr_description">شروق الشمس لليوم، الغد، ...، بعد 4 أيام</string>
     <string name="settings_icon_packs_weather_icon_light">أيقونة فاتحة</string>
-    <string name="notification_style_native">الاصليه</string>
+    <string name="notification_style_native">الأصلية</string>
     <string name="notification_style_cities">المدن</string>
     <string name="about_matrix">غرفة ماتريكس</string>
     <string name="about_source_code">الشفرة المصدرية</string>
@@ -369,13 +369,13 @@
     <string name="settings_modules_notification_widget_title">ويدجيت الإشعار</string>
     <string name="settings_modules_notification_persistent_switch">ثابتة</string>
     <string name="settings_debug">تصحيح</string>
-    <string name="settings_debug_summary">سجلات الإنهيار</string>
-    <string name="settings_debug_dump_crash_logs_title">شارك سجلات الإنهيار</string>
-    <string name="settings_debug_dump_crash_logs_summary">يحفظ سجلات الإنهيار في ملف لمشاركتها مع المطوّرين</string>
+    <string name="settings_debug_summary">سجلات الانهيار</string>
+    <string name="settings_debug_dump_crash_logs_title">مشاركة سجلات الانهيار</string>
+    <string name="settings_debug_dump_crash_logs_summary">تحفظ سجلات الأخطاء في ملف لمشاركتها مع المطورين</string>
     <string name="notification_channel_alerts">تنبيهات</string>
     <string name="notification_channel_background_services">خدمات الخلفية</string>
-    <string name="about_contribution_WangDaYeeeeee">مطور المشروع الأصلي الطقس الهندسي</string>
-    <string name="common_weather_text_mostly_clear">صافٍ غالبًا</string>
+    <string name="about_contribution_WangDaYeeeeee">مطور المشروع الأصلي Geometric Weather</string>
+    <string name="common_weather_text_mostly_clear">صافٍ غالباً</string>
     <string name="location_message_permission_missing">إذن الوصول إلى الموقع غير متوفر</string>
     <string name="setting_weather_source_accu_days">الأيام</string>
     <string name="weather_source_accu_preference_days_1">يوم 1</string>
@@ -436,7 +436,7 @@
     <string name="about_contact">الاتصال</string>
     <string name="common_weather_text_rain_moderate">أمطر متوسطة</string>
     <string name="common_weather_text_rain_snow_mixed_light">مطر خفيف وثلج مجتمعان</string>
-    <string name="common_weather_text_rain_heavy">مطر غزير</string>
+    <string name="common_weather_text_rain_heavy">أمطار غزيرة</string>
     <string name="common_weather_text_rain_light">أمطار خفيفة</string>
     <string name="common_weather_text_rain_showers">رشات مطر</string>
     <string name="common_weather_text_rain_showers_moderate">رشات مطر متوسطة</string>
@@ -455,7 +455,7 @@
     <string name="common_weather_text_snow_showers_light">رشات ثلج خفيفة</string>
     <string name="common_weather_text_snow_showers_heavy">رشات ثلج غزيرة</string>
     <string name="common_weather_text_drizzle">رذاذ</string>
-    <string name="common_weather_text_rain_snow_mixed_heavy">أمطار غزيرة وثلج مختلط</string>
+    <string name="common_weather_text_rain_snow_mixed_heavy">أمطار غزيرة وثلوج مختلطة</string>
     <string name="common_weather_text_rain_snow_mixed_showers_light">مطر خفيف ورشات ثلج مختلطة</string>
     <string name="common_weather_text_snow_light">ثلج خفيف</string>
     <string name="common_weather_text_snow_moderate">ثلج متوسط</string>
@@ -473,10 +473,10 @@
     <string name="settings_main_threshold_lines_on_charts">خطوط العتبة على الرسوم البيانية</string>
     <string name="settings_modules_broadcast_send_data_title">إرسال بيانات الطقس إلى %s</string>
     <string name="settings_color_app">اتبع التطبيق</string>
-    <string name="settings_debug_dump_crash_logs_saved">حُفظ سجلّ الإنهيار</string>
+    <string name="settings_debug_dump_crash_logs_saved">حُفظت سجلات الانهيار</string>
     <string name="settings_debug_dump_crash_logs_tap_to_open">انقر للفتح</string>
     <string name="notification_channel_crash_logs">سجلات الإنهيار</string>
-    <string name="notification_precipitation_starting">ستهطل الأمطار قريبا</string>
+    <string name="notification_precipitation_starting">ستهطل الأمطار قريباً</string>
     <string name="notification_precipitation_continuing">التساقطات</string>
     <string name="notification_precipitation_stopping">سيتوقف هطول الأمطار قريبا</string>
     <string name="notification_precipitation_stopping_desc">من المتوقع أن يتوقف عند %s</string>
@@ -564,7 +564,7 @@
     <string name="notification_channel_app_updates">تحديثات التطبيق</string>
     <string name="notification_app_update_available">نسخة جديدة متاحة!</string>
     <string name="common_weather_text_sand_storm">عاصفة رملية</string>
-    <string name="meteoam_weather_text_tornado_watersprout">إعصار او رشة ماء</string>
+    <string name="meteoam_weather_text_tornado_watersprout">إعصار أو شاهقة مائية</string>
     <string name="common_weather_text_smoke">دخان</string>
     <string name="dialog_app_update_check_title">ابقَ على اطلاع دائم</string>
     <string name="dialog_app_update_check_content">انقر هنا لتفعيل الإشعارات حول تحديثات التطبيق.</string>
@@ -605,7 +605,7 @@
     <string name="action_grant_permission">انقر لمنح الإذن.</string>
     <string name="dialog_refresh_error_details_title">أخطاء في التحديث</string>
     <string name="action_show">عرض</string>
-    <string name="common_weather_text_squall">سكوال</string>
+    <string name="common_weather_text_squall">عاصفة مفاجئة</string>
     <string name="wind_direction_SW">الجنوب الغربي</string>
     <string name="daily_yesterday">أمس</string>
     <string name="dialog_refresh_error_details_content">اضغط على رسائل الخطأ التي تحتوي على علامة استفهام للحصول على مزيد من المساعدة.</string>
@@ -623,7 +623,7 @@
     <string name="common_weather_text_glaze">صقيل</string>
     <string name="settings_notifications_permission">إذن الإشعار مطلوب</string>
     <string name="settings_notifications_permission_summary">مطلوب لإرسال إشعارات بشأن التنبيهات والتوقعات وتحديثات التطبيق. %s</string>
-    <string name="settings_debug_notification_permission">مطلوب للإبلاغ عن سجلات الإنهيار وتحديثات الطقس الفاشلة. %s</string>
+    <string name="settings_debug_notification_permission">مطلوب للإبلاغ عن سجلات الانهيار وتحديثات الطقس الفاشلة. %s</string>
     <string name="weather_source_continent_north_america">أمريكا الشمالية</string>
     <string name="weather_source_continent_oceania">أوقيانوسيا</string>
     <string name="weather_source_continent_south_america">أمريكا الجنوبية</string>
@@ -781,10 +781,10 @@
     <string name="settings_appearance_dark_mode_locations_day_night">اتباع وضع النهار/الليل</string>
     <string name="settings_appearance_dark_mode_locations_dark">داكن دائماً عندما يكون التطبيق في الوضع الداكن</string>
     <string name="settings_main_background_title">خلفية تعتمد على حالة الطقس</string>
-    <string name="settings_regional_preference">تفضيل إقليمي</string>
-    <string name="about_update_check_eol">إصدار أندرويد هذا لم يعد مدعومًا</string>
+    <string name="settings_regional_preference">التفضيل الإقليمي</string>
+    <string name="about_update_check_eol">إصدار أندرويد هذا لم يعد مدعوماً</string>
     <string name="content_provider_permission_label">قراءة بيانات Breezy Weather</string>
-    <string name="content_provider_permission_description">احصل على معلومات الطقس من Breezy Weather، بما في ذلك إحداثيات مواقعك، مثل موقعك الحالي أضفته</string>
-    <string name="common_weather_text_mostly_cloudy">غائم غالبًا</string>
+    <string name="content_provider_permission_description">احصل على معلومات الطقس من Breezy Weather، بما في ذلك إحداثيات مواقعك، مثل موقعك الحالي إذا أضفته</string>
+    <string name="common_weather_text_mostly_cloudy">غائم غالباً</string>
     <string name="action_reset_to_default">إعادة التعيين إلى الوضع الافتراضي</string>
 </resources>
