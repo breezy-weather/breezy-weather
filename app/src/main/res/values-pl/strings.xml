@@ -431,7 +431,7 @@
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Lekka lub umiarkowana burza z gradem</string>
     <string name="about_dependencies">Zależności</string>
     <string name="settings_modules">Moduły zewnętrzne</string>
-    <string name="precipitation_nowcasting">nowcasting opadów</string>
+    <string name="precipitation_nowcasting">Opady w najbliższym czasie</string>
     <string name="alerts_to_follow">Dotknij tutaj, aby zobaczyć nadchodzące alerty.</string>
     <string name="air_quality_o3_full">Ozon na poziomie gruntu (%s)</string>
     <string name="settings_modules_section_widgets_in_use">Widżety w użyciu</string>
