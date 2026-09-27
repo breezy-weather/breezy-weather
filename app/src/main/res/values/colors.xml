@@ -87,7 +87,9 @@
 
     <color name="colorNotificationSecondary">@color/secondary_text_default_material_light</color>
 
-    <color name="colorSplashScreen">#5F96D0</color>
+    <color name="colorSplashScreen">@color/colorSplashScreenLight</color>
+    <color name="colorSplashScreenLight">#5F96D0</color>
+    <color name="colorSplashScreenDark">#141c2c</color>
 
     <!-- widget. -->
 

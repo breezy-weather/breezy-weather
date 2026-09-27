@@ -366,6 +366,26 @@ class SettingsManager private constructor(
         }
         get() = config.getLong("language_update_last_timestamp", 0)
 
+    /**
+     * Whether the night mode persisted by the system for this app was removed
+     * Only used on Android 13+
+     */
+    var isApplicationNightModeRemoved: Boolean
+        set(value) {
+            config.edit().putBoolean("application_night_mode_removed", value).apply()
+        }
+        get() = config.getBoolean("application_night_mode_removed", false)
+
+    /**
+     * Whether the splash screen theme was set according to the dark mode
+     * Only used on Android 13+
+     */
+    var isSplashScreenThemeInitialized: Boolean
+        set(value) {
+            config.edit().putBoolean("splash_screen_theme_initialized", value).apply()
+        }
+        get() = config.getBoolean("splash_screen_theme_initialized", false)
+
     var alternateCalendar: String
         set(value) {
             config.edit().putString("calendar_alternate", value).apply()

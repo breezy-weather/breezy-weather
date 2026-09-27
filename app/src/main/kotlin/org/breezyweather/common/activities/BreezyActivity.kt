@@ -36,6 +36,8 @@ abstract class BreezyActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        BreezyWeather.instance.initSplashScreenThemeIfNecessary(this)
+
         enableEdgeToEdge()
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
             window.setSystemBarStyle(!isDarkMode)

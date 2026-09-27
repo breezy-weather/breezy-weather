@@ -17,6 +17,7 @@
 package org.breezyweather.common.extensions
 
 import android.Manifest
+import android.app.LocaleManager
 import android.app.UiModeManager
 import android.content.ClipboardManager
 import android.content.Context
@@ -32,6 +33,7 @@ import android.provider.Settings
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import androidx.annotation.RawRes
+import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.core.content.getSystemService
 import com.google.maps.android.data.geojson.GeoJsonParser
@@ -91,6 +93,13 @@ val Context.shortcutManager: ShortcutManager?
     get() = getSystemService()
 
 val Context.uiModeManager: UiModeManager?
+    get() = getSystemService()
+
+/**
+ * Unlike AppCompatDelegate app locales methods, works without any activity (Application, widgets, workers)
+ */
+val Context.localeManager: LocaleManager?
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     get() = getSystemService()
 
 fun Context.createFileInCacheDir(name: String): File {

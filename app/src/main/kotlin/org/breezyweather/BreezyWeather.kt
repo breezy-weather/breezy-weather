@@ -16,11 +16,15 @@
 
 package org.breezyweather
 
+import android.app.Activity
 import android.app.Application
 import android.app.UiModeManager
 import android.content.pm.ApplicationInfo
+import android.content.res.Resources
 import android.os.Build
+import android.os.LocaleList
 import android.os.Process
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.hilt.work.HiltWorkerFactory
 import androidx.work.Configuration
@@ -28,6 +32,7 @@ import androidx.work.WorkInfo
 import androidx.work.WorkQuery
 import dagger.hilt.android.HiltAndroidApp
 import org.breezyweather.common.activities.BreezyActivity
+import org.breezyweather.common.extensions.localeManager
 import org.breezyweather.common.extensions.uiModeManager
 import org.breezyweather.common.extensions.workManager
 import org.breezyweather.common.utils.AndroidSignatureFinder
@@ -84,10 +89,10 @@ class BreezyWeather : Application(), Configuration.Provider {
         setupNotificationChannels()
 
         if (getProcessName().equals(packageName)) {
-            // Sets and persists the night mode setting for this app. This allows the system to know
-            // if the app wants to be displayed in dark mode before it launches so that the splash
-            // screen can be displayed accordingly.
             setDayNightMode()
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                removeApplicationNightMode()
+            }
         }
 
         /*
@@ -124,12 +129,37 @@ class BreezyWeather : Application(), Configuration.Provider {
         topA?.recreate()
     }
 
+    /**
+     * The splash screen theme can only be set from an activity. Once set, it is persisted by the
+     * system, and updated in [updateDayNightMode], so this is only needed once, for users who chose
+     * a dark mode before it was used
+     */
+    fun initSplashScreenThemeIfNecessary(activity: Activity) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) return
+
+        val settings = SettingsManager.getInstance(this)
+        if (settings.isSplashScreenThemeInitialized) return
+
+        updateSplashScreenTheme(activity, settings.darkMode.value)
+        settings.isSplashScreenThemeInitialized = true
+    }
+
     private fun setDayNightMode() {
         updateDayNightMode(SettingsManager.getInstance(this).darkMode.value)
     }
 
+    /**
+     * On Android 12 and 12L, sets and persists the night mode setting for this app. This allows the
+     * system to know if the app wants to be displayed in dark mode before it launches so that the
+     * splash screen can be displayed accordingly.
+     *
+     * Since Android 13, the system persists the night mode in the same per-app record as the app
+     * locales, and once a night mode is stored, changes to the app locales are no longer written to
+     * disk, so the app language is lost on next reboot. See [removeApplicationNightMode].
+     * The splash screen theme is persisted instead, see [updateSplashScreenTheme].
+     */
     fun updateDayNightMode(dayNightMode: Int) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+        if (Build.VERSION.SDK_INT == Build.VERSION_CODES.S || Build.VERSION.SDK_INT == Build.VERSION_CODES.S_V2) {
             uiModeManager?.setApplicationNightMode(
                 when (dayNightMode) {
                     AppCompatDelegate.MODE_NIGHT_NO -> UiModeManager.MODE_NIGHT_NO
@@ -139,7 +169,41 @@ class BreezyWeather : Application(), Configuration.Provider {
             )
         } else {
             AppCompatDelegate.setDefaultNightMode(dayNightMode)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                topActivity?.let { updateSplashScreenTheme(it, dayNightMode) }
+            }
         }
+    }
+
+    /**
+     * Removes the night mode persisted by previous versions of the app (or before an upgrade to
+     * Android 13), by resetting the whole per-app record, then setting the app locales back
+     */
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
+    private fun removeApplicationNightMode() {
+        val settings = SettingsManager.getInstance(this)
+        if (settings.isApplicationNightModeRemoved) return
+
+        val localeManager = localeManager ?: return
+        val appLocales = localeManager.applicationLocales
+        uiModeManager?.setApplicationNightMode(UiModeManager.MODE_NIGHT_AUTO)
+        // With default night mode and no locales, the system deletes the record
+        localeManager.applicationLocales = LocaleList.getEmptyLocaleList()
+        if (!appLocales.isEmpty) {
+            localeManager.applicationLocales = appLocales
+        }
+        settings.isApplicationNightModeRemoved = true
+    }
+
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
+    private fun updateSplashScreenTheme(activity: Activity, dayNightMode: Int) {
+        activity.splashScreen.setSplashScreenTheme(
+            when (dayNightMode) {
+                AppCompatDelegate.MODE_NIGHT_NO -> R.style.BreezyWeatherSplashScreenLight
+                AppCompatDelegate.MODE_NIGHT_YES -> R.style.BreezyWeatherSplashScreenDark
+                else -> Resources.ID_NULL
+            }
+        )
     }
 
     private fun setupNotificationChannels() {

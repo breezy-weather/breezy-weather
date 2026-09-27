@@ -2,7 +2,7 @@
 <resources>
 
     <!-- theme -->
-    <color name="colorSplashScreen">#141c2c</color>
+    <color name="colorSplashScreen">@color/colorSplashScreenDark</color>
 
     <!-- widget S. -->
 

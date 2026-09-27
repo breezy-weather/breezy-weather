@@ -10,4 +10,16 @@
         <item name="android:textColorSecondary">@color/colorWidgetM3TextSecondary</item>
     </style>
 
+    <!-- splash screen when dark mode is forced in the app (Android 13+). -->
+
+    <style name="BreezyWeatherSplashScreenLight" parent="@android:style/Theme.DeviceDefault.Light.NoActionBar">
+        <item name="android:windowSplashScreenBackground">@color/colorSplashScreenLight</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/ic_launcher_foreground</item>
+    </style>
+
+    <style name="BreezyWeatherSplashScreenDark" parent="@android:style/Theme.DeviceDefault.NoActionBar">
+        <item name="android:windowSplashScreenBackground">@color/colorSplashScreenDark</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/ic_launcher_foreground</item>
+    </style>
+
 </resources>
