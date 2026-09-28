@@ -267,7 +267,7 @@
     <string name="air_quality_level_1_description">A qualidade do ar é ideal para a maioria das pessoas; aproveite as suas atividades habituais ao ar livre.</string>
     <string name="air_quality_level_2">Razoável</string>
     <string name="air_quality_level_2_description">A qualidade do ar é, em geral, aceitável para a maioria das pessoas. No entanto, os grupos sensíveis podem apresentar sintomas ligeiros a moderados em caso de exposição prolongada.</string>
-    <string name="air_quality_level_3">Mau</string>
+    <string name="air_quality_level_3">Má</string>
     <string name="air_quality_level_4_description">Os efeitos na saúde podem ser sentidos imediatamente por grupos sensíveis. As pessoas saudáveis podem sentir dificuldade em respirar e irritação na garganta em caso de exposição prolongada. Limite as atividades ao ar livre.</string>
     <string name="air_quality_level_6">Perigoso</string>
     <string name="air_quality_level_6_description">Qualquer exposição ao ar, mesmo que seja por apenas alguns minutos, pode ter graves consequências para a saúde de qualquer pessoa. Evite atividades ao ar livre.</string>
