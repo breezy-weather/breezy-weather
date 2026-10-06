@@ -321,7 +321,7 @@
     <string name="settings_section_general">عام</string>
     <string name="settings_background_updates_refresh_title">معدّل التحديث</string>
     <string name="settings_background_updates_refresh_never">أبداً</string>
-    <string name="settings_location_access_permission_already_granted">تم منح الإذن بالفعل.</string>
+    <string name="settings_location_access_permission_already_granted">تم منح الإذن بالفعل</string>
     <string name="settings_location_access_precise_title">استخدام نظام تحديد المواقع GPS</string>
     <string name="settings_weather_sources_summary">مصدر الطقس الافتراضي للمواقع الجديدة ومفاتيح API المخصصة وإعدادات المصدر الأخرى</string>
     <string name="settings_modules_live_wallpaper_summary">تعيين حركة الطقس كخلفية</string>
