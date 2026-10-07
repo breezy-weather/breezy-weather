@@ -17,9 +17,11 @@
 package org.breezyweather
 
 import android.app.Application
+import android.app.LocaleManager
 import android.app.UiModeManager
 import android.content.pm.ApplicationInfo
 import android.os.Build
+import android.os.LocaleList
 import android.os.Process
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.hilt.work.HiltWorkerFactory
@@ -130,6 +132,17 @@ class BreezyWeather : Application(), Configuration.Provider {
 
     fun updateDayNightMode(dayNightMode: Int) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            // Since Android 13, the night mode and the app-specific language are persisted together,
+            // and setting the night mode can leave the language out of the persisted record, so it
+            // gets lost on next reboot. Setting the language again only persists it if it changed,
+            // so we reset it to "follow system" first.
+            // LocaleManager is used instead of AppCompatDelegate, as it also works without activity
+            val localeManager = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                getSystemService(LocaleManager::class.java)
+            } else {
+                null
+            }
+            val appLocales = localeManager?.applicationLocales
             uiModeManager?.setApplicationNightMode(
                 when (dayNightMode) {
                     AppCompatDelegate.MODE_NIGHT_NO -> UiModeManager.MODE_NIGHT_NO
@@ -137,6 +150,10 @@ class BreezyWeather : Application(), Configuration.Provider {
                     else -> UiModeManager.MODE_NIGHT_AUTO
                 }
             )
+            if (localeManager != null && appLocales?.isEmpty == false) {
+                localeManager.applicationLocales = LocaleList.getEmptyLocaleList()
+                localeManager.applicationLocales = appLocales
+            }
         } else {
             AppCompatDelegate.setDefaultNightMode(dayNightMode)
         }

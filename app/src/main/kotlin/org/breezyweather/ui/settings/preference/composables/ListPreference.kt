@@ -16,7 +16,10 @@
 
 package org.breezyweather.ui.settings.preference.composables
 
+import android.app.LocaleManager
 import android.content.Context
+import android.os.Build
+import android.os.LocaleList
 import androidx.annotation.ArrayRes
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
@@ -437,6 +440,11 @@ fun LanguagePreferenceView(
             LocaleListCompat.getEmptyLocaleList()
         } else {
             LocaleListCompat.forLanguageTags(it)
+        }
+        // Since Android 13, if a night mode is persisted for the app, a new app-specific language is
+        // only persisted if it was previously reset to "follow system". See BreezyWeather.updateDayNightMode()
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && !locale.isEmpty) {
+            context.getSystemService(LocaleManager::class.java)?.applicationLocales = LocaleList.getEmptyLocaleList()
         }
         AppCompatDelegate.setApplicationLocales(locale)
         SettingsManager.getInstance(context).languageUpdateLastTimestamp = Date().time
