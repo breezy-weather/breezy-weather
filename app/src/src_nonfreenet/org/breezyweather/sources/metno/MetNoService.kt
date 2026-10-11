@@ -37,7 +37,6 @@ import breezyweather.domain.weather.wrappers.WeatherWrapper
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.BreezyWeather
-import org.breezyweather.BuildConfig
 import org.breezyweather.R
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
@@ -224,7 +223,8 @@ class MetNoService @Inject constructor(
                 wind = if (currentTimeseries.instant?.details != null) {
                     Wind(
                         degree = currentTimeseries.instant.details.windFromDirection,
-                        speed = currentTimeseries.instant.details.windSpeed?.metersPerSecond
+                        speed = currentTimeseries.instant.details.windSpeed?.metersPerSecond,
+                        gusts = currentTimeseries.instant.details.windSpeedOfGust?.metersPerSecond
                     )
                 } else {
                     null
@@ -268,7 +268,8 @@ class MetNoService @Inject constructor(
                 wind = hourlyForecast.data?.instant?.details?.let { details ->
                     Wind(
                         degree = details.windFromDirection,
-                        speed = details.windSpeed?.metersPerSecond
+                        speed = details.windSpeed?.metersPerSecond,
+                        gusts = details.windSpeedOfGust?.metersPerSecond
                     )
                 },
                 uV = UV(index = hourlyForecast.data?.instant?.details?.ultravioletIndexClearSky),
