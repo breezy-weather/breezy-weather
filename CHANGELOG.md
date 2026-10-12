@@ -20,6 +20,7 @@
 - MET Norway - Add wind gusts
 - Open-Meteo - Update selectable weather models
 - Pollen Information - Add missing pollens: ash, chestnut, linden, plantain, sorrel
+- SMHI - Add precipitation probability and snow probability
 
 **Technical**
 - Remove support for Android 6
