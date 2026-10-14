@@ -84,6 +84,7 @@ Below, you can find details about the support and implementation status for feat
 | 🇳🇴 Norway                        | [MET Norway](#met-norway)                                                                         | Forecast, Nowcasting, Air quality, Alerts                                            |
 | 🇵🇭 Philippines                   | [PAGASA](#pagasa)                                                                                 | Forecast, Current                                                                    |
 | 🇵🇹 Portugal                      | [IPMA](#instituto-português-do-mar-e-da-atmosfera)                                                | Forecast, Alerts, Address                                                            |
+| 🇵🇱 Poland                        | [IMGW Public](https://danepubliczne.imgw.pl), [IMGW Meteo](https://meteo.imgw.pl) 🔐              | Current (no key), Forecast, Address (🔐)                                             |
 | 🇵🇷 Puerto Rico                   | [NWS](#national-weather-service)                                                                  | Forecast, Current, Alerts, Address                                                   |
 | 🇷🇪 Réunion                       | [Météo-France](#météo-france)                                                                     | Forecast, Alert, Normals, Address                                                    |
 | 🇸🇲 San Marino                    | [Meteo AM](#servizio-meteo-am)                                                                    | Forecast, Current, Address                                                           |
@@ -693,6 +694,54 @@ This source aggregates data from Beijing Meteorological Service, ColorfulClouds 
 | Precipitation Duration    | ❌         | Cloud Cover       | ❌         |
 | Wind                      | ✅         | Visibility        | ❌         |
 | Pressure                  | ❌         | Ceiling           | ❌         |
+</details>
+
+### Instytut Meteorologii i Gospodarki Wodnej
+**[Instytut Meteorologii i Gospodarki Wodnej](https://imgw.pl)** (IMGW) is the meteorological
+and water management institute of Poland.
+
+There are two available APIs in IMGW:
+- public access API warranted by the Polish law;
+- their internal API used in IMGW's Meteo webapp (called the forecast API in code).
+
+The public access API gives current meteo and synoptic data, plus weather alerts; however, only the
+meteo data contains latitude and longitude for matching with location. That API requires no credentials.
+
+The internal API uses a static hardcoded public token for authentication. The value is set by default
+in the app, however if it changes, it is easy to fetch it by yourself:
+
+- go to [IMGW Meteo](https://meteo.imgw.pl) web app
+- open the browser console on the Network tab, refresh the page
+- the token is passed in clear text as a query parameter in multiple queries (look for token=)
+
+Features technically available but not implemented:
+- Address lookup: very rudimentary and imprecise. Other solutions already available work better.
+- Alerts: while possible to fetch, only meteo alerts can be matched with data available; hydrological alerts cannot be reasonably matched to current location.
+
+| Feature                        | Detail         |
+|--------------------------------|----------------|
+| 🗺️ **Coverage**               | 🇵🇱 Poland    |
+| 📆 **Daily forecast**          | Not available  |
+| ⏱️ **Hourly forecast**         | Up to 62 hours |
+| ▶️ **Current observation**     | Available      |
+| 😶‍🌫️ **Air quality**         | Not available  |
+| 🤧 **Pollen**                  | Not available  |
+| ☔ **Precipitation nowcasting** | Available      |
+| ⚠️ **Alerts**                  | Not available  |
+| 📊 **Normals**                 | Not available  |
+| 🧭 **Address lookup**          | Not available  |
+
+<details><summary><h4>Details of available data from IMGW</h4></summary>
+
+| Data                      | Available | Data              | Available |
+|---------------------------|---------|-------------------|---------|
+| Weather Condition         | ✅       | Humidity          | ✅       |
+| Temperature               | ✅       | Dew Point         | ✅        |
+| Precipitation             | ✅       | UV Index          | ❌       |
+| Precipitation Probability | ❌       | Sunshine Duration | ❌       |
+| Precipitation Duration    | ❌       | Cloud Cover       | ✅       |
+| Wind                      | ✅       | Visibility        | ❌       |
+| Pressure                  | ✅        | Ceiling           | ❌       |
 </details>
 
 ### Israel Meteorological Service
