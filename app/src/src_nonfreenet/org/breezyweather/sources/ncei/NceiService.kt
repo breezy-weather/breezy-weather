@@ -201,7 +201,7 @@ class NceiService @Inject constructor(
                 results.stations.getOrNull(0)?.let { station ->
                     stationMap[station.id] = SphericalUtil.computeDistanceBetween(
                         LatLng(location.latitude, location.longitude),
-                        LatLng(results.centroid.point[1], results.centroid.point[0])
+                        LatLng(results.centroid[1], results.centroid[0])
                     )
                 }
             }

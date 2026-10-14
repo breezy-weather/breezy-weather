@@ -94,18 +94,18 @@ class BmkgService @Inject constructor(
         location: Location,
         requestedFeatures: List<SourceFeature>,
     ): Observable<WeatherWrapper> {
-        // API Key is needed for warnings, but not for current/forecast.
-        // Only throw exception if warnings are needed.
         val apiKey = getApiKeyOrDefault()
-        if (apiKey.isEmpty() && SourceFeature.ALERT in requestedFeatures) {
+        if (apiKey.isEmpty() && SourceFeature.FORECAST in requestedFeatures) {
             return Observable.error(ApiKeyMissingException())
         }
 
         val failedFeatures = mutableMapOf<SourceFeature, Throwable>()
         val forecast = if (SourceFeature.FORECAST in requestedFeatures) {
             mApi.getForecast(
-                lat = location.latitude,
-                lon = location.longitude
+                referer = BMKG_BASE_URL,
+                apiKey = apiKey,
+                lon = location.longitude,
+                lat = location.latitude
             ).onErrorResumeNext {
                 failedFeatures[SourceFeature.FORECAST] = it
                 Observable.just(BmkgForecastResult())
@@ -126,9 +126,15 @@ class BmkgService @Inject constructor(
             Observable.just(BmkgCurrentResult())
         }
 
+        val publicToken = ""
+        /*val publicToken = if (SourceFeature.ALERT in requestedFeatures) {
+            TODO: Needs to be pulled from the https://cuaca.bmkg.go.id/ webpage
+        } else {
+            ""
+        }*/
         val warning = if (SourceFeature.ALERT in requestedFeatures) {
             mApi.getWarning(
-                apiKey = apiKey,
+                publicToken = publicToken,
                 lat = location.latitude,
                 lon = location.longitude
             ).onErrorResumeNext {
@@ -145,7 +151,7 @@ class BmkgService @Inject constructor(
             ibf.add(
                 if (SourceFeature.ALERT in requestedFeatures) {
                     mApi.getIbf(
-                        apiKey = apiKey,
+                        publicToken = publicToken,
                         lat = location.latitude,
                         lon = location.longitude,
                         day = day

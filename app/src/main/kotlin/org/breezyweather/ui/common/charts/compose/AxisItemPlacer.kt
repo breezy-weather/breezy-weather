@@ -14,14 +14,14 @@
  * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package org.breezyweather.ui.common.charts
+package org.breezyweather.ui.common.charts.compose
 
-import com.patrykandpatrick.vico.core.cartesian.CartesianDrawingContext
-import com.patrykandpatrick.vico.core.cartesian.CartesianMeasuringContext
-import com.patrykandpatrick.vico.core.cartesian.axis.Axis
-import com.patrykandpatrick.vico.core.cartesian.axis.HorizontalAxis
-import com.patrykandpatrick.vico.core.cartesian.axis.VerticalAxis
-import com.patrykandpatrick.vico.core.cartesian.layer.CartesianLayerDimensions
+import com.patrykandpatrick.vico.compose.cartesian.CartesianDrawingContext
+import com.patrykandpatrick.vico.compose.cartesian.CartesianMeasuringContext
+import com.patrykandpatrick.vico.compose.cartesian.axis.Axis
+import com.patrykandpatrick.vico.compose.cartesian.axis.HorizontalAxis
+import com.patrykandpatrick.vico.compose.cartesian.axis.VerticalAxis
+import com.patrykandpatrick.vico.compose.cartesian.layer.CartesianLayerDimensions
 import kotlinx.collections.immutable.ImmutableList
 import org.breezyweather.common.extensions.toTimezoneSpecificHour
 import java.util.Date
@@ -83,7 +83,7 @@ class TimeTopAxisItemPlacer(
         // Can be 23, 24 or 25 hours
         val nbHoursDisplayed = (context.ranges.maxX - context.ranges.minX).milliseconds.inWholeHours
         // Divide layer width by max label width to know how many labels can fit. For example 16
-        val maxLabelsThatCanFit = floor(context.layerBounds.width().div(maxLabelWidth))
+        val maxLabelsThatCanFit = floor(context.layerBounds.width.div(maxLabelWidth))
         // If there are 16 labels that can fit in a 24-hour chart, then a minimum of 2 hours is needed between hours
         val hoursToSkip = ceil(nbHoursDisplayed.div(maxLabelsThatCanFit)).coerceAtLeast(0f).toInt()
 
@@ -121,33 +121,6 @@ class TimeTopAxisItemPlacer(
     ): List<Double> {
         return possibleValues.map { it.toDouble() }
     }
-}
-
-/**
- * @param measuredValues the values you would like to see on the X-axis
- */
-class SpecificHorizontalAxisItemPlacer(
-    private val measuredValues: List<Double>,
-    shiftExtremeLines: Boolean = false,
-    addExtremeLabelPadding: Boolean = false,
-) : HorizontalAxis.ItemPlacer by HorizontalAxis.ItemPlacer.aligned(
-    shiftExtremeLines = shiftExtremeLines,
-    addExtremeLabelPadding = addExtremeLabelPadding
-) {
-
-    override fun getLabelValues(
-        context: CartesianDrawingContext,
-        visibleXRange: ClosedFloatingPointRange<Double>,
-        fullXRange: ClosedFloatingPointRange<Double>,
-        maxLabelWidth: Float,
-    ): List<Double> = measuredValues
-
-    override fun getLineValues(
-        context: CartesianDrawingContext,
-        visibleXRange: ClosedFloatingPointRange<Double>,
-        fullXRange: ClosedFloatingPointRange<Double>,
-        maxLabelWidth: Float,
-    ) = null
 }
 
 /**

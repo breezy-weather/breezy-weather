@@ -155,9 +155,7 @@ fun DebugSettingsScreen(
                         titleId = id,
                         summaryOnId = R.string.settings_enabled,
                         summaryOffId = R.string.settings_disabled,
-                        checked = SettingsManager.getInstance(context).useMeasureFormat &&
-                            Build.VERSION.SDK_INT >= Build.VERSION_CODES.N,
-                        enabled = Build.VERSION.SDK_INT >= Build.VERSION_CODES.N,
+                        checked = SettingsManager.getInstance(context).useMeasureFormat,
                         isLast = true,
                         onValueChanged = {
                             SettingsManager.getInstance(context).useMeasureFormat = it

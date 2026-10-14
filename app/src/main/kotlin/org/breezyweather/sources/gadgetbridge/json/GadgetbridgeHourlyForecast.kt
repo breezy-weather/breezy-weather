@@ -28,4 +28,7 @@ data class GadgetbridgeHourlyForecast(
     val windDirection: Int? = null,
     val uvIndex: Float? = null,
     val precipProbability: Int? = null,
+    val dewPoint: Int? = null,
+    val pressure: Float? = null,
+    val cloudCover: Int? = null,
 )

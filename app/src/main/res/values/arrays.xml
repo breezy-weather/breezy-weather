@@ -2,7 +2,8 @@
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
 
     <!-- Do not translate this file -->
-    <!-- If you need to translate something not available as a string, please open an issue -->
+    <!-- If you need to translate something not available as a string</item>
+        <item> please open an issue -->
 
     <!-- Dark mode. -->
     <string-array name="dark_modes">
@@ -289,7 +290,8 @@
         <item>NCEP HRRR U.S. Conus</item>
         <item>NCEP NBM U.S. Conus</item>
         <item>NCEP NAM U.S. Conus</item>
-        <item>GFS GraphCast</item>
+        <item>NCEP AIGFS 0.25°</item>
+        <item>NCEP HGEFS 0.25° Ensemble Mean</item>
         <item>JMA Seamless</item>
         <item>JMA MSM</item>
         <item>JMA GSM</item>
@@ -304,6 +306,7 @@
         <item>GEM Global</item>
         <item>GEM Regional</item>
         <item>GEM HRDPS Continental</item>
+        <item>GEM HRDPS West</item>
         <item>Météo-France Seamless</item>
         <item>Météo-France ARPEGE World</item>
         <item>Météo-France ARPEGE Europe</item>
@@ -323,6 +326,11 @@
         <item>MeteoSwiss ICON Seamless</item>
         <item>MeteoSwiss ICON CH1</item>
         <item>MeteoSwiss ICON CH2</item>
+        <item>GeoSphere (with ECMWF) Seamless</item>
+        <item>GeoSphere AROME Austria</item>
+        <item>CHMI Aladin Seamless</item>
+        <item>CHMI Aladin Central Europe 2 km</item>
+        <item>CHMI Aladin CZ 1 km</item>
     </string-array>
     <string-array name="open_meteo_weather_models_values">
         <item>best_match</item>
@@ -331,26 +339,28 @@
         <item>ecmwf_aifs025_single</item>
         <item>cma_grapes_global</item>
         <item>bom_access_global</item>
-        <item>gfs_seamless</item>
-        <item>gfs_global</item>
-        <item>gfs_hrrr</item>
+        <item>ncep_gfs_seamless</item>
+        <item>ncep_gfs_global</item>
+        <item>ncep_hrrr_conus</item>
         <item>ncep_nbm_conus</item>
         <item>ncep_nam_conus</item>
-        <item>gfs_graphcast025</item>
+        <item>ncep_aigfs025</item>
+        <item>ncep_hgefs025_ensemble_mean</item>
         <item>jma_seamless</item>
         <item>jma_msm</item>
         <item>jma_gsm</item>
         <item>kma_seamless</item>
         <item>kma_ldps</item>
         <item>kma_gdps</item>
-        <item>icon_seamless</item>
-        <item>icon_global</item>
-        <item>icon_eu</item>
-        <item>icon_d2</item>
-        <item>gem_seamless</item>
-        <item>gem_global</item>
-        <item>gem_regional</item>
-        <item>gem_hrdps_continental</item>
+        <item>dwd_icon_seamless</item>
+        <item>dwd_icon_global</item>
+        <item>dwd_icon_eu</item>
+        <item>dwd_icon_d2</item>
+        <item>cmc_gem_seamless</item>
+        <item>cmc_gem_gdps</item>
+        <item>cmc_gem_rdps</item>
+        <item>cmc_gem_hrdps</item>
+        <item>cmc_gem_hrdps_west</item>
         <item>meteofrance_seamless</item>
         <item>meteofrance_arpege_world</item>
         <item>meteofrance_arpege_europe</item>
@@ -370,6 +380,11 @@
         <item>meteoswiss_icon_seamless</item>
         <item>meteoswiss_icon_ch1</item>
         <item>meteoswiss_icon_ch2</item>
+        <item>geosphere_seamless</item>
+        <item>geosphere_arome_austria</item>
+        <item>chmi_aladin_seamless</item>
+        <item>chmi_aladin_central_europe_2km</item>
+        <item>chmi_aladin_cz_1km</item>
     </string-array>
 
     <!-- Beaufort scale levels -->

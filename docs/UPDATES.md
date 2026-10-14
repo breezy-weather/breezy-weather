@@ -8,14 +8,14 @@
     - If refreshing manually, an error will be displayed in both cases.
     - If refreshing in the background, an error will only be displayed if we don’t have any latest known longitude and latitude.
 2. If the coordinates changed OR address lookup source changed OR you just added a location from coordinates (and not from the search), we try to get from the address lookup source an update (city/province/country info). If no address lookup source is selected, we fallback to an offline reverse geocoding that only supports country lookup.
-3. Starting from v6.0.5-alpha, if the address lookup is not our offline reverse geocoding and it gave us an ambiguous ISO 3166-1 alpha-2 code, we process it again with our offline reverse geocoding, so that it is consistent across all sources and make it easy for the weather sources to know which ISO 3166-1 alpha-2 codes they support.
-4. Starting from v6.0.5-alpha, if the location is missing timezone info, we process it locally, based on the disambiguated ISO 3166-1 alpha-2 code to make the process faster.
+3. If the address lookup is not our offline reverse geocoding and it gave us an ambiguous ISO 3166-1 alpha-2 code, we process it again with our offline reverse geocoding, so that it is consistent across all sources and make it easy for the weather sources to know which ISO 3166-1 alpha-2 codes they support.
+4. If the location is missing timezone info, we process it locally, based on the disambiguated ISO 3166-1 alpha-2 code to make the process faster.
 
 Info: Some weather sources need what we call "location parameters" before we can get weather. An example is that we have a longitude/latitude, but some weather sources only want a city identifier or grid forecast identifier on the weather endpoint. In such cases, we ask the weather source to provide us these information before we can proceed to actual weather request. These information are then saved, and usually no longer requested if it is a manually added location or only if longitude/latitude changed if current location.
 
 5. We group all features requested to the same source together to make a single request and we proceed this way if the data is no longer valid (see caching section below):
     - If needed, we update location parameters.
-    - Then, we ask the source to provide us refreshed data for the features it was selected for and that are no longer up-to-date. If it failed for any or all of the features, we attempt to restore previous saved data for the failed features. For current data, we fallback to current hour forecast, unless it’s been less than 30 min (only starting from v6.0.9).
+    - Then, we ask the source to provide us refreshed data for the features it was selected for and that are no longer up-to-date. If it failed for any or all of the features, we attempt to restore previous saved data for the failed features. For current data, we fallback to current hour forecast, unless it’s been less than 30 min.
 6. We gather all data from all sources together and complete it with:
     - missing past data back to yesterday 00:00: this allows us to show you yesterday info when sources only support forecast and not past data
     - extrapolated missing data (such as wet bulb temperature, humidity from dew point OR dew point from humidity, weather codes from all known data, etc)

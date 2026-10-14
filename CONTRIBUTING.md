@@ -5,12 +5,14 @@
 ### Summary
 
 Before you start any contribution:
+
 1. Make sure to choose an issue/idea tagged “Open to contributions”. Comment on that issue/idea that you want to work on it
-2. If you plan on using AI, make sure to read carefully the AI guidelines before starting any code writing. Mention in the linked issue/idea the tools you want to use and their license terms for redistribution. If you don’t plan on using any, mention it as well.
+2. If you plan on using AI, make sure to read carefully the AI guidelines before starting any code writing. Mention in the linked issue/idea the tools you want to use and their license terms for redistribution. **If you don’t plan on using any, mention it as well.**
 
 Wait for an [org member](https://github.com/orgs/breezy-weather/people) approval before you start working on it. We can understand you want to start working right away, but if you don’t wait for approval, you may waste your time if it’s not approved.
 
 When your contribution is ready:
+
 3. You ensure there is no linting issue
 4. Your code is up-to-date with current `main` branch
 5. Your patch contains 1 single commit
@@ -105,9 +107,14 @@ At the same time, with the existing preferences, some people can’t even find t
 
 Additionally, any added preferences means implementing it, make the code execute conditionally for everyone, and maintain it (test it, handle bug reports, etc). What looks like a simple option can represent a lot of work.
 
-So, the idea is to make a fair use of preferences, so if it covers too narrow of a case, it won’t be implemented.
+So, the idea is to make a fair use of preferences, so if it covers too narrow of a case, it won’t be implemented to avoid [feature creep](https://en.wikipedia.org/wiki/Feature_creep).
 
 You can read [Niagara’s design principles](https://help.niagaralauncher.app/article/8-niagaras-design-principles) for a similar take on the matter (although due to the nature of this weather app, the “universal” criteria doesn’t always apply to us).
+
+Usually, we will suggest your use our [content provider](https://github.com/breezy-weather/breezy-weather/discussions/2089) for the following cases:
+- New widgets, or more generally updates to existing widgets, as we already know what we want to do in the next [widget overhaul](https://github.com/breezy-weather/breezy-weather/issues/937)
+- New notifications, or configuration options for notifications (such as sending a notification based on some thresholds)
+- A different design
 
 
 ### New weather sources

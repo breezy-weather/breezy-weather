@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">Laikapstākļi</string>
     <string name="daily_forecast">Dienu prognoze</string>
-    <string name="hourly_forecast">Stundu prognoze</string>
+    <string name="hourly_forecast">Ik stundu</string>
     <string name="air_quality">Gaisa kvalitāte</string>
     <string name="pollen">Ziedputekšņi</string>
     <string name="ephemeris">Saule un Mēness</string>
@@ -70,7 +70,7 @@
     <string name="ephemeris_sunset_at">Saulriets %s</string>
     <string name="ephemeris_moonrise_at">Mēness lēkts %s</string>
     <string name="ephemeris_moonset_at">Mēness riets %s</string>
-    <string name="nighttime">Nakts</string>
+    <string name="nighttime">Naktī</string>
     <string name="sunshine_duration">Saules stundas</string>
     <string name="pressure">Spiediens</string>
     <string name="visibility">Redzamība</string>
@@ -118,9 +118,9 @@
     <string name="widget_label_text_size">Teksta lielums</string>
     <string name="widget_custom_subtitle_keyword_hd_description">Stundu apraksts</string>
     <string name="widget_custom_subtitle_keyword_enter_description">Jaunā rinda</string>
-    <string name="widget_custom_subtitle_keyword_xnt_description">Nakts temperatūra šodien, rīt, …, pēc 4 dienām (°C/°F)</string>
+    <string name="widget_custom_subtitle_keyword_xnt_description">Temperatūra naktī šodien, rīt, …, pēc 4 dienām (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_xdtd_description">Dienas temperatūra šodien, rīt, …, pēc 4 dienām (°)</string>
-    <string name="widget_custom_subtitle_keyword_xntd_description">Nakts temperatūra šodien, rīt, …, pēc 4 dienām (°)</string>
+    <string name="widget_custom_subtitle_keyword_xntd_description">Temperatūra naktī šodien, rīt, …, pēc 4 dienām (°)</string>
     <string name="widget_custom_subtitle_keyword_xsr_description">Saullēkts šodien, rīt, …, pēc 4 dienām</string>
     <string name="widget_custom_subtitle_keyword_xss_description">Saulriets šodien, rīt, …, pēc 4 dienām</string>
     <string name="widget_custom_subtitle_keyword_xmr_description">Mēness lēkts šodien, rīt, …, pēc 4 dienām</string>
@@ -219,9 +219,9 @@
     <string name="widget_custom_subtitle_keyword_ws_description">Nedēļa (īsa)</string>
     <string name="widget_custom_subtitle_keyword_dd_description">Dienu apraksts</string>
     <string name="widget_custom_subtitle_keyword_xdp_description">Dienas nokrišņi šodien, rīt, …, pēc 4 dienām (%)</string>
-    <string name="widget_custom_subtitle_keyword_xnp_description">Nakts nokrišņi šodien, rīt, …, pēc 4 dienām (%)</string>
+    <string name="widget_custom_subtitle_keyword_xnp_description">Nokrišņi naktī šodien, rīt, …, pēc 4 dienām (%)</string>
     <string name="widget_custom_subtitle_keyword_xdwd_description">Dienas vējš šodien, rīt, …, pēc 4 dienām</string>
-    <string name="widget_custom_subtitle_keyword_xnwd_description">Nakts vējš šodien, rīt, …, pēc 4 dienām</string>
+    <string name="widget_custom_subtitle_keyword_xnwd_description">Vējš naktī šodien, rīt, …, pēc 4 dienām</string>
     <string name="settings_background_updates_battery_optimization_disabled">Akumulatora optimizēšana jau ir atspējota.</string>
     <string name="settings_background_updates_dont_kill_my_app_title">Ražotājiem atbilstošas norādes</string>
     <string name="settings_location_service">Atrašanās vietas pakalpojums</string>
@@ -347,7 +347,7 @@
     <string name="widget_custom_subtitle_keyword_w_description">Nedēļa</string>
     <string name="widget_custom_subtitle_keyword_xdt_description">Dienas temperatūra šodien, rīt, …, pēc 4 dienām (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_xdw_description">Dienas laikapstākļi šodien, rīt, …, pēc 4 dienām</string>
-    <string name="widget_custom_subtitle_keyword_xnw_description">Nakts laikapstākļi šodien, rīt, …, pēc 4 dienām</string>
+    <string name="widget_custom_subtitle_keyword_xnw_description">Laikapstākļi naktī šodien, rīt, …, pēc 4 dienām</string>
     <string name="widget_style_vertical">Stateniski</string>
     <string name="widget_style_nano">Nano</string>
     <string name="widget_style_pixel">Pikselis</string>
@@ -670,7 +670,7 @@
     <string name="ephemeris_about_dawn">Rītausma ir tad, kad pirms saullēkta parādās pirmā redzamā dienas gaisma.</string>
     <string name="wind_origin">No %s</string>
     <string name="about_update_check_eol">Šī Android versija vairs netiek atbalstīta</string>
-    <string name="nighttime_short">Nakts</string>
+    <string name="nighttime_short">Naktī</string>
     <string name="daytime_short">Diena</string>
     <string name="precipitation_snow_total_night">Sniegs nakts laikā</string>
     <string name="precipitation_snow_total_day">Sniegs dienas laikā</string>

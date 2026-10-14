@@ -37,6 +37,7 @@ import org.breezyweather.common.options.appearance.DailyTrendDisplay
 import org.breezyweather.common.utils.ColorUtils
 import org.breezyweather.databinding.ActivityDailyTrendDisplayManageBinding
 import org.breezyweather.domain.settings.SettingsManager
+import org.breezyweather.domain.settings.SettingsManager.Companion.DEFAULT_DAILY_TREND_DISPLAY
 import org.breezyweather.ui.common.adapters.TagAdapter
 import org.breezyweather.ui.common.decorations.GridMarginsDecoration
 import org.breezyweather.ui.common.decorations.ListDecoration
@@ -96,6 +97,31 @@ class DailyTrendDisplayManageActivity : BreezyActivity() {
         }
     }
 
+    private fun onResetIconClicked() {
+        val displayTags = DailyTrendDisplay
+            .toDailyTrendDisplayList(DEFAULT_DAILY_TREND_DISPLAY)
+            .toMutableList()
+        mDailyTrendDisplayAdapter.reset(displayTags)
+
+        val otherTags = DailyTrendDisplay.entries.toMutableList()
+        for (i in otherTags.indices.reversed()) {
+            for (displayTag in displayTags) {
+                if (otherTags[i] === displayTag) {
+                    otherTags.removeAt(i)
+                    break
+                }
+            }
+        }
+        val tagList = mutableListOf<TagAdapter.Tag>()
+        for (tag in otherTags) {
+            tagList.add(DailyTrendTag(tag))
+        }
+
+        setResult(RESULT_OK)
+        mTagAdapter?.reset(tagList)
+        resetBottomBarVisibility()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mBinding = ActivityDailyTrendDisplayManageBinding.inflate(layoutInflater)
@@ -110,6 +136,11 @@ class DailyTrendDisplayManageActivity : BreezyActivity() {
             )
         )
         mBinding.toolbar.setNavigationOnClickListener { finish() }
+        mBinding.toolbar.inflateMenu(R.menu.activity_sorting)
+        mBinding.toolbar.setOnMenuItemClickListener { _ ->
+            onResetIconClicked()
+            true
+        }
         val displayTags = SettingsManager.getInstance(this).dailyTrendDisplayList
         mDailyTrendDisplayAdapter = DailyTrendDisplayAdapter(
             displayTags.toMutableList(),

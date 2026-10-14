@@ -34,4 +34,6 @@ data class GadgetbridgeDailyForecast(
     val moonSet: Int? = null,
     val moonPhase: Int? = null,
     val airQuality: GadgetbridgeAirQuality? = null,
+    val pressure: Float? = null,
+    val cloudCover: Int? = null,
 )

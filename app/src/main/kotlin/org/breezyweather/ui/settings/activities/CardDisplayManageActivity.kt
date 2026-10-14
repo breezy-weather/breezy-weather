@@ -39,6 +39,7 @@ import org.breezyweather.common.utils.ColorUtils
 import org.breezyweather.databinding.ActivityCardDisplayManageBinding
 import org.breezyweather.domain.settings.SettingsChangedMessage
 import org.breezyweather.domain.settings.SettingsManager
+import org.breezyweather.domain.settings.SettingsManager.Companion.DEFAULT_CARD_DISPLAY
 import org.breezyweather.ui.common.adapters.TagAdapter
 import org.breezyweather.ui.common.decorations.GridMarginsDecoration
 import org.breezyweather.ui.common.decorations.ListDecoration
@@ -98,6 +99,31 @@ class CardDisplayManageActivity : BreezyActivity() {
         }
     }
 
+    private fun onResetIconClicked() {
+        val displayTags = CardDisplay
+            .toCardDisplayList(DEFAULT_CARD_DISPLAY)
+            .toMutableList()
+        mCardDisplayAdapter.reset(displayTags)
+
+        val otherTags = CardDisplay.entries.toMutableList()
+        for (i in otherTags.indices.reversed()) {
+            for (displayTag in displayTags) {
+                if (otherTags[i] === displayTag) {
+                    otherTags.removeAt(i)
+                    break
+                }
+            }
+        }
+        val tagList = mutableListOf<TagAdapter.Tag>()
+        for (tag in otherTags) {
+            tagList.add(CardTag(tag))
+        }
+
+        setResult(RESULT_OK)
+        mTagAdapter?.reset(tagList)
+        resetBottomBarVisibility()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mBinding = ActivityCardDisplayManageBinding.inflate(layoutInflater)
@@ -112,6 +138,11 @@ class CardDisplayManageActivity : BreezyActivity() {
             )
         )
         mBinding.toolbar.setNavigationOnClickListener { finish() }
+        mBinding.toolbar.inflateMenu(R.menu.activity_sorting)
+        mBinding.toolbar.setOnMenuItemClickListener { _ ->
+            onResetIconClicked()
+            true
+        }
         val displayTags = SettingsManager.getInstance(this).cardDisplayList
         mCardDisplayAdapter = CardDisplayAdapter(
             displayTags.toMutableList(),

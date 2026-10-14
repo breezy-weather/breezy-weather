@@ -21,5 +21,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class NceiStationsResultResults(
     val stations: List<NceiStationsResultResultsStation>,
-    val centroid: NceiStationsCentroid,
+    val centroid: List<Double>,
 )

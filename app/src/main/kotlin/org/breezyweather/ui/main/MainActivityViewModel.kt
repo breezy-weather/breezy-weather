@@ -40,7 +40,6 @@ import org.breezyweather.common.activities.livedata.BusLiveData
 import org.breezyweather.common.extensions.hasPermission
 import org.breezyweather.common.extensions.launchIO
 import org.breezyweather.common.source.RefreshError
-import org.breezyweather.common.utils.helpers.AsyncHelper
 import org.breezyweather.common.utils.helpers.SnackbarHelper
 import org.breezyweather.domain.location.model.applyDefaultPreset
 import org.breezyweather.domain.location.model.isCloseTo
@@ -133,6 +132,7 @@ class MainActivityViewModel @Inject constructor(
                 _currentLocation.value = DayNightLocation(location = it)
             }
             _validLocationList.value = validList
+            postUpdate(validList)
 
             _loading.value = false
             _indicator.value = Indicator(
@@ -159,6 +159,7 @@ class MainActivityViewModel @Inject constructor(
         }
 
         updateInnerData(valid)
+        postUpdate(validLocationList.value, arrayOf(location.formattedId))
     }
 
     /**
@@ -246,6 +247,34 @@ class MainActivityViewModel @Inject constructor(
             setCurrentLocation(null)
             _validLocationList.value = newValid
         }
+    }
+
+    /**
+     * A few things to do after an update to the list was done
+     * @param locationList the full list of locations
+     * @param updatedLocationIds list of locations which received a weather updated. Make empty if it was an added,
+     * swapped, or removed locations. If you just want a refresh, leave null.
+     */
+    private fun postUpdate(locationList: List<Location>, updatedLocationIds: Array<String>? = null) {
+        if (locationList.isNotEmpty()) {
+            viewModelScope.launchIO {
+                refreshHelper.updateWidgetIfNecessary(getApplication(), locationList)
+                refreshHelper.updateNotificationIfNecessary(getApplication(), locationList)
+
+                // If it's null, it's not coming from an update, so no need to broadcast anything
+                if (updatedLocationIds != null) {
+                    refreshHelper.broadcastDataIfNecessary(getApplication(), locationList, updatedLocationIds)
+                }
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
+                    refreshHelper.refreshShortcuts(getApplication(), locationList)
+                }
+            }
+        }
+    }
+
+    fun refreshBackgroundViews(locationList: List<Location>) {
+        postUpdate(locationList)
     }
 
     private fun setCurrentLocation(location: Location?) {
@@ -510,6 +539,7 @@ class MainActivityViewModel @Inject constructor(
 
         updateInnerData(valid)
         writeLocationList(locationList = valid)
+        postUpdate(valid, emptyArray())
 
         _locationListLoading.value = false
 
@@ -572,8 +602,10 @@ class MainActivityViewModel @Inject constructor(
         updateInnerData(valid)
 
         writeLocationList(locationList = validLocationList.value)
+        postUpdate(validLocationList.value, emptyArray())
     }
 
+    // Settings updates of the location: sources, per-location settings
     fun updateLocation(newLocation: Location, oldLocation: Location?) {
         updateInnerData(newLocation, oldLocation)
         writeLocationList(locationList = validLocationList.value)
@@ -593,6 +625,7 @@ class MainActivityViewModel @Inject constructor(
 
         updateInnerData(valid)
         deleteLocation(location = location)
+        postUpdate(valid, emptyArray())
         // If we no longer have any current position locations, clear the current location store data9
         if (location.isCurrentPosition && !valid.any { it.isCurrentPosition }) {
             currentLocationStore.clearCurrentLocation()
@@ -707,24 +740,6 @@ class MainActivityViewModel @Inject constructor(
                 location,
                 listOf(RefreshError(RefreshErrorType.DATA_REFRESH_FAILED))
             )
-        }
-    }
-
-    fun refreshBackgroundViews(context: Context, locationList: List<Location>?) {
-        locationList?.let {
-            if (it.isNotEmpty()) {
-                viewModelScope.launchIO {
-                    AsyncHelper.delayRunOnIO({
-                        refreshHelper.updateWidgetIfNecessary(context, it)
-                        refreshHelper.updateNotificationIfNecessary(context, it)
-                        refreshHelper.broadcastDataIfNecessary(context, it)
-                    }, 1000)
-
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
-                        refreshHelper.refreshShortcuts(context, it)
-                    }
-                }
-            }
         }
     }
 

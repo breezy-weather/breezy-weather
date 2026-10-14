@@ -1,0 +1,48 @@
+Breezy Weather je bezplatná aplikácia s otvoreným kódom na sledovanie počasia v štýle Material 3 s bohatou ponukou funkcií a prepracovanými vizualizáciami, ktorá ponúka predpovede, aktuálne poveternostné podmienky, nowcasting, informácie o kvalite ovzdušia, peľovej záťaži a výstrahy z viac ako 50 zdrojov, ako sú NWS, Met Office UK, Met Éireann, ECCC a Open-Meteo.
+
+<b>Funkcie</b>
+
+- Denné a hodinové predpovede až na 16 dní dopredu
+- Zrážky v nasledujúcej hodine
+- Počasie v reálnom čase
+- Informácie o kvalite ovzdušia, alergénoch a efemeridách
+- Upozornenia na extrémne počasie a zrážky
+- Možnosť zdieľania údajov s inými aplikáciami (napríklad Gadgetbridge)
+- Dôraz na prístupnosť pre čítačky obrazovky a iné jazykové nastavenia
+
+<b>Dizajn</b>
+
+- Material 3 Expressive
+- Podrobné 24-hodinové grafy
+- Automatický tmavý režim
+- Vlastné sady ikon
+- Široký výber widgetov
+- Živé tapety
+
+<b>Zdroje</b>
+
+- Vo všetkých variantoch: Open-Meteo, ANAM-BF, Bright Sky (DWD), DCCMS, DMN, DWR, EMI, FOSS Public Alert Server, GMet, IGEBU, INM, KNMI, Mali-Météo, Météo Benin, Météo Tchad, Météo Togo, Mettelsat, MSD, Pirate Weather, SMA (Seychely), SMA (Sudán), SSMS
+- Nie sú voľné/nezávisle hostovateľné (nie sú zahrnuté vo verziách s príponou _freenet): AccuWeather, AEMET, Atmo Auvergne-Rhône-Alpes, Atmo France, ATMO GrandEst, Atmo Hauts-de-France, AtmoSud, Baidu IP location, BMD, BMKG, CWA, DMI, ECCC, EKUK, EPD (Hong Kong), GeoNames, GeoSphere AT, HERE, HKO, Ilmateenistus, IMD, IMS, IP.SB, IPMA, LHMT, LVĢMC, JMA, MET Éireann, MET Norway, Met Office UK, Meteo AM, Météo-France, MeteoLux, MGM, zmiešané čínske zdroje, NAMEM, NCDR, NCEI, NLSC, NWS, OpenWeather, PAGASA, SMG, Veðurstofa Íslands, WMO Severe Weather
+
+<b>Oprávnenia</b>
+
+Povinné:
+
+- Sieť (ACCESS_NETWORK_STATE, ACCESS_WIFI_STATE, INTERNET): načítanie údajov o počasí zo zdrojov cez internet
+
+Voliteľné:
+
+- Služby na pozadí (RECEIVE_BOOT_COMPLETED, WAKE_LOCK, SET_ALARM, FOREGROUND_SERVICE, FOREGROUND_SERVICE_DATA_SYNC, FOREGROUND_SERVICE_SPECIAL_USE): aktualizácie počasia na pozadí a naplánované upozornenia na predpoveď
+- Ignorovanie optimalizácií batérie (REQUEST_IGNORE_BATTERY_OPTIMIZATIONS): pomáha zabrániť ukončeniu aplikácie na niektorých zariadeniach
+- Odosielanie oznámení (POST_NOTIFICATIONS): upozornenia, zrážky, predpoveď na dnes/zajtra, widget s oznámeniami, priebeh aktualizácií na pozadí atď.
+- Poloha (ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION, ACCESS_BACKGROUND_LOCATION): na zobrazenie počasia vo vašej aktuálnej polohe
+- Úložisko (READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE): pomáha pri nastavení živého pozadia s počasím a/alebo widgetov na niektorých zariadeniach
+- Dlaždica (EXPAND_STATUS_BAR): umožňuje spustiť aplikáciu z Rýchlych nastavení
+- Špecifický jazyk aplikácie (READ_APP_SPECIFIC_LOCALES): umožňuje uložiť špecifický jazyk pre aplikáciu a na niektorých zariadeniach prečítať túto hodnotu po reštarte
+
+<b>Licencia</b>
+
+- GNU Lesser General Public License v3.0
+- This License does not grant any rights in the trademarks, service marks, or logos of any Contributor.
+
+- Misrepresentation of the origin of that material is prohibited, and modified versions of such material must be marked in reasonable ways as different from the original version.

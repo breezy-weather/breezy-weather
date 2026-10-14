@@ -21,14 +21,11 @@ import android.icu.number.NumberFormatter
 import android.icu.text.MeasureFormat
 import android.icu.util.Measure
 import android.icu.util.MeasureUnit
-import android.os.Build
-import androidx.annotation.RequiresApi
 import org.breezyweather.unit.R
 import org.breezyweather.unit.formatting.UnitWidth
 import org.breezyweather.unit.formatting.format
 import org.breezyweather.unit.formatting.formatWithMeasureFormat
 import org.breezyweather.unit.formatting.formatWithNumberFormatter
-import org.breezyweather.unit.supportsMeasureFormat
 import org.breezyweather.unit.supportsNumberFormatter
 import java.util.Locale
 import kotlin.time.Duration
@@ -86,7 +83,7 @@ fun Duration.format(
     useNumberFormatter: Boolean = true,
     useMeasureFormat: Boolean = true,
 ): String {
-    if (supportsMeasureFormat() && (useNumberFormatter || useMeasureFormat)) {
+    if (useNumberFormatter || useMeasureFormat) {
         // LogHelper.log(msg = "Formatting with ICU ${enum.id}: ${enum.measureUnit} per ${enum.perMeasureUnit}")
 
         return if (supportsNumberFormatter() &&
@@ -139,7 +136,6 @@ fun Duration.format(
  * It is very simplified for our usage, as it only supports hours, minutes and seconds
  * It also doesn’t support decimals
  */
-@RequiresApi(Build.VERSION_CODES.N)
 private fun Duration.formatMultipleDurationsWithMeasureFormat(
     unit: DurationUnit,
     smallestUnit: DurationUnit,

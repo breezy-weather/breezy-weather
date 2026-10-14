@@ -317,7 +317,7 @@
     <string name="settings_notifications_forecast_tomorrow_title">Notifikácia s predpoveďou na nasledujúci deň</string>
     <string name="settings_follow_system">Systémový</string>
     <string name="notification_precipitation_continuing">Zrážky</string>
-    <string name="notification_precipitation_starting">Očakávané zrážky v blízkej dobe</string>
+    <string name="notification_precipitation_starting">Zrážky v blízkej dobe</string>
     <string name="notification_style_native">Natívne</string>
     <string name="settings_main_section_animations">Animácie</string>
     <string name="settings_main_background_animation_title">Animácia pozadia</string>

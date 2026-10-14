@@ -19,8 +19,6 @@ package org.breezyweather.unit.ratio
 import android.content.Context
 import android.icu.text.NumberFormat
 import android.icu.util.MeasureUnit
-import android.os.Build
-import androidx.annotation.RequiresApi
 import org.breezyweather.unit.R
 import org.breezyweather.unit.WeatherUnit
 import org.breezyweather.unit.formatting.UnitDecimals
@@ -30,7 +28,6 @@ import org.breezyweather.unit.formatting.format
 import org.breezyweather.unit.formatting.formatWithNumberFormatter
 import org.breezyweather.unit.supportsMeasureUnitPercent
 import org.breezyweather.unit.supportsMeasureUnitPermille
-import org.breezyweather.unit.supportsNumberFormat
 import org.breezyweather.unit.supportsNumberFormatter
 import java.util.Locale
 
@@ -74,7 +71,6 @@ enum class RatioUnit(
     ),
     ;
 
-    @RequiresApi(Build.VERSION_CODES.N)
     override fun getMeasureUnit(): MeasureUnit? {
         return when (this) {
             PERMILLE -> if (supportsMeasureUnitPermille()) MeasureUnit.PERMILLE else null
@@ -83,7 +79,6 @@ enum class RatioUnit(
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.N)
     override fun getPerMeasureUnit(): MeasureUnit? = null
 
     /**
@@ -121,15 +116,9 @@ enum class RatioUnit(
         }
 
         if (this == PERCENT && !showSign) {
-            return if (supportsNumberFormat()) {
-                NumberFormat.getPercentInstance(locale)
-                    .apply { maximumFractionDigits = getPrecision(valueWidth) }
-                    .format(if (value.toDouble() > 0) value.toDouble().div(100.0) else 0)
-            } else {
-                java.text.NumberFormat.getPercentInstance(locale)
-                    .apply { maximumFractionDigits = getPrecision(valueWidth) }
-                    .format(if (value.toDouble() > 0) value.toDouble().div(100.0) else 0)
-            }
+            return NumberFormat.getPercentInstance(locale)
+                .apply { maximumFractionDigits = getPrecision(valueWidth) }
+                .format(if (value.toDouble() > 0) value.toDouble().div(100.0) else 0)
         }
 
         return formatWithAndroidTranslations(

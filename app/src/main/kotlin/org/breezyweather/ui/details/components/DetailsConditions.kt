@@ -16,9 +16,6 @@
 
 package org.breezyweather.ui.details.components
 
-import android.text.Spannable
-import android.text.SpannableString
-import android.text.style.ImageSpan
 import android.view.View
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -75,13 +72,11 @@ import breezyweather.domain.weather.model.Daily
 import breezyweather.domain.weather.model.Hourly
 import breezyweather.domain.weather.model.Normals
 import breezyweather.domain.weather.reference.WeatherCode
-import com.patrykandpatrick.vico.compose.cartesian.axis.fixed
-import com.patrykandpatrick.vico.core.cartesian.axis.BaseAxis
-import com.patrykandpatrick.vico.core.cartesian.axis.VerticalAxis
-import com.patrykandpatrick.vico.core.cartesian.data.CartesianChartModelProducer
-import com.patrykandpatrick.vico.core.cartesian.data.lineSeries
-import com.patrykandpatrick.vico.core.cartesian.marker.CartesianMarker
-import com.patrykandpatrick.vico.core.cartesian.marker.CartesianMarkerVisibilityListener
+import com.patrykandpatrick.vico.compose.cartesian.axis.VerticalAxis
+import com.patrykandpatrick.vico.compose.cartesian.data.CartesianChartModelProducer
+import com.patrykandpatrick.vico.compose.cartesian.data.lineModel
+import com.patrykandpatrick.vico.compose.cartesian.marker.CartesianMarker
+import com.patrykandpatrick.vico.compose.cartesian.marker.CartesianMarkerVisibilityListener
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.ImmutableMap
 import kotlinx.collections.immutable.persistentListOf
@@ -91,7 +86,6 @@ import kotlinx.collections.immutable.toImmutableMap
 import kotlinx.coroutines.launch
 import org.breezyweather.R
 import org.breezyweather.common.extensions.currentLocale
-import org.breezyweather.common.extensions.dpToPx
 import org.breezyweather.common.extensions.formatMeasure
 import org.breezyweather.common.extensions.getCalendarMonth
 import org.breezyweather.common.extensions.getFormattedTime
@@ -103,8 +97,8 @@ import org.breezyweather.common.extensions.toBitmap
 import org.breezyweather.common.extensions.toDate
 import org.breezyweather.common.options.appearance.DetailScreen
 import org.breezyweather.domain.settings.SettingsManager
-import org.breezyweather.ui.common.charts.BreezyLineChart
-import org.breezyweather.ui.common.charts.TimeTopAxisItemPlacer
+import org.breezyweather.ui.common.charts.compose.BreezyLineChart
+import org.breezyweather.ui.common.charts.compose.IconCartesianMarker
 import org.breezyweather.ui.common.widgets.AnimatableIconView
 import org.breezyweather.ui.theme.resource.ResourceHelper
 import org.breezyweather.ui.theme.resource.ResourcesProviderFactory
@@ -118,7 +112,6 @@ import org.breezyweather.unit.temperature.toTemperature
 import java.util.Date
 import kotlin.math.max
 import kotlin.math.min
-import kotlin.math.roundToInt
 
 @Composable
 fun DetailsConditions(
@@ -135,17 +128,19 @@ fun DetailsConditions(
         SettingsManager.getInstance(context).getTemperatureUnit(context)
     }
     val mappedValues = remember(hourlyList, selectedChart) {
-        hourlyList
-            .filter {
-                it.temperature?.temperature != null &&
+        buildMap(hourlyList.size) {
+            hourlyList.forEach { hourly ->
+                val isValid = hourly.temperature?.temperature != null &&
                     if (selectedChart != DetailScreen.TAG_FEELS_LIKE) {
                         true
                     } else {
-                        it.temperature?.feelsLikeTemperature != null
+                        hourly.temperature?.feelsLikeTemperature != null
                     }
+                if (isValid) {
+                    put(hourly.date.time, hourly)
+                }
             }
-            .associateBy { it.date.time }
-            .toImmutableMap()
+        }.toImmutableMap()
     }
     var activeItem: Pair<Date, Hourly>? by remember { mutableStateOf(null) }
     val markerVisibilityListener = remember {
@@ -169,10 +164,12 @@ fun DetailsConditions(
     }
 
     val mappedProbabilityValues = remember(hourlyList) {
-        hourlyList
-            .filter { it.precipitationProbability?.total != null }
-            .associate { it.date.time to it.precipitationProbability!!.total!! }
-            .toImmutableMap()
+        buildMap(hourlyList.size) {
+            hourlyList.forEach { hourly ->
+                val precipitationProbabilityTotal = hourly.precipitationProbability?.total ?: return@forEach
+                put(hourly.date.time, precipitationProbabilityTotal)
+            }
+        }.toImmutableMap()
     }
     var activeProbabilityItem: Pair<Date, Ratio>? by remember { mutableStateOf(null) }
     val probabilityMarkerVisibilityListener = remember {
@@ -809,10 +806,11 @@ private fun TemperatureChart(
     }
 
     val modelProducer = remember { CartesianChartModelProducer() }
+    val iconSizePx = with(LocalDensity.current) { IconCartesianMarker.DEFAULT_ICON_SIZE.roundToPx() }
 
-    LaunchedEffect(location, showRealTemp) {
+    LaunchedEffect(mappedValues, showRealTemp) {
         modelProducer.runTransaction {
-            lineSeries {
+            lineModel {
                 series(
                     x = mappedValues.keys,
                     y = mappedValues.values.map {
@@ -840,10 +838,18 @@ private fun TemperatureChart(
         modelProducer = modelProducer,
         theDay = daily.date,
         maxY = maxY,
-        topAxisItemPlacer = remember(mappedValues) {
-            TimeTopAxisItemPlacer(mappedValues.keys.toImmutableList())
+        topIconValues = remember(mappedValues) { mappedValues.keys.toImmutableList() },
+        topIconProvider = remember(mappedValues, iconSizePx) {
+            { x: Long ->
+                mappedValues[x]?.let { hourly ->
+                    hourly.weatherCode?.let {
+                        ResourceHelper.getWeatherIcon(provider, it, hourly.isDaylight)
+                            .toBitmap(iconSizePx, iconSizePx)
+                            .asImageBitmap()
+                    }
+                }
+            }
         },
-        topAxisSize = BaseAxis.Size.fixed(23.dp),
         endAxisValueFormatter = { _, value, _ ->
             value.toTemperature(temperatureUnit)
                 .formatMeasure(context, temperatureUnit, valueWidth = UnitWidth.NARROW, unitWidth = UnitWidth.NARROW)
@@ -870,18 +876,6 @@ private fun TemperatureChart(
                     0f to Color(128, 128, 128, 160)
                 )
             )
-        },
-        topAxisValueFormatter = { _, value, _ ->
-            mappedValues.getOrElse(value.toLong()) { null }?.let { hourly ->
-                hourly.weatherCode?.let {
-                    val ss = SpannableString("abc")
-                    val d = ResourceHelper.getWeatherIcon(provider, it, hourly.isDaylight)
-                    d.setBounds(0, 0, context.dpToPx(18f).roundToInt(), context.dpToPx(18f).roundToInt())
-                    val span = ImageSpan(d, ImageSpan.ALIGN_BASELINE)
-                    ss.setSpan(span, 0, 3, Spannable.SPAN_INCLUSIVE_EXCLUSIVE)
-                    ss
-                }
-            } ?: "-"
         },
         trendHorizontalLines = buildMap {
             normals?.let {

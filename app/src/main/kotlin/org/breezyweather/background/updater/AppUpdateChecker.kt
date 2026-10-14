@@ -42,7 +42,7 @@ class AppUpdateChecker @Inject constructor(
         }
 
         // Disable app update checks for older Android versions that we're going to drop support for
-        /*if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+        /*if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
             AppUpdateNotifier(context).promptOldAndroidVersion()
             return GetApplicationRelease.Result.OsTooOld
         }*/

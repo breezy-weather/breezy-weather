@@ -145,7 +145,10 @@ class GadgetbridgeService @Inject constructor() : BroadcastSource {
                 moonSet = day.moon?.setDate?.time?.div(1000)?.toInt(),
                 moonPhase = day.moonPhase?.angle,
 
-                airQuality = getAirQuality(day.airQuality)
+                airQuality = getAirQuality(day.airQuality),
+
+                pressure = day.pressure?.average?.inMillibars?.toFloat(),
+                cloudCover = day.cloudCover?.average?.inPercent?.roundToInt()
             )
         }
     }
@@ -183,7 +186,10 @@ class GadgetbridgeService @Inject constructor() : BroadcastSource {
                 windSpeed = hour.wind?.speed?.inKilometersPerHour?.toFloat(),
                 windDirection = hour.wind?.degree?.roundToInt(),
                 uvIndex = hour.uV?.index?.toFloat(),
-                precipProbability = hour.precipitationProbability?.total?.inPercent?.roundToInt()
+                precipProbability = hour.precipitationProbability?.total?.inPercent?.roundToInt(),
+                dewPoint = hour.dewPoint?.inKelvins?.roundToInt(),
+                pressure = hour.pressure?.inMillibars?.toFloat(),
+                cloudCover = hour.cloudCover?.inPercent?.roundToInt()
             )
         }
     }

@@ -1,6 +1,6 @@
 # Main screen
 
-This page intends to give some explanations to how features displayed in the main screen of Breezy Weather (version 6.0.2 and later) work and how they should be interpreted. Position of elements are described for a Left-to-Right display. [Click here to access main screen documentation of versions before 6.0.2](https://github.com/breezy-weather/breezy-weather/blob/v6.0.0-alpha/docs/HOMEPAGE.md).
+This page intends to give some explanations to how features displayed in the main screen of Breezy Weather work and how they should be interpreted. Position of elements are described for a Left-to-Right display.
 
 Main screen shows the weather for the selected location, with an optional drawer showing location list on large display devices.
 
@@ -13,20 +13,35 @@ Main screen shows the weather for the selected location, with an optional drawer
 
 ## Theme
 
-In the background, you can see an animation matching the current weather condition.
+The main screen is a location-based screen, meaning the dark mode is based on day and night at the viewed location, with one exception possible for accessibility reasons described below. Additionally, the background adjusts to the current weather condition.
 
-The color of the background depends on dark mode settings and whether the sun is up for the selected location:
+When app dark mode¹ is off:
+- During daytime, the sun is up, so the weather condition is depicted using bright colors and the dark mode is off
+- During nighttime, the sun is down, so the weather condition is depicted using dark colors and the dark mode is on
 
-| App dark mode¹   | Location-based dark mode             | Sun is up | Sun is down |
-|------------------|--------------------------------------|-----------|-------------|
-| Light            | Follow day/night                     | Light     | Dark        |
-| Light            | Always dark when app is in dark mode | Light     | Dark        |
-| Dark             | Follow day/night                     | Light     | Dark        |
-| Dark             | Always dark when app is in dark mode | Dark      | Dark        |
+When app dark mode¹ is on:
+- During daytime, the sun is up, but the **Location-based dark mode** preference (from `Settings` > `Appearance`) will affect the theme:
+  - When set to **Follow day/night**, the weather condition is depicted using bright colors and the dark mode is off
+  - When set to **Always dark when app is in dark mode**, a solar eclipse will cause the weather conditions to be depicted in dark colors and dark mode to be on
+- During nighttime, the sun is down, so the weather condition is depicted using dark colors and the dark mode is on
 
-¹If set to “Follow system”, pick the current system dark mode to read this table
+By default, the **Location-based dark mode** preference is set **Always dark when app is in dark mode**, so that users with accessibility needs are not affected by bright colors, but we recommend setting it to **Follow day/night** for a more accurate weather-condition representation, if you can.
 
-This animation is dynamic by default, but you can choose a static one in the settings (Appearance).
+Summary:
+
+| App dark mode¹ | Location-based dark mode             | Theme when sun is up | Theme when sun is down |
+|----------------|--------------------------------------|----------------------|------------------------|
+| Light          | Follow day/night                     | Light                | Dark                   |
+| Light          | Always dark when app is in dark mode | Light                | Dark                   |
+| Dark           | Follow day/night                     | Light                | Dark                   |
+| Dark           | Always dark when app is in dark mode | Dark (solar eclipse) | Dark                   |
+
+¹If set to **Follow system**, pick the current system dark mode
+
+In `Settings` > `Main screen`, you’ll find several options for customizing the background behavior:
+- **Weather-based background** lets you replace the theme with a static white or black background with no animations
+- **Background animation** lets you decide if you want the elements (sun, clouds, etc.) to animate or remain static
+- **Gravity sensor** lets you decide if you want the elements (sun, clouds, etc.) to move when you tilt your device
 
 
 ## App bar
@@ -45,7 +60,7 @@ Just below, you can see the last time of refresh.
 Above weather blocks, you have details about current weather:
 
 - A description of the current weather condition
-- Temperature. When entering screen, this will animate from previous location’s temperature (or 0° if just opening the app) to the current location’s temperature, for a duration of 1 to 2 seconds depending on the temperature difference. This animation can be disabled in Settings > Main screen > Other element animations.
+- Temperature. When entering screen, this will animate from previous location’s temperature (or 0° if just opening the app) to the current location’s temperature, for a duration of 1 to 2 seconds depending on the temperature difference. This animation can be disabled in `Settings` > `Main screen` > `Other element animations`.
 - (If different from temperature) Feels like temperature
 - The temperature for the current and next half days:
   - Before 06:00, it will show yesterday nighttime min temperature (if available), followed by today daytime max temperature
@@ -141,9 +156,11 @@ Two lines show two alert levels (20 and 150). It can be disabled in the settings
 From top to bottom:
 
 - Origin of the dominant wind with the highest speed during daytime (arrow icon)
+- *New in v6.2.3* Highest wind gusts of daytime if they are greater than the highest wind speed of daytime (text in a pill + transparent bar behind the highest wind speed of daytime bar)
 - Highest wind speed of daytime (text + bar)
 - Highest wind speed of nighttime (text + bar)
-- Origin of the dominant wind with the highest speed during daytime (arrow icon)
+- *New in v6.2.3* Highest wind gusts of nighttime if they are greater than the highest wind speed of nighttime (text in a pill + transparent bar behind the highest wind speed of nighttime bar)
+- Origin of the dominant wind with the highest speed during nighttime (arrow icon)
 
 Wind icons and speed bars have a different color according to Beaufort wind scale:
 
@@ -254,6 +271,7 @@ From top to bottom:
 
 - Origin of the dominant wind of the hour (arrow icon)
 - Wind speed of the hour (text + bar)
+- *New in v6.2.3* Wind gusts if they are greater than wind speed of the hour (text in a pill + transparent bar behind the wind speed bar)
 
 Wind icons and speed bars have a different color according to Beaufort wind scale:
 

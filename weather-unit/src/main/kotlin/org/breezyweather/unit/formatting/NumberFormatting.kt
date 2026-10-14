@@ -20,7 +20,6 @@ import android.icu.number.LocalizedNumberFormatter
 import android.icu.number.NumberFormatter
 import android.icu.number.Precision
 import android.icu.text.NumberFormat
-import org.breezyweather.unit.supportsNumberFormat
 import org.breezyweather.unit.supportsNumberFormatter
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
@@ -45,15 +44,15 @@ fun Number.format(
             .sign(if (showSign) NumberFormatter.SignDisplay.ALWAYS else NumberFormatter.SignDisplay.AUTO)
             .format(if (decimals == 0) this.toDouble().roundToInt() else this)
             .toString()
-    } else if (supportsNumberFormat() && useNumberFormat && !showSign) {
+    } else if (useNumberFormat && !showSign) {
         // showSign not supported by NumberFormat, skip
         NumberFormat.getNumberInstance(locale)
             .apply { maximumFractionDigits = decimals }
             .format(if (decimals == 0) this.toDouble().roundToInt() else this)
             .toString()
     } else {
-        return DecimalFormat(if (showSign && toDouble() > 0) "+0" else "0", DecimalFormatSymbols.getInstance(locale))
-            .apply { setMaximumFractionDigits(decimals) }
+        DecimalFormat(if (showSign && toDouble() > 0) "+0" else "0", DecimalFormatSymbols.getInstance(locale))
+            .apply { maximumFractionDigits = decimals }
             .format(if (decimals == 0) this.toDouble().roundToInt() else this)
     }
 }

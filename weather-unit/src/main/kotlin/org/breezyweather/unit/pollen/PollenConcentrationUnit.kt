@@ -49,10 +49,8 @@ enum class PollenConcentrationUnit(
     ),
     ;
 
-    @RequiresApi(Build.VERSION_CODES.N)
     override fun getMeasureUnit(): MeasureUnit? = null
 
-    @RequiresApi(Build.VERSION_CODES.N)
     override fun getPerMeasureUnit(): MeasureUnit? = null
 
     override fun getDisplayName(

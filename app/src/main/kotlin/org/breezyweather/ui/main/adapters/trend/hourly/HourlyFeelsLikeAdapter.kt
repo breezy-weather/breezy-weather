@@ -25,6 +25,7 @@ import breezyweather.domain.location.model.Location
 import org.breezyweather.R
 import org.breezyweather.common.activities.BreezyActivity
 import org.breezyweather.common.extensions.formatMeasure
+import org.breezyweather.common.extensions.formatPercent
 import org.breezyweather.common.extensions.getThemeColor
 import org.breezyweather.common.options.appearance.DetailScreen
 import org.breezyweather.ui.common.widgets.trend.TrendRecyclerView
@@ -45,6 +46,7 @@ class HourlyFeelsLikeAdapter(
     location: Location,
     provider: ResourceProvider,
     private val temperatureUnit: TemperatureUnit,
+    private val showPrecipitationProbability: Boolean = true,
 ) : AbsHourlyTrendAdapter(activity, location) {
     private val mResourceProvider: ResourceProvider = provider
     private val mTemperatures: Array<Float?>
@@ -73,6 +75,13 @@ class HourlyFeelsLikeAdapter(
                 },
                 missingIconVisibility = View.INVISIBLE
             )
+            val p = hourly.precipitationProbability?.total
+            if (showPrecipitationProbability && hourly.precipitationProbability?.total != null) {
+                talkBackBuilder.append(activity.getString(org.breezyweather.unit.R.string.locale_separator))
+                    .append(activity.getString(R.string.precipitation_probability))
+                    .append(activity.getString(R.string.colon_separator))
+                    .append(hourly.precipitationProbability!!.total!!.formatPercent(activity, UnitWidth.NARROW))
+            }
             mPolylineAndHistogramView.setData(
                 buildTemperatureArrayForItem(mTemperatures, position),
                 null,
@@ -86,10 +95,10 @@ class HourlyFeelsLikeAdapter(
                 null,
                 mHighestTemperature,
                 mLowestTemperature,
-                null,
-                null,
-                null,
-                null
+                p?.takeIf { it.value > 0 && showPrecipitationProbability }?.inPercent?.toFloat(),
+                p?.takeIf { it.value > 0 && showPrecipitationProbability }?.formatPercent(activity, UnitWidth.NARROW),
+                100f,
+                0f
             )
             val themeColors = ThemeManager
                 .getInstance(itemView.context)

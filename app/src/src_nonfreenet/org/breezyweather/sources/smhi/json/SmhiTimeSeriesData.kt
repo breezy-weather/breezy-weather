@@ -29,6 +29,8 @@ data class SmhiTimeSeriesData(
     @SerialName("air_pressure_at_mean_sea_level") val airPressureAtMeanSeaLevel: Double? = null,
     @SerialName("visibility_in_air") val visibilityInAir: Double? = null,
     @SerialName("thunderstorm_probability") val thunderstormProbability: Double? = null,
+    @SerialName("probability_of_frozen_precipitation") val probabilityOfFrozenPrecipitation: Double? = null,
+    @SerialName("probability_of_precipitation") val probabilityOfPrecipitation: Double? = null,
     @SerialName("precipitation_amount_mean") val precipitationAmountMean: Double? = null,
     @SerialName("symbol_code") val symbolCode: Double? = null,
 )

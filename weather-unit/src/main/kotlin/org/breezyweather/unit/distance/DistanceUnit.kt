@@ -131,7 +131,6 @@ enum class DistanceUnit(
     ),
     ;
 
-    @RequiresApi(Build.VERSION_CODES.N)
     override fun getMeasureUnit(): MeasureUnit? {
         return when (this) {
             METER -> MeasureUnit.METER
@@ -142,7 +141,6 @@ enum class DistanceUnit(
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.N)
     override fun getPerMeasureUnit(): MeasureUnit? = null
 
     /**

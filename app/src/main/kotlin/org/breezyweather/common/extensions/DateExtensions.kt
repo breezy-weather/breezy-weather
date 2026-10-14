@@ -91,21 +91,16 @@ fun Date.getFormattedDate(
     withBestPattern: Boolean = false,
 ): String {
     val locale = context?.currentLocale ?: Locale.Builder().setLanguage("en").setRegion("001").build()
-    return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-        SimpleDateFormat(
-            if (withBestPattern) {
-                DateTimePatternGenerator.getInstance(locale).getBestPattern(pattern)
-            } else {
-                pattern
-            },
-            locale
-        ).apply {
-            timeZone = location?.timeZone?.let { TimeZone.getTimeZone(it.id) } ?: TimeZone.getDefault()
-        }.format(this)
-    } else {
-        @Suppress("DEPRECATION")
-        getFormattedDate(pattern, location?.timeZone, locale)
-    }
+    return SimpleDateFormat(
+        if (withBestPattern) {
+            DateTimePatternGenerator.getInstance(locale).getBestPattern(pattern)
+        } else {
+            pattern
+        },
+        locale
+    ).apply {
+        timeZone = location?.timeZone?.let { TimeZone.getTimeZone(it.id) } ?: TimeZone.getDefault()
+    }.format(this)
 }
 
 fun Date.getFormattedTime(
@@ -169,25 +164,17 @@ fun Date.getFormattedFullDayAndMonth(
 fun getShortWeekdayDayMonth(
     context: Context?,
 ): String {
-    return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-        DateTimePatternGenerator.getInstance(
-            context?.currentLocale ?: Locale.Builder().setLanguage("en").setRegion("001").build()
-        ).getBestPattern("EEE d MMM")
-    } else {
-        "EEE d MMM"
-    }
+    return DateTimePatternGenerator.getInstance(
+        context?.currentLocale ?: Locale.Builder().setLanguage("en").setRegion("001").build()
+    ).getBestPattern("EEE d MMM")
 }
 
 fun getLongWeekdayDayMonth(
     context: Context?,
 ): String {
-    return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-        DateTimePatternGenerator.getInstance(
-            context?.currentLocale ?: Locale.Builder().setLanguage("en").setRegion("001").build()
-        ).getBestPattern("EEEE d MMMM")
-    } else {
-        "EEEE d MMMM"
-    }
+    return DateTimePatternGenerator.getInstance(
+        context?.currentLocale ?: Locale.Builder().setLanguage("en").setRegion("001").build()
+    ).getBestPattern("EEEE d MMMM")
 }
 
 fun Date.getWeek(location: Location, context: Context?, full: Boolean = false): String {
@@ -215,32 +202,28 @@ fun Date.getFormattedMediumDayAndMonthInAdditionalCalendar(
     location: Location? = null,
     context: Context,
 ): String? {
-    return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-        val calendarId = CalendarHelper.getAlternateCalendarSetting(context)
-        if (calendarId != null) {
-            val alternateCalendar = CalendarHelper.getCalendars(context).firstOrNull { it.id == calendarId }
-            if (alternateCalendar != null) {
-                val locale = context.currentLocale
-                val uLocale = ULocale.Builder().apply {
-                    setLanguageTag(locale.toLanguageTag())
-                    setUnicodeLocaleKeyword(CalendarHelper.CALENDAR_EXTENSION_TYPE, calendarId)
-                    alternateCalendar.additionalParams?.forEach {
-                        setUnicodeLocaleKeyword(it.key, it.value)
-                    }
-                }.build()
-                SimpleDateFormat(
-                    if (!alternateCalendar.specificPattern.isNullOrEmpty()) {
-                        alternateCalendar.specificPattern
-                    } else {
-                        DateTimePatternGenerator.getInstance(uLocale).getBestPattern("d MMM")
-                    },
-                    uLocale
-                ).apply {
-                    timeZone = location?.timeZone?.let { TimeZone.getTimeZone(it.id) } ?: TimeZone.getDefault()
-                }.format(this)
-            } else {
-                null
-            }
+    val calendarId = CalendarHelper.getAlternateCalendarSetting(context)
+    return if (calendarId != null) {
+        val alternateCalendar = CalendarHelper.getCalendars(context).firstOrNull { it.id == calendarId }
+        if (alternateCalendar != null) {
+            val locale = context.currentLocale
+            val uLocale = ULocale.Builder().apply {
+                setLanguageTag(locale.toLanguageTag())
+                setUnicodeLocaleKeyword(CalendarHelper.CALENDAR_EXTENSION_TYPE, calendarId)
+                alternateCalendar.additionalParams?.forEach {
+                    setUnicodeLocaleKeyword(it.key, it.value)
+                }
+            }.build()
+            SimpleDateFormat(
+                if (!alternateCalendar.specificPattern.isNullOrEmpty()) {
+                    alternateCalendar.specificPattern
+                } else {
+                    DateTimePatternGenerator.getInstance(uLocale).getBestPattern("d MMM")
+                },
+                uLocale
+            ).apply {
+                timeZone = location?.timeZone?.let { TimeZone.getTimeZone(it.id) } ?: TimeZone.getDefault()
+            }.format(this)
         } else {
             null
         }

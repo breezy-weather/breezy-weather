@@ -61,8 +61,7 @@ class DependenciesActivity : BreezyActivity() {
         ) {
             LibrariesContainer(
                 libraries,
-                Modifier.padding(it),
-                showLicenseBadges = true
+                Modifier.padding(it)
             )
         }
     }

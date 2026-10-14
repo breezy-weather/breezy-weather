@@ -36,7 +36,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
@@ -51,13 +50,13 @@ import breezyweather.domain.weather.model.Daily
 import breezyweather.domain.weather.model.Hourly
 import breezyweather.domain.weather.model.PrecipitationDuration
 import breezyweather.domain.weather.model.PrecipitationProbability
-import com.patrykandpatrick.vico.core.cartesian.axis.VerticalAxis
-import com.patrykandpatrick.vico.core.cartesian.data.CartesianChartModelProducer
-import com.patrykandpatrick.vico.core.cartesian.data.columnSeries
-import com.patrykandpatrick.vico.core.cartesian.data.lineSeries
-import com.patrykandpatrick.vico.core.cartesian.marker.CartesianMarker
-import com.patrykandpatrick.vico.core.cartesian.marker.CartesianMarkerVisibilityListener
-import com.patrykandpatrick.vico.core.common.Fill
+import com.patrykandpatrick.vico.compose.cartesian.axis.VerticalAxis
+import com.patrykandpatrick.vico.compose.cartesian.data.CartesianChartModelProducer
+import com.patrykandpatrick.vico.compose.cartesian.data.columnModel
+import com.patrykandpatrick.vico.compose.cartesian.data.lineModel
+import com.patrykandpatrick.vico.compose.cartesian.marker.CartesianMarker
+import com.patrykandpatrick.vico.compose.cartesian.marker.CartesianMarkerVisibilityListener
+import com.patrykandpatrick.vico.compose.common.Fill
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.ImmutableMap
 import kotlinx.collections.immutable.persistentListOf
@@ -74,8 +73,8 @@ import org.breezyweather.common.extensions.toDate
 import org.breezyweather.common.options.appearance.DetailScreen
 import org.breezyweather.common.utils.UnitUtils
 import org.breezyweather.domain.settings.SettingsManager
-import org.breezyweather.ui.common.charts.BreezyBarChart
-import org.breezyweather.ui.common.charts.BreezyLineChart
+import org.breezyweather.ui.common.charts.compose.BreezyBarChart
+import org.breezyweather.ui.common.charts.compose.BreezyLineChart
 import org.breezyweather.unit.formatting.UnitWidth
 import org.breezyweather.unit.precipitation.Precipitation
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
@@ -95,10 +94,12 @@ fun DetailsPrecipitation(
     modifier: Modifier = Modifier,
 ) {
     val mappedQuantityValues = remember(hourlyList) {
-        hourlyList
-            .filter { it.precipitation?.total != null }
-            .associate { it.date.time to it.precipitation!!.total!! }
-            .toImmutableMap()
+        buildMap(hourlyList.size) {
+            hourlyList.forEach { hourly ->
+                val precipitationTotal = hourly.precipitation?.total ?: return@forEach
+                put(hourly.date.time, precipitationTotal)
+            }
+        }.toImmutableMap()
     }
     var activeQuantityItem: Pair<Date, Precipitation>? by remember {
         mutableStateOf(null)
@@ -124,10 +125,12 @@ fun DetailsPrecipitation(
     }
 
     val mappedProbabilityValues = remember(hourlyList) {
-        hourlyList
-            .filter { it.precipitationProbability?.total != null }
-            .associate { it.date.time to it.precipitationProbability!!.total!! }
-            .toImmutableMap()
+        buildMap(hourlyList.size) {
+            hourlyList.forEach { hourly ->
+                val precipitationProbabilityTotal = hourly.precipitationProbability?.total ?: return@forEach
+                put(hourly.date.time, precipitationProbabilityTotal)
+            }
+        }.toImmutableMap()
     }
     var activeProbabilityItem: Pair<Date, Ratio>? by remember { mutableStateOf(null) }
     val probabilityMarkerVisibilityListener = remember {
@@ -355,9 +358,9 @@ internal fun PrecipitationChart(
 
     val modelProducer = remember { CartesianChartModelProducer() }
 
-    LaunchedEffect(location) {
+    LaunchedEffect(mappedValues) {
         modelProducer.runTransaction {
-            columnSeries {
+            columnModel {
                 series(
                     x = mappedValues.keys,
                     y = mappedValues.values.map { it.toDouble(precipitationUnit) }
@@ -374,7 +377,7 @@ internal fun PrecipitationChart(
         endAxisValueFormatter = { _, value, _ ->
             value.toPrecipitation(precipitationUnit).formatMeasure(context, precipitationUnit)
         },
-        barColorFill = remember { Fill(Color(60, 116, 160).toArgb()) },
+        barColorFill = remember { Fill(Color(60, 116, 160)) },
         /*colors = remember {
             persistentMapOf(
                 50 to Fill(Color(168, 168, 168).toArgb()),
@@ -597,9 +600,9 @@ internal fun PrecipitationProbabilityChart(
 
     val modelProducer = remember { CartesianChartModelProducer() }
 
-    LaunchedEffect(location) {
+    LaunchedEffect(mappedValues) {
         modelProducer.runTransaction {
-            lineSeries {
+            lineModel {
                 series(
                     x = mappedValues.keys,
                     y = mappedValues.values.map { it.inPercent }

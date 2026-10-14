@@ -88,6 +88,12 @@ class TagAdapter @JvmOverloads constructor(
         return tag
     }
 
+    fun reset(tags: List<Tag>) {
+        tagList.clear()
+        tagList.addAll(tags)
+        notifyDataSetChanged()
+    }
+
     companion object {
         const val UNCHECKABLE_INDEX = -1
     }

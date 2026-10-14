@@ -14,11 +14,11 @@
  * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package org.breezyweather.sources.ncei.json
+package org.breezyweather.domain.source
 
-import kotlinx.serialization.Serializable
-
-@Serializable
-data class NceiStationsCentroid(
-    val point: List<Double>,
+data class SelectableSource(
+    val id: String,
+    val displayName: String,
+    val enabled: Boolean,
+    val privacyPolicyUrl: String?,
 )

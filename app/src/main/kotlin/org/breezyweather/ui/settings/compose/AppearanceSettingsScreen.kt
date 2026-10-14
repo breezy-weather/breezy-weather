@@ -126,13 +126,11 @@ fun AppearanceSettingsScreen(
                 }
             }
             smallSeparatorItem()
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                listPreferenceItem(R.string.settings_appearance_calendar_title) { id ->
-                    CalendarPreferenceView(
-                        titleId = id,
-                        isLast = true
-                    )
-                }
+            listPreferenceItem(R.string.settings_appearance_calendar_title) { id ->
+                CalendarPreferenceView(
+                    titleId = id,
+                    isLast = true
+                )
             }
             sectionFooterItem(R.string.settings_appearance_section_regional)
 

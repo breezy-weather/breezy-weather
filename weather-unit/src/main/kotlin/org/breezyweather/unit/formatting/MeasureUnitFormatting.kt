@@ -61,7 +61,6 @@ fun MeasureUnit.formatWithNumberFormatter(
         .toString()
 }
 
-@RequiresApi(Build.VERSION_CODES.N)
 fun MeasureUnit.isDurationUnit(): Boolean {
     return this == MeasureUnit.NANOSECOND ||
         this == MeasureUnit.MICROSECOND ||
@@ -77,7 +76,6 @@ fun MeasureUnit.isDurationUnit(): Boolean {
  * @param value
  * @param perUnit an optional per unit. /!\ Only supported on Android SDK >= 26
  */
-@RequiresApi(Build.VERSION_CODES.N)
 fun MeasureUnit.formatWithMeasureFormat(
     locale: Locale,
     value: Number,

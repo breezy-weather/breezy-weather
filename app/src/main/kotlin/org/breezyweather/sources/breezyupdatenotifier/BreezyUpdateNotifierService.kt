@@ -26,7 +26,9 @@ import org.breezyweather.common.source.BroadcastSource
 import javax.inject.Inject
 
 /**
- * Known limitations: The updated location IDs only work if refreshed from the background (not from the main screen)
+ * Broadcasts the following:
+ * - UpdatedLocationIds: An array of location IDs which got a weather update. Can be empty.
+ * - AllLocationIds: An array of all location IDs. Helpful to detect added, swapped or deleted locations.
  */
 class BreezyUpdateNotifierService @Inject constructor(
     @ApplicationContext context: Context,
@@ -46,19 +48,10 @@ class BreezyUpdateNotifierService @Inject constructor(
         updatedLocationIds: Array<String>?,
     ): Bundle {
         return Bundle().apply {
-            /*
-             * Contains the list of updated location IDs
-             * If null, means the updated location is unknown.
-             * It could be a deleted location, or a refresh on main screen
-             */
             putStringArray(
                 "UpdatedLocationIds",
-                updatedLocationIds
+                updatedLocationIds ?: emptyArray<String>()
             )
-            /*
-             * Contains the list of all known location IDs
-             * If some locations were removed during the process, it won't be included in this list
-             */
             putStringArray(
                 "AllLocationIds",
                 allLocations.map { it.formattedId }.toTypedArray()

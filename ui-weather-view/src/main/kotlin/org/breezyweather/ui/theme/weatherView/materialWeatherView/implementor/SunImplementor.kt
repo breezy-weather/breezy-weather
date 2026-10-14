@@ -30,12 +30,13 @@ import kotlin.math.sin
 class SunImplementor(
     @Size(2) canvasSizes: IntArray,
     animate: Boolean,
+    darkMode: Boolean,
 ) : WeatherAnimationImplementor() {
     private val mAnimate = animate
     private val mPaint = Paint().apply {
         style = Paint.Style.FILL
         isAntiAlias = true
-        color = Color.WHITE
+        color = if (darkMode) Color.BLACK else Color.WHITE
     }
     private val mAngles = FloatArray(3)
     private val mUnitSizes: FloatArray = floatArrayOf(

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="notification_update_error">
+        <item quantity="one">%1$d புதுப்பித்தல் தோல்வியடைந்தது</item>
+        <item quantity="other">%1$d புதுப்பித்தல்கள் தோல்வியடைந்தன</item>
+    </plurals>
+</resources>

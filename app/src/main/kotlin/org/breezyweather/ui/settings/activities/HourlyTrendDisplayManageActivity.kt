@@ -33,10 +33,13 @@ import org.breezyweather.R
 import org.breezyweather.common.activities.BreezyActivity
 import org.breezyweather.common.extensions.doOnApplyWindowInsets
 import org.breezyweather.common.extensions.getThemeColor
+import org.breezyweather.common.options.appearance.DailyTrendDisplay
 import org.breezyweather.common.options.appearance.HourlyTrendDisplay
 import org.breezyweather.common.utils.ColorUtils
 import org.breezyweather.databinding.ActivityHourlyTrendDisplayManageBinding
 import org.breezyweather.domain.settings.SettingsManager
+import org.breezyweather.domain.settings.SettingsManager.Companion.DEFAULT_DAILY_TREND_DISPLAY
+import org.breezyweather.domain.settings.SettingsManager.Companion.DEFAULT_HOURLY_TREND_DISPLAY
 import org.breezyweather.ui.common.adapters.TagAdapter
 import org.breezyweather.ui.common.decorations.GridMarginsDecoration
 import org.breezyweather.ui.common.decorations.ListDecoration
@@ -96,6 +99,31 @@ class HourlyTrendDisplayManageActivity : BreezyActivity() {
         }
     }
 
+    private fun onResetIconClicked() {
+        val displayTags = HourlyTrendDisplay
+            .toHourlyTrendDisplayList(DEFAULT_HOURLY_TREND_DISPLAY)
+            .toMutableList()
+        mHourlyTrendDisplayAdapter.reset(displayTags)
+
+        val otherTags = HourlyTrendDisplay.entries.toMutableList()
+        for (i in otherTags.indices.reversed()) {
+            for (displayTag in displayTags) {
+                if (otherTags[i] === displayTag) {
+                    otherTags.removeAt(i)
+                    break
+                }
+            }
+        }
+        val tagList = mutableListOf<TagAdapter.Tag>()
+        for (tag in otherTags) {
+            tagList.add(HourlyTrendTag(tag))
+        }
+
+        setResult(RESULT_OK)
+        mTagAdapter?.reset(tagList)
+        resetBottomBarVisibility()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mBinding = ActivityHourlyTrendDisplayManageBinding.inflate(layoutInflater)
@@ -110,6 +138,11 @@ class HourlyTrendDisplayManageActivity : BreezyActivity() {
             )
         )
         mBinding.toolbar.setNavigationOnClickListener { finish() }
+        mBinding.toolbar.inflateMenu(R.menu.activity_sorting)
+        mBinding.toolbar.setOnMenuItemClickListener { _ ->
+            onResetIconClicked()
+            true
+        }
         val displayTags = SettingsManager.getInstance(this).hourlyTrendDisplayList
         mHourlyTrendDisplayAdapter = HourlyTrendDisplayAdapter(
             displayTags.toMutableList(),

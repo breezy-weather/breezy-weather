@@ -18,19 +18,13 @@ package org.breezyweather.common.extensions
 
 import android.content.Context
 import android.content.res.Configuration
-import android.os.Build
 import androidx.appcompat.app.AppCompatDelegate
 import java.util.Locale
 
 val Context.currentLocale: Locale
     get() {
         return AppCompatDelegate.getApplicationLocales().get(0)
-            ?: if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                resources.configuration.locales[0]
-            } else {
-                @Suppress("DEPRECATION")
-                resources.configuration.locale
-            }
+            ?: resources.configuration.locales[0]
     }
 
 // TODO: Review this use vs toLanguageTag()

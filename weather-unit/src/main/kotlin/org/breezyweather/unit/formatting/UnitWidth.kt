@@ -18,7 +18,6 @@ package org.breezyweather.unit.formatting
 
 import android.icu.number.NumberFormatter
 import android.icu.text.MeasureFormat
-import org.breezyweather.unit.supportsMeasureFormat
 import org.breezyweather.unit.supportsNumberFormatter
 
 enum class UnitWidth(
@@ -28,17 +27,17 @@ enum class UnitWidth(
 ) {
     NARROW(
         "narrow",
-        if (supportsMeasureFormat()) MeasureFormat.FormatWidth.NARROW else null,
+        MeasureFormat.FormatWidth.NARROW,
         if (supportsNumberFormatter()) NumberFormatter.UnitWidth.NARROW else null
     ),
     SHORT(
         "short",
-        if (supportsMeasureFormat()) MeasureFormat.FormatWidth.SHORT else null,
+        MeasureFormat.FormatWidth.SHORT,
         if (supportsNumberFormatter()) NumberFormatter.UnitWidth.SHORT else null
     ),
     LONG(
         "full",
-        if (supportsMeasureFormat()) MeasureFormat.FormatWidth.WIDE else null,
+        MeasureFormat.FormatWidth.WIDE,
         if (supportsNumberFormatter()) NumberFormatter.UnitWidth.FULL_NAME else null
     ),
 }

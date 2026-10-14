@@ -24,7 +24,7 @@
     <string name="daily_yesterday_short">Ontem</string>
     <string name="daily_tomorrow_short">Amanhã</string>
     <string name="wind_strength_0">Calmo</string>
-    <string name="wind_strength_1">Fresco</string>
+    <string name="wind_strength_1">Vento fraco</string>
     <string name="wind_strength_2">Brisa Leve</string>
     <string name="wind_strength_3">Brisa Suave</string>
     <string name="wind_strength_4">Vento Moderada</string>
@@ -34,7 +34,7 @@
     <string name="wind_strength_8">Vendaval</string>
     <string name="wind_strength_9">Vendaval Forte</string>
     <string name="wind_strength_10">Tempestade</string>
-    <string name="wind_strength_11">Tempestade Violenta</string>
+    <string name="wind_strength_11">Tempestade violenta</string>
     <string name="wind_strength_12">Furacão</string>
     <string name="ephemeris_moon_phase_new_moon">Nova</string>
     <string name="ephemeris_moon_phase_waxing_crescent">Crescente</string>
@@ -190,7 +190,7 @@
     <string name="settings_modules_notification_feels_like_switch">Usar sensação térmica</string>
     <string name="settings_debug_summary">Registo de falhas</string>
     <string name="uv_index_0_2">Baixo</string>
-    <string name="settings_weather_source_portal">Portal</string>
+    <string name="settings_weather_source_portal">Canal</string>
     <string name="setting_weather_source_accu_days">Dias</string>
     <string name="weather_source_accu_preference_days_5">5 dias</string>
     <string name="settings_modules_configure_widget_summary">Configurar esse widget</string>
@@ -304,7 +304,7 @@
     <string name="widget_style_tile">Bloco</string>
     <string name="location_message_permission_missing">Permissão de acesso à localização em falta</string>
     <string name="action_share">Partilhar</string>
-    <string name="widget_clock_font_sans_serif_black">Sans Serif Black</string>
+    <string name="widget_clock_font_sans_serif_black">Sans Serif Preto</string>
     <string name="settings_background_updates_summary">Taxa de atualização, solução de problemas</string>
     <string name="settings_background_updates_refresh_title">Intervalo de atualização</string>
     <string name="settings_background_updates_refresh_never">Nunca</string>
@@ -433,7 +433,7 @@
     <string name="common_weather_text_rain_snow_mixed_heavy">Chuva forte com neve</string>
     <string name="common_weather_text_drizzle_freezing_light">Garoa leve congelante</string>
     <string name="metno_weather_text_andthunder">%s com trovoadas</string>
-    <string name="precipitation_nowcasting">Precipitação minuto a minuto</string>
+    <string name="precipitation_nowcasting">Previsão imediata da precipitação</string>
     <string name="common_weather_text_rain_heavy">Chuva forte</string>
     <string name="about_contact">Contato</string>
     <string name="common_weather_text_drizzle">Garoa</string>
@@ -681,12 +681,12 @@
     <string name="action_open_in_other_app">Abrir noutra aplicação</string>
     <string name="action_open_in_other_app_description">Abrir esta localização noutra aplicação</string>
     <string name="action_allow">Permitir</string>
-    <string name="pollen_alternaria">Alternaria</string>
+    <string name="pollen_alternaria">Alternária</string>
     <string name="air_quality_short">Qualidade do ar</string>
     <string name="ephemeris_sun">Sol</string>
     <string name="ephemeris_moon">Lua</string>
     <string name="ephemeris_about">Sobre tempos de nascer e pôr do sol</string>
-    <string name="ephemeris_about_rise">O tempo de nascer do sol ou lua quando aparece totalmente no horizonte.</string>
+    <string name="ephemeris_about_rise">O momento do nascer é quando o sol ou a lua aparecem totalmente acima do horizonte.</string>
     <string name="ephemeris_about_set">O tempo de pôr do sol ou da lua quando desaparece totalmente do horizonte.</string>
     <string name="ephemeris_about_dawn">O amanhecer é quando a primeira luz visível do dia aparece antes do nascer do sol.</string>
     <string name="ephemeris_about_dusk">O anoitecer é o estágio mais escuro do crepúsculo antes que a última luz visível desapareça.</string>
@@ -705,11 +705,11 @@
     <string name="temperature_feels_like_details">Qual é a sensação da temperatura, como resultado da humidade, vento e /ou luz do sol.</string>
     <string name="temperature_degree_day_heating_explanation">Diferença entre a temperatura externa e uma temperatura confortável de referência usada para estimar requisitos de energia de aquecimento</string>
     <string name="temperature_degree_day_cooling_explanation">Diferença entre a temperatura externa e uma temperatura confortável de referência usada para estimar requisitos de energia de resfriamento</string>
-    <string name="temperature_normals_deviation">Divergência</string>
+    <string name="temperature_normals_deviation">Desvio</string>
     <string name="temperature_normals_deviation_explanation_maximum">Desvio da temperatura média máxima de %s para este local</string>
     <string name="temperature_normals_deviation_explanation_minimum">Desvio da temperatura mínima média de %s para este local</string>
-    <string name="wind_speed_about">Sobre velocidade de vento e rajadas</string>
-    <string name="wind_speed_about_description">Velocidade do vento é a média das velocidades sobre um período de tempo. Rajadas são ventos fortes súbidos normalmente com duração de menos que 20 segundos.</string>
+    <string name="wind_speed_about">Sobre a velocidade do vento e as rajadas</string>
+    <string name="wind_speed_about_description">A velocidade do vento é medida através da média das velocidades do vento registadas ao longo de um determinado período de tempo. As rajadas são surtos repentinos de vento que, normalmente, duram menos de 20 segundos.</string>
     <string name="wind_gusts_short">Rajadas</string>
     <string name="wind_origin">De %s</string>
     <string name="wind_strength_scale">Escala de Beaufort</string>
@@ -820,4 +820,11 @@
     <string name="action_add_as_location">Adicionar como localização</string>
     <string name="action_pull_down_to_refresh">Puxe para baixo para atualizar</string>
     <string name="widget_live_wallpaper_animations_enable_dangerous">PERIGOSO</string>
+    <string name="pressure_standard">Padrão</string>
+    <string name="message_please_wait_refresh">Por favor aguarde que a atualização seja concluída</string>
+    <string name="settings_weather_source_no_longer_exists">%s (já não existe)</string>
+    <string name="settings_main_background_title">Papel de parede baseado no clima</string>
+    <string name="settings_regional_preference">Preferência regional</string>
+    <string name="content_provider_permission_label">Ler dados do Breezy Weather</string>
+    <string name="message_source_non_free_network_title">Esta funcionalidade requer a versão Padrão do aplicativo.</string>
 </resources>

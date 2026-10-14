@@ -118,6 +118,8 @@ class SmhiService @Inject constructor(
                     total = result.data.precipitationAmountMean?.millimeters
                 ),
                 precipitationProbability = PrecipitationProbability(
+                    total = result.data.probabilityOfPrecipitation?.percent,
+                    snow = result.data.probabilityOfFrozenPrecipitation?.percent, // Note: Not necessarily snow
                     thunderstorm = result.data.thunderstormProbability?.percent
                 ),
                 wind = Wind(

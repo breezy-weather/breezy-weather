@@ -92,4 +92,10 @@ class DailyTrendDisplayAdapter(
         mDailyTrendDisplayList.add(toPosition, mDailyTrendDisplayList.removeAt(fromPosition))
         notifyItemMoved(fromPosition, toPosition)
     }
+
+    fun reset(dailyTrendDisplays: List<DailyTrendDisplay>) {
+        mDailyTrendDisplayList.clear()
+        mDailyTrendDisplayList.addAll(dailyTrendDisplays)
+        notifyDataSetChanged()
+    }
 }

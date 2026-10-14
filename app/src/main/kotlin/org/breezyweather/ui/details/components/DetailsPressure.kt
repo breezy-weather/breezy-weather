@@ -16,11 +16,6 @@
 
 package org.breezyweather.ui.details.components
 
-import android.graphics.PorterDuff
-import android.graphics.PorterDuffColorFilter
-import android.text.Spannable
-import android.text.SpannableString
-import android.text.style.ImageSpan
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -38,24 +33,22 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.text.AnnotatedString
-import androidx.compose.ui.unit.dp
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Daily
 import breezyweather.domain.weather.model.Hourly
-import com.patrykandpatrick.vico.compose.cartesian.axis.fixed
-import com.patrykandpatrick.vico.core.cartesian.axis.BaseAxis
-import com.patrykandpatrick.vico.core.cartesian.axis.VerticalAxis
-import com.patrykandpatrick.vico.core.cartesian.data.CartesianChartModelProducer
-import com.patrykandpatrick.vico.core.cartesian.data.lineSeries
-import com.patrykandpatrick.vico.core.cartesian.marker.CartesianMarker
-import com.patrykandpatrick.vico.core.cartesian.marker.CartesianMarkerVisibilityListener
+import com.patrykandpatrick.vico.compose.cartesian.axis.VerticalAxis
+import com.patrykandpatrick.vico.compose.cartesian.data.CartesianChartModelProducer
+import com.patrykandpatrick.vico.compose.cartesian.data.lineModel
+import com.patrykandpatrick.vico.compose.cartesian.marker.CartesianMarker
+import com.patrykandpatrick.vico.compose.cartesian.marker.CartesianMarkerVisibilityListener
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.ImmutableMap
 import kotlinx.collections.immutable.persistentListOf
@@ -63,18 +56,18 @@ import kotlinx.collections.immutable.persistentMapOf
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.collections.immutable.toImmutableMap
 import org.breezyweather.R
-import org.breezyweather.common.extensions.dpToPx
 import org.breezyweather.common.extensions.formatMeasure
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.extensions.roundDownToNearestMultiplier
 import org.breezyweather.common.extensions.roundUpToNearestMultiplier
+import org.breezyweather.common.extensions.toBitmap
 import org.breezyweather.common.extensions.toDate
 import org.breezyweather.common.options.appearance.DetailScreen
 import org.breezyweather.common.utils.UnitUtils
 import org.breezyweather.domain.settings.SettingsManager
-import org.breezyweather.ui.common.charts.BreezyLineChart
-import org.breezyweather.ui.common.charts.TimeTopAxisItemPlacer
+import org.breezyweather.ui.common.charts.compose.BreezyLineChart
+import org.breezyweather.ui.common.charts.compose.IconCartesianMarker
 import org.breezyweather.unit.formatting.UnitWidth
 import org.breezyweather.unit.pressure.Pressure
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
@@ -84,7 +77,6 @@ import org.breezyweather.unit.pressure.toPressure
 import java.util.Date
 import kotlin.math.max
 import kotlin.math.min
-import kotlin.math.roundToInt
 
 @Composable
 fun DetailsPressure(
@@ -95,10 +87,12 @@ fun DetailsPressure(
     modifier: Modifier = Modifier,
 ) {
     val mappedValues = remember(hourlyList) {
-        hourlyList
-            .filter { it.pressure != null }
-            .associate { it.date.time to it.pressure!! }
-            .toImmutableMap()
+        buildMap(hourlyList.size) {
+            hourlyList.forEach { hourly ->
+                val pressure = hourly.pressure ?: return@forEach
+                put(hourly.date.time, pressure)
+            }
+        }.toImmutableMap()
     }
     var activeItem: Pair<Date, Pressure>? by remember { mutableStateOf(null) }
     val markerVisibilityListener = remember {
@@ -244,12 +238,13 @@ private fun PressureChart(
         ).roundDownToNearestMultiplier(chartStep)
     }
     val iconColor = MaterialTheme.colorScheme.onSurface
+    val iconSizePx = with(LocalDensity.current) { IconCartesianMarker.DEFAULT_ICON_SIZE.roundToPx() }
 
     val modelProducer = remember { CartesianChartModelProducer() }
 
-    LaunchedEffect(location) {
+    LaunchedEffect(mappedValues) {
         modelProducer.runTransaction {
-            lineSeries {
+            lineModel {
                 series(
                     x = mappedValues.keys,
                     y = mappedValues.values.map { it.toDouble(pressureUnit) }
@@ -263,10 +258,35 @@ private fun PressureChart(
         modelProducer = modelProducer,
         theDay = daily.date,
         maxY = maxY,
-        topAxisItemPlacer = remember(mappedValues) {
-            TimeTopAxisItemPlacer(mappedValues.keys.toImmutableList())
+        topIconValues = remember(mappedValues) { mappedValues.keys.toImmutableList() },
+        topIconTint = iconColor,
+        topIconProvider = remember(mappedValues, iconSizePx) {
+            { x: Long ->
+                val currentIndex = mappedValues.keys.indexOfFirst { it == x }.let {
+                    if (it == 0) 1 else it
+                }
+                if (currentIndex > 0) {
+                    val previousValue = mappedValues.values.elementAt(currentIndex - 1)
+                    val currentValue = mappedValues.values.elementAt(currentIndex)
+                    val trendIcon = with(currentValue.value - previousValue.value) {
+                        when {
+                            // Take into account the trend if the difference is of at least 0.5
+                            this >= 0.5 -> R.drawable.ic_arrow_upward_alt
+                            this <= -0.5 -> R.drawable.ic_arrow_downward_alt
+                            else -> R.drawable.ic_equal
+                        }
+                    }
+                    AppCompatResources.getDrawable(context, trendIcon)?.let {
+                        // Clear the vector's own baked-in `android:tint`
+                        it.mutate()
+                        it.setTintList(null)
+                        it.toBitmap(iconSizePx, iconSizePx).asImageBitmap()
+                    }
+                } else {
+                    null
+                }
+            }
         },
-        topAxisSize = BaseAxis.Size.fixed(23.dp),
         endAxisValueFormatter = { _, value, _ -> value.toPressure(pressureUnit).formatMeasure(context) },
         colors = remember {
             persistentListOf(
@@ -295,43 +315,6 @@ private fun PressureChart(
                 context.getString(R.string.pressure_standard)
         ),
         minY = minY,
-        topAxisValueFormatter = { _, value, _ ->
-            val currentIndex = mappedValues.keys.indexOfFirst { it == value.toLong() }.let {
-                if (it == 0) 1 else it
-            }
-            if (currentIndex > 0) {
-                val previousValue = mappedValues.values.elementAt(currentIndex - 1)
-                val currentValue = mappedValues.values.elementAt(currentIndex)
-                val trendIcon = with(currentValue.value - previousValue.value) {
-                    when {
-                        // Take into account the trend if the difference is of at least 0.5
-                        this >= 0.5 -> R.drawable.ic_arrow_upward_alt
-                        this <= -0.5 -> R.drawable.ic_arrow_downward_alt
-                        else -> R.drawable.ic_equal
-                    }
-                }
-                val d = AppCompatResources.getDrawable(context, trendIcon)
-                if (d != null) {
-                    val ss = SpannableString("abc")
-                    d.setBounds(0, 0, context.dpToPx(18f).roundToInt(), context.dpToPx(18f).roundToInt())
-                    d.colorFilter = PorterDuffColorFilter(
-                        iconColor.toArgb(),
-                        PorterDuff.Mode.SRC_ATOP
-                    )
-                    val span = ImageSpan(d, ImageSpan.ALIGN_BASELINE)
-                    ss.setSpan(span, 0, 3, Spannable.SPAN_INCLUSIVE_EXCLUSIVE)
-                    ss
-                } else {
-                    when (trendIcon) {
-                        R.drawable.ic_arrow_upward_alt -> "↑"
-                        R.drawable.ic_arrow_downward_alt -> "↓"
-                        else -> "="
-                    }
-                }
-            } else {
-                "-"
-            }
-        },
         endAxisItemPlacer = remember { VerticalAxis.ItemPlacer.step({ chartStep }) },
         markerVisibilityListener = markerVisibilityListener
     )

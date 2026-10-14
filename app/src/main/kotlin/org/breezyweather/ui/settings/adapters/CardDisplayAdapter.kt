@@ -106,4 +106,10 @@ class CardDisplayAdapter(
         mCardDisplayList.add(toPosition, mCardDisplayList.removeAt(fromPosition))
         notifyItemMoved(fromPosition, toPosition)
     }
+
+    fun reset(cardDisplays: List<CardDisplay>) {
+        mCardDisplayList.clear()
+        mCardDisplayList.addAll(cardDisplays)
+        notifyDataSetChanged()
+    }
 }

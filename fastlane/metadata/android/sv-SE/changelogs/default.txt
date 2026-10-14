@@ -1,0 +1,2 @@
+Versionsinformation finns på GitHub:
+https://github.com/breezy-weather/breezy-weather/releases
