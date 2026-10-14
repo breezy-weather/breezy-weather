@@ -75,8 +75,12 @@ class ForecastNotificationNotifier(
             }
         )
 
-        val weather = location.weather ?: return
-        val daily = (if (today) weather.today else weather.tomorrow) ?: return
+        val weather = location.weather
+        val daily = weather?.let { (if (today) it.today else it.tomorrow) }
+        if (weather == null || daily == null) {
+            dismiss(today)
+            return
+        }
 
         val provider = ResourcesProviderFactory.newInstance
 
@@ -148,9 +152,16 @@ class ForecastNotificationNotifier(
             }
         }
 
+        dismiss(today)
         context.notify(
             if (today) Notifications.ID_TODAY_FORECAST else Notifications.ID_TOMORROW_FORECAST,
             notification
+        )
+    }
+
+    fun dismiss(today: Boolean) {
+        context.cancelNotification(
+            if (today) Notifications.ID_TODAY_FORECAST else Notifications.ID_TOMORROW_FORECAST
         )
     }
 

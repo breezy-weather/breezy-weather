@@ -72,7 +72,11 @@ class TodayForecastNotificationJob @AssistedInject constructor(
                         ),
                         today = true
                     )
+                } else {
+                    notifier.dismiss(today = true)
                 }
+            } else {
+                notifier.dismiss(today = true)
             }
             Result.success()
         } catch (e: Exception) {

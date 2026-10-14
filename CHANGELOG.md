@@ -13,6 +13,7 @@
 - Main screen - Forecast charts - Make threshold lines draw on top of chart instead of behind
 - Main screen - Forecast charts - Accessibility: texts will now take into account system font scale
 - Main screen - Forecast charts - Fix missing Daily Wind tab when there is no precipitation in the whole period
+- Notifications - Dismiss old today/tomorrow/nowcasting notifications if no longer relevant
 
 **Sources**
 - BMKG - Temporarily disable alert support
