@@ -2,81 +2,85 @@
 
 ## Rules for contributions from outside collaborators
 
-### Summary
+### Before you start
 
-Before you start any contribution:
+Before working on anything, pick an issue or idea tagged “**Open to contributions**” and leave a comment saying you would like to work on it.
 
-1. Make sure to choose an issue/idea tagged “Open to contributions”. Comment on that issue/idea that you want to work on it
-2. If you plan on using AI, make sure to read carefully the AI guidelines before starting any code writing. Mention in the linked issue/idea the tools you want to use and their license terms for redistribution. **If you don’t plan on using any, mention it as well.**
+Then wait for approval from an [org member](https://github.com/orgs/breezy-weather/people) before you start.
 
-Wait for an [org member](https://github.com/orgs/breezy-weather/people) approval before you start working on it. We can understand you want to start working right away, but if you don’t wait for approval, you may waste your time if it’s not approved.
-
-When your contribution is ready:
-
-3. You ensure there is no linting issue
-4. Your code is up-to-date with current `main` branch
-5. Your patch contains 1 single commit
-6. You cannot create the pull request (only org members can, so we ensure contributors are following our guidelines). You link in the issue/idea to your branch and a maintainer will take care of creating the pull request for you (don’t worry, you will be credited as the author of the commit)
+**Why?** We welcome pull requests, but we want to make sure your work goes in the right direction. We don’t want you to implement something we don’t want (see [Rules for new features/improvements requests section](#rules-for-new-featuresimprovements-requests)), or to implement it in a way that doesn’t fit the project. The same applies to bug fixes: talking to us first helps make sure these guidelines are followed.
 
 
-### The contribution was discussed beforehand
+### Quality requirement
 
-While we welcome pull requests, before implementing any new feature/improvement, we ask you to come talk to us, to be sure it goes in the right direction. We don’t want you to spend time implementing something we don’t want (see “Rules for new features/improvements requests” section below) or implementing it the wrong way. Same goes for bug reports, as we want to make sure the contribution guidelines are correctly followed.
-
-That's why you can only contribute to [existing issues tagged “Open to contributions”](https://github.com/breezy-weather/breezy-weather/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22Open%20to%20contributions%22), or [existing ideas tagged “Open to contributions”](https://github.com/breezy-weather/breezy-weather/discussions?discussions_q=is%3Aopen+label%3A%22Open+to+contributions%22) *after* you’ve expressed interest in that discussion.
-
-
-### AI guidelines
-
-AI has numerous ethical concerns (such as copyright violations and huge use of energy and water), so we prefer you only use it if strictly necessary.
-
-If you use AI or any kind of assistance tool, you use it as an assistant, meaning you're responsible for:
-1. **Understanding** every line of code and documentation you submit, and be able to explain the approach during review.
-2. **Ensuring it is correct, safe and appropriate**: these tools are good at generating plausible but meaningless content. So, you need to carefully review it, to avoid lowering the project code quality, or requiring unfair amount of human effort from developers and users to review contributions and detect the mistakes resulting from the use of AI.
-3. Ensuring it can be **licensed under LGPLv3** (the project license): do not use tools whose terms forbid using their output in LGPLv3-licensed projects or impose additional restrictions on redistribution.
-4. **Transparency**: disclose when AI was used. Which tools were used, and what they were used for.
-
-If you can't follow them, don’t use AI.
-
-Otherwise, before starting any contribution, mention in the linked issue/idea the tools used and their license terms for redistribution.
+Once your contribution is approved, make sure that you:
+1. **Understand your changes.** You must understand every line of code and documentation you submit, and be able to explain your approach during review.
+2. **Check that it is correct, safe and appropriate**. Review your work carefully. Low-quality contributions lower the quality of the project and force maintainers and users to spend an unfair amount of time reviewing them.
+3. **Respect the license**. Your contribution must be compatible with the project license **LGPL-v3**. Do not use tools whose terms forbid using their output in LGPLv3 projects or add restrictions on redistribution.
 
 
-### Linting
+### Submitting your contribution
 
-You can check linting issues with `./gradlew spotlessCheck`.
+When your contribution is ready, check that:
 
-You can apply `./gradlew spotlessApply` if necessary.
+1. There are no linting issues (see [Linting](#linting))
+2. Your code is up-to-date with the current `main` branch (see [Rebasing](#rebasing-onto-main))
+3. Your patch consists of a **single commit** (see [Squashing commits](#squashing-commits))
+4. You have tested your changes.
+
+You cannot open the pull request yourself: only org members can, which helps us make sure contributors follow these guidelines. Instead, **post a link to your branch in the issue or idea**, and a maintainer will create the pull for you. Don’t worry, you will still be credited as the author of the commit.
 
 
-### Before submitting
+#### Linting
 
-Since you started working on your pull request, many commits might have been added, so you will need to rebase.
+Check for linting issues with:
 
-First, make sure you added our repo as `upstream` remote:
+```
+./gradlew spotlessCheck
+```
+
+Fix them automatically with:
+```
+./gradlew spotlessApply
+```
+
+
+#### Rebasing onto `main`
+
+While you were working, new commits may have been added to `main`, so you will need to rebase your branch.
+
+First, add our repository as a remote named `upstream` (you only need to do this once):
 ```
 git remote add upstream https://github.com/breezy-weather/breezy-weather
 ```
 
-Then:
+Then fetch and rebase:
 ```
 git fetch upstream
-git rebase upstream main
+git rebase upstream/main
 ```
 
-Fix conflicts if there are any.
+If there are conflicts, resolve them and continue the rebase (`git rebase --continue`).
 
-Then, you can push (you may need the `--force` argument if you already pushed, as you are rewriting history).
+Once done, push your branch. If you have already pushed it before, you will need the `--force` argument, because rebasing rewrites history:
 
-Please test your changes.
+```
+git push --force
+```
 
-If you made multiple commits, please stash them as it makes reviewing easier. Unless the commits are about different things. Then, you need to split them into multiple pull requests.
+### Squashing commits
 
-For example, if you made 2 commits, you can use:
+Your patch must contain a single commit, because it makes reviewing easier. If you made several commits, squash them into one.
+
+Note: If your commits cover **different, unrelated changes**, don’t squash them all together. Split them into separates contributions instead, each with its own issue or idea and its own branch.
+
+For example, if you made 2 commits:
 ```
 git reset --soft HEAD~2
+git commit
 ```
 
-You can make a new commit, and once again, push your changes adding the `--force` argument.
+Then push again with `--force`.
 
 
 ## Rules for contributions for organization members
