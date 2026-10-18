@@ -303,44 +303,18 @@ class MetIeService @Inject constructor(
 
     private fun getWeatherCode(icon: String?): WeatherCode? {
         if (icon == null) return null
-        return with(icon) {
-            when {
-                startsWith("01") ||
-                    startsWith("02") -> WeatherCode.CLEAR
-                startsWith("03") -> WeatherCode.PARTLY_CLOUDY
-                startsWith("04") -> WeatherCode.CLOUDY
-                startsWith("05") ||
-                    startsWith("09") ||
-                    startsWith("10") ||
-                    startsWith("40") ||
-                    startsWith("41") ||
-                    startsWith("46") -> WeatherCode.RAIN
-                startsWith("06") ||
-                    startsWith("11") ||
-                    startsWith("14") ||
-                    startsWith("2") ||
-                    startsWith("30") ||
-                    startsWith("31") ||
-                    startsWith("32") ||
-                    startsWith("33") ||
-                    startsWith("34") -> WeatherCode.THUNDERSTORM
-                startsWith("07") ||
-                    startsWith("12") ||
-                    startsWith("42") ||
-                    startsWith("43") ||
-                    startsWith("47") ||
-                    startsWith("48") -> WeatherCode.SLEET
-                startsWith("08") ||
-                    startsWith("13") ||
-                    startsWith("44") ||
-                    startsWith("45") ||
-                    startsWith("49") ||
-                    startsWith("50") -> WeatherCode.SNOW
-                startsWith("15") -> WeatherCode.FOG
-                startsWith("51") ||
-                    startsWith("52") -> WeatherCode.HAIL
-                else -> null
-            }
+        return when (icon) {
+            "1", "2" -> WeatherCode.CLEAR
+            "3" -> WeatherCode.PARTLY_CLOUDY
+            "4" -> WeatherCode.CLOUDY
+            "5", "9", "10", "40", "41", "46" -> WeatherCode.RAIN
+            "6", "11", "14", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34",
+            -> WeatherCode.THUNDERSTORM
+            "7", "12", "42", "43", "47", "48" -> WeatherCode.SLEET
+            "8", "13", "44", "45", "49", "50" -> WeatherCode.SNOW
+            "15" -> WeatherCode.FOG
+            "51", "52" -> WeatherCode.HAIL
+            else -> null
         }
     }
 
