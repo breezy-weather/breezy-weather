@@ -115,7 +115,7 @@ object ClockDayVerticalWidgetIMP : AbstractRemoteViewsPresenter() {
             views.setImageViewResource(R.id.widget_clock_day_card, getCardBackgroundId(color))
             views.setInt(R.id.widget_clock_day_card, "setImageAlpha", (cardAlpha / 100.0 * 255).toInt())
         }
-        location?.let { setOnClickPendingIntent(context, views, it, subtitleData) }
+        location?.let { setOnClickPendingIntent(context, views, it, subtitleData, viewStyle) }
         return views
     }
 
@@ -646,6 +646,7 @@ object ClockDayVerticalWidgetIMP : AbstractRemoteViewsPresenter() {
         views: RemoteViews,
         location: Location,
         subtitleData: String?,
+        viewStyle: String?,
     ) {
         // weather.
         views.setOnClickPendingIntent(
@@ -696,6 +697,14 @@ object ClockDayVerticalWidgetIMP : AbstractRemoteViewsPresenter() {
             views.setOnClickPendingIntent(
                 R.id.widget_clock_day_time,
                 getCalendarPendingIntent(context, Widgets.DAY_PENDING_INTENT_CODE_CALENDAR)
+            )
+        }
+
+        // temperature
+        if (viewStyle == "temp") {
+            views.setOnClickPendingIntent(
+                R.id.widget_clock_day_date,
+                getCalendarPendingIntent(context, Widgets.CLOCK_DAY_VERTICAL_PENDING_INTENT_CODE_CALENDAR)
             )
         }
     }
