@@ -63,6 +63,8 @@ class RainImplementor(
         var rectF: RectF = RectF()
         var speed: Float
 
+        private val random: Random = Random()
+
         private val mCanvasSize: Int
         private val maxWidth: Float
         private val minWidth: Float
@@ -72,7 +74,7 @@ class RainImplementor(
         init {
             mCanvasSize = (mViewWidth * mViewWidth + mViewHeight * mViewHeight).toDouble().pow(0.5).toInt()
             val velocity = if (type == TYPE_SLEET) 3.0 else 5.0
-            speed = (mCanvasSize / (1000.0 * (1.75 + Random().nextDouble())) * velocity).toFloat()
+            speed = (mCanvasSize / (1000.0 * (1.75 + random.nextDouble())) * velocity).toFloat()
             maxWidth = ((if (type == TYPE_SLEET) 0.006 else 0.003) * mCanvasSize).toFloat()
             minWidth = ((if (type == TYPE_SLEET) 0.004 else 0.002) * mCanvasSize).toFloat()
             maxHeight = maxWidth * 10
@@ -81,15 +83,14 @@ class RainImplementor(
         }
 
         private fun init(firstTime: Boolean) {
-            val r = Random()
-            x = r.nextInt(mCanvasSize).toFloat()
+            x = random.nextInt(mCanvasSize).toFloat()
             y = if (firstTime) {
-                (r.nextInt((mCanvasSize - maxHeight).toInt()) - mCanvasSize).toFloat()
+                (random.nextInt((mCanvasSize - maxHeight).toInt()) - mCanvasSize).toFloat()
             } else {
-                -maxHeight * (1 + 2 * r.nextFloat())
+                -maxHeight * (1 + 2 * random.nextFloat())
             }
-            width = minWidth + r.nextFloat() * (maxWidth - minWidth)
-            height = minHeight + r.nextFloat() * (maxHeight - minHeight)
+            width = minWidth + random.nextFloat() * (maxWidth - minWidth)
+            height = minHeight + random.nextFloat() * (maxHeight - minHeight)
             buildRectF()
         }
 

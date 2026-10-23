@@ -55,27 +55,27 @@ class SnowImplementor(
         var radius: Float
         var speedX = 0f
         var speedY: Float
+        private val random: Random = Random()
         private val mCanvasSize: Int
 
         init {
             mCanvasSize = (mViewWidth * mViewWidth + mViewHeight * mViewHeight).toDouble().pow(0.5).toInt()
-            radius = (mCanvasSize * (0.005 + Random().nextDouble() * 0.007) * scale).toFloat()
-            speedY = (mCanvasSize / (1000.0 * (2.5 + Random().nextDouble())) * SNOW_SPEED).toFloat()
+            radius = (mCanvasSize * (0.005 + random.nextDouble() * 0.007) * scale).toFloat()
+            speedY = (mCanvasSize / (1000.0 * (2.5 + random.nextDouble())) * SNOW_SPEED).toFloat()
             init(true)
         }
 
         private fun init(firstTime: Boolean) {
-            val r = Random()
-            mCX = r.nextInt(mCanvasSize).toFloat()
+            mCX = random.nextInt(mCanvasSize).toFloat()
             mCY = if (firstTime) {
-                (r.nextInt((mCanvasSize - radius).toInt()) - mCanvasSize).toFloat()
+                (random.nextInt((mCanvasSize - radius).toInt()) - mCanvasSize).toFloat()
             } else {
                 -radius
             }
 
             // Fix input to nextInt to at least two to prevent crashes on low res screens (where bound would be 0)
             // and provide some variation on medium-res screens (where bound would always be 1)
-            speedX = r.nextInt((2 * speedY).toInt().coerceAtLeast(2)) - speedY
+            speedX = random.nextInt((2 * speedY).toInt().coerceAtLeast(2)) - speedY
             computeCenterPosition()
         }
 

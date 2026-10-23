@@ -97,6 +97,7 @@ import org.breezyweather.remoteviews.presenters.WeekWidgetIMP
 import org.breezyweather.remoteviews.presenters.notification.WidgetNotificationIMP
 import org.breezyweather.ui.main.utils.RefreshErrorType
 import org.breezyweather.ui.theme.resource.ResourcesProviderFactory
+import org.breezyweather.wallpaper.MaterialLiveWallpaperService
 import java.util.Calendar
 import java.util.Date
 import java.util.TimeZone
@@ -1156,6 +1157,12 @@ class RefreshHelper @Inject constructor(
                 )
             }
             updateNotificationIfNecessary(context, locationList)
+        }
+    }
+
+    fun updateWallpaperIfNecessary(context: Context, locationList: List<Location>) {
+        if (MaterialLiveWallpaperService.isUsingFirstLocation(context)) {
+            MaterialLiveWallpaperService.updateFirstLocation(locationList.firstOrNull())
         }
     }
 

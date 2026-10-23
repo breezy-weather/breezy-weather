@@ -68,19 +68,6 @@ object AsyncHelper {
         )
     }
 
-    fun intervalRunOnUI(
-        runnable: Runnable,
-        intervalMilliSeconds: Long,
-        initDelayMilliSeconds: Long,
-    ): Controller {
-        return Controller(
-            Observable.interval(initDelayMilliSeconds, intervalMilliSeconds, TimeUnit.MILLISECONDS)
-                .subscribeOn(AndroidSchedulers.mainThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { runnable.run() }
-        )
-    }
-
     class Controller internal constructor(val inner: Disposable) {
         fun cancel() {
             inner.dispose()

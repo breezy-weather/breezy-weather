@@ -55,6 +55,8 @@ class WindImplementor(
         var rectF: RectF = RectF()
         var speed: Float
 
+        private val random: Random = Random()
+
         private val mCanvasSize: Int
         private val maxWidth: Float
         private val minWidth: Float
@@ -63,7 +65,7 @@ class WindImplementor(
 
         init {
             mCanvasSize = (mViewWidth * mViewWidth + mViewHeight * mViewHeight).toDouble().pow(0.5).toInt()
-            speed = (mCanvasSize / (1000.0 * (0.5 + Random().nextDouble())) * 6.0).toFloat()
+            speed = (mCanvasSize / (1000.0 * (0.5 + random.nextDouble())) * 6.0).toFloat()
             maxHeight = 0.007f * mCanvasSize
             minHeight = 0.005f * mCanvasSize
             maxWidth = maxHeight * 10
@@ -72,15 +74,14 @@ class WindImplementor(
         }
 
         private fun init(firstTime: Boolean) {
-            val r = Random()
-            y = r.nextInt(mCanvasSize).toFloat()
+            y = random.nextInt(mCanvasSize).toFloat()
             x = if (firstTime) {
-                (r.nextInt((mCanvasSize - maxHeight).toInt()) - mCanvasSize).toFloat()
+                (random.nextInt((mCanvasSize - maxHeight).toInt()) - mCanvasSize).toFloat()
             } else {
                 -maxHeight
             }
-            width = minWidth + r.nextFloat() * (maxWidth - minWidth)
-            height = minHeight + r.nextFloat() * (maxHeight - minHeight)
+            width = minWidth + random.nextFloat() * (maxWidth - minWidth)
+            height = minHeight + random.nextFloat() * (maxHeight - minHeight)
             buildRectF()
         }
 

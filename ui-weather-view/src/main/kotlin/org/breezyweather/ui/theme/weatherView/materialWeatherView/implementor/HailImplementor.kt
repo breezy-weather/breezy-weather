@@ -60,6 +60,7 @@ class HailImplementor(
         var speedX = 0f
         var speedRotation = 0f
         var rectF = RectF()
+        private val random: Random = Random()
         private val mCanvasSize: Int
 
         init {
@@ -70,16 +71,15 @@ class HailImplementor(
         }
 
         private fun init(firstTime: Boolean) {
-            val r = Random()
-            cx = r.nextInt(mCanvasSize).toFloat()
+            cx = random.nextInt(mCanvasSize).toFloat()
             cy = if (firstTime) {
-                (r.nextInt((mCanvasSize - size).toInt()) - mCanvasSize).toFloat()
+                (random.nextInt((mCanvasSize - size).toInt()) - mCanvasSize).toFloat()
             } else {
                 -size
             }
-            rotation = 360 * r.nextFloat()
-            speedRotation = 360f / 500f * r.nextFloat()
-            speedX = 0.75f * (r.nextFloat() * speedY * if (r.nextBoolean()) 1 else -1)
+            rotation = 360 * random.nextFloat()
+            speedRotation = 360f / 500f * random.nextFloat()
+            speedX = 0.75f * (random.nextFloat() * speedY * if (random.nextBoolean()) 1 else -1)
             computeCenterPosition()
         }
 

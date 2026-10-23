@@ -166,6 +166,10 @@ class CloudImplementor(
             }
             computeFrame()
         }
+
+        // Flashing, or about to flash
+        val isFlashing: Boolean
+            get() = progress < duration || progress > duration + delay - FLASH_LEAD_TIME
     }
 
     init {
@@ -532,7 +536,7 @@ class CloudImplementor(
     }
 
     private fun getRandomFactor(from: Float, to: Float): Float {
-        return from + mRandom.nextFloat() % (to - from)
+        return from + mRandom.nextFloat() * (to - from)
     }
 
     override fun updateData(
@@ -549,6 +553,10 @@ class CloudImplementor(
         }
         mThunder?.shine(interval)
     }
+
+    // Clouds and stars move by less than a pixel per frame, only flashes need to be smooth
+    override val preferredFrameRate: Int
+        get() = if (mThunder?.isFlashing == true) FRAME_RATE_HIGH else FRAME_RATE_LOW
 
     override fun draw(
         @Size(2) canvasSizes: IntArray,
@@ -587,6 +595,9 @@ class CloudImplementor(
         const val TYPE_THUNDER = 5
         const val TYPE_FOG = 6
         const val TYPE_HAZE = 7
+
+        // Longer than a frame at low frame rate, so that the first frame of the flash is never skipped
+        private const val FLASH_LEAD_TIME = 50L
 
         @ColorInt
         fun getThemeColor(@TypeRule type: Int, daylight: Boolean): Int {

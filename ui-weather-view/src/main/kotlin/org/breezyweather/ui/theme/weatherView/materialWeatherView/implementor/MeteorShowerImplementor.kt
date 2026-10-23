@@ -110,6 +110,23 @@ class MeteorShowerImplementor(
             buildRectF()
         }
 
+        // On screen or about to be. As the canvas is rotated when drawing, checks against the circle circumscribing the
+        // screen, with a margin so that a meteor entering it is never skipped at low frame rate
+        val isNearScreen: Boolean
+            get() {
+                if (y > mCanvasSize) return false // Waiting to revive
+                val dx = rectF.centerX() - mViewWidth * 0.5f
+                val dy = (mViewHeight * 0.5f).let { centerY ->
+                    when {
+                        centerY < rectF.top -> rectF.top - centerY
+                        centerY > rectF.bottom -> centerY - rectF.bottom
+                        else -> 0f
+                    }
+                }
+                val distance = mCanvasSize * 0.5f + speed * METEOR_LEAD_TIME
+                return dx * dx + dy * dy < distance * distance
+            }
+
         private fun move(interval: Long, deltaRotation3D: Float) {
             x -= (speed * interval * 5 * sin(deltaRotation3D * Math.PI / 180.0) * cos(60 * Math.PI / 180.0))
                 .toFloat()
@@ -214,6 +231,10 @@ class MeteorShowerImplementor(
         mLastRotation3D = rotation3D
     }
 
+    // Stars only twinkle, only meteors need to be smooth
+    override val preferredFrameRate: Int
+        get() = if (mMeteors.any { it.isNearScreen }) FRAME_RATE_HIGH else FRAME_RATE_LOW
+
     override fun draw(
         @Size(2) canvasSizes: IntArray,
         canvas: Canvas,
@@ -261,6 +282,7 @@ class MeteorShowerImplementor(
         private const val INITIAL_ROTATION_3D = 1000f
         private const val METEOR_REVIVE_SEC_MIN = 5
         private const val METEOR_REVIVE_SEC_MAX = 25
+        private const val METEOR_LEAD_TIME = 50 // ms, longer than a frame at low frame rate
 
         @get:ColorInt
         val themeColor: Int
