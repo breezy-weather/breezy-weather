@@ -66,6 +66,23 @@ class MaterialWeatherView(
             rotation2D: Float,
             rotation3D: Float,
         )
+
+        /**
+         * Lowest frame rate, in frames per second, at which the animation looks fluid in its current state.
+         * Renderers that care about power consumption, such as the live wallpaper, use it to skip frames that
+         * wouldn't make any visible difference (for example, clouds slowly growing and shrinking).
+         * Read it after [updateData], as it depends on the current state of the animation.
+         */
+        open val preferredFrameRate: Int
+            get() = FRAME_RATE_HIGH
+
+        companion object {
+            /** For fast moving elements, such as rain drops. */
+            const val FRAME_RATE_HIGH = 60
+
+            /** For elements moving by less than a pixel per frame at this rate, such as clouds or stars. */
+            const val FRAME_RATE_LOW = 30
+        }
     }
 
     abstract class RotateController {
