@@ -1,6 +1,6 @@
 تطبيق Breezy Weather هو تطبيق طقس غني بالمميزات، مجاني ومفتوح المصدر، يعتمد لغة التصميم Material 3 Expressive مع تصورات بيانية مدروسة بعناية. يدعم التطبيق التوقعات الجوية، وحالة الطقس في الوقت الفعلي، والتنبؤات الآنية، وجودة الهواء، وحبوب اللقاح، والتنبيهات، من أكثر من 50 مصدرًا للطقس، مثل NWS وMet Office UK وMet Éireann وECCC وOpen-Meteo.
 
-المميزات
+<b>المميزات</b>
 
 - توقعات يومية وساعية لمدة تصل إلى 16 يومًا
 - هطول الأمطار في الساعة القادمة
@@ -10,7 +10,7 @@
 - مشاركة البيانات اختيارياً مع تطبيقات أخرى (مثل Gadgetbridge)
 - التركيز على إمكانية الوصول لقارئات الشاشة واللغات الأخرى
 
-التصميم
+<b>التصميم</b>
 
 - Material 3 Expressive
 - مخططات تفصيلية على مدار 24 ساعة
@@ -19,12 +19,12 @@
 - تشكيلة واسعة من الأدوات (Widgets)
 - خلفية حية
 
-المصادر
+<b>المصادر</b>
 
 - في جميع النسخ: Open-Meteo, ANAM-BF, Bright Sky (DWD), DCCMS, DMN, DWR, EMI, FOSS Public Alert Server, GMet, IGEBU, INM, KNMI, Mali-Météo, Météo Benin, Météo Tchad, Météo Togo, Mettelsat, MSD, Pirate Weather, SMA (Seychelles), SMA (Sudan), SSMS
 - مصادر غير حرة/غير قابلة للاستضافة الذاتية (غير مدرجة في النسخ التي تنتهي بـ _freenet): AccuWeather, AEMET, Atmo Auvergne-Rhône-Alpes, Atmo France, ATMO GrandEst, Atmo Hauts-de-France, AtmoSud, Baidu IP location, BMD, BMKG, CWA, DMI, ECCC, EKUK, EPD (Hong Kong), GeoNames, GeoSphere AT, HERE, HKO, Ilmateenistus, IMD, IMS, IP.SB, IPMA, LHMT, LVĢMC, JMA, MET Éireann, MET Norway, Met Office UK, Meteo AM, Météo-France, MeteoLux, MGM, Mixed China sources, NAMEM, NCDR, NCEI, NLSC, NWS, OpenWeather, PAGASA, SMG, Veðurstofa Íslands, WMO Severe Weather
 
-الأذونات
+<b>الأذونات</b>
 
 مطلوبة:
 
@@ -40,7 +40,7 @@
 - اللوحة (EXPAND_STATUS_BAR): للسماح بتشغيل التطبيق من الإعدادات السريعة
 - لغة محددة للتطبيق (READ_APP_SPECIFIC_LOCALES): تسمح بحفظ لغة معينة للتطبيق وقراءة القيمة بعد إعادة التشغيل على بعض الأجهزة
 
-الترخيص
+<b>الترخيص</b>
 
 - GNU Lesser General Public License v3.0
 - This License does not grant any rights in the trademarks, service marks, or logos of any Contributor.

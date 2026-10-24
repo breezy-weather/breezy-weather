@@ -791,4 +791,5 @@
     <string name="message_please_wait_refresh">Așteaptă finalizarea reîmprospătării</string>
     <string name="settings_main_background_title">Fundal bazat pe vreme</string>
     <string name="settings_weather_source_no_longer_exists">%s (nu mai există)</string>
+    <string name="action_reset_to_default">Resetare la implicit</string>
 </resources>
