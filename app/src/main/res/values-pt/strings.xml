@@ -788,7 +788,7 @@
     <string name="precipitation_rain_total_night">Chuva noturna</string>
     <string name="precipitation_snow_total_day">Neve diurna</string>
     <string name="precipitation_snow_total_night">Neve noturna</string>
-    <string name="air_quality_pm25_about">Sobre oartículas finas (%s)</string>
+    <string name="air_quality_pm25_about">Sobre partículas finas (%s)</string>
     <string name="air_quality_pm25_index">Escala do índice de qualidade do ar para %s</string>
     <string name="air_quality_pm10_about">Sobre as partículas em suspensão inaláveis (%s)</string>
     <string name="air_quality_pm10_index">Escala do índice de qualidade do ar para %s</string>
