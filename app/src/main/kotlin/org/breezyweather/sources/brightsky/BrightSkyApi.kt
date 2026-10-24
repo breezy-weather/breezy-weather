@@ -19,6 +19,7 @@ package org.breezyweather.sources.brightsky
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.sources.brightsky.json.BrightSkyAlertsResult
 import org.breezyweather.sources.brightsky.json.BrightSkyCurrentWeatherResult
+import org.breezyweather.sources.brightsky.json.BrightSkyRadarResult
 import org.breezyweather.sources.brightsky.json.BrightSkyWeatherResult
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -43,4 +44,13 @@ interface BrightSkyApi {
         @Query("lat") lat: Double,
         @Query("lon") lon: Double,
     ): Observable<BrightSkyAlertsResult>
+
+    @GET("radar")
+    fun getRadar(
+        @Query("lat") lat: Double,
+        @Query("lon") lon: Double,
+        @Query("distance") distance: Int,
+        @Query("format") format: String,
+        @Query("last_date") lastDate: String,
+    ): Observable<BrightSkyRadarResult>
 }
