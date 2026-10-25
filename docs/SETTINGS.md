@@ -9,3 +9,4 @@ When tapping the “Share crash logs” button, a text file will be generated in
 Refer to the Android documentation if you need to know:
 - how long the Android system keeps debug logs
 - how Android retention works for app-specific cache files
+- how Android protects app-specific cache files
