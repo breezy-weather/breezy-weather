@@ -78,7 +78,7 @@
     <string name="action_set">Beállítás</string>
     <string name="action_help">Súgó</string>
     <string name="action_learn_more">Tudjon meg többet</string>
-    <string name="about_app">Az alkalmazás névjegye</string>
+    <string name="about_app">Névjegy</string>
     <string name="about_translators">Fordítók</string>
     <!-- feedback. -->
     <string name="location_message_failed_to_locate">Nem sikerült meghatározni a jelenlegi helyet</string>
