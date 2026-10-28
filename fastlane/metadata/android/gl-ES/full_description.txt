@@ -1,4 +1,6 @@
-Breezy Weather é unha aplicación meteorolóxica gratuíta e de código aberto, rica en funcionalidades e baseada no deseño Material 3 Expressive. Conta con visualizacións moi ben pensadas e ofrece predicións, condicións meteorolóxicas en tempo real, predicións a moi curto prazo (*nowcasting*), calidade do aire, información sobre pole e alertas, todo isto a partir de máis de 50 fontes meteorolóxicas, como o NWS, o Met Office do Reino Unido, Met Éireann, o ECCC e Open-Meteo. <b>Características</b>
+Breezy Weather é unha aplicación meteorolóxica gratuíta e de código aberto, rica en funcionalidades e baseada no deseño Material 3 Expressive. Conta con visualizacións moi ben pensadas e ofrece predicións, condicións meteorolóxicas en tempo real, predicións a moi curto prazo (*nowcasting*), calidade do aire, información sobre pole e alertas, todo isto a partir de máis de 50 fontes meteorolóxicas, como o NWS, o Met Office do Reino Unido, Met Éireann, o ECCC e Open-Meteo.
+
+<b>Características</b>
 
 - Previsións diarias e horarias para ata 16 días
 - Precipitacións na próxima hora
@@ -40,5 +42,5 @@ Opcional:
 <b>Licenza</b>
 
 - GNU Lesser General Public License v3.0
-- Esta licenza non concede ningún dereito sobre as marcas comerciais, marcas de servizo ou logotipos de ningún colaborador.
-- Está prohibido falsear a orixe de dito material; ademais, as versións modificadas de tal material deben indicarse, de xeito razoable, como diferentes da versión orixinal.
+- This License does not grant any rights in the trademarks, service marks, or logos of any Contributor.
+- Misrepresentation of the origin of that material is prohibited, and modified versions of such material must be marked in reasonable ways as different from the original version.
