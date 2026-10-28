@@ -15,6 +15,7 @@
 - Main screen - Forecast charts - Fix missing Daily Wind tab when there is no precipitation in the whole period
 - Notifications - Dismiss old today/tomorrow/nowcasting notifications if no longer relevant
 - Widget - Clock + Daily (Vertical) - Temperature style - Now opens calendar when tapping on the date
+- Per-app language is now correctly remembered (@zbigniewfr)
 
 **Sources**
 - BMKG - Temporarily disable alert support
