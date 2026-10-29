@@ -30,7 +30,6 @@ import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.sources.cydom.xml.CyDoMStation
 import org.breezyweather.sources.cydom.xml.CyDoMStationObservations
-import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
 import org.breezyweather.unit.ratio.Ratio.Companion.fraction
 import org.breezyweather.unit.speed.Speed.Companion.metersPerSecond
 import org.breezyweather.unit.temperature.Temperature.Companion.celsius
@@ -126,8 +125,8 @@ class CyDoMService @Inject constructor(
                 speed = windSpeed?.metersPerSecond,
                 degree = windDegree
             ),
-            relativeHumidity = relHumidity?.fraction,
-            pressure = pressure?.hectopascals
+            relativeHumidity = relHumidity?.fraction
+            // pressure = pressure?.hectopascals
         )
     }
 
