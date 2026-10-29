@@ -76,7 +76,7 @@ import org.breezyweather.sources.climweb.SmaScService
 import org.breezyweather.sources.climweb.SmaSuService
 import org.breezyweather.sources.climweb.SsmsService
 import org.breezyweather.sources.cwa.CwaService
-import org.breezyweather.sources.cymeteodep.CyMeteoDepartmentService
+import org.breezyweather.sources.cydom.CyDoMService
 import org.breezyweather.sources.debug.DebugService
 import org.breezyweather.sources.dmi.DmiService
 import org.breezyweather.sources.eccc.EcccService
@@ -146,7 +146,7 @@ class SourceManager @Inject constructor(
     brightSkyService: BrightSkyService,
     chinaService: ChinaService,
     cwaService: CwaService,
-    cymeteodepService: CyMeteoDepartmentService,
+    cyDoMService: CyDoMService,
     dccmsService: DccmsService,
     debugService: DebugService,
     dmnNeService: DmnNeService,
@@ -256,7 +256,7 @@ class SourceManager @Inject constructor(
         brightSkyService,
         chinaService,
         cwaService,
-        cymeteodepService,
+        cyDoMService,
         dccmsService,
         dmiService,
         dmnNeService,

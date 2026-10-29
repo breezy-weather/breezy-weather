@@ -14,21 +14,14 @@
  * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package org.breezyweather.sources.cymeteodep.xml
+package org.breezyweather.sources.cydom.xml
 
 import kotlinx.serialization.Serializable
 import nl.adaptivity.xmlutil.serialization.XmlElement
 import nl.adaptivity.xmlutil.serialization.XmlSerialName
 
-enum class ObservationName(val apiName: String) {
-    TEMPERATURE("Air Temperature (1.2m)"),
-    WIND_SPEED("Wind Speed (2m)"),
-    RELATIVE_HUMIDITY("Relative Humidity (1.2m)"),
-    PRESSURE("Atmospheric Pressure (Station Level)"),
-}
-
 @Serializable
-data class CyMeteoDepartmentObservation(
+data class CyDoMObservation(
     @XmlElement(true) @XmlSerialName("observation_name") val name: String,
     @XmlElement(true) @XmlSerialName("observation_value") val value: String,
     @XmlElement(true) @XmlSerialName("observation_unit") val unit: String,

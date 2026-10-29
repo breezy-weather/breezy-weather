@@ -30,6 +30,7 @@ Below, you can find details about the support and implementation status for feat
 | 🇨🇦 Canada                        | [ECCC](#environment-and-climate-change-canada)                                                    | Forecast, Current, Alerts, Normals, Address                                          |
 | 🇹🇩 Chad                          | [ClimWeb](#climweb)                                                                               | Alerts, Normals                                                                      |
 | 🇨🇳 China                         | [China](#china)                                                                                   | Forecast, Current, Air quality, Nowcasting, Alerts, Address                          |
+| 🇨🇾 Cyprus                        | [Cyprus Department of Meteorology](#cyprus-department-of-meteorology)                             | Current                                                                              |
 | 🇨🇩 Democratic Republic of Congo  | [ClimWeb](#climweb)                                                                               | Alerts                                                                               |
 | 🇩🇰 Denmark                       | [DMI](#danmarks-meteorologiske-institut)                                                          | Forecast, Alerts, Address                                                            |
 | 🇪🇪 Estonia                       | [Ilmateenistus](#ilmateenistus)                                                                   | Forecast, Address                                                                    |
@@ -457,6 +458,35 @@ This source aggregates data from Beijing Meteorological Service, ColorfulClouds 
 | Precipitation Duration    | ❌         | Cloud Cover       | ❌           |
 | Wind                      | ✅         | Visibility        | ✅ (Current) |
 | Pressure                  | ❌         | Ceiling           | ❌           |
+</details>
+
+### Cyprus Department of Meteorology
+**[Cyprus Department of Meteorology](https://www.moa.gov.cy/moa/dm/dm.nsf/home_en/home_en?openform)** (CyDoM) is the official meteorological service of Cyprus.
+
+| Feature                         | Detail                                                              |
+|---------------------------------|---------------------------------------------------------------------|
+| 🗺️ **Coverage**                 | 🇨🇾 Cyprus                                                           |
+| 📆 **Daily forecast**           | Not available, *may be added in the future*                         |
+| ⏱️ **Hourly forecast**           | Not available, *may be added in the future with 3 hour granularity* |
+| ▶️ **Current observation**       | Available: can complement another source as a **Current Source**    |
+| 😶‍🌫️ **Air quality**              | Not available                                                       |
+| 🤧 **Pollen**                   | Not available                                                       |
+| ☔ **Precipitation nowcasting** | Not available                                                       |
+| ⚠️ **Alerts**                   | Not available                                                       |
+| 📊 **Normals**                  | Not available                                                       |
+| 🧭 **Address lookup**           | Not available                                                       |
+
+<details><summary><h4>Details of available data from Cyprus Department of Meteorology source</h4></summary>
+
+| Data                      | Available | Data              | Available |
+|---------------------------|-----------|-------------------|-----------|
+| Weather Condition         | ❌        | Humidity          | ✅        |
+| Temperature               | ✅        | Dew Point         | ✅        |
+| Precipitation             | ❌        | UV Index          | ❌        |
+| Precipitation Probability | ❌        | Sunshine Duration | ❌        |
+| Precipitation Duration    | ❌        | Cloud Cover       | ❌        |
+| Wind                      | ✅        | Visibility        | ❌        |
+| Pressure                  | ✅        | Ceiling           | ❌        |
 </details>
 
 ### Danmarks Meteorologiske Institut

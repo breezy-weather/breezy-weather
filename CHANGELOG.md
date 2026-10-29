@@ -19,6 +19,7 @@
 
 **Sources**
 - BMKG - Temporarily disable alert support
+- Cyprus Department of Meteorology - Added as a new source for Cyprus (@sashkent3)
 - Gadgetbridge - Add pressure, cloud cover, and dewpoint (@ThomasKuehne)
 - MET IE - Fix icons sometimes being wrongly shown as thunderstorms
 - MET Norway - Add wind gusts

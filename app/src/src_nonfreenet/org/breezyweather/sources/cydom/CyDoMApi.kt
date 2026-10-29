@@ -14,16 +14,16 @@
  * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package org.breezyweather.sources.cymeteodep
+package org.breezyweather.sources.cydom
 
 import io.reactivex.rxjava3.core.Observable
-import org.breezyweather.sources.cymeteodep.xml.CyMeteoDepartmentResult
+import org.breezyweather.sources.cydom.xml.CyDoMResult
 import retrofit2.http.GET
 
 /**
  * See https://www.data.gov.cy/en/dataset/405
  */
-interface CyMeteoDepartmentApi {
+interface CyDoMApi {
     @GET("CyDoM.xml")
-    fun getCurrent(): Observable<CyMeteoDepartmentResult>
+    fun getCurrent(): Observable<CyDoMResult>
 }

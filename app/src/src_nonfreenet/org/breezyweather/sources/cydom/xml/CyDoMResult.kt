@@ -14,7 +14,7 @@
  * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package org.breezyweather.sources.cymeteodep.xml
+package org.breezyweather.sources.cydom.xml
 
 import kotlinx.serialization.Serializable
 import nl.adaptivity.xmlutil.serialization.XmlChildrenName
@@ -23,8 +23,8 @@ import nl.adaptivity.xmlutil.serialization.XmlSerialName
 
 @Serializable
 @XmlSerialName("meteorology")
-data class CyMeteoDepartmentResult(
+data class CyDoMResult(
     @XmlElement(true) @XmlSerialName("copyright") val copyright: String,
-    @XmlSerialName("stations") @XmlChildrenName("station") val stations: List<CyMeteoDepartmentStation>,
-    @XmlSerialName("observations") val observations: List<CyMeteoDepartmentStationObservations>,
+    @XmlSerialName("stations") @XmlChildrenName("station") val stations: List<CyDoMStation>,
+    @XmlSerialName("observations") val observations: List<CyDoMStationObservations>,
 )

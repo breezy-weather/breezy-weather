@@ -14,11 +14,10 @@
  * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package org.breezyweather.sources.cymeteodep
+package org.breezyweather.sources.cydom
 
 import android.content.Context
 import breezyweather.domain.location.model.Location
-import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.model.Wind
 import breezyweather.domain.weather.wrappers.CurrentWrapper
@@ -29,14 +28,8 @@ import com.google.maps.android.model.LatLng
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.common.extensions.currentLocale
-import org.breezyweather.common.extensions.getCountryName
-import org.breezyweather.common.source.HttpSource
-import org.breezyweather.common.source.WeatherSource
-import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_HIGHEST
-import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
-import org.breezyweather.sources.cymeteodep.xml.CyMeteoDepartmentStation
-import org.breezyweather.sources.cymeteodep.xml.CyMeteoDepartmentStationObservations
-import org.breezyweather.sources.cymeteodep.xml.ObservationName
+import org.breezyweather.sources.cydom.xml.CyDoMStation
+import org.breezyweather.sources.cydom.xml.CyDoMStationObservations
 import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
 import org.breezyweather.unit.ratio.Ratio.Companion.fraction
 import org.breezyweather.unit.speed.Speed.Companion.metersPerSecond
@@ -45,40 +38,27 @@ import retrofit2.Retrofit
 import javax.inject.Inject
 import javax.inject.Named
 
-class CyMeteoDepartmentService @Inject constructor(
+class CyDoMService @Inject constructor(
     @ApplicationContext context: Context,
     @Named("XmlClient") client: Retrofit.Builder,
-) : HttpSource(),
-    WeatherSource {
+) : CyDoMServiceStub(context) {
 
-    override val id = "cymeteodep"
-    override val name = "Department of Meteorology (${context.currentLocale.getCountryName("CY")})"
-    override val continent = SourceContinent.EUROPE
     override val privacyPolicyUrl = ""
 
     private val mApi by lazy {
         client
-            .baseUrl(CY_METEO_DEPARTMENT_BASE_URL)
+            .baseUrl(CYDOM_BASE_URL)
             .build()
-            .create(CyMeteoDepartmentApi::class.java)
+            .create(CyDoMApi::class.java)
     }
 
-    override val supportedFeatures = mapOf(
-        SourceFeature.CURRENT to name
-    )
     override val attributionLinks = mapOf(
-        name to "https://www.moa.gov.cy/moa/dm/dm.nsf/home_en/home_en?openform"
-    )
-
-    override fun getFeaturePriorityForLocation(
-        location: Location,
-        feature: SourceFeature,
-    ): Int {
-        return when {
-            location.countryCode.equals("CY", ignoreCase = true) -> PRIORITY_HIGHEST
-            else -> PRIORITY_NONE
+        name to if (context.currentLocale.language.equals("el", ignoreCase = true)) {
+            "https://www.moa.gov.cy/moa/dm/dm.nsf/home/home?openform"
+        } else {
+            "https://www.moa.gov.cy/moa/dm/dm.nsf/home_en/home_en?openform"
         }
-    }
+    )
 
     override fun requestWeather(
         context: Context,
@@ -96,7 +76,7 @@ class CyMeteoDepartmentService @Inject constructor(
         }
     }
 
-    private fun getNearestStationCode(stations: List<CyMeteoDepartmentStation>, location: Location): String? {
+    private fun getNearestStationCode(stations: List<CyDoMStation>, location: Location): String? {
         val nearestStation = stations.minByOrNull { station ->
             computeDistanceBetween(
                 LatLng(station.latitude, station.longitude),
@@ -110,22 +90,32 @@ class CyMeteoDepartmentService @Inject constructor(
      * Returns current weather
      */
     private fun getCurrent(
-        stationObservations: List<CyMeteoDepartmentStationObservations>,
+        stationObservations: List<CyDoMStationObservations>,
         stationCode: String?,
     ): CurrentWrapper? {
         if (stationCode == null) return null
-        var stationObservation = stationObservations.find { stationObs -> stationObs.stationCode == stationCode }
+        val stationObservation = stationObservations.find { stationObs -> stationObs.stationCode == stationCode }
         if (stationObservation == null) return null
         var temperature: Double? = null
         var windSpeed: Double? = null
+        var windDegree: Double? = null
         var relHumidity: Double? = null
         var pressure: Double? = null
         stationObservation.observations.forEach { observation ->
-            when (observation.name) {
-                ObservationName.TEMPERATURE.apiName -> temperature = observation.value.toDoubleOrNull()
-                ObservationName.WIND_SPEED.apiName -> windSpeed = observation.value.toDoubleOrNull()
-                ObservationName.RELATIVE_HUMIDITY.apiName -> relHumidity = observation.value.toDoubleOrNull()
-                ObservationName.PRESSURE.apiName -> pressure = observation.value.toDoubleOrNull()
+            with(observation.name) {
+                when {
+                    equals("Air Temperature (1.2m)", ignoreCase = true)
+                    -> temperature = observation.value.toDoubleOrNull()
+                    equals("Wind Speed (2m)", ignoreCase = true)
+                    -> windSpeed = observation.value.toDoubleOrNull()
+                    startsWith("Wind Direction (10m)")
+                    -> windDegree = observation.value.toDoubleOrNull()
+                    equals("Relative Humidity (1.2m)", ignoreCase = true)
+                    -> relHumidity = observation.value.toDoubleOrNull()
+                    // TODO: Should be at sea level:
+                    equals("Atmospheric Pressure (Station Level)", ignoreCase = true)
+                    -> pressure = observation.value.toDoubleOrNull()
+                }
             }
         }
         return CurrentWrapper(
@@ -133,7 +123,8 @@ class CyMeteoDepartmentService @Inject constructor(
                 temperature = temperature?.celsius
             ),
             wind = Wind(
-                speed = windSpeed?.metersPerSecond
+                speed = windSpeed?.metersPerSecond,
+                degree = windDegree
             ),
             relativeHumidity = relHumidity?.fraction,
             pressure = pressure?.hectopascals
@@ -141,6 +132,6 @@ class CyMeteoDepartmentService @Inject constructor(
     }
 
     companion object {
-        private const val CY_METEO_DEPARTMENT_BASE_URL = "https://dom.org.cy/AWS/OpenData/"
+        private const val CYDOM_BASE_URL = "https://dom.org.cy/AWS/OpenData/"
     }
 }
