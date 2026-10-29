@@ -137,7 +137,7 @@ Below, you can find details about the support and implementation status for feat
 | Precipitation Probability | ✅         | Sunshine Duration | ✅         |
 | Precipitation Duration    | ❌         | Cloud Cover       | ✅         |
 | Wind                      | ✅         | Visibility        | ✅         |
-| Pressure                  | ✅         | Ceiling           | ❌         |
+| Pressure                  | ❌         | Ceiling           | ❌         |
 </details>
 
 <details><summary><h4>Details of available pollens from Open-Meteo</h4></summary>

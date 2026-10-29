@@ -100,7 +100,7 @@ class CyDoMService @Inject constructor(
         var windSpeed: Double? = null
         var windDegree: Double? = null
         var relHumidity: Double? = null
-        var pressure: Double? = null
+        // var pressure: Double? = null
         stationObservation.observations.forEach { observation ->
             with(observation.name) {
                 when {
@@ -113,8 +113,8 @@ class CyDoMService @Inject constructor(
                     equals("Relative Humidity (1.2m)", ignoreCase = true)
                     -> relHumidity = observation.value.toDoubleOrNull()
                     // TODO: Should be at sea level:
-                    equals("Atmospheric Pressure (Station Level)", ignoreCase = true)
-                    -> pressure = observation.value.toDoubleOrNull()
+                    // equals("Atmospheric Pressure (Station Level)", ignoreCase = true)
+                    // -> pressure = observation.value.toDoubleOrNull()
                 }
             }
         }
