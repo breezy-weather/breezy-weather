@@ -47,6 +47,7 @@ class SnowImplementor(
         private val mViewHeight: Int,
         @field:ColorInt @param:ColorInt val color: Int,
         val scale: Float,
+        private val random: Random,
     ) {
         private var mCX = 0f
         private var mCY = 0f
@@ -55,7 +56,6 @@ class SnowImplementor(
         var radius: Float
         var speedX = 0f
         var speedY: Float
-        private val random: Random = Random()
         private val mCanvasSize: Int
 
         init {
@@ -111,12 +111,14 @@ class SnowImplementor(
             )
         }
         val scales = floatArrayOf(0.6f, 0.8f, 1f)
+        val random = Random()
         mSnows = Array(SNOW_COUNT) { i ->
             Snow(
                 canvasSizes[0],
                 canvasSizes[1],
                 colors[i * 3 / SNOW_COUNT],
-                scales[i * 3 / SNOW_COUNT]
+                scales[i * 3 / SNOW_COUNT],
+                random
             )
         }
         mLastRotation3D = INITIAL_ROTATION_3D
