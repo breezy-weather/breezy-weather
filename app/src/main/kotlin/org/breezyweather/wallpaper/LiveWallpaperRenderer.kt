@@ -19,7 +19,6 @@ package org.breezyweather.wallpaper
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
-import android.graphics.PixelFormat
 import android.graphics.drawable.Drawable
 import android.hardware.Sensor
 import android.hardware.SensorEvent
@@ -100,7 +99,6 @@ internal class LiveWallpaperRenderer(
 
     private var scene: Scene? = null
     private var background: Drawable? = null
-    private var backgroundOpaque = false
     private var implementor: WeatherAnimationImplementor? = null
     private val canvasSize = intArrayOf(0, 0)
     private var visible = false
@@ -239,10 +237,6 @@ internal class LiveWallpaperRenderer(
             background = ResourcesCompat.getDrawable(context.resources, newScene.backgroundId, null)?.apply {
                 setBounds(0, 0, canvasSize[0], canvasSize[1])
             }
-            // Only used to know if the canvas must be cleared, which getOpacity() still tells reliably
-            @Suppress("DEPRECATION")
-            val opacity = background?.opacity
-            backgroundOpaque = opacity == PixelFormat.OPAQUE
         }
         if (oldScene == null ||
             oldScene.weatherKind != newScene.weatherKind ||
@@ -407,9 +401,7 @@ internal class LiveWallpaperRenderer(
 
     private fun drawScene(canvas: Canvas, intervalMillis: Long, frameTimeNanos: Long) {
         // Hardware canvases are not cleared between frames
-        if (!backgroundOpaque) {
-            canvas.drawColor(Color.BLACK)
-        }
+        canvas.drawColor(Color.BLACK)
         background?.draw(canvas)
 
         val implementor = implementor ?: return
