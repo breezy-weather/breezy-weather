@@ -1,0 +1,15 @@
+{
+  "uniqueId": "font.google.sans.flex:custom",
+  "developers": [
+    {
+      "name": "Google"
+    }
+  ],
+  "artifactVersion": "",
+  "description": "",
+  "name": "Google Sans Flex Font Family",
+  "website": "https://design.google/library/google-sans-flex-font",
+  "licenses": [
+    "OFL-1.1"
+  ]
+}
