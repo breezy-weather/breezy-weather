@@ -102,7 +102,9 @@ internal class LiveWallpaperRenderer(
     private var implementor: WeatherAnimationImplementor? = null
     private val canvasSize = intArrayOf(0, 0)
     private var visible = false
+    private var hasSurface = false
     private var animating = false
+    private var needsRedraw = true
     private val intervalCounter = FrameIntervalCounter()
     private var fastFramesUntilNanos = 0L
     private var frameRateVote = NO_FRAME_RATE_VOTE
@@ -189,6 +191,11 @@ internal class LiveWallpaperRenderer(
 
     fun onSurfaceCreated() {
         synchronized(surfaceLock) { surfaceAvailable = true }
+        handler.post {
+            hasSurface = true
+            needsRedraw = true
+            updateAnimation()
+        }
     }
 
     fun onSurfaceChanged(width: Int, height: Int) {
@@ -196,10 +203,14 @@ internal class LiveWallpaperRenderer(
     }
 
     /**
-     * Waits for the frame being drawn, if any, then stops drawing until the surface is created again.
+     * Waits for the frame being drawn, if any, then stops drawing and animate until the surface is created again.
      */
     fun onSurfaceDestroyed() {
         synchronized(surfaceLock) { surfaceAvailable = false }
+        handler.post {
+            hasSurface = false
+            updateAnimation()
+        }
     }
 
     /**
@@ -247,17 +258,19 @@ internal class LiveWallpaperRenderer(
             createImplementor()
         }
         updateAnimation()
-        if (visible && !animating) {
-            drawFrame(0L, System.nanoTime())
-        }
+        drawStillFrameIfNeeded()
     }
 
     private fun applyVisibility(visible: Boolean) {
         if (this.visible == visible) return
         this.visible = visible
         updateAnimation()
-        // The previous frame is still there, but redraw it once as the weather may have changed while hidden
-        if (visible && !animating) {
+        // The previous frame is still there, unless the scene changed while hidden
+        drawStillFrameIfNeeded()
+    }
+
+    private fun drawStillFrameIfNeeded() {
+        if (visible && !animating && needsRedraw) {
             drawFrame(0L, System.nanoTime())
         }
     }
@@ -276,6 +289,7 @@ internal class LiveWallpaperRenderer(
     }
 
     private fun createImplementor() {
+        needsRedraw = true
         val scene = scene
         implementor = if (scene != null && canvasSize[0] > 0 && canvasSize[1] > 0) {
             WeatherImplementorFactory.getWeatherImplementor(
@@ -299,7 +313,7 @@ internal class LiveWallpaperRenderer(
     }
 
     private fun updateAnimation() {
-        val animate = visible && implementor != null && scene?.animate == true
+        val animate = visible && hasSurface && implementor != null && scene?.animate == true
         if (animate != animating) {
             animating = animate
             if (animate) {
@@ -307,6 +321,7 @@ internal class LiveWallpaperRenderer(
                 displayManager?.registerDisplayListener(displayListener, handler)
                 updateDisplayInfo()
                 choreographer.postFrameCallback(frameCallback)
+                needsRedraw = false
             } else {
                 choreographer.removeFrameCallback(frameCallback)
                 displayManager?.unregisterDisplayListener(displayListener)
