@@ -46,7 +46,7 @@
     <string name="ephemeris_moon_phase_waning_crescent">Minguante</string>
     <string name="daily_forecast">Previsão diária</string>
     <string name="hourly_forecast">Previsão horária</string>
-    <string name="air_quality">Qualidade do Ar</string>
+    <string name="air_quality">Qualidade do ar</string>
     <string name="ephemeris">Sol &amp; Lua</string>
     <string name="action_next">Próximo</string>
     <string name="action_done">Concluído</string>
@@ -377,7 +377,7 @@
     <string name="air_quality_pm10">MP10</string>
     <string name="air_quality_co_voice">Monóxido de carbono</string>
     <string name="weather_kind_hail">Granizo</string>
-    <string name="common_weather_text_fog">Névoa</string>
+    <string name="common_weather_text_fog">Nevoeiro</string>
     <string name="weather_kind_thunder">Trovão</string>
     <string name="action_location_list">Lista de locais</string>
     <string name="action_restart">Reiniciar</string>
@@ -428,7 +428,7 @@
     <string name="settings_notifications_forecast_time_tomorrow_title">Horário de notificação para a previsão do dia seguinte</string>
     <string name="notification_style_native">Nativo</string>
     <string name="about_dependencies">Dependências</string>
-    <string name="common_weather_text_rain_showers_light">Chuveiros fracas</string>
+    <string name="common_weather_text_rain_showers_light">Chuveiros fracos</string>
     <string name="common_weather_text_drizzle_moderate">Garoa moderada</string>
     <string name="common_weather_text_rain_snow_mixed_heavy">Chuva forte com neve</string>
     <string name="common_weather_text_drizzle_freezing_light">Garoa leve congelante</string>
@@ -449,7 +449,7 @@
     <string name="temperature_normals">Valores normais de temperatura</string>
     <string name="settings_color_app">Siga o app</string>
     <string name="common_weather_text_rain_snow_mixed_showers">Chuvas com mistura de chuva e neve</string>
-    <string name="common_weather_text_rain_light">Chuva leve</string>
+    <string name="common_weather_text_rain_light">Chuva fraca</string>
     <string name="settings_weather_sources_per_location_summary">Personalizar fontes de dados meteorológicos usadas para este local</string>
     <string name="settings_modules_broadcast_send_data_title">Enviar dados meteorológicos para %s</string>
     <string name="temperature_normal_short">Normal</string>
@@ -467,7 +467,7 @@
     <string name="common_weather_text_drizzle_heavy">Garoa forte</string>
     <string name="common_weather_text_rain_moderate">Chuva moderada</string>
     <string name="common_weather_text_rain_snow_mixed_showers_heavy">Chuva forte e aguaceiros misturados com neve</string>
-    <string name="common_weather_text_rain_showers">Chuvas intermitentes</string>
+    <string name="common_weather_text_rain_showers">Chuveiros</string>
     <string name="common_weather_text_drizzle_light">Garoa leve</string>
     <string name="common_weather_text_rain_showers_moderate">Chuva moderada em aguaceiros</string>
     <string name="notification_channel_crash_logs">Registro de falhas</string>
@@ -539,7 +539,7 @@
     <string name="message_source_not_installed_error_content">Altere a fonte meteorológica para este local ou remova-a e adicione-a novamente.</string>
     <string name="widget_label_hide_header">Ocultar cabeçalho</string>
     <string name="widget_custom_subtitle_keyword_xpis_description">Resumo do índice de Pollen de hoje, amanhã, …, 4 dias depois</string>
-    <string name="sunshine">Sol</string>
+    <string name="sunshine">Luz do Sol</string>
     <string name="alert_source">Fonte: %s</string>
     <string name="pollen_salix">Salgueiro</string>
     <string name="dialog_time_picker_select_time">Selecionar horário</string>
@@ -685,7 +685,7 @@
     <string name="air_quality_short">Qualidade do ar</string>
     <string name="ephemeris_sun">Sol</string>
     <string name="ephemeris_moon">Lua</string>
-    <string name="ephemeris_about">Sobre os horários do nascer e do pôr do sol</string>
+    <string name="ephemeris_about">Sobre os horários do nascer e do pôr-do-sol</string>
     <string name="ephemeris_about_rise">O momento do nascer é quando o sol ou a lua aparecem totalmente acima do horizonte.</string>
     <string name="ephemeris_about_set">A hora do pôr-do-sol é o momento em que o sol ou a lua desaparecem completamente por baixo do horizonte.</string>
     <string name="ephemeris_about_dawn">O amanhecer é o momento em que a primeira luz visível do dia surge antes do nascer do sol.</string>
@@ -761,8 +761,8 @@
     <string name="visibility_about_description">A visibilidade indica o quão distante pode ver claramente objetos como prédios e colinas. A visibilidade pode ser afetada por precipitação, nevoeiro, poeira, fumo ou névoa seca.</string>
     <string name="visibility_from_to_number">%1$s a %2$s</string>
     <string name="visibility_from_to_description">%1$s a %2$s</string>
-    <string name="visibility_very_poor">Muito fraco</string>
-    <string name="visibility_poor">Fraco</string>
+    <string name="visibility_very_poor">Muito má</string>
+    <string name="visibility_poor">Má</string>
     <string name="visibility_moderate">Moderada</string>
     <string name="visibility_good">Boa</string>
     <string name="visibility_clear">Clara</string>
