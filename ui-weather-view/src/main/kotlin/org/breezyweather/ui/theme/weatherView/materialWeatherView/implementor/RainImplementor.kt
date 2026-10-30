@@ -55,6 +55,7 @@ class RainImplementor(
         @ColorInt val color: Int,
         val scale: Float,
         @TypeRule type: Int,
+        private val random: Random,
     ) {
         var x = 0f
         var y = 0f
@@ -62,8 +63,6 @@ class RainImplementor(
         var height = 0f
         var rectF: RectF = RectF()
         var speed: Float
-
-        private val random: Random = Random()
 
         private val mCanvasSize: Int
         private val maxWidth: Float
@@ -221,13 +220,15 @@ class RainImplementor(
                 }
             }
             val scales = floatArrayOf(0.6f, 0.8f, 1f)
+            val random = Random()
             mRains = Array(rainCount) { i ->
                 Rain(
                     canvasSizes[0],
                     canvasSizes[1],
                     colors[i * 3 / rainCount],
                     scales[i * 3 / rainCount],
-                    type
+                    type,
+                    random
                 )
             }
         } else {

@@ -47,6 +47,7 @@ class WindImplementor(
         private val mViewHeight: Int,
         @ColorInt val color: Int,
         val scale: Float,
+        private val random: Random,
     ) {
         var x = 0f
         var y = 0f
@@ -54,8 +55,6 @@ class WindImplementor(
         var height = 0f
         var rectF: RectF = RectF()
         var speed: Float
-
-        private val random: Random = Random()
 
         private val mCanvasSize: Int
         private val maxWidth: Float
@@ -122,12 +121,14 @@ class WindImplementor(
             )
         }
         val scales = floatArrayOf(0.6f, 0.8f, 1f)
+        val random = Random()
         mWinds = Array(WIND_COUNT) { i ->
             Wind(
                 canvasSizes[0],
                 canvasSizes[1],
                 colors[i * 3 / WIND_COUNT],
-                scales[i * 3 / WIND_COUNT]
+                scales[i * 3 / WIND_COUNT],
+                random
             )
         }
         mLastRotation3D = INITIAL_ROTATION_3D

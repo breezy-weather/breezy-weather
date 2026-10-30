@@ -49,6 +49,7 @@ class HailImplementor(
         private val mViewHeight: Int,
         @field:ColorInt @param:ColorInt val color: Int,
         val scale: Float,
+        private val random: Random,
     ) {
         var cx = 0f
         var cy = 0f
@@ -60,7 +61,6 @@ class HailImplementor(
         var speedX = 0f
         var speedRotation = 0f
         var rectF = RectF()
-        private val random: Random = Random()
         private val mCanvasSize: Int
 
         init {
@@ -117,12 +117,14 @@ class HailImplementor(
             )
         }
         val scales = floatArrayOf(0.6f, 0.8f, 1f)
+        val random = Random()
         mHails = Array(HAIL_COUNT) { i ->
             Hail(
                 canvasSizes[0],
                 canvasSizes[1],
                 colors[i * 3 / HAIL_COUNT],
-                scales[i * 3 / HAIL_COUNT]
+                scales[i * 3 / HAIL_COUNT],
+                random
             )
         }
         mLastRotation3D = INITIAL_ROTATION_3D

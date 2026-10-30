@@ -51,6 +51,7 @@ class MeteorShowerImplementor(
         private val mViewHeight: Int,
         @ColorInt val color: Int,
         val scale: Float,
+        private val random: Random,
     ) {
         var x = 0f
         var y = 0f
@@ -60,8 +61,6 @@ class MeteorShowerImplementor(
         var speed: Float
         private var progress: Long = 0
         private var delay: Long = 0
-
-        private val random: Random = Random()
 
         private val mCanvasSize: Int
         private val maxHeight: Float
@@ -191,7 +190,8 @@ class MeteorShowerImplementor(
                 viewWidth,
                 viewHeight,
                 colors[random.nextInt(colors.size)],
-                random.nextFloat()
+                random.nextFloat(),
+                random
             )
         }
         val canvasSize = (viewWidth.toDouble().pow(2.0) + viewHeight.toDouble().pow(2.0)).pow(0.5).toInt()
