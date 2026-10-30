@@ -260,7 +260,7 @@ class MainActivityViewModel @Inject constructor(
             viewModelScope.launchIO {
                 refreshHelper.updateWidgetIfNecessary(getApplication(), locationList)
                 refreshHelper.updateNotificationIfNecessary(getApplication(), locationList)
-                refreshHelper.updateWallpaperIfNecessary(getApplication(), locationList)
+                refreshHelper.updateWallpaperIfNecessary(locationList)
 
                 // If it's null, it's not coming from an update, so no need to broadcast anything
                 if (updatedLocationIds != null) {

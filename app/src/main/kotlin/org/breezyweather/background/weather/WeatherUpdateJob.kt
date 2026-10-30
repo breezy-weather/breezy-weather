@@ -338,7 +338,7 @@ class WeatherUpdateJob @AssistedInject constructor(
             }
 
             // Update live wallpaper
-            refreshHelper.updateWallpaperIfNecessary(context, locationList)
+            refreshHelper.updateWallpaperIfNecessary(locationList)
         }
 
         if (failedUpdates.isNotEmpty()) {

@@ -153,7 +153,6 @@ class LiveWallpaperConfigActivity : BreezyActivity() {
                                     dayNightTypeValueNow.value,
                                     animationsEnabledValue.value
                                 )
-                                MaterialLiveWallpaperService.onConfigUpdated()
                                 finish()
                             },
                             colors = ButtonDefaults.buttonColors(
