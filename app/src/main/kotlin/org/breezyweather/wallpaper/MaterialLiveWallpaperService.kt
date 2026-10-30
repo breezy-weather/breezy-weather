@@ -18,14 +18,13 @@ package org.breezyweather.wallpaper
 
 import android.app.WallpaperColors
 import android.content.BroadcastReceiver
+import android.content.ComponentCallbacks
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.content.res.Configuration
 import android.graphics.PixelFormat
 import android.os.Build
-import android.os.Handler
-import android.os.Looper
 import android.os.PowerManager
 import android.service.wallpaper.WallpaperService
 import android.view.SurfaceHolder
@@ -42,6 +41,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withTimeoutOrNull
@@ -67,33 +67,28 @@ class MaterialLiveWallpaperService : WallpaperService() {
 
     override fun onCreate() {
         super.onCreate()
-        setRunning(true)
+        firstLocation.value = null
+        isRunning = true
     }
 
     override fun onCreateEngine(): Engine {
         return WeatherEngine()
     }
 
-    override fun onConfigurationChanged(newConfig: Configuration) {
-        super.onConfigurationChanged(newConfig)
-        // Dark mode may have changed
-        engines.forEach { it.updateScene() }
-    }
-
     override fun onDestroy() {
-        setRunning(false)
+        isRunning = false
         scope.cancel()
+        firstLocation.value = null
         super.onDestroy()
     }
 
     /**
-     * Only needed when the service starts or after the configuration was updated, as updates are pushed afterward
-     * with [updateFirstLocation].
+     * Only needed when the wallpaper starts using the first location, as updates are pushed afterward with
+     * [updateFirstLocation].
      */
     private fun loadFirstLocationIfNecessary() {
-        if (firstLocationLoaded || firstLocationLoading?.isActive == true) return
+        if (firstLocation.value != null || firstLocationLoading?.isActive == true) return
 
-        val version = synchronized(firstLocationLock) { firstLocationVersion }
         firstLocationLoading = scope.launch {
             val location = locationRepository.getFirstLocation(withParameters = false)?.let {
                 it.copy(
@@ -107,7 +102,7 @@ class MaterialLiveWallpaperService : WallpaperService() {
                     )
                 )
             }
-            setFirstLocation(location, version)
+            firstLocation.compareAndSet(null, FirstLocation(location))
         }
     }
 
@@ -130,6 +125,17 @@ class MaterialLiveWallpaperService : WallpaperService() {
         }
         private var thermalStatusListener: PowerManager.OnThermalStatusChangedListener? = null
 
+        // In case dark mode changed
+        private val componentCallbacks = object : ComponentCallbacks {
+            override fun onConfigurationChanged(newConfig: Configuration) {
+                updateScene()
+            }
+
+            @Deprecated("Deprecated in Java")
+            override fun onLowMemory() = Unit
+        }
+        private val mainScope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
+
         override fun onCreate(surfaceHolder: SurfaceHolder) {
             super.onCreate(surfaceHolder)
             // Backgrounds are opaque, so the system doesn't need to blend the wallpaper
@@ -143,8 +149,8 @@ class MaterialLiveWallpaperService : WallpaperService() {
                 ContextCompat.getDisplayOrDefault(displayContext ?: this@MaterialLiveWallpaperService),
                 surfaceHolder
             )
-            engines.add(this)
-            updateScene()
+            registerComponentCallbacks(componentCallbacks)
+            mainScope.launch { firstLocation.collect { updateScene() } }
         }
 
         override fun onSurfaceCreated(holder: SurfaceHolder) {
@@ -203,7 +209,8 @@ class MaterialLiveWallpaperService : WallpaperService() {
         }
 
         override fun onDestroy() {
-            engines.remove(this)
+            mainScope.cancel()
+            unregisterComponentCallbacks(componentCallbacks)
             if (visible) {
                 unregisterPowerListeners()
             }
@@ -216,7 +223,7 @@ class MaterialLiveWallpaperService : WallpaperService() {
             val configManager = LiveWallpaperConfigManager(context)
             val location = if (configManager.isUsingFirstLocation) {
                 loadFirstLocationIfNecessary()
-                firstLocation
+                firstLocation.value?.location
             } else {
                 null
             }
@@ -295,74 +302,29 @@ class MaterialLiveWallpaperService : WallpaperService() {
     companion object {
         private const val FIRST_LOCATION_TIMEOUT_MILLIS = 500L
 
-        private val mainHandler = Handler(Looper.getMainLooper())
+        // The service only runs while the wallpaper is set on the home or lock screen, or is being previewed
+        @Volatile
+        var isRunning = false
+            private set
 
-        // Engines of the running service. Main thread only
-        private val engines = mutableSetOf<WeatherEngine>()
+        private data class FirstLocation(val location: Location?)
 
         // The first location, with its current weather and its daily forecast for day/night, kept in memory so that
         // the database doesn't need to be queried every time the wallpaper becomes visible (every time the user goes
         // back to the home screen or turns the screen on)
-        private val firstLocationLock = Any()
-
-        // The service only runs while the wallpaper is set on the home or lock screen, or is being previewed
-        @Volatile
-        private var running = false
-
-        @Volatile
-        private var firstLocation: Location? = null
-
-        @Volatile
-        private var firstLocationLoaded = false
-        private var firstLocationVersion = 0 // Guarded by firstLocationLock
+        private val firstLocation = MutableStateFlow<FirstLocation?>(null)
 
         /**
-         * @return true if the live wallpaper is running and shows the weather or day/night of the first location
-         */
-        fun isUsingFirstLocation(context: Context): Boolean {
-            return running && LiveWallpaperConfigManager(context).isUsingFirstLocation
-        }
-
-        /**
-         * Pushes the latest data of the first location to the live wallpaper. To be called every time the first
-         * location or its weather changes, if [isUsingFirstLocation]. Can be called from any thread.
+         * Pushes the latest data of the first location to the live wallpaper, if it is running.
+         * To be called every time the first location or its weather changes.
+         * Can be called from any thread.
          */
         fun updateFirstLocation(location: Location?) {
-            setFirstLocation(location, expectedVersion = null)
-        }
+            if (!isRunning) return
 
-        /**
-         * To be called after the configuration was updated: the first location is not updated while the wallpaper
-         * doesn't use it, so it must be loaded again.
-         */
-        fun onConfigUpdated() {
-            synchronized(firstLocationLock) {
-                // The current one is still shown meanwhile, rather than the default weather
-                firstLocationLoaded = false
-            }
-        }
-
-        private fun setRunning(running: Boolean) {
-            synchronized(firstLocationLock) {
-                this.running = running
-                if (!running) {
-                    // Not updated while the service is stopped
-                    firstLocation = null
-                    firstLocationLoaded = false
-                    ++firstLocationVersion
-                }
-            }
-        }
-
-        /**
-         * @param expectedVersion if not null, ignores the location if another one was set since this version
-         */
-        private fun setFirstLocation(location: Location?, expectedVersion: Int?) {
-            synchronized(firstLocationLock) {
-                if (!running || (expectedVersion != null && expectedVersion != firstLocationVersion)) return
-
-                // Only keep what the wallpaper needs, as it can stay in memory for a long time
-                firstLocation = location?.copy(
+            // Only keep what the wallpaper needs, as it can stay in memory for a long time
+            firstLocation.value = FirstLocation(
+                location?.copy(
                     weather = location.weather?.copy(
                         hourlyForecast = emptyList(),
                         minutelyForecast = emptyList(),
@@ -370,10 +332,7 @@ class MaterialLiveWallpaperService : WallpaperService() {
                         normals = emptyMap()
                     )
                 )
-                firstLocationLoaded = true
-                ++firstLocationVersion
-            }
-            mainHandler.post { engines.forEach { it.updateScene() } }
+            )
         }
     }
 }

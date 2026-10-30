@@ -1160,10 +1160,8 @@ class RefreshHelper @Inject constructor(
         }
     }
 
-    fun updateWallpaperIfNecessary(context: Context, locationList: List<Location>) {
-        if (MaterialLiveWallpaperService.isUsingFirstLocation(context)) {
-            MaterialLiveWallpaperService.updateFirstLocation(locationList.firstOrNull())
-        }
+    fun updateWallpaperIfNecessary(locationList: List<Location>) {
+        MaterialLiveWallpaperService.updateFirstLocation(locationList.firstOrNull())
     }
 
     /**
