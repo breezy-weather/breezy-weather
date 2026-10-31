@@ -24,6 +24,10 @@ class LiveWallpaperConfigManager(context: Context) {
     val dayNightType: String
     val animationsEnabled: Boolean
 
+    // Whether the wallpaper shows the weather or day/night of the first location
+    val isUsingFirstLocation: Boolean
+        get() = weatherKind == "auto" || dayNightType == "auto"
+
     init {
         val config = ConfigStore(context, SP_LIVE_WALLPAPER_CONFIG)
         weatherKind = config.getString(KEY_WEATHER_KIND, null) ?: "auto"

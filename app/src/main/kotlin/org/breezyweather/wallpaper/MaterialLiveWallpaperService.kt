@@ -17,49 +17,42 @@
 package org.breezyweather.wallpaper
 
 import android.app.WallpaperColors
+import android.content.BroadcastReceiver
+import android.content.ComponentCallbacks
+import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
+import android.content.res.Configuration
 import android.graphics.PixelFormat
-import android.graphics.drawable.Drawable
-import android.hardware.Sensor
-import android.hardware.SensorEvent
-import android.hardware.SensorEventListener
-import android.hardware.SensorManager
 import android.os.Build
-import android.os.Handler
-import android.os.HandlerThread
-import android.os.Process
+import android.os.PowerManager
 import android.service.wallpaper.WallpaperService
-import android.view.OrientationEventListener
 import android.view.SurfaceHolder
 import androidx.annotation.RequiresApi
-import androidx.annotation.Size
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
-import androidx.core.graphics.withTranslation
 import breezyweather.data.location.LocationRepository
 import breezyweather.data.weather.WeatherRepository
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.reference.WeatherCode
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
-import org.breezyweather.BreezyWeather
-import org.breezyweather.common.extensions.isLandscape
-import org.breezyweather.common.extensions.sensorManager
-import org.breezyweather.common.utils.helpers.AsyncHelper
+import kotlinx.coroutines.withTimeoutOrNull
+import org.breezyweather.common.extensions.isDarkMode
+import org.breezyweather.common.extensions.powerManager
 import org.breezyweather.domain.location.model.isDaylight
 import org.breezyweather.domain.settings.SettingsManager
-import org.breezyweather.ui.theme.weatherView.WeatherView
-import org.breezyweather.ui.theme.weatherView.WeatherView.WeatherKindRule
 import org.breezyweather.ui.theme.weatherView.WeatherViewController
-import org.breezyweather.ui.theme.weatherView.materialWeatherView.DelayRotateController
-import org.breezyweather.ui.theme.weatherView.materialWeatherView.IntervalComputer
-import org.breezyweather.ui.theme.weatherView.materialWeatherView.MaterialWeatherView
-import org.breezyweather.ui.theme.weatherView.materialWeatherView.WeatherImplementorFactory
+import org.breezyweather.ui.theme.weatherView.materialWeatherView.MaterialWeatherView.WeatherAnimationImplementor.Companion.FRAME_RATE_HIGH
+import org.breezyweather.ui.theme.weatherView.materialWeatherView.MaterialWeatherView.WeatherAnimationImplementor.Companion.FRAME_RATE_LOW
 import javax.inject.Inject
-import kotlin.math.abs
-import kotlin.math.acos
-import kotlin.math.max
-import kotlin.math.min
-import kotlin.math.sqrt
 
 @AndroidEntryPoint
 class MaterialLiveWallpaperService : WallpaperService() {
@@ -69,375 +62,277 @@ class MaterialLiveWallpaperService : WallpaperService() {
     @Inject
     lateinit var weatherRepository: WeatherRepository
 
-    private enum class DeviceOrientation {
-        TOP,
-        LEFT,
-        BOTTOM,
-        RIGHT,
+    private val scope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
+    private var firstLocationLoading: Job? = null
+
+    override fun onCreate() {
+        super.onCreate()
+        firstLocation.value = null
+        isRunning = true
     }
 
     override fun onCreateEngine(): Engine {
-        return WeatherEngine(locationRepository, weatherRepository)
+        return WeatherEngine()
     }
 
-    private inner class WeatherEngine(
-        private val locationRepository: LocationRepository,
-        private val weatherRepository: WeatherRepository,
-    ) : Engine() {
+    override fun onDestroy() {
+        isRunning = false
+        scope.cancel()
+        firstLocation.value = null
+        super.onDestroy()
+    }
 
-        private var mHolder: SurfaceHolder? = null
-        private var mIntervalComputer: IntervalComputer? = null
-        private var mRotators: Array<MaterialWeatherView.RotateController>? = null
-        private var mImplementor: MaterialWeatherView.WeatherAnimationImplementor? = null
-        private var mBackground: Drawable? = null
-        private var mOpenGravitySensor = false
-        private var mGravitySensor: Sensor? = null
+    /**
+     * Only needed when the wallpaper starts using the first location, as updates are pushed afterward with
+     * [updateFirstLocation].
+     */
+    private fun loadFirstLocationIfNecessary() {
+        if (firstLocation.value != null || firstLocationLoading?.isActive == true) return
 
-        @Size(2)
-        private var mSizes: IntArray = intArrayOf(0, 0)
-
-        @Size(2)
-        private var mAdaptiveSize: IntArray = intArrayOf(0, 0)
-        private var mRotation2D = 0f
-        private var mRotation3D = 0f
-
-        @WeatherKindRule
-        private var mWeatherKind = 0
-        private var mDaytime = false
-        private var mVisible = false
-        private var mAnimate = false
-        private var hasDrawn = false
-        private var mDeviceOrientation: DeviceOrientation = DeviceOrientation.TOP
-        private var mIntervalController: AsyncHelper.Controller? = null
-        private var mHandlerThread: HandlerThread? = null
-        private var mHandler: Handler? = null
-        private val mDrawableRunnable = Runnable {
-            if (mImplementor == null ||
-                mBackground == null ||
-                mRotators == null ||
-                mHandler == null
-            ) {
-                return@Runnable
+        firstLocationLoading = scope.launch {
+            val location = locationRepository.getFirstLocation(withParameters = false)?.let {
+                it.copy(
+                    weather = weatherRepository.getWeatherByLocationId(
+                        it.formattedId,
+                        withDaily = true, // For day/night
+                        withHourly = false,
+                        withMinutely = false,
+                        withAlerts = false,
+                        withNormals = false
+                    )
+                )
             }
-            // LogHelper.log(msg = "[LiveWallpaper] Runnable is running")
-            mIntervalComputer?.invalidate()
-            if (mRotators != null && mIntervalComputer != null) {
-                mRotators!![0].updateRotation(mRotation2D.toDouble(), mIntervalComputer!!.interval)
-                mRotators!![1].updateRotation(mRotation3D.toDouble(), mIntervalComputer!!.interval)
-            }
+            firstLocation.compareAndSet(null, FirstLocation(location))
+        }
+    }
 
-            try {
-                mHolder?.lockCanvas()?.let { canvas ->
-                    if (mSizes[0] != canvas.width || mSizes[1] != canvas.height) {
-                        mSizes[0] = canvas.width
-                        mSizes[1] = canvas.height
-                        mAdaptiveSize[0] = mSizes[0]
-                        mAdaptiveSize[1] = mSizes[1]
-                        mBackground?.setBounds(0, 0, mSizes[0], mSizes[1])
-                    }
-                    mBackground?.draw(canvas)
-                    if (mIntervalComputer != null && mRotators != null) {
-                        var interval = mIntervalComputer!!.interval
-                        if (!mAnimate) {
-                            if (hasDrawn) {
-                                interval = 0.0
-                            } else {
-                                hasDrawn = true
-                            }
-                        }
-                        mImplementor?.updateData(
-                            mAdaptiveSize,
-                            interval.toLong(),
-                            mRotators!![0].rotation.toFloat(),
-                            mRotators!![1].rotation.toFloat()
-                        )
-                    }
-                    if (mImplementor != null && mRotators != null) {
-                        canvas.withTranslation(
-                            (mSizes[0] - mAdaptiveSize[0]) / 2f,
-                            (mSizes[1] - mAdaptiveSize[1]) / 2f
-                        ) {
-                            mImplementor!!.draw(
-                                mAdaptiveSize,
-                                this,
-                                0f,
-                                mRotators!![0].rotation.toFloat(),
-                                mRotators!![1].rotation.toFloat()
-                            )
-                        }
-                    }
-                    mHolder?.unlockCanvasAndPost(canvas)
-                }
-            } catch (e: Throwable) {
-                if (BreezyWeather.instance.debugMode) {
-                    e.printStackTrace()
-                }
+    private inner class WeatherEngine : Engine() {
+
+        private lateinit var renderer: LiveWallpaperRenderer
+        private var visible = false
+
+        @Volatile
+        private var scene: LiveWallpaperRenderer.Scene? = null
+
+        // Computing colors renders the background on a bitmap and analyzes it: only do it once per background
+        @Volatile
+        private var colors: Pair<LiveWallpaperRenderer.Scene, WallpaperColors?>? = null
+
+        private val powerSaveModeReceiver = object : BroadcastReceiver() {
+            override fun onReceive(context: Context, intent: Intent) {
+                updateScene()
             }
         }
+        private var thermalStatusListener: PowerManager.OnThermalStatusChangedListener? = null
 
-        private val mGravityListener: SensorEventListener = object : SensorEventListener {
-            override fun onSensorChanged(ev: SensorEvent) {
-                // x : (+) fall to the left / (-) fall to the right.
-                // y : (+) stand / (-) head stand.
-                // z : (+) look down / (-) look up.
-                // rotation2D : (+) anticlockwise / (-) clockwise.
-                // rotation3D : (+) look down / (-) look up.
-                if (mOpenGravitySensor) {
-                    val aX = ev.values[0]
-                    val aY = ev.values[1]
-                    val aZ = ev.values[2]
-                    val g2D = sqrt((aX * aX + aY * aY).toDouble())
-                    val g3D = sqrt((aX * aX + aY * aY + aZ * aZ).toDouble())
-                    val cos2D = max(min(1.0, aY / g2D), -1.0)
-                    val cos3D = max(min(1.0, g2D * (if (aY >= 0) 1 else -1) / g3D), -1.0)
-                    mRotation2D = Math.toDegrees(acos(cos2D)).toFloat() * if (aX >= 0) 1 else -1
-                    mRotation3D = Math.toDegrees(acos(cos3D)).toFloat() * if (aZ >= 0) 1 else -1
-                    when (mDeviceOrientation) {
-                        DeviceOrientation.TOP -> {}
-                        DeviceOrientation.LEFT -> mRotation2D -= 90f
-                        DeviceOrientation.RIGHT -> mRotation2D += 90f
-                        DeviceOrientation.BOTTOM -> if (mRotation2D > 0) {
-                            mRotation2D -= 180f
-                        } else {
-                            mRotation2D += 180f
-                        }
-                    }
-                    if (60 < abs(mRotation3D) && abs(mRotation3D) < 120) {
-                        mRotation2D *= (abs(abs(mRotation3D) - 90) / 30.0).toFloat()
-                    }
-                } else {
-                    mRotation2D = 0f
-                    mRotation3D = 0f
-                }
+        // In case dark mode changed
+        private val componentCallbacks = object : ComponentCallbacks {
+            override fun onConfigurationChanged(newConfig: Configuration) {
+                updateScene()
             }
 
-            override fun onAccuracyChanged(sensor: Sensor, i: Int) {
-                // do nothing.
-            }
+            @Deprecated("Deprecated in Java")
+            override fun onLowMemory() = Unit
         }
-        private val mOrientationListener: OrientationEventListener =
-            object : OrientationEventListener(
-                applicationContext
-            ) {
-                override fun onOrientationChanged(orientation: Int) {
-                    val newOrientation = getDeviceOrientation(orientation)
-                    if (newOrientation != mDeviceOrientation) {
-                        // LogHelper.log(msg = "[LiveWallpaper] Orientation: $mDeviceOrientation -> $newOrientation")
-                        mDeviceOrientation = newOrientation
-                        if (!mAnimate) {
-                            mHandler?.post(mDrawableRunnable)
-                        }
-                    }
-                }
-
-                private fun getDeviceOrientation(orientation: Int): DeviceOrientation {
-                    return if (applicationContext.isLandscape) {
-                        if (0 < orientation && orientation < 180) DeviceOrientation.RIGHT else DeviceOrientation.LEFT
-                    } else {
-                        if (270 < orientation || orientation < 90) DeviceOrientation.TOP else DeviceOrientation.BOTTOM
-                    }
-                }
-            }
-
-        private fun setWeather(@WeatherKindRule weatherKind: Int, daytime: Boolean) {
-            mWeatherKind = weatherKind
-            mDaytime = daytime
-        }
-
-        private fun setWeatherImplementor() {
-            hasDrawn = false
-            mImplementor = WeatherImplementorFactory.getWeatherImplementor(
-                applicationContext,
-                mWeatherKind,
-                mDaytime,
-                mAdaptiveSize,
-                mAnimate
-            )
-            mRotators = arrayOf(
-                DelayRotateController(mRotation2D.toDouble()),
-                DelayRotateController(mRotation3D.toDouble())
-            )
-        }
-
-        private fun setWeatherBackgroundDrawable() {
-            mBackground = ResourcesCompat.getDrawable(
-                resources,
-                WeatherImplementorFactory.getBackgroundId(mWeatherKind, mDaytime),
-                null
-            )
-            mBackground?.let {
-                it.setBounds(0, 0, mSizes[0], mSizes[1])
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1) {
-                    notifyColorsChanged()
-                }
-            }
-        }
-
-        private fun setIntervalComputer() {
-            val animationsEnabled = LiveWallpaperConfigManager(applicationContext).animationsEnabled
-            if (animationsEnabled) {
-                mIntervalComputer?.reset() ?: run {
-                    mIntervalComputer = IntervalComputer()
-                }
-            } else {
-                mIntervalComputer?.reset()
-            }
-        }
-
-        private fun setOpenGravitySensor(openGravitySensor: Boolean) {
-            mOpenGravitySensor = openGravitySensor
-        }
+        private val mainScope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
 
         override fun onCreate(surfaceHolder: SurfaceHolder) {
-            mDeviceOrientation = DeviceOrientation.TOP
-            mHandlerThread = HandlerThread(
-                System.currentTimeMillis().toString(),
-                Process.THREAD_PRIORITY_FOREGROUND
-            ).also {
-                it.start()
-            }.also {
-                mHandler = Handler(it.looper)
-            }
-            mSizes = intArrayOf(0, 0)
-            mAdaptiveSize = intArrayOf(0, 0)
-            mHolder = surfaceHolder.apply {
-                addCallback(object : SurfaceHolder.Callback {
-                    override fun surfaceCreated(holder: SurfaceHolder) {}
-                    override fun surfaceChanged(
-                        holder: SurfaceHolder,
-                        format: Int,
-                        width: Int,
-                        height: Int,
-                    ) {
-                        if (holder.surface.isValid) {
-                            mSizes[0] = width
-                            mSizes[1] = height
-                            mAdaptiveSize[0] = mSizes[0]
-                            mAdaptiveSize[1] = mSizes[1]
-                            mBackground?.setBounds(0, 0, mSizes[0], mSizes[1])
-                            mAnimate = LiveWallpaperConfigManager(this@MaterialLiveWallpaperService).animationsEnabled
-                            setWeatherImplementor()
-                        }
-                    }
+            super.onCreate(surfaceHolder)
+            // Backgrounds are opaque, so the system doesn't need to blend the wallpaper
+            surfaceHolder.setFormat(PixelFormat.RGBX_8888)
+            // Not used, and they would be sent on every frame of home screen scrolling
+            setOffsetNotificationsEnabled(false)
 
-                    override fun surfaceDestroyed(holder: SurfaceHolder) {}
-                })
-                setFormat(PixelFormat.RGBA_8888)
+            val displayContext = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) displayContext else null
+            renderer = LiveWallpaperRenderer(
+                this@MaterialLiveWallpaperService,
+                ContextCompat.getDisplayOrDefault(displayContext ?: this@MaterialLiveWallpaperService),
+                surfaceHolder
+            )
+            registerComponentCallbacks(componentCallbacks)
+            mainScope.launch { firstLocation.collect { updateScene() } }
+        }
+
+        override fun onSurfaceCreated(holder: SurfaceHolder) {
+            super.onSurfaceCreated(holder)
+            renderer.onSurfaceCreated()
+        }
+
+        override fun onSurfaceChanged(holder: SurfaceHolder, format: Int, width: Int, height: Int) {
+            super.onSurfaceChanged(holder, format, width, height)
+            renderer.onSurfaceChanged(width, height)
+        }
+
+        override fun onSurfaceRedrawNeeded(holder: SurfaceHolder) {
+            super.onSurfaceRedrawNeeded(holder)
+            // The system shows the wallpaper as soon as this returns: make sure the first frame shows the right weather
+            firstLocationLoading?.let {
+                if (it.isActive) {
+                    runBlocking { withTimeoutOrNull(FIRST_LOCATION_TIMEOUT_MILLIS) { it.join() } }
+                    updateScene()
+                }
             }
-            sensorManager?.let {
-                mOpenGravitySensor = true
-                mGravitySensor = it.getDefaultSensor(Sensor.TYPE_GRAVITY)
-            }
-            mVisible = false
-            setWeather(WeatherView.WEATHER_KIND_NULL, true)
+            renderer.drawNow()
+        }
+
+        override fun onSurfaceDestroyed(holder: SurfaceHolder) {
+            renderer.onSurfaceDestroyed()
+            super.onSurfaceDestroyed(holder)
         }
 
         override fun onVisibilityChanged(visible: Boolean) {
-            if (mVisible == visible) return
+            if (this.visible == visible) return
 
-            mVisible = visible
-            if (!visible) {
-                mIntervalController?.let {
-                    it.cancel()
-                    mIntervalController = null
-                }
-                mHandler?.removeCallbacksAndMessages(null)
-                sensorManager?.unregisterListener(mGravityListener, mGravitySensor)
-                mOrientationListener.disable()
-                return
+            this.visible = visible
+            if (visible) {
+                registerPowerListeners()
+                // Cheap, everything is in memory
+                updateScene()
+            } else {
+                unregisterPowerListeners()
             }
+            renderer.setVisible(visible)
+        }
 
-            val settingsManager = SettingsManager.getInstance(applicationContext)
-            val configManager = LiveWallpaperConfigManager(this@MaterialLiveWallpaperService)
-            mAnimate = configManager.animationsEnabled
-            mRotation2D = 0f
-            mRotation3D = 0f
-            if (mOrientationListener.canDetectOrientation()) {
-                mOrientationListener.enable()
-            }
-
-            val location: Location? = if (configManager.weatherKind == "auto" || configManager.dayNightType == "auto") {
-                // TODO: Isn't there a more efficient way than reloading the location from database
-                // everytime the visibility changes??
-                // TODO
-                runBlocking {
-                    locationRepository.getFirstLocation(withParameters = false)
-                        .let {
-                            it?.copy(
-                                weather = weatherRepository.getWeatherByLocationId(
-                                    it.formattedId,
-                                    withDaily = configManager.dayNightType == "auto",
-                                    withHourly = false,
-                                    withMinutely = false,
-                                    withAlerts = false,
-                                    withNormals = false
-                                )
-                            )
-                        }
+        @RequiresApi(Build.VERSION_CODES.O_MR1)
+        override fun onComputeColors(): WallpaperColors? {
+            val scene = scene ?: return null
+            colors?.let { (colorsScene, cachedColors) ->
+                if (colorsScene.backgroundId == scene.backgroundId && colorsScene.darkMode == scene.darkMode) {
+                    return cachedColors
                 }
+            }
+            // Use a new drawable, as computing colors changes its bounds and it would affect the renderer
+            return ResourcesCompat.getDrawable(resources, scene.backgroundId, null)
+                ?.let { WallpaperColors.fromDrawable(it) }
+                .also { colors = scene to it }
+        }
+
+        override fun onDestroy() {
+            mainScope.cancel()
+            unregisterComponentCallbacks(componentCallbacks)
+            if (visible) {
+                unregisterPowerListeners()
+            }
+            renderer.release()
+            super.onDestroy()
+        }
+
+        fun updateScene() {
+            val context = this@MaterialLiveWallpaperService
+            val configManager = LiveWallpaperConfigManager(context)
+            val location = if (configManager.isUsingFirstLocation) {
+                loadFirstLocationIfNecessary()
+                firstLocation.value?.location
             } else {
                 null
             }
-            val weatherKind = when (configManager.weatherKind) {
-                "auto" -> location?.weather?.current?.weatherCode
-                else -> WeatherCode.getInstance(configManager.weatherKind)
-            }
+            val weatherKind = WeatherViewController.getWeatherKind(
+                when (configManager.weatherKind) {
+                    "auto" -> location?.weather?.current?.weatherCode
+                    else -> WeatherCode.getInstance(configManager.weatherKind)
+                }
+            )
             val daytime = when (configManager.dayNightType) {
                 "day" -> true
                 "night" -> false
                 else -> location?.isDaylight ?: true
             }
-            setWeather(
-                WeatherViewController.getWeatherKind(weatherKind),
-                daytime
+            val (warm, hot) = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                val thermalStatus = context.powerManager.currentThermalStatus
+                Pair(
+                    thermalStatus >= PowerManager.THERMAL_STATUS_MODERATE,
+                    thermalStatus >= PowerManager.THERMAL_STATUS_SEVERE
+                )
+            } else {
+                Pair(false, false)
+            }
+
+            val newScene = LiveWallpaperRenderer.Scene(
+                weatherKind = weatherKind,
+                daytime = daytime,
+                darkMode = context.isDarkMode,
+                // Like other visual effects, stopped to save battery or to let the device cool down
+                animate = configManager.animationsEnabled && !context.powerManager.isPowerSaveMode && !hot,
+                gravitySensorEnabled = SettingsManager.getInstance(context).isGravitySensorEnabled,
+                maxFrameRate = if (warm) FRAME_RATE_LOW else FRAME_RATE_HIGH
             )
+            val oldScene = scene
+            if (newScene == oldScene) return
 
-            setWeatherImplementor()
-            setIntervalComputer()
-            setOpenGravitySensor(settingsManager.isGravitySensorEnabled)
-            if (mOpenGravitySensor) {
-                sensorManager?.registerListener(
-                    mGravityListener,
-                    mGravitySensor,
-                    SensorManager.SENSOR_DELAY_FASTEST
-                )
-            } else {
-                sensorManager?.unregisterListener(mGravityListener, mGravitySensor)
-            }
-
-            setWeatherBackgroundDrawable()
-            if (mAnimate) {
-                val screenRefreshRate = ContextCompat.getDisplayOrDefault(this@MaterialLiveWallpaperService)
-                    .refreshRate.let {
-                        if (it > 60f) 60f else it
-                    }
-                mIntervalController = AsyncHelper.intervalRunOnUI(
-                    { mHandler?.post(mDrawableRunnable) },
-                    (1000.0 / screenRefreshRate).toLong(),
-                    0
-                )
-            } else {
-                mHandler?.post(mDrawableRunnable)
-                // Run again 1 sec later in case the canvas size was not correctly set the first time on preview screen
-                AsyncHelper.delayRunOnUI(
-                    { mHandler?.post(mDrawableRunnable) },
-                    1000
-                )
+            scene = newScene
+            renderer.setScene(newScene)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1 &&
+                (
+                    oldScene == null ||
+                        oldScene.backgroundId != newScene.backgroundId ||
+                        oldScene.darkMode != newScene.darkMode
+                    )
+            ) {
+                notifyColorsChanged()
             }
         }
 
-        @RequiresApi(Build.VERSION_CODES.O_MR1)
-        override fun onComputeColors(): WallpaperColors? {
-            return if (mBackground != null) {
-                WallpaperColors.fromDrawable(mBackground)
-            } else {
-                null
+        private fun registerPowerListeners() {
+            val context = this@MaterialLiveWallpaperService
+            ContextCompat.registerReceiver(
+                context,
+                powerSaveModeReceiver,
+                IntentFilter(PowerManager.ACTION_POWER_SAVE_MODE_CHANGED),
+                ContextCompat.RECEIVER_NOT_EXPORTED
+            )
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                PowerManager.OnThermalStatusChangedListener { updateScene() }.also {
+                    thermalStatusListener = it
+                    context.powerManager.addThermalStatusListener(ContextCompat.getMainExecutor(context), it)
+                }
             }
         }
 
-        override fun onDestroy() {
-            onVisibilityChanged(false)
-            mHandlerThread?.quit()
+        private fun unregisterPowerListeners() {
+            val context = this@MaterialLiveWallpaperService
+            context.unregisterReceiver(powerSaveModeReceiver)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                thermalStatusListener?.let { context.powerManager.removeThermalStatusListener(it) }
+                thermalStatusListener = null
+            }
+        }
+    }
+
+    companion object {
+        private const val FIRST_LOCATION_TIMEOUT_MILLIS = 500L
+
+        // The service only runs while the wallpaper is set on the home or lock screen, or is being previewed
+        @Volatile
+        var isRunning = false
+            private set
+
+        private data class FirstLocation(val location: Location?)
+
+        // The first location, with its current weather and its daily forecast for day/night, kept in memory so that
+        // the database doesn't need to be queried every time the wallpaper becomes visible (every time the user goes
+        // back to the home screen or turns the screen on)
+        private val firstLocation = MutableStateFlow<FirstLocation?>(null)
+
+        /**
+         * Pushes the latest data of the first location to the live wallpaper, if it is running.
+         * To be called every time the first location or its weather changes.
+         * Can be called from any thread.
+         */
+        fun updateFirstLocation(location: Location?) {
+            if (!isRunning) return
+
+            // Only keep what the wallpaper needs, as it can stay in memory for a long time
+            firstLocation.value = FirstLocation(
+                location?.copy(
+                    weather = location.weather?.copy(
+                        hourlyForecast = emptyList(),
+                        minutelyForecast = emptyList(),
+                        alertList = emptyList(),
+                        normals = emptyMap()
+                    )
+                )
+            )
         }
     }
 }

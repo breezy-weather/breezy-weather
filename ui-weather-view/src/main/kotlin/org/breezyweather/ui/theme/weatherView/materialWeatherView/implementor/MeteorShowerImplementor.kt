@@ -51,6 +51,7 @@ class MeteorShowerImplementor(
         private val mViewHeight: Int,
         @ColorInt val color: Int,
         val scale: Float,
+        private val random: Random,
     ) {
         var x = 0f
         var y = 0f
@@ -60,8 +61,6 @@ class MeteorShowerImplementor(
         var speed: Float
         private var progress: Long = 0
         private var delay: Long = 0
-
-        private val random: Random = Random()
 
         private val mCanvasSize: Int
         private val maxHeight: Float
@@ -109,6 +108,9 @@ class MeteorShowerImplementor(
             move(interval, deltaRotation3D)
             buildRectF()
         }
+
+        val isFlying: Boolean
+            get() = y <= mCanvasSize
 
         private fun move(interval: Long, deltaRotation3D: Float) {
             x -= (speed * interval * 5 * sin(deltaRotation3D * Math.PI / 180.0) * cos(60 * Math.PI / 180.0))
@@ -174,7 +176,8 @@ class MeteorShowerImplementor(
                 viewWidth,
                 viewHeight,
                 colors[random.nextInt(colors.size)],
-                random.nextFloat()
+                random.nextFloat(),
+                random
             )
         }
         val canvasSize = (viewWidth.toDouble().pow(2.0) + viewHeight.toDouble().pow(2.0)).pow(0.5).toInt()
@@ -213,6 +216,10 @@ class MeteorShowerImplementor(
         }
         mLastRotation3D = rotation3D
     }
+
+    // Stars only twinkle, only meteors need to be smooth
+    override val preferredFrameRate: Int
+        get() = if (mMeteors.any { it.isFlying }) FRAME_RATE_HIGH else FRAME_RATE_LOW
 
     override fun draw(
         @Size(2) canvasSizes: IntArray,

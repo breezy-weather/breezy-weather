@@ -47,6 +47,7 @@ class WindImplementor(
         private val mViewHeight: Int,
         @ColorInt val color: Int,
         val scale: Float,
+        private val random: Random,
     ) {
         var x = 0f
         var y = 0f
@@ -63,7 +64,7 @@ class WindImplementor(
 
         init {
             mCanvasSize = (mViewWidth * mViewWidth + mViewHeight * mViewHeight).toDouble().pow(0.5).toInt()
-            speed = (mCanvasSize / (1000.0 * (0.5 + Random().nextDouble())) * 6.0).toFloat()
+            speed = (mCanvasSize / (1000.0 * (0.5 + random.nextDouble())) * 6.0).toFloat()
             maxHeight = 0.007f * mCanvasSize
             minHeight = 0.005f * mCanvasSize
             maxWidth = maxHeight * 10
@@ -72,15 +73,14 @@ class WindImplementor(
         }
 
         private fun init(firstTime: Boolean) {
-            val r = Random()
-            y = r.nextInt(mCanvasSize).toFloat()
+            y = random.nextInt(mCanvasSize).toFloat()
             x = if (firstTime) {
-                (r.nextInt((mCanvasSize - maxHeight).toInt()) - mCanvasSize).toFloat()
+                (random.nextInt((mCanvasSize - maxHeight).toInt()) - mCanvasSize).toFloat()
             } else {
                 -maxHeight
             }
-            width = minWidth + r.nextFloat() * (maxWidth - minWidth)
-            height = minHeight + r.nextFloat() * (maxHeight - minHeight)
+            width = minWidth + random.nextFloat() * (maxWidth - minWidth)
+            height = minHeight + random.nextFloat() * (maxHeight - minHeight)
             buildRectF()
         }
 
@@ -121,12 +121,14 @@ class WindImplementor(
             )
         }
         val scales = floatArrayOf(0.6f, 0.8f, 1f)
+        val random = Random()
         mWinds = Array(WIND_COUNT) { i ->
             Wind(
                 canvasSizes[0],
                 canvasSizes[1],
                 colors[i * 3 / WIND_COUNT],
-                scales[i * 3 / WIND_COUNT]
+                scales[i * 3 / WIND_COUNT],
+                random
             )
         }
         mLastRotation3D = INITIAL_ROTATION_3D

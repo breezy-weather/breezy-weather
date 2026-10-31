@@ -47,6 +47,7 @@ class SnowImplementor(
         private val mViewHeight: Int,
         @field:ColorInt @param:ColorInt val color: Int,
         val scale: Float,
+        private val random: Random,
     ) {
         private var mCX = 0f
         private var mCY = 0f
@@ -59,23 +60,22 @@ class SnowImplementor(
 
         init {
             mCanvasSize = (mViewWidth * mViewWidth + mViewHeight * mViewHeight).toDouble().pow(0.5).toInt()
-            radius = (mCanvasSize * (0.005 + Random().nextDouble() * 0.007) * scale).toFloat()
-            speedY = (mCanvasSize / (1000.0 * (2.5 + Random().nextDouble())) * SNOW_SPEED).toFloat()
+            radius = (mCanvasSize * (0.005 + random.nextDouble() * 0.007) * scale).toFloat()
+            speedY = (mCanvasSize / (1000.0 * (2.5 + random.nextDouble())) * SNOW_SPEED).toFloat()
             init(true)
         }
 
         private fun init(firstTime: Boolean) {
-            val r = Random()
-            mCX = r.nextInt(mCanvasSize).toFloat()
+            mCX = random.nextInt(mCanvasSize).toFloat()
             mCY = if (firstTime) {
-                (r.nextInt((mCanvasSize - radius).toInt()) - mCanvasSize).toFloat()
+                (random.nextInt((mCanvasSize - radius).toInt()) - mCanvasSize).toFloat()
             } else {
                 -radius
             }
 
             // Fix input to nextInt to at least two to prevent crashes on low res screens (where bound would be 0)
             // and provide some variation on medium-res screens (where bound would always be 1)
-            speedX = r.nextInt((2 * speedY).toInt().coerceAtLeast(2)) - speedY
+            speedX = random.nextInt((2 * speedY).toInt().coerceAtLeast(2)) - speedY
             computeCenterPosition()
         }
 
@@ -111,12 +111,14 @@ class SnowImplementor(
             )
         }
         val scales = floatArrayOf(0.6f, 0.8f, 1f)
+        val random = Random()
         mSnows = Array(SNOW_COUNT) { i ->
             Snow(
                 canvasSizes[0],
                 canvasSizes[1],
                 colors[i * 3 / SNOW_COUNT],
-                scales[i * 3 / SNOW_COUNT]
+                scales[i * 3 / SNOW_COUNT],
+                random
             )
         }
         mLastRotation3D = INITIAL_ROTATION_3D
