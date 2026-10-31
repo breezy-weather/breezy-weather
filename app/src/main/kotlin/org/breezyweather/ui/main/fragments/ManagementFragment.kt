@@ -17,7 +17,6 @@
 package org.breezyweather.ui.main.fragments
 
 import android.Manifest
-import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -60,37 +59,30 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableFloatStateOf
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
-import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.viewinterop.AndroidView
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
-import androidx.recyclerview.widget.ItemTouchHelper
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import breezyweather.domain.location.model.Location
 import com.google.accompanist.permissions.PermissionStatus
 import com.google.accompanist.permissions.rememberMultiplePermissionsState
-import kotlinx.coroutines.launch
 import org.breezyweather.BreezyWeather
 import org.breezyweather.R
-import org.breezyweather.common.activities.BreezyActivity
 import org.breezyweather.common.extensions.isDarkMode
 import org.breezyweather.common.extensions.plus
 import org.breezyweather.common.extensions.setSystemBarStyle
@@ -100,26 +92,26 @@ import org.breezyweather.common.utils.helpers.PermissionHelper
 import org.breezyweather.common.utils.helpers.SnackbarHelper
 import org.breezyweather.domain.location.model.applyDefaultPreset
 import org.breezyweather.domain.location.model.getPlace
+import org.breezyweather.domain.location.model.isDaylight
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.sources.SourceManager
 import org.breezyweather.ui.common.composables.AlertDialogNoPadding
 import org.breezyweather.ui.common.composables.AnimatedVisibilitySlideVertically
 import org.breezyweather.ui.common.composables.NotificationCard
 import org.breezyweather.ui.common.composables.SecondarySourcesPreference
-import org.breezyweather.ui.common.decorations.Material3ListItemDecoration
 import org.breezyweather.ui.common.widgets.Material3ExpressiveCardListItem
 import org.breezyweather.ui.common.widgets.Material3Scaffold
 import org.breezyweather.ui.common.widgets.defaultCardListItemElevation
 import org.breezyweather.ui.common.widgets.insets.BWCenterAlignedTopAppBar
 import org.breezyweather.ui.main.MainActivity
 import org.breezyweather.ui.main.MainActivityViewModel
-import org.breezyweather.ui.main.adapters.location.LocationAdapter
-import org.breezyweather.ui.main.widgets.LocationItemTouchCallback
-import org.breezyweather.ui.main.widgets.LocationItemTouchCallback.TouchReactor
+import org.breezyweather.ui.main.compose.LocationCard
+import org.breezyweather.ui.main.compose.LocationListActions
 import org.breezyweather.ui.theme.compose.BreezyWeatherTheme
 import org.breezyweather.ui.theme.compose.themeRipple
 import org.breezyweather.ui.theme.resource.ResourcesProviderFactory
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
+import kotlin.math.roundToInt
 
 class PushedManagementFragment : ManagementFragment() {
 
@@ -132,14 +124,10 @@ class PushedManagementFragment : ManagementFragment() {
     }
 }
 
-open class ManagementFragment : MainModuleFragment(), TouchReactor {
+open class ManagementFragment : MainModuleFragment() {
 
     protected lateinit var viewModel: MainActivityViewModel
 
-    private lateinit var layout: LinearLayoutManager
-    private lateinit var adapter: LocationAdapter
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var itemTouchHelper: ItemTouchHelper
     private var resourceProvider: ResourceProvider? = null
 
     private var callback: Callback? = null
@@ -154,7 +142,6 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
         savedInstanceState: Bundle?,
     ): View {
         initModel()
-        initView()
         setCallback(requireActivity() as Callback)
 
         return ComposeView(requireContext()).apply {
@@ -184,6 +171,12 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
         val dialogChooseDebugLocationOpenState = viewModel.dialogChooseDebugLocationOpen.collectAsState()
 
         val locationLoadingState = viewModel.locationListLoading.collectAsState()
+
+        val density = LocalDensity.current
+        val itemHeightPx = with(density) { 112.dp.toPx() }
+        var draggingFrom by remember { mutableIntStateOf(-1) }
+        var dragOrigin by remember { mutableIntStateOf(-1) }
+        var dragAccumPx by remember { mutableFloatStateOf(0f) }
 
         /*
          * We should add a scroll behavior to make the top bar change color when scrolling, but
@@ -360,14 +353,73 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
                             }
                         }
                     }
-                    AndroidView(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .clipToBounds(),
-                        factory = {
-                            recyclerView
+                    LazyColumn(
+                        verticalArrangement = Arrangement.spacedBy(8.dp)
+                    ) {
+                        itemsIndexed(
+                            items = validLocationListState.value,
+                            key = { _, location -> location.formattedId }
+                        ) { index, location ->
+                            LocationCard(
+                                location = location,
+                                isSelected = location.formattedId ==
+                                    viewModel.currentLocation.collectAsState().value?.location?.formattedId,
+                                weatherIcon = location.weather?.current?.weatherCode?.let { code ->
+                                    resourceProvider?.getWeatherIcon(code, location.isDaylight)
+                                },
+                                onClick = {
+                                    viewModel.setLocation(location.formattedId)
+                                    parentFragmentManager.popBackStack()
+                                },
+                                onSwipeTowardStart = {
+                                    if (viewModel.loading.value) {
+                                        SnackbarHelper.showSnackbar(
+                                            requireContext().getString(R.string.message_please_wait_refresh)
+                                        )
+                                    } else {
+                                        viewModel.openChooseWeatherSourcesDialog(location)
+                                    }
+                                },
+                                onSwipeTowardEnd = {
+                                    val position = viewModel.validLocationList.value
+                                        .indexOfFirst { it.formattedId == location.formattedId }
+                                        .takeIf { it != -1 }
+                                        ?: index
+                                    LocationListActions.onSwipeTowardEnd(
+                                        requireContext(),
+                                        viewModel,
+                                        position
+                                    )
+                                },
+                                onDrag = { dy ->
+                                    if (draggingFrom < 0) {
+                                        draggingFrom = index
+                                        dragOrigin = index
+                                        dragAccumPx = 0f
+                                    }
+                                    dragAccumPx += dy
+                                    val offset = (dragAccumPx / itemHeightPx).roundToInt()
+                                    // TODO
+                                    /*val to = (draggingFrom + offset).coerceIn(0, localLocations.lastIndex)
+                                    if (to != draggingFrom) {
+                                        val next = localLocations.toMutableList()
+                                        next.add(to, next.removeAt(draggingFrom))
+                                        localLocations = next
+                                        draggingFrom = to
+                                        dragAccumPx = 0f
+                                    }*/
+                                },
+                                onDragEnd = {
+                                    if (dragOrigin >= 0 && draggingFrom >= 0 && dragOrigin != draggingFrom) {
+                                        viewModel.swapLocations(dragOrigin, draggingFrom)
+                                    }
+                                    draggingFrom = -1
+                                    dragOrigin = -1
+                                    dragAccumPx = 0f
+                                }
+                            )
                         }
-                    )
+                    }
                 }
             } else {
                 Row(
@@ -507,86 +559,8 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
         // do nothing.
     }
 
-    override fun onConfigurationChanged(newConfig: Configuration) {
-        super.onConfigurationChanged(newConfig)
-        val firstHolderPosition = layout.findFirstVisibleItemPosition()
-        adapter.notifyItemRangeChanged(
-            firstHolderPosition,
-            layout.findLastVisibleItemPosition() - firstHolderPosition + 1
-        )
-    }
-
     private fun initModel() {
         viewModel = ViewModelProvider(requireActivity())[MainActivityViewModel::class.java]
-    }
-
-    private fun initView() {
-        adapter =
-            LocationAdapter(
-                requireActivity(),
-                ArrayList(),
-                null,
-                (requireActivity() as MainActivity).sourceManager,
-                mClickListener = { formattedId ->
-                    viewModel.setLocation(formattedId)
-                    parentFragmentManager.popBackStack()
-                }
-            ) { holder ->
-                itemTouchHelper.startDrag(holder)
-            }
-        recyclerView = RecyclerView(requireContext())
-        recyclerView.adapter = adapter
-        recyclerView.layoutManager = LinearLayoutManager(
-            requireActivity(),
-            RecyclerView.VERTICAL,
-            false
-        ).also { layout = it }
-        while (recyclerView.itemDecorationCount > 0) {
-            recyclerView.removeItemDecorationAt(0)
-        }
-        recyclerView.addItemDecoration(
-            Material3ListItemDecoration(
-                requireContext()
-            )
-        )
-
-        itemTouchHelper = ItemTouchHelper(
-            LocationItemTouchCallback(
-                requireActivity() as BreezyActivity,
-                viewModel,
-                this
-            )
-        )
-        itemTouchHelper.attachToRecyclerView(recyclerView)
-
-        // Start a coroutine in the lifecycle scope
-        // FIXME: Race condition
-        lifecycleScope.launch {
-            // repeatOnLifecycle launches the block in a new coroutine every time the
-            // lifecycle is in the STARTED state (or above) and cancels it when it's STOPPED.
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                // Trigger the flow and start listening for values.
-                // Note that this happens when lifecycle is STARTED and stops
-                // collecting when the lifecycle is STOPPED
-                viewModel.validLocationList.collect {
-                    // New value received
-                    adapter.update(it, viewModel.currentLocation.value?.location?.formattedId)
-                }
-            }
-        }
-        lifecycleScope.launch {
-            // repeatOnLifecycle launches the block in a new coroutine every time the
-            // lifecycle is in the STARTED state (or above) and cancels it when it's STOPPED.
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                // Trigger the flow and start listening for values.
-                // Note that this happens when lifecycle is STARTED and stops
-                // collecting when the lifecycle is STOPPED
-                viewModel.currentLocation.collect {
-                    // New value received
-                    adapter.update(viewModel.validLocationList.value, it?.location?.formattedId)
-                }
-            }
-        }
     }
 
     fun prepareReenterTransition() {
@@ -598,15 +572,6 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
     // interface.
     private fun setCallback(l: Callback?) {
         callback = l
-    }
-
-    // location item touch reactor.
-    override fun resetViewHolderAt(position: Int) {
-        adapter.notifyItemChanged(position)
-    }
-
-    override fun reorderByDrag(from: Int, to: Int) {
-        adapter.update(from, to)
     }
 
     private fun ensureResourceProvider() {
