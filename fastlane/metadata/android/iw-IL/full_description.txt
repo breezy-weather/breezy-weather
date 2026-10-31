@@ -38,7 +38,6 @@ Breezy Weather הוא יישומון מזג אוויר עשיר בתכונות �
 - מיקום (ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION, ACCESS_BACKGROUND_LOCATION): להראות מזג אוויר במיקומך הנוכחי
 - אחסון (READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE): עוזר בהגדרת רקע חי של מזג אוויר ו/או ווידג'טים בחלק מהמכשירים
 - אריח (EXPAND_STATUS_BAR): מאפשר להפעיל את היישומון מהגדרות מהירות
-- שפת יישומון ספציפית (READ_APP_SPECIFIC_LOCALES): מאפשר לשמור שפה ספציפית לאפליקציה ולקרוא את הערך לאחר הפעלה מחדש בחלק מהמכשירים
 
 <b>רישיון</b>
 

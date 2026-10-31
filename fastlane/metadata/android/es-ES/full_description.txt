@@ -38,7 +38,6 @@ Opcionales:
 - Ubicación (ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION, ACCESS_BACKGROUND_LOCATION): para mostrar el tiempo en tu ubicación actual
 - Almacenamiento (READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE): ayuda a configurar el fondo de pantalla meteorológico en vivo y/o widgets en algunos dispositivos
 - Tile (EXPAND_STATUS_BAR): permite lanzar la aplicación desde Ajustes rápidos
-- Idioma específico de la aplicación (READ_APP_SPECIFIC_LOCALES): permite guardar un idioma específico para la app y leer su valor tras reiniciar en algunos dispositivos
 
 <b>Licencia</b>
 

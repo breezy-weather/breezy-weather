@@ -38,7 +38,6 @@ Nedeviga:
 - Loko (ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION, ACCESS_BACKGROUND_LOCATION): por montri vetero en via nuna loko
 - Memoro (READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE): helpas ŝalti la vivantan vetertapeton kaj/aŭ fenestraĵojn sur kelkaj aparatoj
 - Kahelo (EXPAND_STATUS_BAR): ebligas starti la aplikaĵo de Rapidaj Agordoj
-- Aparta aplikaĵa lingvo (READ_APP_SPECIFIC_LOCALES): permesas konservi apartan lingvon por la aplikaĵo kaj legi la valoro post restarto sur kelkaj aparatoj
 
 <b>Licenco</b>
 

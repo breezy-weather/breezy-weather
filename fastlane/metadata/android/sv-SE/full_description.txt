@@ -38,7 +38,6 @@ Valfria:
 - Plats (ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION, ACCESS_BACKGROUND_LOCATION): för att visa vädret på din nuvarande plats
 - Lagring (READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE): hjälper till att ställa in den dynamiska väderbakgrunden och/eller widgetar på vissa enheter
 - Panelruta (EXPAND_STATUS_BAR): gör det möjligt att starta appen från Snabbinställningar
-- Specifikt appspråk (READ_APP_SPECIFIC_LOCALES): gör det möjligt att spara ett särskilt språk för appen och läsa in värdet efter omstart på vissa enheter
 
 <b>Licens</b>
 

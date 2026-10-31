@@ -38,7 +38,6 @@
 - الموقع (ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION, ACCESS_BACKGROUND_LOCATION): لعرض الطقس في موقعك الحالي
 - التخزين (READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE): يساعد في تعيين خلفية الطقس الحية و/أو الأدوات على بعض الأجهزة
 - اللوحة (EXPAND_STATUS_BAR): للسماح بتشغيل التطبيق من الإعدادات السريعة
-- لغة محددة للتطبيق (READ_APP_SPECIFIC_LOCALES): تسمح بحفظ لغة معينة للتطبيق وقراءة القيمة بعد إعادة التشغيل على بعض الأجهزة
 
 <b>الترخيص</b>
 

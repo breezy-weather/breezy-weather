@@ -38,7 +38,6 @@ Opcionais:
 - Localização (ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION, ACCESS_BACKGROUND_LOCATION): para mostrar o clima na sua localização atual
 - Armazenamento (READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE): ajuda a configurar o plano de fundo de clima ao vivo e widgets em alguns dispositivos
 - Bloco (EXPAND_STATUS_BAR): permite abrir o app das Configurações Rápidas
-- Idioma do app específico (READ_APP_SPECIFIC_LOCALES): permite salvar um idioma específico para o app e ler o dado após reiniciar em alguns dispositivos
 
 <b>Licença</b>
 

@@ -38,7 +38,6 @@ Volitelné:
 - Poloha (ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION, ACCESS_BACKGROUND_LOCATION): pro zobrazení počasí ve vaší aktuální poloze
 - Úložiště (READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE): pomáhá nastavit živou tapetu a/nebo widgety na některých zařízeních
 - Dlaždice (EXPAND_STATUS_BAR): umožňuje spuštění aplikace z Rychlých nastavení
-- Specifický jazyk aplikace (READ_APP_SPECIFIC_LOCALES): umožňuje uložit specifický jazyk aplikace a přečíst hodnotu po restartu na některých zařízeních
 
 <b>Licence</b>
 

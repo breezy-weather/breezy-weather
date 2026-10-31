@@ -36,7 +36,6 @@ Opcional:
 - Localización (ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION, ACCESS_BACKGROUND_LOCATION): para mostrar o tempo na túa localización actual
 - Almacenamento (READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE): axuda a establecer o fondo de pantalla animado do tempo e/ou widgets nalgúns dispositivos
 - Mosaico/Acceso rápido (EXPAND_STATUS_BAR): permite abrir a aplicación desde a configuración rápida (Quick Settings)
-- Idioma específico da aplicación (READ_APP_SPECIFIC_LOCALES): permite gardar un idioma específico para a aplicación e ler ese valor despois de reiniciar o dispositivo
 
 <b>Licenza</b>
 

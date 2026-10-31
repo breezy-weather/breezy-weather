@@ -38,7 +38,6 @@ Facoltative:
 - Posizione (ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION, ACCESS_BACKGROUND_LOCATION): accesso alla posizione corrente per le previsioni
 - Memoria (READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE): aiuta a impostare il live wallpaper e i widget su alcuni dispositivi
 - Tile (EXPAND_STATUS_BAR): permette di lanciare l'app da Quick Settings
-- Lingua specifica dell'app (READ_APP_SPECIFIC_LOCALES): permette di salvare una specifica lingua per l'app e di leggerla dopo il riavvio di alcuni dispositivi
 
 <b>Licenze</b>
 

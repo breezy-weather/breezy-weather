@@ -38,7 +38,6 @@ Opcionais:
 * Localização (ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION, ACCESS_BACKGROUND_LOCATION): apresentar o estado do tempo na sua localização atual
 * Armazenamento (READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE): ajuda a configurar o papel de parede meteorológico dinâmico e/ou os widgets em alguns dispositivos
 * Atalho (EXPAND_STATUS_BAR): permite iniciar a aplicação a partir das Definições rápidas
-* Idioma específico da aplicação (READ_APP_SPECIFIC_LOCALES): permite guardar um idioma específico para a aplicação e ler esse valor após o reinício em alguns dispositivos
 
 <b>License</b>
 

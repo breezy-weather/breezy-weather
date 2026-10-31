@@ -38,7 +38,6 @@ Breezy Weather 是一款功能丰富、免费开源的天气应用，采用 Mate
 - 位置访问（ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION, ACCESS_BACKGROUND_LOCATION）：获取当前位置天气
 - 存储空间（READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE）：在某些设备设置动态天气壁纸/小组件
 - 快捷磁贴（EXPAND_STATUS_BAR）：通过快捷设置面板启动应用
-- 应用专属语言（READ_APP_SPECIFIC_LOCALES）：为应用保存特定语言设置，支持部分设备重启后读取配置
 
 <b>许可证</b>
 

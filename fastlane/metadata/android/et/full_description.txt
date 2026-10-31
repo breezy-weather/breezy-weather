@@ -38,7 +38,6 @@ Valikulised:
 - Asukoht (ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION, ACCESS_BACKGROUND_LOCATION): et näidata teie praeguse asukoha ilma
 - Salvestusruum (READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE): aitab osadel seadmetel liikuvat taustapilti ja/või vidinaid seada
 - Juhtimiskeskuse ikoon (EXPAND_STATUS_BAR): lubab rakendust juhtimiskeskusest avada
-- Rakendusepõhine keel (READ_APP_SPECIFIC_LOCALES): lubab salvestada rakenduse jaoks spetsiifilist keelt ja peale taaskäivitust seda väärtust lugeda osadel seadmetel
 
 <b>Litsens</b>
 

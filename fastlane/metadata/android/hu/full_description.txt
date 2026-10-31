@@ -38,7 +38,6 @@ Nem kötelező:
 - Helyadatok (ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION, ACCESS_BACKGROUND_LOCATION): a jelenlegi tartózkodási helyén lévő időjárás megjelenítéséhez
 - Tárhely (READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE): segít az élő időjárás-háttérkép és/vagy modulok beállításában egyes eszközökön
 - Csempe (EXPAND_STATUS_BAR): lehetővé teszi az alkalmazás elindítását a gyorsbeállításokból
-- Alkalmazás-specifikus nyelv (READ_APP_SPECIFIC_LOCALES): lehetővé teszi egy adott nyelv mentését az alkalmazáshoz, és az érték beolvasását újraindítás után egyes eszközökön
 
 <b>Licenc</b>
 

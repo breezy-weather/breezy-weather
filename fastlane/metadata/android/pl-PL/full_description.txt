@@ -38,7 +38,6 @@ Opcjonalne:
 - Lokalizacja (ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION, ACCESS_BACKGROUND_LOCATION) – aby wyświetlać pogodę w bieżącej lokalizacji
 - Pamięć (READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE) – umożliwia ustawienie tapety pogodowej na żywo i/lub widżetów na niektórych urządzeniach
 - Kafelki (EXPAND_STATUS_BAR) – umożliwia uruchamianie aplikacji z paska Szybkich ustawień
-- Język aplikacji (READ_APP_SPECIFIC_LOCALES) – pozwala zapisać język aplikacji i odczytać go po ponownym uruchomieniu urządzenia
 
 <b>Licencja</b>
 

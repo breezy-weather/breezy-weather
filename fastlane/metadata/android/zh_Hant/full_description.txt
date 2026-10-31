@@ -38,7 +38,6 @@ Breezy Weather 是一款功能強大的免費開源天氣應用程式，使用 M
 - 位置 (ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION, ACCESS_BACKGROUND_LOCATION)：顯示您目前位置的天氣
 - 儲存空間 (READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE)：在某些裝置上設定天氣動態桌布及／或小工具
 - 方塊 (EXPAND_STATUS_BAR)：在 Android 快速設定啟動應用程式
-- 應用程式特定語言 (READ_APP_SPECIFIC_LOCALES)：在某些裝置上儲存應用程式語言設定，以便重新開機後讀取
 
 <b>授權</b>
 

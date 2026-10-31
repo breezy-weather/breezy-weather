@@ -38,7 +38,6 @@ Optional:
 - Standort (ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION, ACCESS_BACKGROUND_LOCATION): Um das Wetter für deinen aktuellen Standort anzuzeigen
 - Speicher (READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE): Hilft beim Anwenden des Live-Hintergundbildes und/oder Widgets auf manchen Geräten
 - Kachel (EXPAND_STATUS_BAR): Erlaubt das Starten der App über die Schnelleinstellungen
-- Bestimmte App-Sprache (READ_APP_SPECIFIC_LOCALES): Ermöglicht es auf manchen Geräten, eine bestimmte Sprache für die App zu speichern und diesen Wert nach einem Neustart auszulesen
 
 <b>Lizenz</b>
 
