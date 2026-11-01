@@ -160,6 +160,18 @@ val appContributors: Array<ContributorItem> = arrayOf(
      */
     ContributorItem("mu", github = "4eUeP"),
     /*
+     * Gadgetbridge contributions
+     */
+    ContributorItem("ThomasKuehne", github = "ThomasKuehne"),
+    /*
+     * Fix for per-app language forgotten after reboot
+     */
+    ContributorItem("Zbigniew Frysztak", github = "zbigniewfr"),
+    /*
+     * CyDoM source
+     */
+    ContributorItem("Alexander Zinov", github = "sashkent3"),
+    /*
      * Logo
      */
     ContributorItem(
