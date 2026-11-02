@@ -11,8 +11,7 @@ plugins {
     id("breezy.android.application")
     id("breezy.android.application.compose")
     id("com.android.application")
-    id("com.google.devtools.ksp")
-    id("com.google.dagger.hilt.android")
+    id("dev.zacsweers.metro")
     kotlin("plugin.serialization")
     id("com.mikepenz.aboutlibraries.plugin.android")
 }
@@ -431,6 +430,12 @@ kotlin {
     }
 }
 
+metro {
+    interop {
+        includeHilt()
+    }
+}
+
 aboutLibraries {
     offlineMode = true
 
@@ -499,12 +504,8 @@ dependencies {
     implementation(libs.bundles.lifecycle)
     implementation(libs.recyclerview)
 
-    // hilt.
-    ksp(libs.kotlin.metadata.jvm)
-    implementation(libs.dagger.hilt.core)
-    ksp(libs.dagger.hilt.compiler)
-    implementation(libs.hilt.work)
-    ksp(libs.hilt.compiler)
+    // DI
+    implementation(libs.metro.runtime)
 
     // HTTP
     implementation(libs.bundles.retrofit)
