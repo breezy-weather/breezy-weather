@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- app. -->
-    <string name="app_name">Clima</string>
+    <string name="app_name">Meteorologia</string>
     <!-- keyword. -->
     <string name="location_current">Localização atual</string>
     <string name="daily_today_short">Hoje</string>
@@ -47,7 +47,7 @@
     <string name="daily_forecast">Previsão diária</string>
     <string name="hourly_forecast">Previsão horária</string>
     <string name="air_quality">Qualidade do ar</string>
-    <string name="ephemeris">Sol &amp; Lua</string>
+    <string name="ephemeris">Sol e lua</string>
     <string name="action_next">Próximo</string>
     <string name="action_done">Concluído</string>
     <string name="settings_enabled">Ligado</string>
@@ -661,7 +661,7 @@
     <string name="common_weather_text_hot">Quente</string>
     <string name="common_weather_text_cold">Frio</string>
     <string name="common_weather_text_tornado">Tornado</string>
-    <string name="forecast">Previsão do tempo</string>
+    <string name="forecast">Previsão</string>
     <string name="weather_source_continent_asia">Ásia</string>
     <string name="weather_source_continent_south_america">América do sul</string>
     <string name="pollen_acer">Ácer</string>
