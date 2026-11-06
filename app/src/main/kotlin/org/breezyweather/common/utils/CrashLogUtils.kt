@@ -24,8 +24,11 @@ import org.breezyweather.R
 import org.breezyweather.background.receiver.NotificationReceiver
 import org.breezyweather.common.extensions.cancelNotification
 import org.breezyweather.common.extensions.createFileInCacheDir
+import org.breezyweather.common.extensions.fontScale
 import org.breezyweather.common.extensions.getUriCompat
 import org.breezyweather.common.extensions.notify
+import org.breezyweather.common.extensions.windowWidth
+import org.breezyweather.common.extensions.windowWidthInDp
 import org.breezyweather.common.extensions.withNonCancellableContext
 import org.breezyweather.common.extensions.withUIContext
 import org.breezyweather.common.utils.helpers.SnackbarHelper
@@ -63,6 +66,10 @@ class CrashLogUtils(
             Device manufacturer: ${Build.MANUFACTURER}
             Device name: ${Build.DEVICE} (${Build.PRODUCT})
             Device model: ${Build.MODEL}
+            Font scale: ${context.fontScale}x
+            Density DPI: ${context.resources.displayMetrics.densityDpi}
+            ${if (Build.VERSION.SDK_INT >= 24) "Stable device density: " + android.util.DisplayMetrics.DENSITY_DEVICE_STABLE else ""}
+            Window width: ${context.windowWidthInDp} dp / ${context.windowWidth} px
         """.trimIndent()
     }
 
