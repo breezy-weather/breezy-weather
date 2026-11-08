@@ -94,7 +94,7 @@
     <string name="settings_units_temperature">Unidade de temperatura</string>
     <string name="null_data_text">N/A</string>
     <string name="daily_forecast">Previsión diaria</string>
-    <string name="app_name">Tempo</string>
+    <string name="app_name">O Tempo</string>
     <string name="air_quality">Calidade do aire</string>
     <string name="precipitation_probability">Probabilidade de precipitacións</string>
     <string name="precipitation">Precipitacións</string>
@@ -329,7 +329,7 @@
     <string name="wind_gusts_short">Refachos</string>
     <string name="wind_origin">Orixe: %s</string>
     <string name="wind_strength_scale">Escala Beaufort</string>
-    <string name="uv_index_about">Respecto ao índice UV</string>
+    <string name="uv_index_about">En canto ao índice UV</string>
     <string name="uv_index_about_description">O índice UltraVioleta/UV mide a forza da radiación ultravioleta do sol. Canto máis forte é, causa queimaduras solares máis fortes e rápidas, así como cancro de pel e dano visual.</string>
     <string name="uv_index_scale">Escala do índice UV</string>
     <string name="uv_index_time_to_burn">Tempo antes de se queimar</string>
