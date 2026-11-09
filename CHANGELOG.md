@@ -23,6 +23,7 @@
 - Gadgetbridge - Add pressure, cloud cover, and dewpoint (@ThomasKuehne)
 - Geosphere - Update to newer endpoint
 - MET IE - Fix icons sometimes being wrongly shown as thunderstorms
+- MET IE - Fix failure when only used as an alert source
 - MET Norway - Add wind gusts
 - Open-Meteo - Update selectable weather models
 - Pollen Information - Add missing pollens: ash, chestnut, linden, plantain, sorrel

@@ -118,7 +118,7 @@ class MetIeService @Inject constructor(
                 }
             }
         } else {
-            List(5) {
+            List(6) {
                 Observable.just(MetIeForecastResult())
             }
         }
