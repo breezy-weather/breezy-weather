@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- app. -->
-    <string name="app_name">Meteorologia</string>
+    <string name="app_name">Clima</string>
     <!-- keyword. -->
     <string name="location_current">Localização atual</string>
     <string name="daily_today_short">Hoje</string>
