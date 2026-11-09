@@ -350,7 +350,8 @@ class GeoSphereAtService @Inject constructor(
                     Wind(
                         degree = windDegree,
                         speed = windSpeed.metersPerSecond,
-                        gusts = hourlyResult.features[0].properties!!.parameters!!.windgusts?.data?.getOrNull(i)?.metersPerSecond
+                        gusts = hourlyResult.features[0].properties!!.parameters!!.windgusts?.data?.getOrNull(i)
+                            ?.metersPerSecond
                     )
                 } else {
                     null
