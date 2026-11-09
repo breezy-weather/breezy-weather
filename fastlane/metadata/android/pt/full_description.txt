@@ -41,6 +41,6 @@ Opcionais:
 
 <b>Licença</b>
 
-* Licença Pública Geral Reduzida da GNU v3.0
-* A presente Licença não concede quaisquer direitos sobre as marcas registadas, marcas de serviço ou logótipos de qualquer Colaborador.
-* É proibida a deturpação da origem desse material, e as versões modificadas do mesmo devem ser identificadas, de forma razoável, como sendo diferentes da versão original.
+- GNU Lesser General Public License v3.0
+- This License does not grant any rights in the trademarks, service marks, or logos of any Contributor.
+- Misrepresentation of the origin of that material is prohibited, and modified versions of such material must be marked in reasonable ways as different from the original version.
