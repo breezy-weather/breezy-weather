@@ -18,7 +18,7 @@
 - Per-app language is now correctly remembered (@zbigniewfr)
 
 **Sources**
-- BMKG - Temporarily disable alert support
+- BMKG - Should now work without any API key or token
 - Cyprus Department of Meteorology - Added as a new source for Cyprus (@sashkent3)
 - Gadgetbridge - Add pressure, cloud cover, and dewpoint (@ThomasKuehne)
 - Geosphere - Update to newer endpoint

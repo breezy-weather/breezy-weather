@@ -36,10 +36,19 @@ import com.google.maps.android.SphericalUtil
 import com.google.maps.android.model.LatLng
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.JsonArray
+import kotlinx.serialization.json.JsonElement
+import kotlinx.serialization.json.JsonObject
+import kotlinx.serialization.json.JsonPrimitive
+import kotlinx.serialization.json.jsonArray
+import kotlinx.serialization.json.longOrNull
+import okhttp3.OkHttpClient
+import okhttp3.Request
 import org.breezyweather.BuildConfig
 import org.breezyweather.R
-import org.breezyweather.common.exceptions.ApiKeyMissingException
 import org.breezyweather.common.exceptions.InvalidLocationException
+import org.breezyweather.common.exceptions.ParsingException
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.getIsoFormattedDate
@@ -68,6 +77,7 @@ import javax.inject.Named
 
 class BmkgService @Inject constructor(
     @ApplicationContext context: Context,
+    private val okHttpClient: OkHttpClient,
     @Named("JsonClient") client: Retrofit.Builder,
 ) : BmkgServiceStub(context) {
 
@@ -94,20 +104,31 @@ class BmkgService @Inject constructor(
         location: Location,
         requestedFeatures: List<SourceFeature>,
     ): Observable<WeatherWrapper> {
-        val apiKey = getApiKeyOrDefault()
-        if (apiKey.isEmpty() && SourceFeature.FORECAST in requestedFeatures) {
-            return Observable.error(ApiKeyMissingException())
+        val failedFeatures = mutableMapOf<SourceFeature, Throwable>()
+
+        val webpageError = try {
+            if (SourceFeature.FORECAST in requestedFeatures || SourceFeature.ALERT in requestedFeatures) {
+                refreshWebpageData()
+            }
+            null
+        } catch (e: Exception) {
+            e
         }
 
-        val failedFeatures = mutableMapOf<SourceFeature, Throwable>()
         val forecast = if (SourceFeature.FORECAST in requestedFeatures) {
-            mApi.getForecast(
-                referer = BMKG_BASE_URL,
-                apiKey = apiKey,
-                lon = location.longitude,
-                lat = location.latitude
-            ).onErrorResumeNext {
-                failedFeatures[SourceFeature.FORECAST] = it
+            val apiKey = apiKeyCache ?: getApiKeyOrDefault()
+            if (apiKey.isNotEmpty()) {
+                mApi.getForecast(
+                    referer = BMKG_BASE_URL,
+                    apiKey = apiKey,
+                    lon = location.longitude,
+                    lat = location.latitude
+                ).onErrorResumeNext {
+                    failedFeatures[SourceFeature.FORECAST] = it
+                    Observable.just(BmkgForecastResult())
+                }
+            } else {
+                failedFeatures[SourceFeature.FORECAST] = webpageError ?: ParsingException()
                 Observable.just(BmkgForecastResult())
             }
         } else {
@@ -126,13 +147,16 @@ class BmkgService @Inject constructor(
             Observable.just(BmkgCurrentResult())
         }
 
-        val publicToken = ""
-        /*val publicToken = if (SourceFeature.ALERT in requestedFeatures) {
-            TODO: Needs to be pulled from the https://cuaca.bmkg.go.id/ webpage
+        val publicToken = if (SourceFeature.ALERT in requestedFeatures) {
+            getValidPublicToken().also {
+                if (it.isEmpty()) {
+                    failedFeatures[SourceFeature.ALERT] = webpageError ?: ParsingException()
+                }
+            }
         } else {
             ""
-        }*/
-        val warning = if (SourceFeature.ALERT in requestedFeatures) {
+        }
+        val warning = if (SourceFeature.ALERT in requestedFeatures && publicToken.isNotEmpty()) {
             mApi.getWarning(
                 publicToken = publicToken,
                 lat = location.latitude,
@@ -149,7 +173,7 @@ class BmkgService @Inject constructor(
         val ibf = mutableListOf<Observable<BmkgIbfResult>>()
         for (day in 1..3) {
             ibf.add(
-                if (SourceFeature.ALERT in requestedFeatures) {
+                if (SourceFeature.ALERT in requestedFeatures && publicToken.isNotEmpty()) {
                     mApi.getIbf(
                         publicToken = publicToken,
                         lat = location.latitude,
@@ -591,8 +615,81 @@ class BmkgService @Inject constructor(
         )
     }
 
+    @Volatile
+    private var apiKeyCache: String? = null
+
+    @Volatile
+    private var publicTokenCache: Pair<String, Long>? = null
+
+    /**
+     * The API key and the short-lived token are embedded in the Nuxt payload.
+     * The payload is a flat JSON array where objects reference their values by index:
+     *  …, {"$spublicToken": 11, …}, …, {"token": 12, "expiresAt": 13}, "<token>", <expiresAt>, …
+     * The API key is stored as long as the app is running,
+     * while the token is cached in memory until shortly before it expires.
+     * Nothing is fetched while both are still valid.
+     */
+    @Synchronized
+    private fun refreshWebpageData() {
+        if (apiKeyCache != null && getValidPublicToken().isNotEmpty()) return
+
+        val request = Request.Builder().url(BMKG_BASE_URL).build()
+        val html = okHttpClient.newCall(request).execute().use { call ->
+            if (!call.isSuccessful) throw ParsingException()
+            call.body.string()
+        }
+
+        val nuxtData = NUXT_DATA_REGEX.find(html)?.groupValues?.get(1) ?: throw ParsingException()
+        val data = try {
+            Json.parseToJsonElement(nuxtData).jsonArray
+        } catch (_: Exception) {
+            throw ParsingException()
+        }
+
+        // Entry holding the references of all "$s"-prefixed Nuxt states
+        val state = data
+            .filterIsInstance<JsonObject>()
+            .firstOrNull { "\$spublicToken" in it || "\$sapiKey" in it }
+            ?: throw ParsingException()
+
+        data.resolveString(state["\$sapiKey"])?.let { apiKeyCache = it }
+        val tokenObject = data.resolve(state["\$spublicToken"]) as? JsonObject ?: throw ParsingException()
+        val token = data.resolveString(tokenObject["token"]) ?: throw ParsingException()
+        val expiresAt = (data.resolve(tokenObject["expiresAt"]) as? JsonPrimitive)?.longOrNull ?: 0L
+        publicTokenCache = token to expiresAt
+    }
+
+    /**
+     * Nuxt references other entries by their index in the flat array
+     */
+    private fun JsonArray.resolve(reference: JsonElement?): JsonElement? {
+        return (reference as? JsonPrimitive)
+            ?.takeIf { !it.isString }
+            ?.longOrNull
+            ?.let { getOrNull(it.toInt()) }
+    }
+
+    private fun JsonArray.resolveString(reference: JsonElement?): String? {
+        return (resolve(reference) as? JsonPrimitive)
+            ?.takeIf { it.isString }
+            ?.content
+            ?.takeIf { it.isNotEmpty() }
+    }
+
+    private fun getValidPublicToken(): String {
+        return publicTokenCache
+            ?.takeIf { (_, expiresAt) -> System.currentTimeMillis() < expiresAt - TOKEN_EXPIRY_MARGIN_MS }
+            ?.first
+            ?: ""
+    }
+
     companion object {
         private const val BMKG_BASE_URL = "https://cuaca.bmkg.go.id/"
         private const val BMKG_APP_BASE_URL = "https://api-apps.bmkg.go.id/"
+        private const val TOKEN_EXPIRY_MARGIN_MS = 60_000L
+        private val NUXT_DATA_REGEX = Regex(
+            """<script[^>]*\bid="__NUXT_DATA__"[^>]*>(.*?)</script>""",
+            RegexOption.DOT_MATCHES_ALL
+        )
     }
 }
