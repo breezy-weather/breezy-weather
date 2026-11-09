@@ -24,7 +24,7 @@ import retrofit2.http.Query
 
 interface GeoSphereAtApi {
 
-    @GET("v1/timeseries/forecast/nwp-v1-1h-2500m")
+    @GET("v1/timeseries/forecast/nwp-v2-1h-1km")
     fun getHourlyForecast(
         @Query("lat_lon", encoded = true) latLon: String,
         @Query("parameters", encoded = true) parameters: String,

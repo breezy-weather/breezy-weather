@@ -159,17 +159,16 @@ class GeoSphereAtService @Inject constructor(
                 "${location.latitude},${location.longitude}",
                 arrayOf(
                     "sy", // Weather symbol
-                    "t2m", // Temperature at 2 meters
-                    "rr_acc", // Total precipitation amount
-                    "rain_acc", // Total rainfall amount
-                    "snow_acc", // Total surface snow amount
-                    "u10m", // 10 m wind speed in eastward direction
-                    "ugust", // u component of maximum wind gust
-                    "v10m", // 10 m wind speed in northward direction
-                    "vgust", // v component of maximum wind gust
-                    "rh2m", // Relative humidity 2 meters
+                    "2t", // Temperature at 2 meters
+                    "tp", // Total precipitation amount
+                    "rain", // Total rainfall amount
+                    "sf", // Total surface snow amount
+                    "10u", // 10 m wind speed in eastward direction
+                    "10fg", // 10 m wind gust
+                    "10v", // 10 m wind speed in northward direction
+                    "2r", // Relative humidity 2 meters
                     "tcc", // Total cloud cover
-                    "sp" // Surface pressure
+                    "msl" // Surface pressure
                 ).joinToString(",")
             ).onErrorResumeNext {
                 failedFeatures[SourceFeature.FORECAST] = it
@@ -311,10 +310,8 @@ class GeoSphereAtService @Inject constructor(
         }
         return hourlyResult.timestamps.mapIndexed { i, date ->
             // Wind
-            val windU = hourlyResult.features[0].properties!!.parameters!!.u10m?.data?.getOrNull(i)
-            val windV = hourlyResult.features[0].properties!!.parameters!!.v10m?.data?.getOrNull(i)
-            val windGustU = hourlyResult.features[0].properties!!.parameters!!.ugust?.data?.getOrNull(i)
-            val windGustV = hourlyResult.features[0].properties!!.parameters!!.vgust?.data?.getOrNull(i)
+            val windU = hourlyResult.features[0].properties!!.parameters!!.wind10u?.data?.getOrNull(i)
+            val windV = hourlyResult.features[0].properties!!.parameters!!.wind10v?.data?.getOrNull(i)
             val windDegree = if (windU != null && windV != null) {
                 if (windU == 0.0) {
                     -1.0
@@ -331,40 +328,35 @@ class GeoSphereAtService @Inject constructor(
             } else {
                 null
             }
-            val windGustSpeed = if (windGustU != null && windGustV != null) {
-                sqrt(windGustU.pow(2) + windGustV.pow(2))
-            } else {
-                null
-            }
 
             HourlyWrapper(
                 date = date,
                 weatherCode = getWeatherCode(hourlyResult.features[0].properties!!.parameters!!.sy?.data?.getOrNull(i)),
                 temperature = TemperatureWrapper(
-                    temperature = hourlyResult.features[0].properties!!.parameters!!.t2m?.data?.getOrNull(i)?.celsius
+                    temperature = hourlyResult.features[0].properties!!.parameters!!.temp2?.data?.getOrNull(i)?.celsius
                 ),
                 precipitation = Precipitation(
-                    total = hourlyResult.features[0].properties!!.parameters!!.rrAcc?.data?.getOrNull(i)
-                        .minus(hourlyResult.features[0].properties!!.parameters!!.rrAcc?.data?.getOrNull(i - 1))
+                    total = hourlyResult.features[0].properties!!.parameters!!.tp?.data?.getOrNull(i)
+                        .minus(hourlyResult.features[0].properties!!.parameters!!.tp?.data?.getOrNull(i - 1))
                         ?.millimeters,
-                    rain = hourlyResult.features[0].properties!!.parameters!!.rainAcc?.data?.getOrNull(i)
-                        .minus(hourlyResult.features[0].properties!!.parameters!!.rainAcc?.data?.getOrNull(i - 1))
+                    rain = hourlyResult.features[0].properties!!.parameters!!.rain?.data?.getOrNull(i)
+                        .minus(hourlyResult.features[0].properties!!.parameters!!.rain?.data?.getOrNull(i - 1))
                         ?.millimeters,
-                    snow = hourlyResult.features[0].properties!!.parameters!!.snowAcc?.data?.getOrNull(i)
-                        .minus(hourlyResult.features[0].properties!!.parameters!!.snowAcc?.data?.getOrNull(i - 1))
+                    snow = hourlyResult.features[0].properties!!.parameters!!.sf?.data?.getOrNull(i)
+                        .minus(hourlyResult.features[0].properties!!.parameters!!.sf?.data?.getOrNull(i - 1))
                         ?.millimeters
                 ),
                 wind = if (windSpeed != null) {
                     Wind(
                         degree = windDegree,
                         speed = windSpeed.metersPerSecond,
-                        gusts = windGustSpeed?.metersPerSecond
+                        gusts = hourlyResult.features[0].properties!!.parameters!!.windgusts?.data?.getOrNull(i)?.metersPerSecond
                     )
                 } else {
                     null
                 },
-                relativeHumidity = hourlyResult.features[0].properties!!.parameters!!.rh2m?.data?.getOrNull(i)?.percent,
-                pressure = hourlyResult.features[0].properties!!.parameters!!.sp?.data?.getOrNull(i)?.pascals,
+                relativeHumidity = hourlyResult.features[0].properties!!.parameters!!.rh2?.data?.getOrNull(i)?.percent,
+                pressure = hourlyResult.features[0].properties!!.parameters!!.msl?.data?.getOrNull(i)?.pascals,
                 cloudCover = hourlyResult.features[0].properties!!.parameters!!.tcc?.data?.getOrNull(i)?.fraction
             )
         }
