@@ -8,8 +8,8 @@
     <string name="alerts">Alertas</string>
     <string name="alerts_to_follow">Próximas alertas, prema aquí para velas.</string>
     <string name="temperature">Temperatura</string>
-    <string name="temperature_feels_like">Síntese coma</string>
-    <string name="temperature_feels_like_with_unit">Síntese coma %s</string>
+    <string name="temperature_feels_like">Sensación térmica</string>
+    <string name="temperature_feels_like_with_unit">Sensación térmica %s</string>
     <string name="temperature_wind_chill">Sensación térmica fría por vento</string>
     <string name="precipitation_duration">Duración das precipitacións</string>
     <string name="precipitation_thunderstorm">Treboada</string>
