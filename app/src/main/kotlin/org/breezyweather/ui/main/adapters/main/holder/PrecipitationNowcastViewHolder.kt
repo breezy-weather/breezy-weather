@@ -55,6 +55,7 @@ import kotlinx.collections.immutable.toImmutableMap
 import kotlinx.coroutines.launch
 import org.breezyweather.R
 import org.breezyweather.common.activities.BreezyActivity
+import org.breezyweather.common.extensions.fontScaleToApply
 import org.breezyweather.common.extensions.formatMeasureIntensity
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.getThemeColor
@@ -75,6 +76,7 @@ import org.breezyweather.unit.precipitation.Precipitation.Companion.micrometers
 import org.breezyweather.unit.precipitation.Precipitation.Companion.millimeters
 import java.util.Date
 import kotlin.math.max
+import kotlin.math.roundToInt
 import kotlin.time.Duration.Companion.minutes
 
 class PrecipitationNowcastViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
@@ -187,6 +189,9 @@ class PrecipitationNowcastViewHolder(parent: ViewGroup) : AbstractMainCardViewHo
             Date(value.toLong()).getFormattedTime(location, context, context.is12Hour)
         }
 
+        chartView.layoutParams.height = context.resources.getDimensionPixelSize(R.dimen.nowcasting_chart_height)
+            .times(context.fontScaleToApply)
+            .roundToInt()
         chartView.chart = CartesianChart(
             ColumnCartesianLayer(
                 ColumnCartesianLayer.ColumnProvider.series(

@@ -13,6 +13,8 @@
 - Main screen - Forecast charts - Make threshold lines draw on top of chart instead of behind
 - Main screen - Forecast charts - Accessibility: texts will now take into account system font scale
 - Main screen - Forecast charts - Fix missing Daily Wind tab when there is no precipitation in the whole period
+- Main screen - Nowcasting - The threshold description texts when font size is high will no longer overlap each other
+- Main screen - Nowcasting - The nowcasting description text will no longer overlap with the chart
 - Notifications - Dismiss old today/tomorrow/nowcasting notifications if no longer relevant
 - Widget - Clock + Daily (Vertical) - Temperature style - Now opens calendar when tapping on the date
 - Per-app language is now correctly remembered (@zbigniewfr)

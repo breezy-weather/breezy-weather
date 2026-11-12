@@ -33,28 +33,34 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/large_margin"
             android:layout_marginStart="8dp"
+            tools:text="@string/notification_precipitation_starting"
             app:layout_constraintStart_toEndOf="@+id/nowcasting_block_title_icon"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/nowcasting_block_subtitle"
             android:layout_marginTop="2dp"
-            android:layout_marginEnd="@dimen/large_margin"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             style="@style/content_text"
-            tools:text="Rain Wednesday evening"
+            tools:text="@string/notification_precipitation_starting_desc"
             app:layout_constraintTop_toBottomOf="@+id/nowcasting_block_title"
             app:layout_constraintStart_toStartOf="@+id/nowcasting_block_title_icon" />
 
+        <!-- The negative margin allows for subtitle and marker overlap (avoids leaving an empty space not used most of the time) -->
         <com.patrykandpatrick.vico.views.cartesian.CartesianChartView
             android:id="@+id/container_main_minutely_chart"
             android:layout_width="match_parent"
             android:layout_height="@dimen/nowcasting_chart_height"
             android:layout_marginStart="4dp"
+            android:layout_marginTop="-20dp"
             android:layout_marginEnd="4dp"
             android:paddingBottom="@dimen/large_margin"
             app:scrollEnabled="false"
             app:chartStyle="@style/NowcastingChart"
-            app:layout_constraintTop_toTopOf="@+id/nowcasting_block_subtitle"
+            app:layout_constraintTop_toBottomOf="@+id/nowcasting_block_subtitle"
             app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
