@@ -16,6 +16,7 @@
 - Main screen - Forecast charts - Fix last tab sometimes going beyond the block border
 - Main screen - Nowcasting - The threshold description texts when font size is high will no longer overlap each other
 - Main screen - Nowcasting - The nowcasting description text will no longer overlap with the chart
+- Live Wallpaper - Performance improvements (feedback appreciated!) (@Adenics)
 - Notifications - Dismiss old today/tomorrow/nowcasting notifications if no longer relevant
 - Widget - Clock + Daily (Vertical) - Temperature style - Now opens calendar when tapping on the date
 - Per-app language is now correctly remembered (@zbigniewfr)
