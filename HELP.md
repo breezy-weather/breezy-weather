@@ -24,6 +24,22 @@ ___
 
 ## Troubleshooting errors
 
+### “Network unavailable”
+
+First of all, we instruct Android to only run the background update when it is connected to a network. It may therefore seem confusing that this error occurs.
+
+Most of the time, the device is indeed connected to a network, but it may lose its connection after the update has started. This is why we cannot simply “try again in 15 minutes” when this happens, as the update may have been partially successful.
+
+In rare cases, this error occurs frequently (more than once a day): in such cases, it is a network-related or device-specific issue. Possible causes include:
+- You are connected to a VPN which is unreachable
+- A hardware or driver issue (some hardware may be less reliable than other devices that work perfectly)
+- An unreliable aggressive [doze mode](https://source.android.com/docs/core/power/platform_mgmt): some manufacturers make customizations that cause the network to become unstable when the device is inactive.
+
+We cannot help you resolve an issue outside the app: we use the `okhttp` library to handle network calls, which is used by many apps (some of which may not report similar issues to you and simply ignore the problem silently); we are therefore unable to take any action if the library indicates that a connection cannot be established.
+
+If you find these unsolicited notifications annoying and do not mind no longer knowing when updates are skipped, you can disable the “Background services” notification channel; however, you will then no longer be notified of other types of errors.
+
+
 ### “Invalid or incomplete data received from server” / “Location search failed” / “Weather data refresh failed” / “Weather data refresh for a secondary weather source failed”
 
 The source may be temporarily unavailable, please retry a few hours later. If the problem persists, please open an issue on GitHub.
