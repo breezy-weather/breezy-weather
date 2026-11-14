@@ -21,8 +21,8 @@ Breezy Weather என்பது ஒரு பண்பு நிறைந்�
 
 <b>மூலங்கள்</b>
 
-- அனைத்து சுவைகளிலும்: Open-Meteo, ANAM-BF, Bright Sky (DWD), DCCMS, DMN, DWR, EMI, FOSS பொது எச்சரிக்கை சேவையகம், GMet, IGEBU, INM, KNMI,  Mettelsat, MSD, Pirate Weather, SMA (Seychelles), SMA (சூடான்), SSMS
-- libre/self-hostable அல்ல (பின்னொட்டு _freenet கொண்ட பதிப்புகளில் சேர்க்கப்படவில்லை): AccuWeather, AEMET, Atmo Auvergne-Rhône-Alpes, Atmo France, ATMO GrandEst, Atmo Hauts-de-France, AtmoSud, Baidu IP இருப்பிடம், BMD, BMKG, CWA, DMI, ECCC, EKUK, EPD (ஹாங்காங்), GeoNames, GeoSphere AT, HERE, HKO, IP. SB, IPMA, LHMT, LVĢMC, JMA, MET Éireann, MET நார்வே, மெட் ஆபிஸ் யுகே, Meteo AM, Météo-France, MeteoLux, MGM, கலப்பு சீனா ஆதாரங்கள், NAMEM, NCDR, NCEI, NLSC, NWS, OpenWeather, PAGASA, SMG,  WMO கடுமையான வானிலை
+- அனைத்து சுவைகளிலும்: Open-Meteo, ANAM-BF, Bright Sky (DWD), DCCMS, DMN, DWR, EMI, FOSS பொது எச்சரிக்கை சேவையகம், GMet, IGEBU, INM, KNMI, Mettelsat, MSD, Pirate Weather, SMA (Seychelles), SMA (சூடான்), SSMS
+- libre/self-hostable அல்ல (பின்னொட்டு _freenet கொண்ட பதிப்புகளில் சேர்க்கப்படவில்லை): AccuWeather, AEMET, Atmo Auvergne-Rhône-Alpes, Atmo France, ATMO GrandEst, Atmo Hauts-de-France, AtmoSud, Baidu IP இருப்பிடம், BMD, BMKG, CWA, DMI, ECCC, EKUK, EPD (ஹாங்காங்), GeoNames, GeoSphere AT, HERE, HKO, IP. SB, IPMA, LHMT, LVĢMC, JMA, MET Éireann, MET நார்வே, மெட் ஆபிஸ் யுகே, Meteo AM, Météo-France, MeteoLux, MGM, கலப்பு சீனா ஆதாரங்கள், NAMEM, NCDR, NCEI, NLSC, NWS, OpenWeather, PAGASA, SMG, WMO கடுமையான வானிலை
 
 <b>Permissions</b>
 
