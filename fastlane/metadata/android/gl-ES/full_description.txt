@@ -37,10 +37,10 @@ Opcional:
 - Enviar notificacións (POST_NOTIFICATIONS): alertas, precipitacións, predición para hoxe/mañá, widget de notificacións, progreso das actualizacións en segundo plano, etc.
 - Localización (ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION, ACCESS_BACKGROUND_LOCATION): para amosar o tempo na túa localización actual
 - Almacenamento (READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE): axuda a establecer o fondo de pantalla animado do tempo e/ou widgets nalgúns dispositivos
-- Mosaico/Acceso rápido (EXPAND_STATUS_BAR): permite abrir a aplicación dende a configuración rápida (Quick Settings)
+- Mosaico/Acceso rápido (EXPAND_STATUS_BAR): permite abrir a aplicación desde a configuración rápida (Quick Settings)
 
 <b>Licenza</b>
 
 - GNU Lesser General Public License v3.0
-- Esta Licenza non concede ningún dereito sobre as marcas comerciais, marcas de servizo ou logotipos de ningún Colaborador.
-- Está prohibido falsear a orixe de dito material; ademais, as versións modificadas de tal material deben sinalarse, de xeito razoable, como diferentes da versión orixinal.
+- This License does not grant any rights in the trademarks, service marks, or logos of any Contributor.
+- Misrepresentation of the origin of that material is prohibited, and modified versions of such material must be marked in reasonable ways as different from the original version.
