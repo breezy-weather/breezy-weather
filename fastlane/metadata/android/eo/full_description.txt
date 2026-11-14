@@ -1,43 +1,43 @@
-Breezy Weather estas funkcioriĉa, libera kaj malferma fonto Material 3 Expressive veteraplikaĵo kun bonaj pripensemaj bildigoj, apoganta prognozo, realtempaj veterkondiĉojn, nuncastadon, aerkvaliton, polenon, alarmojn, de pli ol 50 veterfontoj, kiel ekzemple Open-Meteo.
+Breezy Weather estas funkciriĉa, libera kaj malfermitkoda veteraplikaĵo laŭ Material 3 Expressive, kun bone pripensitaj bildigoj. Ĝi subtenas prognozojn, realtempajn veterkondiĉojn, tujprognozojn, aerkvaliton, polenon kaj atentigojn el pli ol 50 veterfontoj, kiel ekzemple NWS, Met Office UK, Met Éireann, ECCC kaj Open-Meteo.
 
-<b>Funkcioj </b>
+<b>Funkcioj</b>
 
-- Ĉiutagaj kaj horaj prognozoj ĝis 16 tagoj
-- Precipitaĵo en la sekva horo
+- Ĉiutagaj kaj ĉiuhoraj prognozoj por ĝis 16 tagoj
+- Precipitaĵo en la venonta horo
 - Realtempaj veterkondiĉoj
-- Aerkvalito, alergio kaj ephemerida informoj
-- Severa vetero kaj precipitaĵo alarmoj
-- Elekteblaj datenoj dividantaj kun aliaj programoj (kiel ekzemple Gadgetbridge)
-- Fokuso sur alirebleco por ekranlegantoj kaj aliaj lingvoj
+- Informoj pri aerkvalito, alergenoj kaj efemeridoj
+- Atentigoj pri severa vetero kaj precipitaĵo
+- Laŭvola kunhavigo de datumoj kun aliaj aplikaĵoj (ekzemple Gadgetbridge)
+- Atento al alirebleco por ekranlegiloj kaj aliaj regionaj agordoj
 
-<b> Desegnaĵo </b>
+<b>Aspekto</b>
 
 - Material 3 Expressive
-- Detala 24-hora skemoj
+- Detalaj 24-horaj diagramoj
 - Aŭtomata malhela reĝimo
-- Propraj ikono pakoj
-- Granda elektado de fenestraĵoj
-- Vivanta tapeto
+- Propraj pakoj de piktogramoj
+- Granda elekto de fenestraĵoj
+- Viva ekranfono
 
 <b>Fontoj</b>
 
 - En ĉiuj versioj: Open-Meteo, ANAM-BF, Bright Sky (DWD), DCCMS, DMN, DWR, EMI, FOSS Public Alert Server, GMet, IGEBU, INM, KNMI, Mali-Météo, Météo Benin, Météo Tchad, Météo Togo, Mettelsat, MSD, Pirate Weather, SMA (Seychelles), SMA (Sudan), SSMS
-- Nelibera/memgastigadeble (neenhavita en versioj kun sufikso _freenet): AccuWeather, AEMET, Atmo Auvergne-Rhône-Alpes, Atmo France, ATMO GrandEst, Atmo Hauts-de-France, AtmoSud, Baidu IP location, BMD, BMKG, CWA, DMI, ECCC, EKUK, EPD (Hong Kong), GeoNames, GeoSphere AT, HERE, HKO, Ilmateenistus, IMD, IMS, IP.SB, IPMA, LHMT, LVĢMC, JMA, MET Éireann, MET Norway, Met Office UK, Meteo AM, Météo-France, MeteoLux, MGM, Mixed China sources, NAMEM, NCDR, NCEI, NLSC, NWS, OpenWeather, PAGASA, SMG, Veðurstofa Íslands, WMO Severe Weather
+- Neliberaj aŭ ne memgastigeblaj (ne inkluzivitaj en versioj kun la sufikso _freenet): AccuWeather, AEMET, Atmo Auvergne-Rhône-Alpes, Atmo France, ATMO GrandEst, Atmo Hauts-de-France, AtmoSud, Baidu IP location, BMD, BMKG, CWA, DMI, ECCC, EKUK, EPD (Hong Kong), GeoNames, GeoSphere AT, HERE, HKO, Ilmateenistus, IMD, IMS, IP.SB, IPMA, LHMT, LVĢMC, JMA, MET Éireann, MET Norway, Met Office UK, Meteo AM, Météo-France, MeteoLux, MGM, Mixed China sources, NAMEM, NCDR, NCEI, NLSC, NWS, OpenWeather, PAGASA, SMG, Veðurstofa Íslands, WMO Severe Weather
 
 <b>Permesoj</b>
 
-Bezonataj:
+Necesaj:
 
-- Reto (ACCESS_NETWORK_STATE, ACCESS_WIFI_STATE, INTERNET): alportas veterajn datojn el fontoj en la Interreto
+- Reto (ACCESS_NETWORK_STATE, ACCESS_WIFI_STATE, INTERNET): por elŝuti veterajn datumojn el fontoj en la interreto
 
-Nedeviga:
+Laŭvolaj:
 
-- Fonaj servoj (RECEIVE_BOOT_COMPLETED, WAKE_LOCK, SET_ALARM, FOREGROUND_SERVICE, FOREGROUND_SERVICE_DATA_SYNC, FOREGROUND_SERVICE_SPECIAL_USE): veteraj ĝisdatigoj en la fono kaj planitaj prognazaj sciigoj
-- Ignori bateria optimumigo (REQUEST_IGNORE_BATTERY_OPTIMIZATIONS): helpi malebligi la aplikaĵo al ĉesi sur kelkaj aparatoj
-- Sendi sciigojn (POST_NOTIFICATIONS): avertoj, precipitaĵo, hodiaŭ/morgaŭ prognozo, sciigo-fenestraĵo, ĝisdatiga progreso de fonaj ĝisdatigoj, ktp
-- Loko (ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION, ACCESS_BACKGROUND_LOCATION): por montri vetero en via nuna loko
-- Memoro (READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE): helpas ŝalti la vivantan vetertapeton kaj/aŭ fenestraĵojn sur kelkaj aparatoj
-- Kahelo (EXPAND_STATUS_BAR): ebligas starti la aplikaĵo de Rapidaj Agordoj
+- Fonaj servoj (RECEIVE_BOOT_COMPLETED, WAKE_LOCK, SET_ALARM, FOREGROUND_SERVICE, FOREGROUND_SERVICE_DATA_SYNC, FOREGROUND_SERVICE_SPECIAL_USE): fonaj ĝisdatigoj de la vetero kaj planitaj sciigoj pri la prognozo
+- Ignori baterian optimumigon (REQUEST_IGNORE_BATTERY_OPTIMIZATIONS): helpas eviti, ke la sistemo haltigu la aplikaĵon en kelkaj aparatoj
+- Sendi sciigojn (POST_NOTIFICATIONS): atentigoj, precipitaĵo, prognozo por hodiaŭ/morgaŭ, sciiga fenestraĵo, progreso de fonaj ĝisdatigoj, ktp.
+- Loko (ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION, ACCESS_BACKGROUND_LOCATION): por montri la veteron en via nuna loko
+- Konservejo (READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE): helpas agordi la vivan veteran ekranfonon kaj/aŭ fenestraĵojn en kelkaj aparatoj
+- Kahelo (EXPAND_STATUS_BAR): ebligas lanĉi la aplikaĵon el la Rapidaj agordoj
 
 <b>Licenco</b>
 
