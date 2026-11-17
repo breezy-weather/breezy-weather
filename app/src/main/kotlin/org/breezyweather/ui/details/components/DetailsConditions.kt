@@ -720,6 +720,10 @@ fun WeatherCondition(
     modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
+
+    val tooltipState = rememberTooltipState(isPersistent = true)
+    val coroutineScope = rememberCoroutineScope()
+
     Row(
         horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.small_margin)),
         verticalAlignment = Alignment.CenterVertically,
@@ -753,12 +757,28 @@ fun WeatherCondition(
                 )
             }
         }
-        TextFixedHeight(
-            text = weatherText ?: "",
-            color = MaterialTheme.colorScheme.onSurface,
-            fontWeight = FontWeight.Bold,
-            maxLines = 2
-        )
+        TooltipBox(
+            positionProvider = TooltipDefaults.rememberTooltipPositionProvider(TooltipAnchorPosition.Above),
+            tooltip = {
+                PlainTooltip {
+                    Text(weatherText ?: "")
+                }
+            },
+            state = tooltipState
+        ) {
+            TextFixedHeight(
+                text = weatherText ?: "",
+                color = MaterialTheme.colorScheme.onSurface,
+                fontWeight = FontWeight.Bold,
+                maxLines = 2,
+                modifier = Modifier
+                    .clickable {
+                        coroutineScope.launch {
+                            tooltipState.show()
+                        }
+                    }
+            )
+        }
     }
 }
 
