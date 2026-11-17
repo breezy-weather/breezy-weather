@@ -35,7 +35,7 @@ data class BrightSkyWeather(
     @SerialName("cloud_cover") val cloudCover: Int?, // At timestamp
     @SerialName("dew_point") val dewPoint: Double?, // At timestamp
     @SerialName("relative_humidity") val relativeHumidity: Int?, // At timestamp
-    val pressure: Double?, // At timestamp
+    @SerialName("pressure_msl") val pressure: Double?, // At timestamp
     val visibility: Int?, // At timestamp
     val sunshine: Double?, // Previous hour, in minutes
 )

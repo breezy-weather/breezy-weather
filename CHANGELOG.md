@@ -23,6 +23,7 @@
 
 **Sources**
 - BMKG - Should now work without any API key or token
+- Bright Sky (DWD) - Fix missing hourly pressure
 - Cyprus Department of Meteorology - Added as a new source for Cyprus (@sashkent3)
 - Gadgetbridge - Add pressure, cloud cover, and dewpoint (@ThomasKuehne)
 - Geosphere - Update to newer endpoint
