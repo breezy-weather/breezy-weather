@@ -184,13 +184,13 @@
     <string name="pressure_short">Presión</string>
     <string name="visibility_short">Visibilidade</string>
     <string name="dew_point">Punto de resío</string>
-    <string name="daytime">De día</string>
+    <string name="daytime">Polo día</string>
     <string name="weather_message_data_refresh_failed">Erro ao actualizar os datos</string>
     <string name="sunshine_duration">Horas de sol</string>
     <string name="dew_point_short">Punto de resío</string>
     <string name="cloud_cover">Nubeiro</string>
     <string name="weather_message_unsupported_feature">A fonte non admite un dos datos solicitados</string>
-    <string name="nighttime">Noite</string>
+    <string name="nighttime">Pola noite</string>
     <string name="sunshine">Luz do sol</string>
     <string name="weather_source_continent_worldwide">Mundial</string>
     <string name="weather_source_continent_africa">África</string>
@@ -632,7 +632,7 @@
     <string name="settings_location_access_precise_summaryOff">Activa “Usar localización precisa” se tes problemas para obter unha localización.</string>
     <string name="settings_weather_source_non_freenet">%s (servizo de rede non libre)</string>
     <string name="settings_weather_source_not_configured">%s (non configurado)</string>
-    <string name="settings_weather_source_current_position_disclaimer">É posible que haxa máis fontes meteorolóxicas dispoñibles para a túa localización despois da primeira actualización.</string>
+    <string name="settings_weather_source_current_position_disclaimer">É posible que haxa máis fontes meteorolóxicas dispoñibles para a túa localización após a primeira actualización.</string>
     <string name="settings_source_api_key_invalid">O valor non está no formato esperado</string>
     <string name="settings_appearance_section_regional">Idioma e rexión</string>
     <string name="settings_appearance_section_theme">Tema</string>
@@ -698,7 +698,7 @@
     <string name="settings_debug_dump_crash_logs_summary">Garda rexistros de erros nun ficheiro para compartilos cos desenvolvedores</string>
     <string name="settings_debug_dump_crash_logs_saved">Rexistros de erros gardados</string>
     <string name="settings_debug_dump_crash_logs_tap_to_open">Preme para abrir</string>
-    <string name="settings_changes_apply_after_restart">Os trocos terán efecto despois de reiniciar</string>
+    <string name="settings_changes_apply_after_restart">Os trocos terán efecto após reiniciar</string>
     <string name="settings_items_drag_to_sort">Preme e arrastra os elementos da lista para ordenalos</string>
     <string name="settings_item_delete">Eliminar este elemento</string>
     <string name="settings_enabled">Activado</string>
