@@ -31,6 +31,7 @@ import org.breezyweather.ui.about.AboutActivity
 import org.breezyweather.ui.alert.AlertActivity
 import org.breezyweather.ui.details.DetailsActivity
 import org.breezyweather.ui.main.MainActivity
+import org.breezyweather.ui.radar.RadarActivity
 import org.breezyweather.ui.search.SearchActivity
 import org.breezyweather.ui.settings.activities.CardDisplayManageActivity
 import org.breezyweather.ui.settings.activities.DailyTrendDisplayManageActivity
@@ -123,6 +124,14 @@ object IntentHelper {
                 if (alertId != null) {
                     putExtra(AlertActivity.KEY_ALERT_ID, alertId)
                 }
+            }
+        )
+    }
+
+    fun startRadarActivity(activity: Activity, formattedId: String?) {
+        activity.startActivity(
+            Intent(activity, RadarActivity::class.java).apply {
+                putExtra(RadarActivity.KEY_FORMATTED_ID, formattedId)
             }
         )
     }
