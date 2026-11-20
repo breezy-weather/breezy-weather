@@ -32,6 +32,7 @@
 - MET IE - Fix failure when only used as an alert source
 - MET Norway - Add wind gusts
 - Open-Meteo - Update selectable weather models
+- PAGASA - No longer find a more distant station when one is outdated: will now consistently use the same station and report an outdated data error instead
 - Pollen Information - Add missing pollens: ash, chestnut, linden, plantain, sorrel
 - SMHI - Add precipitation probability and snow probability
 

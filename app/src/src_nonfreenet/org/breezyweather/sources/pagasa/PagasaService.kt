@@ -34,6 +34,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.R
 import org.breezyweather.common.exceptions.InvalidLocationException
+import org.breezyweather.common.exceptions.OutdatedServerDataException
 import org.breezyweather.common.extensions.getIsoFormattedDate
 import org.breezyweather.sources.getWindDegree
 import org.breezyweather.sources.pagasa.json.PagasaCurrentResult
@@ -122,6 +123,16 @@ class PagasaService @Inject constructor(
             } else {
                 null
             }
+            val current = try {
+                if (SourceFeature.CURRENT in requestedFeatures) {
+                    getCurrent(location, currentResult.getOrElse(key) { null })
+                } else {
+                    null
+                }
+            } catch (e: Exception) {
+                failedFeatures[SourceFeature.CURRENT] = e
+                null
+            }
             WeatherWrapper(
                 dailyForecast = if (SourceFeature.FORECAST in requestedFeatures) {
                     getDailyForecast(location, hourlyForecast!!)
@@ -129,11 +140,7 @@ class PagasaService @Inject constructor(
                     null
                 },
                 hourlyForecast = hourlyForecast,
-                current = if (SourceFeature.CURRENT in requestedFeatures) {
-                    getCurrent(location, currentResult.getOrElse(key) { null })
-                } else {
-                    null
-                },
+                current = current,
                 failedFeatures = failedFeatures
             )
         }
@@ -148,22 +155,23 @@ class PagasaService @Inject constructor(
         val now = Date().time
         var nearestDistance = Double.POSITIVE_INFINITY
         var nearestStation = Int.MAX_VALUE
-        var distance = Double.POSITIVE_INFINITY
-        var update: Long
+        var distance: Double
         currentResult?.forEachIndexed { i, station ->
-            update = formatter.parse(station.datetime)!!.time
-            if ((now - update) <= 2.hours.inWholeMilliseconds) {
-                distance = SphericalUtil.computeDistanceBetween(
-                    LatLng(station.latitude.toDouble(), station.longitude.toDouble()),
-                    LatLng(location.latitude, location.longitude)
-                )
-                if (distance < nearestDistance) {
-                    nearestDistance = distance
-                    nearestStation = i
-                }
+            distance = SphericalUtil.computeDistanceBetween(
+                LatLng(station.latitude.toDouble(), station.longitude.toDouble()),
+                LatLng(location.latitude, location.longitude)
+            )
+            if (distance < nearestDistance) {
+                nearestDistance = distance
+                nearestStation = i
             }
         }
         return currentResult?.getOrNull(nearestStation)?.let {
+            val update = formatter.parse(it.datetime)!!.time
+            if ((now - update) > 2.hours.inWholeMilliseconds) {
+                throw OutdatedServerDataException()
+            }
+
             CurrentWrapper(
                 temperature = TemperatureWrapper(
                     temperature = it.temperature?.substringBefore(" ")?.toDoubleOrNull()?.celsius
