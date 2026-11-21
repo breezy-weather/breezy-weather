@@ -38,7 +38,7 @@
 
 **Technical**
 - Remove support for Android 6
-- Target Android 17
+- Target Android 17.2
 - Add pollen levels to datasharing lib
 - Remove unused `READ_APP_SPECIFIC_LOCALES` permission
 

@@ -17,6 +17,7 @@ val Project.libs get() = the<LibrariesForLibs>()
 internal fun Project.configureAndroidApplication() {
     extensions.getByType(ApplicationExtension::class).apply {
         compileSdk = AndroidConfig.COMPILE_SDK
+        compileSdkMinor = AndroidConfig.COMPILE_SDK_MINOR
         buildToolsVersion = AndroidConfig.BUILD_TOOLS
 
         defaultConfig {
@@ -36,6 +37,7 @@ internal fun Project.configureAndroidApplication() {
 internal fun Project.configureAndroidLibrary() {
     extensions.getByType(LibraryExtension::class).apply {
         compileSdk = AndroidConfig.COMPILE_SDK
+        compileSdkMinor = AndroidConfig.COMPILE_SDK_MINOR
         buildToolsVersion = AndroidConfig.BUILD_TOOLS
 
         defaultConfig {

@@ -5,6 +5,7 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget as KotlinJvmTarget
 
 object AndroidConfig {
     const val COMPILE_SDK = 37
+    const val COMPILE_SDK_MINOR = 2
     const val MIN_SDK = 24
     const val TARGET_SDK = 37
     const val BUILD_TOOLS = "37.0.0"
