@@ -12,7 +12,7 @@
     <string name="temperature_feels_like_with_unit">Sensación térmica %s</string>
     <string name="temperature_wind_chill">Sensación térmica fría por vento</string>
     <string name="precipitation_duration">Duración das precipitacións</string>
-    <string name="precipitation_thunderstorm">Treboada</string>
+    <string name="precipitation_thunderstorm">Tronada</string>
     <string name="precipitation_rain">Choiva</string>
     <string name="precipitation_snow">Neve</string>
     <string name="precipitation_ice">Resío</string>
