@@ -228,7 +228,7 @@
     <string name="wind_strength_scale">ಬ್ಯುಫೊರ್ಟ್ ಮಾಪನ</string>
     <string name="wind_strength_0">ನಿಶ್ಚಲ</string>
     <string name="wind_strength_1">ಮಂದ ಗಾಳಿ</string>
-    <string name="wind_strength_2">ಮೃದು ಗಾಳಿ</string>
+    <string name="wind_strength_2">ಹಗುರ ಗಾಳಿ</string>
     <string name="wind_strength_3">ಸೌಮ್ಯ ಗಾಳಿ</string>
     <string name="wind_strength_4">ಸಾಧಾರಣ ಗಾಳಿ</string>
     <string name="wind_strength_5">ಚುರುಕು ಗಾಳಿ</string>
@@ -237,8 +237,8 @@
     <string name="wind_strength_8">ಬಿರುಗಾಳಿ</string>
     <string name="wind_strength_9">ತೀವ್ರ ಬಿರುಗಾಳಿ</string>
     <string name="wind_strength_10">ಮಾರುತ</string>
-    <string name="wind_strength_11">ಚಂಡಮಾರುತ</string>
-    <string name="wind_strength_12">ಪ್ರಚಂಡಮಾರುತ</string>
+    <string name="wind_strength_11">ಭೀಕರ ಮಾರುತ</string>
+    <string name="wind_strength_12">ಚಂಡಮಾರುತ</string>
     <string name="weather_message_too_frequent_refreshes">ಪುನಃಪ್ರಯತ್ನಿಸುವ ಮೊದಲು ಸ್ವಲ್ಪ ಕಾಯಿರಿ…</string>
     <string name="weather_message_data_refresh_failed">ಡೇಟಾ ಮರುಪಡೆಯಲು ವಿಫಲವಾಗಿದೆ</string>
     <string name="weather_message_unsupported_feature">ಮೂಲವು ವಿನಂತಿಸಿದ ಒಂದು ಫೀಚರ್ ಅನ್ನು ಬೆಂಬಲಿಸುವುದಿಲ್ಲ</string>

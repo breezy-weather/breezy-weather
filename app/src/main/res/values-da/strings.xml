@@ -126,14 +126,14 @@
     <string name="ephemeris_sunset_at">Solnedgang kl. %s</string>
     <string name="ephemeris_moonrise_at">Måneopgang kl. %s</string>
     <string name="daytime">Dag</string>
-    <string name="cloud_cover_short">Skyd.</string>
+    <string name="cloud_cover_short">Skydækning</string>
     <string name="sunshine">Solskin</string>
     <string name="sunshine_duration">Solskinsvarighed</string>
-    <string name="humidity_short">Luftf.</string>
+    <string name="humidity_short">Luftfugtighed</string>
     <string name="pressure_short">Tryk</string>
-    <string name="visibility_short">Sigtb.</string>
+    <string name="visibility_short">Sigtbarhed</string>
     <string name="dew_point">Dugpunkt</string>
-    <string name="dew_point_short">Dugpt.</string>
+    <string name="dew_point_short">Dugpunkt</string>
     <string name="cloud_cover">Skydække</string>
     <string name="ceiling">Loft</string>
     <string name="widget_multi_city">Flere byer</string>
@@ -190,7 +190,7 @@
     <string name="notification_channel_forecast">Vejrudsigt</string>
     <string name="notification_channel_widget">Widget</string>
     <string name="about_open_link_message">Åbn %s?</string>
-    <string name="common_weather_text_drizzle_freezing">Isglat</string>
+    <string name="common_weather_text_drizzle_freezing">Frysende støvregn</string>
     <string name="common_weather_text_snow_grains">Snefnug</string>
     <string name="common_weather_text_drizzle_heavy">Kraftig støvregn</string>
     <string name="weather_kind_thunderstorm">Tordenvejr</string>
@@ -272,7 +272,7 @@
     <string name="common_weather_text_rain_snow_mixed_showers_light">Let byge med slud</string>
     <string name="weather_kind_hail">Hagl</string>
     <string name="weather_kind_thunder">Torden</string>
-    <string name="settings_background_updates_refresh_never_warning3">Overvej at bruge mindre mindre hyppig genopfriskningsrate, i stedet for at slå baggrundsopdateringer fra, eller tryk på “Fortsæt”, hvis du stadig vil fortsætte.</string>
+    <string name="settings_background_updates_refresh_never_warning3">Overvej at bruge mindre hyppig refresh rate, i stedet for at slå baggrundsopdateringer fra, eller tryk på “Fortsæt”, hvis du stadig vil fortsætte.</string>
     <string name="location_delete_location_dialog_title">Slet placering?</string>
     <string name="setting_weather_source_accu_hours">Timer</string>
     <string name="location_search_no_results">%1$s kan ikke finde %2$s</string>
@@ -633,7 +633,7 @@
     <string name="temperature_degree_day_heating_explanation">Forskellen imellem den udendørs temperatur og en komfortabel referencetemperatur, brugt til at estimere energiforbrug på opvarmning</string>
     <string name="temperature_degree_day_cooling_explanation">Forskellen imellem den udendørs temperatur og en komfortabel referencetemperatur, brugt til at estimere energiforbrug på nedkøling</string>
     <string name="temperature_normals_deviation_explanation_maximum">Afvigelse fra den gennemsnitlige maksimumtemperatur i %s for denne lokation</string>
-    <string name="temperature_normals_deviation_explanation_minimum">Afvigelse fra den gnnemsnitlige minimumtemperatur i %s for denne lokation.</string>
+    <string name="temperature_normals_deviation_explanation_minimum">Afvigelse fra den gennemsnitlige minimumtemperatur i %s for denne lokation</string>
     <string name="precipitation_total_day">Nedbør i dagtimerne</string>
     <string name="precipitation_total_night">Nedbør i nattetimerne</string>
     <string name="precipitation_rain_total_day">Regn i dagtimerne</string>
@@ -777,4 +777,9 @@
     <string name="pressure_about_description2">Væsentlige, hurtige ændringer i tryk bruges til at forudsige ændringer i vejret. For eksempel kan et fald i tryk betyde, at regn eller sne er på vej, og stigende tryk kan betyde, at vejret vil forbedre. Abnormal atmosfærisk tryk kan forårsage hovedpine, ledsmerter, træthed og andre virkninger.</string>
     <string name="temperature_normals_deviation">Deviation</string>
     <string name="common_weather_text_squall">Kastevind</string>
+    <string name="action_reset_to_default">Nulstil til standard</string>
+    <string name="settings_debug_notification_permission">Nødvendigt for at give besked om crash logs og fejlede vejropdateringer. %s</string>
+    <string name="common_weather_text_blowing_snow">Snefygning</string>
+    <string name="common_weather_text_drifting_snow">Snefygning</string>
+    <string name="common_weather_text_glaze">Isglat</string>
 </resources>
