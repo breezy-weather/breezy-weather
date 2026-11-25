@@ -518,6 +518,7 @@ class SourceManager @Inject constructor(
             }
 
             SourceFeature.ALERT -> if (BuildConfig.FLAVOR != "freenet") getWeatherSource("accu") else null
+
             SourceFeature.NORMALS -> if (!location.countryCode.equals("CN", ignoreCase = true) &&
                 BuildConfig.FLAVOR != "freenet"
             ) {
@@ -526,7 +527,14 @@ class SourceManager @Inject constructor(
                 null
             }
 
-            SourceFeature.REVERSE_GEOCODING -> getReverseGeocodingSource("nominatim")
+            SourceFeature.REVERSE_GEOCODING -> if (BuildConfig.FLAVOR != "freenet") {
+                getReverseGeocodingSource("nativegeocoder")?.let {
+                    if (it.isFeatureSupportedForLocation(Location(), SourceFeature.REVERSE_GEOCODING)) it else null
+                } ?: getReverseGeocodingSource("nominatim")
+            } else {
+                getReverseGeocodingSource("nominatim")
+            }
+
             else -> getWeatherSource("openmeteo")
         }
     }

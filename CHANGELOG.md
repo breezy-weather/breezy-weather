@@ -37,6 +37,7 @@
 - SMHI - Add precipitation probability and snow probability
 
 **Technical**
+- Default address lookup source for newly added current location is now Android Geocoder (when it is available) for standard versions of the app, to relieve a bit the load on the Nominatim source
 - Remove support for Android 6
 - Target Android 17.2
 - Add pollen levels to datasharing lib
