@@ -23,8 +23,14 @@ import breezyweather.domain.source.SourceFeature
 import com.google.maps.android.SphericalUtil
 import com.google.maps.android.model.LatLng
 import org.breezyweather.R
+import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.extensions.getRelativeTime
+import org.breezyweather.common.extensions.uncapitalize
+import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.domain.weather.model.getRiseProgress
 import org.breezyweather.sources.SourceManager
+import java.util.Date
+import kotlin.time.Duration.Companion.hours
 
 fun Location.getPlace(context: Context, showCurrentPositionInPriority: Boolean = false): String {
     if (showCurrentPositionInPriority && isCurrentPosition) {
@@ -78,4 +84,35 @@ fun Location.isCloseTo(location: Location): Boolean {
             LatLng(location.latitude, location.longitude),
             LatLng(latitude, longitude)
         ) < CLOSE_DISTANCE
+}
+
+fun Location.getLocationListSubtitle(context: Context): String {
+    if (!isUsable) {
+        return context.getString(R.string.location_current_not_found_yet)
+    }
+
+    val refreshTime = weather?.base?.refreshTime
+        ?: return administrationLevels()
+
+    if (!alertSource.isNullOrEmpty()) {
+        if (refreshTime.time < Date().time - 24.hours.inWholeMilliseconds) {
+            return context.getString(
+                R.string.location_last_updated_x,
+                refreshTime.getRelativeTime(context).uncapitalize(context.currentLocale)
+            )
+        } else if (!weather?.currentAlertList.isNullOrEmpty()) {
+            return "⚠ " + context.getString(R.string.location_has_active_alerts)
+        }
+    }
+
+    val validity = SettingsManager.getInstance(context).updateInterval.validity
+    return if (refreshTime.time < Date().time - validity.inWholeMilliseconds) {
+        context.getString(
+            R.string.location_last_updated_x,
+            refreshTime.getRelativeTime(context).uncapitalize(context.currentLocale)
+        )
+    } else {
+        weather?.current?.weatherText?.takeIf { it.isNotEmpty() }
+            ?: administrationLevels()
+    }
 }
