@@ -3,5 +3,5 @@
     <font
         app:fontStyle="normal"
         app:fontWeight="400"
-        app:font="@font/robotoflex" />
+        app:font="@font/google_sans_flex" />
 </font-family>

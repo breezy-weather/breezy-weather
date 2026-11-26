@@ -308,12 +308,13 @@
 
     <!-- Weather blocks -->
     <style name="Weather.TextAppearance.MainBlock.NumberDigit" parent="@style/TextAppearance.Material3.DisplaySmall">
+        <item name="android:fontFamily">@font/google_sans_flex</item>
         <item name="android:textSize">45sp</item>
         <item name="android:textAllCaps">false</item>
         <item name="android:letterSpacing">0</item>
     </style>
     <style name="Weather.TextAppearance.MainBlock.Clock" parent="@style/TextAppearance.Material3.DisplaySmall">
-        <item name="android:fontFamily">@font/robotoflex_family</item>
+        <item name="android:fontFamily">@font/google_sans_flex</item>
         <item name="android:textSize">50sp</item>
     </style>
 </resources>
