@@ -20,6 +20,7 @@
 - Live Wallpaper - Performance improvements (feedback appreciated!) (@Adenics)
 - Notifications - Dismiss old today/tomorrow/nowcasting notifications if no longer relevant
 - Widget - Clock + Daily (Vertical) - Temperature style - Now opens calendar when tapping on the date
+- Widget - Text - Custom subtitle is no longer truncated at 1 line, when right-aligned
 - Per-app language is now correctly remembered (@zbigniewfr)
 
 **Sources**
